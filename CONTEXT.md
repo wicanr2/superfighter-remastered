@@ -21,12 +21,12 @@
 | 研究工具 | 已建立 | 安全盤點、IDA、逐次繪製與完整 RAM 分層；規格 007 的通用觀測介面限定 CONFORMED，獨立副本新增兩檔，共用來源未改 |
 | dosgolem 啟動 | 已到第一場對戰 | 獨立副本補齊監督佇列 IF；正常鏈到標題、選角、Jaan 對 Frank；結算與返回尚未驗 |
 | 原版輸入 | 雙人基本輸入與斬四招已驗 | 正常單打、雙打各 25 組基本輸入；雙打兩人的斬各四招均進入原版對應路徑；十二輪詢蓄力是已驗充分條件，未稱最短時間 |
-| 前端與手把 | 三平台共用原生桌面已接核心 | Ebitengine 視窗、鍵鼠、標準手把指派、四格設定與來源所有權；Linux／Windows Wine 各十四項正常 HD 雙打通過。Windows 左右 Shift 已分開讀取並驗獨立放開。實體手把未驗 |
-| HD | 六層屋頂與部分原生角色，121 張圖登錄全部 144 槽 | 純背景、介面、兩名角色及原貌特效依原序合成。Linux／Wine 均走正常入口並顯示新空中踢擊與退步 slot 56；兩側各十三張擷取已獨立重組。缺件素材另驗整張原貌回退。完整動畫、HD HUD／特效與其他角色／畫面未完成 |
+| 前端與手把 | 三平台共用原生桌面已接核心 | Ebitengine 視窗、鍵鼠、標準手把指派、四格設定與來源所有權。最新 Linux 特效版兩次正常流程分別十五／十四項通過；Windows Wine 十四項是前一角色版，最新特效版尚待重驗。實體手把未驗 |
+| HD | 屋頂、部分角色及 13 組特效已接原生 | study-v7 共 144 組正常來源槽及 13 組第二色盤特效。Linux 斬／法蘭克特效分別取得同狀態原貌、HD 與切回畫面，16／15 張擷取獨立重組通過。特效僅支援已驗未裁切幾何；完整動畫、HUD、其他角色及畫面未完成 |
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | Windows／macOS／Linux 已定 | Linux amd64、Windows amd64、macOS Intel／Apple Silicon 已重建角色版，各保存實際編譯來源。Windows Wine 十四項通過；未作 Windows／macOS 真機、簽章或正式封包 |
+| 平台與發布 | Windows／macOS／Linux 已定 | Linux amd64、Windows amd64、macOS Intel／Apple Silicon 已重建特效版，各保存實際編譯來源。最新版 Windows Wine 正常入口等待逾時，尚未通過 GUI；未作 Windows／macOS 真機、簽章或正式封包 |
 
 ## 固定輸入
 
@@ -93,6 +93,16 @@ HD 採 B「街機手繪」，首批屋頂、斬、法蘭克及對戰介面已獲
 AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整研究在 RESEARCH-LOG。短檔作弊效果的因果仍屬強推論，未作同狀態替換實驗，沒有新增 AI 行為。三平台已固定，公開方式與完整發行門檻尚未決定。
 
 ## 現行證據入口
+
+### 最新特效開發切片
+
+- [規格 009](docs/spec/009-hd-effects.md) 限定 READY。`effect-draw-v1`／`v2` 共 1015 次 blit、483 個完整畫格吻合；`effect-evidence-review.json` 另獨立重組 19 個保存畫格。
+- `hd-characters-study-v7` 為版本 2 素材，13 張透明圖集對應 144 個正常來源槽與 13 個第二色盤特效鍵。新圖與提示詞保存在 `hd-effect-art-v1`／`v2`，原版及衍生素材不入 Git。
+- `native-effects-v3/receipt.json` 十五項與 `native-frank-effects-v1/receipt.json` 十四項通過。兩次各由正常標題進入雙打，分開驗斬 R1 與法蘭克手動方向／拳特效，不代表法蘭克快捷已開放。
+- 兩份 `comparison.json` 分別核對 16／15 張完整分層擷取；特效暫停切換的來源狀態一致，HD 切回逐點相同。斬 1035、法蘭克 5643 個原特效輸出像素已由 HD 替換。
+- `effects-tests.log` 驗 19 個真實特效 fixture、第二色盤隔離、幾何拒絕、正常素材及設定；`effects-compatibility-tests.log` 驗舊版素材。`effect-core-compat-v1/receipt.json` 比較觀測開／關共 456 個邊界，原貌、狀態、色盤與步數相同。
+- `desktop-build.json` 已重新核對四個特效版二進位的實際編譯來源與雜湊。`windows-effects-v1`、`windows-frank-effects-v1` 在正常入口等待逾時，尚未取得本版 Windows GUI 通過收據；不沿用舊版收據代替。
+- 前版角色收據及原二進位另保留於 `native-actors-v6`。下列六層角色版、缺件回退與 native-character-audit 均屬前版證據，不能當成目前特效版的完整稽核。
 
 ### GitHub 儲存庫準備
 

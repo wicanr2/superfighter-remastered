@@ -6,6 +6,7 @@ import "image"
 const Pixels = 320 * 200
 
 type Sprite struct {
+	Effect       bool   `json:"effect,omitempty"`
 	Player       int    `json:"player"`
 	Character    int    `json:"character"`
 	Slot         int    `json:"slot"`
@@ -30,22 +31,27 @@ type Layer struct {
 
 // Match 先檢查完整原版圖層，才允許替換呈現。
 func Match(layers []Layer, pixels []byte) bool {
-	if len(pixels) != Pixels || (len(layers) != 5 && len(layers) != 6) || layers[0].Sprite != nil {
+	if len(pixels) != Pixels || (len(layers) != 5 && (len(layers) < 6 || len(layers) > 38 || len(layers)%2 != 0)) || layers[0].Sprite != nil {
 		return false
 	}
 	var players [2]bool
-	if len(layers) == 6 && !layers[0].Background {
+	if len(layers) >= 6 && !layers[0].Background {
 		return false
 	}
-	for _, layer := range layers {
+	for index, layer := range layers {
 		if len(layer.Indices) != Pixels || len(layer.Coverage) != Pixels {
 			return false
 		}
 		if s := layer.Sprite; s != nil {
-			if s.Player < 0 || s.Player > 1 || players[s.Player] {
+			if s.Player < 0 || s.Player > 1 || (!s.Effect && players[s.Player]) {
 				return false
 			}
-			players[s.Player] = true
+			if !s.Effect {
+				players[s.Player] = true
+			}
+		}
+		if len(layers) >= 6 && index > 0 && ((index%2 == 0) != (layer.Sprite != nil)) {
+			return false
 		}
 	}
 	if !players[0] || !players[1] {

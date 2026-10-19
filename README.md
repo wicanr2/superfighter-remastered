@@ -4,9 +4,9 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 玩家入口使用 Ebitengine 原生視窗，直接處理鍵鼠與標準手把。原版核心負責規則、碰撞、AI 及流程。既有網頁只保留研究用途。
 
-目前已有原生雙打、兩人拳腳、斬四招、設定保存，以及可切換的屋頂 HD 背景與部分人物動作。招式特效與戰鬥介面仍保留原版。完整角色 HD、實體手把、完整回合、其他角色快捷、音訊與正式速度仍待驗收。最近收據及各平台限制見 [CONTEXT](CONTEXT.md)。
+目前已有原生雙打、兩人拳腳、斬四招、設定保存，以及可切換的屋頂 HD 背景、部分人物動作與已驗招式特效。戰鬥介面仍保留原版。完整角色 HD、實體手把、完整回合、其他角色快捷、音訊與正式速度仍待驗收。最近收據及各平台限制見 [CONTEXT](CONTEXT.md)。
 
-斬與法蘭克已登錄 121 張人物與特效圖，對應兩人全部 144 個來源槽。六層原生呈現已在 Linux 與 Windows Wine 各通過 14 項檢查，包含行走、雙人跳躍、新空中踢擊、先前缺件的退步、四格設定及重啟；缺件素材另驗整張回退。特效呈現、完整動畫驗收與其他角色仍未完成，製作契約見[角色規格](docs/spec/008-hd-characters.md)。
+斬與法蘭克的基本素材已對應全部 144 個來源槽，另加入 13 組已核對第二組色盤的 HD 特效。最新版在 Linux 分別通過斬 15 項、法蘭克 14 項正常視窗檢查，並核對特效同狀態切換。Windows Wine 的 14 項通過收據屬前一角色版，最新版特效尚待重驗。完整動畫及其他角色仍未完成，製作契約見[角色規格](docs/spec/008-hd-characters.md)與[特效規格](docs/spec/009-hd-effects.md)。
 
 ## 目前整合畫面
 
@@ -15,6 +15,10 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 Windows 原生程式在 Wine 中顯示的設定介面，擷取於原版核心執行前。可分別指派兩人的手把，逐角色設定 R1／R2／L1／L2。擷取時未連接實體手把。[截圖來源](docs/screenshots/source.json)。
 
 以下對戰圖片含原版及衍生美術，僅留本機工作區，GitHub 不收錄圖片檔：
+
+[斬的 HD 特效](workplace/native-effects-v3/hd-effect-paused.png)、[同狀態原貌](workplace/native-effects-v3/original-effect-paused.png)、[法蘭克的 HD 特效](workplace/native-frank-effects-v1/hd-frank-effect-paused.png)。兩次 Linux 正常雙打分別驗證，特效依原版實際繪製順序合成；獨立逐點核對見[斬](workplace/native-effects-v3/comparison.json)與[法蘭克](workplace/native-frank-effects-v1/comparison.json)。
+
+以下是前一六層角色版的擷取，當時招式特效仍保留原貌：
 
 [屋頂與雙人角色 HD 整合畫面](workplace/native-actors-v6/hd-rooftop.png)、[空中踢擊](workplace/native-actors-v6/hd-air-kick.png)、[雙人跳躍](workplace/native-actors-v6/hd-jump.png)。
 
@@ -55,7 +59,7 @@ bash tools/build_desktop.sh
 
 本機屋頂試作素材已備妥時，可加上 `-hd-assets workplace/hd-rooftop-study`，再按「原貌／HD 背景」切換。素材準備與驗證見[背景規格](docs/spec/006-rooftop-background.md)。沒有素材或場景未對應時顯示原貌。
 
-角色試作再加上 `-hd-characters workplace/hd-characters-study-v5`，按「原貌／HD 角色」切換。背景、兩名角色、來源與圖層全部符合才顯示 HD，缺動作或未知色盤時整張回退。此素材群組僅供本機研究，準備工具為 `tools/prepare_hd_characters.py`。
+角色與特效試作再加上 `-hd-characters workplace/hd-characters-study-v7`，按「原貌／HD 角色」切換。背景、兩名角色、來源與圖層全部符合才顯示 HD，缺動作或未知色盤時整張回退。新版仍接受舊版角色素材。此素材群組僅供本機研究，準備工具為 `tools/prepare_hd_characters.py`。
 
 ## 操作
 
@@ -80,7 +84,7 @@ bash tools/build_desktop.sh
 - [工作契約與索引](AGENTS.md)、[目前狀態](CONTEXT.md)、[工作清單](WORKLIST.md)。
 - [驗證範圍](VERIFICATION-MATRIX.md)、[研究證據](RESEARCH-LOG.md)、[工作歷程](WORKLOG.md)。
 - [原生桌面規格](docs/spec/005-native-desktop.md)、[輸入證據](docs/spec/004-live-input-slice.md)、[手把草案](docs/spec/002-gamepad-design.md)。
-- [HD 規格](docs/spec/003-hd-design.md)、[屋頂背景切片](docs/spec/006-rooftop-background.md)、[角色分層](docs/spec/008-hd-characters.md)。背景及部分角色已接原生對戰，完整動畫及介面重繪仍在製作。
+- [HD 規格](docs/spec/003-hd-design.md)、[屋頂背景切片](docs/spec/006-rooftop-background.md)、[角色分層](docs/spec/008-hd-characters.md)、[特效分層](docs/spec/009-hd-effects.md)。背景、部分角色及特效已接原生對戰，完整動畫及介面重繪仍在製作。
 - [青衫與 SP Moves 歷史保存](docs/game-history.md)。
 
 自有程式與文件採 [RRSAL-1.0](LICENSE)，為 source-available 專案。此授權不涵蓋原版遊戲、外站原文與圖片或衍生美術；玩家須自備合法原版。專案與原版權利人沒有隸屬關係。內嵌中文字型另依 [SIL Open Font License](internal/desktop/assets/OFL.txt) 使用。

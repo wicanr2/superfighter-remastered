@@ -2,6 +2,8 @@
 
 目前狀態見 [CONTEXT.md](CONTEXT.md)，證據說明見 [RESEARCH-LOG.md](RESEARCH-LOG.md)。收據與原版畫面只留本機 `workplace/`。
 
+最新特效版依[規格 009](docs/spec/009-hd-effects.md)驗證：Linux 斬十五項、法蘭克十四項正常流程通過，16／15 張分層畫格獨立重組通過，同狀態切換保持來源及恢復後 HD 畫面一致。原版特效證據為 1015 次 blit、483 個完整畫格；開／關觀測共 456 個邊界狀態一致。最新版 Windows Wine 的兩次正常入口等待逾時，尚未通過。下表的 native-actors-v6、windows-actors-v6、缺件及 native-character-audit 均為前一六層角色版證據，不能外推目前特效版完整驗收。
+
 | 項目 | 結果 | 證據與限制 |
 |---|---|---|
 | 固定來源與安全解包 | 通過 | 128 檔逐檔 SHA-256、ZIP CRC、路徑檢查與作弊資料隔離；原始包雜湊不變 |

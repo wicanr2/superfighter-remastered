@@ -28,6 +28,7 @@ type CharacterAtlas struct {
 	Height int    `json:"height"`
 }
 type CharacterPose struct {
+	PaletteBank  int    `json:"palette_bank,omitempty"`
 	Character    int    `json:"character"`
 	Slot         int    `json:"slot"`
 	Width        int    `json:"width"`
@@ -52,8 +53,8 @@ type PoseArt struct {
 }
 type Characters struct {
 	Manifest CharacterManifest
-	poses    map[[2]int]*PoseArt
-	palettes map[int][16][3]uint8
+	poses    map[[3]int]*PoseArt
+	palettes map[[2]int][16][3]uint8
 }
 
 func checkedFile(dir, name, want string, limit int64) ([]byte, error) {
@@ -101,10 +102,10 @@ func LoadCharacters(dir, originalRoot string) (*Characters, error) {
 	if e = decoder.Decode(&struct{}{}); e != io.EOF {
 		return nil, fmt.Errorf("角色素材清單有額外資料")
 	}
-	if m.Version != 1 || m.Kind != "original-draw-characters" || len(m.Sources) == 0 || len(m.Sources) > 11 || len(m.Atlases) == 0 || len(m.Atlases) > 128 || len(m.Poses) == 0 || len(m.Poses) > 11*72 {
+	if (m.Version != 1 && m.Version != 2) || m.Kind != "original-draw-characters" || len(m.Sources) == 0 || len(m.Sources) > 11 || len(m.Atlases) == 0 || len(m.Atlases) > 128 || len(m.Poses) == 0 || len(m.Poses) > 11*144 {
 		return nil, fmt.Errorf("角色素材版本或數量錯誤")
 	}
-	a := &Characters{Manifest: m, poses: map[[2]int]*PoseArt{}, palettes: map[int][16][3]uint8{}}
+	a := &Characters{Manifest: m, poses: map[[3]int]*PoseArt{}, palettes: map[[2]int][16][3]uint8{}}
 	sources := map[int][]byte{}
 	for _, source := range m.Sources {
 		if source.Character < 0 || source.Character > 10 || source.File != fmt.Sprintf("SFMAN%02d.DAT", source.Character+1) || sources[source.Character] != nil || len(source.SHA256) != 64 {
@@ -118,17 +119,19 @@ func LoadCharacters(dir, originalRoot string) (*Characters, error) {
 			return nil, fmt.Errorf("角色來源過短")
 		}
 		sources[source.Character] = data
-		var palette [16][3]uint8
-		for i := range palette {
-			for k := 0; k < 3; k++ {
-				v := data[0xac8+i*3+k]
-				if v > 63 {
-					return nil, fmt.Errorf("角色來源色盤錯誤")
+		for bank := 0; bank < m.Version; bank++ {
+			var palette [16][3]uint8
+			for i := range palette {
+				for k := 0; k < 3; k++ {
+					v := data[0xac8+bank*48+i*3+k]
+					if v > 63 {
+						return nil, fmt.Errorf("角色來源色盤錯誤")
+					}
+					palette[i][k] = v<<2 | v>>4
 				}
-				palette[i][k] = v<<2 | v>>4
 			}
+			a.palettes[[2]int{source.Character, bank}] = palette
 		}
-		a.palettes[source.Character] = palette
 	}
 	images := map[string]image.Image{}
 	totalPixels := 0
@@ -158,10 +161,10 @@ func LoadCharacters(dir, originalRoot string) (*Characters, error) {
 		images[atlas.File] = img
 	}
 	for _, pose := range m.Poses {
-		key := [2]int{pose.Character, pose.Slot}
+		key := [3]int{pose.Character, pose.Slot, pose.PaletteBank}
 		data := sources[pose.Character]
 		img := images[pose.Atlas]
-		if pose.Slot < 0 || pose.Slot >= 72 || data == nil || img == nil || a.poses[key] != nil {
+		if pose.Slot < 0 || pose.Slot >= 72 || pose.PaletteBank < 0 || pose.PaletteBank >= m.Version || data == nil || img == nil || a.poses[key] != nil {
 			return nil, fmt.Errorf("角色姿態重複或來源缺少")
 		}
 		pointer := 0xb28 + pose.Slot*4
@@ -200,7 +203,7 @@ func LoadCharacters(dir, originalRoot string) (*Characters, error) {
 
 // Select 先驗完全部角色，呼叫端成功後才可開始畫 HD。
 func (a *Characters) Select(layers []renderdata.Layer, palette [256][3]uint8) ([]*PoseArt, string) {
-	if len(layers) != 6 || !layers[0].Background {
+	if len(layers) < 6 || len(layers) > 38 || len(layers)%2 != 0 || !layers[0].Background {
 		return nil, "等待完整角色圖層"
 	}
 	var out []*PoseArt
@@ -210,21 +213,29 @@ func (a *Characters) Select(layers []renderdata.Layer, palette [256][3]uint8) ([
 		if s == nil {
 			continue
 		}
-		if s.Player < 0 || s.Player > 1 || players[s.Player] {
+		if s.Player < 0 || s.Player > 1 || (!s.Effect && players[s.Player]) {
 			return nil, "角色次序未對應"
 		}
-		players[s.Player] = true
-		art := a.poses[[2]int{s.Character, s.Slot}]
+		bank := 0
+		if s.Effect {
+			bank = 1
+			if s.Flags&192 != 0 && s.Flags&192 != 64 || s.LeftClip != 0 || s.RightClip != 0 {
+				return nil, "此特效翻轉或裁切保留原貌"
+			}
+		} else {
+			players[s.Player] = true
+		}
+		art := a.poses[[3]int{s.Character, s.Slot, bank}]
 		if art == nil {
 			return nil, "此動作的 HD 素材尚未完成，保留原貌"
 		}
 		if s.SourceSHA256 != art.Pose.SourceSHA256 || s.Width != art.Pose.Width || s.Height != art.Pose.Height {
 			return nil, "角色來源不符，保留原貌"
 		}
-		if s.Flags&192 == 192 || s.TopClip != 0 || s.PaletteBase != uint8(0xc0+s.Player*0x20) {
+		if s.Flags&192 == 192 || s.TopClip != 0 || s.PaletteBase != uint8(0xc0+s.Player*0x20+bank*16) {
 			return nil, "此翻轉、裁切或色盤保留原貌"
 		}
-		for i, p := range a.palettes[s.Character] {
+		for i, p := range a.palettes[[2]int{s.Character, bank}] {
 			if palette[int(s.PaletteBase)+i] != p {
 				return nil, "角色色盤轉場，保留原貌"
 			}
@@ -235,4 +246,13 @@ func (a *Characters) Select(layers []renderdata.Layer, palette [256][3]uint8) ([
 		return nil, "等待兩名完整角色"
 	}
 	return out, "HD 角色與背景"
+}
+
+func (a *Characters) HasEffects() bool {
+	for _, pose := range a.Manifest.Poses {
+		if pose.PaletteBank == 1 {
+			return true
+		}
+	}
+	return false
 }

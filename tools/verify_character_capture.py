@@ -17,7 +17,7 @@ def read_frame(root, name, reference):
     palette = json.loads(Path(str(base) + ".palette.json").read_text())
     frame = json.loads(Path(str(base) + ".frame.json").read_text())
     assert len(raw) == 64000 and len(palette) == 256
-    assert frame["layers_complete"] and len(frame["layers"]) == 6
+    assert frame["layers_complete"] and 6 <= len(frame["layers"]) <= 38 and len(frame["layers"]) % 2 == 0
     assert frame["layers"][0]["background"]
     layers, owners, reconstructed = [], bytearray(64000), bytearray(64000)
     players = []
@@ -31,7 +31,7 @@ def read_frame(root, name, reference):
             camera = frame["camera_x"]
             expected = b"".join(reference[y * 480 + camera:y * 480 + camera + 320] for y in range(200))
             assert indices == expected, (name, "pure background differs from original source")
-        if "sprite" in metadata:
+        if "sprite" in metadata and not metadata["sprite"].get("effect"):
             players.append(metadata["sprite"]["player"])
         for i, written in enumerate(coverage):
             if written:
@@ -81,6 +81,7 @@ def main():
     hd, restored = frames[1][-1], frames[2][-1]
     assert viewport(hd).tobytes() == viewport(restored).tobytes()
     changed_actor, changed_background, preserved_last_raster = 0, 0, 0
+    bodies = {i for i, (layer, _, _) in enumerate(layers) if layer.get("sprite") and not layer["sprite"].get("effect")}
     changed_top_background = 0
     for i, owner in enumerate(owners):
         x, y = i % 320, i // 320
@@ -88,10 +89,10 @@ def main():
             for dx in range(3):
                 position = (80 + x * 3 + dx, 64 + y * 3 + dy)
                 a, b = original.getpixel(position), hd.getpixel(position)
-                if owner == 5:
+                if owner == len(layers) - 1:
                     assert a == b, (x, y, "last original raster write was covered")
                     preserved_last_raster += 1
-                if owner in (2, 4):
+                if owner in bodies:
                     changed_actor += a != b
                 if owner == 0:
                     changed_background += a != b
@@ -108,7 +109,30 @@ def main():
         missing_checked = True
     if args.require_missing:
         assert missing_checked, "missing-pose capture required"
-    receipt = {"kind": "native six-layer independent replay and same-state character GPU capture",
+    effect_counts = {}
+    for label in ("effect", "frank-effect"):
+        if not (root / f"hd-{label}-paused.png").exists():
+            continue
+        effect_names = [f"original-{label}-paused.png", f"hd-{label}-paused.png", f"hd-{label}-restored.png"]
+        effects = [read_frame(root, name, reference) for name in effect_names]
+        assert all(frame[:3] == effects[0][:3] for frame in effects[1:])
+        original_effect = original_image(effects[0][0], effects[0][1])
+        assert viewport(effects[0][-1]).tobytes() == original_effect.tobytes()
+        assert viewport(effects[1][-1]).tobytes() == viewport(effects[2][-1]).tobytes()
+        effect_layers = {i for i, (layer, _, _) in enumerate(effects[0][3]) if layer.get("sprite", {}).get("effect")}
+        assert effect_layers
+        effect_pixels = 0
+        for i, owner in enumerate(effects[0][4]):
+            if owner not in effect_layers:
+                continue
+            x, y = i % 320, i // 320
+            for dy in range(3):
+                for dx in range(3):
+                    point = (80 + x * 3 + dx, 64 + y * 3 + dy)
+                    effect_pixels += effects[0][-1].getpixel(point) != effects[1][-1].getpixel(point)
+        assert effect_pixels > 20, effect_pixels
+        effect_counts[label] = effect_pixels
+    receipt = {"kind": "native ordered-layer independent replay and same-state character/effect GPU capture",
                "replayed_complete_frames": replayed,
                "original_and_hd_source_state_identical": True,
                "restored_hd_viewport_identical": True,
@@ -116,6 +140,8 @@ def main():
                "changed_original_actor_output_pixels": changed_actor,
                "changed_background_output_pixels": changed_background,
                "changed_top_background_output_pixels": changed_top_background,
+               "changed_original_effect_output_pixels": effect_counts.get("effect"),
+               "changed_original_frank_effect_output_pixels": effect_counts.get("frank-effect"),
                "preserved_last_raster_output_pixels": preserved_last_raster,
                "files": {path.name: digest(path) for path in root.iterdir()
                          if path.is_file() and (path.suffix in (".png", ".idx", ".mask") or path.name.endswith((".frame.json", ".palette.json")))},

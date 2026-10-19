@@ -11,6 +11,7 @@ import time
 
 
 def main():
+    script_source = Path(__file__).read_bytes()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--binary", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
@@ -19,6 +20,9 @@ def main():
     parser.add_argument("--expect-missing", action="store_true")
     parser.add_argument("--exercise-poses", action="store_true")
     parser.add_argument("--exercise-backstep", action="store_true")
+    effect_case = parser.add_mutually_exclusive_group()
+    effect_case.add_argument("--exercise-effects", action="store_true")
+    effect_case.add_argument("--exercise-frank-effects", action="store_true")
     parser.add_argument("--wine", action="store_true")
     parser.add_argument("--opponent", choices=["jaan", "frank"], default="jaan")
     args = parser.parse_args()
@@ -34,7 +38,7 @@ def main():
                    WINEDLLOVERRIDES="winemenubuilder.exe=d", EBITENGINE_GRAPHICS_LIBRARY="opengl")
     observe, capture = args.output / "observe.json", args.output / "capture.png"
     command = [str(args.binary), "-data", "/orig", "-user-data", str(args.output / "user-data"),
-               "-observe", str(observe), "-capture", str(capture), "-quit-after", "180s"]
+               "-observe", str(observe), "-capture", str(capture), "-quit-after", "300s"]
     if args.hd_assets:
         command += ["-hd-assets", str(args.hd_assets)]
     if args.hd_characters:
@@ -43,6 +47,7 @@ def main():
         command = ["wine", command[0], *["Z:" + word.replace("/", "\\") if word.startswith("/") else word for word in command[1:]]]
     checks, events = [], []
     processes, logs = [], []
+    game = None
 
     def spawn(cmd, name):
         log = (args.output / (name + ".log")).open("wb")
@@ -76,6 +81,8 @@ def main():
         end = time.monotonic() + timeout
         last = None
         while time.monotonic() < end:
+            if game is not None and game.poll() is not None:
+                raise RuntimeError(f"native process exited before expected state: {game.returncode}")
             last = state()
             if last and last["core"].get("error"):
                 raise AssertionError(last)
@@ -126,6 +133,23 @@ def main():
             except subprocess.TimeoutExpired:
                 proc.kill()
                 proc.wait(timeout=5)
+
+    def compare_effect(label, player):
+        effect = wait(lambda s: s["hd_active"] and any(layer.get("sprite", {}).get("effect") and layer["sprite"]["player"] == player for layer in s["presentation"].get("layers", [])), timeout=20)
+        click(265, 32)
+        paused = wait(lambda s: s["core"]["paused"])
+        assert any(layer.get("sprite", {}).get("effect") and layer["sprite"]["player"] == player for layer in paused["presentation"]["layers"])
+        shot(f"hd-{label}-paused.png")
+        click(830, 32)
+        original = wait(lambda s: not s["hd_enabled"])
+        shot(f"original-{label}-paused.png")
+        click(830, 32)
+        restored = wait(lambda s: s["hd_enabled"] and s["hd_active"])
+        shot(f"hd-{label}-restored.png")
+        for field in ["core", "presentation", "settings", "assigned"]:
+            assert original[field] == paused[field] == restored[field], field
+        events.append({"native_hd_" + label: effect, "native_hd_" + label + "_paused": paused})
+        click(110, 32)
 
     try:
         spawn(["Xvfb", ":89", "-screen", "0", "1280x1024x24", "-nolisten", "tcp"], "xvfb")
@@ -221,11 +245,24 @@ def main():
         wait(lambda s: s["core"]["key_values"][1] == 0)
         checks.append("native Enter and keypad Enter share scan ownership until both released")
         wait(lambda s: s["core"]["paths"] == [0, 0], timeout=20)
-        click(84, 738)
-        thunder = wait(lambda s: s["core"]["paths"][0] == 0x24, timeout=10)
-        events.append({"native_R1": thunder})
-        checks.append("native R1 button reaches original thunder path 24h")
-        shot("quick-thunder.png")
+        if args.exercise_frank_effects:
+            for keys in [("KP_Down",), ("KP_End",), ("KP_Left", "Return")]:
+                before = state()["core"]["frames"]
+                xdo("keydown", *keys)
+                wait(lambda s: s["core"]["frames"] >= before + 2)
+                xdo("keyup", *keys)
+            compare_effect("frank-effect", 1)
+            wait(lambda s: s["core"]["paths"] == [0, 0] and s["hd_characters_active"], timeout=35)
+            checks.append("player two normal keypad quarter-circle emits Frank HD effects with paused original/HD state preserved")
+        else:
+            click(84, 738)
+            thunder = wait(lambda s: s["core"]["paths"][0] == 0x24, timeout=10)
+            events.append({"native_R1": thunder})
+            checks.append("native R1 button reaches original thunder path 24h")
+            shot("quick-thunder.png")
+            if args.exercise_effects:
+                compare_effect("effect", 0)
+                checks.append("normal R1 emits a separate HD effect and exact paused original/HD switching preserves the complete source state")
         if args.hd_characters and args.opponent == "frank":
             if args.expect_missing:
                 missing = wait(lambda s: s["hd_enabled"] and not s["hd_active"] and s["presentation"]["layers_complete"])
@@ -311,13 +348,15 @@ def main():
         receipt = {"kind": ("Windows native under Wine" if args.wine else "Linux native") + " GUI normal-path smoke; not physical gamepad or full-round acceptance",
                    "checks": checks, "events": events, "command": command,
                    "image": "tokugawa-desktop-platforms:go1.24.13-sdk15.5-noble-r1",
-                   "binary_sha256": sha(args.binary), "script_sha256": sha(Path(__file__)),
+                   "binary_sha256": sha(args.binary), "script_sha256": hashlib.sha256(script_source).hexdigest(),
                    "state_access": "observe-only JSON; inputs are X11 keyboard/mouse events"}
         (args.output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n")
-        shutil.copyfile(Path(__file__), args.output / "desktop_smoke.py")
+        (args.output / "desktop_smoke.py").write_bytes(script_source)
         print(json.dumps({"checks": checks}, ensure_ascii=False))
     except Exception as exc:
-        (args.output / "failure.json").write_text(json.dumps({"error": repr(exc), "state": state(), "checks": checks}, ensure_ascii=False, indent=2) + "\n")
+        (args.output / "failure.json").write_text(json.dumps({"error": repr(exc), "state": state(), "checks": checks,
+            "native_exit_code": None if game is None else game.poll(), "script_sha256": hashlib.sha256(script_source).hexdigest()}, ensure_ascii=False, indent=2) + "\n")
+        (args.output / "desktop_smoke.py").write_bytes(script_source)
         raise
     finally:
         if args.wine:

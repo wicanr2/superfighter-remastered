@@ -25,7 +25,7 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 	if g.hdCharacters == nil {
 		return false, "角色 HD 素材未載入，保留原貌"
 	}
-	if !frame.LayersComplete || len(frame.Layers) != 6 || !frame.Layers[0].Background {
+	if !frame.LayersComplete || len(frame.Layers) < 6 || !frame.Layers[0].Background {
 		return false, "等待完整角色畫面"
 	}
 	selected, reason := g.hdCharacters.Select(frame.Layers, frame.Palette)
@@ -43,7 +43,7 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 	}
 	// 全部驗完才開始畫，不能留下半套角色或背景。
 	g.drawBackground(dst, frame)
-	for len(g.layerTextures) < 6 {
+	for len(g.layerTextures) < len(frame.Layers) {
 		g.layerTextures = append(g.layerTextures, ebiten.NewImage(320, 200))
 		g.layerRGBA = append(g.layerRGBA, make([]byte, renderdata.Pixels*4))
 	}

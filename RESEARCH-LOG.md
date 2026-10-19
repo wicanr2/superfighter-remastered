@@ -240,3 +240,13 @@ go run -p 1 /project/tools/input_receipt.go -root /orig -out /project/workplace/
 - 八張角色 PNG 的完整透明列偏離理想等分線 3～12 像素。直接等分曾截去少量肢體並帶入鄰格。已證實修正方法是沿實際全透明列／欄登錄矩形，原 PNG bytes 不變；矩形、界線及工具 SHA-256 存於 registration.json。無透明間隔或實體圖像碰外緣時拒絕，不能用裁圖掩蓋。
 - Windows Wine 的正常輸入曾在雙 Shift 按住後放開左鍵，使第二人腳鍵也釋放。固定 Ebitengine 2.9.9 的 `internal/glfw/win32_window_windows.go` 在 `_WM_KEYUP`／`_VK_SHIFT` 分支同時呼叫兩鍵 Release，為已證實來源行為。`windows-shift-v1` 的只讀 Win32 探針則驗 VK_LSHIFT／VK_RSHIFT 的 bit 15 依序為未按、雙按、只放左、全放，四組狀態全部正確。規格 005 先補 READY 契約，再以個別 VK 適配 Shift；修復後 Wine 正常雙打驗獨立放開。不能由此推論 Windows 實體鍵盤已驗收。
 - GUI 測試另修正視窗晚於只讀狀態檔出現的等待條件。素材擴充後，舊缺件測試等待的招式已有 HD，屬驗證前提過時；完整群組與舊版缺件群組分開乾淨重跑。`native-actors-missing-v1` 確認缺件時整張原貌，沒有刪改正式群組或原版資料來製造結果。
+
+## 2026-10-19：特效來源與第二色盤
+
+輸入 SF.EXE、SFMAN01.DAT、SFMAN05.DAT 與 SHA-256 完整列於[規格 009](docs/spec/009-hd-effects.md)。使用固定 1715 檔 dosgolem 副本及 Go 1.24.13。位址空間為 runtime `01B9:IP` 與 DS 相對偏移；來源檔偏移分開標示，不混同 IDA 位址。
+
+- 已證實於取樣範圍：effect-draw-v1／v2 共 1015 次繪製的像素與覆蓋吻合，483 格完整重組相同。來源 bytes、RAM 指標、色盤及每份探針原始碼保存於各自收據；effect-evidence-review.json 另獨立重組 19 個保存畫格。
+- 追加勘誤：來源 AC8h 的正常人物色盤不能代表特效。49 次特效使用 AF8h 第二組色盤，斬為 D0h、法蘭克為 F0h。先前正常色盤導出的褐色／金色特效圖保留為歷史，不進新版特效對應。
+- 已證實於取樣範圍：near-call 返回點 4393h／45AFh／4618h 表示呼叫位置，不能單獨判玩家。先核對色盤，再比較該玩家 72 槽 RAM 指標與實際 DS:SI，使用完整來源 bytes 雜湊識別。
+- 特效位置由 ES:DI 相對合成緩衝區取得。取樣只涵蓋未裁切 00h／40h 幾何；未取得場邊裁切樣本，不外推支援。素材缺件、未知色盤或幾何時整格回退。
+- effect-core-compat-v1 比較 456 個正常輸入邊界，開／關觀測的原貌、色盤、角色、狀態與指令步數相同。Linux 兩次正常 GUI 的同狀態切換另見 native-effects-v3／native-frank-effects-v1，不宣稱跨執行亂數或實機 parity。

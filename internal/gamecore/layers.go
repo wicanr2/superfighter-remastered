@@ -18,6 +18,9 @@ type layerRecording struct {
 	reason         string
 	base           uint32
 	backgroundDone bool
+	effects        bool
+	effectReturn   uint16
+	effectSP       uint16
 }
 
 // EnableLayers 必須在開始執行前呼叫。模式切換不改觀測或原版狀態。
@@ -48,7 +51,20 @@ func (c *Core) EnableLayers() {
 			r.layers = append(r.layers, newRaster())
 		})
 	}
+	for _, ip := range []uint16{0x4393, 0x45af, 0x4618} {
+		c.o.OnCall(oracle.Far(0x1b9, ip), func(o *oracle.Oracle) {
+			r := &c.recording
+			if !r.effects || r.effectReturn == 0 || r.effectReturn != o.IP().Off || o.SP() != r.effectSP+2 {
+				return
+			}
+			r.effectReturn = 0
+			r.layers = append(r.layers, newRaster())
+		})
+	}
 }
+
+// EnableEffects 沿用素材版本 1 的入口；只有版本 2 素材才另開特效分層。
+func (c *Core) EnableEffects() { c.EnableLayers(); c.recording.effects = true }
 func newRaster() renderdata.Layer {
 	return renderdata.Layer{Indices: make([]byte, renderdata.Pixels), Coverage: make([]byte, renderdata.Pixels)}
 }
@@ -62,6 +78,7 @@ func (c *Core) stopLayers() {
 	r.pending = [2]bool{}
 	r.seen = [2]bool{}
 	r.backgroundDone = false
+	r.effectReturn = 0
 }
 func (c *Core) beginLayers(o *oracle.Oracle) {
 	if !c.recording.enabled {
@@ -106,10 +123,16 @@ func (c *Core) beginSprite(o *oracle.Oracle) {
 	case 0x442f, 0x4435, 0x4440, 0x4446:
 		p = 1
 	}
-	if p < 0 || r.pending[p] {
+	if p < 0 {
+		if r.effects && (ret == 0x4393 || ret == 0x45af || ret == 0x4618) {
+			c.beginEffect(o)
+		}
 		return
 	}
-	if r.seen[p] || len(r.layers) >= 6 || !r.backgroundDone {
+	if r.pending[p] {
+		return
+	}
+	if r.seen[p] || len(r.layers) >= 38 || !r.backgroundDone {
 		r.reason = "角色繪製次序未對應"
 		return
 	}
@@ -146,7 +169,7 @@ func (c *Core) finishLayers(frame *Presentation) {
 		r.cancel = nil
 	}
 	if len(r.layers) > 0 {
-		if r.reason == "" && r.backgroundDone && len(r.layers) == 6 && renderdata.Match(r.layers, frame.Pixels) {
+		if r.reason == "" && r.backgroundDone && r.effectReturn == 0 && (r.effects || len(r.layers) == 6) && renderdata.Match(r.layers, frame.Pixels) {
 			frame.Layers = r.layers
 			frame.LayersComplete = true
 		} else {
@@ -166,4 +189,67 @@ func (c *Core) finishLayers(frame *Presentation) {
 		}
 	}
 	r.layers = nil
+}
+
+func (c *Core) beginEffect(o *oracle.Oracle) {
+	r := &c.recording
+	if r.effectReturn != 0 {
+		if r.effectSP != o.SP() || r.effectReturn != o.StackWord(0) {
+			r.reason = "特效呼叫次序未對應"
+		}
+		return
+	}
+	if !r.backgroundDone || len(r.layers) >= 38 || r.pending[0] || r.pending[1] || uint32(o.ES())*16 != r.base {
+		r.reason = "特效合成緩衝區或次序未對應"
+		return
+	}
+	ds, ok := c.dataSegment()
+	if !ok {
+		r.reason = "特效資料段未對應"
+		return
+	}
+	palette := uint8(o.DX() >> 8)
+	player := -1
+	if palette == 0xd0 {
+		player = 0
+	}
+	if palette == 0xf0 {
+		player = 1
+	}
+	if player < 0 {
+		r.reason = "特效色盤未對應"
+		return
+	}
+	slot := -1
+	for i := 0; i < 72; i++ {
+		table := uint16(0x1706 + player*0x120 + i*4)
+		seg := o.Word(oracle.Far(ds, table)) + o.Word(oracle.Far(ds, uint16(0x132a+player*2)))
+		off := o.Word(oracle.Far(ds, table+2))
+		if oracle.Far(seg, off).Linear() == oracle.Far(o.DSReg(), o.SI()).Linear() {
+			slot = i
+			break
+		}
+	}
+	if slot < 0 {
+		r.reason = "特效原始圖像指標未對應"
+		return
+	}
+	header := o.Bytes(oracle.Far(o.DSReg(), o.SI()), 2)
+	w, h := int(header[0]), int(header[1])
+	if w == 0 || h == 0 {
+		r.reason = "特效來源尺寸錯誤"
+		return
+	}
+	raw := o.Bytes(oracle.Far(o.DSReg(), o.SI()), 2+(w+1)/2*h)
+	origin := int(o.ES())*16 + int(o.DI()) - int(r.base)
+	if origin < 0 || origin >= renderdata.Pixels {
+		r.reason = "特效目的位置越界"
+		return
+	}
+	sprite := &renderdata.Sprite{Effect: true, Player: player, Character: int(o.Word(oracle.Far(ds, uint16(0x12ac+player*2)))), Slot: slot,
+		X: origin % 320, Y: origin / 320, Width: w, Height: h, Flags: uint8(o.CX()), PaletteBase: palette, TopClip: int(o.DX() & 255), LeftClip: int(o.BX() & 255), RightClip: int(o.BX() >> 8), SourceSHA256: fmt.Sprintf("%x", sha256.Sum256(raw))}
+	layer := newRaster()
+	layer.Sprite = sprite
+	r.layers = append(r.layers, layer)
+	r.effectReturn, r.effectSP = o.StackWord(0), o.SP()
 }

@@ -113,7 +113,11 @@ func New(opts Options) (*Game, error) {
 			g.hdCharacters = nil
 			g.notice = "HD 角色與背景素材無法完整載入，保留原貌。"
 		} else {
-			c.EnableLayers()
+			if g.hdCharacters.HasEffects() {
+				c.EnableEffects()
+			} else {
+				c.EnableLayers()
+			}
 		}
 	}
 	return g, nil

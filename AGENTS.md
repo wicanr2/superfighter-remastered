@@ -156,6 +156,8 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [Windows 按鍵適配](internal/desktop/keyboard_windows.go)、[其他平台](internal/desktop/keyboard_other.go) | 以個別 Win32 VK 保留左右 Shift 的獨立按住狀態，其他平台沿用 Ebitengine |
 | [internal/desktop/characters.go](internal/desktop/characters.go) | 原生 GPU 依原版圖層順序繪製高解析角色及保留原貌特效 |
 | [角色素材驗證](internal/hd/characters_test.go)、[圖層定位驗證](internal/renderdata/layers_test.go) | 原始 fixture、素材拒絕、完整重組與鏡像／裁切的獨立驗證 |
+| [特效定位驗證](internal/renderdata/effects_test.go) | 19 個原版特效繪製／完整畫格的獨立幾何、寫入覆蓋與重組核對 |
+| [特效素材驗證](internal/hd/effects_test.go) | 原版特效 fixture 的來源、第二組色盤、整格拒絕與版本隔離 |
 | [字型來源](internal/desktop/assets/source.json)、[OFL 授權](internal/desktop/assets/OFL.txt) | Noto Sans CJK TC 固定來源、SHA-256 與授權 |
 | [tools/build_desktop.sh](tools/build_desktop.sh)、[建置階段](tools/build_desktop.py) | Docker 三平台建置、來源／檔頭核對與中間二進位收據 |
 | [tools/desktop_smoke.py](tools/desktop_smoke.py) | Docker Xvfb 正常原生視窗玩家路徑及設定重啟驗證 |
@@ -185,12 +187,16 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [tools/hd_source_probe.py](tools/hd_source_probe.py) | Docker 內場景、CPM 及角色姿態候選解碼、色號抽樣與圖集蒐證 |
 | [tools/hd_frame_receipt.go](tools/hd_frame_receipt.go) | 正常單打／雙打的完整畫格、背景來源、姿態指標、座標及鏡像蒐證 |
 | [tools/sprite_draw_receipt.go](tools/sprite_draw_receipt.go) | 正常雙打逐次核對角色繪製、鏡像定位、裁切與原始 bytes 的只讀探針 |
+| [tools/effect_draw_receipt.go](tools/effect_draw_receipt.go) | 正常出招記錄全部 blit、實際來源指標、特效色盤與完整分層，僅供證據研究 |
+| [tools/effect_reference.py](tools/effect_reference.py) | 依原版特效繪製收據的實際色盤建立重繪參考，避免誤用人物正常色盤 |
+| [tools/effect_core_receipt.go](tools/effect_core_receipt.go) | 正常輸入下比較開關特效觀測的原版狀態、畫格及指令步數，不修改遊戲狀態 |
 | [tools/hd_sprite_reference.py](tools/hd_sprite_reference.py) | 供重繪使用的原版姿態、尺寸與位置參考表，不把放大圖稱為 HD 美術 |
 | [tools/hd_actor_preview.go](tools/hd_actor_preview.go) | 以原版分層收據核對 HD 姿態、鏡像與裁切的可丟棄比較稿 |
 | [tools/audit_sprite_study.py](tools/audit_sprite_study.py) | 獨立重組分層收據，核對角色素材、觀測介面與證據版本 |
 | [docs/spec/006-rooftop-background.md](docs/spec/006-rooftop-background.md) | 原生屋頂 HD 背景的同畫格合成、完整原貌前景及回退契約 |
 | [docs/spec/007-memory-write-observation.md](docs/spec/007-memory-write-observation.md) | 同值重寫也可觀測的通用 public oracle 薄介面與取消契約 |
 | [docs/spec/008-hd-characters.md](docs/spec/008-hd-characters.md) | 六層原生角色、姿態來源、重繪登錄與完成門檻，限定 READY |
+| [docs/spec/009-hd-effects.md](docs/spec/009-hd-effects.md) | 原版順序的特效分層、第二組色盤、素材相容與回退，證據審查入口 |
 | [tools/apply_write_observer.py](tools/apply_write_observer.py)、[觀測來源](tools/dosgolem-observer/memory_write_observer.go)、[合成程式驗證](tools/dosgolem-observer/memory_write_observer_test.go) | 在獨立副本新增通用 RAM 觀測，逐字保留前版 manifest |
 | [tools/prepare_hd_background.py](tools/prepare_hd_background.py) | Docker 準備本機背景素材與來源 manifest，保留原 PNG bytes |
 | [tools/verify_hd_capture.py](tools/verify_hd_capture.py) | Docker 核對原生同狀態 PNG、前景保留與 HD 切換重現性 |

@@ -65,6 +65,8 @@ def main():
             reference = json.loads(reference_path.read_text())
             ref = next(item for item in reference["records"] if item["character"] == record["character"] and item.get("batch", 0) == record.get("batch", 0))
             character = int(ref["original_file"][5:7]) - 1
+            bank = record.get("palette_bank", 0)
+            assert bank in (0, 1) and bank == ref.get("palette_bank", 0)
             data = (args.original_root / ref["original_file"]).read_bytes()
             assert sha(data) == ref["original_sha256"]
             sources[character] = (ref["original_file"], data)
@@ -73,7 +75,7 @@ def main():
             image = Image.open(png)
             assert image.mode == "RGBA" and image.size == tuple(record["size"])
             cols, rows = record["grid"]
-            assert image.width % cols == image.height % rows == 0
+            assert cols > 0 and rows > 0
             regions = atlas_regions(image, cols, rows)
             registrations[png.name] = {"sha256": record["sha256"], "regions": regions}
             atlas = {"file": png.name, "sha256": record["sha256"], "width": image.width, "height": image.height}
@@ -89,7 +91,7 @@ def main():
                 assert end <= len(data)
                 ordinal = cell["ordinal"]
                 rect = regions[ordinal]["rect"]
-                candidates.setdefault((character, sha(data[offset:end])), (png.name, rect))
+                candidates.setdefault((character, bank, sha(data[offset:end])), (png.name, rect))
     poses, source_records = [], []
     for character, (file, data) in sorted(sources.items()):
         source_records.append({"character": character, "file": file, "sha256": sha(data)})
@@ -99,14 +101,22 @@ def main():
             w, h = data[offset:offset + 2]
             end = offset + 2 + ((w + 1) // 2) * h
             digest = sha(data[offset:end])
-            choice = candidates.get((character, digest))
-            if choice:
-                poses.append({"character": character, "slot": slot, "width": w, "height": h,
+            for bank in (0, 1):
+                choice = candidates.get((character, bank, digest))
+                if not choice:
+                    continue
+                pose = {"character": character, "slot": slot, "width": w, "height": h,
                               "source_offset": offset, "source_sha256": digest,
-                              "atlas": choice[0], "rect": choice[1]})
-    manifest = {"version": 1, "kind": "original-draw-characters", "sources": source_records,
+                              "atlas": choice[0], "rect": choice[1]}
+                if bank:
+                    pose["palette_bank"] = bank
+                poses.append(pose)
+    version = 2 if any(p.get("palette_bank", 0) for p in poses) else 1
+    manifest = {"version": version, "kind": "original-draw-characters", "sources": source_records,
                 "atlases": list(atlases.values()), "poses": poses,
                 "evidence": ["docs/spec/008-hd-characters.md", "workplace/sprite-layers-v1/receipt.json", "registration.json"]}
+    if version == 2:
+        manifest["evidence"].append("docs/spec/009-hd-effects.md")
     args.output.mkdir(exist_ok=False)
     assert args.output.stat().st_uid == 1000
     for name, path in copies.items():
