@@ -17,11 +17,14 @@ def main():
     parser.add_argument("--wine", action="store_true")
     parser.add_argument("--first-round-only", action="store_true",
                         help="只驗正常首勝後的 HD 勝場及同狀態切換，不作完整比賽驗收")
+    parser.add_argument("--victory-only",action="store_true",help="驗正常首勝的直接勝負文字、原貌切換與下一回合清除")
     parser.add_argument("--quit-after-seconds", type=int, default=1800,
                         help="原生程式的有界執行期限；軟體繪圖完整比賽預設 1800 秒")
     args = parser.parse_args()
     if args.quit_after_seconds <= 0:
         parser.error("--quit-after-seconds must be positive")
+    if args.first_round_only and args.victory_only:
+        parser.error("choose one first-victory scope")
     args.output.mkdir(exist_ok=False)
     (args.output / "desktop_match_smoke.py").write_bytes(source)
     for name in ["home", "runtime"]:
@@ -175,6 +178,20 @@ def main():
                     before = state()["core"]["steps"]
                     wait(lambda s: s["core"]["steps"] >= before + 10_000_000 or not s["core"]["battle"])
                     paused_shot(f"transition-{round_index}")
+                if args.victory_only:
+                    wait(lambda s: s["presentation"].get("victory",{}).get("complete") and s["hd_active"] and "勝負文字" in s["hd_reason"],180)
+                    click(265,32)
+                    frozen=wait(lambda s:s["core"]["paused"])
+                    assert frozen["presentation"]["victory"]["state"]["winner_word"]==0
+                    shot("victory-hd")
+                    click(830,32);original=wait(lambda s:not s["hd_enabled"] and not s["hd_active"]);shot("victory-original")
+                    click(830,32);restored=wait(lambda s:s["hd_active"] and "勝負文字" in s["hd_reason"]);shot("victory-restored")
+                    for field in ("core","presentation","settings","assigned"):
+                        assert frozen[field]==original[field]==restored[field],field
+                    click(110,32)
+                    wait(lambda s:hud(s).get("round_index",0)>round_index and hud(s).get("round_state")==0 and not s["presentation"].get("victory"),180)
+                    paused_shot("after-victory")
+                    break
                 wait(lambda s: not s["core"]["battle"] or hud(s).get("round_index", 0) > round_index and hud(s).get("round_state") == 0, 180)
                 if state()["core"]["battle"]:
                     paused_shot("next-round")
@@ -202,7 +219,7 @@ def main():
             frames(30)
             print("cycle", cycle, hud(state()), flush=True)
         xdo("keyup", "a", "d", "Tab")
-        if args.first_round_only:
+        if args.first_round_only or args.victory_only:
             assert knockouts == {0}
         else:
             left = wait(lambda s: not s["core"]["battle"], 180)
@@ -219,6 +236,9 @@ def main():
                    "command": command, "events": events, "knockout_rounds": sorted(knockouts),
                    "elapsed_seconds": time.monotonic() - started, "binary_sha256": hashlib.sha256(args.binary.read_bytes()).hexdigest(),
                    "script_sha256": hashlib.sha256(source).hexdigest(), "inputs": "X11 keyboard/mouse only; no memory, health, winner, position or RNG injection"}
+        if args.victory_only:
+            receipt["kind"]="normal native original/HD victory message and next-round clearing; not complete-match acceptance"
+            receipt["scope"]="first-victory-message"
         (args.output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n")
         print("completed " + receipt["scope"], flush=True)
     except Exception as exc:

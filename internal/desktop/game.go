@@ -48,6 +48,10 @@ type widget struct {
 	disabled bool
 }
 type Game struct {
+	hdVictories           *hd.Victories
+	hdVictoryActive       bool
+	victoryCaptureBefore  []byte
+	victoryCaptureAfter   []byte
 	core                  *gamecore.Core
 	settings              controls.Settings
 	settingsPath          string
@@ -112,6 +116,7 @@ func New(opts Options) (*Game, error) {
 		return nil, e
 	}
 	c.EnableDisplay()
+	c.EnableVictory()
 	b, _ := assets.ReadFile("assets/NotoSansCJKtc-Regular.otf")
 	font, e := text.NewGoTextFaceSource(bytes.NewReader(b))
 	if e != nil {
@@ -160,6 +165,12 @@ func New(opts Options) (*Game, error) {
 			} else {
 				c.EnableLayers()
 			}
+		}
+	}
+	if g.hdHUDRequired {
+		g.hdVictories, e = hd.LoadVictories(opts.Root)
+		if e != nil {
+			g.notice = "HD 勝負文字來源不完整，保留原貌。"
 		}
 	}
 	return g, nil
@@ -657,6 +668,8 @@ func (g *Game) Draw(dst *ebiten.Image) {
 	g.hdHUDActive = false
 	g.hdShadowsActive = false
 	g.hdRoundsActive = false
+	g.hdVictoryActive = false
+	g.victoryCaptureBefore, g.victoryCaptureAfter = nil, nil
 	g.roundCaptureBefore, g.roundCaptureAfter = nil, nil
 	g.shadowCaptureBefore, g.shadowCaptureAfter = nil, nil
 	g.hdReason = "原貌"
@@ -835,6 +848,26 @@ func (g *Game) Draw(dst *ebiten.Image) {
 			}
 			if e == nil && frame.RoundMessage != nil {
 				for suffix, pixels := range map[string][]byte{".round.source": frame.RoundMessage.Source, ".round-under.idx": frame.RoundMessage.Underlay.Indices, ".round-under.mask": frame.RoundMessage.Underlay.Coverage} {
+					if e = os.WriteFile(path+suffix, pixels, 0600); e != nil {
+						break
+					}
+				}
+			}
+			if e == nil && frame.Victory != nil {
+				for suffix, pixels := range map[string][]byte{".victory-under.idx": frame.Victory.Underlay.Indices, ".victory-under.mask": frame.Victory.Underlay.Coverage} {
+					if e = os.WriteFile(path+suffix, pixels, 0600); e != nil {
+						break
+					}
+				}
+				for i, draw := range frame.Victory.Draws {
+					if e != nil {
+						break
+					}
+					e = os.WriteFile(fmt.Sprintf("%s.victory-%02d.source", path, i), draw.Source, 0600)
+				}
+			}
+			if e == nil && g.hdVictoryActive && len(g.victoryCaptureBefore) > 0 && len(g.victoryCaptureAfter) > 0 {
+				for suffix, pixels := range map[string][]byte{".victory-render-before.rgba": g.victoryCaptureBefore, ".victory-render-after.rgba": g.victoryCaptureAfter} {
 					if e = os.WriteFile(path+suffix, pixels, 0600); e != nil {
 						break
 					}

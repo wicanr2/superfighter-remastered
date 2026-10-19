@@ -42,6 +42,7 @@ func (s *Scanout) Matches(raw, tail []byte) bool {
 }
 
 type Sprite struct {
+	SourceBank   string `json:"source_bank,omitempty"`
 	Effect       bool   `json:"effect,omitempty"`
 	Player       int    `json:"player"`
 	Character    int    `json:"character"`

@@ -154,6 +154,7 @@ func (c *Core) beginSprite(o *oracle.Oracle) {
 	}
 	raw := o.Bytes(oracle.Far(o.DSReg(), o.SI()), 2+(w+1)/2*h)
 	s := &renderdata.Sprite{Player: p, Character: int(o.Word(oracle.Far(ds, uint16(0x12ac+p*2)))), Slot: int(o.Byte(oracle.Far(ds, []uint16{0x16f2, 0x16fa}[p]))), X: int(int16(o.Word(oracle.Far(ds, uint16(0x16d6+p*2))))) - int(o.Word(oracle.Far(ds, 0x1332))), Y: int(int16(o.Word(oracle.Far(ds, uint16(0x16de+p*2))))), Width: w, Height: h, Flags: uint8(o.CX()), PaletteBase: uint8(o.DX() >> 8), TopClip: int(o.DX() & 255), LeftClip: int(o.BX() & 255), RightClip: int(o.BX() >> 8), SourceSHA256: fmt.Sprintf("%x", sha256.Sum256(raw))}
+	s.SourceBank=c.spriteSourceBank(o,ds,p,s.Character)
 	if uint32(o.ES())*16 != r.base {
 		r.reason = "角色目的緩衝區未對應"
 		return

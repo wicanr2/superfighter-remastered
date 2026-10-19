@@ -56,6 +56,8 @@ type Core struct {
 	shadows      shadowRecording
 	rounds       roundRecording
 	display      bool
+	victory      victoryRecording
+	spriteSources [11]spriteSourceTables
 }
 
 var allowed = [2]map[uint8]bool{
@@ -83,6 +85,7 @@ func New(root, scratch string) (*Core, error) {
 	o.SetScratch(scratch)
 	o.Enqueue("SF.COM", "")
 	c := &Core{o: o, paused: true, manual: map[string]Source{}}
+	c.spriteSources=loadSpriteSourceTables(root)
 	o.OnCall(oracle.Far(0x01b9, 0x5d9f), c.frame)
 	o.OnCall(oracle.Far(0x01b9, 0x3e9d), c.capturePresentation)
 	return c, nil
@@ -147,6 +150,7 @@ func (c *Core) Step(budget uint64) error {
 		c.frames = 0
 		c.seen = false
 		c.presentation = Presentation{}
+		c.victory = victoryRecording{enabled: c.victory.enabled}
 		c.stopLayers()
 	}
 	return nil

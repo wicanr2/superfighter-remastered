@@ -238,6 +238,18 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [docs/spec/015-native-scanout.md](docs/spec/015-native-scanout.md) | 原生原貌／HD 全圖層、動態可見區與尾列的接入契約，限定 CONFORMED |
 | [tools/install_linear_scanout.py](tools/install_linear_scanout.py) | 保留正式 manifest v2，只在本專案副本新增已驗顯示 API 四檔 |
 | [tools/audit_native_scanout.py](tools/audit_native_scanout.py) | 核對原生顯示映射、完整尾列、核心不變與目前四份編譯及正常視窗 |
+| [docs/spec/016-hd-victory-messages.md](docs/spec/016-hd-victory-messages.md) | 中央勝負訊息、介面重建與顯示後直接 VRAM 繪製，正常雙打限定 READY |
+| [tools/victory_draw_receipt.go](tools/victory_draw_receipt.go) | 正常雙打勝負文字來源、實際 STOSB 位址／同值寫入與完整顯示重組研究 |
+| [tools/victory_reference.py](tools/victory_reference.py) | 從 NAME 原檔獨立核對勝負文字、透明覆蓋、同值寫入與實際可見視窗 |
+| [tools/victory_core_receipt.go](tools/victory_core_receipt.go) | 正常首勝與下一回合的成對核心觀測比較、完整原貌及全部 HD 來源選擇核對 |
+| [internal/renderdata/victories.go](internal/renderdata/victories.go)、[核心觀測](internal/gamecore/victories.go) | 規格 016 的勝負狀態、不可變直接繪製快照與最後介面光柵觀測 |
+| [internal/hd/victories.go](internal/hd/victories.go)、[原生字圖](internal/desktop/victories.go) | 原 NAME 字圖、位置與完整覆蓋驗證，以及同一顯示映射的金色高解析呈現 |
+| [internal/hd/victories_test.go](internal/hd/victories_test.go) | 兩組正常勝者的四份重播、實際 STOSB 覆蓋、錯誤來源拒絕及特殊字圖靜態邊界驗證 |
+| [docs/spec/017-victory-pose-banks.md](docs/spec/017-victory-pose-banks.md) | WIN 圖像表與一般動作槽的來源區分、素材相容與勝利人物接入閘門，限定 READY |
+| [tools/victory_pose_reference.py](tools/victory_pose_reference.py) | 解碼斬／法蘭克 WIN 圖像 144 個入口、七個不同來源及原姿勢參考 |
+| [internal/gamecore/sprite_sources.go](internal/gamecore/sprite_sources.go) | 以完整 RAM 指標表與原檔表辨識一般／勝利圖像，保留原動作槽號 |
+| [internal/gamecore/sprite_sources_test.go](internal/gamecore/sprite_sources_test.go)、[素材群組測試](internal/hd/victory_poses_test.go) | 原表辨識、未知／歧義拒絕、301 個姿態登錄與舊素材隔離；正常玩家分類另驗 |
+| [tools/prepare_victory_characters.py](tools/prepare_victory_characters.py) | 保留舊 PNG，準備含兩種圖像群組的版本 3 私有試作素材及來源登錄 |
 | [tools/dosgolem-display/machine_linear_scanout.go](tools/dosgolem-display/machine_linear_scanout.go)、[機器測試](tools/dosgolem-display/machine_linear_scanout_test.go)、[公開 API](tools/dosgolem-display/oracle_linear_scanout.go)、[API 測試](tools/dosgolem-display/oracle_linear_scanout_test.go) | 已驗鏈結顯示視窗的新增來源與測試，原生接入依規格 015 |
 | [internal/renderdata/rounds.go](internal/renderdata/rounds.go)、[核心觀測](internal/gamecore/rounds.go)、[來源重組](internal/hd/rounds.go) | 規格 013 的開場窗口、繪製前快照與原檔來源驗證 |
 | [internal/desktop/rounds.go](internal/desktop/rounds.go) | 原生高解析開場字圖與未覆寫頂列的呈現 |

@@ -50,6 +50,7 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 	var hudSelection *hd.HUDSelection
 	var shadowSelection *hd.ShadowSelection
 	var roundSelection *hd.RoundSelection
+	var victorySelection *hd.VictorySelection
 	if g.hdHUDRequired {
 		if g.hdHUD == nil {
 			return false, "HD 介面來源未載入，保留原貌"
@@ -65,6 +66,15 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 		shadowSelection, why = g.hdShadows.Select(frame.Shadows, frame.Layers, frame.Palette, frame.Counter, frame.CameraX)
 		if shadowSelection == nil {
 			return false, why
+		}
+		if frame.Victory != nil {
+			if g.hdVictories == nil {
+				return false, "HD 勝負文字來源未載入"
+			}
+			victorySelection, why = g.hdVictories.Select(frame.Victory, frame.Layers, frame.Palette, frame.Counter)
+			if victorySelection == nil {
+				return false, why
+			}
 		}
 		if frame.RetainedBackgroundRows != 0 || frame.RoundMessage != nil {
 			if g.hdRounds == nil || frame.RetainedBackgroundRows != 12 || frame.RoundMessage == nil {
@@ -142,6 +152,9 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 			if roundSelection != nil && n == len(frame.Layers)-1 && roundSelection.Replace[i] != 0 {
 				v, coverage = roundSelection.Underlay.Indices[i], roundSelection.Underlay.Coverage[i]
 			}
+			if victorySelection != nil && n == len(frame.Layers)-1 && victorySelection.Replace[i] != 0 {
+				v, coverage = victorySelection.Underlay.Indices[i], victorySelection.Underlay.Coverage[i]
+			}
 			if coverage != 0 {
 				c := frame.Palette[v]
 				copy(rgba[i*4:i*4+3], c[:])
@@ -164,6 +177,10 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 	if roundSelection != nil {
 		g.drawRoundMessage(dst, roundSelection)
 		reason = "HD 人物、陰影、介面與開場訊息"
+	}
+	if victorySelection != nil {
+		g.drawVictory(dst, victorySelection)
+		reason = "HD 人物、陰影、介面與勝負文字"
 	}
 	return true, reason
 }

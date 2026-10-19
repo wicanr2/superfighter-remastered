@@ -241,3 +241,9 @@
 - 首版彙總稽核誤將開場第十二列寫死；實際正常跳躍／踢擊已驗到第 11、7 列。改依當格 CRTC 與原版欄位核對，沒有放寬像素比較。原貌、HD 與獨立重組都已使用當格幾何；四個案例共 46 張映射擷取稽核通過。
 - 規格 014／015 限定 CONFORMED，006／013 回填接入勘誤；README 更新整合畫面，CONTEXT／WORKLIST／驗證矩陣指向新稽核。完整 HD、後續訊息、其餘角色／場景／完整動畫、實體平台與雙手把、音訊、速度、正式封包仍未完成。
 - 自有來源續存獨立 Git 副本及 workplace/github-native-display.bundle，逐檔來源與備份身分見 workplace/github-native-display-source.json。原版、衍生美術、收據與二進位繼續排除；沒有遠端或 Release。最後來源核對、擁有權與容器清理於本輪收尾驗證。
+
+## 2026-10-19：再次整理 GitHub 上傳來源
+
+- 使用者再次授權建立儲存庫並上傳成果，沿用預定私人儲存庫 `wicanr2/superfighter-remastered`。受限環境的登入檢查失敗；主機權限檢查遭 granular 權限政策拒絕。未取得主機登入狀態，也沒有建立或推送遠端。
+- 保留既有 `main` 的顯示修正驗證版本。勝負文字、WIN.FIG 來源辨識及姿態接入的最新開發中程式另存 `wip/victory-hd`，不把尚未整合驗證的來源當作完成版本。
+- 完整來源備份保存於 `workplace/github-upload-latest.bundle`，來源清單與分支提交另存 `workplace/github-upload-latest-source.json`。只納入自有來源、文件、授權字型與既有設定截圖，排除原版、衍生美術、收據、二進位與本機設定。本輪不改遊戲實作，不重新建置或執行遊戲。

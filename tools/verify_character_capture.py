@@ -9,6 +9,7 @@ from hud_reference import reconstruct
 from shadow_reference import replay_snapshot
 from round_reference import replay_snapshot as replay_round
 from display_reference import geometry
+from victory_reference import replay_snapshot as replay_victory
 
 
 def digest(path):
@@ -91,7 +92,16 @@ def read_frame(root, name, reference, original_root=None, image_required=True):
                     before[i] = round_after[i]
             if round_snapshot["stage"] == 1 and round_snapshot["half_width"] == 4:
                 before[:1442] = round_after[:1442]
-        assert before == raw, (name, "pre-HUD layers plus original HUD differ from final original pixels")
+        if frame.get("victory"):
+            victory=frame["victory"]
+            assert victory["state"]["counter"]==frame["counter"]
+            expected,mask,replaced,_=replay_victory(original_root,victory,
+                [Path(str(base)+f".victory-{i:02d}.source").read_bytes() for i in range(len(victory["draws"]))],
+                Path(str(base)+".victory-under.idx").read_bytes(),Path(str(base)+".victory-under.mask").read_bytes())
+            assert expected==layers[-1][1] and mask==layers[-1][2],(name,"victory raster source differs")
+            for i,written in enumerate(replaced):
+                if written:before[i]=expected[i]
+        assert before == raw, (name, "pre-HUD layers plus original HUD and post-copy messages differ from final original pixels")
     if frame.get("scanout"):
         s = frame["scanout"]
         start, pitch, height = geometry(s["crtc"])
