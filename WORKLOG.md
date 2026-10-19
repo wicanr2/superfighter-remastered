@@ -247,3 +247,18 @@
 - 使用者再次授權建立儲存庫並上傳成果，沿用預定私人儲存庫 `wicanr2/superfighter-remastered`。受限環境的登入檢查失敗；主機權限檢查遭 granular 權限政策拒絕。未取得主機登入狀態，也沒有建立或推送遠端。
 - 保留既有 `main` 的顯示修正驗證版本。勝負文字、WIN.FIG 來源辨識及姿態接入的最新開發中程式另存 `wip/victory-hd`，不把尚未整合驗證的來源當作完成版本。
 - 完整來源備份保存於 `workplace/github-upload-latest.bundle`，來源清單與分支提交另存 `workplace/github-upload-latest-source.json`。只納入自有來源、文件、授權字型與既有設定截圖，排除原版、衍生美術、收據、二進位與本機設定。本輪不改遊戲實作，不重新建置或執行遊戲。
+
+## 2026-10-19：正常首勝文字與獨立勝利姿態接入
+
+- 前輪屬進展：保存 86f67a7 開發中來源與完整 Git 備份，GitHub 仍受權限政策限制。本輪回到完整 HD Goal，未重試被拒絕的遠端操作。命中規格閘門、文件職責、README 及結論回填路由。
+- 延續勝負文字證據：原版先重建介面、拷貝畫面，再直接寫入 NAME 文字。重建前於 runtime 33F4h、返回 5E77h 重開最後光柵觀測，保留兩份 2884-byte 暫存字圖與新 HUD。重建後的原背景未改，原貌也保存完整 WIN。定位、推論等級及兩側原版證據補入 RESEARCH-LOG。
+- 初次成對工具因勝利人物不是 SFMAN 同槽來源而拒絕，失敗保存於 victory-core-compat-v1；單核心 diagnostic-v1 只定位來源。IDA 指出 WIN.FIG 的 60h 表及 180h 圖像基底。兩原檔 144 個入口、七個不同來源已核對，圖像群組與色盤群組分開，不改原槽號。
+- 內建 image_gen 的七張透明勝利姿態登錄於版本 3 的 hd-characters-study-v8，共 301 姿態鍵、四份原檔、十五張 PNG。舊 157 鍵及十三張 PNG bytes 不變；未知表、來源不符與缺件整格原貌。新 Go 測試驗 RAM 表辨識、群組隔離、144 個 WIN 入口與舊格式拒絕，完整測試及 go vet 通過。
+- 首跑檢查使用容器 login shell，PATH 被重設而找不到 gofmt；改用同一 image 的非 login shell 重跑後通過，屬環境問題。記錄為 victory-checks-v2.log。沒有改主機工具鏈、共享 dosgolem 或原始資料。
+- victory-core-compat-v2 由正常標題／選角／移動／拳擊取得首勝，1,479 個觀測開／關邊界的原版狀態及即時 RGB 相同。兩格完整來源、圖層、WIN 圖像與文字、HUD、陰影及可見尾端由獨立 Python 核對；下一回合清除勝負快照並顯示勝場 [1,0]。
+- Linux native-victory-v1 與 Windows Wine windows-victory-v1 各七張具名擷取通過。斬鞠躬與 JAAN WIN 同格 HD，原貌／HD／恢復的核心與來源相同，恢復畫面逐點一致；兩平台各兩張 GPU 字圖均只寫入原矩形，各有 4,190 個變動像素、1,191 個金色實心像素。
+- native-victory-legacy-v1 以舊版 2 素材走同一正常路徑，七張擷取核對通過；缺 WIN 姿勢時三張切換全部等於完整原貌，下一回合恢復 HD。獨立檢查最初誤從 capture.json 讀取 presentation，修正為由逐次 observe 事件讀取，並與實際擷取核心／旗標／serial 交叉核對；同一容器重跑後通過，沒有改產品或像素判準。
+- 規格 016／017 依上述限定範圍升 CONFORMED，008 回填 WIN 圖像來源，README 加最新勝利圖及手把／四格入口說明，CONTEXT、WORKLIST 與驗證矩陣更新。原版證據是兩個不同正常勝者、四筆重播；修正 review 曾把四筆當作四組的計數。
+- 四個中間二進位已重建並核對來源及檔頭。native-victory-audit 通過 128 原檔、1719 份來源且原 1715 檔不變、四份實際編譯、301 姿態鍵、核心與二十一張原生擷取。前版 5c1bf7c 四個二進位及 30 份編譯輸入另存 display 基底，舊收據不換版本身分。
+- 第二人正常勝利 HD、完整勝利動畫、其他角色／場景／畫面、替代色盤、其他快捷、實體平台與雙手把、音訊、速度及正式封包仍未完成。Goal 保持 active。自有來源續存獨立 Git 副本與 github-native-victory.bundle，逐檔身分見 github-native-victory-source.json；原版、衍生美術及二進位繼續排除，未建立遠端或 Release。
+- 收尾核對 25 份 Markdown 的 353 個相對連結及全部 Python 語法通過；未發現 root-owned 檔案或誤建 Markdown 目錄。Wine 前綴的 z: 連結以 lstat 核對連結本身，不把其指向的容器根誤報為專案檔案。所有本輪核心、建置、Xvfb／Wine 與檢查容器均已結束，kdzz 容器清單為空。

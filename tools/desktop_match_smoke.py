@@ -15,9 +15,11 @@ def main():
     parser.add_argument("--binary", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--wine", action="store_true")
+    parser.add_argument("--hd-characters", type=Path, default=Path("/project/workplace/hd-characters-study-v7"))
     parser.add_argument("--first-round-only", action="store_true",
                         help="只驗正常首勝後的 HD 勝場及同狀態切換，不作完整比賽驗收")
     parser.add_argument("--victory-only",action="store_true",help="驗正常首勝的直接勝負文字、原貌切換與下一回合清除")
+    parser.add_argument("--expect-victory-original", action="store_true", help="驗舊素材缺少勝利姿勢時整格原貌回退")
     parser.add_argument("--quit-after-seconds", type=int, default=1800,
                         help="原生程式的有界執行期限；軟體繪圖完整比賽預設 1800 秒")
     args = parser.parse_args()
@@ -25,6 +27,8 @@ def main():
         parser.error("--quit-after-seconds must be positive")
     if args.first_round_only and args.victory_only:
         parser.error("choose one first-victory scope")
+    if args.expect_victory_original and not args.victory_only:
+        parser.error("--expect-victory-original requires --victory-only")
     args.output.mkdir(exist_ok=False)
     (args.output / "desktop_match_smoke.py").write_bytes(source)
     for name in ["home", "runtime"]:
@@ -37,7 +41,7 @@ def main():
     observe, capture = args.output / "observe.json", args.output / "capture.png"
     command = [str(args.binary), "-data", "/orig", "-user-data", str(args.output / "user-data"),
                "-observe", str(observe), "-capture", str(capture), "-quit-after", f"{args.quit_after_seconds}s",
-               "-hd-assets", "/project/workplace/hd-rooftop-study", "-hd-characters", "/project/workplace/hd-characters-study-v7"]
+               "-hd-assets", "/project/workplace/hd-rooftop-study", "-hd-characters", str(args.hd_characters)]
     if args.wine:
         command = ["wine", command[0], *["Z:" + w.replace("/", "\\") if w.startswith("/") else w for w in command[1:]]]
     processes, logs, events = [], [], []
@@ -179,13 +183,17 @@ def main():
                     wait(lambda s: s["core"]["steps"] >= before + 10_000_000 or not s["core"]["battle"])
                     paused_shot(f"transition-{round_index}")
                 if args.victory_only:
-                    wait(lambda s: s["presentation"].get("victory",{}).get("complete") and s["hd_active"] and "勝負文字" in s["hd_reason"],180)
+                    def victory_ready(s):
+                        if not s["presentation"].get("victory", {}).get("complete"):
+                            return False
+                        return not s["hd_active"] if args.expect_victory_original else s["hd_active"] and "勝負文字" in s["hd_reason"]
+                    wait(victory_ready,180)
                     click(265,32)
                     frozen=wait(lambda s:s["core"]["paused"])
                     assert frozen["presentation"]["victory"]["state"]["winner_word"]==0
                     shot("victory-hd")
                     click(830,32);original=wait(lambda s:not s["hd_enabled"] and not s["hd_active"]);shot("victory-original")
-                    click(830,32);restored=wait(lambda s:s["hd_active"] and "勝負文字" in s["hd_reason"]);shot("victory-restored")
+                    click(830,32);restored=wait(lambda s:s["hd_enabled"] and victory_ready(s));shot("victory-restored")
                     for field in ("core","presentation","settings","assigned"):
                         assert frozen[field]==original[field]==restored[field],field
                     click(110,32)
@@ -239,6 +247,7 @@ def main():
         if args.victory_only:
             receipt["kind"]="normal native original/HD victory message and next-round clearing; not complete-match acceptance"
             receipt["scope"]="first-victory-message"
+            receipt["expected_victory_original"] = args.expect_victory_original
         (args.output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n")
         print("completed " + receipt["scope"], flush=True)
     except Exception as exc:

@@ -21,13 +21,13 @@
 | 研究工具 | 已建立 | 安全盤點、IDA、逐次繪製與完整 RAM 分層；規格 007 的通用觀測介面限定 CONFORMED，獨立副本新增兩檔，共用來源未改 |
 | dosgolem 啟動 | 原生雙打基準已走完整比賽與返回 | 普通選單、移動與拳擊完成兩次擊倒、結果報紙及返回標題，八張擷取通過。離開對戰後快照清空；此基準二進位另存，勝場擴充另驗首勝 |
 | 原版輸入 | 雙人基本輸入與斬四招已驗 | 正常單打、雙打各 25 組基本輸入；雙打兩人的斬各四招均進入原版對應路徑；十二輪詢蓄力是已驗充分條件，未稱最短時間 |
-| 前端與手把 | 三平台共用原生桌面已接核心 | 目前顯示修正版 Linux 十七項正常操作通過；Linux／Wine 開場各七項。含兩人獨立放開、特效扣血、設定重啟與失焦；實體手把未驗 |
-| HD | 屋頂、部分角色、13 組特效、介面／勝場、柔邊陰影與開場字圖已接原生 | Linux／Wine 第一回合各十張開場擷取、Linux 一般對戰十五張；部分窗口與切回逐點一致。勝負訊息、完整動畫、其他角色及畫面未完成 |
+| 前端與手把 | 三平台共用原生桌面已接核心 | 現行 Linux／Wine 首勝與切換通過；一般操作、兩人獨立放開、特效扣血、設定重啟及失焦的十七項證據保留顯示修正基底身分。實體手把未驗 |
+| HD | 屋頂、部分角色、13 組特效、介面／勝場、柔邊陰影、開場及斬首勝已接原生 | 斬鞠躬與 JAAN WIN 已同格顯示 HD；兩平台各七張擷取，正常核心 1,479 邊界通過。完整動畫、其他勝者／分支、角色及畫面未完成 |
 | 顯示起點修正 | 已接原生，015 限定 CONFORMED | Linux／Wine 各十張開場、Linux 對戰十五張與舊素材十一張全部核對；起點第 7／11／12 列及可見尾端逐格正確，原貌與 HD 共用映射 |
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | Windows／macOS／Linux 已定 | 四個顯示修正版二進位已重建；Linux 一般對戰十七項、開場 Linux／Wine 各七項。舊素材回退另驗；未作 Windows／macOS 真機、簽章或正式封包；Wine 不代替真機 |
+| 平台與發布 | Windows／macOS／Linux 已定 | 四個勝負版二進位已重建；Linux／Wine 正常首勝及切換通過。舊素材回退另驗；未作 Windows／macOS 真機、簽章或正式封包；Wine 不代替真機 |
 
 ## 固定輸入
 
@@ -79,13 +79,13 @@ sf
 
 ## 待確認決策與下一步
 
-屋頂、兩人已驗動作／特效及生命、計時、名字、勝場、地面陰影、開場 ROUND／FIGHT 已接原生。顯示起點已依規格 015 修正，下一步處理中央勝負訊息，再擴充其餘動作、替代色盤、角色、場景及標題／選角／結果。使用者 Goal 仍是「完成快打至尊HD」，不能以首批切片宣稱完成。原生雙打基準已走完整比賽及返回，其他模式、其他角色快捷及實體雙手把另驗。規格 004、005、006、008、009、011 限定 READY，007、010、012、013、014、015 限定 CONFORMED；002、003 仍 DRAFT。
+屋頂、兩人已驗動作／特效及生命、計時、名字、勝場、地面陰影、開場 ROUND／FIGHT、斬首勝的鞠躬與 JAAN WIN 已接原生。顯示起點已依規格 015 修正。接著續驗第二人勝利與完整勝利動畫，再擴充其餘動作、替代色盤、角色、場景及標題／選角／結果。使用者 Goal 仍是「完成快打至尊HD」，不能以首批切片宣稱完成。原生雙打基準已走完整比賽及返回，其他模式、其他角色快捷及實體雙手把另驗。規格 004、005、006、008、009、011 限定 READY，007、010、012、013、014、015、016、017 限定 CONFORMED；002、003 仍 DRAFT。
 
 使用者指定的[說明書頁面](https://chiuinan.github.io/game/game/intro/ch/c51/sf.htm)及兩張圖片已存檔，版本自述為 1.1。原生入口目前採西側面鍵拳、南側面鍵腳與八方向；Start／Esc 暫停前端，沒有把 Esc 送原版觸發說明書記載的補血。鍵鼠正常路徑已驗，實體手把另驗；完整手把規格仍有未驗部分。
 
-HD 採 B「街機手繪」，首批屋頂、斬、法蘭克及介面已獲開工授權。現行群組為 `hd-characters-study-v7`，十三張透明圖集對應 144 個正常色盤來源槽及 13 個第二色盤特效鍵；基本槽共有 117 組不同原始 bytes。原始 PNG、提示詞與雜湊分別在 `hd-sprite-art-v1` 至 `v5`、`hd-effect-art-v1`／`v2`。登錄保留原 PNG bytes。來源槽齊全不等於完整動畫已驗；C0h 同時翻轉、頂部裁切、受擊替代色盤及剩餘介面待補。正式倍率、像素比例與預設模式尚未定版。
+HD 採 B「街機手繪」，首批屋頂、斬、法蘭克及介面已獲開工授權。現行群組為 `hd-characters-study-v8`，十五張透明圖集、301 個姿態鍵：144 個一般來源槽、13 個第二色盤特效鍵，以及 144 個 WIN 入口。WIN 入口對應七張不同姿態，圖像群組與色盤群組分開辨識；一般槽有 117 組不同原始 bytes。原始 PNG、提示詞與雜湊在 `hd-sprite-art-v1` 至 `v5`、`hd-effect-art-v1`／`v2` 及 `victory-art-v1`，登錄保留原 PNG bytes。來源槽齊全不等於完整動畫已驗；C0h 同時翻轉、頂部裁切、受擊替代色盤及剩餘介面待補。正式倍率、像素比例與預設模式尚未定版。
 
-目前 dosgolem 獨立副本有 1719 份來源，前版 1715 份 bytes 不變，新增四份已驗顯示 API 與測試。舊 manifest 保存於 `dosgolem-patched-manifest-v2.json`，現行身分見 `dosgolem-patched-manifest.json` 與 `native-display-audit.json`。四個二進位的實際編譯身分見 `bin/*.build.json`，目前原生證據以 native-display 各收據為準。舊陰影、勝場、開場及完整比賽基準保留各自版本身分。
+目前 dosgolem 獨立副本有 1719 份來源，前版 1715 份 bytes 不變，新增四份已驗顯示 API 與測試。舊 manifest 保存於 `dosgolem-patched-manifest-v2.json`，現行身分見 `dosgolem-patched-manifest.json`。四個二進位的實際編譯身分見 `bin/*.build.json`；目前勝負切片以 `victory-core-compat-v2`、`native-victory-v1` 及 `windows-victory-v1` 為準。顯示修正基底的四個二進位與 30 份編譯輸入另存 `native-display-opening-v2/build-baseline`，舊收據保留各自版本身分。
 
 舊 Screen／Indexed／RGB API 仍保留線性 320×200 契約；桌面使用另外的只讀顯示快照，同格保存原圖層、完整尾端與實際可見色號。原貌與 HD 全部圖層共用投影，開場 320×192 居中且維持每像素 3×3；跳躍與踢擊實測起點第 7／11／12 列。來源或尾列不符整格原貌。這是限定硬體規格近似，正式像素比例、實機時序與完整 HD 仍未驗。
 
@@ -95,7 +95,19 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ## 現行證據入口
 
-### 目前原生顯示映射
+### 目前原生勝負切片
+
+- [規格 016](docs/spec/016-hd-victory-messages.md)處理最後完整拷貝後的 NAME 直接顯示寫入。原貌也保存完整 WIN，HD 不修改原版勝負、等待或回合規則。HUD 重建的兩份暫存字圖保留在最後光柵層，不修改原背景。
+- [規格 017](docs/spec/017-victory-pose-banks.md)以實際 72-entry RAM 表辨識一般／WIN 圖像來源。斬首勝仍保留原槽 3，讀取真正 46×89 的 WIN 圖，而非一般同槽姿勢。未知表拒絕整格 HD。
+- `victory-core-compat-v2` 的 1,479 個正常觀測開／關邊界，原版狀態及即時 RGB 相同。首勝與下一回合兩個快照的背景、人物、HUD、陰影、WIN 文字及可見尾端由原檔獨立重組；下一回合快照清除，勝場顯示為 [1,0]。
+- `native-victory-v1`／`windows-victory-v1` 均從正常對戰取得首勝，各七張具名擷取。原貌／HD／切回的來源與核心相同；GPU 字圖只寫入原來源矩形，恢復 HD 逐點一致。獨立核對結果保存為各目錄的 `victory-comparison.json`。Wine 不是 Windows 真機驗收。
+- 新版 3 群組共 301 個姿態鍵、四份原來源、十五張圖集。舊 157 個鍵及十三張 PNG 不變，七張勝利姿態登錄成 144 個入口；版本 1／2 仍可讀。全套 Go 測試與 go vet 已通過，記錄為 `victory-checks-v2.log`。`native-victory-legacy-v1` 的七張擷取證實舊版 2 缺 WIN 姿態時整張原貌，下一回合可恢復 HD。
+- [目前勝利畫面](workplace/native-victory-v1/victory-hd.png)已目視確認。正常兩側原版文字證據共有兩個不同勝利、四筆重播記錄；不是四個獨立樣本。第二人 HD、完整勝利動畫、平手及單打特殊分支仍未動態驗收。
+- [勝負稽核工具](tools/audit_native_victory.py)輸出 `workplace/native-victory-audit.json`，核對 128 原檔、1719 份執行器來源、四份實際編譯、301 個姿態鍵及上述核心／視窗證據。自有來源完整備份為 `workplace/github-native-victory.bundle`，提交與逐檔身分見 `workplace/github-native-victory-source.json`；原版、HD 美術、研究資料與二進位不入 Git。
+
+### 顯示修正基底
+
+以下為 5c1bf7c 的已驗顯示版本。現行勝負版沿用其顯示契約，舊收據與二進位分開保存。
 
 - [規格 015](docs/spec/015-native-scanout.md) 對實測顯示配置限定 CONFORMED。`display-core-compat-v1` 的 1,508 個開／關邊界狀態、舊原貌、即時 RGB 及原圖層相同；66 個完整開場快照由原資料與真實 VRAM 尾端獨立重組。
 - `native-display-opening-v2`／`windows-display-opening-v1` 各七項、十張擷取與六張 GPU 字圖核對通過。開場完整顯示原第 12 至 203 列，頂端暫存資料不再露出，底四列保留；原貌／HD／切回的來源及畫面逐點一致。
@@ -176,7 +188,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 本次使用者再次要求建立與上傳。受限環境的 `gh auth status` 回報登入失敗，但主機權限檢查遭環境政策拒絕，尚不能確認主機憑證失效。沒有建立或推送成功證據，不可把預定 origin 當成已存在的儲存庫。
 
-上傳副本保留 `main` 的顯示修正驗證版本；後續勝負訊息與勝利姿態的開發中來源保存於 `wip/victory-hd`，尚未完成整合驗證。兩個分支的完整本機備份為 `workplace/github-upload-latest.bundle`，逐檔身分與分支提交見 `workplace/github-upload-latest-source.json`。原版、HD 美術、研究輸入及二進位繼續排除。
+前輪上傳副本的 `main` 保留顯示修正版本，`wip/victory-hd` 保存當時尚未整合驗證的勝負來源；完整備份為 `workplace/github-upload-latest.bundle`，身分見 `workplace/github-upload-latest-source.json`。本輪已完成限定首勝整合驗證，最新來源另存 `workplace/github-native-victory.bundle` 與 `github-native-victory-source.json`，並更新獨立副本的 main。原版、HD 美術、研究輸入及二進位繼續排除；遠端未建立或推送。
 
 `native-actors-v1` 保存五層首版來源／二進位，`native-actors-v6` 等保存後續六層版；均為歷史，現行收據以本檔「最新原生介面切片」為準。
 

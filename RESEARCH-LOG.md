@@ -319,3 +319,24 @@ go run -p 1 /project/tools/input_receipt.go -root /orig -out /project/workplace/
 - linear-scanout-api-v2 透過正常選單重走 67 格，逐點等於獨立顯示重組；API 呼叫前後的 VRAM、暫存器、步數、埠與舊 API 相同。相對未加候選 API 的基準，已保存的 67 個畫格欄位、VRAM 雜湊與步數也相同，不外推未受控亂數跨執行 parity。
 - v2 另讀原版相機、場景與背景來源；67 格尾四列均等於原背景對應位置，提供下一步 HD 尾列來源核對。不能以這些樣本假定所有正常對戰尾列都沒有前景，正式呈現仍須逐格驗。
 - `linear-scanout-audit.json` 核對正式來源未變、候選四檔、67 格輸出及現行四個二進位來源。原生未改用此 API，頂列問題仍是玩家路徑未完成項；下一步需同時映射原貌、HD 全部圖層及尾列。
+
+## 2026-10-19：勝負文字的直接顯示寫入與勝利圖像群組
+
+輸入 SF.EXE 沿用 SHA-256 `24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300`；NAME.XBB 為 `60c0bbe367e44ab9fda512df2ba93ad62d70147df90079d07ff15818f21bad82`。工具為 IDA Pro 9.4 的既有 `ida-pro-9.4-idapython:py312-v1`、Go 1.24.13、1719 檔 dosgolem 獨立副本，以及既有 Pillow 工具鏈。兩份一次性 `.i64` 與 `ida-victory-v1.json`／`v2.json` 保留原名稱、指令與定位。正式契約見[規格 016](docs/spec/016-hd-victory-messages.md)及[規格 017](docs/spec/017-victory-pose-banks.md)。
+
+| 原始定位與位址空間 | 推論等級 | 證據與結論 |
+|---|---|---|
+| IDA MZ 線性 `0x15E74..0x15E7D`、`sub_13963` | 已證實 | 最終 HUD 重建及完整拷貝之後，原版才把 NAME 勝負圖像直接寫入 A000h。只保存前一張 RAM 合成圖會漏字 |
+| runtime `01B9:3685..36AE`，STOSB `3696h` | 已證實於正常兩側勝者 | 低四位零透明，其餘 OR BH。`victory-draw-v1` 的斬擊倒勝利與法蘭克時間結束勝利分別寫入 458／536 點，實際地址和值與原檔完全相同；兩者同值寫入為零 |
+| runtime `01B9:33F4`，堆疊返回 `5E77h` | 已證實於 v3 | 最終介面重建之前，合成 RAM 等於最後完整拷貝。可深複製既有圖層，重新觀測最後光柵層，保留後續原版寫入 |
+| IDA `0x134E3`、`sub_134E7` | 已證實 | HUD 重建也寫入兩份 ROUND／FIGHT 暫存圖，共 2884 bytes。v2 否定重建後 RAM 等於舊快照的假設；v3 的完整 prefix 與覆蓋可由原檔重組。此內容屬最後光柵層，不能修改背景來源或藏掉前綴 |
+| IDA `sub_137A3`／`sub_13883` | 已證實 | 勝利時重載圖像：檔案 60h 起 120h bytes 為 72-entry 表，180h 為圖像基底，分別載入 DS:1706h／1826h。原動作槽 DS:16F2h／16FAh 不變 |
+| EXE 檔案偏移 58972，DS 檔案基底 42512 | 已證實 | 十一個 word 指向 AA／BB／CC／EE／FF／GG／HH／II／JJ／DD／KK WIN.FIG 字串。此處為檔案偏移，不是 runtime 或 IDA 線性位址 |
+| AAWIN.FIG、FFWIN.FIG 原檔 | 已證實 | 各 72 個有效入口，分別四／三個不同來源；兩者首 96 bytes 等於正常 SFMAN 色盤。斬首勝槽 3 為 46×89，與實際捕獲 SHA-256 `8fe892413a8c7eed1bc5aa14eed38bb7a6b36dc72f9c084a98269c31ef8a5298` 相同 |
+
+- AAWIN.FIG SHA-256 為 `0c332b13bb923116460a7fa8cf474b105d8f1d2b180a8d7ede5af6f92209f8f7`；FFWIN.FIG 為 `2a353085e1ad73d5521bf1c87e45f5678c2d2cd59148f50e291aad6995b3c9c3`。來源、別名、原姿勢圖在 `victory-poses-v1`。最初把 60h／180h 套到 SFMAN 的假設被無效指標否定；一般圖像仍用 B28h／C48h。
+- `victory-draw-v2`／`v3` 重播同一第一人勝利，用於補齊重建入口與覆蓋。因此共有兩組不同正常勝者、四組重播記錄，不能算四個獨立勝利樣本。YOU WIN／YOU LOSE／DRAW GAME 只有原控制流、原字圖及靜態邊界驗證，沒有正常動態樣本。
+- 初次成對核心接入在人物選擇拒絕，保存於 `victory-core-compat-v1`。單核心 `victory-core-diagnostic-v1` 只用於定位真實 WIN 圖像，不是成對通過收據。依 017 區分來源後，`victory-core-compat-v2` 的 1,479 個正常比較邊界通過，狀態與即時 RGB 不變；首勝與下一回合的完整原檔／圖層獨立重組通過。
+- 勝利姿勢以內建 image_gen 生成七張透明圖，原 PNG、提示詞及來源在 `victory-art-v1`。版本 3 群組保留舊 157 個姿態鍵及原圖 bytes，新增 144 個 WIN 入口。登錄齊全不代表完整勝利動畫、第二人正常 HD 或全模式已驗；原生視窗驗收另記。
+
+以上證據已足夠接入此來源與呈現，不再深入無關 helper。原版、圖像、VRAM、資料庫與衍生美術繼續留本機。

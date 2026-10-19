@@ -25,6 +25,7 @@ func digest(b []byte) string { return fmt.Sprintf("%x", sha256.Sum256(b)) }
 
 func main() {
 	out := flag.String("out", "", "new output directory")
+	characterDir := flag.String("hd-characters", "/project/workplace/hd-characters-study-v8", "character asset directory")
 	diagnostic := flag.Bool("diagnostic", false, "single-core source diagnostics; no paired-state acceptance")
 	flag.Parse()
 	if *out == "" {
@@ -61,7 +62,7 @@ func main() {
 	}
 	assets, e := hd.Load("/project/workplace/hd-rooftop-study")
 	must(e)
-	characters, e := hd.LoadCharacters("/project/workplace/hd-characters-study-v7", "/orig")
+	characters, e := hd.LoadCharacters(*characterDir, "/orig")
 	must(e)
 	hud, e := hd.LoadHUD("/orig")
 	must(e)
