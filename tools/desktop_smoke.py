@@ -15,6 +15,9 @@ def main():
     parser.add_argument("--binary", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--hd-assets", type=Path)
+    parser.add_argument("--hd-characters", type=Path)
+    parser.add_argument("--expect-missing", action="store_true")
+    parser.add_argument("--wine", action="store_true")
     parser.add_argument("--opponent", choices=["jaan", "frank"], default="jaan")
     args = parser.parse_args()
     args.output.mkdir(exist_ok=False)
@@ -24,11 +27,18 @@ def main():
     home.mkdir()
     env = dict(os.environ, DISPLAY=":89", HOME=str(home), XDG_RUNTIME_DIR=str(runtime),
                LIBGL_ALWAYS_SOFTWARE="1", LP_NUM_THREADS="2", GOMAXPROCS="2")
+    if args.wine:
+        env.update(WINEPREFIX=str(args.output / "wine-prefix"), WINEARCH="win64", WINEDEBUG="-all",
+                   WINEDLLOVERRIDES="winemenubuilder.exe=d", EBITENGINE_GRAPHICS_LIBRARY="opengl")
     observe, capture = args.output / "observe.json", args.output / "capture.png"
     command = [str(args.binary), "-data", "/orig", "-user-data", str(args.output / "user-data"),
                "-observe", str(observe), "-capture", str(capture), "-quit-after", "180s"]
     if args.hd_assets:
         command += ["-hd-assets", str(args.hd_assets)]
+    if args.hd_characters:
+        command += ["-hd-characters", str(args.hd_characters)]
+    if args.wine:
+        command = ["wine", command[0], *["Z:" + word.replace("/", "\\") if word.startswith("/") else word for word in command[1:]]]
     checks, events = [], []
     processes, logs = [], []
 
@@ -74,6 +84,8 @@ def main():
 
     def shot(name):
         capture.unlink(missing_ok=True)
+        for previous in capture.parent.glob(capture.name + ".*"):
+            previous.unlink()
         key("F12")
         deadline = time.monotonic() + 5
         while not capture.exists() and time.monotonic() < deadline:
@@ -84,6 +96,11 @@ def main():
             source = Path(str(capture) + suffix)
             if source.exists():
                 shutil.copyfile(source, Path(str(args.output / name) + suffix))
+        for source in capture.parent.glob(capture.name + ".*"):
+            if source.name.endswith((".idx", ".palette.json")) and ".layer-" not in source.name:
+                continue
+            suffix = source.name[len(capture.name):]
+            shutil.copyfile(source, Path(str(args.output / name) + suffix))
 
     def stop(proc):
         if proc.poll() is None:
@@ -98,8 +115,8 @@ def main():
         spawn(["Xvfb", ":89", "-screen", "0", "1280x1024x24", "-nolisten", "tcp"], "xvfb")
         time.sleep(.3)
         game = spawn(command, "native")
-        wait(lambda s: s["core"]["paused"])
-        window = xdo("search", "--name", "Remastered").splitlines()[-1]
+        wait(lambda s: s["core"]["paused"], timeout=75 if args.wine else 30)
+        window = xdo("search", "--onlyvisible", "--name", "Remastered").splitlines()[-1]
         xdo("windowfocus", "--sync", window)
         click(110, 32)
         wait(lambda s: s["core"]["steps"] >= 40_000_000, timeout=45)
@@ -130,6 +147,25 @@ def main():
                 wait(lambda s: s["hd_active"])
                 shot("hd-rooftop.png")
                 checks.append("native rooftop HD background active on normal versus path")
+                if args.hd_characters:
+                    full = wait(lambda s: s["hd_characters_active"] and s["presentation"]["layers_complete"])
+                    assert len(full["presentation"]["layers"]) == 6 and full["presentation"]["layers"][0]["background"]
+                    events.append({"native_hd_characters": full})
+                    checks.append("native GPU draws both HD characters from six verified original layers with independent background")
+                    start_x = full["presentation"]["actors"][0]["x"]
+                    xdo("keydown", "d")
+                    moved = wait(lambda s: s["hd_characters_active"] and s["presentation"]["actors"][0]["x"] > start_x + 2)
+                    shot("hd-move.png")
+                    xdo("keyup", "d")
+                    events.append({"native_hd_move": moved})
+                    before_y = [a["y"] for a in moved["presentation"]["actors"]]
+                    xdo("keydown", "w", "KP_Up")
+                    jumped = wait(lambda s: s["hd_characters_active"] and all(a["y"] < y - 8 for a, y in zip(s["presentation"]["actors"], before_y)))
+                    shot("hd-jump.png")
+                    xdo("keyup", "w", "KP_Up")
+                    events.append({"native_hd_jump": jumped})
+                    wait(lambda s: s["core"]["paths"] == [0, 0] and s["hd_characters_active"])
+                    checks.append("normal native walking and both-player jump select distinct original HD poses")
             else:
                 assert not enabled["hd_active"]
                 checks.append("unsupported dojo scene falls back to complete original frame")
@@ -155,6 +191,13 @@ def main():
         events.append({"native_R1": thunder})
         checks.append("native R1 button reaches original thunder path 24h")
         shot("quick-thunder.png")
+        if args.hd_characters:
+            if args.expect_missing:
+                missing = wait(lambda s: s["hd_enabled"] and not s["hd_active"] and s["presentation"]["layers_complete"])
+                shot("missing-pose-original.png")
+                events.append({"native_missing_pose": missing})
+                checks.append("unpainted special pose falls back to the complete original frame while core keeps running")
+            wait(lambda s: s["core"]["paths"] == [0, 0] and s["hd_characters_active"], timeout=35)
         click(265, 32)
         paused = wait(lambda s: s["core"]["paused"])
         time.sleep(.2)
@@ -190,13 +233,15 @@ def main():
         assert state()["core"]["steps"] == paused["core"]["steps"]
         checks.append("native settings retain four slots, fifth move and empty binding; other player isolated; core stays paused")
         stop(game)
+        if args.wine:
+            subprocess.run(["wineserver", "-k"], env=env, timeout=10, check=True)
         observe.unlink(missing_ok=True)
         game = spawn(command, "native-restart")
         restored = wait(lambda s: s["core"]["paused"] and s["core"]["steps"] == 0)
         assert restored["settings"]["players"][0]["phoenix"] == [5, 0, 3, 4]
         assert restored["assigned"] == [-1, -1]
         checks.append("native process restart restores profiles and requires fresh device assignment")
-        window = xdo("search", "--name", "Remastered").splitlines()[-1]
+        window = xdo("search", "--onlyvisible", "--name", "Remastered").splitlines()[-1]
         xdo("windowfocus", "--sync", window)
         click(110, 32)
         wait(lambda s: s["core"]["steps"] > 1_000_000)
@@ -227,17 +272,20 @@ def main():
         x11.XCloseDisplay(display)
         checks.append("native focus loss pauses core and leaves no advancing background game")
         sha = lambda f: hashlib.sha256(f.read_bytes()).hexdigest()
-        receipt = {"kind": "Linux native GUI normal-path smoke; not physical gamepad, full-round or HD parity",
+        receipt = {"kind": ("Windows native under Wine" if args.wine else "Linux native") + " GUI normal-path smoke; not physical gamepad or full-round acceptance",
                    "checks": checks, "events": events, "command": command,
                    "image": "tokugawa-desktop-platforms:go1.24.13-sdk15.5-noble-r1",
                    "binary_sha256": sha(args.binary), "script_sha256": sha(Path(__file__)),
                    "state_access": "observe-only JSON; inputs are X11 keyboard/mouse events"}
         (args.output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n")
+        shutil.copyfile(Path(__file__), args.output / "desktop_smoke.py")
         print(json.dumps({"checks": checks}, ensure_ascii=False))
     except Exception as exc:
         (args.output / "failure.json").write_text(json.dumps({"error": repr(exc), "state": state(), "checks": checks}, ensure_ascii=False, indent=2) + "\n")
         raise
     finally:
+        if args.wine:
+            subprocess.run(["wineserver", "-k"], env=env, timeout=10, check=False)
         for proc in reversed(processes):
             stop(proc)
         for log in logs:

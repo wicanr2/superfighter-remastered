@@ -96,11 +96,17 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ### GitHub 儲存庫準備
 
+本次上傳前再次嘗試依主機規則執行 `gh auth status`，提升權限仍遭自動核准政策拒絕。未重試受限環境的憑證判定，沒有建立或推送成功證據。最新程式仍先保存於獨立 Git 副本及本機 bundle；不可把預定 origin 當成已存在的儲存庫。
+
+最新程式包含原生角色載入與圖層呈現。`native-actors-v1` 保存五層版 Linux 13 項正常流程收據及當版來源／二進位；目前來源改為六層，分離純背景與介面寫入，尚待 GUI 重驗。此項現況優先於下方仍指向背景版二進位及角色離線比較稿的歷史入口，不能將舊收據當作目前六層版驗收。
+
 使用者已授權建立儲存庫並上傳成果。預定名稱為 `wicanr2/superfighter-remastered`，公開方式未定案，先採私人設定。遠端 API 目前連線失敗，未取得建立成功證據，不宣稱儲存庫已存在。主機升權呼叫亦被環境拒絕，受限環境的 auth 訊息不能當作主機憑證失效的結論。
 
 工作根的 `.git` 在本次環境不可寫，已在 `/tmp/kdzz-superfighter-publish` 準備獨立 Git 提交副本，不改受保護的 metadata。副本只收程式、規格、歷史整理、RRSAL-1.0、中文字型與不含原版畫面的手把設定截圖。原版包、workplace、衍生 HD 美術與二進位皆排除；遠端建立及 push 尚待完成。
 
 首份提交為 `8365aeb91f79032227ff3c4b5cc8daed5fc3e4bd`，共 60 檔；完整 Git 備份為 `workplace/github-initial-8365aeb.bundle`，已通過 `git bundle verify`。可在連線與權限恢復後從該副本推送 main；origin 只保存預定 URL，不表示遠端已建立。後續 HD 變更仍以目前工作根為準。
+
+角色研究的程式、規格與文件已追加至提交 `00dfe7e28206e8b7947b316c7c82c8282873f84a`，副本共 69 個追蹤檔。完整備份為 `workplace/github-hd-study-00dfe7e.bundle`，已驗證；48 個 HD 姿態及原版分層資料維持本機排除，GitHub 遠端狀態未改。
 
 - [RESEARCH-LOG.md](RESEARCH-LOG.md)：啟動鏈、來源差異、輸入候選與重生方式。
 - [VERIFICATION-MATRIX.md](VERIFICATION-MATRIX.md)：已驗範圍與未驗項。

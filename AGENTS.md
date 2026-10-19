@@ -148,9 +148,13 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [cmd/superfighter/main.go](cmd/superfighter/main.go) | Windows／macOS／Linux 原生桌面入口，不啟動 HTTP |
 | [internal/gamecore/core.go](internal/gamecore/core.go) | public oracle 原版核心、逐來源輸入與已驗快捷適配 |
 | [internal/gamecore/presentation.go](internal/gamecore/presentation.go) | 原版完整畫格的只讀背景、色盤、相機與姿態快照 |
+| [internal/gamecore/layers.go](internal/gamecore/layers.go)、[internal/renderdata/layers.go](internal/renderdata/layers.go) | 原版每次 RAM 寫入、完整圖層快照、鏡像定位與重組契約 |
 | [internal/hd/background.go](internal/hd/background.go)、[背景驗證](internal/hd/background_test.go) | 固定屋頂素材群組、完整原貌前景、同畫格背景合成與安全回退 |
+| [internal/hd/characters.go](internal/hd/characters.go)、[tools/prepare_hd_characters.py](tools/prepare_hd_characters.py) | 原生角色素材來源、packed bytes、圖集、透明矩形與整組回退 |
 | [internal/controls/settings.go](internal/controls/settings.go)、[設定驗證](internal/controls/settings_test.go) | 兩人逐角色四格配置、第五招、原子保存及錯誤資料保留 |
 | [internal/desktop/game.go](internal/desktop/game.go) | Ebitengine 視窗、原生鍵鼠／標準手把、設定與有界中文文字 |
+| [internal/desktop/characters.go](internal/desktop/characters.go) | 原生 GPU 依原版圖層順序繪製高解析角色及保留原貌特效 |
+| [角色素材驗證](internal/hd/characters_test.go)、[圖層定位驗證](internal/renderdata/layers_test.go) | 原始 fixture、素材拒絕、完整重組與鏡像／裁切的獨立驗證 |
 | [字型來源](internal/desktop/assets/source.json)、[OFL 授權](internal/desktop/assets/OFL.txt) | Noto Sans CJK TC 固定來源、SHA-256 與授權 |
 | [tools/build_desktop.sh](tools/build_desktop.sh)、[建置階段](tools/build_desktop.py) | Docker 三平台建置、來源／檔頭核對與中間二進位收據 |
 | [tools/desktop_smoke.py](tools/desktop_smoke.py) | Docker Xvfb 正常原生視窗玩家路徑及設定重啟驗證 |
@@ -206,7 +210,7 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 ## 授權、遠端與交付
 
-- 已授權本機接入、原版查證、手把開發與 HD 規劃；未授權建立遠端儲存庫、推送原版素材或發布套件。
+- 已授權本機接入、原版查證、手把開發、HD 規劃，以及建立 GitHub 儲存庫並上傳自有程式與文件。沿用私人儲存庫設定；未授權推送原版素材、公開衍生美術或發布套件。
 - 原版包、EXE／COM、資料、美術、音訊、記憶體快照及含原版內容的收據留在本機。私人儲存庫也不得直接提交。
 - 自有程式與文件依使用者共用規則採 RRSAL-1.0。建立 LICENSE 前讀 `/home/anr2/.codex/knowledge-base/local/rrsal-1.0.md`，使用 `/home/anr2/.codex/skills/reverse-engineer-retro-game-remake/assets/project-template/LICENSE` 全文，只替換占位符；原版與第三方素材另查權利。
 - 交付根目錄為 `dist-all/`。建立前讀 `/home/anr2/.codex/knowledge-base/local/retro-remake-dist-all-output.md`，由該檔決定子目錄與素材邊界。

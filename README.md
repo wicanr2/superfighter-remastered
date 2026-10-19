@@ -6,7 +6,7 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 目前已有原生雙打、兩人拳腳、斬四招、設定保存與可切換的屋頂 HD 背景。人物、招式與戰鬥介面保留原版。完整角色 HD、實體手把、完整回合、其他角色快捷、音訊與正式速度仍待驗收。最近收據及各平台限制見 [CONTEXT](CONTEXT.md)。
 
-角色 HD 已有斬與法蘭克共 48 個重繪姿態及[同狀態分層比較稿](workplace/hd-actor-preview-v3/frame-0386-hd.png)，涵蓋待機、蹲與跳等姿態。比較稿尚未接入原生播放器，製作契約見[角色規格](docs/spec/008-hd-characters.md)。
+角色 HD 已有斬與法蘭克共 48 個重繪姿態。首版原生播放已通過 Linux 正常雙打、行走、跳躍及缺姿態回退等 13 項檢查，收據在 `workplace/native-actors-v1/receipt.json`。目前來源正將五層改為六層，分開純背景與介面寫入；這版尚待原生視窗重驗。完整動作仍未完成，製作契約見[角色規格](docs/spec/008-hd-characters.md)。
 
 ## 目前整合畫面
 

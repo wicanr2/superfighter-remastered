@@ -31,8 +31,8 @@ const Width, Height = 1120, 820
 var screenRect = image.Rect(80, 64, 1040, 664)
 
 type Options struct {
-	Root, DataDir, Observe, Capture, HDAssets string
-	QuitAfter                                 time.Duration
+	Root, DataDir, Observe, Capture, HDAssets, HDCharacters string
+	QuitAfter                                               time.Duration
 }
 type device struct {
 	id       ebiten.GamepadID
@@ -75,6 +75,10 @@ type Game struct {
 	hdEnabled        bool
 	hdActive         bool
 	hdReason         string
+	hdCharacters     *hd.Characters
+	layerTextures    []*ebiten.Image
+	layerRGBA        [][]byte
+	actorTextures    map[*hd.PoseArt]*ebiten.Image
 }
 
 func New(opts Options) (*Game, error) {
@@ -101,6 +105,15 @@ func New(opts Options) (*Game, error) {
 		g.hdAssets, e = hd.Load(opts.HDAssets)
 		if e != nil {
 			g.notice = "HD 素材無法載入，保留原貌。"
+		}
+	}
+	if opts.HDCharacters != "" {
+		g.hdCharacters, e = hd.LoadCharacters(opts.HDCharacters, opts.Root)
+		if e != nil || g.hdAssets == nil {
+			g.hdCharacters = nil
+			g.notice = "HD 角色與背景素材無法完整載入，保留原貌。"
+		} else {
+			c.EnableLayers()
 		}
 	}
 	return g, nil
@@ -233,6 +246,10 @@ func (g *Game) widgets() []widget {
 		{image.Rect(342, 12, 564, 52), "手把與快捷設定", func(int) { g.openSettings() }, -1, false},
 		{image.Rect(576, 12, 710, 52), "全螢幕", func(int) { ebiten.SetFullscreen(!ebiten.IsFullscreen()) }, -1, false},
 		{image.Rect(722, 12, 940, 52), "原貌／HD 背景", func(int) { g.hdEnabled = !g.hdEnabled; g.notice = "呈現已切換，角色與操作沿用原版。" }, -1, g.hdAssets == nil},
+	}
+	if g.opts.HDCharacters != "" {
+		out[4].label = "原貌／HD 角色"
+		out[4].action = func(int) { g.hdEnabled = !g.hdEnabled; g.notice = "已切換原貌／HD。" }
 	}
 	if g.panel {
 		return append(out, g.fields()...)
@@ -482,17 +499,18 @@ func (g *Game) observe() {
 		return
 	}
 	value := struct {
-		Core         gamecore.Status       `json:"core"`
-		Panel        bool                  `json:"panel"`
-		Settings     controls.Settings     `json:"settings"`
-		Assigned     [2]ebiten.GamepadID   `json:"assigned"`
-		SettingsPath string                `json:"settings_path"`
-		Notice       string                `json:"notice"`
-		Presentation gamecore.Presentation `json:"presentation"`
-		HDEnabled    bool                  `json:"hd_enabled"`
-		HDActive     bool                  `json:"hd_active"`
-		HDReason     string                `json:"hd_reason"`
-	}{Core: g.core.Status(), Panel: g.panel, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason}
+		Core               gamecore.Status       `json:"core"`
+		Panel              bool                  `json:"panel"`
+		Settings           controls.Settings     `json:"settings"`
+		Assigned           [2]ebiten.GamepadID   `json:"assigned"`
+		SettingsPath       string                `json:"settings_path"`
+		Notice             string                `json:"notice"`
+		Presentation       gamecore.Presentation `json:"presentation"`
+		HDEnabled          bool                  `json:"hd_enabled"`
+		HDActive           bool                  `json:"hd_active"`
+		HDReason           string                `json:"hd_reason"`
+		HDCharactersActive bool                  `json:"hd_characters_active"`
+	}{Core: g.core.Status(), Panel: g.panel, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, HDCharactersActive: g.hdActive && g.hdCharacters != nil}
 	b, e := json.MarshalIndent(value, "", "  ")
 	if e == nil {
 		e = os.WriteFile(g.opts.Observe+".tmp", b, 0600)
@@ -555,27 +573,27 @@ func (g *Game) Draw(dst *ebiten.Image) {
 	g.texture.WritePixels(g.rgba)
 	g.hdActive = false
 	g.hdReason = "原貌"
+	charactersDrawn := false
 	if g.hdEnabled && g.hdAssets != nil {
-		mask, ok, reason := g.hdAssets.Foreground(hd.Frame{Scene: frame.Scene, CameraX: frame.CameraX, BackgroundSHA256: frame.BackgroundSHA256, Pixels: frame.Pixels, Palette: frame.Palette})
-		g.hdReason = reason
-		if ok {
-			if g.hdTexture == nil {
-				g.hdTexture = ebiten.NewImageFromImage(g.hdAssets.Image)
+		if g.opts.HDCharacters != "" {
+			charactersDrawn, g.hdReason = g.drawCharacterFrame(dst, frame)
+			g.hdActive = charactersDrawn
+		} else {
+			mask, ok, reason := g.hdAssets.Foreground(hd.Frame{Scene: frame.Scene, CameraX: frame.CameraX, BackgroundSHA256: frame.BackgroundSHA256, Pixels: frame.Pixels, Palette: frame.Palette})
+			g.hdReason = reason
+			if ok {
+				g.drawBackground(dst, frame)
+				g.texture.WritePixels(mask)
+				g.hdActive = true
 			}
-			op := &ebiten.DrawImageOptions{}
-			op.Filter = ebiten.FilterLinear
-			sx, sy := float64(screenRect.Dx())/320, float64(screenRect.Dy())/200
-			op.GeoM.Scale(sx*480/float64(g.hdTexture.Bounds().Dx()), sy*204/float64(g.hdTexture.Bounds().Dy()))
-			op.GeoM.Translate(float64(screenRect.Min.X)-float64(frame.CameraX)*sx, float64(screenRect.Min.Y))
-			dst.SubImage(screenRect).(*ebiten.Image).DrawImage(g.hdTexture, op)
-			g.texture.WritePixels(mask)
-			g.hdActive = true
 		}
 	}
 	op := &ebiten.DrawImageOptions{}
 	op.GeoM.Scale(float64(screenRect.Dx())/float64(w), float64(screenRect.Dy())/float64(h))
 	op.GeoM.Translate(float64(screenRect.Min.X), float64(screenRect.Min.Y))
-	dst.DrawImage(g.texture, op)
+	if !charactersDrawn {
+		dst.DrawImage(g.texture, op)
+	}
 	s := g.core.Status()
 	state := "對戰中"
 	if s.Paused {
@@ -663,6 +681,22 @@ func (g *Game) Draw(dst *ebiten.Image) {
 			}
 			if e != nil {
 				g.notice = "畫格證據寫入失敗：" + e.Error()
+			}
+		}
+		if e == nil && g.opts.Observe != "" && g.opts.HDCharacters != "" && frame.LayersComplete {
+			var data []byte
+			data, e = json.MarshalIndent(frame, "", "  ")
+			if e == nil {
+				e = os.WriteFile(path+".frame.json", data, 0600)
+			}
+			for i, layer := range frame.Layers {
+				if e != nil {
+					break
+				}
+				e = os.WriteFile(fmt.Sprintf("%s.layer-%02d.idx", path, i), layer.Indices, 0600)
+				if e == nil {
+					e = os.WriteFile(fmt.Sprintf("%s.layer-%02d.mask", path, i), layer.Coverage, 0600)
+				}
 			}
 		}
 		if e == nil {

@@ -51,6 +51,7 @@ type Core struct {
 	seen         bool
 	err          string
 	presentation Presentation
+	recording    layerRecording
 }
 
 var allowed = [2]map[uint8]bool{
@@ -82,7 +83,7 @@ func New(root, scratch string) (*Core, error) {
 	o.OnCall(oracle.Far(0x01b9, 0x3e9d), c.capturePresentation)
 	return c, nil
 }
-func (c *Core) Close() { c.Release(); c.o.Close() }
+func (c *Core) Close() { c.stopLayers(); c.Release(); c.o.Close() }
 func (c *Core) dataSegment() (uint16, bool) {
 	if c.o.Word(oracle.Far(0, 0x24)) != 0x524c || c.o.Word(oracle.Far(0, 0x26)) != 0x01b9 {
 		return 0, false
@@ -142,6 +143,7 @@ func (c *Core) Step(budget uint64) error {
 		c.frames = 0
 		c.seen = false
 		c.presentation = Presentation{}
+		c.stopLayers()
 	}
 	return nil
 }
