@@ -200,7 +200,9 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ### GitHub 儲存庫準備
 
-本次使用者再次要求建立與上傳。受限環境的 `gh auth status` 回報登入失敗，但主機權限檢查遭環境政策拒絕，尚不能確認主機憑證失效。沒有建立或推送成功證據，不可把預定 origin 當成已存在的儲存庫。
+2026-10-19 再次核對：受限環境的 `gh auth status` 回報登入失敗，`git ls-remote origin` 回報無法解析 `github.com`。先前主機權限檢查遭自動核准政策拒絕，本輪未重試提升權限，尚不能確認主機憑證失效。沒有建立或推送成功證據，不可把預定 origin 當成已存在的儲存庫。
+
+上傳副本位於 `/tmp/kdzz-superfighter-publish`，main 的 162 個檔案已與工作根逐檔比對一致，常見憑證格式掃描無命中，既有完整 Git 備份驗證通過。原版、HD 衍生美術、私有 dosgolem 來源及二進位均排除。薩爾可夫尚未驗收的四檔變更保留在獨立 `feature/sarkov-hd` 工作樹，不合併進 main。最新上傳備份為 `workplace/github-upload-20261019.bundle`，恢復主機 GitHub 連線後，先建立私人儲存庫，再由上傳副本推送 main。
 
 前輪上傳副本的 `main` 保留顯示修正版本，`wip/victory-hd` 保存當時尚未整合驗證的勝負來源；完整備份為 `workplace/github-upload-latest.bundle`，身分見 `workplace/github-upload-latest-source.json`。本輪已完成限定首勝整合驗證，最新來源另存 `workplace/github-native-victory.bundle` 與 `github-native-victory-source.json`，並更新獨立副本的 main。原版、HD 美術、研究輸入及二進位繼續排除；遠端未建立或推送。
 

@@ -276,3 +276,10 @@
 - be9a6d3 的 35 份精確編譯輸入、四個二進位及編譯收據另存 native-frank-victory-v1/build-baseline，供下一角色實作前保留基準。自有來源續存獨立 Git 副本及 github-victory-animation-progress.bundle，身分見 github-victory-animation-progress-source.json；原版、衍生美術、研究資料及二進位仍排除，遠端未建立或推送。
 - 完整動畫、Wine 第二人、薩爾可夫原生、其他角色／場景／畫面、快捷、替代色盤、音訊、速度、實體平台與雙手把及正式封包仍未完成。只保留上述明示的 Wine 有界工作，其他本輪容器均已結束；擁有權、文件連結與原檔檢查於本輪保存時核對。
 - 保存前核對 26 份 Markdown、372 個相對連結、全部 Python 語法、128 原檔與 1719 執行器來源通過；沒有 root-owned 檔案或誤建 Markdown 目錄。舊文件／測試檔名已以 grep 反查無遺留引用。四份二進位重驗檔頭及實際編譯輸入通過，沒有重建未改的正式程式。Wine 第二人仍為唯一執行中的本輪容器，結束後才跑完整兩側稽核。
+
+## 2026-10-19 GitHub 建立與上傳狀態複核
+
+- 使用者再次要求建立儲存庫並上傳成果，沿用私人 wicanr2/superfighter-remastered 的準備設定。
+- 受限環境 gh auth status 失敗，git ls-remote origin 無法解析 github.com。先前主機權限提升遭自動核准政策拒絕，本輪未重試或搬運憑證；不能由受限檢查判定主機憑證失效。儲存庫建立及 push 仍未完成。
+- 獨立 Git 副本的 162 檔、17,628,233 bytes 與工作根逐檔一致，常見憑證格式掃描無命中，既有 github-victory-animation-progress.bundle 通過完整歷史驗證。原版、衍生美術、研究資料與二進位排除；未驗收的四檔薩爾可夫變更仍留在 feature/sarkov-hd。
+- 本輪只更新現況與工作歷程，續存獨立 Git 副本及 workplace/github-upload-20261019.bundle。未改程式或重跑產品測試。Docker 檢查容器均以 --rm 結束，工作根沒有 root-owned 檔案或誤建 Markdown 目錄。
