@@ -5,6 +5,42 @@ import "image"
 
 const Pixels = 320 * 200
 
+// Scanout 與原 VRAM 圖層分開保存，避免改變既有來源座標。
+type Scanout struct {
+	Width     int       `json:"width"`
+	Height    int       `json:"height"`
+	StartByte int       `json:"start_byte"`
+	PitchByte int       `json:"pitch_byte"`
+	CRTC      [32]uint8 `json:"crtc"`
+	Indices   []byte    `json:"-"`
+}
+
+func (s *Scanout) Valid() bool {
+	return s != nil && s.Width == 320 && s.Height > 0 && s.Height <= 200 && s.StartByte >= 0 && s.StartByte < 65536 && s.PitchByte >= 320 && s.PitchByte <= 65536 && s.StartByte+(s.Height-1)*s.PitchByte+320 <= 65536 && len(s.Indices) == s.Width*s.Height
+}
+
+// Matches 逐點核對同一快照的原 64,000 bytes 與 VRAM 尾端。
+func (s *Scanout) Matches(raw, tail []byte) bool {
+	if !s.Valid() || len(raw) != Pixels || len(tail) != 65536-Pixels {
+		return false
+	}
+	for y := 0; y < s.Height; y++ {
+		for x := 0; x < s.Width; x++ {
+			at := s.StartByte + y*s.PitchByte + x
+			var v byte
+			if at < Pixels {
+				v = raw[at]
+			} else {
+				v = tail[at-Pixels]
+			}
+			if s.Indices[y*s.Width+x] != v {
+				return false
+			}
+		}
+	}
+	return true
+}
+
 type Sprite struct {
 	Effect       bool   `json:"effect,omitempty"`
 	Player       int    `json:"player"`

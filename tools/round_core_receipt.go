@@ -22,6 +22,7 @@ func must(e error) {
 func digest(b []byte) string { return fmt.Sprintf("%x", sha256.Sum256(b)) }
 func main() {
 	out := flag.String("out", "", "new output directory")
+	display := flag.Bool("display", false, "compare additive scanout observation with identical raw layers")
 	flag.Parse()
 	if *out == "" {
 		panic("out required")
@@ -41,8 +42,11 @@ func main() {
 		c.EnableEffects()
 		c.EnableHUD()
 		c.EnableShadows()
-		if i == 1 {
+		if i == 1 || *display {
 			c.EnableRounds()
+		}
+		if i == 1 && *display {
+			c.EnableDisplay()
 		}
 		c.Pause(false)
 		cores[i] = c
@@ -71,6 +75,11 @@ func main() {
 		if !bytes.Equal(ar, br) {
 			panic("live original changed")
 		}
+		if *display && y.Serial > 0 {
+			if !y.Scanout.Matches(y.Pixels, y.VRAMTail) || x.Scanout != nil || !reflect.DeepEqual(x.Layers, y.Layers) || !reflect.DeepEqual(x.HUD, y.HUD) || !reflect.DeepEqual(x.Shadows, y.Shadows) || !reflect.DeepEqual(x.RoundMessage, y.RoundMessage) || x.RetainedBackgroundRows != y.RetainedBackgroundRows {
+				panic("display observer changed source layers or invalid visible view")
+			}
+		}
 		checks++
 		if y.RetainedBackgroundRows > 0 {
 			if !y.LayersComplete || y.RoundMessage == nil || !y.RoundMessage.Complete || y.HUD == nil || y.Shadows == nil {
@@ -86,6 +95,10 @@ func main() {
 			writeJSON(stem+".frame.json", y)
 			writeJSON(stem+".palette.json", y.Palette)
 			write(stem+".idx", y.Pixels)
+			if *display {
+				write(stem+".display.idx", y.Scanout.Indices)
+				write(stem+".vram-tail", y.VRAMTail)
+			}
 			for suffix, data := range map[string][]byte{".round.source": y.RoundMessage.Source, ".round-under.idx": y.RoundMessage.Underlay.Indices, ".round-under.mask": y.RoundMessage.Underlay.Coverage, ".hud.bitmap": y.HUD.Bitmap, ".hud-under.idx": y.HUD.Underlay.Indices, ".hud-under.mask": y.HUD.Underlay.Coverage, ".shadow-under.idx": y.Shadows.Underlay.Indices, ".shadow-under.mask": y.Shadows.Underlay.Coverage} {
 				write(stem+suffix, data)
 			}
@@ -130,6 +143,6 @@ func main() {
 	if len(fixtures) != 66 || len(stages) != 4 || len(widths) != 12 || final.RoundMessage != nil || final.RetainedBackgroundRows != 0 || !final.LayersComplete {
 		panic(fmt.Sprintf("incomplete coverage fixtures=%d stages=%d widths=%d final=%+v", len(fixtures), len(stages), len(widths), cores[1].Status()))
 	}
-	writeJSON("receipt.json", map[string]any{"kind": "normal first-round public Core observation compatibility and paired fixtures", "script_sha256": digest(script), "checks": checks, "round_fixtures": fixtures, "stages": len(stages), "widths": len(widths), "final_core": cores[1].Status(), "round_cleared_after_opening": true, "limits": "first round only; no native GUI or other round index proof"})
+	writeJSON("receipt.json", map[string]any{"kind": "normal first-round public Core observation compatibility and paired fixtures", "display_observation": *display, "script_sha256": digest(script), "checks": checks, "round_fixtures": fixtures, "stages": len(stages), "widths": len(widths), "final_core": cores[1].Status(), "round_cleared_after_opening": true, "limits": "first round only; no native GUI or other round index proof"})
 	fmt.Println("checks", checks, "round fixtures", len(fixtures), "cleared", final.RoundMessage == nil)
 }

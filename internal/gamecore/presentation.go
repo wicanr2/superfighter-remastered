@@ -29,7 +29,22 @@ type Presentation struct {
 	Shadows                *renderdata.ShadowSnapshot `json:"shadows,omitempty"`
 	RoundMessage           *renderdata.RoundSnapshot  `json:"round_message,omitempty"`
 	RetainedBackgroundRows int                        `json:"retained_background_rows,omitempty"`
+	Scanout                *renderdata.Scanout        `json:"scanout,omitempty"`
+	ScanoutError           string                     `json:"scanout_error,omitempty"`
+	VRAMTail               []byte                     `json:"-"`
 }
+
+func (c *Core) EnableDisplay() { c.display = true }
+
+// LiveDisplay 只讀取目前顯示；原 RGB API 仍保留線性 VRAM 契約。
+func (c *Core) LiveDisplay() (*renderdata.Scanout, [256][3]uint8, error) {
+	s, err := c.o.LinearScanout()
+	if err != nil {
+		return nil, c.o.Palette(), err
+	}
+	return &renderdata.Scanout{Width: s.Width, Height: s.Height, StartByte: s.StartByte, PitchByte: s.PitchByte, CRTC: s.CRTC, Indices: s.Indices}, c.o.Palette(), nil
+}
+
 type ActorPose struct {
 	Character int   `json:"character"`
 	Slot      int   `json:"slot"`
@@ -54,6 +69,14 @@ func (c *Core) capturePresentation(o *oracle.Oracle) {
 		return
 	}
 	frame := Presentation{Serial: c.presentation.Serial + 1, Steps: o.Steps(), Counter: o.Word(oracle.Far(ds, 0x1a)), Scene: int(o.Word(oracle.Far(ds, 0x1338))), CameraX: int(o.Word(oracle.Far(ds, 0x1332))), CRTCRows: int(o.Byte(oracle.Far(ds, 0x1334))), Pixels: append([]byte(nil), pixels...), Palette: o.Palette()}
+	if c.display {
+		var err error
+		frame.Scanout, _, err = c.LiveDisplay()
+		if err != nil {
+			frame.ScanoutError = err.Error()
+		}
+		frame.VRAMTail = append([]byte(nil), o.Bytes(oracle.Far(0xa000, 64000), 1536)...)
+	}
 	frame.BackgroundSHA256 = fmt.Sprintf("%x", sha256.Sum256(o.Bytes(oracle.Far(segment, 0), 480*204)))
 	for p := 0; p < 2; p++ {
 		frame.Actors[p] = ActorPose{Character: int(o.Word(oracle.Far(ds, uint16(0x12ac+p*2)))), Slot: int(o.Byte(oracle.Far(ds, []uint16{0x16f2, 0x16fa}[p]))), X: int(int16(o.Word(oracle.Far(ds, uint16(0x16d6+p*2))))) - frame.CameraX, Y: int(int16(o.Word(oracle.Far(ds, uint16(0x16de+p*2))))), Attr: o.Byte(oracle.Far(ds, uint16(0x16fe+p))), Facing: o.Byte(oracle.Far(ds, uint16(0x16b4+p)))}

@@ -48,55 +48,59 @@ type widget struct {
 	disabled bool
 }
 type Game struct {
-	core                *gamecore.Core
-	settings            controls.Settings
-	settingsPath        string
-	settingsWritable    bool
-	face                *text.GoTextFace
-	texture             *ebiten.Image
-	rgba                []byte
-	devices             []device
-	assigned            [2]ebiten.GamepadID
-	armed               [2]bool
-	keyboardArmed       bool
-	starts              [2]bool
-	shoulders           [2][4]bool
-	confirm             [2]bool
-	lastMenu            [2]time.Time
-	panel               bool
-	editing             [2]int
-	focus               int
-	notice              string
-	opts                Options
-	started             time.Time
-	capture             bool
-	updates             uint64
-	hdAssets            *hd.Assets
-	hdTexture           *ebiten.Image
-	hdEnabled           bool
-	hdActive            bool
-	hdReason            string
-	hdCharacters        *hd.Characters
-	layerTextures       []*ebiten.Image
-	layerRGBA           [][]byte
-	actorTextures       map[*hd.PoseArt]*ebiten.Image
-	hdHUD               *hd.HUD
-	hdHUDRequired       bool
-	hdHUDActive         bool
-	hudLabels           map[string]*ebiten.Image
-	hudWinMarker        *ebiten.Image
-	hdShadows           *hd.Shadows
-	hdShadowsActive     bool
-	shadowTexture       *ebiten.Image
-	shadowRGBA          []byte
-	shadowDraws         [2]renderdata.Shadow
-	shadowCamera        int
-	shadowCaptureBefore []byte
-	shadowCaptureAfter  []byte
-	hdRounds            *hd.Rounds
-	hdRoundsActive      bool
-	roundCaptureBefore  []byte
-	roundCaptureAfter   []byte
+	core                  *gamecore.Core
+	settings              controls.Settings
+	settingsPath          string
+	settingsWritable      bool
+	face                  *text.GoTextFace
+	texture               *ebiten.Image
+	frameCanvas           *ebiten.Image
+	backgroundMaskTexture *ebiten.Image
+	activeRect            image.Rectangle
+	paintRect             image.Rectangle
+	rgba                  []byte
+	devices               []device
+	assigned              [2]ebiten.GamepadID
+	armed                 [2]bool
+	keyboardArmed         bool
+	starts                [2]bool
+	shoulders             [2][4]bool
+	confirm               [2]bool
+	lastMenu              [2]time.Time
+	panel                 bool
+	editing               [2]int
+	focus                 int
+	notice                string
+	opts                  Options
+	started               time.Time
+	capture               bool
+	updates               uint64
+	hdAssets              *hd.Assets
+	hdTexture             *ebiten.Image
+	hdEnabled             bool
+	hdActive              bool
+	hdReason              string
+	hdCharacters          *hd.Characters
+	layerTextures         []*ebiten.Image
+	layerRGBA             [][]byte
+	actorTextures         map[*hd.PoseArt]*ebiten.Image
+	hdHUD                 *hd.HUD
+	hdHUDRequired         bool
+	hdHUDActive           bool
+	hudLabels             map[string]*ebiten.Image
+	hudWinMarker          *ebiten.Image
+	hdShadows             *hd.Shadows
+	hdShadowsActive       bool
+	shadowTexture         *ebiten.Image
+	shadowRGBA            []byte
+	shadowDraws           [2]renderdata.Shadow
+	shadowCamera          int
+	shadowCaptureBefore   []byte
+	shadowCaptureAfter    []byte
+	hdRounds              *hd.Rounds
+	hdRoundsActive        bool
+	roundCaptureBefore    []byte
+	roundCaptureAfter     []byte
 }
 
 func New(opts Options) (*Game, error) {
@@ -107,6 +111,7 @@ func New(opts Options) (*Game, error) {
 	if e != nil {
 		return nil, e
 	}
+	c.EnableDisplay()
 	b, _ := assets.ReadFile("assets/NotoSansCJKtc-Regular.otf")
 	font, e := text.NewGoTextFaceSource(bytes.NewReader(b))
 	if e != nil {
@@ -420,8 +425,12 @@ func (g *Game) Update() error {
 	}
 	if !s.Paused {
 		x, y := ebiten.CursorPosition()
-		if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) && image.Pt(x, y).In(screenRect) {
-			if e := g.core.Mouse((x-screenRect.Min.X)/3, (y-screenRect.Min.Y)/3, true); e != nil {
+		mouseRect := g.activeRect
+		if mouseRect.Empty() {
+			mouseRect = screenRect
+		}
+		if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) && image.Pt(x, y).In(mouseRect) {
+			if e := g.core.Mouse((x-mouseRect.Min.X)/3, (y-mouseRect.Min.Y)/3, true); e != nil {
 				g.notice = e.Error()
 			}
 		}
@@ -595,20 +604,46 @@ func (g *Game) label(dst *ebiten.Image, box image.Rectangle, value string, ink c
 	text.Draw(dst, value, g.face, op)
 }
 func (g *Game) Draw(dst *ebiten.Image) {
-	dst.Fill(color.RGBA{11, 16, 27, 255})
+	window := dst
+	if g.frameCanvas == nil {
+		g.frameCanvas = ebiten.NewImage(Width, Height)
+	}
+	g.frameCanvas.Fill(color.RGBA{11, 16, 27, 255})
 	frame := g.core.Presentation()
 	var w, h int
 	var rgb []byte
-	if g.hdAssets != nil && len(frame.Pixels) == 64000 {
+	var display *renderdata.Scanout
+	displayError := ""
+	palette := frame.Palette
+	if len(frame.Pixels) == 64000 {
 		w, h = 320, 200
 		rgb = make([]byte, 64000*3)
 		for i, v := range frame.Pixels {
 			color := frame.Palette[v]
 			copy(rgb[i*3:i*3+3], color[:])
 		}
+		display, displayError = frame.Scanout, frame.ScanoutError
 	} else {
 		w, h, rgb = g.core.RGB()
+		var err error
+		display, palette, err = g.core.LiveDisplay()
+		if err != nil {
+			displayError = err.Error()
+		}
 	}
+	mapped := display.Valid()
+	g.activeRect, g.paintRect = screenRect, screenRect
+	if mapped {
+		w, h = display.Width, display.Height
+		rgb = make([]byte, w*h*3)
+		for i, v := range display.Indices {
+			c := palette[v]
+			copy(rgb[i*3:i*3+3], c[:])
+		}
+		g.activeRect = image.Rect(screenRect.Min.X, screenRect.Min.Y+(600-h*3)/2, screenRect.Max.X, screenRect.Min.Y+(600-h*3)/2+h*3)
+		g.paintRect = screenRect.Add(image.Pt(0, (600-h*3)/2-(display.StartByte/320)*3))
+	}
+	dst = g.frameCanvas.SubImage(g.activeRect).(*ebiten.Image)
 	if g.texture == nil || g.texture.Bounds().Dx() != w || g.texture.Bounds().Dy() != h {
 		g.texture = ebiten.NewImage(w, h)
 		g.rgba = make([]byte, w*h*4)
@@ -626,7 +661,8 @@ func (g *Game) Draw(dst *ebiten.Image) {
 	g.shadowCaptureBefore, g.shadowCaptureAfter = nil, nil
 	g.hdReason = "原貌"
 	charactersDrawn := false
-	if g.hdEnabled && g.hdAssets != nil {
+	backgroundOnly := false
+	if g.hdEnabled && g.hdAssets != nil && mapped && g.hdAssets.DisplayMatch(display, frame.Pixels, frame.VRAMTail, hd.Frame{Scene: frame.Scene, CameraX: frame.CameraX, BackgroundSHA256: frame.BackgroundSHA256, Palette: frame.Palette}) {
 		if g.opts.HDCharacters != "" {
 			charactersDrawn, g.hdReason = g.drawCharacterFrame(dst, frame)
 			g.hdActive = charactersDrawn
@@ -635,17 +671,34 @@ func (g *Game) Draw(dst *ebiten.Image) {
 			g.hdReason = reason
 			if ok {
 				g.drawBackground(dst, frame)
-				g.texture.WritePixels(mask)
+				if g.backgroundMaskTexture == nil {
+					g.backgroundMaskTexture = ebiten.NewImage(320, 200)
+				}
+				g.backgroundMaskTexture.WritePixels(mask)
+				backgroundOnly = true
 				g.hdActive = true
 			}
 		}
+	} else if g.hdEnabled {
+		g.hdReason = "顯示來源或尾列未對應，保留原貌"
+	}
+	if !mapped && displayError != "" {
+		g.hdReason = "顯示映射未支援，保留線性原貌：" + displayError
+	}
+	if backgroundOnly {
+		op := &ebiten.DrawImageOptions{}
+		op.GeoM.Scale(3, 3)
+		op.GeoM.Translate(float64(g.paintRect.Min.X), float64(g.paintRect.Min.Y))
+		dst.DrawImage(g.backgroundMaskTexture, op)
 	}
 	op := &ebiten.DrawImageOptions{}
-	op.GeoM.Scale(float64(screenRect.Dx())/float64(w), float64(screenRect.Dy())/float64(h))
-	op.GeoM.Translate(float64(screenRect.Min.X), float64(screenRect.Min.Y))
-	if !charactersDrawn {
+	op.GeoM.Scale(float64(g.activeRect.Dx())/float64(w), float64(g.activeRect.Dy())/float64(h))
+	op.GeoM.Translate(float64(g.activeRect.Min.X), float64(g.activeRect.Min.Y))
+	if !charactersDrawn && !backgroundOnly {
 		dst.DrawImage(g.texture, op)
 	}
+	dst = window
+	dst.DrawImage(g.frameCanvas, nil)
 	s := g.core.Status()
 	state := "對戰中"
 	if s.Paused {
@@ -725,10 +778,10 @@ func (g *Game) Draw(dst *ebiten.Image) {
 		if e == nil && g.opts.Observe != "" {
 			liveW, liveH, liveRGB := g.core.RGB()
 			source := "live-original"
-			if g.hdAssets != nil && len(frame.Pixels) == 64000 {
+			if len(frame.Pixels) == 64000 {
 				source = "completed-battle-frame"
 			}
-			metadata := map[string]any{"core": g.core.Status(), "original_source": source, "selected_width": w, "selected_height": h, "live_width": liveW, "live_height": liveH, "presentation_serial": frame.Serial, "presentation_steps": frame.Steps, "hd_enabled": g.hdEnabled, "hd_active": g.hdActive, "hd_shadows_active": g.hdShadowsActive}
+			metadata := map[string]any{"core": g.core.Status(), "original_source": source, "selected_width": w, "selected_height": h, "live_width": liveW, "live_height": liveH, "presentation_serial": frame.Serial, "presentation_steps": frame.Steps, "hd_enabled": g.hdEnabled, "hd_active": g.hdActive, "hd_shadows_active": g.hdShadowsActive, "display_applied": mapped, "display_error": displayError, "active_rect": g.activeRect, "paint_rect": g.paintRect, "scanout": display}
 			var data []byte
 			data, e = json.MarshalIndent(metadata, "", "  ")
 			if e == nil {
@@ -740,8 +793,14 @@ func (g *Game) Draw(dst *ebiten.Image) {
 			if e == nil {
 				e = os.WriteFile(path+".live.rgb", liveRGB, 0600)
 			}
+			if e == nil && mapped {
+				e = os.WriteFile(path+".display.idx", display.Indices, 0600)
+			}
+			if e == nil && len(frame.VRAMTail) > 0 {
+				e = os.WriteFile(path+".vram-tail", frame.VRAMTail, 0600)
+			}
 		}
-		if e == nil && g.opts.Observe != "" && g.hdAssets != nil && len(frame.Pixels) == 64000 {
+		if e == nil && g.opts.Observe != "" && len(frame.Pixels) == 64000 {
 			e = os.WriteFile(path+".idx", frame.Pixels, 0600)
 			if e == nil {
 				var data []byte
@@ -796,7 +855,7 @@ func (g *Game) Draw(dst *ebiten.Image) {
 				}
 				if e == nil {
 					var data []byte
-					data, e = json.Marshal(map[string]any{"serial": frame.Serial, "width": screenRect.Dx(), "height": len(g.shadowRGBA) / (screenRect.Dx() * 4), "x": screenRect.Min.X, "y": screenRect.Min.Y + 178*screenRect.Dy()/200})
+					data, e = json.Marshal(map[string]any{"serial": frame.Serial, "width": screenRect.Dx(), "height": len(g.shadowRGBA) / (screenRect.Dx() * 4), "x": g.paintRect.Min.X, "y": g.paintRect.Min.Y + 178*screenRect.Dy()/200})
 					if e == nil {
 						e = os.WriteFile(path+".shadow-render.json", data, 0600)
 					}

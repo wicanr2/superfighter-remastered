@@ -8,6 +8,7 @@ from PIL import Image
 from hud_reference import reconstruct
 from shadow_reference import replay_snapshot
 from round_reference import replay_snapshot as replay_round
+from display_reference import geometry
 
 
 def digest(path):
@@ -91,6 +92,25 @@ def read_frame(root, name, reference, original_root=None, image_required=True):
             if round_snapshot["stage"] == 1 and round_snapshot["half_width"] == 4:
                 before[:1442] = round_after[:1442]
         assert before == raw, (name, "pre-HUD layers plus original HUD differ from final original pixels")
+    if frame.get("scanout"):
+        s = frame["scanout"]
+        start, pitch, height = geometry(s["crtc"])
+        assert (start,pitch,height) == (s["start_byte"],s["pitch_byte"],s["height"])
+        assert s["width"] == 320
+        tail = Path(str(base)+".vram-tail").read_bytes()
+        visible = Path(str(base)+".display.idx").read_bytes()
+        assert len(tail)==1536 and len(visible)==320*height
+        vram = raw+tail
+        assert visible == b"".join(vram[start+y*pitch:start+y*pitch+320] for y in range(height))
+        frame["_visible"] = visible
+        capture = Path(str(base)+".capture.json")
+        if capture.exists():
+            metadata=json.loads(capture.read_text())
+            top=64+(600-height*3)//2
+            assert metadata["display_applied"] and metadata["selected_height"]==height
+            assert metadata["active_rect"]=={"Min":{"X":80,"Y":top},"Max":{"X":1040,"Y":top+height*3}}
+            assert metadata["paint_rect"]=={"Min":{"X":80,"Y":top-start//320*3},"Max":{"X":1040,"Y":top-start//320*3+600}}
+            assert Path(str(base)+".selected.rgb").read_bytes()==bytes(c for v in visible for c in palette[v])
     image = Image.open(base).convert("RGB") if image_required else None
     if image_required:
         assert image.size == (1120, 820)
@@ -101,10 +121,22 @@ def viewport(image):
     return image.crop((80, 64, 1040, 664))
 
 
-def original_image(raw, palette):
-    image = Image.new("RGB", (320, 200))
-    image.putdata([tuple(palette[value]) for value in raw])
-    return image.resize((960, 600), Image.Resampling.NEAREST)
+def original_image(raw, palette, frame=None):
+    s=frame.get("scanout") if frame else None
+    height=s["height"] if s else 200
+    image = Image.new("RGB", (320, height))
+    image.putdata([tuple(palette[value]) for value in frame["_visible"] if True] if s else [tuple(palette[value]) for value in raw])
+    result=Image.new("RGB",(960,600),(11,16,27))
+    result.paste(image.resize((960,height*3),Image.Resampling.NEAREST),(0,(600-height*3)//2))
+    return result
+
+
+def source_y(y,frame):
+    s=frame.get("scanout")
+    if not s: return 64+y*3
+    row=y-s["start_byte"]//320
+    if not 0<=row<s["height"]: return None
+    return 64+(600-s["height"]*3)//2+row*3
 
 
 def main():
@@ -133,7 +165,7 @@ def main():
     frames = [read_frame(root, name, reference, args.original_root) for name in names]
     raw, palette, metadata, layers, owners, original = frames[0]
     assert all(frame[:3] == frames[0][:3] for frame in frames[1:])
-    expected = original_image(raw, palette)
+    expected = original_image(raw, palette, metadata)
     assert viewport(original).tobytes() == expected.tobytes()
     hd, restored = frames[1][-1], frames[2][-1]
     assert viewport(hd).tobytes() == viewport(restored).tobytes()
@@ -159,11 +191,13 @@ def main():
     changed_top_background = 0
     for i, owner in enumerate(owners):
         x, y = i % 320, i // 320
+        physical_y=source_y(y,metadata)
+        if physical_y is None: continue
         hud_y = y - hud["state"]["crtc_rows"] if hud else y
         hud_field = any(left <= x < right and top <= hud_y < bottom for left, top, right, bottom in hud_rects)
         for dy in range(3):
             for dx in range(3):
-                position = (80 + x * 3 + dx, 64 + y * 3 + dy)
+                position = (80 + x * 3 + dx, physical_y + dy)
                 a, b = original.getpixel(position), hd.getpixel(position)
                 if owner == len(layers) - 1 and not hud_field:
                     assert a == b, (x, y, "last original raster write was covered")
@@ -186,7 +220,7 @@ def main():
     missing_checked = None
     if (root / "missing-pose-original.png").exists():
         missing = read_frame(root, "missing-pose-original.png", reference, args.original_root)
-        assert viewport(missing[-1]).tobytes() == original_image(missing[0], missing[1]).tobytes()
+        assert viewport(missing[-1]).tobytes() == original_image(missing[0], missing[1],missing[2]).tobytes()
         missing_checked = True
     if args.require_missing:
         assert missing_checked, "missing-pose capture required"
@@ -197,7 +231,7 @@ def main():
         effect_names = [f"original-{label}-paused.png", f"hd-{label}-paused.png", f"hd-{label}-restored.png"]
         effects = [read_frame(root, name, reference, args.original_root) for name in effect_names]
         assert all(frame[:3] == effects[0][:3] for frame in effects[1:])
-        original_effect = original_image(effects[0][0], effects[0][1])
+        original_effect = original_image(effects[0][0], effects[0][1],effects[0][2])
         assert viewport(effects[0][-1]).tobytes() == original_effect.tobytes()
         assert viewport(effects[1][-1]).tobytes() == viewport(effects[2][-1]).tobytes()
         effect_layers = {i for i, (layer, _, _) in enumerate(effects[0][3]) if layer.get("sprite", {}).get("effect")}
@@ -207,9 +241,11 @@ def main():
             if owner not in effect_layers:
                 continue
             x, y = i % 320, i // 320
+            physical_y=source_y(y,effects[0][2])
+            if physical_y is None: continue
             for dy in range(3):
                 for dx in range(3):
-                    point = (80 + x * 3 + dx, 64 + y * 3 + dy)
+                    point = (80 + x * 3 + dx, physical_y + dy)
                     effect_pixels += effects[0][-1].getpixel(point) != effects[1][-1].getpixel(point)
         assert effect_pixels > 20, effect_pixels
         effect_counts[label] = effect_pixels

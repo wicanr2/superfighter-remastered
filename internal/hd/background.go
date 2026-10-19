@@ -10,6 +10,8 @@ import (
 	"image/png"
 	"os"
 	"path/filepath"
+
+	"github.com/wicanr2/superfighter-remastered/internal/renderdata"
 )
 
 const ReferenceSHA256 = "eb1207239c06a0e06cd9ecbb697b4cf7e1421c4dd3e6e2a6794774246eafeb15"
@@ -45,6 +47,26 @@ type Frame struct {
 	BackgroundSHA256 string
 	Pixels           []byte
 	Palette          [256][3]uint8
+}
+
+// DisplayMatch 只允許已驗整列映射；可見尾端必須仍是同格原背景。
+func (a *Assets) DisplayMatch(s *renderdata.Scanout, raw, tail []byte, f Frame) bool {
+	if !s.Matches(raw, tail) || s.PitchByte != 320 || s.StartByte%320 != 0 || s.StartByte/320+s.Height > 204 || f.CameraX < 0 || f.CameraX > 159 || f.Scene != 4 || f.BackgroundSHA256 != ReferenceSHA256 || len(a.Reference) != 480*204 {
+		return false
+	}
+	for i, p := range a.Palette {
+		if p != f.Palette[i] {
+			return false
+		}
+	}
+	for y := max(200, s.StartByte/320); y < s.StartByte/320+s.Height; y++ {
+		for x := 0; x < 320; x++ {
+			if s.Indices[(y-s.StartByte/320)*320+x] != a.Reference[y*480+x+f.CameraX] {
+				return false
+			}
+		}
+	}
+	return true
 }
 
 func Load(dir string) (*Assets, error) {

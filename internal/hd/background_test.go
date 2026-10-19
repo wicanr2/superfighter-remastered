@@ -7,7 +7,88 @@ import (
 	"os"
 	"path/filepath"
 	"testing"
+
+	"github.com/wicanr2/superfighter-remastered/internal/renderdata"
 )
+
+func TestDisplayTailAndGeometryRejection(t *testing.T) {
+	a, f := fixture()
+	tail := bytes.Repeat([]byte{7}, 1536)
+	s := &renderdata.Scanout{Width: 320, Height: 192, StartByte: 3840, PitchByte: 320, Indices: bytes.Repeat([]byte{7}, 320*192)}
+	if !a.DisplayMatch(s, f.Pixels, tail, f) {
+		t.Fatal("complete display rejected")
+	}
+	// 原圖與顯示都含相同新像素，仍不可把未知尾端當成背景。
+	tail[0], s.Indices[(200-12)*320] = 193, 193
+	if a.DisplayMatch(s, f.Pixels, tail, f) {
+		t.Fatal("unknown visible tail replaced")
+	}
+	tail[0], s.Indices[(200-12)*320] = 7, 7
+	for _, edit := range []func(*renderdata.Scanout){
+		func(s *renderdata.Scanout) { s.StartByte++ }, func(s *renderdata.Scanout) { s.PitchByte++ },
+		func(s *renderdata.Scanout) { s.Height = 201 }, func(s *renderdata.Scanout) { s.StartByte = -1 },
+		func(s *renderdata.Scanout) { s.Width = 319 }, func(s *renderdata.Scanout) { s.Indices = s.Indices[:10] },
+	} {
+		bad := *s
+		edit(&bad)
+		if a.DisplayMatch(&bad, f.Pixels, tail, f) {
+			t.Fatal("unknown geometry accepted")
+		}
+	}
+	// 不同整列起點與較短視窗沿用同一來源座標。
+	for _, start := range []int{0, 7, 12} {
+		good := *s
+		good.StartByte = start * 320
+		if !a.DisplayMatch(&good, f.Pixels, tail, f) {
+			t.Fatal("aligned view rejected", start)
+		}
+	}
+}
+
+func TestReal67DisplaySnapshotsAndVisibleTail(t *testing.T) {
+	root, assets := os.Getenv("KDZZ_HD_FIXTURES"), os.Getenv("KDZZ_HD_ASSETS")
+	if root == "" || assets == "" {
+		t.Skip("local copyrighted fixtures not supplied")
+	}
+	a, e := Load(assets)
+	if e != nil {
+		t.Fatal(e)
+	}
+	read := func(p string) []byte {
+		t.Helper()
+		b, e := os.ReadFile(p)
+		if e != nil {
+			t.Fatal(e)
+		}
+		return b
+	}
+	for i := 0; i < 67; i++ {
+		stem := fmt.Sprintf("display-%03d", i)
+		api := filepath.Join(root, "linear-scanout-api-v2", stem)
+		base := filepath.Join(root, "display-ports-v1", stem)
+		var s renderdata.Scanout
+		if e := json.Unmarshal(read(api+".api.json"), &s); e != nil {
+			t.Fatal(e)
+		}
+		s.Indices = read(api + ".api.idx")
+		var meta struct {
+			Scene            int    `json:"scene"`
+			CameraX          int    `json:"camera_x"`
+			BackgroundSHA256 string `json:"background_sha256"`
+		}
+		if e := json.Unmarshal(read(api+".game.json"), &meta); e != nil {
+			t.Fatal(e)
+		}
+		f := Frame{Scene: meta.Scene, CameraX: meta.CameraX, BackgroundSHA256: meta.BackgroundSHA256, Pixels: read(base + ".legacy.idx")}
+		if e := json.Unmarshal(read(base+".palette.json"), &f.Palette); e != nil {
+			t.Fatal(e)
+		}
+		vram := read(base + ".vram")
+		if !a.DisplayMatch(&s, f.Pixels, vram[64000:], f) {
+			t.Fatal(stem, "real visible tail rejected")
+		}
+	}
+}
 
 func fixture() (*Assets, Frame) {
 	a := &Assets{Reference: bytes.Repeat([]byte{7}, 480*204)}

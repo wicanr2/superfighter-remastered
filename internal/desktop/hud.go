@@ -111,9 +111,9 @@ func (g *Game) hudWinTexture() *ebiten.Image {
 }
 
 func (g *Game) drawHUD(dst *ebiten.Image, selected *hd.HUDSelection) {
-	sx, sy := float64(screenRect.Dx())/320, float64(screenRect.Dy())/200
+	sx, sy := float64(g.paintRect.Dx())/320, float64(g.paintRect.Dy())/200
 	physical := func(rect image.Rectangle) image.Rectangle {
-		return image.Rect(screenRect.Min.X+int(float64(rect.Min.X)*sx), screenRect.Min.Y+int(float64(rect.Min.Y+selected.State.Rows)*sy), screenRect.Min.X+int(float64(rect.Max.X)*sx), screenRect.Min.Y+int(float64(rect.Max.Y+selected.State.Rows)*sy))
+		return image.Rect(g.paintRect.Min.X+int(float64(rect.Min.X)*sx), g.paintRect.Min.Y+int(float64(rect.Min.Y+selected.State.Rows)*sy), g.paintRect.Min.X+int(float64(rect.Max.X)*sx), g.paintRect.Min.Y+int(float64(rect.Max.Y+selected.State.Rows)*sy))
 	}
 	fill := func(rect image.Rectangle, ink color.Color) {
 		vector.DrawFilledRect(dst, float32(rect.Min.X), float32(rect.Min.Y), float32(rect.Dx()), float32(rect.Dy()), ink, false)

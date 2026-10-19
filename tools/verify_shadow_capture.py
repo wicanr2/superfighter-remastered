@@ -6,6 +6,7 @@ import math
 from pathlib import Path
 
 from shadow_reference import replay_snapshot
+from verify_character_capture import source_y
 
 
 def verify_all(root, original_root):
@@ -19,7 +20,7 @@ def verify_all(root, original_root):
         snapshot = frame["shadows"]
         metadata = json.loads(path.read_text())
         assert snapshot["counter"] == frame["counter"] and snapshot["camera_x"] == frame["camera_x"]
-        assert metadata == {"serial": frame["serial"], "width": 960, "height": 27, "x": 80, "y": 598}
+        assert metadata == {"serial": frame["serial"], "width": 960, "height": 27, "x": 80, "y": source_y(178,frame)}
         indices, mask, replaced, clips = replay_snapshot(original_root, snapshot,
             Path(str(base) + ".shadow-under.idx").read_bytes(), Path(str(base) + ".shadow-under.mask").read_bytes())
         assert indices == Path(str(base) + ".layer-01.idx").read_bytes()

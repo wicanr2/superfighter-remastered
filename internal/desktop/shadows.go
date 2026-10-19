@@ -10,8 +10,8 @@ import (
 
 // drawShadows 在實際 viewport 像素計算柔邊與重疊，不放大原版棋盤點陣。
 func (g *Game) drawShadows(dst *ebiten.Image, selected *hd.ShadowSelection) {
-	sx, sy := float64(screenRect.Dx())/320, float64(screenRect.Dy())/200
-	width, height := screenRect.Dx(), int(9*sy)
+	sx, sy := float64(g.paintRect.Dx())/320, float64(g.paintRect.Dy())/200
+	width, height := g.paintRect.Dx(), int(9*sy)
 	if g.shadowTexture == nil {
 		g.shadowTexture = ebiten.NewImageWithOptions(image.Rect(0, 0, width, height), &ebiten.NewImageOptions{Unmanaged: true})
 		g.shadowRGBA = make([]byte, width*height*4)
@@ -38,13 +38,13 @@ func (g *Game) drawShadows(dst *ebiten.Image, selected *hd.ShadowSelection) {
 		g.shadowDraws, g.shadowCamera = selected.Draws, selected.CameraX
 	}
 	op := &ebiten.DrawImageOptions{}
-	op.GeoM.Translate(float64(screenRect.Min.X), float64(screenRect.Min.Y)+178*sy)
-	strip := dst.SubImage(image.Rect(screenRect.Min.X, screenRect.Min.Y+int(178*sy), screenRect.Max.X, screenRect.Min.Y+int(178*sy)+height)).(*ebiten.Image)
+	op.GeoM.Translate(float64(g.paintRect.Min.X), float64(g.paintRect.Min.Y)+178*sy)
+	strip := dst.SubImage(image.Rect(g.paintRect.Min.X, g.paintRect.Min.Y+int(178*sy), g.paintRect.Max.X, g.paintRect.Min.Y+int(178*sy)+height)).(*ebiten.Image)
 	if g.capture && g.opts.Observe != "" {
 		g.shadowCaptureBefore = make([]byte, width*height*4)
 		strip.ReadPixels(g.shadowCaptureBefore)
 	}
-	dst.SubImage(screenRect).(*ebiten.Image).DrawImage(g.shadowTexture, op)
+	dst.SubImage(g.paintRect).(*ebiten.Image).DrawImage(g.shadowTexture, op)
 	if g.capture && g.opts.Observe != "" {
 		g.shadowCaptureAfter = make([]byte, width*height*4)
 		strip.ReadPixels(g.shadowCaptureAfter)

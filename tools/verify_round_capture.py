@@ -4,7 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from verify_character_capture import read_frame, original_image, viewport
+from verify_character_capture import read_frame, original_image, viewport, source_y
 
 
 def main():
@@ -39,7 +39,7 @@ def main():
         for label in ("round-partial", "round", "fight"):
             hd, original, restored = [frames[f"{label}-{mode}.png"] for mode in ("hd", "original", "restored")]
             assert hd[:3] == original[:3] == restored[:3], (label, "source state changed")
-            assert viewport(original[-1]).tobytes() == original_image(original[0], original[1]).tobytes()
+            assert viewport(original[-1]).tobytes() == original_image(original[0], original[1],original[2]).tobytes()
             assert viewport(hd[-1]).tobytes() == viewport(restored[-1]).tobytes(), (label, "restoration differs")
             snapshots = [json.loads((root / f"{label}-{mode}.png.capture.json").read_text()) for mode in ("hd", "original", "restored")]
             assert snapshots[0]["core"] == snapshots[1]["core"] == snapshots[2]["core"]
@@ -57,7 +57,8 @@ def main():
                 for i in range(960 * 600):
                     at = i * 4
                     x, y = i % 960, i // 960
-                    inside = message["x"] * 3 <= x < (message["x"] + message["width"]) * 3 and 168 <= y < 213
+                    top=source_y(message["y"],hd[2])-64
+                    inside = message["x"] * 3 <= x < (message["x"] + message["width"]) * 3 and top <= y < top+45
                     if not inside:
                         assert before[at:at + 4] == after[at:at + 4], (stem.name, "text escaped original reveal window", x, y)
                     assert after[at:at + 3] == png[i * 3:i * 3 + 3], (stem.name, "GPU capture differs from screenshot")

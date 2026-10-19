@@ -15,10 +15,10 @@ func (g *Game) drawBackground(dst *ebiten.Image, frame gamecore.Presentation) {
 	}
 	op := &ebiten.DrawImageOptions{}
 	op.Filter = ebiten.FilterLinear
-	sx, sy := float64(screenRect.Dx())/320, float64(screenRect.Dy())/200
+	sx, sy := float64(g.paintRect.Dx())/320, float64(g.paintRect.Dy())/200
 	op.GeoM.Scale(sx*480/float64(g.hdTexture.Bounds().Dx()), sy*204/float64(g.hdTexture.Bounds().Dy()))
-	op.GeoM.Translate(float64(screenRect.Min.X)-float64(frame.CameraX)*sx, float64(screenRect.Min.Y))
-	dst.SubImage(screenRect).(*ebiten.Image).DrawImage(g.hdTexture, op)
+	op.GeoM.Translate(float64(g.paintRect.Min.X)-float64(frame.CameraX)*sx, float64(g.paintRect.Min.Y))
+	dst.SubImage(g.activeRect).(*ebiten.Image).DrawImage(g.hdTexture, op)
 }
 
 func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation) (bool, string) {
@@ -86,7 +86,7 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 	if g.actorTextures == nil {
 		g.actorTextures = map[*hd.PoseArt]*ebiten.Image{}
 	}
-	sx, sy := float64(screenRect.Dx())/320, float64(screenRect.Dy())/200
+	sx, sy := float64(g.paintRect.Dx())/320, float64(g.paintRect.Dy())/200
 	actor := 0
 	for n, layer := range frame.Layers {
 		if n == 0 {
@@ -111,7 +111,7 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 			if clip.Empty() {
 				continue
 			}
-			physical := image.Rect(screenRect.Min.X+int(float64(clip.Min.X)*sx), screenRect.Min.Y+int(float64(clip.Min.Y)*sy), screenRect.Min.X+int(float64(clip.Max.X)*sx), screenRect.Min.Y+int(float64(clip.Max.Y)*sy)).Intersect(screenRect)
+			physical := image.Rect(g.paintRect.Min.X+int(float64(clip.Min.X)*sx), g.paintRect.Min.Y+int(float64(clip.Min.Y)*sy), g.paintRect.Min.X+int(float64(clip.Max.X)*sx), g.paintRect.Min.Y+int(float64(clip.Max.Y)*sy)).Intersect(g.paintRect)
 			op := &ebiten.DrawImageOptions{}
 			op.Filter = ebiten.FilterLinear
 			op.GeoM.Scale(float64(s.Width)*sx/float64(texture.Bounds().Dx()), float64(s.Height)*sy/float64(texture.Bounds().Dy()))
@@ -123,7 +123,7 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 				op.GeoM.Scale(1, -1)
 				op.GeoM.Translate(0, float64(s.Height)*sy)
 			}
-			op.GeoM.Translate(float64(screenRect.Min.X)+float64(origin.X)*sx, float64(screenRect.Min.Y)+float64(origin.Y)*sy)
+			op.GeoM.Translate(float64(g.paintRect.Min.X)+float64(origin.X)*sx, float64(g.paintRect.Min.Y)+float64(origin.Y)*sy)
 			if !physical.Empty() {
 				dst.SubImage(physical).(*ebiten.Image).DrawImage(texture, op)
 			}
@@ -151,8 +151,8 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 		g.layerTextures[n].WritePixels(rgba)
 		op := &ebiten.DrawImageOptions{}
 		op.GeoM.Scale(sx, sy)
-		op.GeoM.Translate(float64(screenRect.Min.X), float64(screenRect.Min.Y))
-		dst.SubImage(screenRect).(*ebiten.Image).DrawImage(g.layerTextures[n], op)
+		op.GeoM.Translate(float64(g.paintRect.Min.X), float64(g.paintRect.Min.Y))
+		dst.SubImage(g.paintRect).(*ebiten.Image).DrawImage(g.layerTextures[n], op)
 		if shadowSelection != nil && n == 1 {
 			g.drawShadows(dst, shadowSelection)
 		}

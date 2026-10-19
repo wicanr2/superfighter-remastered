@@ -16,9 +16,15 @@ Windows 原生程式在 Wine 中顯示的設定介面，擷取於原版核心執
 
 以下對戰圖片含原版及衍生美術，僅留本機工作區，GitHub 不收錄圖片檔：
 
+![目前整合的 HD 屋頂、人物、介面與開場](workplace/native-display-opening-v2/round-hd.png)
+
+目前原生版已修正顯示起點。原貌與 HD 全部圖層共用實際可見視窗，開場頂端資料列已移出，底部四列完整保留；正常跳躍與踢擊也跟隨原版顯示位移。Linux／Wine 各十張開場擷取、Linux 一般對戰十五張及舊素材十一張已獨立核對，缺件整張回退與切回 HD 逐點一致。這是限定顯示配置的硬體規格近似，實測範圍見[規格 015](docs/spec/015-native-scanout.md)與[目前稽核](workplace/native-display-audit.json)。
+
+下列圖片保存顯示修正前的版本與各自驗證範圍：
+
 [開場 ROUND 1](workplace/native-rounds-v1/round-hd.png)、[FIGHT !](workplace/native-rounds-v1/fight-hd.png)、[部分展開窗口](workplace/native-rounds-v1/round-partial-hd.png)及[同狀態原貌](workplace/native-rounds-v1/round-original.png)。Linux／Wine 各十張擷取驗來源、原生字圖裁切及切回逐點一致；只驗第一回合。頂端保留現有 oracle 線性畫面的原版資料，尚未套用 CRTC 顯示起點。詳見[開場規格](docs/spec/013-hd-round-messages.md)。
 
-頂端問題已定位為顯示視窗未套用，並包含漏掉底部四列。[修正後的原版重組預覽](workplace/display-ports-v1/display-010.scanout.png)來自獨立規格重組；候選執行器的 67 格輸出已核對，仍待接回原生 HD。範圍與限制見[顯示規格](docs/spec/014-mode13-scanout.md)。
+頂端問題的[原版重組預覽](workplace/display-ports-v1/display-010.scanout.png)來自獨立規格重組。候選執行器的 67 格輸出核對後，已依[顯示規格](docs/spec/014-mode13-scanout.md)接入目前原生版。
 
 [目前屋頂、人物與柔邊陰影](workplace/native-shadows-v1/hd-rooftop.png)、[正常走近後的重疊陰影](workplace/native-shadow-overlap-v1/hd-paused.png)與[同狀態原貌](workplace/native-shadow-overlap-v1/original-paused.png)。陰影讀取原版位置與裁切，在人物之前合成；重疊取最大透明度。[陰影規格與驗證](docs/spec/012-hd-shadows.md)。
 
@@ -41,6 +47,8 @@ Linux 原生版由正常標題進入斬對法蘭克雙打。生命條讀取原�
 開發建置在 Docker 內執行，工作區需要已準備的 dosgolem 獨立來源及工具鏈，詳見[工作契約](AGENTS.md)和[桌面規格](docs/spec/005-native-desktop.md)。
 
 儲存庫不附原版資料、HD 衍生美術、研究收據、dosgolem 私有來源或本機快取。`go.work.example` 記錄相對目錄配置，準備來源後複製為 `go.work`；原版匯入與來源快照工具為 `tools/prepare.py`，執行器補丁為 `tools/apply_runtime_patch.py`。現行收據中的 `workplace/` 連結僅供本機核對。
+
+目前執行器副本也需要普通記憶體觀測及顯示 API。準備與安裝順序見[規格 007](docs/spec/007-memory-write-observation.md)、[規格 014](docs/spec/014-mode13-scanout.md)及[規格 015](docs/spec/015-native-scanout.md)；安裝工具只修改本專案的獨立副本。
 
 ```sh
 bash tools/build_desktop.sh
@@ -92,7 +100,7 @@ bash tools/build_desktop.sh
 - [工作契約與索引](AGENTS.md)、[目前狀態](CONTEXT.md)、[工作清單](WORKLIST.md)。
 - [驗證範圍](VERIFICATION-MATRIX.md)、[研究證據](RESEARCH-LOG.md)、[工作歷程](WORKLOG.md)。
 - [原生桌面規格](docs/spec/005-native-desktop.md)、[輸入證據](docs/spec/004-live-input-slice.md)、[手把草案](docs/spec/002-gamepad-design.md)。
-- [HD 規格](docs/spec/003-hd-design.md)、[屋頂背景](docs/spec/006-rooftop-background.md)、[角色](docs/spec/008-hd-characters.md)、[特效](docs/spec/009-hd-effects.md)、[戰鬥介面](docs/spec/010-hd-battle-hud.md)、[勝場](docs/spec/011-hd-win-markers.md)與[陰影](docs/spec/012-hd-shadows.md)。完整動畫、回合訊息及其餘角色／場景／畫面仍在製作。
+- [HD 規格](docs/spec/003-hd-design.md)、[屋頂背景](docs/spec/006-rooftop-background.md)、[角色](docs/spec/008-hd-characters.md)、[特效](docs/spec/009-hd-effects.md)、[戰鬥介面](docs/spec/010-hd-battle-hud.md)、[勝場](docs/spec/011-hd-win-markers.md)、[陰影](docs/spec/012-hd-shadows.md)與[顯示映射](docs/spec/015-native-scanout.md)。完整動畫、勝負訊息及其餘角色／場景／畫面仍在製作。
 - [青衫與 SP Moves 歷史保存](docs/game-history.md)。
 
 自有程式與文件採 [RRSAL-1.0](LICENSE)，為 source-available 專案。此授權不涵蓋原版遊戲、外站原文與圖片或衍生美術；玩家須自備合法原版。專案與原版權利人沒有隸屬關係。內嵌中文字型另依 [SIL Open Font License](internal/desktop/assets/OFL.txt) 使用。
