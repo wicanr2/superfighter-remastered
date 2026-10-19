@@ -18,6 +18,8 @@ Windows 原生程式在 Wine 中顯示的設定介面，擷取於原版核心執
 
 [開場 ROUND 1](workplace/native-rounds-v1/round-hd.png)、[FIGHT !](workplace/native-rounds-v1/fight-hd.png)、[部分展開窗口](workplace/native-rounds-v1/round-partial-hd.png)及[同狀態原貌](workplace/native-rounds-v1/round-original.png)。Linux／Wine 各十張擷取驗來源、原生字圖裁切及切回逐點一致；只驗第一回合。頂端保留現有 oracle 線性畫面的原版資料，尚未套用 CRTC 顯示起點。詳見[開場規格](docs/spec/013-hd-round-messages.md)。
 
+頂端問題已定位為顯示視窗未套用，並包含漏掉底部四列。[修正後的原版重組預覽](workplace/display-ports-v1/display-010.scanout.png)來自獨立規格重組；候選執行器的 67 格輸出已核對，仍待接回原生 HD。範圍與限制見[顯示規格](docs/spec/014-mode13-scanout.md)。
+
 [目前屋頂、人物與柔邊陰影](workplace/native-shadows-v1/hd-rooftop.png)、[正常走近後的重疊陰影](workplace/native-shadow-overlap-v1/hd-paused.png)與[同狀態原貌](workplace/native-shadow-overlap-v1/original-paused.png)。陰影讀取原版位置與裁切，在人物之前合成；重疊取最大透明度。[陰影規格與驗證](docs/spec/012-hd-shadows.md)。
 
 [目前屋頂、人物、介面與 HD 勝場](workplace/native-win-markers-v1/win-hd.png)、[同狀態原貌](workplace/native-win-markers-v1/win-original.png)與[切回 HD](workplace/native-win-markers-v1/win-restored.png)。正常操作取得首勝後，以原版鎖存勝場顯示高解析拇指圖示；七張擷取及原版分層已獨立核對，切回畫面逐點一致。來源與範圍見[勝場規格](docs/spec/011-hd-win-markers.md)。

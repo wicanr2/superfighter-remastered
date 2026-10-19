@@ -308,3 +308,14 @@ go run -p 1 /project/tools/input_receipt.go -root /orig -out /project/workplace/
 - round-core-compat-v1 的 1,508 個觀測開／關邊界，原貌、實時 RGB、狀態、角色、色盤與步數均相同；66 格完整分層、HUD、陰影與開場訊息獨立重組通過。正式對戰後訊息與保留列清空。
 - 原生 Linux／Windows Wine 各七項、十張具名擷取通過；每側六張 GPU 字圖擷取在窗口外完全不變，三組暫停切回逐點相同。Linux 一般對戰另十七項、十五張擷取，舊素材十三項及缺件整張原貌另驗。這些是第一回合與抽測路徑證據，沒有外推其他模式、真機或實體手把。
 - 開場頂端資料列是目前 oracle 未套用 CRTC 顯示起點的實際可見限制。呈現保留線性原貌，不藏掉來源；後續須補執行器顯示能力。中央勝負文字、完整動畫與其餘角色／場景仍未完成。
+
+## 2026-10-19：鏈結 mode 13h 顯示視窗
+
+- 路由採平台規格優先；以 [FreeVGA CRTC](https://www.scs.stanford.edu/22wi-cs212/pintos/specs/freevga/vga/crtcreg.htm) 與 [sequencer](https://www.scs.stanford.edu/21wi-cs140/pintos/specs/freevga/vga/vgaseq.htm) 的顯示起點、雙字組位址、列距與有效掃描線契約為前提。不深入遊戲的標準硬體 driver 或忙等迴圈。
+- 已證實於原版樣本：固定 SF.EXE 的 67 個開場及首次對戰畫格，CRTC 12h 寫 7Fh、起點 0Ch／0Dh 合成 960，DS:1334h 為 12。完整 65,536 bytes VRAM、79,892 筆埠及步數保存在 display-ports-v1，來源 SHA-256 與工具身分見[規格 014](docs/spec/014-mode13-scanout.md)。
+- 平台公式導出 320×192、起點 3,840 bytes、列距 320、最後位址相對 A0000 為 65,279。舊 64,000 bytes 的線性 API 會露出頂列，並漏掉最下四列。這推翻只移除頂端十二列就能修正的簡化假設。獨立重組的 67 格及原版預覽均保存於 display-ports-v1，等級為 hardware-spec approximation，沒有實機或逐掃描線 parity 聲明。
+- 正式副本及共用來源均未改。在 display-runtime-study-v1 複製正式 1715 檔，只新增 machine／oracle 各一份 API 與測試，共 1719 檔。候選 API 只讀有效視窗，舊 Indexed／Screen 保持固定線性契約；完整來源身分與專用 workspace 都在該研究目錄。
+- 候選測試、相鄰舊契約回歸與 go vet 通過，包括不同起點／列距、尾列、兩種保存還原、回傳複本及 17 種未知映射拒絕。候選只支援既有模型的固定鏈結水平設定，不自稱完整 VGA 實作；超出 64 KiB 的環繞、平面及 bank 未猜補。
+- linear-scanout-api-v2 透過正常選單重走 67 格，逐點等於獨立顯示重組；API 呼叫前後的 VRAM、暫存器、步數、埠與舊 API 相同。相對未加候選 API 的基準，已保存的 67 個畫格欄位、VRAM 雜湊與步數也相同，不外推未受控亂數跨執行 parity。
+- v2 另讀原版相機、場景與背景來源；67 格尾四列均等於原背景對應位置，提供下一步 HD 尾列來源核對。不能以這些樣本假定所有正常對戰尾列都沒有前景，正式呈現仍須逐格驗。
+- `linear-scanout-audit.json` 核對正式來源未變、候選四檔、67 格輸出及現行四個二進位來源。原生未改用此 API，頂列問題仍是玩家路徑未完成項；下一步需同時映射原貌、HD 全部圖層及尾列。

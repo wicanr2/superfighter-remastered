@@ -229,6 +229,13 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [tools/round_core_receipt.go](tools/round_core_receipt.go) | 正常選單開場的核心觀測開關比較、66 格分層快照與正式對戰清除核對 |
 | [tools/verify_round_capture.py](tools/verify_round_capture.py) | 獨立重組開場完整圖層，驗原生文字 GPU 窗口與暫停切換逐點還原 |
 | [tools/audit_native_rounds.py](tools/audit_native_rounds.py) | 目前開場版的原檔、四平台編譯、獨立重組、正常視窗與歷史陰影基底核對 |
+| [tools/display_receipt.go](tools/display_receipt.go) | 正常選單路徑的 VGA 埠序列、顯示起點與完整 64 KiB 視訊記憶體蒐證 |
+| [tools/display_reference.py](tools/display_reference.py) | 依公開 VGA 契約、正常埠序列與完整視訊記憶體獨立重組顯示視窗 |
+| [docs/spec/014-mode13-scanout.md](docs/spec/014-mode13-scanout.md) | mode 13h 顯示起點、實際高度與原生接入閘門，候選 API 限定 READY |
+| [tools/prepare_linear_scanout.py](tools/prepare_linear_scanout.py) | 先核對 1715 份原來源，再建立新增四檔的獨立顯示研究副本與 Go workspace |
+| [tools/linear_scanout_receipt.go](tools/linear_scanout_receipt.go) | 透過候選 API 重跑正常原版，逐點比對 67 個獨立顯示視窗及原版狀態不變 |
+| [tools/audit_linear_scanout.py](tools/audit_linear_scanout.py) | 核對正式副本、候選新增四檔、67 格輸出與尾列；明示原生接線尚未完成 |
+| [tools/dosgolem-display/machine_linear_scanout.go](tools/dosgolem-display/machine_linear_scanout.go)、[機器測試](tools/dosgolem-display/machine_linear_scanout_test.go)、[公開 API](tools/dosgolem-display/oracle_linear_scanout.go)、[API 測試](tools/dosgolem-display/oracle_linear_scanout_test.go) | 獨立研究副本的鏈結顯示視窗候選來源，未接玩家主入口 |
 | [internal/renderdata/rounds.go](internal/renderdata/rounds.go)、[核心觀測](internal/gamecore/rounds.go)、[來源重組](internal/hd/rounds.go) | 規格 013 的開場窗口、繪製前快照與原檔來源驗證 |
 | [internal/desktop/rounds.go](internal/desktop/rounds.go) | 原生高解析開場字圖與未覆寫頂列的呈現 |
 | [tools/ida_ai_evidence.py](tools/ida_ai_evidence.py) | IDA 9.4 AI 載入與決策的原始位址、運算元及 bytes 匯出 |

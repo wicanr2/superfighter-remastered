@@ -218,3 +218,14 @@
 - Linux 一般對戰十七項、十五張具名擷取與十二張陰影合成另驗；舊素材十三項、十一張具名擷取及缺件整張原貌通過。README 加目前開場畫面，003／008／010 回填 013 的已解來源與背景差異，沒有重寫舊收據版本身分。
 - 開場頂端仍有 oracle CRTC 起點限制，勝負文字及其餘 HD 範圍未完成。正式封包、實體平台／手把、音訊與速度仍待驗。最終來源稽核、提交備份及容器清理身分續存本節後續記錄。
 - native-rounds-audit 最終核對 128 原檔、1715 份執行器來源與原有 1713 檔不變、四份實際編譯、全部 66 格來源／完整常式／部分背景、1,508 比較邊界及上述視窗收據後通過，013 僅在第一回合範圍升 CONFORMED。工作根未發現 root-owned 檔案或誤建 Markdown 目錄，kdzz 容器清單為空。自有來源續存獨立 Git 副本與 workplace/github-native-rounds.bundle，提交及逐檔來源身分見 workplace/github-native-rounds-source.json；沒有建立遠端、Release 或正式封包。
+
+## 2026-10-19：CRTC 顯示視窗候選
+
+- 前輪完成原生開場、驗證及 9623266 來源備份，屬 progress。本輪追查開場頂端問題，命中復古平台規格優先路由；查 FreeVGA 原始技術文件與正式副本實作，沒有把標準 VGA 語意重新列成遊戲反組譯任務。
+- display-ports-v1 由正常啟動與選角取得 67 格及全部埠。獨立重組確認可見 320×192、起點 3,840 bytes；原先不只露出頂端資料，亦漏掉可見尾四列。原貌重組預覽已目視確認，規格 014 對候選 API 升 READY。
+- 正式 1715 檔及 go.work 不動。prepare_linear_scanout 建獨立研究副本，原檔逐字不變，新增 machine／oracle 各一份 API 與測試，共 1719 檔；候選自己的 go.work 用 GOWORK 明示啟用。沒有改共享 dosgolem 或把候選無聲接進玩家入口。
+- 候選單元與相鄰原契約回歸、go vet 通過，沒有跳過。測試含完整尾列、起點／列距、只讀與複本、兩種保存還原及 17 個拒絕分支。新 API 保留舊 Indexed／Screen；未知平移、分割或越界映射回錯誤。
+- linear-scanout-api-v1 先通過 67 格；為補齊原生尾列來源，v2 追加場景、相機與背景身分再乾淨重跑。67 格仍與獨立顯示重組相同，呼叫前後與舊 API 不變；全部尾四列都能由原背景重組。原生仍須逐格檢查尾列，不把研究樣本當通用無前景假定。
+- linear-scanout-audit 通過正式來源、候選四檔、67 格及現行四個二進位身分核對。現行 9623266 二進位與 30 份精確編譯輸入已另存 native-rounds-v1/build-baseline；沒有重新建置或冒稱原生視窗已修正。
+- README、CONTEXT、工作清單及驗證矩陣分清候選輸出與原生接線。下一步將原貌、全部 HD 圖層與尾四列一起套用顯示映射，再續勝負訊息及完整 HD 範圍。來源備份、最後擁有權與容器清理核對續記於本節。
+- 候選最終稽核通過，正式來源、現行編譯輸入及四個二進位未變；沒有 root-owned 檔案或誤建 Markdown 目錄，研究容器均已結束。自有工具、候選新增來源及文件保存至獨立 Git 副本與 workplace/github-display-candidate.bundle，提交及逐檔身分見 workplace/github-display-candidate-source.json。原生接線與完整 HD 仍未完成，沒有建立 GitHub 遠端或發布封包。
