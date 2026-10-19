@@ -157,3 +157,16 @@
 - windows-effects-v1 及 windows-frank-effects-v1 的正常入口等待逾時，本版 Wine GUI 尚未通過。保留失敗收據，前一角色版十四項不能代替目前特效版。HD HUD、其餘角色、完整回合、實體雙手把及真機仍未完成。
 - 使用者要求建立 GitHub 儲存庫並上傳成果。主機 `gh auth status` 的提升權限呼叫遭環境自動核准政策拒絕，禁止 sandbox_approval。沒有取得主機憑證結果，沒有搬運憑證或改由容器 gh 繞過；遠端建立與 push 尚未完成。
 - 最新自有程式、規格及文件同步到既有 `/tmp/kdzz-superfighter-publish`，保存為獨立 Git 提交及 `workplace/github-native-effects.bundle`。保留原版包、研究原圖、HD 衍生美術、二進位及本機設定的排除；Git 備份不等於遠端已建立。
+
+## 2026-10-19：原生生命、計時與名字
+
+- 前一 Goal 回合屬 progress：完成特效來源的 Git 提交 3807ee3 與完整備份。本輪回到 HD，沒有重試受權限政策拒絕的 GitHub 操作，也沒有縮減完整 HD 目標。
+- Wine 初次特效驗證因正常入口等待逾時停止；同程式單獨重跑後到特效。原貌狀態與色盤相同，GPU 畫面卻有六個像素每通道相差一階。沿固定 Ebitengine 2.9.9 的 Unmanaged 契約改用獨立角色／特效紋理後，斬與法蘭克切回逐點一致。舊原圖、失敗收據與特效二進位均保留，未放寬比較容差。
+- IDA 9.4 由正常主迴圈追到 BOARD.XBB、NAME.XBB、0-9.XBB、BOARD.COL 與原版介面繪製。hud-draw-v3 以普通鍵盤移動／拳擊打出第一次擊倒及第二回合，1176 次介面繪製、等值覆蓋均吻合。33 個原檔獨立重組樣本與顯示勝場鎖存審查後，規格 010 先升 READY，再接正式呈現。
+- 生命使用原版逐格扣減的顯示值，計時使用原版數字。加入只讀 HUD 快照及原介面之前的原貌層；保留所有原圖層供逐點重組，再用原生高解析紋理畫名字／數字及生命條。勝場圖示、中央訊息與陰影仍原貌。沒有新增設定／存檔版本、按鍵、規則或原版寫入。
+- 原生首版 native-hud-frank-v1 顯示玩家二標記殘留。BOARD.XBB 的獨立 fixture 重現後，改由原檔非零邊界取安全矩形，驗證所有應替換的 HUD 像素均納入。擷取腳本曾將 .hud-under.idx 誤當主 .idx 而漏複製，修正精確檔名比對後乾淨重跑，不補造舊側檔。首版二進位及精確編譯輸入另存原目錄。
+- native-hud-frank-v2、windows-hud-v1、windows-hud-frank-v1 各十六項與各十六張完整分層擷取通過，含同狀態切換、設定重啟、失焦；法蘭克兩案例另驗實際扣血。native-hud-legacy-v1 十三項及缺件整張原貌回退通過。Windows 使用 Wine，實體平台與手把仍未驗。
+- hud-core-compat-v1 的 456 個邊界在開／關觀測時原貌、色盤、角色、狀態與步數相同，取得 448 個完整 HUD 快照。hud-checks-v2.log 全套 go test 與 go vet 通過，33 個 HUD 與 19 個特效樣本沒有跳過。四個介面版二進位已重建並核對實際編譯來源、輸出與平台檔頭。
+- native-hud-audit 核對 128 原檔、1715 份執行器來源及原有 1713 檔不變、四份編譯、157 個素材鍵與上述 GUI／回退，依此將 010 在明列範圍升 CONFORMED。README 換目前整合截圖入口，CONTEXT、WORKLIST、003／008 與驗證矩陣同步回填。剩餘 HD 及完整流程仍留待辦。
+- 自有來源續存獨立 Git 副本及 workplace/github-native-hud.bundle，原版、衍生美術及二進位排除。最終文件、來源與 Docker 清理核對於本節後續記錄；未建立 Release 或正式發行包。
+- 最終 native-hud-audit 通過目前編譯與三個十六項／一個十三項 GUI，18 份 Markdown 的 221 個本機連結、十個新增入口及 24 份 Python 語法核對通過。工作根沒有 root-owned 檔案或誤建的 Markdown 目錄，kdzz 容器清單已清空，沒有新建 image 或留下 Xvfb／Wine 背景程序。下一輪先驗原生完整回合、結果／返回與快照生命週期，再續陰影、勝場／回合及其餘美術。

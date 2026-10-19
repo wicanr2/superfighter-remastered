@@ -52,6 +52,7 @@ type Core struct {
 	err          string
 	presentation Presentation
 	recording    layerRecording
+	hud          hudRecording
 }
 
 var allowed = [2]map[uint8]bool{

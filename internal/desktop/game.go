@@ -79,6 +79,10 @@ type Game struct {
 	layerTextures    []*ebiten.Image
 	layerRGBA        [][]byte
 	actorTextures    map[*hd.PoseArt]*ebiten.Image
+	hdHUD            *hd.HUD
+	hdHUDRequired    bool
+	hdHUDActive      bool
+	hudLabels        map[string]*ebiten.Image
 }
 
 func New(opts Options) (*Game, error) {
@@ -115,6 +119,13 @@ func New(opts Options) (*Game, error) {
 		} else {
 			if g.hdCharacters.HasEffects() {
 				c.EnableEffects()
+				g.hdHUDRequired = true
+				g.hdHUD, e = hd.LoadHUD(opts.Root)
+				if e == nil {
+					c.EnableHUD()
+				} else {
+					g.notice = "HD 介面來源不完整，保留原貌。"
+				}
 			} else {
 				c.EnableLayers()
 			}
@@ -517,7 +528,8 @@ func (g *Game) observe() {
 		HDActive           bool                  `json:"hd_active"`
 		HDReason           string                `json:"hd_reason"`
 		HDCharactersActive bool                  `json:"hd_characters_active"`
-	}{FrontendUpdates: g.updates, MouseLeft: ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft), Editing: g.editing, Core: g.core.Status(), Panel: g.panel, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, HDCharactersActive: g.hdActive && g.hdCharacters != nil}
+		HDHUDActive        bool                  `json:"hd_hud_active"`
+	}{FrontendUpdates: g.updates, MouseLeft: ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft), Editing: g.editing, Core: g.core.Status(), Panel: g.panel, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, HDCharactersActive: g.hdActive && g.hdCharacters != nil, HDHUDActive: g.hdHUDActive}
 	b, e := json.MarshalIndent(value, "", "  ")
 	if e == nil {
 		e = os.WriteFile(g.opts.Observe+".tmp", b, 0600)
@@ -579,6 +591,7 @@ func (g *Game) Draw(dst *ebiten.Image) {
 	}
 	g.texture.WritePixels(g.rgba)
 	g.hdActive = false
+	g.hdHUDActive = false
 	g.hdReason = "原貌"
 	charactersDrawn := false
 	if g.hdEnabled && g.hdAssets != nil {
@@ -695,6 +708,13 @@ func (g *Game) Draw(dst *ebiten.Image) {
 			data, e = json.MarshalIndent(frame, "", "  ")
 			if e == nil {
 				e = os.WriteFile(path+".frame.json", data, 0600)
+			}
+			if e == nil && frame.HUD != nil {
+				for suffix, pixels := range map[string][]byte{".hud.bitmap": frame.HUD.Bitmap, ".hud-under.idx": frame.HUD.Underlay.Indices, ".hud-under.mask": frame.HUD.Underlay.Coverage} {
+					if e = os.WriteFile(path+suffix, pixels, 0600); e != nil {
+						break
+					}
+				}
 			}
 			for i, layer := range frame.Layers {
 				if e != nil {

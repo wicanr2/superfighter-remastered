@@ -19,14 +19,14 @@
 | jsdos 下載 | 已完成 | 1,281,787 bytes；SHA-256 與來源物件檔名一致；ZIP CRC 通過 |
 | 來源盤點 | 已完成 | 128 個檔案、130 個 ZIP 項目；逐檔 SHA-256；作弊資料隔離；原始副本唯讀使用 |
 | 研究工具 | 已建立 | 安全盤點、IDA、逐次繪製與完整 RAM 分層；規格 007 的通用觀測介面限定 CONFORMED，獨立副本新增兩檔，共用來源未改 |
-| dosgolem 啟動 | 已到第一場對戰 | 獨立副本補齊監督佇列 IF；正常鏈到標題、選角、Jaan 對 Frank；結算與返回尚未驗 |
+| dosgolem 啟動 | 正常雙打 oracle 已到第二回合 | 獨立副本補齊監督佇列 IF；正常鏈到標題、選角，普通移動與拳擊打出第一次擊倒及第二回合。原生完整回合、結算與返回尚未驗 |
 | 原版輸入 | 雙人基本輸入與斬四招已驗 | 正常單打、雙打各 25 組基本輸入；雙打兩人的斬各四招均進入原版對應路徑；十二輪詢蓄力是已驗充分條件，未稱最短時間 |
-| 前端與手把 | 三平台共用原生桌面已接核心 | Ebitengine 視窗、鍵鼠、標準手把指派、四格設定與來源所有權。最新 Linux 特效版兩次正常流程分別十五／十四項通過；Windows Wine 十四項是前一角色版，最新特效版尚待重驗。實體手把未驗 |
-| HD | 屋頂、部分角色及 13 組特效已接原生 | study-v7 共 144 組正常來源槽及 13 組第二色盤特效。Linux 斬／法蘭克特效分別取得同狀態原貌、HD 與切回畫面，16／15 張擷取獨立重組通過。特效僅支援已驗未裁切幾何；完整動畫、HUD、其他角色及畫面未完成 |
+| 前端與手把 | 三平台共用原生桌面已接核心 | Ebitengine 視窗、鍵鼠、標準手把指派、四格設定及來源所有權。最新 Linux 介面版十六項，Windows Wine 的斬與法蘭克案例各十六項通過；兩平台法蘭克案例驗到實際扣血。實體手把未驗 |
+| HD | 屋頂、部分角色、13 組特效與生命／計時／名字已接原生 | study-v7 共 144 個正常色盤來源槽與 13 個第二色盤特效鍵。三個 GUI 案例各十六張擷取獨立重組，同狀態切換逐點相同。陰影、勝場與回合訊息仍原貌；完整動畫、其他角色及畫面未完成 |
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | Windows／macOS／Linux 已定 | Linux amd64、Windows amd64、macOS Intel／Apple Silicon 已重建特效版，各保存實際編譯來源。最新版 Windows Wine 正常入口等待逾時，尚未通過 GUI；未作 Windows／macOS 真機、簽章或正式封包 |
+| 平台與發布 | Windows／macOS／Linux 已定 | 四個介面版二進位已重建並核對實際編譯來源。Windows Wine 兩個十六項案例通過；舊素材十三項及整張原貌回退另驗。未作 Windows／macOS 真機、簽章或正式封包 |
 
 ## 固定輸入
 
@@ -78,13 +78,13 @@ sf
 
 ## 待確認決策與下一步
 
-六層原生角色已接入並驗證。下一步補齊斬與法蘭克的其餘 HD 姿態、特殊技、倒地及替代色盤，再擴充 HUD、其他角色、場景、標題／選角／結果畫面。使用者目前 Goal 為「完成快打至尊HD」，不能只以屋頂或首批兩人切片宣稱完成。完整回合、其他角色快捷及實體雙手把另續驗。規格 004、005、006、008 限定 READY，007 限定 CONFORMED；002、003 仍 DRAFT。
+屋頂、兩人已驗動作／特效及生命、計時、名字已接原生。下一步續做陰影、勝場圖示與回合訊息，再擴充其餘動作、替代色盤、角色、場景及標題／選角／結果。使用者 Goal 仍是「完成快打至尊HD」，不能以首批切片宣稱完成。原生完整回合、其他角色快捷及實體雙手把另驗。規格 004、005、006、008、009 限定 READY，007 及 010 限定 CONFORMED；002、003 仍 DRAFT。
 
-使用者指定的[說明書頁面](https://chiuinan.github.io/game/game/intro/ch/c51/sf.htm)及兩張圖片已存檔；其版本自述為 1.1。手把草案採西側面鍵拳、南側面鍵腳與八方向，Start 提議開啟前端暫停選單，避開說明書記載的 Esc 按住補血。這些是提案，仍待目前來源實測與使用者確認。
+使用者指定的[說明書頁面](https://chiuinan.github.io/game/game/intro/ch/c51/sf.htm)及兩張圖片已存檔，版本自述為 1.1。原生入口目前採西側面鍵拳、南側面鍵腳與八方向；Start／Esc 暫停前端，沒有把 Esc 送原版觸發說明書記載的補血。鍵鼠正常路徑已驗，實體手把另驗；完整手把規格仍有未驗部分。
 
-HD 採 B「街機手繪」，首批屋頂、斬、法蘭克及對戰介面已獲開工授權。屋頂背景與部分角色已接原生，可切回原貌。正式試作群組為 `hd-characters-study-v5`，十一張原始透明圖集共 121 張人物及特效圖，對應 117 組不同原始 bytes，包含兩名角色全部 144 個來源槽；PNG、提示詞與雜湊保存在 `hd-sprite-art-v1` 至 `v5`。登錄沿實際透明間隔，保留完整肢體而不修改 PNG。來源槽齊全不等於完整動畫已驗；特效仍由原貌點陣層繪製，尚未使用新增特效圖。C0h 同時翻轉、頂部裁切、受擊替代色盤及 HD HUD 待補。正式倍率、像素比例與預設模式尚未定版。
+HD 採 B「街機手繪」，首批屋頂、斬、法蘭克及介面已獲開工授權。現行群組為 `hd-characters-study-v7`，十三張透明圖集對應 144 個正常色盤來源槽及 13 個第二色盤特效鍵；基本槽共有 117 組不同原始 bytes。原始 PNG、提示詞與雜湊分別在 `hd-sprite-art-v1` 至 `v5`、`hd-effect-art-v1`／`v2`。登錄保留原 PNG bytes。來源槽齊全不等於完整動畫已驗；C0h 同時翻轉、頂部裁切、受擊替代色盤及剩餘介面待補。正式倍率、像素比例與預設模式尚未定版。
 
-研究用 dosgolem 副本現有 1715 份來源，原有 1713 份 bytes 全不變；只在 oracle 新增普通 RAM 每次寫入觀測與合成程式驗證。前版 manifest 逐字保存在 `dosgolem-patched-manifest-v1.json`，新 manifest SHA-256 為 `6ad93295a80dbf590b88b64fab3acf1ffa6c31a32eb305e0a53936cb849f9732`。現行四個原生二進位已重建角色版，每個目標另有編譯前後來源及輸出雜湊收據，不能以舊背景版 GUI 收據冒充目前角色版驗收。
+研究用 dosgolem 副本現有 1715 份來源，原有 1713 份 bytes 全不變；只在 oracle 新增普通 RAM 每次寫入觀測與合成程式驗證。前版 manifest 保存在 `dosgolem-patched-manifest-v1.json`，新 manifest SHA-256 為 `6ad93295a80dbf590b88b64fab3acf1ffa6c31a32eb305e0a53936cb849f9732`。四個介面版二進位各有實際編譯來源及輸出收據；目前 GUI 以 native-hud／windows-hud 為準，舊版收據保留原版本身分。
 
 目前 dosgolem 的線性 320×200 API 未套用 CRTC 起點，兩種呈現均沿用相同完整快照。硬體捲動與震動畫面仍屬 oracle 限制，不宣稱實機 CRTC parity。HD 背景只在來源、色盤與相機範圍吻合時啟用，其他情況整張退回原貌。詳見規格 006。
 
@@ -94,21 +94,30 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ## 現行證據入口
 
-### 最新特效開發切片
+### 最新原生介面切片
+
+- [規格 010](docs/spec/010-hd-battle-hud.md) 限定生命、計時、名字與玩家標記。`hud-draw-v3` 正常雙打取得 1176 次逐點吻合的介面繪製，普通拳擊至擊倒、第二回合；`hud-reference-v5.json` 的最新 33 個 fixture 由原檔及鎖存欄位獨立重組，`hud-evidence-review.json` 通過。
+- `native-hud-frank-v2`、`windows-hud-v1`、`windows-hud-frank-v1` 各十六項正常 GUI 通過，各十六張擷取完整重組及切換核對。法蘭克兩案例包含實際扣血；三個暫停案例的來源狀態與恢復後 HD 畫面相同。Linux 取樣的 27,279 個原 HUD 輸出像素已替換。
+- `native-hud-legacy-v1` 十三項通過，舊版 1 群組保持原貌介面；缺件時整個 960×600 遊戲區逐點等於原版。
+- `hud-core-compat-v1` 比較開／關特效與 HUD 觀測的 456 個邊界，原貌、色盤、角色、狀態與步數相同，取得 448 個完整 HUD 快照。`hud-checks-v2.log` 的全套測試及 go vet 通過，實際載入 33 個 HUD 與 19 個特效 fixture，沒有跳過。
+- `desktop-build.json` 及四份 `bin/*.build.json` 核對目前介面版編譯來源、雜湊及 ELF／PE／兩種 Mach-O。`native-hud-audit.json` 核對原始 128 檔、1715 份來源、157 個素材鍵、三個十六項 GUI 與十三項舊素材回退；不代表完整 HD 或實體平台驗收。
+- 早期特效二進位與精確編譯輸入保存在 `native-effects-v4`；首版介面 prototype 保存在 `native-hud-frank-v1`。前者供 GPU 取樣修正回查，後者保留玩家標記殘留與擷取側檔遺漏的歷史，不能當作目前介面驗收。
+
+### 特效基底與來源研究
 
 - [規格 009](docs/spec/009-hd-effects.md) 限定 READY。`effect-draw-v1`／`v2` 共 1015 次 blit、483 個完整畫格吻合；`effect-evidence-review.json` 另獨立重組 19 個保存畫格。
 - `hd-characters-study-v7` 為版本 2 素材，13 張透明圖集對應 144 個正常來源槽與 13 個第二色盤特效鍵。新圖與提示詞保存在 `hd-effect-art-v1`／`v2`，原版及衍生素材不入 Git。
 - `native-effects-v3/receipt.json` 十五項與 `native-frank-effects-v1/receipt.json` 十四項通過。兩次各由正常標題進入雙打，分開驗斬 R1 與法蘭克手動方向／拳特效，不代表法蘭克快捷已開放。
 - 兩份 `comparison.json` 分別核對 16／15 張完整分層擷取；特效暫停切換的來源狀態一致，HD 切回逐點相同。斬 1035、法蘭克 5643 個原特效輸出像素已由 HD 替換。
 - `effects-tests.log` 驗 19 個真實特效 fixture、第二色盤隔離、幾何拒絕、正常素材及設定；`effects-compatibility-tests.log` 驗舊版素材。`effect-core-compat-v1/receipt.json` 比較觀測開／關共 456 個邊界，原貌、狀態、色盤與步數相同。
-- `desktop-build.json` 已重新核對四個特效版二進位的實際編譯來源與雜湊。`windows-effects-v1`、`windows-frank-effects-v1` 在正常入口等待逾時，尚未取得本版 Windows GUI 通過收據；不沿用舊版收據代替。
+- `windows-effects-v1`、`windows-frank-effects-v1` 保留初次等待逾時；單獨重跑後，v2 的畫面比對發現取樣末位差異。改用獨立 GPU 紋理後，`windows-effects-v3`／`windows-frank-effects-v3` 的原貌／HD 切換逐點相同。現行 GUI 已由上方介面版收據取代。
 - 前版角色收據及原二進位另保留於 `native-actors-v6`。下列六層角色版、缺件回退與 native-character-audit 均屬前版證據，不能當成目前特效版的完整稽核。
 
 ### GitHub 儲存庫準備
 
 本次上傳前再次嘗試依主機規則執行 `gh auth status`，提升權限仍遭自動核准政策拒絕。未重試受限環境的憑證判定，沒有建立或推送成功證據。最新程式仍先保存於獨立 Git 副本及本機 bundle；不可把預定 origin 當成已存在的儲存庫。
 
-`native-actors-v1` 保存五層首版 Linux 收據及當版來源／二進位，僅供歷史回查。現行六層版以 `native-actors-v6`、`windows-actors-v6` 及 `native-actors-missing-v2` 為準，分別驗新角色動作、Windows 原生適配及缺件回退。
+`native-actors-v1` 保存五層首版來源／二進位，`native-actors-v6` 等保存後續六層版；均為歷史，現行收據以本檔「最新原生介面切片」為準。
 
 使用者已授權建立儲存庫並上傳成果。預定名稱為 `wicanr2/superfighter-remastered`，公開方式未定案，先採私人設定。遠端 API 目前連線失敗，未取得建立成功證據，不宣稱儲存庫已存在。主機升權呼叫亦被環境拒絕，受限環境的 auth 訊息不能當作主機憑證失效的結論。
 
@@ -116,7 +125,11 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 首份提交為 `8365aeb91f79032227ff3c4b5cc8daed5fc3e4bd`，共 60 檔；完整 Git 備份為 `workplace/github-initial-8365aeb.bundle`，已通過 `git bundle verify`。可在連線與權限恢復後從該副本推送 main；origin 只保存預定 URL，不表示遠端已建立。後續 HD 變更仍以目前工作根為準。
 
-角色研究的程式、規格與文件已追加至提交 `00dfe7e28206e8b7947b316c7c82c8282873f84a`，副本共 69 個追蹤檔。完整備份為 `workplace/github-hd-study-00dfe7e.bundle`，已驗證；48 個 HD 姿態及原版分層資料維持本機排除，GitHub 遠端狀態未改。
+角色研究早期備份為 `github-hd-study-00dfe7e.bundle`；上一特效提交為 `3807ee3`，備份 `github-native-effects.bundle`。最新介面來源續存於獨立 Git 副本與 `workplace/github-native-hud.bundle`；原版、衍生美術及二進位持續排除，遠端仍未建立或推送。
+
+### 穩定文件與早期切片
+
+下列 native-actors、native-character-audit、hd-audit 及瀏覽器收據保留當版結果。不能將其「當時通過」外推為目前介面版驗收；目前四個二進位的入口以最新原生介面切片為準。
 
 - [RESEARCH-LOG.md](RESEARCH-LOG.md)：啟動鏈、來源差異、輸入候選與重生方式。
 - [VERIFICATION-MATRIX.md](VERIFICATION-MATRIX.md)：已驗範圍與未驗項。

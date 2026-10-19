@@ -79,6 +79,7 @@ func (c *Core) stopLayers() {
 	r.seen = [2]bool{}
 	r.backgroundDone = false
 	r.effectReturn = 0
+	c.hud.pending = nil
 }
 func (c *Core) beginLayers(o *oracle.Oracle) {
 	if !c.recording.enabled {

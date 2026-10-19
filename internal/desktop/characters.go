@@ -41,6 +41,17 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 			return false, "背景圖層來源未對應，保留原貌"
 		}
 	}
+	var hudSelection *hd.HUDSelection
+	if g.hdHUDRequired {
+		if g.hdHUD == nil {
+			return false, "HD 介面來源未載入，保留原貌"
+		}
+		var why string
+		hudSelection, why = g.hdHUD.Select(frame.HUD, frame.Pixels, frame.Palette, frame.Layers)
+		if hudSelection == nil {
+			return false, why
+		}
+	}
 	// 全部驗完才開始畫，不能留下半套角色或背景。
 	g.drawBackground(dst, frame)
 	for len(g.layerTextures) < len(frame.Layers) {
@@ -67,7 +78,8 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 						fragment.Set(x, y, art.Image.At(art.Bounds.Min.X+x, art.Bounds.Min.Y+y))
 					}
 				}
-				texture = ebiten.NewImageFromImage(fragment)
+				// 固定每張原圖的取樣座標，避免自動圖集搬移改變線性取樣的末位色值。
+				texture = ebiten.NewImageFromImageWithOptions(fragment, &ebiten.NewImageFromImageOptions{Unmanaged: true})
 				g.actorTextures[art] = texture
 			}
 			origin, clip := s.Placement()
@@ -95,7 +107,11 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 		rgba := g.layerRGBA[n]
 		clear(rgba)
 		for i, v := range layer.Indices {
-			if layer.Coverage[i] != 0 {
+			coverage := layer.Coverage[i]
+			if hudSelection != nil && n == len(frame.Layers)-1 && hudSelection.Replace[i] != 0 {
+				v, coverage = frame.HUD.Underlay.Indices[i], frame.HUD.Underlay.Coverage[i]
+			}
+			if coverage != 0 {
 				c := frame.Palette[v]
 				copy(rgba[i*4:i*4+3], c[:])
 				rgba[i*4+3] = 255
@@ -106,6 +122,10 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 		op.GeoM.Scale(sx, sy)
 		op.GeoM.Translate(float64(screenRect.Min.X), float64(screenRect.Min.Y))
 		dst.SubImage(screenRect).(*ebiten.Image).DrawImage(g.layerTextures[n], op)
+	}
+	if hudSelection != nil {
+		g.drawHUD(dst, hudSelection)
+		reason = "HD 角色、特效與介面"
 	}
 	return true, reason
 }

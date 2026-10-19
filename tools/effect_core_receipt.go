@@ -21,6 +21,7 @@ func must(e error) {
 }
 func main() {
 	out := flag.String("out", "", "new output directory")
+	hud := flag.Bool("hud", false, "also compare read-only HUD observation")
 	flag.Parse()
 	if *out == "" {
 		panic("out required")
@@ -36,8 +37,12 @@ func main() {
 	must(e)
 	defer observed.Close()
 	observed.EnableEffects()
+	if *hud {
+		observed.EnableHUD()
+	}
 	cores := []*gamecore.Core{base, observed}
 	checks := 0
+	hudSnapshots := 0
 	compare := func() {
 		a, b := base.Status(), observed.Status()
 		if !reflect.DeepEqual(a, b) {
@@ -48,6 +53,9 @@ func main() {
 			panic("complete original presentation changed")
 		}
 		checks++
+		if y.HUD != nil && y.HUD.Complete {
+			hudSnapshots++
+		}
 	}
 	step := func(n uint64) {
 		for _, c := range cores {
@@ -116,7 +124,10 @@ func main() {
 	script, e := os.ReadFile("/project/tools/effect_core_receipt.go")
 	must(e)
 	must(os.WriteFile(filepath.Join(*out, "effect_core_receipt.go"), script, 0644))
-	receipt := map[string]any{"kind": "normal public core input compatibility with effect observation off/on", "compared_step_boundaries": checks, "phases": phases, "result": "all observed input state, complete original pixels, palette, actors, counters and execution steps identical", "script_sha256": fmt.Sprintf("%x", sha256.Sum256(script)), "limits": "controlled two-player input observation; not GUI, gamepad hardware or cross-execution RND parity"}
+	if *hud && hudSnapshots == 0 {
+		panic("HUD observation did not capture any complete snapshot")
+	}
+	receipt := map[string]any{"kind": "normal public core input compatibility with effect/HUD observation off/on", "hud_enabled": *hud, "complete_hud_snapshots": hudSnapshots, "compared_step_boundaries": checks, "phases": phases, "result": "all observed input state, complete original pixels, palette, actors, counters and execution steps identical", "script_sha256": fmt.Sprintf("%x", sha256.Sum256(script)), "limits": "controlled two-player input observation; not GUI, gamepad hardware or cross-execution RND parity"}
 	b, e := json.MarshalIndent(receipt, "", "  ")
 	must(e)
 	must(os.WriteFile(filepath.Join(*out, "receipt.json"), append(b, '\n'), 0644))

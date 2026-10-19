@@ -11,20 +11,21 @@ import (
 // Presentation 是原版完成顯示拷貝後的只讀快照。不是可載入的遊戲存檔。
 // Pixels 沿用 oracle.Indexed 的線性 A0000 契約；CRTC 起點另列，未暗中改顯示語意。
 type Presentation struct {
-	Serial           uint64             `json:"serial"`
-	Steps            uint64             `json:"steps"`
-	Counter          uint16             `json:"counter"`
-	Scene            int                `json:"scene"`
-	CameraX          int                `json:"camera_x"`
-	CRTCRows         int                `json:"crtc_rows_not_applied_by_oracle"`
-	BackgroundSHA256 string             `json:"background_sha256"`
-	Pixels           []byte             `json:"-"`
-	Palette          [256][3]uint8      `json:"-"`
-	Actors           [2]ActorPose       `json:"actors"`
-	DrawPriority     uint8              `json:"draw_priority"`
-	Layers           []renderdata.Layer `json:"layers,omitempty"`
-	LayersComplete   bool               `json:"layers_complete"`
-	LayerError       string             `json:"layer_error,omitempty"`
+	Serial           uint64                  `json:"serial"`
+	Steps            uint64                  `json:"steps"`
+	Counter          uint16                  `json:"counter"`
+	Scene            int                     `json:"scene"`
+	CameraX          int                     `json:"camera_x"`
+	CRTCRows         int                     `json:"crtc_rows_not_applied_by_oracle"`
+	BackgroundSHA256 string                  `json:"background_sha256"`
+	Pixels           []byte                  `json:"-"`
+	Palette          [256][3]uint8           `json:"-"`
+	Actors           [2]ActorPose            `json:"actors"`
+	DrawPriority     uint8                   `json:"draw_priority"`
+	Layers           []renderdata.Layer      `json:"layers,omitempty"`
+	LayersComplete   bool                    `json:"layers_complete"`
+	LayerError       string                  `json:"layer_error,omitempty"`
+	HUD              *renderdata.HUDSnapshot `json:"hud,omitempty"`
 }
 type ActorPose struct {
 	Character int   `json:"character"`
@@ -56,5 +57,8 @@ func (c *Core) capturePresentation(o *oracle.Oracle) {
 	}
 	frame.DrawPriority = o.Byte(oracle.Far(ds, 0x1335))
 	c.finishLayers(&frame)
+	if frame.LayersComplete && c.hud.pending != nil && c.hud.pending.Complete {
+		frame.HUD = c.hud.pending
+	}
 	c.presentation = frame
 }

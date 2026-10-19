@@ -20,6 +20,7 @@ def main():
     parser.add_argument("--expect-missing", action="store_true")
     parser.add_argument("--exercise-poses", action="store_true")
     parser.add_argument("--exercise-backstep", action="store_true")
+    parser.add_argument("--exercise-hud", action="store_true")
     effect_case = parser.add_mutually_exclusive_group()
     effect_case.add_argument("--exercise-effects", action="store_true")
     effect_case.add_argument("--exercise-frank-effects", action="store_true")
@@ -120,7 +121,7 @@ def main():
             if source.exists():
                 shutil.copyfile(source, Path(str(args.output / name) + suffix))
         for source in capture.parent.glob(capture.name + ".*"):
-            if source.name.endswith((".idx", ".palette.json")) and ".layer-" not in source.name:
+            if source.name in {capture.name + ".idx", capture.name + ".palette.json"}:
                 continue
             suffix = source.name[len(capture.name):]
             shutil.copyfile(source, Path(str(args.output / name) + suffix))
@@ -191,6 +192,12 @@ def main():
                     full = wait(lambda s: s["hd_characters_active"] and s["presentation"]["layers_complete"])
                     assert len(full["presentation"]["layers"]) == 6 and full["presentation"]["layers"][0]["background"]
                     events.append({"native_hd_characters": full})
+                    if args.exercise_hud:
+                        hud = wait(lambda s: s.get("hd_hud_active") and s["presentation"].get("hud", {}).get("complete"))
+                        assert hud["presentation"]["hud"]["state"]["characters"] == [0, 4]
+                        assert hud["presentation"]["hud"]["state"]["display_health"] == [124, 124]
+                        events.append({"native_hd_hud_initial": hud})
+                        checks.append("native HD health, timer and names use the complete original HUD state")
                     checks.append("native GPU draws both HD characters from six verified original layers with independent background")
                     start_x = full["presentation"]["actors"][0]["x"]
                     xdo("keydown", "d")
@@ -254,6 +261,11 @@ def main():
             compare_effect("frank-effect", 1)
             wait(lambda s: s["core"]["paths"] == [0, 0] and s["hd_characters_active"], timeout=35)
             checks.append("player two normal keypad quarter-circle emits Frank HD effects with paused original/HD state preserved")
+            if args.exercise_hud:
+                damaged = wait(lambda s: s.get("hd_hud_active") and s["presentation"]["hud"]["state"]["display_health"][0] < 124)
+                shot("hd-hud-damage.png")
+                events.append({"native_hd_hud_damage": damaged})
+                checks.append("normal player-two projectile lowers original player-one visible health while native HD HUD remains active")
         else:
             click(84, 738)
             thunder = wait(lambda s: s["core"]["paths"][0] == 0x24, timeout=10)

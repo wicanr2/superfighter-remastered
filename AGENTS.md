@@ -148,13 +148,17 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [cmd/superfighter/main.go](cmd/superfighter/main.go) | Windows／macOS／Linux 原生桌面入口，不啟動 HTTP |
 | [internal/gamecore/core.go](internal/gamecore/core.go) | public oracle 原版核心、逐來源輸入與已驗快捷適配 |
 | [internal/gamecore/presentation.go](internal/gamecore/presentation.go) | 原版完整畫格的只讀背景、色盤、相機與姿態快照 |
+| [internal/gamecore/hud.go](internal/gamecore/hud.go)、[介面快照](internal/renderdata/hud.go) | 原介面建立時鎖存勝場，記錄本次 bitmap 與介面之前的原貌層，不寫入原版狀態 |
 | [internal/gamecore/layers.go](internal/gamecore/layers.go)、[internal/renderdata/layers.go](internal/renderdata/layers.go) | 原版每次 RAM 寫入、完整圖層快照、鏡像定位與重組契約 |
 | [internal/hd/background.go](internal/hd/background.go)、[背景驗證](internal/hd/background_test.go) | 固定屋頂素材群組、完整原貌前景、同畫格背景合成與安全回退 |
 | [internal/hd/characters.go](internal/hd/characters.go)、[tools/prepare_hd_characters.py](tools/prepare_hd_characters.py) | 原生角色素材來源、packed bytes、圖集、透明矩形與整組回退 |
+| [internal/hd/hud.go](internal/hd/hud.go) | 固定原檔建立介面期望 bitmap，核對原版顯示數值、色盤、透明性與最後覆蓋；不推導玩法 |
+| [介面來源驗證](internal/hd/hud_test.go) | 33 個原版 fixture、待扣傷害、顯示勝場鎖存及來源／欄位／色盤損壞拒絕 |
 | [internal/controls/settings.go](internal/controls/settings.go)、[設定驗證](internal/controls/settings_test.go) | 兩人逐角色四格配置、第五招、原子保存及錯誤資料保留 |
 | [internal/desktop/game.go](internal/desktop/game.go) | Ebitengine 視窗、原生鍵鼠／標準手把、設定與有界中文文字 |
 | [Windows 按鍵適配](internal/desktop/keyboard_windows.go)、[其他平台](internal/desktop/keyboard_other.go) | 以個別 Win32 VK 保留左右 Shift 的獨立按住狀態，其他平台沿用 Ebitengine |
-| [internal/desktop/characters.go](internal/desktop/characters.go) | 原生 GPU 依原版圖層順序繪製高解析角色及保留原貌特效 |
+| [internal/desktop/characters.go](internal/desktop/characters.go) | 原生 GPU 依原版順序畫高解析角色、特效與介面，保留其他原貌寫入 |
+| [internal/desktop/hud.go](internal/desktop/hud.go) | 量實際字圖與描邊邊界，以獨立紋理畫生命、計時、名字及玩家標記；原勝場圖示保留 |
 | [角色素材驗證](internal/hd/characters_test.go)、[圖層定位驗證](internal/renderdata/layers_test.go) | 原始 fixture、素材拒絕、完整重組與鏡像／裁切的獨立驗證 |
 | [特效定位驗證](internal/renderdata/effects_test.go) | 19 個原版特效繪製／完整畫格的獨立幾何、寫入覆蓋與重組核對 |
 | [特效素材驗證](internal/hd/effects_test.go) | 原版特效 fixture 的來源、第二組色盤、整格拒絕與版本隔離 |
@@ -190,6 +194,9 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [tools/effect_draw_receipt.go](tools/effect_draw_receipt.go) | 正常出招記錄全部 blit、實際來源指標、特效色盤與完整分層，僅供證據研究 |
 | [tools/effect_reference.py](tools/effect_reference.py) | 依原版特效繪製收據的實際色盤建立重繪參考，避免誤用人物正常色盤 |
 | [tools/effect_core_receipt.go](tools/effect_core_receipt.go) | 正常輸入下比較開關特效觀測的原版狀態、畫格及指令步數，不修改遊戲狀態 |
+| [tools/ida_hud_evidence.py](tools/ida_hud_evidence.py) | IDA 9.4 的生命、計時及原介面繪製直接引用與函式匯出，保留原始名稱，不能代替動態驗證 |
+| [tools/hud_draw_receipt.go](tools/hud_draw_receipt.go) | 正常雙打的介面 bitmap、原始欄位、每次 RAM 寫入與完整繪製後畫面實驗，尚非 HD 驗收 |
+| [tools/hud_reference.py](tools/hud_reference.py) | 從 BOARD、NAME、0-9 與原版色盤獨立重組介面，核對動態 bitmap fixture |
 | [tools/hd_sprite_reference.py](tools/hd_sprite_reference.py) | 供重繪使用的原版姿態、尺寸與位置參考表，不把放大圖稱為 HD 美術 |
 | [tools/hd_actor_preview.go](tools/hd_actor_preview.go) | 以原版分層收據核對 HD 姿態、鏡像與裁切的可丟棄比較稿 |
 | [tools/audit_sprite_study.py](tools/audit_sprite_study.py) | 獨立重組分層收據，核對角色素材、觀測介面與證據版本 |
@@ -197,12 +204,14 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [docs/spec/007-memory-write-observation.md](docs/spec/007-memory-write-observation.md) | 同值重寫也可觀測的通用 public oracle 薄介面與取消契約 |
 | [docs/spec/008-hd-characters.md](docs/spec/008-hd-characters.md) | 六層原生角色、姿態來源、重繪登錄與完成門檻，限定 READY |
 | [docs/spec/009-hd-effects.md](docs/spec/009-hd-effects.md) | 原版順序的特效分層、第二組色盤、素材相容與回退，證據審查入口 |
+| [docs/spec/010-hd-battle-hud.md](docs/spec/010-hd-battle-hud.md) | 生命、計時、名字、顯示勝場鎖存與原介面覆蓋，原生高解析 HUD 的來源與驗收閘門 |
 | [tools/apply_write_observer.py](tools/apply_write_observer.py)、[觀測來源](tools/dosgolem-observer/memory_write_observer.go)、[合成程式驗證](tools/dosgolem-observer/memory_write_observer_test.go) | 在獨立副本新增通用 RAM 觀測，逐字保留前版 manifest |
 | [tools/prepare_hd_background.py](tools/prepare_hd_background.py) | Docker 準備本機背景素材與來源 manifest，保留原 PNG bytes |
 | [tools/verify_hd_capture.py](tools/verify_hd_capture.py) | Docker 核對原生同狀態 PNG、前景保留與 HD 切換重現性 |
 | [tools/verify_character_capture.py](tools/verify_character_capture.py) | Docker 獨立重組原生六層畫格，核對角色替換、介面遮擋、同狀態切換及整張回退 |
 | [tools/audit_hd.py](tools/audit_hd.py) | Docker 核對目前來源、三平台二進位、HD 收據、文件回填與擁有權 |
 | [tools/audit_native_characters.py](tools/audit_native_characters.py) | Docker 核對六層角色版的逐平台實際編譯來源、正常視窗、獨立重組及完整回退 |
+| [tools/audit_native_hud.py](tools/audit_native_hud.py) | 目前生命／計時／名字與特效切片的來源、四份編譯、正常 GUI、原貌回退、獨立重組與擁有權核對 |
 | [tools/ida_ai_evidence.py](tools/ida_ai_evidence.py) | IDA 9.4 AI 載入與決策的原始位址、運算元及 bytes 匯出 |
 | [docs/game-history.md](docs/game-history.md) | 青衫與 SP Moves 的歷史、招式、圖片快照與差異索引 |
 | [docs/spec/004-live-input-slice.md](docs/spec/004-live-input-slice.md) | 已驗原版雙人鍵盤與斬的快捷輸入切片，限定 READY |
