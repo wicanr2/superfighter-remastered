@@ -172,6 +172,8 @@ func (a *HUD) Select(s *renderdata.HUDSnapshot, pixels []byte, palette [256][3]u
 			labels[player] = "SARORKOV"
 		case 2:
 			labels[player] = "BULLET"
+		case 3:
+			labels[player] = "PHO HUANG"
 		case 4:
 			labels[player] = "FRANK"
 		default:
