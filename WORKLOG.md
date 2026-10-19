@@ -283,3 +283,15 @@
 - 受限環境 gh auth status 失敗，git ls-remote origin 無法解析 github.com。先前主機權限提升遭自動核准政策拒絕，本輪未重試或搬運憑證；不能由受限檢查判定主機憑證失效。儲存庫建立及 push 仍未完成。
 - 獨立 Git 副本的 162 檔、17,628,233 bytes 與工作根逐檔一致，常見憑證格式掃描無命中，既有 github-victory-animation-progress.bundle 通過完整歷史驗證。原版、衍生美術、研究資料與二進位排除；未驗收的四檔薩爾可夫變更仍留在 feature/sarkov-hd。
 - 本輪只更新現況與工作歷程，續存獨立 Git 副本及 workplace/github-upload-20261019.bundle。未改程式或重跑產品測試。Docker 檢查容器均以 --rm 結束，工作根沒有 root-owned 檔案或誤建 Markdown 目錄。
+
+## 2026-10-19 薩爾可夫一般姿態與姓名原生整合
+
+- 核對既有工作狀態後，windows-frank-victory-v2 已在 1800 秒上限結束，最後計時剩 4、生命 76／124。保留 failure.json，不當作通過或產品缺陷，也沒有再盲目重跑整場。
+- 在隔離 feature/sarkov-hd 工作樹擴充 HUD 姓名白名單，讓來源選擇回傳 SARORKOV，桌面沿用同一份標籤。未改設定 ID、核心、輸入或資料格式。建置工具可指定輸出位置並停用 VCS 自動蓋章，保留精確編譯輸入。
+- 四個候選二進位及完整程式測試先完成。v1 操作腳本在落地前按拳卻等待地面姿態，保留三份 harness-abort.json；v2 等回到站立再送下一動作，沒有放寬像素或來源判準。
+- native-sarkov-v2／windows-sarkov-v2 各七項、九張擷取通過；native-sarkov-missing-v2 另九張整格原貌。verify_sarkov_capture 從原檔重組人物、背景、介面及陰影，驗暫停來源相同與恢復 HD 逐點一致。Linux／Wine 截圖已目視姓名、人物與畫面配置，沒有稱跨平台同狀態對拍。
+- TestSarkovHUDUsesNormalCapturedName 使用正常視窗的真實 HUD，驗 88×11 姓名矩形、SARORKOV／FRANK 及未知角色拒絕。sarkov-integration-checks-v2.log 記錄全部 internal／cmd 套件測試及 go vet 通過。
+- 初次圖片核對選用的跨平台建置 image 沒有 Pillow，改用既有 sc-cht-hdtools:pillow11.3.0-r1 完成同一核對；分類為驗證環境問題。沒有在主機安裝或執行替代工具。
+- 核對 be9a6d3 舊四份二進位已有 build-baseline 完整副本後，將已驗候選及其原編譯收據原封移入 bin，保留 sarkov-build-v1/promotion.json。只刷新彙總來源收據，沒有重建未改的編譯輸入。
+- 018 升限定 CONFORMED，README 加入目前薩爾可夫畫面，CONTEXT／WORKLIST／驗證矩陣同步。WIN、替代色盤、快捷、完整動畫、其餘角色與畫面、音訊、速度、實體平台及手把、封包與 GitHub 遠端仍未完成；完整 HD Goal 保持進行。
+- 本輪來源及完整歷史備份保存為 workplace/github-sarkov-integration.bundle，逐檔來源與產物身分見 github-sarkov-integration-source.json；收尾來源核對見 sarkov-integration-audit.json。原版、衍生美術與二進位排除 Git；本輪容器均以 --rm 收尾。

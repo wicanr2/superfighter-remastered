@@ -352,3 +352,11 @@ go run -p 1 /project/tools/input_receipt.go -root /orig -out /project/workplace/
 - 內建 image_gen 生成四張採用圖集，共 45 張姿態，對應全部 72 個一般來源入口。最後九格的首稿因沒有完整透明列而被拒絕；另生留白修正版，保留原稿與精確提示詞，不放寬登錄條件。候選共 373 鍵，既有 PNG 不變，現有 Go 讀取器及 124 個 consumer 核對通過。正常來源槽覆蓋為 11 種，其餘來源及新角色原生 UI、WIN 圖像與完整動畫仍待驗。
 
 規格 018 已具足一般來源與姓名接入所需證據而升 READY。這只是下一名角色的實作入口，不是該角色 HD 完成或全目標完成的聲明。
+
+## 2026-10-19 薩爾可夫正常原生 consumer 追加驗證
+
+已證實於本次正常樣本：native-sarkov-v2 與 windows-sarkov-v2 由正常選角進入角色 1／4。普通行走取得槽 2、蹲槽 14、跳槽 19、拳擊槽 5，暫停時回槽 0。兩個流程各自保存九張完整畫格，SFMAN02.DAT 一般表 B28h、資料基底 C48h 的指標與完整 packed bytes 均重組吻合；這裡的位址是原檔偏移，不與 runtime segment:offset 混用。
+
+固定輸入為 SF.EXE SHA-256 24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300、SFMAN02.DAT e169a26f348ad6efc6563abe945698a7ccc2586134af611b5d5391e7984a30d6、NAME.XBB 60c0bbe367e44ab9fda512df2ba93ad62d70147df90079d07ff15818f21bad82。dosgolem 副本來源仍為既有 1719 檔；原生編譯使用 Go 1.24.13，圖片核對使用 Pillow 11.3.0。工具、全部來源雜湊與四份編譯輸入見 sarkov-integration-audit.json 及 bin/*.build.json。
+
+姓名語意沿用原字圖與原版正常畫面的既有證據，本輪只把已證實的 SARORKOV／88×11 接入呈現，並以真實 HUD 擷取驗來源及未知角色拒絕。沒有新增玩法推論。缺角色 1 的舊 v8 素材在九張擷取均整格回退；這不證明未支援的 WIN、替代色盤與幾何已完成。完整動畫及各快捷仍未知或未驗，不由一般槽登錄數推定。

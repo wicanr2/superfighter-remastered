@@ -8,7 +8,7 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 斬與法蘭克已對應全部 144 個一般來源槽、13 組第二色盤特效，以及 WIN 圖像的 144 個入口。WIN 入口對應七張不同勝利姿態，與一般動作分開辨識；登錄齊全不代表完整動畫已驗。介面基底的 Linux 案例通過 16 項檢查，Windows Wine 的斬、法蘭克案例各通過 16 項，包含特效、介面及同狀態切換。兩平台的法蘭克案例另驗到實際扣血。完整動畫與其他角色仍未完成，製作契約見[角色](docs/spec/008-hd-characters.md)、[特效](docs/spec/009-hd-effects.md)、[戰鬥介面](docs/spec/010-hd-battle-hud.md)及[勝利姿態](docs/spec/017-victory-pose-banks.md)。
 
-下一名薩爾可夫已完成 45 張不同姿態稿、72 個一般來源入口及候選資料核對，尚未接入正式原生呈現。原圖、透明 PNG 與提示詞只留本機，接入契約見[規格 018](docs/spec/018-sarkov-hd.md)。
+薩爾可夫的一般姿態與姓名已接入原生，Linux／Wine 均驗行走、蹲、跳、拳擊與切換。45 張不同姿態對應 72 個一般來源入口，目前素材群組共 373 個鍵；勝利、替代色盤、完整動畫及快捷另驗。原圖、透明 PNG 與提示詞只留本機，接入範圍見[規格 018](docs/spec/018-sarkov-hd.md)。
 
 ## 目前整合畫面
 
@@ -18,13 +18,17 @@ Windows 原生程式在 Wine 中顯示的設定介面，擷取於原版核心執
 
 以下對戰圖片含原版及衍生美術，僅留本機工作區，GitHub 不收錄圖片檔：
 
+![薩爾可夫對法蘭克的 HD 人物、原姓名與屋頂](workplace/native-sarkov-v2/hd-rooftop.png)
+
+Linux 由正常選角進入薩爾可夫對法蘭克，姓名忠於本包原字圖 `SARORKOV`。人物、屋頂、陰影與介面同格呈現 HD。[同狀態原貌](workplace/native-sarkov-v2/original-paused.png)與[恢復 HD](workplace/native-sarkov-v2/hd-restored.png)已獨立重組並核對切換；Wine 另驗相同流程。下方仍保留兩人的手把與四格快捷入口，薩爾可夫的快捷尚未啟用。
+
 ![正常首勝的 HD 鞠躬、勝負文字與雙人快捷列](workplace/native-victory-v1/victory-hd.png)
 
 Linux 原生版由正常對戰取得斬首勝，鞠躬讀取原版獨立 WIN 圖像來源，中央顯示高解析 `JAAN WIN`。[同狀態原貌](workplace/native-victory-v1/victory-original.png)及[切回 HD](workplace/native-victory-v1/victory-restored.png)的核心與來源相同，恢復畫面逐點一致。七張擷取已由原檔重組；文字 GPU 寫入限制在原字圖矩形。這是首勝樣本，其他勝者與完整勝利動畫另驗，詳見[勝負文字規格](docs/spec/016-hd-victory-messages.md)。下方四格快捷與手把設定入口沿用既有操作。
 
 ![第二人法蘭克首勝的抱胸、FRANK WIN 與右側勝場](workplace/native-frank-victory-v1/victory-hd.png)
 
-Linux 由第二人正常方向與拳鍵操作，在時間歸零後獲勝，保留原版兩人生命值與結束方式。抱胸讀取 FFWIN.FIG，中央顯示 `FRANK WIN`；[同狀態原貌](workplace/native-frank-victory-v1/victory-original.png)與[恢復 HD](workplace/native-frank-victory-v1/victory-restored.png)已逐點核對，下一回合右側顯示一勝。這個第二人案例的 Windows Wine 重跑仍在進行，不稱兩平台均已通過。
+Linux 由第二人正常方向與拳鍵操作，在時間歸零後獲勝，保留原版兩人生命值與結束方式。抱胸讀取 FFWIN.FIG，中央顯示 `FRANK WIN`；[同狀態原貌](workplace/native-frank-victory-v1/victory-original.png)與[恢復 HD](workplace/native-frank-victory-v1/victory-restored.png)已逐點核對，下一回合右側顯示一勝。這個第二人案例的 Windows Wine 驗證達執行期限，尚未取得勝利收據，不稱兩平台均已通過。
 
 ![目前整合的 HD 屋頂、人物、介面與開場](workplace/native-display-opening-v2/round-hd.png)
 
@@ -83,7 +87,7 @@ bash tools/build_desktop.sh
 
 本機屋頂試作素材已備妥時，可加上 `-hd-assets workplace/hd-rooftop-study`，再按「原貌／HD 背景」切換。素材準備與驗證見[背景規格](docs/spec/006-rooftop-background.md)。沒有素材或場景未對應時顯示原貌。
 
-角色與特效試作再加上 `-hd-characters workplace/hd-characters-study-v8`，按「原貌／HD 角色」切換。背景、兩名角色、來源與圖層全部符合才顯示 HD，缺動作或未知色盤時整張回退。新版仍接受舊版角色素材。此素材群組僅供本機研究，基底準備工具為 `tools/prepare_hd_characters.py`，勝利姿態登錄使用 `tools/prepare_victory_characters.py`。
+角色與特效試作再加上 `-hd-characters workplace/hd-characters-sarkov-candidate-v1`，按「原貌／HD 角色」切換。此群組保留斬／法蘭克基底，再加入薩爾可夫一般姿態。背景、兩名角色、來源與圖層全部符合才顯示 HD，缺動作或未知色盤時整張回退。新版仍接受舊版角色素材。此素材群組僅供本機研究，基底準備工具為 `tools/prepare_hd_characters.py`，勝利姿態登錄使用 `tools/prepare_victory_characters.py`，一般角色擴充使用 `tools/prepare_character_extension.py`。
 
 含特效的新版群組也啟用高解析生命、計時、名字、玩家標記、勝場與地面陰影，來源驗證失敗時整張回退。舊版 1 素材保留原貌介面、特效與陰影。
 

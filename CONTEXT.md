@@ -7,7 +7,7 @@
 - 參考 `/home/anr2/cht/zeliard` 的包裹與呈現方式。
 - dosgolem 直接執行原版核心，本專案處理前端、手把與 HD 呈現。
 - 使用者明確指定三平台原生桌面：Windows、macOS、Linux。玩家入口不使用 web；舊 HTTP／HTML 及瀏覽器收據只保留研究用途。
-- 支援手把操作與 HD。原生背景、兩名角色的部分動作及素材登錄已接入，其他角色與畫面仍在製作。
+- 支援手把操作與 HD。原生背景、斬／法蘭克／薩爾可夫的部分動作及素材登錄已接入，其他角色與畫面仍在製作。
 - 使用者於 2026-10-19 回覆「ok B」，選定 HD 的 B「街機手繪」方向；只確認畫風，原版造型仍為修正依據。
 - 使用者後續明確同意 HD 規格開工，首批為屋頂、斬、法蘭克與對戰介面；技術未知仍依規格閘門處理。
 - 已授權逐角色快速出招，最多四格，R1／R2／L1／L2 預設對應絕招 1／2／3／4；五招角色可任選四招。兩名玩家分開保存設定，並規劃雙手把雙打。
@@ -22,13 +22,13 @@
 | dosgolem 啟動 | 原生雙打基準已走完整比賽與返回 | 普通選單、移動與拳擊完成兩次擊倒、結果報紙及返回標題，八張擷取通過。離開對戰後快照清空；此基準二進位另存，勝場擴充另驗首勝 |
 | 原版輸入 | 雙人基本輸入與斬四招已驗 | 正常單打、雙打各 25 組基本輸入；雙打兩人的斬各四招均進入原版對應路徑；十二輪詢蓄力是已驗充分條件，未稱最短時間 |
 | 前端與手把 | 三平台共用原生桌面已接核心 | 現行 Linux／Wine 首勝與切換通過；一般操作、兩人獨立放開、特效扣血、設定重啟及失焦的十七項證據保留顯示修正基底身分。實體手把未驗 |
-| HD | 屋頂、部分角色、13 組特效、介面／勝場、柔邊陰影、開場及兩側首勝已接原生 | 斬首勝已驗兩平台；第二人法蘭克的抱胸、FRANK WIN 與右側勝場已驗 Linux，Wine 重跑中。兩側核心來源取樣通過；完整動畫及其他角色／畫面未完成 |
-| 薩爾可夫候選 | 來源、45 張姿態與 Go 讀取通過，原生未接 | 124 個正常畫格的來源與屋頂吻合，72 個入口形成 373 鍵候選群組；規格 018 READY。戰鬥英文原名為 SARORKOV，設定識別字仍為 sarkov |
+| HD | 屋頂、部分角色、13 組特效、介面／勝場、柔邊陰影、開場及兩側首勝已接原生 | 斬首勝已驗兩平台；第二人法蘭克的抱胸、FRANK WIN 與右側勝場已驗 Linux，Wine 達執行期限，尚未通過。兩側核心來源取樣通過；完整動畫及其他角色／畫面未完成 |
+| 薩爾可夫一般姿態及姓名 | 已接原生，018 限定 CONFORMED | Linux／Wine 各七項、九張擷取，Linux 缺件九張整格回退通過；45 張姿態對應 72 個一般入口，共 373 鍵。原姓名 SARORKOV，設定識別字仍為 sarkov；勝利、替代色盤、快捷與完整動畫另驗 |
 | 顯示起點修正 | 已接原生，015 限定 CONFORMED | Linux／Wine 各十張開場、Linux 對戰十五張與舊素材十一張全部核對；起點第 7／11／12 列及可見尾端逐格正確，原貌與 HD 共用映射 |
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | Windows／macOS／Linux 已定 | 四個勝負版二進位已重建；Linux／Wine 正常首勝及切換通過。舊素材回退另驗；未作 Windows／macOS 真機、簽章或正式封包；Wine 不代替真機 |
+| 平台與發布 | Windows／macOS／Linux 已定 | 四個薩爾可夫整合版二進位已核對來源與格式；Linux／Wine 一般操作及切換通過。舊勝負版另存原收據與四個二進位；未作 Windows／macOS 真機、簽章或正式封包；Wine 不代替真機 |
 
 ## 固定輸入
 
@@ -80,11 +80,11 @@ sf
 
 ## 待確認決策與下一步
 
-屋頂、兩人已驗動作／特效及生命、計時、名字、勝場、地面陰影、開場 ROUND／FIGHT 及斬首勝已接原生。第二人法蘭克的抱胸、FRANK WIN 與右側首勝已驗 Linux，Wine 正在重跑。接著依 018 接入薩爾可夫的一般姿態與姓名，再續完整動畫、其餘動作、替代色盤、角色、場景及標題／選角／結果。使用者 Goal 仍是「完成快打至尊HD」，不能以首批切片宣稱完成。規格 018 READY；016／017 的兩平台 CONFORMED 範圍仍限定斬首勝，其餘規格狀態不變。
+屋頂、三名角色的已驗一般動作及兩名角色的特效／勝利已接原生。薩爾可夫的一般姿態與姓名依 018 通過限定驗證；接著續做完整動畫、勝利、其餘動作、替代色盤、角色、場景及標題／選角／結果。第二人法蘭克勝利已驗 Linux，Wine 案例達期限未通過，另處理驗證效能。使用者 Goal 仍是「完成快打至尊HD」，不能以首批切片宣稱完成。018 限定 CONFORMED；016／017 的兩平台 CONFORMED 範圍仍限定斬首勝。
 
 使用者指定的[說明書頁面](https://chiuinan.github.io/game/game/intro/ch/c51/sf.htm)及兩張圖片已存檔，版本自述為 1.1。原生入口目前採西側面鍵拳、南側面鍵腳與八方向；Start／Esc 暫停前端，沒有把 Esc 送原版觸發說明書記載的補血。鍵鼠正常路徑已驗，實體手把另驗；完整手把規格仍有未驗部分。
 
-HD 採 B「街機手繪」，首批屋頂、斬、法蘭克及介面已獲開工授權。現行群組為 `hd-characters-study-v8`，十五張透明圖集、301 個姿態鍵：144 個一般來源槽、13 個第二色盤特效鍵，以及 144 個 WIN 入口。WIN 入口對應七張不同姿態，圖像群組與色盤群組分開辨識；一般槽有 117 組不同原始 bytes。原始 PNG、提示詞與雜湊在 `hd-sprite-art-v1` 至 `v5`、`hd-effect-art-v1`／`v2` 及 `victory-art-v1`，登錄保留原 PNG bytes。來源槽齊全不等於完整動畫已驗；C0h 同時翻轉、頂部裁切、受擊替代色盤及剩餘介面待補。正式倍率、像素比例與預設模式尚未定版。
+HD 採 B「街機手繪」。現行群組為 `hd-characters-sarkov-candidate-v1`，沿用準備時名稱，共十九張透明圖集、373 個姿態鍵：216 個一般來源槽、13 個第二色盤特效鍵、144 個 WIN 入口。保留 v8 的 301 鍵及十五張 PNG，新增薩爾可夫 72 個一般入口與四張 PNG；一般來源共 162 組不同 bytes。WIN 仍只對應斬／法蘭克的七張姿態。來源與提示詞在既有 hd-sprite-art、hd-effect-art、victory-art 及 sarkov-art 目錄，登錄保留原 PNG bytes。來源槽齊全不等於完整動畫已驗；C0h 同時翻轉、頂部裁切、受擊替代色盤及剩餘介面待補。正式倍率、像素比例與預設模式尚未定版。
 
 目前 dosgolem 獨立副本有 1719 份來源，前版 1715 份 bytes 不變，新增四份已驗顯示 API 與測試。舊 manifest 保存於 `dosgolem-patched-manifest-v2.json`，現行身分見 `dosgolem-patched-manifest.json`。四個二進位的實際編譯身分見 `bin/*.build.json`；目前勝負切片以 `victory-core-compat-v2`、`native-victory-v1` 及 `windows-victory-v1` 為準。顯示修正基底的四個二進位與 30 份編譯輸入另存 `native-display-opening-v2/build-baseline`，舊收據保留各自版本身分。
 
@@ -96,20 +96,29 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ## 現行證據入口
 
-### 目前原生勝負切片
+### 目前薩爾可夫一般姿態切片
+
+- [規格 018](docs/spec/018-sarkov-hd.md)限定 CONFORMED。`native-sarkov-v2`／`windows-sarkov-v2` 各七項、九張擷取通過，正常選角為 1／4，普通行走、蹲、跳、拳擊及暫停切換完整。人物、屋頂、姓名、陰影同格 HD，沒有用快捷或狀態注入。
+- 各目錄 `sarkov-comparison.json` 獨立重組全部九張原版來源。暫停三張的核心、來源與設定相同，恢復 HD 的遊戲區逐點一致。Linux 範例的薩爾可夫輸出變動 28,859 點、法蘭克 22,239 點；姓名矩形有 8,712 點變動。姓名另由真實 HUD 的 Go 測試及目視確認 SARORKOV，不以變動數字單獨證明字形。
+- `native-sarkov-missing-v2` 使用舊 v8，九張均整張原貌，操作仍正常推進。三個 v1 目錄保留驗證腳本在落地前按拳的診斷與中止紀錄，不當通過；v2 只修輸入順序。
+- `sarkov-integration-checks-v2.log` 的完整程式套件測試及 go vet 通過。四個二進位的 35 份精確編譯輸入均吻合，目前檔案在 `bin/`，原始候選編譯收據與移入紀錄在 `sarkov-build-v1/`。舊 be9a6d3 的四個二進位及來源保存在 `native-frank-victory-v1/build-baseline`。
+- 本切片不證明薩爾可夫 WIN、替代色盤、快捷、所有動作、其他角色／場景或實體平台與手把完成。原始包及 dosgolem 來源保持不變；完整 HD 目標仍進行中。
+- 整合核對見[收尾來源核對](workplace/sarkov-integration-audit.json)。自有來源與完整歷史保存在[Git 備份](workplace/github-sarkov-integration.bundle)，逐檔身分見[來源紀錄](workplace/github-sarkov-integration-source.json)；原版、衍生美術與二進位不入 Git，GitHub 遠端仍未建立。
+
+### 勝負切片基底
 
 - 第二人新增證據：`victory-animation-frank-v1` 的 5,534 個成對邊界與 8 個 WIN 姿態取樣通過；`victory-animation-jaan-v1` 的 5,293 個邊界與 13 個取樣通過。五種姿態來源均由原檔重組，尚未稱原生逐格連續動畫已驗。
 - `native-frank-victory-v1` 七張擷取已通過，正常時間結束後原版生命 [76,124]、winner word 8004h；抱胸、FRANK WIN、右側勝場及下一回合 [0,1] 正確。兩張 GPU 勝負字圖各有 5,130 個變動像素、1,444 個金色實心像素，原貌／HD／恢復來源相同且切回逐點一致。
-- Wine 首次第二人案例在畫格觀測期限結束，原版當時仍持續推進；`windows-frank-victory-v1` 保留失敗。`windows-frank-victory-v2` 正在單獨重跑，尚無完成收據。容器 `kdzz-windows-frank-victory-v2`、執行 session `95060`，遊戲 1800 秒、外層 1950 秒有界執行；下一輪先核對此 handle 與容器，不重啟仍在執行的案例。
-- [兩側勝利稽核工具](tools/audit_victory_animation.py)要求兩側核心與第二人 Linux／Wine 全部收據，缺案例即拒絕。目前尚不產生新的完整通過報告。正式 Go 程式與四個二進位本輪不變；35 份實際編譯輸入及四個二進位已另存 `native-frank-victory-v1/build-baseline`，來源為 be9a6d3。
-- 本輪自有工具、候選準備與文件來源備份為 `workplace/github-victory-animation-progress.bundle`，逐檔身分見 `workplace/github-victory-animation-progress-source.json`。這是進度保存，Wine 未完成、薩爾可夫未接原生與完整 HD 未完成的狀態不變。
+- Wine 首次第二人案例在畫格觀測期限結束，原版當時仍持續推進；`windows-frank-victory-v1` 保留失敗。`windows-frank-victory-v2/failure.json` 證實在 1800 秒上限結束，最後約 11.14 億步、1527 格、計時剩 4、生命 76／124，未到勝利。容器已不存在，不再列為執行中或要求輪詢 session 95060；這是驗證期限不足，不能當成產品失敗或通過。完整兩側稽核仍未達成，後續先研究驗證效能，不盲目重跑整場。
+- [兩側勝利稽核工具](tools/audit_victory_animation.py)要求兩側核心與第二人 Linux／Wine 全部收據，缺案例即拒絕，目前沒有完整通過報告。該批收據的 35 份編譯輸入及四個二進位已另存 `native-frank-victory-v1/build-baseline`，來源為 be9a6d3，與上方目前整合版分開。
+- 勝利動畫研究基底備份為 `workplace/github-victory-animation-progress.bundle`，逐檔身分見 `workplace/github-victory-animation-progress-source.json`。它保存薩爾可夫接入之前的來源；現行進度以上方切片為準。
 
 - [規格 016](docs/spec/016-hd-victory-messages.md)處理最後完整拷貝後的 NAME 直接顯示寫入。原貌也保存完整 WIN，HD 不修改原版勝負、等待或回合規則。HUD 重建的兩份暫存字圖保留在最後光柵層，不修改原背景。
 - [規格 017](docs/spec/017-victory-pose-banks.md)以實際 72-entry RAM 表辨識一般／WIN 圖像來源。斬首勝仍保留原槽 3，讀取真正 46×89 的 WIN 圖，而非一般同槽姿勢。未知表拒絕整格 HD。
 - `victory-core-compat-v2` 的 1,479 個正常觀測開／關邊界，原版狀態及即時 RGB 相同。首勝與下一回合兩個快照的背景、人物、HUD、陰影、WIN 文字及可見尾端由原檔獨立重組；下一回合快照清除，勝場顯示為 [1,0]。
 - `native-victory-v1`／`windows-victory-v1` 均從正常對戰取得首勝，各七張具名擷取。原貌／HD／切回的來源與核心相同；GPU 字圖只寫入原來源矩形，恢復 HD 逐點一致。獨立核對結果保存為各目錄的 `victory-comparison.json`。Wine 不是 Windows 真機驗收。
 - 新版 3 群組共 301 個姿態鍵、四份原來源、十五張圖集。舊 157 個鍵及十三張 PNG 不變，七張勝利姿態登錄成 144 個入口；版本 1／2 仍可讀。全套 Go 測試與 go vet 已通過，記錄為 `victory-checks-v2.log`。`native-victory-legacy-v1` 的七張擷取證實舊版 2 缺 WIN 姿態時整張原貌，下一回合可恢復 HD。
-- [目前勝利畫面](workplace/native-victory-v1/victory-hd.png)已目視確認。正常兩側原版文字證據共有兩個不同勝利、四筆重播記錄；不是四個獨立樣本。第二人 HD、完整勝利動畫、平手及單打特殊分支仍未動態驗收。
+- [首勝畫面](workplace/native-victory-v1/victory-hd.png)已目視確認。正常兩側原版文字證據共有兩個不同勝利、四筆重播記錄；不是四個獨立樣本。第二人 HD 已驗 Linux，Wine、完整勝利動畫、平手及單打特殊分支仍未完成動態驗收。
 - [勝負稽核工具](tools/audit_native_victory.py)輸出 `workplace/native-victory-audit.json`，核對 128 原檔、1719 份執行器來源、四份實際編譯、301 個姿態鍵及上述核心／視窗證據。自有來源完整備份為 `workplace/github-native-victory.bundle`，提交與逐檔身分見 `workplace/github-native-victory-source.json`；原版、HD 美術、研究資料與二進位不入 Git。
 
 ### 薩爾可夫候選與下一步
