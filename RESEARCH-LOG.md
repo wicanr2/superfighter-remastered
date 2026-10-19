@@ -404,3 +404,21 @@ hd-frame-onimaru-v2 由正常 5／4 選角，在 runtime 01B9:5DD3 保存 124 �
 已證實於固定來源：SFMAN07.DAT SHA-256 5dc504b74694c84daf45f79e89ab3725948a82559ca0c92b88eac63130f49148，72 入口、59 組不同 bytes，格式與位址基準同上。lan-source-v1 保留原槽、別名、圖集及逐檔雜湊。
 
 私有 lan-source-probe-left-v1.go 使用正常標題及選角，第二人普通 Left 兩次，實際角色 6／4。hd-frame-lan-v1 共 124 格，兩人圖像 bytes 與 I2 屋頂 RAM 全部吻合；取樣槽 0／1／2／3／4／5／8／15／22／23／24／25／27。探針 SHA 與收據相符，未注入狀態，尚無 HD 稿或原生接入；不以原圖數量宣稱角色完成。
+
+## 2026-10-20 嵐一般姿態與原生追加驗證
+
+接續前述來源，已證實 NAME.XBB 的槽 6 位於實檔 11E3h，31×11 的原字圖為 LAN。NAME.XBB SHA-256 為 60c0bbe367e44ab9fda512df2ba93ad62d70147df90079d07ff15818f21bad82，原字圖像素 SHA-256 為 2e79ac33da75905e9f9e9cfa6347083f8170594bb87d3b6a7f397e47354edf41。字圖、尺寸及原圖預覽保存於 lan-source-v1/normal-name.json 與 normal-name.png。
+
+59 組原圖保留深褐短髮、紅長衫、白袖口、深褐褲及白踝布。槽 9／11／12／20／26／57／58 為獨立氣勁，槽 39 是褐色輪廓與桃色外線；這些只證明原圖內容，不推定觸發條件。六張內建 imagegen 圖集按原槽與別名登錄，共 733 鍵／43 PNG，原有 661 鍵與舊 PNG 不變。
+
+八格旋身初稿的第二排第三、四格之間沒有完整透明列，被既有登錄器拒絕。診斷 SHA 綁定於 lan-art-v1/rejected-04.json；內建工具將相同八姿態縮小並重排的 v2 通過。七份精確請求與六張採用稿在 lan-art-v1，原 PNG bytes 不改。lan-evidence-review.json 保存 DRAFT 原文、候選、來源、工具與初始測試身分，先審查升 READY，再接姓名。
+
+已證實於本次正常原生取樣：native-lan-v1／windows-lan-v1 各七項、九張擷取，由 SFMAN、背景及介面原檔獨立重組，行走、蹲、跳、拳與切換均通過。各案例內核心、來源、設定及指派相同，切回 HD 逐點一致；嵐輸出各變動 24,372 點，LAN 區各變動 3,069 點，字形與人物另經目視。native-lan-missing-v1 九張均整格原貌。這些是各平台內的同狀態比較，不稱跨平台同狀態。
+
+Go 1.24.13 完整 internal／cmd 測試與 go vet 通過，真實 HUD 的 LAN／31×11 及未知角色拒絕另驗。Pillow 11.3.0 用於原圖解碼、透明登錄及獨立重組。工具、輸入與擷取 SHA 由 lan-evidence-review.json、各 receipt 及 lan-comparison 綁定。四份 ELF／PE／兩種 Mach-O 的 35 份編譯輸入吻合，原封移入 bin；舊鬼丸基底保持於 onimaru-build-v1/bin。範圍依規格 023 限定 CONFORMED，不外推 WIN、替代色盤、快捷、完整動畫或實體平台。
+
+## 2026-10-20 金太極一般來源準備
+
+已證實於固定來源：SFMAN08.DAT SHA-256 5579dee3e846d65905db84d769fae4378051e1a5cec74bed509885754cef165c，72 入口、57 組不同 bytes，實檔 B28h 表、C48h 圖像基底及 AC8h 正常色盤。kim-source-v1 保存原槽、別名、尺寸、圖集及逐檔 SHA。
+
+kim-source-probe-left-v1.go SHA-256 9fe5e8b1fbc321ba0c0d685566bd16e8694baa1f6f030b443322190ba3d7ce9a，使用普通標題與選角，第二人 Left 三次取得 7／4。hd-frame-kim-v1 在 runtime 01B9:5DD3 的 124 格取樣，兩人圖像完整 bytes 與屋頂 RAM 全部吻合，沒有未實作事件。來源收據 SHA-256 c15024f93d3e2c348e0aeae2f1f7dba2417c092fbc4a18bda0209944f87e3b14；探針與 1719 檔 runtime manifest 均由 kim-source-review.json 核對。取樣待機 0／1、行走 1／2／3、蹲 16、跳 28／29／30、拳 4／11。未注入狀態，尚無 HD 稿或原生接入，不外推其他動作。

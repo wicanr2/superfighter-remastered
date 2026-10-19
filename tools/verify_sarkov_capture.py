@@ -18,7 +18,7 @@ def main():
     parser.add_argument("output", type=Path)
     parser.add_argument("--original-root", type=Path, required=True)
     parser.add_argument("--background", type=Path, required=True)
-    parser.add_argument("--player0", type=int, choices=(1, 2, 3, 5), default=1)
+    parser.add_argument("--player0", type=int, choices=(1, 2, 3, 5, 6), default=1)
     args = parser.parse_args()
     root = args.output
     receipt = json.loads((root / "receipt.json").read_text())
@@ -28,6 +28,7 @@ def main():
         2: ("bullet", 62, [("crouch", (11,)), ("jump", (16, 18, 19, 20, 21, 22)), ("punch", (1, 2))]),
         3: ("phoenix", 93, [("crouch", (16,)), ("jump", (22, 23, 24)), ("punch", (6, 11, 12))]),
         5: ("onimaru", 72, [("crouch", (19,)), ("jump", (25, 26, 27, 28)), ("punch", (8,))]),
+        6: ("lan", 31, [("crouch", (15,)), ("jump", (22, 23, 24, 25, 27)), ("punch", (5, 8))]),
     }[character]
     assert receipt["scope"] == "normal-" + slug and len(receipt["checks"]) == 7
     assert sha(root / "desktop_smoke.py") == receipt["script_sha256"]

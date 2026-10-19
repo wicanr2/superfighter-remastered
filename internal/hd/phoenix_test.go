@@ -127,7 +127,7 @@ func TestPhoenixHUDUsesNormalCapturedName(t *testing.T) {
 		t.Fatal("captured original name or bounds changed", selected.Labels, selected.Layout.Names)
 	}
 	wrong := *frame.HUD
-	wrong.State.Characters[0] = 6
+	wrong.State.Characters[0] = 7
 	if got, reason := assets.Select(&wrong, read(".idx"), palette, frame.Layers); got != nil || reason != "此角色的高解析介面尚未完成" {
 		t.Fatal("unknown character was accepted", reason)
 	}
