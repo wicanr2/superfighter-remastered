@@ -31,12 +31,19 @@ def main():
     effect_case.add_argument("--exercise-frank-effects", action="store_true")
     parser.add_argument("--wine", action="store_true")
     parser.add_argument("--opponent", choices=["jaan", "frank"], default="jaan")
+    parser.add_argument("--player0", type=int, choices=(0, 1), default=0)
+    parser.add_argument("--quit-after-seconds", type=int, default=300)
     args = parser.parse_args()
+    if args.quit_after_seconds <= 0:
+        parser.error("--quit-after-seconds must be positive")
+    if args.player0 == 1 and (args.opponent != "frank" or not args.hd_assets or not args.hd_characters or args.round_opening_only or args.shadow_overlap_only or args.exercise_effects or args.exercise_frank_effects):
+        parser.error("player0=1 requires the normal Sarorkov/Frank rooftop character scope")
     if args.round_opening_only and not (args.hd_assets and args.hd_characters and args.opponent == "frank"):
         parser.error("--round-opening-only requires rooftop characters and Frank")
     if args.shadow_overlap_only and not (args.exercise_shadows and args.hd_assets and args.hd_characters and args.opponent == "frank"):
         parser.error("--shadow-overlap-only requires rooftop characters, Frank and --exercise-shadows")
     args.output.mkdir(exist_ok=False)
+    (args.output / "desktop_smoke.py").write_bytes(script_source)
     runtime = args.output / "runtime"
     runtime.mkdir(mode=0o700)
     home = args.output / "home"
@@ -48,7 +55,7 @@ def main():
                    WINEDLLOVERRIDES="winemenubuilder.exe=d", EBITENGINE_GRAPHICS_LIBRARY="opengl")
     observe, capture = args.output / "observe.json", args.output / "capture.png"
     command = [str(args.binary), "-data", "/orig", "-user-data", str(args.output / "user-data"),
-               "-observe", str(observe), "-capture", str(capture), "-quit-after", "300s"]
+               "-observe", str(observe), "-capture", str(capture), "-quit-after", f"{args.quit_after_seconds}s"]
     if args.hd_assets:
         command += ["-hd-assets", str(args.hd_assets)]
     if args.hd_characters:
@@ -58,6 +65,7 @@ def main():
     checks, events = [], []
     processes, logs = [], []
     game = None
+    started = time.monotonic()
 
     def spawn(cmd, name):
         log = (args.output / (name + ".log")).open("wb")
@@ -87,10 +95,12 @@ def main():
         except (FileNotFoundError, json.JSONDecodeError):
             return None
 
-    def wait(predicate, timeout=30):
+    def wait(predicate, timeout=30, progress=False):
         end = time.monotonic() + timeout
+        hard_end = started + args.quit_after_seconds
+        last_steps = None
         last = None
-        while time.monotonic() < end:
+        while time.monotonic() < min(end, hard_end):
             if game is not None and game.poll() is not None:
                 raise RuntimeError(f"native process exited before expected state: {game.returncode}")
             last = state()
@@ -98,6 +108,11 @@ def main():
                 raise AssertionError(last)
             if last and predicate(last):
                 return last
+            if progress and last:
+                steps = last["core"]["steps"]
+                if last_steps is not None and steps > last_steps:
+                    end = min(time.monotonic() + timeout, hard_end)
+                last_steps = steps
             time.sleep(.02)
         raise TimeoutError(last)
 
@@ -172,18 +187,23 @@ def main():
             click(830, 32)
             wait(lambda s: s["hd_enabled"])
         click(110, 32)
-        wait(lambda s: s["core"]["steps"] >= 40_000_000, timeout=45)
+        wait(lambda s: s["core"]["steps"] >= 40_000_000, timeout=45, progress=args.player0 == 1)
         xdo("mousemove", "--window", window, 455, 607)
         xdo("mousedown", 1)
         initial = state()["core"]["steps"]
         wait(lambda s: s["core"]["steps"] >= initial + 1_250_000)
         xdo("mouseup", 1)
-        wait(lambda s: s["core"]["steps"] >= 65_000_000)
+        wait(lambda s: s["core"]["steps"] >= 65_000_000, progress=args.player0 == 1)
+        for _ in range(args.player0):
+            before = state()["core"]["steps"]
+            key("Right")
+            wait(lambda s: s["core"]["steps"] >= before + 1_000_000, progress=True)
         key("Return")
-        wait(lambda s: s["core"]["steps"] >= 85_000_000)
+        wait(lambda s: s["core"]["steps"] >= 85_000_000, progress=args.player0 == 1)
         if not state()["core"]["battle"]:
-            if args.opponent == "frank":
-                for _ in range(4):
+            moves = ((4 if args.opponent == "frank" else 0) - args.player0) % 8
+            if moves:
+                for _ in range(moves):
                     before = state()["core"]["steps"]
                     key("Right")
                     wait(lambda s: s["core"]["steps"] >= before + 1_000_000)
@@ -226,11 +246,59 @@ def main():
             (args.output / "desktop_smoke.py").write_bytes(script_source)
             print(json.dumps({"scope": receipt["scope"], "checks": checks}, ensure_ascii=False))
             return
-        ready = wait(lambda s: s["core"]["battle"] and s["core"]["frames"] > 8, timeout=45)
-        assert ready["core"]["fighters"] == [0, 4 if args.opponent == "frank" else 0] and ready["core"]["mode"] == 1, ready
-        checks.append("native window normal title -> versus selection -> Jaan/" + args.opponent + " battle")
+        ready = wait(lambda s: s["core"]["battle"] and s["core"]["frames"] > 8, timeout=45, progress=args.player0 == 1)
+        assert ready["core"]["fighters"] == [args.player0, 4 if args.opponent == "frank" else 0] and ready["core"]["mode"] == 1, ready
+        checks.append("native window normal title -> versus selection -> " + ("Sarorkov/" if args.player0 else "Jaan/") + args.opponent + " battle")
         events.append({"normal_battle": ready})
         shot("normal-versus.png")
+        if args.player0 == 1:
+            click(830, 32)
+
+            def presentation_ready(s):
+                if not s["hd_enabled"] or not s["presentation"]["layers_complete"]:
+                    return False
+                return not s["hd_active"] if args.expect_missing else s["hd_active"] and s.get("hd_hud_active") and s.get("hd_shadows_active")
+
+            wait(presentation_ready, timeout=60, progress=True)
+            shot("hd-rooftop.png")
+            checks.append("Sarorkov normal character, original-name HUD and rooftop select together or fall back together")
+            for label, key_name, predicate in [
+                ("walk", "d", lambda s: s["presentation"]["actors"][0]["x"] > ready["presentation"]["actors"][0]["x"] + 4),
+                ("crouch", "x", lambda s: s["presentation"]["actors"][0]["slot"] == 14),
+                ("jump", "w", lambda s: s["presentation"]["actors"][0]["slot"] in (19, 20, 21)),
+                ("punch", "Tab", lambda s: s["presentation"]["actors"][0]["slot"] in (5, 9, 10)),
+            ]:
+                xdo("keydown", key_name)
+                observed_pose = wait(lambda s: predicate(s) and presentation_ready(s), timeout=90, progress=True)
+                events.append({"sarkov_" + label: observed_pose})
+                shot(label + ".png")
+                xdo("keyup", key_name)
+                wait(lambda s: s["core"]["key_values"][0] == 0
+                     and s["presentation"]["actors"][0]["slot"] in (0, 4)
+                     and presentation_ready(s), timeout=60, progress=True)
+                checks.append("ordinary Sarorkov " + label + " reaches a verified original source")
+            click(265, 32)
+            paused = wait(lambda s: s["core"]["paused"])
+            shot("hd-paused.png")
+            click(830, 32)
+            original = wait(lambda s: not s["hd_enabled"])
+            shot("original-paused.png")
+            click(830, 32)
+            restored = wait(presentation_ready)
+            shot("hd-restored.png")
+            for field in ("core", "presentation", "settings", "assigned"):
+                assert paused[field] == original[field] == restored[field], field
+            checks.append("paused Sarorkov switching preserves original state, profiles and device assignments")
+            events.append({"sarkov_paused": paused, "original": original, "restored": restored})
+            receipt = {"kind": "normal native Sarorkov/Frank source and switching; not complete-character or controller acceptance",
+                       "scope": "normal-sarkov", "expected_missing": args.expect_missing,
+                       "checks": checks, "events": events, "command": command,
+                       "binary_sha256": hashlib.sha256(args.binary.read_bytes()).hexdigest(),
+                       "script_sha256": hashlib.sha256(script_source).hexdigest()}
+            (args.output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n")
+            (args.output / "desktop_smoke.py").write_bytes(script_source)
+            print(json.dumps({"scope": receipt["scope"], "checks": checks}, ensure_ascii=False))
+            return
         if args.hd_assets:
             click(830, 32)
             enabled = wait(lambda s: s["hd_enabled"])

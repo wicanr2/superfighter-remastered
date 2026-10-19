@@ -20,11 +20,14 @@ def compiled_inputs(project):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("stage", choices=["dependencies", "linux", "cross", "verify"])
-    stage = parser.parse_args().stage
+    parser.add_argument("--output-dir", type=Path, default=Path("/project/workplace/bin"))
+    parser.add_argument("--receipt", type=Path, default=Path("/project/workplace/desktop-build.json"))
+    args = parser.parse_args()
+    stage = args.stage
     p = Path("/project")
     os.chdir(p)
-    out = p / "workplace/bin"
-    out.mkdir(exist_ok=True)
+    out = args.output_dir.resolve()
+    out.mkdir(parents=True, exist_ok=True)
     sha = lambda f: hashlib.sha256(f.read_bytes()).hexdigest()
     if stage == "dependencies":
         cache = p / "workplace/cache/native-go-mod"
@@ -48,7 +51,7 @@ def main():
         for goos, arch, cgo, cc, name in targets:
             env = dict(os.environ, GOOS=goos, GOARCH=arch, CGO_ENABLED=cgo, CC=cc,
                        MACOSX_DEPLOYMENT_TARGET="11.0")
-            command = ["go", "build", "-p", "1", "-mod=readonly", "-trimpath", "-o", str(out / name), "./cmd/superfighter"]
+            command = ["go", "build", "-p", "1", "-mod=readonly", "-buildvcs=false", "-trimpath", "-o", str(out / name), "./cmd/superfighter"]
             print("Building " + name, flush=True)
             before = compiled_inputs(p)
             subprocess.run(command, env=env, check=True)
@@ -84,7 +87,7 @@ def main():
                "dosgolem_manifest_sha256": sha(p / "workplace/dosgolem-patched-manifest.json"),
                "outputs": [{"path": str(f.relative_to(p)), "sha256": sha(f), "bytes": f.stat().st_size} for f in paths],
                "headers": ["ELF64 x86-64", "PE32+ x86-64", "Mach-O x86_64", "Mach-O arm64"]}
-    (p / "workplace/desktop-build.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n")
+    args.receipt.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps(receipt, ensure_ascii=False, indent=2))
 
 

@@ -2,10 +2,13 @@ package hd
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"path/filepath"
 	"reflect"
 	"testing"
+
+	"github.com/wicanr2/superfighter-remastered/internal/renderdata"
 )
 
 // 候選資料讀取不代表角色已通過原生 HD 驗收；這裡核對正常原版 consumer。
@@ -76,5 +79,57 @@ func TestSarkovCandidateMatchesNormalOriginalSources(t *testing.T) {
 	}
 	if len(seen) != 11 {
 		t.Fatal("normal source coverage changed", seen)
+	}
+}
+
+func TestSarkovHUDUsesNormalCapturedName(t *testing.T) {
+	root, original := os.Getenv("KDZZ_HD_FIXTURES"), os.Getenv("KDZZ_ORIGINAL_ROOT")
+	if root == "" || original == "" {
+		t.Skip("local original sources not supplied")
+	}
+	a, err := LoadHUD(original)
+	if err != nil {
+		t.Fatal(err)
+	}
+	read := func(suffix string) []byte {
+		t.Helper()
+		data, err := os.ReadFile(filepath.Join(root, "native-sarkov-v2", "hd-paused.png"+suffix))
+		if err != nil {
+			t.Fatal(err)
+		}
+		return data
+	}
+	var frame struct {
+		HUD    *renderdata.HUDSnapshot `json:"hud"`
+		Layers []renderdata.Layer      `json:"layers"`
+	}
+	if err := json.Unmarshal(read(".frame.json"), &frame); err != nil {
+		t.Fatal(err)
+	}
+	if frame.HUD == nil || frame.HUD.State.Characters != [2]uint16{1, 4} {
+		t.Fatal("wrong normal character selection")
+	}
+	frame.HUD.Bitmap = read(".hud.bitmap")
+	frame.HUD.Underlay.Indices = read(".hud-under.idx")
+	frame.HUD.Underlay.Coverage = read(".hud-under.mask")
+	for ordinal := range frame.Layers {
+		frame.Layers[ordinal].Indices = read(fmt.Sprintf(".layer-%02d.idx", ordinal))
+		frame.Layers[ordinal].Coverage = read(fmt.Sprintf(".layer-%02d.mask", ordinal))
+	}
+	var palette [256][3]uint8
+	if err := json.Unmarshal(read(".palette.json"), &palette); err != nil {
+		t.Fatal(err)
+	}
+	selected, reason := a.Select(frame.HUD, read(".idx"), palette, frame.Layers)
+	if selected == nil {
+		t.Fatal(reason)
+	}
+	if selected.Labels != [2]string{"SARORKOV", "FRANK"} || selected.Layout.Names[0].Dx() != 88 || selected.Layout.Names[0].Dy() != 11 {
+		t.Fatal("captured original name or bounds changed", selected.Labels, selected.Layout.Names)
+	}
+	wrong := *frame.HUD
+	wrong.State.Characters[0] = 2
+	if got, reason := a.Select(&wrong, read(".idx"), palette, frame.Layers); got != nil || reason != "此角色的高解析介面尚未完成" {
+		t.Fatal("unknown character was accepted", reason)
 	}
 }

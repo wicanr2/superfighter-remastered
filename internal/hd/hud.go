@@ -28,6 +28,7 @@ type HUDSelection struct {
 	State   renderdata.HUDState
 	Layout  HUDLayout
 	Replace []byte
+	Labels  [2]string
 }
 
 func LoadHUD(root string) (*HUD, error) {
@@ -162,8 +163,16 @@ func (a *HUD) Select(s *renderdata.HUDSnapshot, pixels []byte, palette [256][3]u
 	if !ok {
 		return nil, "介面欄位未對應，保留原貌"
 	}
-	for _, character := range s.State.Characters {
-		if character != 0 && character != 4 {
+	var labels [2]string
+	for player, character := range s.State.Characters {
+		switch character {
+		case 0:
+			labels[player] = "JAAN"
+		case 1:
+			labels[player] = "SARORKOV"
+		case 4:
+			labels[player] = "FRANK"
+		default:
 			return nil, "此角色的高解析介面尚未完成"
 		}
 	}
@@ -179,7 +188,7 @@ func (a *HUD) Select(s *renderdata.HUDSnapshot, pixels []byte, palette [256][3]u
 	if last.Sprite != nil || len(last.Coverage) != 64000 || len(last.Indices) != 64000 {
 		return nil, "介面圖層未完成"
 	}
-	selection := &HUDSelection{State: s.State, Layout: a.Layout(s.State), Replace: make([]byte, 64000)}
+	selection := &HUDSelection{State: s.State, Layout: a.Layout(s.State), Replace: make([]byte, 64000), Labels: labels}
 	rects := []image.Rectangle{selection.Layout.Timer}
 	for p := 0; p < 2; p++ {
 		rects = append(rects, selection.Layout.Names[p], selection.Layout.Players[p], selection.Layout.Bars[p])

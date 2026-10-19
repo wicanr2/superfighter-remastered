@@ -160,6 +160,7 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [internal/desktop/characters.go](internal/desktop/characters.go) | 原生 GPU 依原版順序畫高解析角色、特效與介面，保留其他原貌寫入 |
 | [internal/desktop/hud.go](internal/desktop/hud.go) | 量實際字圖與描邊邊界，以獨立紋理畫生命、計時、名字及玩家標記；原勝場圖示保留 |
 | [角色素材驗證](internal/hd/characters_test.go)、[圖層定位驗證](internal/renderdata/layers_test.go) | 原始 fixture、素材拒絕、完整重組與鏡像／裁切的獨立驗證 |
+| [薩爾可夫擷取核對](tools/verify_sarkov_capture.py) | 九張正常原生擷取的完整來源重組、人物／姓名替換、暫停切換與缺件整格回退 |
 | [特效定位驗證](internal/renderdata/effects_test.go) | 19 個原版特效繪製／完整畫格的獨立幾何、寫入覆蓋與重組核對 |
 | [特效素材驗證](internal/hd/effects_test.go) | 原版特效 fixture 的來源、第二組色盤、整格拒絕與版本隔離 |
 | [字型來源](internal/desktop/assets/source.json)、[OFL 授權](internal/desktop/assets/OFL.txt) | Noto Sans CJK TC 固定來源、SHA-256 與授權 |
