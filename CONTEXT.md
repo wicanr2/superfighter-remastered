@@ -1,6 +1,6 @@
 # 快打至尊 Remastered：目前狀態
 
-更新日期：2026-10-19。此檔為唯一現況，工作順序見 [WORKLIST.md](WORKLIST.md)，穩定規則與文件索引見 [AGENTS.md](AGENTS.md)。
+更新日期：2026-10-20。此檔為唯一現況，工作順序見 [WORKLIST.md](WORKLIST.md)，穩定規則與文件索引見 [AGENTS.md](AGENTS.md)。
 
 ## 已確認方向
 
@@ -24,6 +24,8 @@
 | 前端與手把 | 三平台共用原生桌面已接核心 | 現行 Linux／Wine 首勝與切換通過；一般操作、兩人獨立放開、特效扣血、設定重啟及失焦的十七項證據保留顯示修正基底身分。實體手把未驗 |
 | HD | 屋頂、部分角色、13 組特效、介面／勝場、柔邊陰影、開場及兩側首勝已接原生 | 斬首勝已驗兩平台；第二人法蘭克的抱胸、FRANK WIN 與右側勝場已驗 Linux，Wine 達執行期限，尚未通過。兩側核心來源取樣通過；完整動畫及其他角色／畫面未完成 |
 | 薩爾可夫一般姿態及姓名 | 已接原生，018 限定 CONFORMED | Linux／Wine 各七項、九張擷取，Linux 缺件九張整格回退通過；45 張姿態對應 72 個一般入口，共 373 鍵。原姓名 SARORKOV，設定識別字仍為 sarkov；勝利、替代色盤、快捷與完整動畫另驗 |
+| 薩爾可夫勝利 | 019 READY，實作及核心通過，原生驗證中 | 五張 WIN 姿態形成 445 鍵候選；9,290 個成對核心邊界與 23 個取樣通過。Linux、Wine、舊素材三個正常首勝工作仍在執行，尚無原生通過收據；候選二進位在 sarkov-victory-build-v1/bin，尚未移入 bin |
+| 子彈候選 | 020 READY，來源／58 張姿態／Go 讀取通過 | 72 個入口、五張 PNG、517 鍵候選，124 格正常 2／4 選角及屋頂來源吻合。原姓名 BULLET，62×11；原生姓名與人物尚未接入，WIN、特效與快捷另驗 |
 | 顯示起點修正 | 已接原生，015 限定 CONFORMED | Linux／Wine 各十張開場、Linux 對戰十五張與舊素材十一張全部核對；起點第 7／11／12 列及可見尾端逐格正確，原貌與 HD 共用映射 |
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
@@ -95,6 +97,15 @@ HD 採 B「街機手繪」。現行群組為 `hd-characters-sarkov-candidate-v1`
 AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整研究在 RESEARCH-LOG。短檔作弊效果的因果仍屬強推論，未作同狀態替換實驗，沒有新增 AI 行為。三平台已固定，公開方式與完整發行門檻尚未決定。
 
 ## 現行證據入口
+
+### 正在驗證的薩爾可夫勝利與下一角色
+
+- [規格 019](docs/spec/019-sarkov-victory.md)為 READY。只新增勝負姓名角色 1，原版核心未改。`sarkov-victory-core-v1` 的 9,290 個成對比較邊界、23 個 WIN 取樣及六個保存畫格通過獨立來源重組；取樣槽 0／2／3／4，槽 1 只有原檔與登錄證據。`sarkov-victory-checks-v1.log` 記錄完整程式套件測試及 go vet 通過。
+- 候選 `hd-characters-sarkov-victory-v1` 保留舊 373 鍵與十九張 PNG，新增 BBWIN 的 72 入口與一張 PNG，共 445 鍵。五張姿態、原 PNG 與內建 imagegen 精確提示詞在 `sarkov-victory-art-v1`。勝利文字實際位置為 SARORKOV (96,54,88,11)、WIN (193,54,31,11)，不改原字圖矩形。
+- 本輪三個原生工作仍有界執行：`kdzz-native-sarkov-victory-v1`／session 71285、`kdzz-windows-sarkov-victory-v1`／23441、`kdzz-native-sarkov-victory-legacy-v1`／8314。輸出目錄與容器同名但不含 kdzz- 前綴。各程式上限 2400 秒，外層 2550 秒，均 --rm。下一輪先核對相同 handle、容器及 receipt／failure，不因觀測逾時重開。沒有原生完成收據前不升 CONFORMED 或替換 bin。
+- 目前 bin 仍為下節的已驗 636f6ad 一般姿態基底。其四個二進位與 35 份精確編譯輸入已另存 `sarkov-victory-core-diagnostic-v1/build-baseline`；勝利候選在 `sarkov-victory-build-v1/bin`，來源與格式已核對。
+- [規格 020](docs/spec/020-bullet-hd.md)為 READY。`bullet-source-v1` 的 58 組原圖、`bullet-art-v1` 的五張透明 PNG／精確提示詞及 72 個一般入口形成 517 鍵候選。`hd-frame-bullet-v1` 的 124 個正常來源與 `bullet-candidate-checks-v1.log` 通過，BULLET 原字圖與正常畫面已目視；人物與姓名未接原生。槽 41 的全藍受擊圖保留原色態。
+- 來源審查見 [薩爾可夫勝利](workplace/sarkov-victory-evidence-review.json)與[子彈](workplace/bullet-evidence-review.json)。本輪自有來源備份為 `workplace/github-sarkov-victory-progress.bundle`，身分見 `workplace/github-sarkov-victory-progress-source.json`；這是進度保存，完整 HD 與原生首勝仍未完成。
 
 ### 目前薩爾可夫一般姿態切片
 

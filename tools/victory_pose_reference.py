@@ -16,11 +16,17 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--original-root",type=Path,default=Path("/orig"))
     parser.add_argument("--output",type=Path,required=True)
+    parser.add_argument("--characters", type=int, nargs="+", choices=(0, 1, 4), default=[0, 4])
     args=parser.parse_args()
     assert not args.output.exists()
     args.output.mkdir()
     records=[]
-    for character,name,file,want in [(0,"jaan","AAWIN.FIG","0c332b13bb923116460a7fa8cf474b105d8f1d2b180a8d7ede5af6f92209f8f7"),(4,"frank","FFWIN.FIG","2a353085e1ad73d5521bf1c87e45f5678c2d2cd59148f50e291aad6995b3c9c3")]:
+    sources = {0: ("jaan", "AAWIN.FIG", "0c332b13bb923116460a7fa8cf474b105d8f1d2b180a8d7ede5af6f92209f8f7"),
+               1: ("sarkov", "BBWIN.FIG", "bf9aaca05512785be194558ee45b5e4dcba2b122583d83f9f63e3d577c5cac3d"),
+               4: ("frank", "FFWIN.FIG", "2a353085e1ad73d5521bf1c87e45f5678c2d2cd59148f50e291aad6995b3c9c3")}
+    assert len(set(args.characters)) == len(args.characters)
+    for character in args.characters:
+        name, file, want = sources[character]
         data=(args.original_root/file).read_bytes()
         assert sha(data)==want
         normal=(args.original_root/f"SFMAN{character+1:02d}.DAT").read_bytes()
@@ -37,9 +43,10 @@ def main():
             if digest not in groups:
                 groups[digest]={"ordinal":len(groups),"slot":slot,"aliases":[],"source_offset":at,"source_rect":[0,0,width,height],"source_sha256":digest}
             groups[digest]["aliases"].append(slot)
-        assert len(groups)==(4 if character==0 else 3)
+        assert len(groups)=={0: 4, 1: 5, 4: 3}[character]
         cells=list(groups.values())
-        sheet=Image.new("RGB",(1200,1200),(17,29,44));paint=ImageDraw.Draw(sheet)
+        cols, rows = (5, 1) if character == 1 else (2, 2)
+        sheet=Image.new("RGB",(cols*600,rows*600),(17,29,44));paint=ImageDraw.Draw(sheet)
         for cell in cells:
             index,at=cell["ordinal"],cell["source_offset"]
             width,height=cell["source_rect"][2:]
@@ -51,15 +58,15 @@ def main():
                     value=(value>>4) if x%2==0 else (value&15)
                     if value:sprite.putpixel((x,y),(*palette[value],255))
             sprite.save(args.output/f"{name}-win-{cell['slot']:02d}.png")
-            left,top=(index%2)*600,(index//2)*600
+            left,top=(index%cols)*600,(index//cols)*600
             enlarged=sprite.resize((width*5,height*5),Image.Resampling.NEAREST)
             sheet.paste(enlarged,(left+(600-width*5)//2,top+560-height*5),enlarged)
             paint.text((left+24,top+24),f"{name.upper()} WIN SOURCE SLOT {cell['slot']}  {width}x{height}",fill=(255,225,140))
         filename=f"{name}-win-source.png";sheet.save(args.output/filename)
-        records.append({"character":character,"character_name":name,"source_bank":"victory","file":file,"sha256":want,"table_offset":0x60,"payload_offset":0x180,"slots":72,"grid":[2,2],"reference":filename,"reference_sha256":sha((args.output/filename).read_bytes()),"cells":cells})
+        records.append({"character":character,"character_name":name,"source_bank":"victory","file":file,"sha256":want,"table_offset":0x60,"payload_offset":0x180,"slots":72,"grid":[cols,rows],"reference":filename,"reference_sha256":sha((args.output/filename).read_bytes()),"cells":cells})
     result={"kind":"original victory-pose references; not HD or animation acceptance","script_sha256":sha(Path(__file__).read_bytes()),"records":records,"rights":"local-only original assets"}
     (args.output/"manifest.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n")
-    print(json.dumps({"slots":144,"unique_sources":7,"sources":[r["file"] for r in records]}))
+    print(json.dumps({"slots":72*len(records),"unique_sources":sum(len(r["cells"]) for r in records),"sources":[r["file"] for r in records]}))
 
 
 if __name__=="__main__":

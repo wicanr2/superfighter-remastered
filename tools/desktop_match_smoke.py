@@ -16,6 +16,8 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--wine", action="store_true")
     parser.add_argument("--attacker", type=int, choices=(0, 1), default=0, help="以普通輸入取得首勝的玩家")
+    parser.add_argument("--player0", type=int, choices=(0, 1), default=0,
+                        help="正常選角的第一人，0 為斬、1 為薩爾可夫；第二人為法蘭克")
     parser.add_argument("--hd-characters", type=Path, default=Path("/project/workplace/hd-characters-study-v7"))
     parser.add_argument("--first-round-only", action="store_true",
                         help="只驗正常首勝後的 HD 勝場及同狀態切換，不作完整比賽驗收")
@@ -161,22 +163,26 @@ def main():
         assert window is not None
         xdo("windowfocus", "--sync", window)
         click(110, 32)
-        wait(lambda s: s["core"]["steps"] >= 40_000_000)
+        wait(lambda s: s["core"]["steps"] >= 40_000_000, progress=args.player0 == 1)
         xdo("mousemove", "--window", window, 455, 607)
         xdo("mousedown", 1)
         before = state()["core"]["steps"]
         wait(lambda s: s["core"]["steps"] >= before + 1_250_000)
         xdo("mouseup", 1)
-        wait(lambda s: s["core"]["steps"] >= 65_000_000)
+        wait(lambda s: s["core"]["steps"] >= 65_000_000, progress=args.player0 == 1)
+        for _ in range(args.player0):
+            before = state()["core"]["steps"]
+            key("Right")
+            wait(lambda s: s["core"]["steps"] >= before + 1_000_000, progress=True)
         key("Return")
-        wait(lambda s: s["core"]["steps"] >= 85_000_000)
-        for _ in range(4):
+        wait(lambda s: s["core"]["steps"] >= 85_000_000, progress=args.player0 == 1)
+        for _ in range(4 - args.player0):
             before = state()["core"]["steps"]
             key("Right")
             wait(lambda s: s["core"]["steps"] >= before + 1_000_000)
         key("Return")
-        wait(lambda s: s["core"]["battle"] and s["core"]["frames"] > 8)
-        assert state()["core"]["fighters"] == [0, 4]
+        wait(lambda s: s["core"]["battle"] and s["core"]["frames"] > 8, progress=args.player0 == 1)
+        assert state()["core"]["fighters"] == [args.player0, 4]
         click(830, 32)
         wait(lambda s: s["hd_active"] and s.get("hd_hud_active"))
         paused_shot("normal-battle")
@@ -261,6 +267,7 @@ def main():
         receipt = {"kind": "normal native first-win HD marker experiment; not complete-match acceptance" if args.first_round_only else "normal native two-player match and return experiment; not all-game or physical-controller acceptance",
                    "scope": "first-round-win-marker" if args.first_round_only else "complete-match-return",
                    "attacker": args.attacker,
+                   "player0": args.player0,
                    "command": command, "events": events, "knockout_rounds": sorted(knockouts),
                    "round_finishes": finishes,
                    "elapsed_seconds": time.monotonic() - started, "binary_sha256": hashlib.sha256(args.binary.read_bytes()).hexdigest(),

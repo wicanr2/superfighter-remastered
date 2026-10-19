@@ -1,5 +1,6 @@
 """在既有角色群組加入獨立 WIN 圖像來源，原 PNG bytes 與舊群組保持不變。"""
 import argparse
+import copy
 import hashlib
 import json
 import shutil
@@ -24,7 +25,8 @@ def main():
     args=parser.parse_args()
     assert not args.output.exists() and args.output.parent.stat().st_uid==1000
     base=json.loads((args.base/"manifest.json").read_text())
-    assert base["version"]==2 and base["kind"]=="original-draw-characters"
+    assert base["version"] in (2, 3) and base["kind"]=="original-draw-characters"
+    before = copy.deepcopy(base)
     references=json.loads((args.reference/"manifest.json").read_text())
     art=json.loads((args.art/"manifest.json").read_text())
     records={r["character"]:r for r in art["records"]}
@@ -37,6 +39,7 @@ def main():
     registrations=[]
     for reference in references["records"]:
         character,name=reference["character"],reference["character_name"]
+        assert not any(s["character"] == character and s.get("source_bank") == "victory" for s in base["sources"])
         source_path=args.original_root/reference["file"]
         assert digest(source_path)==reference["sha256"]
         source=source_path.read_bytes()
@@ -63,7 +66,10 @@ def main():
             base["poses"].append({"character":character,"source_bank":"victory","slot":slot,
                 "width":width,"height":height,"source_offset":at,"source_sha256":sha,"atlas":record["file"],"rect":choices[sha]})
         registrations.append({"character":character,"source_bank":"victory","slots":72,"unique_sources":len(choices),"regions":regions})
-    assert len(registrations)==2 and len(base["poses"])==301
+    assert registrations and len(base["poses"]) == len(before["poses"]) + 72 * len(registrations)
+    assert base["poses"][:len(before["poses"])] == before["poses"]
+    assert base["atlases"][:len(before["atlases"])] == before["atlases"]
+    assert base["sources"][:len(before["sources"])] == before["sources"]
     provenance={"script_sha256":digest(Path(__file__)),"base_manifest_sha256":digest(args.base/"manifest.json"),
         "art_manifest_sha256":digest(args.art/"manifest.json"),"requests_sha256":digest(args.art/"requests.json"),
         "reference_manifest_sha256":digest(args.reference/"manifest.json"),"registrations":registrations,
@@ -75,7 +81,7 @@ def main():
         assert digest(args.output/name)==digest(source) and (args.output/name).stat().st_uid==1000
     (args.output/"manifest.json").write_text(json.dumps(base,ensure_ascii=False,indent=2)+"\n")
     (args.output/"victory-pose-registration.json").write_text(json.dumps(provenance,ensure_ascii=False,indent=2)+"\n")
-    print(json.dumps({"version":3,"poses":len(base["poses"]),"sources":len(base["sources"]),"new_unique_poses":7}))
+    print(json.dumps({"version":3,"poses":len(base["poses"]),"sources":len(base["sources"]),"new_unique_poses":sum(r["unique_sources"] for r in registrations)}))
 
 
 if __name__=="__main__":

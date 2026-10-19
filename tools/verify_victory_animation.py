@@ -23,7 +23,7 @@ def main():
     receipt = json.loads((root / "receipt.json").read_text())
     player = receipt["attacker"]
     assert player in (0, 1)
-    character = [0, 4][player]
+    character = [receipt.get("player0", 0), 4][player]
     wins = [0, 0]
     wins[player] = 1
     reference = (args.background / "reference.idx").read_bytes()
@@ -41,7 +41,7 @@ def main():
     else:
         assert receipt["scope"] == "first-victory-message" and receipt["knockout_rounds"] == [0]
         assert receipt["script_sha256"] == sha(root / "desktop_match_smoke.py")
-        assert not receipt["expected_victory_original"]
+        expected_original = receipt["expected_victory_original"]
         names = [event["name"] + ".png" for event in receipt["events"]]
         finish = receipt["round_finishes"]["0"]
         assert finish in ("knockout", "time-expiry")
@@ -67,12 +67,13 @@ def main():
                      for s in values if s["source_bank"] == "victory"})
     result = {"kind": "independent normal victory animation source samples and lifecycle",
               "attacker": player, "captures": len(names), "victory_sources": unique, "next_round_cleared": True,
-              "limits": "normal sampled Jaan/Frank first victories; no all-mode or every-frame native animation claim"}
+              "limits": "requested normal first-victory samples; no all-mode or every-frame native animation claim"}
     if args.core:
         result["paired_core_checks"] = receipt["checks"]
         result["sampled_win_frames"] = len(receipt["pose_trace"])
     else:
         events = {event["name"]: event["state"] for event in receipt["events"]}
+        assert events["normal-battle"]["hd_active"] and events["after-victory"]["hd_active"]
         group = [frames[f"victory-{mode}.png"] for mode in ("hd", "original", "restored")]
         assert group[0][:3] == group[1][:3] == group[2][:3]
         states = [events[f"victory-{mode}"] for mode in ("hd", "original", "restored")]
@@ -87,8 +88,10 @@ def main():
             capture = json.loads(Path(str(base) + ".capture.json").read_text())
             for field in ("core", "hd_active", "hd_enabled"):
                 assert capture[field] == state[field]
-            if mode == "original":
-                assert not state["hd_active"] and not state["hd_enabled"]
+            if mode == "original" or expected_original:
+                assert not state["hd_active"] and state["hd_enabled"] == (mode != "original")
+                assert viewport(selected[-1]).tobytes() == original_image(selected[0], selected[1], selected[2]).tobytes()
+                assert not Path(str(base) + ".victory-render-after.rgba").exists()
                 continue
             assert state["hd_active"] and state["hd_enabled"] and "勝負文字" in state["hd_reason"]
             before = Path(str(base) + ".victory-render-before.rgba").read_bytes()
@@ -111,6 +114,7 @@ def main():
             assert changed > 20 and gold > 10
             gpu[mode] = {"changed_pixels": changed, "gold_pixels": gold, "rectangles": boxes}
         result["gpu_text_captures"] = gpu
+        result["expected_victory_original"] = expected_original
         result["paused_restoration_exact"] = True
     result["files"] = {p.name: sha(p) for p in root.iterdir() if p.is_file()
                        and p.name not in ("animation-comparison.json", "capture.png")

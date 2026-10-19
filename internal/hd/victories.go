@@ -88,6 +88,8 @@ func (a *Victories) Layout(s renderdata.VictoryState) ([]VictoryRun, bool) {
 	switch character {
 	case 0:
 		label = "JAAN"
+	case 1:
+		label = "SARORKOV"
 	case 4:
 		label = "FRANK"
 	default:

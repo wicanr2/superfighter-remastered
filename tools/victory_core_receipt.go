@@ -29,11 +29,15 @@ func main() {
 	out := flag.String("out", "", "new output directory")
 	characterDir := flag.String("hd-characters", "/project/workplace/hd-characters-study-v8", "character asset directory")
 	attacker := flag.Int("attacker", 0, "normal attacking player: 0 or 1")
+	player0 := flag.Int("player0", 0, "normal first-player character: 0 or 1; second player is Frank")
 	poseSamples := flag.Bool("pose-samples", false, "sample WIN-bank poses from knockout through next round")
 	diagnostic := flag.Bool("diagnostic", false, "single-core source diagnostics; no paired-state acceptance")
 	flag.Parse()
 	if *attacker < 0 || *attacker > 1 {
 		panic("attacker must be 0 or 1")
+	}
+	if *player0 < 0 || *player0 > 1 {
+		panic("player0 must be 0 or 1")
 	}
 	loser := 1 - *attacker
 	if *out == "" {
@@ -186,7 +190,10 @@ func main() {
 				panic("victory lacks complete HUD/shadows")
 			}
 			if selected, why := victories.Select(f.Victory, f.Layers, f.Palette, f.Counter); selected == nil {
-				panic(why)
+				writeJSON("victory-selection-failure.json", map[string]any{"reason": why, "state": f.Victory.State})
+				if !*diagnostic {
+					panic(why)
+				}
 			}
 			if selected, why := characters.Select(f.Layers, f.Palette); selected == nil {
 				writeJSON("character-selection-failure.json", map[string]any{"reason": why, "actors": f.Actors, "layers": f.Layers})
@@ -243,11 +250,17 @@ func main() {
 		must(c.Mouse(125, 181, false))
 	}
 	step(24_000_000)
+	for i := 0; i < *player0; i++ {
+		for _, c := range cores {
+			must(c.MenuKey("Right"))
+		}
+		step(1_000_000)
+	}
 	for _, c := range cores {
 		must(c.MenuKey("Return"))
 	}
 	step(20_000_000)
-	for i := 0; i < 4; i++ {
+	for i := 0; i < 4-*player0; i++ {
 		for _, c := range cores {
 			must(c.MenuKey("Right"))
 		}
@@ -257,6 +270,9 @@ func main() {
 		must(c.MenuKey("Return"))
 	}
 	step(75_000_000)
+	if selected := observed.Status().Fighters; selected[0] != *player0 || selected[1] != 4 {
+		panic(fmt.Sprintf("normal selection mismatch: %v", selected))
+	}
 	input := func(keys ...uint8) {
 		for _, c := range cores {
 			var source []gamecore.Source
@@ -342,6 +358,6 @@ func main() {
 			panic("source changed during replay: " + name)
 		}
 	}
-	writeJSON("receipt.json", map[string]any{"kind": "paired normal Core victory observation; not native GUI", "script_sha256": digest(script), "source_inputs": sourceInputs, "attacker": *attacker, "pose_captures": poseCaptures, "pose_trace": poseTrace, "checks": checks, "captures": captures, "victory_cleared": cleared, "original_state_and_rgb_unchanged": !*diagnostic, "paired": !*diagnostic, "final_core": observed.Status(), "limits": "normal Jaan/Frank first victory and next round; pose trace is sampled at 10000 instructions after knockout, not a complete native animation acceptance"})
+	writeJSON("receipt.json", map[string]any{"kind": "normal Core victory observation; not native GUI", "script_sha256": digest(script), "source_inputs": sourceInputs, "player0": *player0, "attacker": *attacker, "pose_captures": poseCaptures, "pose_trace": poseTrace, "checks": checks, "captures": captures, "victory_cleared": cleared, "original_state_and_rgb_unchanged": !*diagnostic, "paired": !*diagnostic, "final_core": observed.Status(), "limits": "requested normal selection first victory and next round; pose trace is sampled at 10000 instructions after knockout, not a complete native animation acceptance"})
 	fmt.Println("checks", checks, "captured", captured, "cleared", cleared)
 }

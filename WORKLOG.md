@@ -295,3 +295,16 @@
 - 核對 be9a6d3 舊四份二進位已有 build-baseline 完整副本後，將已驗候選及其原編譯收據原封移入 bin，保留 sarkov-build-v1/promotion.json。只刷新彙總來源收據，沒有重建未改的編譯輸入。
 - 018 升限定 CONFORMED，README 加入目前薩爾可夫畫面，CONTEXT／WORKLIST／驗證矩陣同步。WIN、替代色盤、快捷、完整動畫、其餘角色與畫面、音訊、速度、實體平台及手把、封包與 GitHub 遠端仍未完成；完整 HD Goal 保持進行。
 - 本輪來源及完整歷史備份保存為 workplace/github-sarkov-integration.bundle，逐檔來源與產物身分見 github-sarkov-integration-source.json；收尾來源核對見 sarkov-integration-audit.json。原版、衍生美術與二進位排除 Git；本輪容器均以 --rm 收尾。
+
+## 2026-10-20 薩爾可夫勝利實作與子彈候選
+
+- 開工核對 main 636f6ad、工作樹及容器，先前一般姿態已完成。命中規格閘門與原版對拍路由，沿用內建 imagegen 技能及既有 Docker 工具鏈。
+- BBWIN.FIG 解出 72 個有效入口、五組不同 bytes，色盤與 SFMAN02 相同。新增角色選擇旗標後，普通選角 1／4、方向及拳擊取得第一人正常勝利；單核心診斷六格獨立重組，實際 winner=1、生命 124／0、計時 21、SARORKOV／WIN 的 caller、SI 與矩形均吻合。
+- 五張透明勝利稿以內建 imagegen 生成，原 PNG、精確提示詞及透明登錄存 sarkov-victory-art-v1。WIN 準備工具接受既有版本 3 擴充，保留舊 373 鍵及十九張 PNG，形成 445 鍵／二十張 PNG／六份來源。019 經 DRAFT 與來源審查升 READY，再補角色 1 勝負姓名。
+- TestSarkovVictoryUsesSeparateOriginalBank 驗全部新來源、六個正常凍結畫格、原姓名及未知／位置拒絕、舊 373 鍵缺 WIN 回退；完整程式套件測試與 go vet 通過。四個候選編譯完成並核對來源。舊 636f6ad 的 35 份精確輸入及四個二進位先存 diagnostic-v1/build-baseline，沒有覆寫 bin。
+- sarkov-victory-core-v1 的 9,290 個成對邊界、23 個 WIN 取樣、六個保存畫格及下一回合清除通過，原版狀態及 RGB 相同。四種 WIN 槽為 0／2／3／4，槽 1 仍只有靜態來源與登錄。
+- Linux、Wine、舊素材三個正常首勝工作仍有界執行，session 71285／23441／8314，容器及輸出見 CONTEXT。各程式 2400 秒、外層 2550 秒，沒有動遊戲速度或強制勝利。下一輪核對同一 handle，不重啟正在執行的工作；原生尚未通過，不升 019 CONFORMED 或移入 bin。
+- 等待期間準備子彈來源：正常 2／4 選角取得 124 個一致來源及屋頂，SFMAN03 有 58 組不同圖像、72 槽；NAME 槽 2 為 BULLET／62×11，已目視原字圖與正常畫面。五張內建 imagegen PNG 與提示詞存 bullet-art-v1，槽 41 保留全藍受擊閃光。
+- 517 鍵／25 張 PNG 的子彈候選保留 445 鍵基底。TestBulletCandidateMatchesNormalOriginalSources 通過，驗 72 槽、58 組來源、124 個正常 consumer 與 15 槽覆蓋。020 經來源審查升 READY，尚未補姓名或人物到原生。
+- 來源續存 wip/sarkov-victory 與 github-sarkov-victory-progress.bundle，身分見 github-sarkov-victory-progress-source.json。main 保留已驗一般姿態；新勝利與子彈仍是進度保存。原版、衍生美術及二進位不入 Git，沒有建立或推送遠端。
+- 本輪一次性容器均 --rm；只保留上述三個仍需要的有界原生驗證。未建新 image，沒有主機工作負載、root-owned 檔案或誤建 Markdown 目錄。完整 HD Goal 保持進行。

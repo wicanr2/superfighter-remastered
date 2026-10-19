@@ -360,3 +360,11 @@ go run -p 1 /project/tools/input_receipt.go -root /orig -out /project/workplace/
 固定輸入為 SF.EXE SHA-256 24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300、SFMAN02.DAT e169a26f348ad6efc6563abe945698a7ccc2586134af611b5d5391e7984a30d6、NAME.XBB 60c0bbe367e44ab9fda512df2ba93ad62d70147df90079d07ff15818f21bad82。dosgolem 副本來源仍為既有 1719 檔；原生編譯使用 Go 1.24.13，圖片核對使用 Pillow 11.3.0。工具、全部來源雜湊與四份編譯輸入見 sarkov-integration-audit.json 及 bin/*.build.json。
 
 姓名語意沿用原字圖與原版正常畫面的既有證據，本輪只把已證實的 SARORKOV／88×11 接入呈現，並以真實 HUD 擷取驗來源及未知角色拒絕。沒有新增玩法推論。缺角色 1 的舊 v8 素材在九張擷取均整格回退；這不證明未支援的 WIN、替代色盤與幾何已完成。完整動畫及各快捷仍未知或未驗，不由一般槽登錄數推定。
+
+## 2026-10-20 薩爾可夫 WIN 與子彈一般來源
+
+薩爾可夫：BBWIN.FIG SHA-256 bf9aaca05512785be194558ee45b5e4dcba2b122583d83f9f63e3d577c5cac3d，原檔表 60h／圖像基底 180h，五個不同來源及完整別名存 sarkov-victory-source-v1。正常診斷與成對重播均選角色 1／4，第一人普通拳擊取得勝利，取樣原槽 0／2／3／4 的完整 bytes 與原檔吻合；槽 1 仍為靜態證據。NAME 槽 1／17 的實際 runtime caller IP 為 39DCh／39F9h，source SI 為 01FEh／368Ch，來源與位置獨立重組通過。檔案偏移與 runtime segment:offset 分開記錄，不用語意名覆蓋原定位。輸入雜湊、manifest 與 Go 1.24.13／Pillow 11.3.0 方法見 sarkov-victory-evidence-review.json、core receipt 及規格 019。
+
+已證實於本次成對重播：9,290 個比較邊界，原版狀態及即時 RGB 不變；23 個 WIN serial 取樣及六個保存畫格重組，下一回合清除勝利快照並顯示 1／0。這是取樣與正常生命週期證據，不是每個動畫畫格或原生視窗驗收。五張生成姿態及 72 槽讀取已驗，三個原生工作尚未結束。
+
+子彈：SFMAN03 一般表 B28h／基底 C48h 解出 58 組不同來源。hd-frame-bullet-v1 在 runtime 01B9:5DD3 保存 124 格，實際 2／4 角色、完整指標／bytes、原背景均吻合。NAME 槽 2 的檔案偏移為 05C8h，字圖為 BULLET／62×11，完整字圖 SHA-256 fcbd1dcf514526450e7588972384ed34896a601c1a9e432764fd664ab0e362c8；正常原貌與字圖均已目視。完整輸入 SHA-256、工具與來源記錄在 bullet-evidence-review.json。58 張手繪稿、72 槽與 typed 讀取測試通過，但尚未接入原生，不推定快捷、WIN、特效或完整動畫已驗。

@@ -133,3 +133,108 @@ func TestSarkovHUDUsesNormalCapturedName(t *testing.T) {
 		t.Fatal("unknown character was accepted", reason)
 	}
 }
+
+func TestSarkovVictoryUsesSeparateOriginalBank(t *testing.T) {
+	root, original := os.Getenv("KDZZ_HD_FIXTURES"), os.Getenv("KDZZ_ORIGINAL_ROOT")
+	if root == "" || original == "" {
+		t.Skip("local original sources not supplied")
+	}
+	assets, err := LoadCharacters(filepath.Join(root, "hd-characters-sarkov-victory-v1"), original)
+	if err != nil {
+		t.Fatal(err)
+	}
+	base, err := LoadCharacters(filepath.Join(root, "hd-characters-sarkov-candidate-v1"), original)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(assets.Manifest.Poses) != 445 || len(assets.Manifest.Atlases) != 20 ||
+		!reflect.DeepEqual(assets.Manifest.Poses[:len(base.Manifest.Poses)], base.Manifest.Poses) ||
+		!reflect.DeepEqual(assets.Manifest.Atlases[:len(base.Manifest.Atlases)], base.Manifest.Atlases) {
+		t.Fatal("existing assets changed or new sources incomplete")
+	}
+	unique, count := map[string]bool{}, 0
+	for _, pose := range assets.Manifest.Poses {
+		if pose.Character == 1 && pose.SourceBank == "victory" {
+			unique[pose.SourceSHA256] = true
+			count++
+		}
+	}
+	if count != 72 || len(unique) != 5 {
+		t.Fatal("wrong WIN source coverage", count, len(unique))
+	}
+	a, err := LoadVictories(original)
+	if err != nil {
+		t.Fatal(err)
+	}
+	dir := filepath.Join(root, "sarkov-victory-core-diagnostic-v1")
+	read := func(name string) []byte {
+		t.Helper()
+		data, err := os.ReadFile(filepath.Join(dir, name))
+		if err != nil {
+			t.Fatal(err)
+		}
+		return data
+	}
+	var receipt struct{ Captures []string }
+	if err := json.Unmarshal(read("receipt.json"), &receipt); err != nil {
+		t.Fatal(err)
+	}
+	verified, wins := 0, 0
+	for _, stem := range receipt.Captures {
+		var frame struct {
+			Counter uint16                      `json:"counter"`
+			Layers  []renderdata.Layer          `json:"layers"`
+			Victory *renderdata.VictorySnapshot `json:"victory"`
+		}
+		if err := json.Unmarshal(read(stem+".frame.json"), &frame); err != nil {
+			t.Fatal(err)
+		}
+		var palette [256][3]uint8
+		if err := json.Unmarshal(read(stem+".palette.json"), &palette); err != nil {
+			t.Fatal(err)
+		}
+		bank := false
+		for ordinal := range frame.Layers {
+			layer := &frame.Layers[ordinal]
+			layer.Indices = read(fmt.Sprintf("%s.layer-%02d.idx", stem, ordinal))
+			layer.Coverage = read(fmt.Sprintf("%s.layer-%02d.mask", stem, ordinal))
+			bank = bank || layer.Sprite != nil && layer.Sprite.SourceBank == "victory" && layer.Sprite.Character == 1
+		}
+		if selected, why := assets.Select(frame.Layers, palette); selected == nil {
+			t.Fatal(stem, why)
+		}
+		if selected, _ := base.Select(frame.Layers, palette); (selected == nil) != bank {
+			t.Fatal("legacy bank fallback changed", stem)
+		}
+		if v := frame.Victory; v != nil {
+			v.Underlay.Indices = read(stem + ".victory-under.idx")
+			v.Underlay.Coverage = read(stem + ".victory-under.mask")
+			for i := range v.Draws {
+				v.Draws[i].Source = read(fmt.Sprintf("%s.victory-%02d.source", stem, i))
+			}
+			selected, why := a.Select(v, frame.Layers, palette, frame.Counter)
+			if selected == nil {
+				t.Fatal(why)
+			}
+			if len(selected.Runs) != 2 || selected.Runs[0].Label != "SARORKOV" || selected.Runs[1].Label != "WIN" || selected.Runs[0].Bounds.Min.X != 96 || selected.Runs[0].Bounds.Dx() != 88 || selected.Runs[1].Bounds.Min.X != 193 {
+				t.Fatal("original name or placement changed", selected.Runs)
+			}
+			bad := *v
+			bad.Draws = append([]renderdata.VictoryDraw(nil), v.Draws...)
+			bad.Draws[0].X++
+			if got, _ := a.Select(&bad, frame.Layers, palette, frame.Counter); got != nil {
+				t.Fatal("wrong original name position accepted")
+			}
+			bad = *v
+			bad.State.Winner, bad.State.Characters[0] = 2, 2
+			if got, _ := a.Select(&bad, frame.Layers, palette, frame.Counter); got != nil {
+				t.Fatal("unknown character accepted")
+			}
+			wins++
+		}
+		verified++
+	}
+	if verified != 6 || wins != 1 {
+		t.Fatal("normal diagnostic fixtures missing", verified, wins)
+	}
+}
