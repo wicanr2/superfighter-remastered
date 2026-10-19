@@ -22,11 +22,21 @@ def main():
         assert sha(path) == item["sha256"], path
         assert path.stat().st_mode & 0o222 == 0, path
     checks.append("archive and 128 original files unchanged and read-only")
-    for item in read("workplace/dosgolem-patched-manifest.json")["tracked_files"]:
+    snapshot = read("workplace/dosgolem-patched-manifest.json")
+    for item in snapshot["tracked_files"]:
         path = root / "workplace/dosgolem-source" / item["name"]
         assert sha(path) == item["sha256"], path
-    checks.append("1713 dosgolem snapshot files unchanged")
+    checks.append(str(len(snapshot["tracked_files"])) + " current dosgolem snapshot file hashes valid")
     build = read("workplace/desktop-build.json")
+    native_snapshot = "current snapshot"
+    if build["dosgolem_manifest_sha256"] != sha(root / "workplace/dosgolem-patched-manifest.json"):
+        prior_file = root / snapshot["prior_manifest_file"]
+        assert sha(prior_file) == build["dosgolem_manifest_sha256"], "unresolved native dependency provenance"
+        prior = json.loads(prior_file.read_text())
+        current_files = {item["name"]: item["sha256"] for item in snapshot["tracked_files"]}
+        assert all(current_files.get(item["name"]) == item["sha256"] for item in prior["tracked_files"])
+        native_snapshot = "verified prior snapshot; additive research observer is not in native binaries"
+        checks.append(native_snapshot)
     for path, want in build["inputs"].items():
         assert sha(root / path) == want, path
     outputs = {item["path"]: item for item in build["outputs"]}
@@ -78,7 +88,7 @@ def main():
     subprocess.run(["bash", "-n", "tools/build_desktop.sh"], check=True)
     log = (root / "workplace/hd-checks.log").read_text()
     assert "internal/hd" in log and "internal/controls" in log and "FAIL" not in log
-    checks.append("current Go test/vet log, Python and shell syntax valid")
+    checks.append("native-background Go test/vet log checked; Python and shell syntax valid")
     bad = []
     for directory, dirs, files in os.walk(root):
         for name in dirs + files:
@@ -91,7 +101,7 @@ def main():
         assert (path.stat().st_uid, path.stat().st_gid) == (1000, 1000), path
     checks.append("no root-owned files or Markdown directories; sampled UID/GID 1000:1000")
     receipt = {"kind": "local native HD-background audit; not complete HD or physical gamepad acceptance",
-               "checks": checks, "script_sha256": sha(Path(__file__)),
+               "checks": checks, "native_snapshot_status": native_snapshot, "script_sha256": sha(Path(__file__)),
                "build_receipt_sha256": sha(root / "workplace/desktop-build.json"),
                "gpu_comparison_sha256": sha(root / "workplace/hd-native-v2/comparison.json")}
     (root / "workplace/hd-audit.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n")

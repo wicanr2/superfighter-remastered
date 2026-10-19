@@ -178,7 +178,14 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [tools/hd-preview.html](tools/hd-preview.html) | HD 背景、兩張透明角色與展示介面的分層試作，未接核心 |
 | [tools/hd_source_probe.py](tools/hd_source_probe.py) | Docker 內場景、CPM 及角色姿態候選解碼、色號抽樣與圖集蒐證 |
 | [tools/hd_frame_receipt.go](tools/hd_frame_receipt.go) | 正常單打／雙打的完整畫格、背景來源、姿態指標、座標及鏡像蒐證 |
+| [tools/sprite_draw_receipt.go](tools/sprite_draw_receipt.go) | 正常雙打逐次核對角色繪製、鏡像定位、裁切與原始 bytes 的只讀探針 |
+| [tools/hd_sprite_reference.py](tools/hd_sprite_reference.py) | 供重繪使用的原版姿態、尺寸與位置參考表，不把放大圖稱為 HD 美術 |
+| [tools/hd_actor_preview.go](tools/hd_actor_preview.go) | 以原版分層收據核對 HD 姿態、鏡像與裁切的可丟棄比較稿 |
+| [tools/audit_sprite_study.py](tools/audit_sprite_study.py) | 獨立重組分層收據，核對角色素材、觀測介面與證據版本 |
 | [docs/spec/006-rooftop-background.md](docs/spec/006-rooftop-background.md) | 原生屋頂 HD 背景的同畫格合成、完整原貌前景及回退契約 |
+| [docs/spec/007-memory-write-observation.md](docs/spec/007-memory-write-observation.md) | 同值重寫也可觀測的通用 public oracle 薄介面與取消契約 |
+| [docs/spec/008-hd-characters.md](docs/spec/008-hd-characters.md) | 完整角色分層、姿態來源、重繪註冊、完成門檻與已驗比較稿，DRAFT |
+| [tools/apply_write_observer.py](tools/apply_write_observer.py)、[觀測來源](tools/dosgolem-observer/memory_write_observer.go)、[合成程式驗證](tools/dosgolem-observer/memory_write_observer_test.go) | 在獨立副本新增通用 RAM 觀測，逐字保留前版 manifest |
 | [tools/prepare_hd_background.py](tools/prepare_hd_background.py) | Docker 準備本機背景素材與來源 manifest，保留原 PNG bytes |
 | [tools/verify_hd_capture.py](tools/verify_hd_capture.py) | Docker 核對原生同狀態 PNG、前景保留與 HD 切換重現性 |
 | [tools/audit_hd.py](tools/audit_hd.py) | Docker 核對目前來源、三平台二進位、HD 收據、文件回填與擁有權 |

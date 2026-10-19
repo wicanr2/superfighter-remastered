@@ -6,6 +6,8 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 目前已有原生雙打、兩人拳腳、斬四招、設定保存與可切換的屋頂 HD 背景。人物、招式與戰鬥介面保留原版。完整角色 HD、實體手把、完整回合、其他角色快捷、音訊與正式速度仍待驗收。最近收據及各平台限制見 [CONTEXT](CONTEXT.md)。
 
+角色 HD 已有斬與法蘭克共 48 個重繪姿態及[同狀態分層比較稿](workplace/hd-actor-preview-v3/frame-0386-hd.png)，涵蓋待機、蹲與跳等姿態。比較稿尚未接入原生播放器，製作契約見[角色規格](docs/spec/008-hd-characters.md)。
+
 ## 目前整合畫面
 
 ![兩人獨立手把指派與四格快捷設定](docs/screenshots/gamepad-settings.png)
@@ -76,7 +78,7 @@ bash tools/build_desktop.sh
 - [工作契約與索引](AGENTS.md)、[目前狀態](CONTEXT.md)、[工作清單](WORKLIST.md)。
 - [驗證範圍](VERIFICATION-MATRIX.md)、[研究證據](RESEARCH-LOG.md)、[工作歷程](WORKLOG.md)。
 - [原生桌面規格](docs/spec/005-native-desktop.md)、[輸入證據](docs/spec/004-live-input-slice.md)、[手把草案](docs/spec/002-gamepad-design.md)。
-- [HD 規格](docs/spec/003-hd-design.md)、[屋頂背景切片](docs/spec/006-rooftop-background.md)。背景已接原生對戰，角色動畫及介面重繪仍在製作。
+- [HD 規格](docs/spec/003-hd-design.md)、[屋頂背景切片](docs/spec/006-rooftop-background.md)、[角色分層](docs/spec/008-hd-characters.md)。背景已接原生對戰，完整角色動畫及介面重繪仍在製作。
 - [青衫與 SP Moves 歷史保存](docs/game-history.md)。
 
 自有程式與文件採 [RRSAL-1.0](LICENSE)，為 source-available 專案。此授權不涵蓋原版遊戲、外站原文與圖片或衍生美術；玩家須自備合法原版。專案與原版權利人沒有隸屬關係。內嵌中文字型另依 [SIL Open Font License](internal/desktop/assets/OFL.txt) 使用。

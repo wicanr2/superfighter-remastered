@@ -214,3 +214,18 @@ go run -p 1 /project/tools/input_receipt.go -root /orig -out /project/workplace/
 - 勘誤：首版把 DS:1334h 當成線性畫面裁切。核對 dosgolem `Indexed()`／`ScreenRGB()` 後確認目前 API 未套用硬體 CRTC 起點，改依其線性 A0000 契約核對；原失敗收據保留。本輪不修改硬體顯示契約，不宣稱實機捲動／震動 parity。
 - 勘誤：雙打首版用 Down 選法蘭克，實際仍是斬。原版為八人單列，後續用四次 Right 正常選角。錯誤選角收據及對應工具 bytes 保留，未改遊戲狀態。
 - 原生呈現僅觀測完整畫格，背景以固定 RAM 雜湊、色盤與相機核對後才合成。`workplace/hd-native-v2/comparison.json` 驗證同狀態切換及全部 HUD／高色盤前景輸出，遊戲核心、快捷設定及裝置指派相同。它只證明背景切片，不證明完整角色 HD、實體手把或全遊戲 parity。
+
+## 2026-10-19 追加：角色繪製定位與完整 RAM 分層
+
+本節補齊 HD 角色所需的最小證據，來源仍為固定 SHA-256 的 SF.EXE、SFMAN01.DAT 與 SFMAN05.DAT，完整雜湊列於規格 008。工具為 Go 1.24.13、原版 oracle、既有 IDA 9.4 匯出。IDA MZ 線性位址與 runtime segment:offset 分開使用，以下沒有改原始名稱。
+
+- 已證實的取樣範圍：IDA `sub_141FA`／`sub_1439B` 在 runtime `01B9:42A5`／`01B9:4446` 完成角色主圖像繪製；四個 blit 入口的 ES:DI、BX、CX、DX 與 DS:SI 提供目的位置、成對裁切、鏡像、色盤及完整來源 bytes。`sub_141E0` 的 DS:1335h 決定原版兩人的順序。
+- `tools/sprite_draw_receipt.go` 由正常標題選雙打、斬與法蘭克，再操作移動到場邊、普通拳腳、蹲、跳與空中前進。`sprite-draw-v1` 取得 1,432 次角色繪製；以原始 bytes 及入口暫存器獨立預測的完整緩衝區，全部與繪製後 64,000 個像素相同，來源 bytes 也全部相同。
+- 已證實：鏡像的 STOSB 寫入起點存在一像素偏移；不能直接用一般圖片鏡像的左上角取代。左右裁切先化為成對像素，奇數裁切會影響來源與起點。計算保留原 16-bit 運算，來源 raw、before／after fixtures 與樣本差異皆可回查。已動態覆蓋 00h、40h、80h、左右裁切；C0h 同時翻轉及負 Y 頂部裁切未動態驗，維持未知覆蓋範圍。
+- 既有 public `OnWrite` 只在值改變時通知，不能據此建立完整遮擋。原 machine 的 `WatchWrite` 已包含同值重寫，因此先建立規格 007 DRAFT、審查既有原始碼契約、升 READY，再增加不含遊戲分支的 public 薄介面及合成 COM 驗證。CPU、DOS、硬體 driver 與原版記憶體均未修改。
+- 新增的兩份 Go 檔只進本專案獨立 oracle 副本。前 1713 份來源完全不變，舊 manifest 逐字另存，SHA-256 `6d02e27d6f61bad7b3b3f07c9797fac1c6513b5e3093e41394420b2b8be215f6`；新 1715 檔 manifest 為 `6ad93295a80dbf590b88b64fab3acf1ffa6c31a32eb305e0a53936cb849f9732`。來源與套用工具在 tools/dosgolem-observer 及 apply_write_observer.py，可從原副本重生。
+- `sprite-layers-v1` 重跑同一正常輸入鏈，716 個完整畫格各分五層，依順序重組與原貌全部逐點相同，底層 64,000 像素完整覆蓋，保留 37,424,320 次同值重寫。1,432 次角色繪製的指令數、座標、姿態、旗標及來源指標與前輪逐項相同，支持新增觀測未改這條玩家路徑。
+- 原始色盤取樣只出現 P1 C0h 與 P2 E0h。受擊替代色盤沒有在這輪出現，不能把基本受傷後的畫面稱為替代色盤已驗；特殊技與對應色盤留到相關動作取樣。
+- 四張內建 image_gen 姿態表共 48 個角色姿態，依原版修正斬短黑髮／黑腰帶及法蘭克藍背心，原始 PNG 保留，不以濾鏡或待機圖代替動作。素材、逐組提示詞及原版參考表雜湊見 hd-sprite-art-v1/manifest.json。
+- `hd-actor-preview-v1` 的 alpha 邊界初始化誤用會正規化座標的 image.Rect，將整格空白也納入縮放，造成人物過窄。保留該版與工具原碼，改成明確的未正規化 Rectangle 累積邊界後，v2／v3 接地與尺寸已目視；這是比較工具的幾何錯誤，不改原版或生成圖來配合錯誤。
+- `hd-actor-preview-v3` 以原版分層及 48 姿態比較 16 個狀態，15 個有雙方對應，1 個缺斬 slot 56。原生玩家入口尚未接角色，未驗完整動作或正式 GUI。以上已回填規格 003、008、唯一現況與驗證矩陣，不從片段推論完整 HD 完成。
