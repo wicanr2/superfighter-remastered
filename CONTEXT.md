@@ -7,7 +7,7 @@
 - 參考 `/home/anr2/cht/zeliard` 的包裹與呈現方式。
 - dosgolem 直接執行原版核心，本專案處理前端、手把與 HD 呈現。
 - 使用者明確指定三平台原生桌面：Windows、macOS、Linux。玩家入口不使用 web；舊 HTTP／HTML 及瀏覽器收據只保留研究用途。
-- 支援手把操作與 HD。原生背景、斬／法蘭克／薩爾可夫的部分動作及素材登錄已接入，其他角色與畫面仍在製作。
+- 支援手把操作與 HD。原生背景、斬／法蘭克／薩爾可夫／子彈的部分動作及素材登錄已接入，其他角色與畫面仍在製作。
 - 使用者於 2026-10-19 回覆「ok B」，選定 HD 的 B「街機手繪」方向；只確認畫風，原版造型仍為修正依據。
 - 使用者後續明確同意 HD 規格開工，首批為屋頂、斬、法蘭克與對戰介面；技術未知仍依規格閘門處理。
 - 已授權逐角色快速出招，最多四格，R1／R2／L1／L2 預設對應絕招 1／2／3／4；五招角色可任選四招。兩名玩家分開保存設定，並規劃雙手把雙打。
@@ -24,13 +24,15 @@
 | 前端與手把 | 三平台共用原生桌面已接核心 | 現行 Linux／Wine 首勝與切換通過；一般操作、兩人獨立放開、特效扣血、設定重啟及失焦的十七項證據保留顯示修正基底身分。實體手把未驗 |
 | HD | 屋頂、部分角色、13 組特效、介面／勝場、柔邊陰影、開場及兩側首勝已接原生 | 斬首勝已驗兩平台；第二人法蘭克的抱胸、FRANK WIN 與右側勝場已驗 Linux，Wine 達執行期限，尚未通過。兩側核心來源取樣通過；完整動畫及其他角色／畫面未完成 |
 | 薩爾可夫一般姿態及姓名 | 已接原生，018 限定 CONFORMED | Linux／Wine 各七項、九張擷取，Linux 缺件九張整格回退通過；45 張姿態對應 72 個一般入口，共 373 鍵。原姓名 SARORKOV，設定識別字仍為 sarkov；勝利、替代色盤、快捷與完整動畫另驗 |
-| 薩爾可夫勝利 | 019 READY，實作及核心通過，原生驗證中 | 五張 WIN 姿態形成 445 鍵候選；9,290 個成對核心邊界與 23 個取樣通過。Linux、Wine、舊素材三個正常首勝工作仍在執行，尚無原生通過收據；候選二進位在 sarkov-victory-build-v1/bin，尚未移入 bin |
-| 子彈候選 | 020 READY，來源／58 張姿態／Go 讀取通過 | 72 個入口、五張 PNG、517 鍵候選，124 格正常 2／4 選角及屋頂來源吻合。原姓名 BULLET，62×11；原生姓名與人物尚未接入，WIN、特效與快捷另驗 |
+| 薩爾可夫勝利 | 019 READY，Linux 完整與 Wine 部分通過 | 9,290 成對邊界與 23 取樣通過；Linux 與舊素材各七張通過。Wine 六張證明勝利／切換，2400 秒期限前未到下一回合，僅有 partial 報告；三個首勝工作均已結束，不再輪詢舊 handle |
+| 子彈一般姿態與姓名 | 已接原生，020 限定 CONFORMED | Linux／Wine 各七項、九張擷取及 Linux 缺件九張回退通過；58 種姿態對應 72 一般入口。原姓名 BULLET，62×11。現行 517 鍵／25 PNG／四平台二進位已整合；WIN、特效、快捷與完整動畫另驗 |
+| 鳳凰準備 | 原版來源通過，首批 12 張候選 | 61 組原圖、124 格正常 3／4 選角及屋頂來源吻合；目前只備妥 12 張姿態，餘 49 張、Go 讀取與原生均未完成。PNG 與內建 imagegen 提示詞在 phoenix-art-v1 |
+| 原生效能診斷 | v2／v3 均已完成，後端樣本待續判讀 | v2 的 20 秒區間推進 875 萬步／14 格，CPU 樣本以 Wine／OpenGL 原生圖形呼叫為主。v3 指定 DirectX 的區間推進 1000 萬步／16 格；仍為單次診斷，未修改正式程式或步速 |
 | 顯示起點修正 | 已接原生，015 限定 CONFORMED | Linux／Wine 各十張開場、Linux 對戰十五張與舊素材十一張全部核對；起點第 7／11／12 列及可見尾端逐格正確，原貌與 HD 共用映射 |
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | Windows／macOS／Linux 已定 | 四個薩爾可夫整合版二進位已核對來源與格式；Linux／Wine 一般操作及切換通過。舊勝負版另存原收據與四個二進位；未作 Windows／macOS 真機、簽章或正式封包；Wine 不代替真機 |
+| 平台與發布 | Windows／macOS／Linux 已定 | 四個子彈整合版二進位已核對來源與格式，移入 bin；Linux／Wine 子彈一般操作及切換通過。薩爾可夫勝利四份基底另存；未作 Windows／macOS 真機、簽章或正式封包；Wine 不代替真機 |
 
 ## 固定輸入
 
@@ -82,11 +84,11 @@ sf
 
 ## 待確認決策與下一步
 
-屋頂、三名角色的已驗一般動作及兩名角色的特效／勝利已接原生。薩爾可夫的一般姿態與姓名依 018 通過限定驗證；接著續做完整動畫、勝利、其餘動作、替代色盤、角色、場景及標題／選角／結果。第二人法蘭克勝利已驗 Linux，Wine 案例達期限未通過，另處理驗證效能。使用者 Goal 仍是「完成快打至尊HD」，不能以首批切片宣稱完成。018 限定 CONFORMED；016／017 的兩平台 CONFORMED 範圍仍限定斬首勝。
+屋頂與四名角色的已驗一般動作已接原生，子彈 020 已限定 CONFORMED。接著補鳳凰其餘姿態、原生效能、完整動畫、勝利、替代色盤、其他角色／場景及標題／選角／結果。薩爾可夫勝利已驗 Linux 完整流程及 Wine 畫面／切換，Wine 下一回合未驗完，019 保持 READY。第二人法蘭克的 Wine 勝利也未通過。先查效能，不能以提高期限反覆重跑代替理解。使用者 Goal 仍是「完成快打至尊HD」，不能以首批切片宣稱完成。
 
 使用者指定的[說明書頁面](https://chiuinan.github.io/game/game/intro/ch/c51/sf.htm)及兩張圖片已存檔，版本自述為 1.1。原生入口目前採西側面鍵拳、南側面鍵腳與八方向；Start／Esc 暫停前端，沒有把 Esc 送原版觸發說明書記載的補血。鍵鼠正常路徑已驗，實體手把另驗；完整手把規格仍有未驗部分。
 
-HD 採 B「街機手繪」。現行群組為 `hd-characters-sarkov-candidate-v1`，沿用準備時名稱，共十九張透明圖集、373 個姿態鍵：216 個一般來源槽、13 個第二色盤特效鍵、144 個 WIN 入口。保留 v8 的 301 鍵及十五張 PNG，新增薩爾可夫 72 個一般入口與四張 PNG；一般來源共 162 組不同 bytes。WIN 仍只對應斬／法蘭克的七張姿態。來源與提示詞在既有 hd-sprite-art、hd-effect-art、victory-art 及 sarkov-art 目錄，登錄保留原 PNG bytes。來源槽齊全不等於完整動畫已驗；C0h 同時翻轉、頂部裁切、受擊替代色盤及剩餘介面待補。正式倍率、像素比例與預設模式尚未定版。
+HD 採 B「街機手繪」。現行群組為 `hd-characters-bullet-candidate-v1`，沿用準備時名稱，共 25 張透明圖集、517 個姿態鍵：288 個一般來源槽、13 個第二色盤特效鍵、216 個 WIN 入口。一般來源共 220 組不同 bytes；WIN 對應斬／法蘭克／薩爾可夫十二張不同姿態。來源與提示詞留各自 art 目錄，登錄保留原 PNG bytes。來源槽齊全不等於完整動畫已驗；C0h 同時翻轉、頂部裁切、受擊替代色盤及剩餘介面待補。正式倍率、像素比例與預設模式尚未定版。
 
 目前 dosgolem 獨立副本有 1719 份來源，前版 1715 份 bytes 不變，新增四份已驗顯示 API 與測試。舊 manifest 保存於 `dosgolem-patched-manifest-v2.json`，現行身分見 `dosgolem-patched-manifest.json`。四個二進位的實際編譯身分見 `bin/*.build.json`；目前勝負切片以 `victory-core-compat-v2`、`native-victory-v1` 及 `windows-victory-v1` 為準。顯示修正基底的四個二進位與 30 份編譯輸入另存 `native-display-opening-v2/build-baseline`，舊收據保留各自版本身分。
 
@@ -98,16 +100,18 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ## 現行證據入口
 
-### 正在驗證的薩爾可夫勝利與下一角色
+### 目前子彈整合與薩爾可夫勝利限制
 
 - [規格 019](docs/spec/019-sarkov-victory.md)為 READY。只新增勝負姓名角色 1，原版核心未改。`sarkov-victory-core-v1` 的 9,290 個成對比較邊界、23 個 WIN 取樣及六個保存畫格通過獨立來源重組；取樣槽 0／2／3／4，槽 1 只有原檔與登錄證據。`sarkov-victory-checks-v1.log` 記錄完整程式套件測試及 go vet 通過。
 - 候選 `hd-characters-sarkov-victory-v1` 保留舊 373 鍵與十九張 PNG，新增 BBWIN 的 72 入口與一張 PNG，共 445 鍵。五張姿態、原 PNG 與內建 imagegen 精確提示詞在 `sarkov-victory-art-v1`。勝利文字實際位置為 SARORKOV (96,54,88,11)、WIN (193,54,31,11)，不改原字圖矩形。
-- 本輪三個原生工作仍有界執行：`kdzz-native-sarkov-victory-v1`／session 71285、`kdzz-windows-sarkov-victory-v1`／23441、`kdzz-native-sarkov-victory-legacy-v1`／8314。輸出目錄與容器同名但不含 kdzz- 前綴。各程式上限 2400 秒，外層 2550 秒，均 --rm。下一輪先核對相同 handle、容器及 receipt／failure，不因觀測逾時重開。沒有原生完成收據前不升 CONFORMED 或替換 bin。
-- 目前 bin 仍為下節的已驗 636f6ad 一般姿態基底。其四個二進位與 35 份精確編譯輸入已另存 `sarkov-victory-core-diagnostic-v1/build-baseline`；勝利候選在 `sarkov-victory-build-v1/bin`，來源與格式已核對。
-- [規格 020](docs/spec/020-bullet-hd.md)為 READY。`bullet-source-v1` 的 58 組原圖、`bullet-art-v1` 的五張透明 PNG／精確提示詞及 72 個一般入口形成 517 鍵候選。`hd-frame-bullet-v1` 的 124 個正常來源與 `bullet-candidate-checks-v1.log` 通過，BULLET 原字圖與正常畫面已目視；人物與姓名未接原生。槽 41 的全藍受擊圖保留原色態。
-- 來源審查見 [薩爾可夫勝利](workplace/sarkov-victory-evidence-review.json)與[子彈](workplace/bullet-evidence-review.json)。本輪自有來源備份為 `workplace/github-sarkov-victory-progress.bundle`，身分見 `workplace/github-sarkov-victory-progress-source.json`；這是進度保存，完整 HD 與原生首勝仍未完成。
+- 三個首勝工作均已結束且容器已移除。Linux 與舊素材各七張通過完整重組；Wine 在 2400.01 秒結束，六張具名擷取通過 `animation-comparison-partial.json`，字圖各 6,890 個變動像素／1,981 個金色點。下一回合未觀察到，原失敗檔不改成成功收據；不再輪詢 71285／23441／8314。
+- [規格 020](docs/spec/020-bullet-hd.md)限定 CONFORMED。`native-bullet-v1`／`windows-bullet-v1` 各七項、九張完整重組，`native-bullet-missing-v1` 九張整格原貌通過。兩平台各自切回 HD 逐點一致，設定與來源相同；不稱跨平台同狀態。Go 全套程式測試與 go vet、真實 HUD 的 BULLET／62×11 正向與未知角色拒絕測試均通過。
+- 子彈在隔離 `feature/bullet-hd` 接入，只補一般戰鬥姓名，不啟用未驗快捷。舊基底不變，517 鍵／25 PNG 群組與四個已驗編譯產物已移入 bin，紀錄為 `bullet-build-v1/promotion.json`。薩爾可夫勝利的 35 份輸入及四個基底二進位另存 `native-sarkov-victory-v1/build-baseline`；019 的歷史收據不當作新二進位全流程驗收。
+- 效能樣本 v1 含正常操作中 F12 的 PNG 壓縮與 GPU 讀回，不用來改遊戲。v2 已完成，正常 HD 後的 20.003 秒區間未截圖或送新輸入，推進 875 萬步／14 格；15 秒 CPU 樣本中 commandQueue.flush 至 purego.SyscallN 累計約 51.2%，Game.Draw 約 3.37%。這支持先追查 Wine／OpenGL 原生圖形呼叫，不足以判定精確驅動原因。v3 只將診斷驅動器的後端要求改成 DirectX，已完成 receipt，20.001 秒推進 1000 萬步／16 格；cpu.pprof 待續判讀，不能用單次區間宣稱改善。兩容器均已移除，原二進位不變；任何診斷 receipt 均不算正式平台驗收。
+- 鳳凰的 61 組原圖及 `hd-frame-phoenix-v1` 的 124 個 3／4 正常來源通過，目前只有十二張候選。首稿視覺拒用保留，修正版由 imagegen 編輯並通過透明分隔與正常合成預覽，沒有用程式改原 PNG；預覽只是診斷圖。其餘 49 張、完整候選與原生尚未完成。
+- 來源審查見 [薩爾可夫勝利](workplace/sarkov-victory-evidence-review.json)與[子彈](workplace/bullet-evidence-review.json)。本輪進度備份為 `workplace/github-bullet-integration-progress.bundle`，身分見 `workplace/github-bullet-integration-progress-source.json`。完整 HD、Wine 勝利生命週期與正式交付未完成，GitHub 遠端仍未建立。
 
-### 目前薩爾可夫一般姿態切片
+### 薩爾可夫一般姿態基底
 
 - [規格 018](docs/spec/018-sarkov-hd.md)限定 CONFORMED。`native-sarkov-v2`／`windows-sarkov-v2` 各七項、九張擷取通過，正常選角為 1／4，普通行走、蹲、跳、拳擊及暫停切換完整。人物、屋頂、姓名、陰影同格 HD，沒有用快捷或狀態注入。
 - 各目錄 `sarkov-comparison.json` 獨立重組全部九張原版來源。暫停三張的核心、來源與設定相同，恢復 HD 的遊戲區逐點一致。Linux 範例的薩爾可夫輸出變動 28,859 點、法蘭克 22,239 點；姓名矩形有 8,712 點變動。姓名另由真實 HUD 的 Go 測試及目視確認 SARORKOV，不以變動數字單獨證明字形。

@@ -26,3 +26,10 @@
 4. 使用缺薩爾可夫 WIN 的 373 鍵舊群組，驗正常一般對戰可 HD、勝利整張原貌、下一回合恢復 HD。核對四個編譯產物及精確輸入；不以交叉編譯代替真機。
 
 研究及素材工具為 [來源參考](../../tools/victory_pose_reference.py)、[WIN 登錄](../../tools/prepare_victory_characters.py)與[正常核心](../../tools/victory_core_receipt.go)。原版、衍生美術與收據只留本機，不加入 Git 或公開產物。來源與驗收不足的部分保留 unknown，不藉 HD 能顯示升級為原版 parity。
+
+## 原生驗證現況
+
+- `native-sarkov-victory-v1` 七張完整來源重組、人物／文字、暫停切換與下一回合清除通過。兩張 GPU 字圖擷取各有 6,890 個變動像素、1,981 個金色實心像素，寫入限制於原字圖矩形。
+- `native-sarkov-victory-legacy-v1` 使用缺薩爾可夫 WIN 的舊 373 鍵群組，七張重組與勝利整格原貌通過；一般戰鬥及下一回合仍可 HD。
+- `windows-sarkov-victory-v1` 已取得勝利及原貌／HD／恢復三張同狀態畫面，共六張具名擷取。2400 秒總上限結束時，核心到 937,250,000 步，尚未進下一回合。`animation-comparison-partial.json` 只核對這六張及相同 GPU 字圖範圍，明列 full_scenario_complete=false、next_round_cleared=null，不產生 receipt.json 或冒充整個案例通過。
+- 因 Wine 下一回合閘門尚未完成，本規格保持 READY。既有原版規則未改，先以獨立 CPU 取樣研究原生呈現效能，不直接提高期限重跑整場。該批四個二進位及 35 份編譯輸入另存 `native-sarkov-victory-v1/build-baseline`，後續角色擴充不重寫本批身分。

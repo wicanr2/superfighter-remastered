@@ -308,3 +308,21 @@
 - 517 鍵／25 張 PNG 的子彈候選保留 445 鍵基底。TestBulletCandidateMatchesNormalOriginalSources 通過，驗 72 槽、58 組來源、124 個正常 consumer 與 15 槽覆蓋。020 經來源審查升 READY，尚未補姓名或人物到原生。
 - 來源續存 wip/sarkov-victory 與 github-sarkov-victory-progress.bundle，身分見 github-sarkov-victory-progress-source.json。main 保留已驗一般姿態；新勝利與子彈仍是進度保存。原版、衍生美術及二進位不入 Git，沒有建立或推送遠端。
 - 本輪一次性容器均 --rm；只保留上述三個仍需要的有界原生驗證。未建新 image，沒有主機工作負載、root-owned 檔案或誤建 Markdown 目錄。完整 HD Goal 保持進行。
+
+## 2026-10-20 子彈一般姿態整合與勝利驗證結果
+
+- 隔離 feature/bullet-hd 加入原姓名 BULLET，使用正常擷取 HUD 驗 62×11 字圖及未知角色拒絕。完整 internal／cmd 測試與 go vet、後續 HUD 定向測試均通過。未改原版核心、輸入或設定格式。
+- native-bullet-v1／windows-bullet-v1 各七項、九張擷取通過正常選角、行走、蹲、跳、拳及同狀態切換；native-bullet-missing-v1 九張均整格原貌。獨立工具由原檔重組來源、圖層、陰影及姓名，並核對切回 HD 逐點一致；已目視 Linux／Wine 圖片。
+- 020 限定 CONFORMED。517 鍵／25 PNG 群組保留既有來源，四個候選二進位與原編譯收據移入 bin；promotion.json 保存身分。Win 基底的 35 份輸入及四個二進位另存 native-sarkov-victory-v1/build-baseline，不把舊收據外推到新二進位。
+- 薩爾可夫 Linux 與舊素材首勝各七張完整通過。Wine 在 2400.01 秒期限結束，僅六張勝利／切換；新增 --partial-native 僅核對已取得畫面，保存 animation-comparison-partial.json，明列 full_scenario_complete=false。沒有偽造下一回合收據，019 保持 READY。三個首勝容器均已結束。
+- 鳳凰正常來源 61 組及 124 個 consumer 通過，內建 imagegen 首批十二張候選保存於 phoenix-art-v1。首稿拒用與修正版、提示詞及透明合成預覽保留；其餘 49 張、完整素材與原生尚未完成。
+- Wine CPU 診斷 v1 含 F12 PNG 開銷，不能代表平常對戰。v2 已完成：正常 HD 後 20.003 秒不截圖／不送輸入，推進 875 萬步與 14 格；15 秒取樣以原生圖形呼叫為主，commandQueue.flush 至 purego.SyscallN 約 51.2%，Game.Draw 約 3.37%。未依此猜改遊戲。v3 沿用診斷二進位，只比較 DirectX；有界容器狀態見 CONTEXT。
+- feature/bullet-hd 的 5d4400d 已合入 wip/sarkov-victory，整合提交 5c9cbd6。README、現況、清單、驗證矩陣與 019 補上實際範圍；完整 HD 仍未完成。
+
+## 2026-10-20 GitHub 建立與上傳準備
+
+- 使用者要求建立 GitHub 儲存庫並上傳成果。沿用既有私人目標 wicanr2/superfighter-remastered；不擴張為公開發布或 Release。
+- 主機 gh auth status 的 require_escalated 呼叫被自動權限政策拒絕，命令未執行，不能據此判定主機憑證失效。沒有改以容器讀取主機憑證或繞過拒絕。GitHub 插件查詢顯示尚未連接，且七日內已建議過，未重複推送安裝提示。
+- 最新 166 份自有來源與文件整理到既有獨立 Git 副本 /tmp/kdzz-superfighter-publish。保留 main 已驗基底及 wip/sarkov-victory 最新實作，不以未完成勝利流程覆蓋穩定分支。原版資料、HD 衍生美術、私有 dosgolem、收據、二進位與快取仍排除。
+- 本輪準備完整歷史備份 workplace/github-bullet-integration-progress.bundle，逐檔來源及稽核存 github-bullet-integration-progress-source.json。遠端建立與推送仍受環境權限限制，不能聲稱已上傳。
+- 保存前確認 v3 已完成 receipt，沒有 failure；20.001 秒區間推進 1000 萬步／16 格。保留 CPU 原樣本供後續判讀，不用單次結果聲稱換後端有效。相關診斷容器已全部結束，kdzz 容器清單為空。

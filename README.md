@@ -8,7 +8,7 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 斬與法蘭克已對應全部 144 個一般來源槽、13 組第二色盤特效，以及 WIN 圖像的 144 個入口。WIN 入口對應七張不同勝利姿態，與一般動作分開辨識；登錄齊全不代表完整動畫已驗。介面基底的 Linux 案例通過 16 項檢查，Windows Wine 的斬、法蘭克案例各通過 16 項，包含特效、介面及同狀態切換。兩平台的法蘭克案例另驗到實際扣血。完整動畫與其他角色仍未完成，製作契約見[角色](docs/spec/008-hd-characters.md)、[特效](docs/spec/009-hd-effects.md)、[戰鬥介面](docs/spec/010-hd-battle-hud.md)及[勝利姿態](docs/spec/017-victory-pose-banks.md)。
 
-薩爾可夫的一般姿態與姓名已接入原生，Linux／Wine 均驗行走、蹲、跳、拳擊與切換。45 張不同姿態對應 72 個一般來源入口，目前素材群組共 373 個鍵；勝利、替代色盤、完整動畫及快捷另驗。原圖、透明 PNG 與提示詞只留本機，接入範圍見[規格 018](docs/spec/018-sarkov-hd.md)。
+斬、法蘭克、薩爾可夫與子彈的一般姿態已接入原生，實測範圍見[薩爾可夫](docs/spec/018-sarkov-hd.md)與[子彈](docs/spec/020-bullet-hd.md)。目前群組共 517 個鍵，包含四人的一般來源、既有特效與三人的 WIN 入口。薩爾可夫首勝已驗 Linux 完整流程及 Wine 勝利畫面／切換，Wine 下一回合仍未驗完。完整動畫、替代色盤、其他角色快捷及其餘角色／場景仍在製作。
 
 ## 目前整合畫面
 
@@ -17,6 +17,14 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 Windows 原生程式在 Wine 中顯示的設定介面，擷取於原版核心執行前。可分別指派兩人的手把，逐角色設定 R1／R2／L1／L2。擷取時未連接實體手把。[截圖來源](docs/screenshots/source.json)。
 
 以下對戰圖片含原版及衍生美術，僅留本機工作區，GitHub 不收錄圖片檔：
+
+![子彈對法蘭克的原生 HD 人物與姓名](workplace/native-bullet-v1/hd-paused.png)
+
+子彈以原姓名 `BULLET` 顯示，58 張姿態對應 72 個一般入口。Linux／Wine 均由正常選角驗行走、蹲、跳、拳擊與切換；[同狀態原貌](workplace/native-bullet-v1/original-paused.png)及[恢復 HD](workplace/native-bullet-v1/hd-restored.png)已獨立核對。快捷與雙人手把入口沿用既有設定，子彈的快捷尚未啟用。[範圍與限制](docs/spec/020-bullet-hd.md)。
+
+![薩爾可夫正常首勝的 HD 姿態與 SARORKOV WIN](workplace/native-sarkov-victory-v1/victory-hd.png)
+
+Linux 以普通方向與拳鍵取得第一人勝利，人物讀取獨立 BBWIN 圖像。七張擷取包含下一回合清除；Wine 另核對到勝利及同狀態切換，尚未取得下一回合收據。[勝利驗證範圍](docs/spec/019-sarkov-victory.md)。
 
 ![薩爾可夫對法蘭克的 HD 人物、原姓名與屋頂](workplace/native-sarkov-v2/hd-rooftop.png)
 
@@ -87,7 +95,7 @@ bash tools/build_desktop.sh
 
 本機屋頂試作素材已備妥時，可加上 `-hd-assets workplace/hd-rooftop-study`，再按「原貌／HD 背景」切換。素材準備與驗證見[背景規格](docs/spec/006-rooftop-background.md)。沒有素材或場景未對應時顯示原貌。
 
-角色與特效試作再加上 `-hd-characters workplace/hd-characters-sarkov-candidate-v1`，按「原貌／HD 角色」切換。此群組保留斬／法蘭克基底，再加入薩爾可夫一般姿態。背景、兩名角色、來源與圖層全部符合才顯示 HD，缺動作或未知色盤時整張回退。新版仍接受舊版角色素材。此素材群組僅供本機研究，基底準備工具為 `tools/prepare_hd_characters.py`，勝利姿態登錄使用 `tools/prepare_victory_characters.py`，一般角色擴充使用 `tools/prepare_character_extension.py`。
+角色與特效試作再加上 `-hd-characters workplace/hd-characters-bullet-candidate-v1`，按「原貌／HD 角色」切換。此群組保留既有基底，加入薩爾可夫 WIN 與子彈一般姿態。背景、兩名角色、來源與圖層全部符合才顯示 HD，缺動作或未知色盤時整張回退。新版仍接受舊版角色素材。此素材群組僅供本機研究，基底準備工具為 `tools/prepare_hd_characters.py`，勝利姿態登錄使用 `tools/prepare_victory_characters.py`，一般角色擴充使用 `tools/prepare_character_extension.py`。
 
 含特效的新版群組也啟用高解析生命、計時、名字、玩家標記、勝場與地面陰影，來源驗證失敗時整張回退。舊版 1 素材保留原貌介面、特效與陰影。
 
