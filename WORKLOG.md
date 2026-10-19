@@ -357,3 +357,4 @@
 - 下一角色嵐已解 72 槽／59 組原圖，hd-frame-lan-v1 正常 6／4 共 124 格的完整 bytes 與屋頂吻合。私有探針使用第二人普通 Left 兩次，來源 SHA 與收據相符，尚未生成 HD 或接原生。
 - 本輪建置、正常來源探針、Xvfb／Wine 與三個 GUI 案例容器均已結束。沒有重啟舊勝利工作；019 的 Wine 下一回合仍未驗完。完整 HD、其餘角色／場景／畫面、各角色 WIN／特效／快捷及完整動畫、實體平台／雙手把、音訊／速度與正式封包仍待完成，Goal 保持 active。
 - 自有來源、文件及完整 Git 歷史保存於獨立副本與 workplace/github-onimaru-integration-progress.bundle，逐檔身分見 github-onimaru-integration-progress-source.json。原版、衍生美術、研究資料與二進位仍排除 Git，遠端未建立或推送。
+- 收尾工具先誤用舊角色成功標記，再以不存在的 effect 欄位分類，將 13 個 palette_bank=1 入口算入一般槽。對照實際日誌、manifest 及 Go 型別後修正工具，保留一般 432／特效 13／WIN 216 的原預期，未改素材、程式或產品驗收門檻；乾淨重跑收尾核對。
