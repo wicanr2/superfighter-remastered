@@ -7,7 +7,7 @@
 - 參考 `/home/anr2/cht/zeliard` 的包裹與呈現方式。
 - dosgolem 直接執行原版核心，本專案處理前端、手把與 HD 呈現。
 - 使用者明確指定三平台原生桌面：Windows、macOS、Linux。玩家入口不使用 web；舊 HTTP／HTML 及瀏覽器收據只保留研究用途。
-- 支援手把操作與 HD。原生背景、斬／法蘭克／薩爾可夫／子彈／鳳凰的部分動作及素材登錄已接入，其他角色與畫面仍在製作。
+- 支援手把操作與 HD。原生背景、斬／法蘭克／薩爾可夫／子彈／鳳凰／鬼丸的部分動作及素材登錄已接入，其他角色與畫面仍在製作。
 - 使用者於 2026-10-19 回覆「ok B」，選定 HD 的 B「街機手繪」方向；只確認畫風，原版造型仍為修正依據。
 - 使用者後續明確同意 HD 規格開工，首批為屋頂、斬、法蘭克與對戰介面；技術未知仍依規格閘門處理。
 - 已授權逐角色快速出招，最多四格，R1／R2／L1／L2 預設對應絕招 1／2／3／4；五招角色可任選四招。兩名玩家分開保存設定，並規劃雙手把雙打。
@@ -27,13 +27,14 @@
 | 薩爾可夫勝利 | 019 READY，Linux 完整與 Wine 部分通過 | 9,290 成對邊界與 23 取樣通過；Linux 與舊素材各七張通過。Wine 六張證明勝利／切換，2400 秒期限前未到下一回合，僅有 partial 報告；三個首勝工作均已結束，不再輪詢舊 handle |
 | 子彈一般姿態與姓名 | 已接原生，020 限定 CONFORMED | Linux／Wine 各七項、九張擷取及 Linux 缺件九張回退通過；58 種姿態對應 72 一般入口。原姓名 BULLET，62×11。現行 517 鍵／25 PNG／四平台二進位已整合；WIN、特效、快捷與完整動畫另驗 |
 | 鳳凰一般姿態與姓名 | 已接原生，021 限定 CONFORMED | 61 組原圖、72 入口，現行 589 鍵／31 PNG；Linux／Wine 各七項、九張完整重組及 Linux 缺件九張整格原貌通過。原姓名 PHO HUANG／93×11，真實 HUD、Go 測試與四平台編譯來源通過；WIN／快捷與完整動畫另驗 |
-| 鬼丸準備 | 原版來源與正常 consumer 通過，尚無 HD 稿 | onimaru-source-v1 解 72 槽／66 組原圖；hd-frame-onimaru-v2 正常 5／4 共 124 格來源及屋頂吻合。第二人普通 Left 一次選法蘭克；v1 的 5／1 失敗及逐步選角圖保留，不改標成通過 |
+| 鬼丸一般姿態與姓名 | 已接原生，022 限定 CONFORMED | 66 組／72 入口、現行 661 鍵／37 PNG；Linux／Wine 各七項、九張完整重組及 Linux 缺件九張整格原貌通過。ONIMALU／72×11 與 L 字模、真實 HUD、Go 測試及四平台來源通過；WIN／快捷與完整動畫另驗 |
+| 嵐準備 | 原版來源與正常 consumer 通過，尚無 HD 稿 | lan-source-v1 解 72 槽／59 組；hd-frame-lan-v1 正常 6／4 共 124 格的指標、完整 bytes 及屋頂來源吻合。第二人普通 Left 兩次選法蘭克，未注入狀態 |
 | 原生效能診斷 | v2／v3 已判讀，未修改正式程式 | v2 的 20 秒區間推進 875 萬步／14 格，Wine／OpenGL 原生圖形呼叫為主。v3 指定 DirectX 推進 1000 萬步／16 格，cgocall 包含視窗事件與游標呼叫；單次區間不證明解決速度。證據在 desktop-performance-v3/analysis.json |
 | 顯示起點修正 | 已接原生，015 限定 CONFORMED | Linux／Wine 各十張開場、Linux 對戰十五張與舊素材十一張全部核對；起點第 7／11／12 列及可見尾端逐格正確，原貌與 HD 共用映射 |
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | Windows／macOS／Linux 已定 | 四個鳳凰整合版二進位已核對來源與格式並移入 bin；Linux／Wine 鳳凰一般操作及切換通過。舊子彈四份基底仍在 bullet-build-v1/bin；未作 Windows／macOS 真機、簽章或正式封包；Wine 不代替真機 |
+| 平台與發布 | Windows／macOS／Linux 已定 | 四個鬼丸整合版二進位已核對來源與格式並移入 bin；Linux／Wine 鬼丸一般操作及切換通過。舊鳳凰四份基底仍在 phoenix-build-v1/bin；未作 Windows／macOS 真機、簽章或正式封包；Wine 不代替真機 |
 
 ## 固定輸入
 
@@ -85,11 +86,11 @@ sf
 
 ## 待確認決策與下一步
 
-屋頂與五名角色的已驗一般動作已接原生，鳳凰 021 已限定 CONFORMED。接著準備鬼丸，再續原生效能、完整動畫、勝利、替代色盤、其他角色／場景及標題／選角／結果。薩爾可夫勝利已驗 Linux 完整流程及 Wine 畫面／切換，Wine 下一回合未驗完，019 保持 READY。第二人法蘭克的 Wine 勝利也未通過。先查效能，不能以提高期限反覆重跑代替理解。使用者 Goal 仍是「完成快打至尊HD」，不能以首批切片宣稱完成。
+屋頂與六名角色的已驗一般動作已接原生，鬼丸 022 已限定 CONFORMED。接著製作嵐的一般候選，再續原生效能、完整動畫、勝利、替代色盤、其他角色／場景及標題／選角／結果。薩爾可夫勝利已驗 Linux 完整流程及 Wine 畫面／切換，Wine 下一回合未驗完，019 保持 READY。第二人法蘭克的 Wine 勝利也未通過。先查效能，不能以提高期限反覆重跑代替理解。使用者 Goal 仍是「完成快打至尊HD」，不能以首批切片宣稱完成。
 
 使用者指定的[說明書頁面](https://chiuinan.github.io/game/game/intro/ch/c51/sf.htm)及兩張圖片已存檔，版本自述為 1.1。原生入口目前採西側面鍵拳、南側面鍵腳與八方向；Start／Esc 暫停前端，沒有把 Esc 送原版觸發說明書記載的補血。鍵鼠正常路徑已驗，實體手把另驗；完整手把規格仍有未驗部分。
 
-HD 採 B「街機手繪」。現行群組為 `hd-characters-phoenix-candidate-v1`，沿用準備時名稱，共 31 張透明圖集、589 個姿態鍵：360 個一般來源槽、13 個第二色盤特效鍵、216 個 WIN 入口。一般來源共 281 組不同 bytes；WIN 對應斬／法蘭克／薩爾可夫十二張不同姿態。來源與提示詞留各自 art 目錄，登錄保留原 PNG bytes。來源槽齊全不等於完整動畫已驗；C0h 同時翻轉、頂部裁切、受擊替代色盤及剩餘介面待補。正式倍率、像素比例與預設模式尚未定版。
+HD 採 B「街機手繪」。現行群組為 `hd-characters-onimaru-candidate-v1`，沿用準備時名稱，共 37 張透明圖集、661 個姿態鍵：432 個一般來源槽、13 個第二色盤特效鍵、216 個 WIN 入口。一般來源共 347 組不同 bytes；WIN 對應斬／法蘭克／薩爾可夫十二張不同姿態。來源與提示詞留各自 art 目錄，登錄保留原 PNG bytes。來源槽齊全不等於完整動畫已驗；C0h 同時翻轉、頂部裁切、受擊替代色盤及剩餘介面待補。正式倍率、像素比例與預設模式尚未定版。
 
 目前 dosgolem 獨立副本有 1719 份來源，前版 1715 份 bytes 不變，新增四份已驗顯示 API 與測試。舊 manifest 保存於 `dosgolem-patched-manifest-v2.json`，現行身分見 `dosgolem-patched-manifest.json`。四個二進位的實際編譯身分見 `bin/*.build.json`；目前勝負切片以 `victory-core-compat-v2`、`native-victory-v1` 及 `windows-victory-v1` 為準。顯示修正基底的四個二進位與 30 份編譯輸入另存 `native-display-opening-v2/build-baseline`，舊收據保留各自版本身分。
 
@@ -101,7 +102,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ## 現行證據入口
 
-### 目前鳳凰整合與薩爾可夫勝利限制
+### 目前鬼丸整合與薩爾可夫勝利限制
 
 - [規格 019](docs/spec/019-sarkov-victory.md)為 READY。只新增勝負姓名角色 1，原版核心未改。`sarkov-victory-core-v1` 的 9,290 個成對比較邊界、23 個 WIN 取樣及六個保存畫格通過獨立來源重組；取樣槽 0／2／3／4，槽 1 只有原檔與登錄證據。`sarkov-victory-checks-v1.log` 記錄完整程式套件測試及 go vet 通過。
 - 候選 `hd-characters-sarkov-victory-v1` 保留舊 373 鍵與十九張 PNG，新增 BBWIN 的 72 入口與一張 PNG，共 445 鍵。五張姿態、原 PNG 與內建 imagegen 精確提示詞在 `sarkov-victory-art-v1`。勝利文字實際位置為 SARORKOV (96,54,88,11)、WIN (193,54,31,11)，不改原字圖矩形。
@@ -112,8 +113,13 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 - 鳳凰[規格 021](docs/spec/021-phoenix-hd.md)限定 CONFORMED。六張採用 PNG、61 組姿態及九份內建 imagegen 請求存 `phoenix-art-v1`；初版 02／04 缺透明分隔，保留拒用紀錄並用 imagegen 修正留白，沒有改 PNG bytes 或放寬登錄器。589 鍵／31 PNG 群組保留原 517 鍵基底；`phoenix-candidate-checks-v1.log` 驗 72 槽、61 組來源與 124 個正常 consumer，`phoenix-integration-checks-v1.log` 完整程式及 vet 通過。真實 HUD 的 PHO HUANG／93×11 與未知拒絕另由 `phoenix-hud-checks-v1.log` 通過；來源審查在 `phoenix-evidence-review.json`。
 - 鳳凰在隔離 feature/phoenix-hd 以 8f70fc5 完成，bb5adef 合入進度分支。`native-phoenix-v2`／`windows-phoenix-v1` 各七項、九張通過獨立來源重組與切換，`native-phoenix-missing-v2` 九張整格原貌；Linux／Wine 姓名各 9,207 點變動，另目視確認字形及人物。兩個 Linux v1 因映像缺 xdotool 在零步結束，僅留環境失敗；v2 使用已確認工具及函式庫的既有三平台映像。三個正常工作及容器均已結束，不再輪詢舊 handle。
 - 四個鳳凰編譯產物及原編譯收據已原封移入 bin，35 份輸入吻合，記錄為 `phoenix-build-v1/promotion.json`。舊子彈四份在 `bullet-build-v1/bin`，來源身分由 `phoenix-pre-integration-baseline.json` 綁定。來源與完整 Git 歷史另存 `workplace/github-phoenix-integration-progress.bundle`，逐檔身分見 `workplace/github-phoenix-integration-progress-source.json`；原版、衍生美術及二進位不入 Git。
-- 下一角色鬼丸的 66 組原圖與 `hd-frame-onimaru-v2` 的 124 格正常 5／4 來源通過，尚無 HD 稿。v1 七次 Right 的實際對手為 1，逐步圖在 `onimaru-selection-diagnostic-v1`，不能只由非同步畫面推定每次按鍵消費。私有 `onimaru-source-probe-left-v1.go` 改以一個普通 Left 選法蘭克，實際 5／4、兩人完整圖像 bytes 與屋頂均吻合；來源雜湊由收據綁定，沒有改正式工具或注入狀態。
-- 來源審查見 [薩爾可夫勝利](workplace/sarkov-victory-evidence-review.json)與[子彈](workplace/bullet-evidence-review.json)。本輪進度備份為 `workplace/github-bullet-integration-progress.bundle`，身分見 `workplace/github-bullet-integration-progress-source.json`。完整 HD、Wine 勝利生命週期與正式交付未完成，GitHub 遠端仍未建立。
+- 鬼丸[規格 022](docs/spec/022-onimaru-hd.md)限定 CONFORMED。六張採用 PNG 與八份內建 imagegen 請求保留於 `onimaru-art-v1`，最後六格的初稿及修正版 Alpha 最大值 254，被原門檻拒絕；獨立重生的 v3 通過，未改 PNG bytes。661 鍵／37 PNG 保留原 589 鍵與所有舊 PNG，`onimaru-candidate-checks-v1.log` 驗 72 槽、66 組來源與 124 個正常 consumer 通過。DRAFT 原文與來源身分見 `onimaru-evidence-review.json`。
+- 原 NAME 槽 5 為 ONIMALU／72×11。第六字母遮罩等於 BULLET 的 L，與 SARORKOV 的 R 不同，證據在 `onimaru-source-v1/name-glyph-review.json`；設定 ID onimaru 不變。隔離 feature/onimaru-hd 的 c2f95b6 只補姓名與普通操作工具，b4f7e79 合入進度分支，未改核心、設定或快捷。完整程式測試／vet 及真實 HUD 定向測試均通過。
+- `native-onimaru-v1`／`windows-onimaru-v1` 各七項、九張擷取通過獨立重組與切換，`native-onimaru-missing-v1` 九張整格原貌。各自恢復 HD 逐點一致，鬼丸輸出各 17,316 點、姓名 7,128 點變動，造型及字形另目視核對；不稱跨平台同狀態。三個工作及容器均已結束，不再輪詢舊 handle。
+- 四個已驗鬼丸編譯產物及原編譯收據原封移入 bin，35 份輸入吻合，記錄為 `onimaru-build-v1/promotion.json`。舊鳳凰四份保留在 `phoenix-build-v1/bin`，由 `onimaru-pre-integration-baseline.json` 綁定。來源及完整 Git 歷史另存 `workplace/github-onimaru-integration-progress.bundle`，逐檔身分見 `workplace/github-onimaru-integration-progress-source.json`；完整 HD 與遠端上傳仍未完成。
+- 鬼丸的 `hd-frame-onimaru-v2` 正常 5／4 共 124 格來源通過。v1 七次 Right 的實際對手為 1，逐步圖在 `onimaru-selection-diagnostic-v1`，不能只由非同步畫面推定每次按鍵消費。私有探針以一個普通 Left 選法蘭克，兩人完整 bytes 與屋頂均吻合；來源雜湊由收據綁定，沒有注入狀態。原生驗證工具沿用同一已驗 Left 路徑。
+- 下一角色嵐的 `lan-source-v1` 有 59 組不同來源、72 入口；`hd-frame-lan-v1` 以普通選角 6／4 取得 124 格，兩人完整 bytes 與屋頂吻合，尚無 HD 稿。私有 `lan-source-probe-left-v1.go` 使用第二人普通 Left 兩次，收據綁定實際來源，未改正式工具或原版狀態。
+- 來源審查見 [薩爾可夫勝利](workplace/sarkov-victory-evidence-review.json)與[子彈](workplace/bullet-evidence-review.json)。子彈階段備份為 `workplace/github-bullet-integration-progress.bundle`，身分見 `workplace/github-bullet-integration-progress-source.json`。完整 HD、Wine 勝利生命週期與正式交付未完成，GitHub 遠端仍未建立。
 
 ### 薩爾可夫一般姿態基底
 

@@ -386,3 +386,21 @@ go run -p 1 /project/tools/input_receipt.go -root /orig -out /project/workplace/
 已證實於單次診斷區間：OpenGL v2 在 20.003 秒推進 875 萬步／14 格，DirectX 要求的 v3 在 20.001 秒推進 1000 萬步／16 格；均未截圖或送新輸入。v2 CPU 取樣以 commandQueue.flush 至 purego.SyscallN 為主，v3 的 9.52 秒取樣有 5.17 秒 cgocall，呼叫者包含 GLFW 事件分派、輪詢及游標。固定 Ebitengine v2.9.9 的 graphics.go 與 ui_windows.go 確認 directx/opengl 環境選項，及 Windows 10 以上先嘗試 DirectX 的自動選取契約。
 
 輸入二進位、私有取樣入口、CPU 原檔、區間資料、固定 API 來源雜湊與限制保存於 desktop-performance-v3/analysis.json。兩個初始狀態不完全相同的單次區間不足以證明換後端解決速度；精確原因仍未知，不歸咎特定驅動或原版核心。沒有據此修改步速、文字、規則或正式後端。這不是 Windows 真機效能或正式平台驗收。
+
+## 2026-10-20 鬼丸一般來源與正常原生追加驗證
+
+已證實於固定輸入：SFMAN06.DAT SHA-256 f398370820cfebbce670433130fd3718651ed4943259604fb55c851fa3906cbb，實檔 B28h 表、C48h 圖像基底、AC8h 正常色盤，共 72 入口、66 組不同 bytes。SF.EXE 仍為 SHA-256 24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300；執行器以 1719 檔 manifest 綁定，沒有改原版規則或共用來源。
+
+NAME.XBB SHA-256 60c0bbe367e44ab9fda512df2ba93ad62d70147df90079d07ff15818f21bad82，槽 5 實檔偏移 0EC9h、72×11，像素 SHA-256 f042edee422d72080dde3af3da8b9a627d0247284fad2dde731ae90e40c1b55f。逐列遮罩與目視確認 ONIMALU，第六字母的二值遮罩 SHA-256 6ffc2bf8409c9fa80dfd4cabb9f5e355ca54095352cbbae44df0a5477f81bd5c，與 BULLET 兩個 L 相同，與 SARORKOV 的 R 不同。設定 ID onimaru 與外站寫法各保留，不自行修正原字圖拼法。比較資料在 onimaru-source-v1/name-glyph-review.json。
+
+hd-frame-onimaru-v2 由正常 5／4 選角，在 runtime 01B9:5DD3 保存 124 個完整畫格，兩人指標與 packed bytes、I2 屋頂 RAM 均吻合。鬼丸取樣槽 0／1／2／3／4／5／6／7／8／19／25／26／27／28；普通拳擊只觀察到槽 8，5／6／7 屬行走樣本，不混稱攻擊。第二人一個普通 Left 選到法蘭克。v1 七次 Right 的實際對手為 1，保留逐步圖，原因未知；已不阻塞來源取得，不深挖選單內部。實檔偏移與 runtime 段位址分開使用。
+
+六張內建 imagegen PNG 按原槽登錄，保留尖義足、彎杖、槽 35 的獨立杖／手與槽 41 紫色／白外線。最後六格的前兩稿 Alpha 最大值 254，被既有門檻拒絕；v3 從原姿態及已通過首稿獨立生成後通過，原 PNG bytes 不改。這只證明採用稿符合透明與來源登錄契約，不推定生成工具失敗的內部原因。
+
+已證實於本次正常原生樣本：native-onimaru-v1／windows-onimaru-v1 各九張由原檔獨立重組，普通行走、蹲、跳、拳及切換通過。每個案例內核心、來源、設定及指派相同，切回 HD 逐點一致；人物與姓名另目視確認。缺鬼丸舊群組的九張均整格原貌。Go 1.24.13 完整程式測試、Pillow 11.3.0 獨立重組與真實 HUD 定向測試通過，工具及輸入雜湊由 onimaru-evidence-review.json、各 receipt 與 comparison 綁定。範圍依規格 022，不外推 WIN、替代色盤、快捷、完整動畫或實體平台。
+
+## 2026-10-20 嵐的一般來源準備
+
+已證實於固定來源：SFMAN07.DAT SHA-256 5dc504b74694c84daf45f79e89ab3725948a82559ca0c92b88eac63130f49148，72 入口、59 組不同 bytes，格式與位址基準同上。lan-source-v1 保留原槽、別名、圖集及逐檔雜湊。
+
+私有 lan-source-probe-left-v1.go 使用正常標題及選角，第二人普通 Left 兩次，實際角色 6／4。hd-frame-lan-v1 共 124 格，兩人圖像 bytes 與 I2 屋頂 RAM 全部吻合；取樣槽 0／1／2／3／4／5／8／15／22／23／24／25／27。探針 SHA 與收據相符，未注入狀態，尚無 HD 稿或原生接入；不以原圖數量宣稱角色完成。

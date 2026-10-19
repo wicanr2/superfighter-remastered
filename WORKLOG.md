@@ -342,3 +342,18 @@
 - 下一角色鬼丸已解出 72 槽／66 組原圖。初次正常來源探針實際為 5／1，保留失敗，不冒稱 5／4；選角診斷另存原始畫面，未將錯誤對手套用屋頂或候選。
 - 完整 HD、鳳凰 WIN／快捷／特效與完整動畫、其餘角色／場景／畫面、Wine 勝利下一回合、實體平台及雙手把、音訊／速度與正式封包仍未完成。Goal 保持 active。自有來源保存於獨立 Git 及 workplace/github-phoenix-integration-progress.bundle；原版、衍生美術、研究資料與二進位不入 Git。
 - 鬼丸後續以一個普通 Left 選到法蘭克，hd-frame-onimaru-v2 共 124 格的實際 5／4、完整圖像 bytes 及屋頂來源全部吻合。私有探針來源 SHA 與收據相符，沒有修改正式工具或原版狀態。原先七次 Right 的錯誤對手及逐步圖保留，原因未證實；不深挖已不阻塞本角色來源準備的選單內部。
+
+## 2026-10-20 鬼丸一般姿態與原姓名整合
+
+- 上輪 9a123c5 完成鳳凰限定切片。本輪核對工作樹及容器後，沿完整 HD 目標繼續鬼丸，沒有重試 GitHub 權限或重新開啟已完成切片。
+- 依原圖製作灰綠駝背、紫袍、尖義足與彎頭木杖，保留槽 35 的獨立木杖／小手及槽 41 的全紫／白外線。內建 imagegen 共八份精確請求，六張採用 PNG 對應 66 組不同來源，保存於 onimaru-art-v1。
+- 最後六格的初稿及背景修正版均沒有 Alpha 255，最大值 254，被未改動的登錄器拒絕。保留原稿及拒用紀錄，重新從原姿態與已通過首稿生成 v3 後通過；沒有程式改 PNG、放寬檢查或切換 CLI／模型。
+- NAME 槽 5 的 72×11 字圖目視為 ONIMALU，第六字母遮罩等於 BULLET 的兩個 L，並與 SARORKOV 的 R 不同。實檔偏移 0EC9h，完整字圖 SHA-256 f042edee422d72080dde3af3da8b9a627d0247284fad2dde731ae90e40c1b55f。畫面保留本包拼法，設定 ID onimaru 及中文名鬼丸不變。
+- 661 鍵／37 PNG／九份來源群組保留原 589 鍵與全部舊 PNG。Go 嚴格讀取驗 72 槽、66 組來源及 124 個正常 consumer，通過後 022 由 DRAFT 升 READY。DRAFT 原文與來源身分在 onimaru-evidence-review.json，原候選測試來源另存 onimaru-source-v1/candidate-test-source.go。
+- 隔離 feature/onimaru-hd 只補姓名與普通操作工具。第二人採已驗的普通 Left 路徑選法蘭克，未改核心、資料格式、步速、設定或快捷。完整 internal／cmd 測試及 go vet 通過；真實原生 HUD 的 ONIMALU／72×11 與未知角色拒絕另驗通過。
+- 四個候選使用 Go 1.24.13，ELF／PE／兩種 Mach-O 及精確 35 份編譯輸入通過。沿用既有建置與三平台 GUI 映像，未新建映像、在主機執行工作負載或更動共用 dosgolem。
+- native-onimaru-v1／windows-onimaru-v1 各七項、九張擷取通過；native-onimaru-missing-v1 九張整格原貌。獨立工具由原檔重組人物、背景、陰影與姓名；各自恢復 HD 逐點一致，核心、來源、設定及指派不變。鬼丸輸出各變動 17,316 點，姓名 7,128 點；字形及造型位置另與原貌目視核對，不稱跨平台同狀態。
+- 022 升限定 CONFORMED。c2f95b6 完成隔離接入，b4f7e79 合入進度分支。README 加入鬼丸目前畫面及跳躍；四個已驗候選與原編譯收據原封移入 bin，記錄為 onimaru-build-v1/promotion.json。舊鳳凰四份保留於 phoenix-build-v1/bin，由 onimaru-pre-integration-baseline.json 綁定。
+- 下一角色嵐已解 72 槽／59 組原圖，hd-frame-lan-v1 正常 6／4 共 124 格的完整 bytes 與屋頂吻合。私有探針使用第二人普通 Left 兩次，來源 SHA 與收據相符，尚未生成 HD 或接原生。
+- 本輪建置、正常來源探針、Xvfb／Wine 與三個 GUI 案例容器均已結束。沒有重啟舊勝利工作；019 的 Wine 下一回合仍未驗完。完整 HD、其餘角色／場景／畫面、各角色 WIN／特效／快捷及完整動畫、實體平台／雙手把、音訊／速度與正式封包仍待完成，Goal 保持 active。
+- 自有來源、文件及完整 Git 歷史保存於獨立副本與 workplace/github-onimaru-integration-progress.bundle，逐檔身分見 github-onimaru-integration-progress-source.json。原版、衍生美術、研究資料與二進位仍排除 Git，遠端未建立或推送。
