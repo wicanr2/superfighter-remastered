@@ -11,22 +11,24 @@ import (
 // Presentation 是原版完成顯示拷貝後的只讀快照。不是可載入的遊戲存檔。
 // Pixels 沿用 oracle.Indexed 的線性 A0000 契約；CRTC 起點另列，未暗中改顯示語意。
 type Presentation struct {
-	Serial           uint64                     `json:"serial"`
-	Steps            uint64                     `json:"steps"`
-	Counter          uint16                     `json:"counter"`
-	Scene            int                        `json:"scene"`
-	CameraX          int                        `json:"camera_x"`
-	CRTCRows         int                        `json:"crtc_rows_not_applied_by_oracle"`
-	BackgroundSHA256 string                     `json:"background_sha256"`
-	Pixels           []byte                     `json:"-"`
-	Palette          [256][3]uint8              `json:"-"`
-	Actors           [2]ActorPose               `json:"actors"`
-	DrawPriority     uint8                      `json:"draw_priority"`
-	Layers           []renderdata.Layer         `json:"layers,omitempty"`
-	LayersComplete   bool                       `json:"layers_complete"`
-	LayerError       string                     `json:"layer_error,omitempty"`
-	HUD              *renderdata.HUDSnapshot    `json:"hud,omitempty"`
-	Shadows          *renderdata.ShadowSnapshot `json:"shadows,omitempty"`
+	Serial                 uint64                     `json:"serial"`
+	Steps                  uint64                     `json:"steps"`
+	Counter                uint16                     `json:"counter"`
+	Scene                  int                        `json:"scene"`
+	CameraX                int                        `json:"camera_x"`
+	CRTCRows               int                        `json:"crtc_rows_not_applied_by_oracle"`
+	BackgroundSHA256       string                     `json:"background_sha256"`
+	Pixels                 []byte                     `json:"-"`
+	Palette                [256][3]uint8              `json:"-"`
+	Actors                 [2]ActorPose               `json:"actors"`
+	DrawPriority           uint8                      `json:"draw_priority"`
+	Layers                 []renderdata.Layer         `json:"layers,omitempty"`
+	LayersComplete         bool                       `json:"layers_complete"`
+	LayerError             string                     `json:"layer_error,omitempty"`
+	HUD                    *renderdata.HUDSnapshot    `json:"hud,omitempty"`
+	Shadows                *renderdata.ShadowSnapshot `json:"shadows,omitempty"`
+	RoundMessage           *renderdata.RoundSnapshot  `json:"round_message,omitempty"`
+	RetainedBackgroundRows int                        `json:"retained_background_rows,omitempty"`
 }
 type ActorPose struct {
 	Character int   `json:"character"`
@@ -57,12 +59,16 @@ func (c *Core) capturePresentation(o *oracle.Oracle) {
 		frame.Actors[p] = ActorPose{Character: int(o.Word(oracle.Far(ds, uint16(0x12ac+p*2)))), Slot: int(o.Byte(oracle.Far(ds, []uint16{0x16f2, 0x16fa}[p]))), X: int(int16(o.Word(oracle.Far(ds, uint16(0x16d6+p*2))))) - frame.CameraX, Y: int(int16(o.Word(oracle.Far(ds, uint16(0x16de+p*2))))), Attr: o.Byte(oracle.Far(ds, uint16(0x16fe+p))), Facing: o.Byte(oracle.Far(ds, uint16(0x16b4+p)))}
 	}
 	frame.DrawPriority = o.Byte(oracle.Far(ds, 0x1335))
+	frame.RetainedBackgroundRows = c.recording.retainedRows
 	c.finishLayers(&frame)
 	if frame.LayersComplete && c.hud.pending != nil && c.hud.pending.Complete {
 		frame.HUD = c.hud.pending
 	}
 	if frame.LayersComplete && !c.shadows.failed && c.shadows.pending != nil && c.shadows.pending.Complete && c.shadows.pending.Counter == frame.Counter && c.shadows.pending.CameraX == frame.CameraX {
 		frame.Shadows = c.shadows.pending
+	}
+	if frame.LayersComplete && c.rounds.pending != nil && c.rounds.pending.Complete && c.rounds.pending.Counter == frame.Counter {
+		frame.RoundMessage = c.rounds.pending
 	}
 	c.presentation = frame
 }

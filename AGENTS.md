@@ -223,6 +223,14 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [tools/audit_hd.py](tools/audit_hd.py) | Docker 核對目前來源、三平台二進位、HD 收據、文件回填與擁有權 |
 | [tools/audit_native_characters.py](tools/audit_native_characters.py) | Docker 核對六層角色版的逐平台實際編譯來源、正常視窗、獨立重組及完整回退 |
 | [tools/audit_native_hud.py](tools/audit_native_hud.py) | 目前生命／計時／名字與特效切片的來源、四份編譯、正常 GUI、原貌回退、獨立重組與擁有權核對 |
+| [tools/round_draw_receipt.go](tools/round_draw_receipt.go) | 正常雙打開場的中央回合訊息、展開裁切與逐寫重組探針，未接 HD |
+| [docs/spec/013-hd-round-messages.md](docs/spec/013-hd-round-messages.md) | 回合開場訊息、部分背景保留與原生字圖的證據及接入閘門，第一回合限定 CONFORMED |
+| [tools/round_reference.py](tools/round_reference.py) | 從 NAME／數字原檔獨立重組開場訊息，驗證來源、動畫裁切與等值寫入覆蓋 |
+| [tools/round_core_receipt.go](tools/round_core_receipt.go) | 正常選單開場的核心觀測開關比較、66 格分層快照與正式對戰清除核對 |
+| [tools/verify_round_capture.py](tools/verify_round_capture.py) | 獨立重組開場完整圖層，驗原生文字 GPU 窗口與暫停切換逐點還原 |
+| [tools/audit_native_rounds.py](tools/audit_native_rounds.py) | 目前開場版的原檔、四平台編譯、獨立重組、正常視窗與歷史陰影基底核對 |
+| [internal/renderdata/rounds.go](internal/renderdata/rounds.go)、[核心觀測](internal/gamecore/rounds.go)、[來源重組](internal/hd/rounds.go) | 規格 013 的開場窗口、繪製前快照與原檔來源驗證 |
+| [internal/desktop/rounds.go](internal/desktop/rounds.go) | 原生高解析開場字圖與未覆寫頂列的呈現 |
 | [tools/ida_ai_evidence.py](tools/ida_ai_evidence.py) | IDA 9.4 AI 載入與決策的原始位址、運算元及 bytes 匯出 |
 | [docs/game-history.md](docs/game-history.md) | 青衫與 SP Moves 的歷史、招式、圖片快照與差異索引 |
 | [docs/spec/004-live-input-slice.md](docs/spec/004-live-input-slice.md) | 已驗原版雙人鍵盤與斬的快捷輸入切片，限定 READY |

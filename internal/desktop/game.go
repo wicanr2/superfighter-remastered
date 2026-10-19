@@ -93,6 +93,10 @@ type Game struct {
 	shadowCamera        int
 	shadowCaptureBefore []byte
 	shadowCaptureAfter  []byte
+	hdRounds            *hd.Rounds
+	hdRoundsActive      bool
+	roundCaptureBefore  []byte
+	roundCaptureAfter   []byte
 }
 
 func New(opts Options) (*Game, error) {
@@ -141,6 +145,12 @@ func New(opts Options) (*Game, error) {
 					c.EnableShadows()
 				} else {
 					g.notice = "HD 陰影來源不完整，保留原貌。"
+				}
+				g.hdRounds, e = hd.LoadRounds(opts.Root)
+				if e == nil {
+					c.EnableRounds()
+				} else {
+					g.notice = "HD 開場訊息來源不完整，保留原貌。"
 				}
 			} else {
 				c.EnableLayers()
@@ -546,7 +556,8 @@ func (g *Game) observe() {
 		HDCharactersActive bool                  `json:"hd_characters_active"`
 		HDHUDActive        bool                  `json:"hd_hud_active"`
 		HDShadowsActive    bool                  `json:"hd_shadows_active"`
-	}{FrontendUpdates: g.updates, MouseLeft: ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft), Editing: g.editing, Core: g.core.Status(), Panel: g.panel, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, HDCharactersActive: g.hdActive && g.hdCharacters != nil, HDHUDActive: g.hdHUDActive, HDShadowsActive: g.hdShadowsActive}
+		HDRoundsActive     bool                  `json:"hd_rounds_active"`
+	}{FrontendUpdates: g.updates, MouseLeft: ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft), Editing: g.editing, Core: g.core.Status(), Panel: g.panel, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, HDCharactersActive: g.hdActive && g.hdCharacters != nil, HDHUDActive: g.hdHUDActive, HDShadowsActive: g.hdShadowsActive, HDRoundsActive: g.hdRoundsActive}
 	b, e := json.MarshalIndent(value, "", "  ")
 	if e == nil {
 		e = os.WriteFile(g.opts.Observe+".tmp", b, 0600)
@@ -610,6 +621,8 @@ func (g *Game) Draw(dst *ebiten.Image) {
 	g.hdActive = false
 	g.hdHUDActive = false
 	g.hdShadowsActive = false
+	g.hdRoundsActive = false
+	g.roundCaptureBefore, g.roundCaptureAfter = nil, nil
 	g.shadowCaptureBefore, g.shadowCaptureAfter = nil, nil
 	g.hdReason = "原貌"
 	charactersDrawn := false
@@ -756,6 +769,20 @@ func (g *Game) Draw(dst *ebiten.Image) {
 			}
 			if e == nil && frame.Shadows != nil {
 				for suffix, pixels := range map[string][]byte{".shadow-under.idx": frame.Shadows.Underlay.Indices, ".shadow-under.mask": frame.Shadows.Underlay.Coverage} {
+					if e = os.WriteFile(path+suffix, pixels, 0600); e != nil {
+						break
+					}
+				}
+			}
+			if e == nil && frame.RoundMessage != nil {
+				for suffix, pixels := range map[string][]byte{".round.source": frame.RoundMessage.Source, ".round-under.idx": frame.RoundMessage.Underlay.Indices, ".round-under.mask": frame.RoundMessage.Underlay.Coverage} {
+					if e = os.WriteFile(path+suffix, pixels, 0600); e != nil {
+						break
+					}
+				}
+			}
+			if e == nil && g.hdRoundsActive && len(g.roundCaptureBefore) > 0 && len(g.roundCaptureAfter) > 0 {
+				for suffix, pixels := range map[string][]byte{".round-render-before.rgba": g.roundCaptureBefore, ".round-render-after.rgba": g.roundCaptureAfter} {
 					if e = os.WriteFile(path+suffix, pixels, 0600); e != nil {
 						break
 					}

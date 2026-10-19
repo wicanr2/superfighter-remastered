@@ -22,6 +22,8 @@ def main():
     parser.add_argument("--exercise-backstep", action="store_true")
     parser.add_argument("--exercise-hud", action="store_true")
     parser.add_argument("--exercise-shadows", action="store_true")
+    parser.add_argument("--round-opening-only", action="store_true",
+                        help="正常選角後驗 ROUND／FIGHT 與暫停切換，再驗正式對戰清除訊息")
     parser.add_argument("--shadow-overlap-only", action="store_true",
                         help="正常走近取得重疊陰影及暫停切換擷取後結束，不代替完整操作驗收")
     effect_case = parser.add_mutually_exclusive_group()
@@ -30,6 +32,8 @@ def main():
     parser.add_argument("--wine", action="store_true")
     parser.add_argument("--opponent", choices=["jaan", "frank"], default="jaan")
     args = parser.parse_args()
+    if args.round_opening_only and not (args.hd_assets and args.hd_characters and args.opponent == "frank"):
+        parser.error("--round-opening-only requires rooftop characters and Frank")
     if args.shadow_overlap_only and not (args.exercise_shadows and args.hd_assets and args.hd_characters and args.opponent == "frank"):
         parser.error("--shadow-overlap-only requires rooftop characters, Frank and --exercise-shadows")
     args.output.mkdir(exist_ok=False)
@@ -164,6 +168,9 @@ def main():
         wait(lambda s: s["core"]["paused"], timeout=75 if args.wine else 30)
         window = visible_window()
         xdo("windowfocus", "--sync", window)
+        if args.round_opening_only:
+            click(830, 32)
+            wait(lambda s: s["hd_enabled"])
         click(110, 32)
         wait(lambda s: s["core"]["steps"] >= 40_000_000, timeout=45)
         xdo("mousemove", "--window", window, 455, 607)
@@ -181,6 +188,44 @@ def main():
                     key("Right")
                     wait(lambda s: s["core"]["steps"] >= before + 1_000_000)
             key("Return")
+        if args.round_opening_only:
+            def message(s):
+                return s["presentation"].get("round_message", {})
+
+            for label, is_fight, full_width in [("round-partial", False, False), ("round", False, True), ("fight", True, True)]:
+                wait(lambda s: s.get("hd_rounds_active") and (message(s).get("width") == 96 if full_width else 8 <= message(s).get("width", 0) <= 48)
+                     and (message(s).get("stage", 0) >= 2) == is_fight, timeout=60)
+                key("Escape")
+                paused = wait(lambda s: s["core"]["paused"])
+                assert paused.get("hd_rounds_active") and (message(paused)["width"] == 96 if full_width else message(paused)["width"] < 96), paused
+                assert (message(paused)["stage"] >= 2) == is_fight, paused
+                shot(f"{label}-hd.png")
+                click(830, 32)
+                original = wait(lambda s: not s["hd_enabled"])
+                shot(f"{label}-original.png")
+                click(830, 32)
+                restored = wait(lambda s: s.get("hd_rounds_active") and s["hd_active"])
+                shot(f"{label}-restored.png")
+                for field in ["core", "presentation", "settings", "assigned"]:
+                    assert paused[field] == original[field] == restored[field], field
+                checks.append(f"normal {label} opening uses complete original layers and native HD text")
+                checks.append(f"paused {label} original/HD switch preserves core, source frame and settings")
+                events.append({label: paused})
+                click(110, 32)
+            ready = wait(lambda s: s["core"]["frames"] > 8 and s["hd_active"]
+                         and not message(s) and s["presentation"].get("retained_background_rows", 0) == 0, timeout=60)
+            assert not ready.get("hd_rounds_active") and ready["core"]["fighters"] == [0, 4]
+            shot("after-opening.png")
+            checks.append("normal battle clears opening snapshot and retained-background metadata")
+            receipt = {"kind": "normal native first-round opening and switching; not full controller/match acceptance",
+                       "scope": "round-opening", "checks": checks, "events": events + [{"after_opening": ready}],
+                       "command": command, "binary_sha256": hashlib.sha256(args.binary.read_bytes()).hexdigest(),
+                       "script_sha256": hashlib.sha256(script_source).hexdigest(),
+                       "state_access": "observe-only JSON; ordinary X11 menu, pause and mouse/keyboard only"}
+            (args.output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n")
+            (args.output / "desktop_smoke.py").write_bytes(script_source)
+            print(json.dumps({"scope": receipt["scope"], "checks": checks}, ensure_ascii=False))
+            return
         ready = wait(lambda s: s["core"]["battle"] and s["core"]["frames"] > 8, timeout=45)
         assert ready["core"]["fighters"] == [0, 4 if args.opponent == "frank" else 0] and ready["core"]["mode"] == 1, ready
         checks.append("native window normal title -> versus selection -> Jaan/" + args.opponent + " battle")

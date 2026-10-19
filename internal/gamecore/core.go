@@ -54,6 +54,7 @@ type Core struct {
 	recording    layerRecording
 	hud          hudRecording
 	shadows      shadowRecording
+	rounds       roundRecording
 }
 
 var allowed = [2]map[uint8]bool{

@@ -7,13 +7,14 @@ from pathlib import Path
 from PIL import Image
 from hud_reference import reconstruct
 from shadow_reference import replay_snapshot
+from round_reference import replay_snapshot as replay_round
 
 
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def read_frame(root, name, reference, original_root=None):
+def read_frame(root, name, reference, original_root=None, image_required=True):
     base = root / name
     raw = Path(str(base) + ".idx").read_bytes()
     palette = json.loads(Path(str(base) + ".palette.json").read_text())
@@ -32,7 +33,10 @@ def read_frame(root, name, reference, original_root=None):
             assert all(coverage)
             camera = frame["camera_x"]
             expected = b"".join(reference[y * 480 + camera:y * 480 + camera + 320] for y in range(200))
-            assert indices == expected, (name, "pure background differs from original source")
+            retained = frame.get("retained_background_rows", 0)
+            assert retained in (0, 12)
+            assert not retained or frame.get("round_message")
+            assert indices[retained * 320:] == expected[retained * 320:], (name, "background differs from original source")
         if "sprite" in metadata and not metadata["sprite"].get("effect"):
             players.append(metadata["sprite"]["player"])
         for i, written in enumerate(coverage):
@@ -41,6 +45,13 @@ def read_frame(root, name, reference, original_root=None):
         layers.append((metadata, indices, coverage))
     assert sorted(players) == [0, 1]
     assert bytes(reconstructed) == raw, (name, "six-layer replay differs from original framebuffer")
+    round_snapshot = frame.get("round_message")
+    if round_snapshot:
+        assert original_root is not None and round_snapshot["counter"] == frame["counter"]
+        round_after, round_mask, _ = replay_round(original_root, round_snapshot,
+            Path(str(base) + ".round.source").read_bytes(), Path(str(base) + ".round-under.idx").read_bytes(),
+            Path(str(base) + ".round-under.mask").read_bytes())
+        assert round_after == layers[-1][1] and round_mask == layers[-1][2], (name, "round source replay differs")
     if frame.get("shadows"):
         assert original_root is not None
         shadow = frame["shadows"]
@@ -70,9 +81,19 @@ def read_frame(root, name, reference, original_root=None):
         for i, value in enumerate(bitmap):
             if value:
                 before[hud["state"]["crtc_rows"] * 320 + i] = value | 0xa0
+        if round_snapshot:
+            _, _, replaced = replay_round(original_root, round_snapshot,
+                Path(str(base) + ".round.source").read_bytes(), Path(str(base) + ".round-under.idx").read_bytes(),
+                Path(str(base) + ".round-under.mask").read_bytes())
+            for i, written in enumerate(replaced):
+                if written:
+                    before[i] = round_after[i]
+            if round_snapshot["stage"] == 1 and round_snapshot["half_width"] == 4:
+                before[:1442] = round_after[:1442]
         assert before == raw, (name, "pre-HUD layers plus original HUD differ from final original pixels")
-    image = Image.open(base).convert("RGB")
-    assert image.size == (1120, 820)
+    image = Image.open(base).convert("RGB") if image_required else None
+    if image_required:
+        assert image.size == (1120, 820)
     return raw, palette, frame, layers, owners, image
 
 

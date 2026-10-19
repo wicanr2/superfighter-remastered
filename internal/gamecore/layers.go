@@ -21,6 +21,7 @@ type layerRecording struct {
 	effects        bool
 	effectReturn   uint16
 	effectSP       uint16
+	retainedRows   int
 }
 
 // EnableLayers 必須在開始執行前呼叫。模式切換不改觀測或原版狀態。
@@ -79,7 +80,9 @@ func (c *Core) stopLayers() {
 	r.seen = [2]bool{}
 	r.backgroundDone = false
 	r.effectReturn = 0
+	r.retainedRows = 0
 	c.hud.pending = nil
+	c.rounds.pending = nil
 	c.clearShadows()
 }
 func (c *Core) beginLayers(o *oracle.Oracle) {

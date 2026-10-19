@@ -36,13 +36,20 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 	if !ok {
 		return false, why
 	}
+	if frame.RetainedBackgroundRows != 0 && frame.RetainedBackgroundRows != 12 {
+		return false, "開場背景保留列未對應"
+	}
 	for i, v := range frame.Layers[0].Indices {
+		if i < frame.RetainedBackgroundRows*320 {
+			continue
+		}
 		if v != g.hdAssets.Reference[i/320*480+i%320+frame.CameraX] {
 			return false, "背景圖層來源未對應，保留原貌"
 		}
 	}
 	var hudSelection *hd.HUDSelection
 	var shadowSelection *hd.ShadowSelection
+	var roundSelection *hd.RoundSelection
 	if g.hdHUDRequired {
 		if g.hdHUD == nil {
 			return false, "HD 介面來源未載入，保留原貌"
@@ -59,6 +66,15 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 		if shadowSelection == nil {
 			return false, why
 		}
+		if frame.RetainedBackgroundRows != 0 || frame.RoundMessage != nil {
+			if g.hdRounds == nil || frame.RetainedBackgroundRows != 12 || frame.RoundMessage == nil {
+				return false, "等待完整 HD 開場訊息"
+			}
+			roundSelection, why = g.hdRounds.Select(frame.RoundMessage, frame.Layers, frame.Palette, frame.Counter)
+			if roundSelection == nil {
+				return false, why
+			}
+		}
 	}
 	// 全部驗完才開始畫，不能留下半套角色或背景。
 	g.drawBackground(dst, frame)
@@ -66,6 +82,7 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 		g.layerTextures = append(g.layerTextures, ebiten.NewImage(320, 200))
 		g.layerRGBA = append(g.layerRGBA, make([]byte, renderdata.Pixels*4))
 	}
+	g.drawRetainedBackground(dst, frame)
 	if g.actorTextures == nil {
 		g.actorTextures = map[*hd.PoseArt]*ebiten.Image{}
 	}
@@ -122,6 +139,9 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 			if hudSelection != nil && n == len(frame.Layers)-1 && hudSelection.Replace[i] != 0 {
 				v, coverage = frame.HUD.Underlay.Indices[i], frame.HUD.Underlay.Coverage[i]
 			}
+			if roundSelection != nil && n == len(frame.Layers)-1 && roundSelection.Replace[i] != 0 {
+				v, coverage = roundSelection.Underlay.Indices[i], roundSelection.Underlay.Coverage[i]
+			}
 			if coverage != 0 {
 				c := frame.Palette[v]
 				copy(rgba[i*4:i*4+3], c[:])
@@ -140,6 +160,10 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 	if hudSelection != nil {
 		g.drawHUD(dst, hudSelection)
 		reason = "HD 角色、陰影、特效與介面"
+	}
+	if roundSelection != nil {
+		g.drawRoundMessage(dst, roundSelection)
+		reason = "HD 人物、陰影、介面與開場訊息"
 	}
 	return true, reason
 }

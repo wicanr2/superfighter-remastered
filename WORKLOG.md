@@ -206,3 +206,15 @@
 - 四個陰影版二進位已重建，原生擷取額外保存陰影之前／之後的 GPU RGBA 及原生 alpha。RGBA8 合成區間與原貌／HD 逐點一致分開驗；沒有放寬切換容差。具名擷取排除暫存 capture.png，不重複計數。
 - README 換最新陰影畫面入口，CONTEXT、WORKLIST、矩陣與較早規格回填。下一步中央回合訊息；其餘角色、場景、畫面、完整動畫、音訊、速度、實體平台／手把及正式封包仍未完成。原版資料與衍生美術留本機，GitHub 未建立或推送。
 - native-shadows-audit 核對 128 原檔、1715 份執行器來源與原有 1713 檔不變、四份實際編譯、772 次繪製、19 個獨立樣本、24 個雙人畫格、456 個觀測邊界及上述 GUI／生命週期後通過，012 依明列範圍升 CONFORMED。GUI、Wine、探針與一次性檢查容器已結束，kdzz 清單為空。來源提交及 bundle 身分保存於 workplace/github-native-shadows-source.json；本機備份不代表建立遠端或完整 HD 完成。
+
+## 2026-10-19：原生開場 ROUND／FIGHT
+
+- 前輪完成自有來源提交 d04670d 與完整 bundle，屬 progress；GitHub 沒有建立或推送。本輪繼續完整 HD Goal，沒有重試受權限政策拒絕的主機操作。
+- 沿用 reverse-engineer-retro-game-remake 與 IDA 9.4 技能、規格閘門及既有 image。IDA 兩輪窄匯出保留原名／位址／bytes，定位 NAME 字圖、數字、開場窗口與部分背景。正常輸入 round-draw-v1／v2 各 66 次訊息；發現完整常式還有頂列拷貝後回到規格，再由 v3 核對全部 66 次完整常式與部分背景。
+- 規格 013 經審查 READY 後接入只讀快照、頂列保留基底、原檔字圖重組與原生高解析字圖。延伸到整個常式返回才標完成，保留收合最後一格的 FIGHT 暫存拷貝。沒有改核心規則、時間、聲音、快捷、原始資料、素材清單或存檔格式。
+- round-core-compat-v1 的 1,508 邊界在觀測開關兩側一致，全部 66 格來源與完整分層可重組。四階段、十二種窗口及末格拷貝均有 fixture；正式對戰清空訊息。新測試另拒絕錯誤來源、欄位、窗口、色盤與覆蓋；原圖層保持不變。
+- 最初使用跨平台 image 直接執行全套測試，其預設 cgo=0 使 GLFW 編譯失敗，屬工具環境。round-checks-v3 改用既有 Linux image、明示 cgo=1 與 gcc，乾淨重跑全套 go test／go vet 通過，沒有跳過。Pillow 最初在缺件 image 失敗，改沿用已有鎖版 Pillow image，沒有在主機安裝或執行。
+- 四個開場版二進位已重建，保存各自實際編譯輸入；陰影版四個二進位與 26 個輸入已於修改前保存至 native-shadows-v1/build-baseline，綁定 d04670d。Linux／Wine 開場各七項與十張具名擷取，部分窗口、完整 ROUND、FIGHT、三組暫停切回與訊息清除通過。每側六張 GPU 字圖擷取，窗口外完全不變。
+- Linux 一般對戰十七項、十五張具名擷取與十二張陰影合成另驗；舊素材十三項、十一張具名擷取及缺件整張原貌通過。README 加目前開場畫面，003／008／010 回填 013 的已解來源與背景差異，沒有重寫舊收據版本身分。
+- 開場頂端仍有 oracle CRTC 起點限制，勝負文字及其餘 HD 範圍未完成。正式封包、實體平台／手把、音訊與速度仍待驗。最終來源稽核、提交備份及容器清理身分續存本節後續記錄。
+- native-rounds-audit 最終核對 128 原檔、1715 份執行器來源與原有 1713 檔不變、四份實際編譯、全部 66 格來源／完整常式／部分背景、1,508 比較邊界及上述視窗收據後通過，013 僅在第一回合範圍升 CONFORMED。工作根未發現 root-owned 檔案或誤建 Markdown 目錄，kdzz 容器清單為空。自有來源續存獨立 Git 副本與 workplace/github-native-rounds.bundle，提交及逐檔來源身分見 workplace/github-native-rounds-source.json；沒有建立遠端、Release 或正式封包。
