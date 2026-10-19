@@ -371,3 +371,4 @@
 - README 加入嵐的整合畫面、跳躍、原貌與恢復 HD，操作範例改用現行 733 鍵群組；CONTEXT、工作清單與驗證矩陣同步。原版、衍生美術、研究收據及二進位仍排除 Git，不作 Release 或正式封包。
 - 下一角色金太極已解 72 槽／57 組。私有探針以第二人普通 Left 三次選法蘭克，hd-frame-kim-v1 正常 7／4 共 124 格的完整 bytes 與屋頂吻合，kim-source-review.json 綁定來源。尚無 HD 稿或原生接入。
 - 本輪沿用既有 Go、三平台 GUI 與 Pillow 映像，沒有新增映像或修改共用 dosgolem。來源探針、建置、測試、Xvfb／Wine 與三個 GUI 案例均已結束；沒有重啟舊首勝工作。完整 HD、其他角色／場景／畫面、WIN／特效／快捷與完整動畫、實體平台／雙手把、音訊／速度及正式封包仍待完成，Goal 保持 active。
+- 隔離接入 commit 54b91d0，782f921 合入進度分支；主工作目錄的自有來源同步保存於 /tmp/kdzz-superfighter-publish。收尾備份使用 workplace/github-lan-integration-progress.bundle 與 github-lan-integration-progress-source.json，GitHub 遠端仍未建立或推送。
