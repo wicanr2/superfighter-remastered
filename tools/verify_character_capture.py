@@ -6,6 +6,7 @@ from pathlib import Path
 
 from PIL import Image
 from hud_reference import reconstruct
+from shadow_reference import replay_snapshot
 
 
 def digest(path):
@@ -40,6 +41,13 @@ def read_frame(root, name, reference, original_root=None):
         layers.append((metadata, indices, coverage))
     assert sorted(players) == [0, 1]
     assert bytes(reconstructed) == raw, (name, "six-layer replay differs from original framebuffer")
+    if frame.get("shadows"):
+        assert original_root is not None
+        shadow = frame["shadows"]
+        assert shadow["counter"] == frame["counter"] and shadow["camera_x"] == frame["camera_x"]
+        expected, mask, _, _ = replay_snapshot(original_root, shadow,
+            Path(str(base) + ".shadow-under.idx").read_bytes(), Path(str(base) + ".shadow-under.mask").read_bytes())
+        assert expected == layers[1][1] and mask == layers[1][2], (name, "shadow source does not replay first raster layer")
     if frame.get("hud"):
         assert original_root is not None, "HUD source directory required"
         hud = frame["hud"]
@@ -95,6 +103,8 @@ def main():
     replayed = []
     for path in sorted(root.glob("*.png.frame.json")):
         name = path.name.removesuffix(".frame.json")
+        if name == "capture.png":
+            continue
         read_frame(root, name, reference, args.original_root)
         replayed.append(name)
     assert len(replayed) >= 7, replayed

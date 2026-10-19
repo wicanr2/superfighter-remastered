@@ -42,6 +42,7 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 		}
 	}
 	var hudSelection *hd.HUDSelection
+	var shadowSelection *hd.ShadowSelection
 	if g.hdHUDRequired {
 		if g.hdHUD == nil {
 			return false, "HD 介面來源未載入，保留原貌"
@@ -49,6 +50,13 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 		var why string
 		hudSelection, why = g.hdHUD.Select(frame.HUD, frame.Pixels, frame.Palette, frame.Layers)
 		if hudSelection == nil {
+			return false, why
+		}
+		if g.hdShadows == nil {
+			return false, "HD 陰影來源未載入，保留原貌"
+		}
+		shadowSelection, why = g.hdShadows.Select(frame.Shadows, frame.Layers, frame.Palette, frame.Counter, frame.CameraX)
+		if shadowSelection == nil {
 			return false, why
 		}
 	}
@@ -108,6 +116,9 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 		clear(rgba)
 		for i, v := range layer.Indices {
 			coverage := layer.Coverage[i]
+			if shadowSelection != nil && n == 1 && shadowSelection.Replace[i] != 0 {
+				v, coverage = shadowSelection.Underlay.Indices[i], shadowSelection.Underlay.Coverage[i]
+			}
 			if hudSelection != nil && n == len(frame.Layers)-1 && hudSelection.Replace[i] != 0 {
 				v, coverage = frame.HUD.Underlay.Indices[i], frame.HUD.Underlay.Coverage[i]
 			}
@@ -122,10 +133,13 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 		op.GeoM.Scale(sx, sy)
 		op.GeoM.Translate(float64(screenRect.Min.X), float64(screenRect.Min.Y))
 		dst.SubImage(screenRect).(*ebiten.Image).DrawImage(g.layerTextures[n], op)
+		if shadowSelection != nil && n == 1 {
+			g.drawShadows(dst, shadowSelection)
+		}
 	}
 	if hudSelection != nil {
 		g.drawHUD(dst, hudSelection)
-		reason = "HD 角色、特效與介面"
+		reason = "HD 角色、陰影、特效與介面"
 	}
 	return true, reason
 }

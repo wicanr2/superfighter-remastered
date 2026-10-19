@@ -21,6 +21,7 @@ import (
 	"github.com/wicanr2/superfighter-remastered/internal/controls"
 	"github.com/wicanr2/superfighter-remastered/internal/gamecore"
 	"github.com/wicanr2/superfighter-remastered/internal/hd"
+	"github.com/wicanr2/superfighter-remastered/internal/renderdata"
 )
 
 //go:embed assets/NotoSansCJKtc-Regular.otf assets/OFL.txt assets/source.json
@@ -47,43 +48,51 @@ type widget struct {
 	disabled bool
 }
 type Game struct {
-	core             *gamecore.Core
-	settings         controls.Settings
-	settingsPath     string
-	settingsWritable bool
-	face             *text.GoTextFace
-	texture          *ebiten.Image
-	rgba             []byte
-	devices          []device
-	assigned         [2]ebiten.GamepadID
-	armed            [2]bool
-	keyboardArmed    bool
-	starts           [2]bool
-	shoulders        [2][4]bool
-	confirm          [2]bool
-	lastMenu         [2]time.Time
-	panel            bool
-	editing          [2]int
-	focus            int
-	notice           string
-	opts             Options
-	started          time.Time
-	capture          bool
-	updates          uint64
-	hdAssets         *hd.Assets
-	hdTexture        *ebiten.Image
-	hdEnabled        bool
-	hdActive         bool
-	hdReason         string
-	hdCharacters     *hd.Characters
-	layerTextures    []*ebiten.Image
-	layerRGBA        [][]byte
-	actorTextures    map[*hd.PoseArt]*ebiten.Image
-	hdHUD            *hd.HUD
-	hdHUDRequired    bool
-	hdHUDActive      bool
-	hudLabels        map[string]*ebiten.Image
-	hudWinMarker     *ebiten.Image
+	core                *gamecore.Core
+	settings            controls.Settings
+	settingsPath        string
+	settingsWritable    bool
+	face                *text.GoTextFace
+	texture             *ebiten.Image
+	rgba                []byte
+	devices             []device
+	assigned            [2]ebiten.GamepadID
+	armed               [2]bool
+	keyboardArmed       bool
+	starts              [2]bool
+	shoulders           [2][4]bool
+	confirm             [2]bool
+	lastMenu            [2]time.Time
+	panel               bool
+	editing             [2]int
+	focus               int
+	notice              string
+	opts                Options
+	started             time.Time
+	capture             bool
+	updates             uint64
+	hdAssets            *hd.Assets
+	hdTexture           *ebiten.Image
+	hdEnabled           bool
+	hdActive            bool
+	hdReason            string
+	hdCharacters        *hd.Characters
+	layerTextures       []*ebiten.Image
+	layerRGBA           [][]byte
+	actorTextures       map[*hd.PoseArt]*ebiten.Image
+	hdHUD               *hd.HUD
+	hdHUDRequired       bool
+	hdHUDActive         bool
+	hudLabels           map[string]*ebiten.Image
+	hudWinMarker        *ebiten.Image
+	hdShadows           *hd.Shadows
+	hdShadowsActive     bool
+	shadowTexture       *ebiten.Image
+	shadowRGBA          []byte
+	shadowDraws         [2]renderdata.Shadow
+	shadowCamera        int
+	shadowCaptureBefore []byte
+	shadowCaptureAfter  []byte
 }
 
 func New(opts Options) (*Game, error) {
@@ -126,6 +135,12 @@ func New(opts Options) (*Game, error) {
 					c.EnableHUD()
 				} else {
 					g.notice = "HD 介面來源不完整，保留原貌。"
+				}
+				g.hdShadows, e = hd.LoadShadows(opts.Root)
+				if e == nil {
+					c.EnableShadows()
+				} else {
+					g.notice = "HD 陰影來源不完整，保留原貌。"
 				}
 			} else {
 				c.EnableLayers()
@@ -530,7 +545,8 @@ func (g *Game) observe() {
 		HDReason           string                `json:"hd_reason"`
 		HDCharactersActive bool                  `json:"hd_characters_active"`
 		HDHUDActive        bool                  `json:"hd_hud_active"`
-	}{FrontendUpdates: g.updates, MouseLeft: ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft), Editing: g.editing, Core: g.core.Status(), Panel: g.panel, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, HDCharactersActive: g.hdActive && g.hdCharacters != nil, HDHUDActive: g.hdHUDActive}
+		HDShadowsActive    bool                  `json:"hd_shadows_active"`
+	}{FrontendUpdates: g.updates, MouseLeft: ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft), Editing: g.editing, Core: g.core.Status(), Panel: g.panel, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, HDCharactersActive: g.hdActive && g.hdCharacters != nil, HDHUDActive: g.hdHUDActive, HDShadowsActive: g.hdShadowsActive}
 	b, e := json.MarshalIndent(value, "", "  ")
 	if e == nil {
 		e = os.WriteFile(g.opts.Observe+".tmp", b, 0600)
@@ -593,6 +609,8 @@ func (g *Game) Draw(dst *ebiten.Image) {
 	g.texture.WritePixels(g.rgba)
 	g.hdActive = false
 	g.hdHUDActive = false
+	g.hdShadowsActive = false
+	g.shadowCaptureBefore, g.shadowCaptureAfter = nil, nil
 	g.hdReason = "原貌"
 	charactersDrawn := false
 	if g.hdEnabled && g.hdAssets != nil {
@@ -697,7 +715,7 @@ func (g *Game) Draw(dst *ebiten.Image) {
 			if g.hdAssets != nil && len(frame.Pixels) == 64000 {
 				source = "completed-battle-frame"
 			}
-			metadata := map[string]any{"core": g.core.Status(), "original_source": source, "selected_width": w, "selected_height": h, "live_width": liveW, "live_height": liveH, "presentation_serial": frame.Serial, "presentation_steps": frame.Steps, "hd_enabled": g.hdEnabled, "hd_active": g.hdActive}
+			metadata := map[string]any{"core": g.core.Status(), "original_source": source, "selected_width": w, "selected_height": h, "live_width": liveW, "live_height": liveH, "presentation_serial": frame.Serial, "presentation_steps": frame.Steps, "hd_enabled": g.hdEnabled, "hd_active": g.hdActive, "hd_shadows_active": g.hdShadowsActive}
 			var data []byte
 			data, e = json.MarshalIndent(metadata, "", "  ")
 			if e == nil {
@@ -733,6 +751,27 @@ func (g *Game) Draw(dst *ebiten.Image) {
 				for suffix, pixels := range map[string][]byte{".hud.bitmap": frame.HUD.Bitmap, ".hud-under.idx": frame.HUD.Underlay.Indices, ".hud-under.mask": frame.HUD.Underlay.Coverage} {
 					if e = os.WriteFile(path+suffix, pixels, 0600); e != nil {
 						break
+					}
+				}
+			}
+			if e == nil && frame.Shadows != nil {
+				for suffix, pixels := range map[string][]byte{".shadow-under.idx": frame.Shadows.Underlay.Indices, ".shadow-under.mask": frame.Shadows.Underlay.Coverage} {
+					if e = os.WriteFile(path+suffix, pixels, 0600); e != nil {
+						break
+					}
+				}
+			}
+			if e == nil && g.hdShadowsActive && len(g.shadowCaptureBefore) > 0 && len(g.shadowCaptureAfter) > 0 {
+				for suffix, pixels := range map[string][]byte{".shadow-render-before.rgba": g.shadowCaptureBefore, ".shadow-render-after.rgba": g.shadowCaptureAfter, ".shadow-alpha.rgba": g.shadowRGBA} {
+					if e = os.WriteFile(path+suffix, pixels, 0600); e != nil {
+						break
+					}
+				}
+				if e == nil {
+					var data []byte
+					data, e = json.Marshal(map[string]any{"serial": frame.Serial, "width": screenRect.Dx(), "height": len(g.shadowRGBA) / (screenRect.Dx() * 4), "x": screenRect.Min.X, "y": screenRect.Min.Y + 178*screenRect.Dy()/200})
+					if e == nil {
+						e = os.WriteFile(path+".shadow-render.json", data, 0600)
 					}
 				}
 			}

@@ -53,6 +53,7 @@ type Core struct {
 	presentation Presentation
 	recording    layerRecording
 	hud          hudRecording
+	shadows      shadowRecording
 }
 
 var allowed = [2]map[uint8]bool{

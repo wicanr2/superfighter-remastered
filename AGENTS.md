@@ -169,6 +169,12 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [tools/verify_match_capture.py](tools/verify_match_capture.py) | 獨立核對比賽擷取的選用／即時原版來源、完整原貌回退及離開對戰後快照清除 |
 | [勝場規格 011](docs/spec/011-hd-win-markers.md)、[獨立證據工具](tools/hud_wins_evidence.py) | 原版拇指圖像、鎖存勝場及兩側位置來源；高解析呈現依規格狀態接入 |
 | [勝場與比賽稽核](tools/audit_native_wins.py) | 核對目前勝場版、另存的完整比賽基準、四平台編譯來源、原檔與實際擷取；不替代完整 HD 驗收 |
+| [陰影規格 012](docs/spec/012-hd-shadows.md)、[普通輸入探針](tools/shadow_draw_receipt.go) | 原版陰影來源、位置、裁切及逐次寫入證據；依規格閘門接入 HD |
+| [陰影獨立重組](tools/shadow_reference.py) | 由固定 XLP 原檔重組實際 before／after／mask，核對裁切、同值寫入與色盤 |
+| [陰影快照](internal/renderdata/shadows.go)、[只讀觀測](internal/gamecore/shadows.go)、[來源選取](internal/hd/shadows.go)、[原生呈現](internal/desktop/shadows.go) | 保留原版圖層及陰影之前的點陣層，驗完來源後畫原生柔邊陰影 |
+| [陰影原版畫格驗證](internal/hd/shadows_test.go)、[裁切邊界](internal/renderdata/shadows_test.go) | 真實雙人快照、原貌重組、損壞拒絕；未觸發分支另標靜態來源 |
+| [原生陰影像素核對](tools/verify_shadow_capture.py) | 原版陰影底層與寫入、實際解析度 alpha、最大重疊及原生 GPU 黑色合成；量化與切換逐點一致分開驗 |
+| [陰影切片稽核](tools/audit_native_shadows.py) | 原檔、四份實際編譯、772 次繪製、24 個雙人畫格、原生／Wine／重疊／舊素材案例與完整比賽核心生命週期 |
 | [tools/windows_native_smoke.py](tools/windows_native_smoke.py) | Docker Wine 的 Windows 原生視窗檢查，不能代替真機驗收 |
 | [tools/windows_shift_probe.go](tools/windows_shift_probe.go)、[驅動](tools/windows_shift_probe.py) | Docker Wine 只讀核對 Win32 左右 Shift 的獨立狀態，不改遊戲核心 |
 | [tools/go.mod](tools/go.mod) | 讓舊獨立 Go 探針與正式桌面模組隔離，不修改舊收據的工具來源 |

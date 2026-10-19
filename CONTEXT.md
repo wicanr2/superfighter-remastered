@@ -21,12 +21,12 @@
 | 研究工具 | 已建立 | 安全盤點、IDA、逐次繪製與完整 RAM 分層；規格 007 的通用觀測介面限定 CONFORMED，獨立副本新增兩檔，共用來源未改 |
 | dosgolem 啟動 | 原生雙打基準已走完整比賽與返回 | 普通選單、移動與拳擊完成兩次擊倒、結果報紙及返回標題，八張擷取通過。離開對戰後快照清空；此基準二進位另存，勝場擴充另驗首勝 |
 | 原版輸入 | 雙人基本輸入與斬四招已驗 | 正常單打、雙打各 25 組基本輸入；雙打兩人的斬各四招均進入原版對應路徑；十二輪詢蓄力是已驗充分條件，未稱最短時間 |
-| 前端與手把 | 三平台共用原生桌面已接核心 | Ebitengine 視窗、鍵鼠、標準手把指派、四格設定及來源所有權。目前勝場版 Linux 首勝七張擷取通過；介面基底 Linux 及 Wine 另各有十六項案例，包含實際扣血。實體手把未驗 |
-| HD | 屋頂、部分角色、13 組特效及介面／勝場已接原生 | study-v7 共 144 個正常色盤來源槽與 13 個第二色盤特效鍵。最新版 Linux 首勝七張擷取獨立重組，切回逐點相同。陰影與回合訊息仍原貌；完整動畫、其他角色及畫面未完成 |
+| 前端與手把 | 三平台共用原生桌面已接核心 | 目前陰影版 Linux／Windows Wine 各十七項正常操作通過，含兩人獨立放開、特效扣血、設定重啟與失焦；實體手把未驗 |
+| HD | 屋頂、部分角色、13 組特效、介面／勝場及柔邊陰影已接原生 | Linux／Wine 各十五張具名擷取重組通過；另七張重疊陰影擷取，切回逐點相同。回合訊息仍原貌；完整動畫、其他角色及畫面未完成 |
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | Windows／macOS／Linux 已定 | 四個勝場版二進位已重建並核對實際編譯來源。介面基底的 Wine 兩個十六項案例及舊素材十三項回退仍保留版本身分。未作勝場版 Wine、Windows／macOS 真機、簽章或正式封包 |
+| 平台與發布 | Windows／macOS／Linux 已定 | 四個陰影版二進位已重建；Linux／Wine 各十七項、舊素材十三項回退通過。未作 Windows／macOS 真機、簽章或正式封包；Wine 不代替真機 |
 
 ## 固定輸入
 
@@ -78,13 +78,13 @@ sf
 
 ## 待確認決策與下一步
 
-屋頂、兩人已驗動作／特效及生命、計時、名字、勝場已接原生。下一步續做陰影與回合訊息，再擴充其餘動作、替代色盤、角色、場景及標題／選角／結果。使用者 Goal 仍是「完成快打至尊HD」，不能以首批切片宣稱完成。原生雙打基準已走完整比賽及返回，其他模式、其他角色快捷及實體雙手把另驗。規格 004、005、006、008、009、011 限定 READY，007 及 010 限定 CONFORMED；002、003 仍 DRAFT。
+屋頂、兩人已驗動作／特效及生命、計時、名字、勝場、地面陰影已接原生。下一步處理中央回合訊息，再擴充其餘動作、替代色盤、角色、場景及標題／選角／結果。使用者 Goal 仍是「完成快打至尊HD」，不能以首批切片宣稱完成。原生雙打基準已走完整比賽及返回，其他模式、其他角色快捷及實體雙手把另驗。規格 004、005、006、008、009、011 限定 READY，007、010、012 限定 CONFORMED；002、003 仍 DRAFT。
 
 使用者指定的[說明書頁面](https://chiuinan.github.io/game/game/intro/ch/c51/sf.htm)及兩張圖片已存檔，版本自述為 1.1。原生入口目前採西側面鍵拳、南側面鍵腳與八方向；Start／Esc 暫停前端，沒有把 Esc 送原版觸發說明書記載的補血。鍵鼠正常路徑已驗，實體手把另驗；完整手把規格仍有未驗部分。
 
 HD 採 B「街機手繪」，首批屋頂、斬、法蘭克及介面已獲開工授權。現行群組為 `hd-characters-study-v7`，十三張透明圖集對應 144 個正常色盤來源槽及 13 個第二色盤特效鍵；基本槽共有 117 組不同原始 bytes。原始 PNG、提示詞與雜湊分別在 `hd-sprite-art-v1` 至 `v5`、`hd-effect-art-v1`／`v2`。登錄保留原 PNG bytes。來源槽齊全不等於完整動畫已驗；C0h 同時翻轉、頂部裁切、受擊替代色盤及剩餘介面待補。正式倍率、像素比例與預設模式尚未定版。
 
-研究用 dosgolem 副本現有 1715 份來源，原有 1713 份 bytes 全不變；只在 oracle 新增普通 RAM 每次寫入觀測與合成程式驗證。前版 manifest 保存在 `dosgolem-patched-manifest-v1.json`，新 manifest SHA-256 為 `6ad93295a80dbf590b88b64fab3acf1ffa6c31a32eb305e0a53936cb849f9732`。四個勝場版二進位各有實際編譯來源及輸出收據；目前 GUI 首勝以 native-win-markers-v1 為準，完整比賽與前版 native-hud／windows-hud 收據保留各自版本身分。
+研究用 dosgolem 副本現有 1715 份來源，原有 1713 份 bytes 全不變；只在 oracle 新增普通 RAM 每次寫入觀測與合成程式驗證。前版 manifest 保存在 `dosgolem-patched-manifest-v1.json`，新 manifest SHA-256 為 `6ad93295a80dbf590b88b64fab3acf1ffa6c31a32eb305e0a53936cb849f9732`。四個陰影版二進位各有實際編譯來源及輸出收據；目前 GUI 以 native-shadows／windows-shadows 為準。舊勝場版首勝、完整比賽基準及前版介面收據保留各自版本身分。
 
 目前 dosgolem 的線性 320×200 API 未套用 CRTC 起點，兩種呈現均沿用相同完整快照。硬體捲動與震動畫面仍屬 oracle 限制，不宣稱實機 CRTC parity。HD 背景只在來源、色盤與相機範圍吻合時啟用，其他情況整張退回原貌。詳見規格 006。
 
@@ -94,7 +94,19 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ## 現行證據入口
 
-### 最新原生勝場與正常流程
+### 最新原生陰影切片
+
+- [規格 012](docs/spec/012-hd-shadows.md) 經來源審查升 READY 後接入，驗證與稽核後限定 CONFORMED。772 次原版繪製與 19 個獨立重組樣本吻合，保留 5,002 次同值寫入。負 X 裁切及整圖跳過只有靜態邊界測試，不冒充正常樣本。
+- `shadow-core-compat-v1` 的 456 個邊界在開／關新觀測時原貌、色盤、角色、狀態及步數相同，取得 448 個完整陰影快照，保存 24 個可重組的雙人原版畫格。`shadow-checks-v1` 全套測試及 go vet 通過，沒有跳過。
+- `native-shadows-v1`／`windows-shadows-v1` 各十七項通過，各十五張具名擷取完整重組；各十二張高解析陰影擷取另核對原生 alpha 與 GPU 黑色合成。RGBA8 合成量化區間與切回 HD 逐點一致分開驗，沒有放寬切換比較。
+- `native-shadow-overlap-v1` 普通走近取得重疊，七張具名擷取、五張陰影合成核對通過，其中三張確有透明度重疊。`native-shadow-legacy-v1` 十三項及十一張具名擷取驗舊版 1 與缺件整張原貌，沒有混入新版柔邊陰影。
+- `shadow-match-core-v1` 以普通輸入走完兩次擊倒及第二回合，當時陰影快照完整；結果報紙階段快照清空。此為目前核心的生命週期證據，原生返回標題仍保留下一節基準的版本身分。
+- 四個目前二進位與編譯來源由 `desktop-build.json` 及 `bin/*.build.json` 記錄。勝場版的四個二進位、精確來源、舊稽核已保存於 `native-win-markers-v1/build-baseline`，不把舊收據當目前版。最新稽核入口為 `tools/audit_native_shadows.py`，輸出 `native-shadows-audit.json`。
+- 自有來源續存獨立 Git 副本與 `workplace/github-native-shadows.bundle`，備份身分及逐檔雜湊見 `workplace/github-native-shadows-source.json`。原版、衍生美術與二進位不納入提交；GitHub 仍未建立或推送。
+
+### 勝場與完整比賽基底
+
+以下保留勝場版及完整比賽基準的來源與限制，最新陰影版以本節前方的現況為準。
 
 - [規格 011](docs/spec/011-hd-win-markers.md) 限定 READY。獨立來源核對 33 個 HUD fixture、93 點非零拇指圖像及兩側各兩格靜態位置。原生向量重繪按鎖存的 DisplayWins 顯示，保留完整原版圖層；尚未顯示的勝場不移除原貌像素。右側及第二圖示未作正常 GUI 勝場驗收。
 - `native-win-markers-v1` 使用目前 Linux 勝場版，普通移動與拳擊取得第一勝，七張擷取逐點重組原版六層。三張暫停切換的核心、色號、色盤、完整快照及即時 RGB 相同，恢復 HD 的遊戲區逐點一致；勝場區確有 HD 替換。全套測試與 go vet 見 `win-markers-checks-v2`，33 個 HUD／19 個特效 fixture 沒有跳過；新增未獲勝區域的拒絕檢查見 `win-marker-coverage-v1`。
@@ -136,7 +148,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 首份提交為 `8365aeb91f79032227ff3c4b5cc8daed5fc3e4bd`，共 60 檔；完整 Git 備份為 `workplace/github-initial-8365aeb.bundle`，已通過 `git bundle verify`。可在連線與權限恢復後從該副本推送 main；origin 只保存預定 URL，不表示遠端已建立。後續 HD 變更仍以目前工作根為準。
 
-角色研究早期備份為 `github-hd-study-00dfe7e.bundle`；特效提交為 `3807ee3`，備份 `github-native-effects.bundle`。介面基底來源保存於 `workplace/github-native-hud.bundle`，目前勝場來源為 `workplace/github-native-wins.bundle`；原版、衍生美術及二進位持續排除，遠端仍未建立或推送。
+角色研究早期備份為 `github-hd-study-00dfe7e.bundle`；特效提交為 `3807ee3`，備份 `github-native-effects.bundle`。介面基底、勝場與目前陰影來源分別保存於 `workplace/github-native-hud.bundle`、`github-native-wins.bundle`、`github-native-shadows.bundle`；原版、衍生美術及二進位持續排除，遠端仍未建立或推送。
 
 ### 穩定文件與早期切片
 

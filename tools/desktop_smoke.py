@@ -21,12 +21,17 @@ def main():
     parser.add_argument("--exercise-poses", action="store_true")
     parser.add_argument("--exercise-backstep", action="store_true")
     parser.add_argument("--exercise-hud", action="store_true")
+    parser.add_argument("--exercise-shadows", action="store_true")
+    parser.add_argument("--shadow-overlap-only", action="store_true",
+                        help="正常走近取得重疊陰影及暫停切換擷取後結束，不代替完整操作驗收")
     effect_case = parser.add_mutually_exclusive_group()
     effect_case.add_argument("--exercise-effects", action="store_true")
     effect_case.add_argument("--exercise-frank-effects", action="store_true")
     parser.add_argument("--wine", action="store_true")
     parser.add_argument("--opponent", choices=["jaan", "frank"], default="jaan")
     args = parser.parse_args()
+    if args.shadow_overlap_only and not (args.exercise_shadows and args.hd_assets and args.hd_characters and args.opponent == "frank"):
+        parser.error("--shadow-overlap-only requires rooftop characters, Frank and --exercise-shadows")
     args.output.mkdir(exist_ok=False)
     runtime = args.output / "runtime"
     runtime.mkdir(mode=0o700)
@@ -198,7 +203,43 @@ def main():
                         assert hud["presentation"]["hud"]["state"]["display_health"] == [124, 124]
                         events.append({"native_hd_hud_initial": hud})
                         checks.append("native HD health, timer and names use the complete original HUD state")
+                    if args.exercise_shadows:
+                        shadows = wait(lambda s: s.get("hd_shadows_active") and s["presentation"].get("shadows", {}).get("complete"))
+                        assert [draw["player"] for draw in shadows["presentation"]["shadows"]["draws"]] == [0, 1]
+                        events.append({"native_hd_shadows": shadows})
+                        checks.append("native HD ground shadows use both complete original draw records before the characters")
                     checks.append("native GPU draws both HD characters from six verified original layers with independent background")
+                    if args.shadow_overlap_only:
+                        initial = state()["presentation"]["shadows"]["draws"]
+                        direction = "d" if initial[0]["x"] < initial[1]["x"] else "a"
+                        xdo("keydown", direction)
+                        wait(lambda s: s.get("hd_shadows_active") and abs(s["presentation"]["shadows"]["draws"][0]["x"] - initial[0]["x"]) > 4, timeout=60)
+                        shot("hd-shadow-approach.png")
+                        overlap = wait(lambda s: s.get("hd_shadows_active") and abs(s["presentation"]["shadows"]["draws"][0]["x"] - s["presentation"]["shadows"]["draws"][1]["x"]) <= 48, timeout=90)
+                        xdo("keyup", direction)
+                        shot("hd-shadow-overlap.png")
+                        checks.append("ordinary native walking produces overlapping original shadow footprints")
+                        click(265, 32)
+                        paused = wait(lambda s: s["core"]["paused"])
+                        shot("hd-paused.png")
+                        click(830, 32)
+                        original = wait(lambda s: not s["hd_enabled"])
+                        shot("original-paused.png")
+                        click(830, 32)
+                        restored = wait(lambda s: s["hd_enabled"] and s["hd_active"] and s.get("hd_shadows_active"))
+                        shot("hd-restored.png")
+                        for field in ["core", "presentation", "settings", "assigned"]:
+                            assert paused[field] == original[field] == restored[field], field
+                        checks.append("paused overlapping shadow HD/original/HD switch preserves complete original source and input state")
+                        receipt = {"kind": "normal native shadow-overlap path; not full controller or complete-match acceptance",
+                                   "scope": "shadow-overlap", "checks": checks, "events": events + [{"overlap": overlap}], "command": command,
+                                   "binary_sha256": hashlib.sha256(args.binary.read_bytes()).hexdigest(),
+                                   "script_sha256": hashlib.sha256(script_source).hexdigest(),
+                                   "state_access": "observe-only JSON; ordinary X11 walking and mouse/keyboard only"}
+                        (args.output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n")
+                        (args.output / "desktop_smoke.py").write_bytes(script_source)
+                        print(json.dumps({"scope": receipt["scope"], "checks": checks}, ensure_ascii=False))
+                        return
                     start_x = full["presentation"]["actors"][0]["x"]
                     xdo("keydown", "d")
                     moved = wait(lambda s: s["hd_characters_active"] and s["presentation"]["actors"][0]["x"] > start_x + 2)

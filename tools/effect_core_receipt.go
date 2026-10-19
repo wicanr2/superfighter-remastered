@@ -22,6 +22,7 @@ func must(e error) {
 func main() {
 	out := flag.String("out", "", "new output directory")
 	hud := flag.Bool("hud", false, "also compare read-only HUD observation")
+	shadows := flag.Bool("shadows", false, "also compare read-only shadow observation and save paired fixtures")
 	flag.Parse()
 	if *out == "" {
 		panic("out required")
@@ -30,6 +31,9 @@ func main() {
 		panic("output exists")
 	}
 	must(os.MkdirAll(*out, 0755))
+	script, e := os.ReadFile("/project/tools/effect_core_receipt.go")
+	must(e)
+	must(os.WriteFile(filepath.Join(*out, "effect_core_receipt.go"), script, 0644))
 	base, e := gamecore.New("/orig", filepath.Join(*out, "baseline"))
 	must(e)
 	defer base.Close()
@@ -40,9 +44,15 @@ func main() {
 	if *hud {
 		observed.EnableHUD()
 	}
+	if *shadows {
+		observed.EnableShadows()
+	}
 	cores := []*gamecore.Core{base, observed}
 	checks := 0
 	hudSnapshots := 0
+	shadowSnapshots := 0
+	shadowFixtures := []string{}
+	shadowKeys := map[string]bool{}
 	compare := func() {
 		a, b := base.Status(), observed.Status()
 		if !reflect.DeepEqual(a, b) {
@@ -55,6 +65,29 @@ func main() {
 		checks++
 		if y.HUD != nil && y.HUD.Complete {
 			hudSnapshots++
+		}
+		if *shadows && y.Shadows != nil && y.Shadows.Complete {
+			shadowSnapshots++
+			key := fmt.Sprintf("%v", y.Shadows.Draws)
+			if !shadowKeys[key] && len(shadowFixtures) < 24 {
+				shadowKeys[key] = true
+				stem := fmt.Sprintf("shadow-frame-%03d", len(shadowFixtures))
+				shadowFixtures = append(shadowFixtures, stem)
+				write := func(suffix string, data []byte) { must(os.WriteFile(filepath.Join(*out, stem+suffix), data, 0644)) }
+				metadata, e := json.MarshalIndent(y, "", "  ")
+				must(e)
+				write(".json", metadata)
+				palette, e := json.Marshal(y.Palette)
+				must(e)
+				write(".palette.json", palette)
+				write(".idx", y.Pixels)
+				write(".shadow-under.idx", y.Shadows.Underlay.Indices)
+				write(".shadow-under.mask", y.Shadows.Underlay.Coverage)
+				for index, layer := range y.Layers {
+					write(fmt.Sprintf(".layer-%02d.idx", index), layer.Indices)
+					write(fmt.Sprintf(".layer-%02d.mask", index), layer.Coverage)
+				}
+			}
 		}
 	}
 	step := func(n uint64) {
@@ -121,13 +154,13 @@ func main() {
 		must(c.Quick(0, 1))
 	}
 	runFrames("p1-R1-after-p2", 40)
-	script, e := os.ReadFile("/project/tools/effect_core_receipt.go")
-	must(e)
-	must(os.WriteFile(filepath.Join(*out, "effect_core_receipt.go"), script, 0644))
 	if *hud && hudSnapshots == 0 {
 		panic("HUD observation did not capture any complete snapshot")
 	}
-	receipt := map[string]any{"kind": "normal public core input compatibility with effect/HUD observation off/on", "hud_enabled": *hud, "complete_hud_snapshots": hudSnapshots, "compared_step_boundaries": checks, "phases": phases, "result": "all observed input state, complete original pixels, palette, actors, counters and execution steps identical", "script_sha256": fmt.Sprintf("%x", sha256.Sum256(script)), "limits": "controlled two-player input observation; not GUI, gamepad hardware or cross-execution RND parity"}
+	if *shadows && shadowSnapshots == 0 {
+		panic("shadow observation did not capture any complete snapshot")
+	}
+	receipt := map[string]any{"kind": "normal public core input compatibility with effect/HUD/shadow observation off/on", "hud_enabled": *hud, "complete_hud_snapshots": hudSnapshots, "shadows_enabled": *shadows, "complete_shadow_snapshots": shadowSnapshots, "shadow_fixtures": shadowFixtures, "compared_step_boundaries": checks, "phases": phases, "result": "all observed input state, complete original pixels, palette, actors, counters and execution steps identical", "script_sha256": fmt.Sprintf("%x", sha256.Sum256(script)), "limits": "controlled two-player input observation; not GUI, gamepad hardware or cross-execution RND parity"}
 	b, e := json.MarshalIndent(receipt, "", "  ")
 	must(e)
 	must(os.WriteFile(filepath.Join(*out, "receipt.json"), append(b, '\n'), 0644))

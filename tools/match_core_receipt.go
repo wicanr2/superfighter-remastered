@@ -29,6 +29,7 @@ func writeJSON(path string, value any) {
 
 func main() {
 	out := flag.String("out", "", "new output directory")
+	shadows := flag.Bool("shadows", false, "also verify read-only shadow snapshot lifecycle")
 	flag.Parse()
 	if *out == "" {
 		panic("out required")
@@ -45,11 +46,20 @@ func main() {
 	defer c.Close()
 	c.EnableEffects()
 	c.EnableHUD()
+	if *shadows {
+		c.EnableShadows()
+	}
 	c.Pause(false)
 	var events []map[string]any
 	checkpoint := func(name string) {
 		w, h, rgb := c.RGB()
 		frame := c.Presentation()
+		if *shadows && c.Status().Battle && (frame.Shadows == nil || !frame.Shadows.Complete) {
+			panic("missing complete battle shadow snapshot")
+		}
+		if !c.Status().Battle && frame.Shadows != nil {
+			panic("stale shadow snapshot after leaving battle")
+		}
 		cached := make([]byte, len(frame.Pixels)*3)
 		for i, v := range frame.Pixels {
 			copy(cached[i*3:i*3+3], frame.Palette[v][:])
@@ -70,7 +80,7 @@ func main() {
 		}
 		events = append(events, event)
 		writeJSON(filepath.Join(*out, name+".json"), event)
-		fmt.Println(name, c.Status(), "frame", frame.Serial, "hud", frame.HUD)
+		fmt.Println(name, c.Status(), "frame", frame.Serial, "complete shadows", frame.Shadows != nil && frame.Shadows.Complete)
 	}
 	step := func(n uint64) {
 		must(c.Step(n))
