@@ -1,0 +1,12 @@
+--- a/internal/dos/exec.go
++++ b/internal/dos/exec.go
+@@ -516,6 +516,9 @@
+ 
+ 	oldFree := d.freeSeg
+ 	d.enterProgram(c, prog)
++	// Spec 001: a supervisor-queued program starts with interrupts enabled.
++	// Preserve the other flags; do not inherit CLI from a terminated TSR.
++	c.SetFlags(c.Flags | cpu.IF)
+ 	if d.freeSeg < oldFree {
+ 		// 只升不降（spec-205，與 spawn 一致）。
+ 		d.freeSeg = oldFree

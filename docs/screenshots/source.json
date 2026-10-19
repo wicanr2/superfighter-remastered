@@ -1,0 +1,10 @@
+{
+  "kind": "native settings UI before original DOS execution; no original game artwork",
+  "file": "gamepad-settings.png",
+  "sha256": "8bae1e5e969799e082fca5ca315579ae09ce0bbbc4c6c1bb199fad972530e44f",
+  "source": "workplace/windows-native-v4/native-windows.png",
+  "source_sha256": "8bae1e5e969799e082fca5ca315579ae09ce0bbbc4c6c1bb199fad972530e44f",
+  "tool": "tools/windows_native_smoke.py",
+  "platform": "Windows executable under Wine 9, not hardware gamepad acceptance",
+  "font": "Noto Sans CJK TC, SIL OFL 1.1; internal/desktop/assets/source.json"
+}

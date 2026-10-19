@@ -1,0 +1,2 @@
+# 補丁的 context 行須保留前導空白，不當作新程式碼的空白錯誤。
+tools/*.patch -whitespace

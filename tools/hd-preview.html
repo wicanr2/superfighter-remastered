@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>快打至尊｜HD 分層試作</title>
+<style>
+:root{color-scheme:dark;background:#0b101c;color:#eef2ff;font-family:system-ui,sans-serif}body{max-width:1120px;margin:auto;padding:24px 18px 48px}h1{font-size:28px}p{color:#b6c6e0;line-height:1.8}a{color:#8cdcff}.bar{display:flex;gap:18px;flex-wrap:wrap;align-items:center;background:#172139;padding:18px;border-radius:12px;margin:18px 0}button,select{font:inherit;background:#243653;color:inherit;border:1px solid #6781aa;border-radius:6px;padding:9px}canvas{display:block;width:100%;height:auto;background:#05070d;border:1px solid #475b80}.badge{color:#ffdc73;font-size:13px}.layers{display:grid;grid-template-columns:1fr 1fr;gap:16px}.layers figure{margin:0;background:#151e30;padding:12px;border-radius:10px}.layers img{max-width:100%;max-height:260px;display:block;margin:auto}.layers figcaption{padding-top:10px;color:#acbedb;font-size:13px;line-height:1.7}.original{image-rendering:pixelated}#status{min-height:28px}input{vertical-align:middle}@media(max-width:600px){.layers{grid-template-columns:1fr}}
+</style>
+<body>
+<span class="badge">B 街機手繪 · DRAFT 分層素材試作</span>
+<h1>屋頂場景、斬、法蘭克</h1>
+<p>背景取自已解碼的 I2.XGB 構圖，角色各有一張透明待機圖。此頁用來檢查分層、透明與接地，尚未連接遊戲核心；生命與計時只是明示的展示值。</p>
+<div class="bar">
+<label>模式 <select id="mode"><option value="hd">HD 素材組合</option><option value="original">原版首戰收據</option></select></label>
+<label>背景裁切位置 <input id="camera" type="range" min="0" max="160" value="80"><output id="camera-value">80</output></label>
+<label><input id="anchors" type="checkbox">顯示接地參考</label>
+<label><input id="unknown" type="checkbox">模擬缺少角色姿態</label>
+<button id="reset">還原展示狀態</button>
+</div>
+<canvas id="screen" width="1600" height="1000" aria-label="HD 分層素材組合預覽"></canvas>
+<p id="status" role="status">載入本機素材。</p>
+<p>原版畫布維持 320×200，這個試作畫布是 1600×1000。場景原圖 480×204，生成背景實際為 1923×818，尚未通過逐點幾何對齊；正式呈現倍率與像素比例仍須驗證。調整裁切只預覽素材邊界，不移動遊戲鏡頭。</p>
+<div class="layers">
+<figure><img src="../workplace/hd-source-probe-v3/I2.XGB.png" class="original" alt="原始 I2.XGB 場景解碼圖"><figcaption>原始完整場景，480×204。首戰背景抽樣最佳匹配位移為 80、0；整張圖仍含 HUD、角色及其他覆蓋，不能以抽樣宣稱完整 parity。</figcaption></figure>
+<figure><img src="../workplace/hd-layers/rooftop-layer.png" alt="B 畫風屋頂背景分層試作"><figcaption>高解析重繪背景，無角色與介面。保持主要建物與屋頂構圖，細節與幾何尚需校對。</figcaption></figure>
+<figure><img src="../workplace/hd-layers/jaan-idle-layer.png" alt="斬的透明待機姿態試作"><figcaption>斬：透明待機圖，未包含走路、攻擊、受擊與倒地。輪廓、服裝及透明邊緣待核對。</figcaption></figure>
+<figure><img src="../workplace/hd-layers/frank-idle-layer.png" alt="法蘭克的透明待機姿態試作"><figcaption>法蘭克：透明待機圖，已去除第一稿的破褲設計；仍非正式完整動畫。</figcaption></figure>
+</div>
+<p><a href="gamepad-preview.html">手把與四招綁定預覽</a> · <a href="../docs/spec/003-hd-design.md">HD 規格</a> · <a href="../docs/game-history.md">遊戲資料保存</a></p>
+<script>
+"use strict";
+const $=id=>document.getElementById(id), canvas=$("screen"),ctx=canvas.getContext("2d");
+const paths={background:"../workplace/hd-layers/rooftop-layer.png",jaan:"../workplace/hd-layers/jaan-idle-layer.png",frank:"../workplace/hd-layers/frank-idle-layer.png",original:"../workplace/probe-two-confirm-130m/screen.png"};
+const images={},errors=[];
+function line(x,y){ctx.strokeStyle="#7fffe7";ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x-35,y);ctx.lineTo(x+35,y);ctx.moveTo(x,y-35);ctx.lineTo(x,y+12);ctx.stroke();}
+function sprite(img,x,foot,h){const height=h*5,width=height*img.naturalWidth/img.naturalHeight;ctx.drawImage(img,x*5-width/2,foot*5-height,width,height);}
+function draw(){
+  const camera=Number($("camera").value), unknown=$("unknown").checked;
+  $("camera-value").value=String(camera);ctx.clearRect(0,0,1600,1000);
+  const hdReady=images.background&&images.jaan&&images.frank;
+  if($("mode").value==="original"||unknown||!hdReady){
+    if(images.original){ctx.imageSmoothingEnabled=false;ctx.drawImage(images.original,0,0,1600,1000);}
+    $("status").textContent=unknown?"缺少姿態：整張展示畫格退回原版收據。此為固定素材的回退示範。":!hdReady?"素材尚未備齊，保留原版收據；沒有顯示半套角色。":"原版首戰固定收據，沒有重新執行核心。";return;
+  }
+  ctx.imageSmoothingEnabled=true;
+  // 使用完整背景的比例一致縮放，生成尺寸差異明示於頁面，非正式幾何契約。
+  const scale=2400/images.background.naturalWidth;
+  ctx.drawImage(images.background,-camera*5,0,2400,images.background.naturalHeight*scale);
+  sprite(images.jaan,145-camera,184,96);sprite(images.frank,328-camera,184,91);
+  ctx.fillStyle="#181c3bcc";ctx.fillRect(0,0,1600,58);
+  ctx.strokeStyle="#fff7ce";ctx.lineWidth=5;ctx.fillStyle="#fff340";ctx.fillRect(80,100,620,30);ctx.strokeRect(80,100,620,30);ctx.fillRect(900,100,620,30);ctx.strokeRect(900,100,620,30);
+  ctx.font="bold 64px system-ui";ctx.textAlign="center";ctx.fillStyle="#ffe565";ctx.fillText("99",800,146);
+  ctx.font="bold 36px system-ui";ctx.textAlign="left";ctx.fillText("斬  JAAN",80,180);ctx.textAlign="right";ctx.fillText("FRANK  法蘭克",1520,180);
+  ctx.fillStyle="#10152dcc";ctx.fillRect(460,946,680,44);ctx.font="24px system-ui";ctx.textAlign="center";ctx.fillStyle="#d7e4ff";ctx.fillText("素材試作 · 展示數值 · 未接核心",800,978);
+  if($("anchors").checked){line((145-camera)*5,920);line((328-camera)*5,920);}
+  $("status").textContent="背景、兩張透明角色與介面分開合成；目前只有靜態待機素材。";
+}
+Promise.allSettled(Object.entries(paths).map(([key,path])=>new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>{images[key]=img;resolve();};img.onerror=()=>{errors.push(key);reject(new Error(key));};img.src=path;}))).then(()=>{draw();if(errors.length)$("status").textContent+=` 載入失敗：${errors.join("、")}`;});
+for(const id of ["mode","camera","anchors","unknown"])$(id).addEventListener("input",draw);
+$("reset").onclick=()=>{$("mode").value="hd";$("camera").value="80";$("anchors").checked=false;$("unknown").checked=false;draw();};
+</script>
+</body>
+</html>

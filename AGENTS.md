@@ -1,0 +1,207 @@
+# 快打至尊 Remastered
+
+## 每次開工
+
+1. 先讀 [CONTEXT.md](CONTEXT.md) 的唯一現況表，再讀 [WORKLIST.md](WORKLIST.md)。以目前程式與最近實跑收據判斷進度。
+2. 查 `/home/anr2/.codex/knowledge-base/knowledge-router.md`，說明命中列與實際載入的入口。只載入本次任務需要的文件。
+3. 遵守使用者提供的共用主機衛生規則。回覆與新文件用繁體中文，句子簡短、直接。
+4. 既有完成項不因歷史筆記重新開啟。區分「本專案已完成」、「原版證據未知」與「可選美化」。
+
+## 已確認目標與架構
+
+使用者於 2026-10-19 指定：參考 `/home/anr2/cht/zeliard`，以 dosgolem 包裹《快打至尊》原版核心，支援手把操作，並規劃 HD。
+
+- 原版執行檔負責遊戲規則、角色狀態、碰撞、攻擊判定、AI 與流程。
+- dosgolem 負責執行 DOS 程式、機器服務、觀測與可重播輸入。
+- 本專案負責啟動適配、桌面呈現、手把映射、設定與 HD 合成。
+- 玩家入口固定為 Windows、macOS、Linux 原生桌面程式。使用者已排除 web；HTTP／HTML 只留作研究工具，不作主入口或三平台成品。
+- 原貌是行為與畫面的基準；HD 是獨立呈現層。
+- 不另建一套玩法引擎，不用推測規則替代原版。dosgolem 缺能力時，記錄缺口並補足通用服務。
+
+架構已定，不重複詢問是否改用 dosgolem。使用者於 2026-10-19 選定 HD 的 B「街機手繪」方向，原圖及雜湊見 [規格 003](docs/spec/003-hd-design.md)。這次只確認畫風，概念稿已列出的造型偏差仍需依原版修正。首批屋頂、斬、法蘭克與對戰介面已獲使用者授權開工；正式倍率、預設模式與公開方式尚未定案；平台固定 Windows、macOS、Linux。不得把 zeliard 的選項當成本作決定。
+
+## 參考來源與界線
+
+| 來源 | 用途 | 不可直接沿用 |
+|---|---|---|
+| `/home/anr2/cht/zeliard/AGENTS.md` | dosgolem 包裹、原貌與 HD 分離、手把需求、證據與驗收流程 | 該作位址、按鍵、畫布、手繪奇幻畫風、中文化與遠端儲存庫授權 |
+| `/home/anr2/cht/dosgolem/README.md`、`CLAUDE.md` | 既有能力、Docker 工具鏈、Go workspace 接入與分層 | 已支援《快打至尊》全遊戲的假定 |
+| `/home/anr2/cht/dosgolem/docs/spec/000-index.md` | dosgolem 規格入口；首次接入先讀，再選所需規格 | 僅憑規格存在宣稱本作可執行 |
+| `/home/anr2/.codex/knowledge-base/local/retro-remake-end-to-end-playbook.md` | 垂直切片、完成狀態、正常玩家路徑與停止線 | 其他作品的完成門檻與已驗證狀態 |
+| `https://chiuinan.github.io/game/game/intro/ch/c51/sf.htm` | 使用者指定的操作、招式與圖片參考；本機快照見 `workplace/manual-reference/source.json` | 網頁自述 v1.1，不能直接取代目前包內自述 v2.0 的輸入證據或套用其修改位元組 |
+
+參考專案與共用 dosgolem 來源唯讀使用。需要修正共用執行器時，在本專案 `workplace/` 建立獨立工作副本，記錄來源 commit 與差異。不直接修改其他專案。
+
+## 原始輸入與啟動鏈
+
+- 原始包為 [快打至尊.jsdos](快打至尊.jsdos)，來源、SHA-256 與已檢查項目見 [CONTEXT.md](CONTEXT.md)。保留原始 bytes，不覆寫、不重包。
+- 解包在 Docker 內進行。拒絕絕對路徑、上層跳脫、符號連結與正規化後重複路徑；保留逐檔原名、大小及 SHA-256。
+- `.jsdos/dosbox.conf` 的啟動入口是 `play.bat`。`PLAY.BAT` 內容為 `nokey /y` 後執行 `sf`。
+- 包內同時有 `SF.COM`、`SF.EXE` 與 `NOKEY.EXE`。先核對命令解析、子程序與輸入準備；直接跑 `SF.EXE` 只算診斷入口，未驗證前不取代正常啟動鏈。
+- `AIDATA.DAT` 與 `CHEAT/AIDATA.DAT` 的內容不同。正式基準保留來源根目錄檔案，禁止自動以 `CHEAT/` 內容覆蓋。
+- `FIGHT.CFG`、包內既有存檔及其他可寫資料先視為來源。執行、設定變更與測試採另外的可寫層，禁止回寫原始包。
+- `README.TXT` 自述為 SUPER FIGHTER v2.0。這只證明包內文字，尚不能證明原始發行版本、未修改狀態或散布權。
+- `.DAT`、`.FIG`、`.XBB` 等副檔名不證明格式。資產用途、編碼與角色對應須由 bytes、實際畫面及讀取端查證。
+
+## dosgolem 接入
+
+1. 依規格索引選讀 `001-scope-and-mvp.md`、`005-oracle-api.md`、`006-layering.md`。檔案均位於 `/home/anr2/cht/dosgolem/docs/spec/`；舊規格與目前程式衝突時記錄差異。
+2. 在 Docker 內檢查目前 `cmd/probe` 的旗標，以固定指令與時間預算探測。先記錄入口、未實作指令、DOS／BIOS 服務、檔案存取、視訊模式、音訊與停止原因。
+3. 首個垂直切片須從正常啟動到可操作選單，再走進一場對戰並正常返回。只顯示片頭或載入 EXE 不算可玩。
+4. Go 接入依 dosgolem README 的 workspace 方法，使用本機來源並記錄 commit。不得填入不存在的模組版本，不從外部模組直接 import dosgolem 的 `internal/`。
+5. 本作位址、載入器設定、按鍵語意、畫面辨識與 HD 資源對應留在本專案適配層。機器層不得出現《快打至尊》專屬分支。
+6. 通用服務缺口依 dosgolem 自身規格處理。不得藉吞錯、跳過必要程式碼或偽造成功狀態讓畫面繼續。
+7. dosgolem 是正式原版收據來源。DOSBox／DOSBox-X 僅補足與交叉驗證缺口，擷取標為輔助基準；修正後由 dosgolem 重生收據。
+8. 每份收據記錄來源與雜湊、dosgolem commit 及本地差異、工具版本、初始狀態、輸入序列、預算、停止條件、輸出與限制。
+
+## 手把操作
+
+先核對原版輸入，再定義動作表與預設綁定。不能因為是格鬥遊戲，就自行補上攻擊鍵數、連招或原生搖桿契約。
+
+| 項目 | 要求與驗收 |
+|---|---|
+| 設定入口 | 前端提供可辨識的「手把設定」入口；可用鍵盤開啟、取消與離開，避免未綁定時無法設定 |
+| 裝置 | 選擇作業系統已辨識的 USB 或藍牙手把，顯示名稱及連線狀態；藍牙配對由作業系統處理 |
+| 綁定 | 方向鍵、類比軸及按鈕可綁定已證實的遊戲動作，支援重綁、取消、還原與衝突提示 |
+| 輸入注入 | 依原版實際讀取方式選擇掃描碼或 DOS 搖桿介面；分開驗證按下、持續按住、放開與同時按鍵 |
+| 格鬥操作 | 抽測斜方向、方向加攻擊、多鍵與快速轉向；保留輸入順序，不以單次按鍵 API 冒充連續狀態 |
+| 相反方向 | 先量原版鍵盤的上下／左右同按行為；未定規格前不自行加入清除、優先序或最後輸入優先 |
+| 類比軸 | 死區、方向門檻與遲滯由可撤回試作及操作驗證決定；不臆定正式數值 |
+| 輸入所有權 | 手把、鍵盤與設定介面的按住狀態分開追蹤；單一來源放開不得取消另一來源仍按住的動作 |
+| 設定隔離 | 重綁與前端選單攔下自己的事件，避免同時觸發遊戲動作；進出介面要釋放或明確恢復按鍵 |
+| 生命週期 | 啟動後接入、斷線、重連、切換裝置與失焦不得留下卡鍵；無手把時保留鍵盤備援 |
+| 設定保存 | 裝置及映射設定獨立於原版檔案；重啟後恢復，不只用當次列舉索引識別裝置 |
+| 玩家模式 | 先查原版單／雙人模式與各自按鍵。若實作雙手把，須明確指派玩家並驗證兩邊輸入不串線 |
+
+自動測試驗映射、順序、按住／放開、輸入隔離與斷線清理。實體驗收另記錄平台、型號、USB／藍牙連線方式及結果。合成事件不等於手把實測通過。
+
+使用者於 2026-10-19 明確授權逐角色快速出招，最多四格，預設 R1／R2／L1／L2 對應絕招 1／2／3／4；有五招的角色可任選四招。兩名玩家各自保存角色配置，並規劃兩支手把雙打。詳細契約與原型限制見 [規格 002](docs/spec/002-gamepad-design.md)。快捷以原版輸入序列出招，時序、朝向及狀態條件須實測；不藉此直接改寫招式、傷害或蓄力規則。未授權的連發、任意跨招巨集、輸入寬容度與指令緩衝修改仍不加入正式路徑。
+
+## HD 規劃與呈現契約
+
+HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是查證與試作順序，尚未定案量產範圍。
+
+| 階段 | 工作 | 進入下一階段的條件 |
+|---|---|---|
+| H0 原貌基準 | 正常玩家路徑擷取標題、選角、對戰與結算；量畫布、像素比例、色盤、遮擋與動畫節點 | dosgolem 可重播；來源、狀態與畫格定位可回查 |
+| H1 小範圍比較稿 | 從已證實來源選一個場景，呈現原貌及候選 HD；角色與 HUD 必須可辨讀 | 提供同狀態比較與短片，由使用者選畫風、範圍、倍率與預設模式 |
+| H2 動態垂直切片 | 在已確認範圍內覆繪代表角色及必要姿態，驗鏡像、透明、陰影、遮擋與特效 | 正常對戰連續播放，無殘影、漂移、錯幀及操作回饋延遲；未知姿態可安全退回 |
+| H3 擴充與收尾 | 依已確認範圍逐組擴充場景、角色、介面與特效 | 每組有來源與授權記錄、缺件退回及正常玩家路徑驗證 |
+
+- HD 素材以目標解析度直接合成。最近鄰放大、濾鏡或將高清圖縮回原尺寸都不能單獨宣稱完成 HD 美術。
+- 保留原始畫面擷取路徑；呈現層不寫回原版視訊記憶體或遊戲狀態。
+- 先取得可信的繪製事件、來源鍵、角色姿態與完整畫格，再決定覆繪。單張畫面相似不足以識別整段動畫。
+- 每組素材記錄來源檔及偏移或事件、雜湊、尺寸、錨點、鏡像、透明、遮擋與權利分類。未驗證的索引與尺寸不得進正式呈現。
+- 缺件、損壞、來源不符或未知姿態時，按規格退回完整一致的原貌單位。切換先驗證整組資產，不能出現載入一半的角色或畫面。
+- 原版角色座標、碰撞與攻擊判定保持原版狀態。HD 不另推導命中框，不自行延長動畫、補幀或修改速度。
+- 切換原貌／HD 不重開局、不重擲亂數、不改寫原版設定或存檔。
+- 工具列與設定介面不得遮擋計時、生命、角色或操作資訊。Esc、Start 等按鍵先查原版用途；前端暫停、模擬暫停與原版暫停分別定義。
+- 畫風與操作取捨先用可丟棄比較稿或短片確認。使用者定版後保存原稿與決定，實作對照相同狀態；不得自行改構圖與比例。
+- 音樂、音效重製與新增中文化不在本輪預設範圍。先盤點現有語言與音訊，不套用 zeliard 的翻譯需求。
+
+## 證據與規格閘門
+
+正式流程：原版證據 → DRAFT 規格 → 證據審查 → READY → 實作 → 同狀態驗證 → CONFORMED。
+
+- 使用「已證實、強推論、假說、未知」四級。可執行、可解碼與單元測試通過不能自行升級原版語意。
+- 原始 bytes、函式名、位址空間、偏移及運算元保持可回查。推測語意用分級註解與外部索引附加。
+- 只追查目前玩家阻塞點需要的最小充分證據。無關 helper、驅動程式與完整 executable 翻譯不列為完成目標。
+- 需要反組譯時讀 `/home/anr2/.codex/skills/use-ida-pro-9-4/SKILL.md` 及 `/home/anr2/ida_94_official/knowledge-base/ida-94-tools.md`，沿用 IDA Pro 9.4 工具鏈。本專案已驗 `ida-pro-9.4-idapython:py312-v1` 的 UID 1000 與 UTF-8 JSON 匯出；不因其他 tag 較新就換 image。`.i64` 的交叉參照與資料流為主，攤平 `.asm` 只作線索。
+- 硬體時序先讀 `/home/anr2/.codex/knowledge-base/local/retro-platform-spec-first.md`。DAC、PIT 與音訊時鐘採已知平台契約，規格近似明確標示，不追求未授權的逐週期考古。
+- 亂數測試執行前固定種子或受控條件，記錄方法。不重擲挑結果，不把測試條件永久鎖入正式遊戲。
+- 修改架構、資料格式、原版忠實度、操作體驗或公開方式前，依 `/home/anr2/.codex/skills/grilling/SKILL.md` 先查證、展示取捨並取得決定。已確認的 dosgolem 架構不再重問。
+
+## 驗收與停止線
+
+| 範圍 | 最小必要證據 |
+|---|---|
+| 原版核心 | 正常啟動、選單、選角、一場對戰、結果與返回；記錄未走過模式 |
+| 手把 | 正常選單與對戰、連續輸入、多鍵、斷線與重連；單元測試及實體測試分開列 |
+| HD | 同狀態原貌／HD 截圖、連續動畫、原版狀態不變、缺件與未知畫格退回 |
+| 設定與持久化 | 前端設定重啟恢復，原始資料雜湊不變；原版若有存檔功能再驗正常存讀，不臆造存檔介面 |
+| 音訊與效能 | 對戰實際播音與人耳抽聽，輸入到畫面回饋、呈現積壓與模擬時間推進；不能只驗片頭 |
+
+測試從正常入口進入，不以 direct-entry、座標注入、無敵、強制勝利或來源包的作弊資料替代。HD 比較分開驗「原版狀態不變」與「呈現符合定版」，不要求美化畫面逐像素等於原貌。
+
+一場對戰只證明該切片，不能宣稱所有角色、雙人模式、全流程或可通關。完成聲明限於目前實測範圍。
+
+## Docker 與主機衛生
+
+- 分析、搜尋、解包、建置、測試、GUI、音訊與遊戲執行都在 Docker。主機只做必要的 Docker、Git、工作樹檢查及檔案編輯。
+- 盤點可沿用 `python:3.13.7-slim`。Go／GUI 工具鏈先查 `/home/anr2/cht/dosgolem/tools/docker/go-ebiten.Dockerfile` 與既有 `dosgolem-go-ebiten:1.24-r1` 的適用性；缺件才修正可重現建置來源。
+- 一次性容器用 `--rm`、資源限制與有界執行。預設 `--network none`，只有下載與取依賴開網路。
+- 每個掛載先查來源存在、類型及 UID/GID。原始資料與參考專案唯讀；只掛明確輸出可寫，可寫容器指定目前使用者 UID/GID。
+- 研究與中間產物放根目錄 `workplace/`。建立前讀 `/home/anr2/.codex/knowledge-base/local/project-document-responsibilities.md`；不另建同義工作區。
+- Xvfb 等背景程序有 trap 與有界擁有程序。每批工作後檢查本專案容器、root-owned 檔案及誤建的 `*.md` 目錄，只清理本專案資源。
+- 環境失敗與產品缺陷分開記錄。修正環境後以同一容器、同一命令乾淨重跑，不回到主機執行。
+
+## 文件索引
+
+| 已建立檔案 | 唯一職責 |
+|---|---|
+| [README.md](README.md) | 穩定用途、本機建置與操作入口、現況摘要 |
+| [LICENSE](LICENSE) | 自有程式與文件的 RRSAL-1.0 完整條款，排除原版資料及第三方內容 |
+| [go.work.example](go.work.example) | 新工作樹的本機 dosgolem 相對目錄範本 |
+| [手把設定截圖](docs/screenshots/gamepad-settings.png)、[來源](docs/screenshots/source.json) | 可隨原始碼保存的自有設定介面，未含原版遊戲畫面 |
+| [docs/spec/005-native-desktop.md](docs/spec/005-native-desktop.md) | 三平台原生桌面、設定與輸入適配契約，限定 READY |
+| [go.mod](go.mod)、[go.sum](go.sum)、[go.work](go.work) | 固定依賴與本機 dosgolem workspace，不虛構公開模組版本 |
+| [cmd/superfighter/main.go](cmd/superfighter/main.go) | Windows／macOS／Linux 原生桌面入口，不啟動 HTTP |
+| [internal/gamecore/core.go](internal/gamecore/core.go) | public oracle 原版核心、逐來源輸入與已驗快捷適配 |
+| [internal/gamecore/presentation.go](internal/gamecore/presentation.go) | 原版完整畫格的只讀背景、色盤、相機與姿態快照 |
+| [internal/hd/background.go](internal/hd/background.go)、[背景驗證](internal/hd/background_test.go) | 固定屋頂素材群組、完整原貌前景、同畫格背景合成與安全回退 |
+| [internal/controls/settings.go](internal/controls/settings.go)、[設定驗證](internal/controls/settings_test.go) | 兩人逐角色四格配置、第五招、原子保存及錯誤資料保留 |
+| [internal/desktop/game.go](internal/desktop/game.go) | Ebitengine 視窗、原生鍵鼠／標準手把、設定與有界中文文字 |
+| [字型來源](internal/desktop/assets/source.json)、[OFL 授權](internal/desktop/assets/OFL.txt) | Noto Sans CJK TC 固定來源、SHA-256 與授權 |
+| [tools/build_desktop.sh](tools/build_desktop.sh)、[建置階段](tools/build_desktop.py) | Docker 三平台建置、來源／檔頭核對與中間二進位收據 |
+| [tools/desktop_smoke.py](tools/desktop_smoke.py) | Docker Xvfb 正常原生視窗玩家路徑及設定重啟驗證 |
+| [tools/windows_native_smoke.py](tools/windows_native_smoke.py) | Docker Wine 的 Windows 原生視窗檢查，不能代替真機驗收 |
+| [tools/go.mod](tools/go.mod) | 讓舊獨立 Go 探針與正式桌面模組隔離，不修改舊收據的工具來源 |
+| [AGENTS.md](AGENTS.md) | 穩定目標、工作契約與文件入口 |
+| [CONTEXT.md](CONTEXT.md) | 有日期的唯一現況、有效決策、輸入來源與限制 |
+| [WORKLIST.md](WORKLIST.md) | 可執行工作、前置條件及完成判準 |
+| [WORKLOG.md](WORKLOG.md) | 追加式工作歷程、驗證與清理結果 |
+| [RESEARCH-LOG.md](RESEARCH-LOG.md) | 固定來源、啟動鏈、輸入查證與收據重生方式 |
+| [VERIFICATION-MATRIX.md](VERIFICATION-MATRIX.md) | 已驗範圍、未驗項與完成聲明邊界 |
+| [.gitignore](.gitignore) | 原始遊戲包及本機中間產物的版控排除 |
+| [.gitattributes](.gitattributes) | 補丁 context 行的原始空白保留契約 |
+| [tools/prepare.py](tools/prepare.py) | Docker 內安全盤點、作弊資料隔離與 dosgolem 來源身分記錄 |
+| [tools/probe_receipt.py](tools/probe_receipt.py) | Docker 內有界啟動探針與含失敗結果的完整收據 |
+| [tools/queued_entry_test.go](tools/queued_entry_test.go) | dosgolem 工作副本的佇列入口與 IRQ0／DOS 時間整合回歸案例 |
+| [tools/apply_runtime_patch.py](tools/apply_runtime_patch.py) | 驗證獨立來源副本，套用規格 001 並記錄補丁與來源身分 |
+| [tools/dosgolem-queued-entry.patch](tools/dosgolem-queued-entry.patch) | 僅開啟監督佇列新程式 IF 的獨立來源補丁 |
+| [tools/ida_input_evidence.py](tools/ida_input_evidence.py) | IDA 9.4 原始輸入候選、函式與位址證據匯出，不作語意改名 |
+| [docs/spec/001-queued-entry-interrupts.md](docs/spec/001-queued-entry-interrupts.md) | 監督佇列新程式 IF 契約與驗證範圍 |
+| [docs/spec/002-gamepad-design.md](docs/spec/002-gamepad-design.md) | 說明書導出的手把配置、輸入生命週期與待驗契約，DRAFT |
+| [docs/spec/003-hd-design.md](docs/spec/003-hd-design.md) | HD 來源、兩種畫風比較、動態切片與驗收界線，DRAFT |
+| [tools/gamepad-preview.html](tools/gamepad-preview.html) | 不注入遊戲的手把互動配置稿與本機 HD 圖比較入口 |
+| [tools/quick-moves.js](tools/quick-moves.js) | 可撤回的逐角色四招設定、指令文字鏡像與按下邊緣原型，沒有遊戲注入 |
+| [tools/hd-preview.html](tools/hd-preview.html) | HD 背景、兩張透明角色與展示介面的分層試作，未接核心 |
+| [tools/hd_source_probe.py](tools/hd_source_probe.py) | Docker 內場景、CPM 及角色姿態候選解碼、色號抽樣與圖集蒐證 |
+| [tools/hd_frame_receipt.go](tools/hd_frame_receipt.go) | 正常單打／雙打的完整畫格、背景來源、姿態指標、座標及鏡像蒐證 |
+| [docs/spec/006-rooftop-background.md](docs/spec/006-rooftop-background.md) | 原生屋頂 HD 背景的同畫格合成、完整原貌前景及回退契約 |
+| [tools/prepare_hd_background.py](tools/prepare_hd_background.py) | Docker 準備本機背景素材與來源 manifest，保留原 PNG bytes |
+| [tools/verify_hd_capture.py](tools/verify_hd_capture.py) | Docker 核對原生同狀態 PNG、前景保留與 HD 切換重現性 |
+| [tools/audit_hd.py](tools/audit_hd.py) | Docker 核對目前來源、三平台二進位、HD 收據、文件回填與擁有權 |
+| [tools/ida_ai_evidence.py](tools/ida_ai_evidence.py) | IDA 9.4 AI 載入與決策的原始位址、運算元及 bytes 匯出 |
+| [docs/game-history.md](docs/game-history.md) | 青衫與 SP Moves 的歷史、招式、圖片快照與差異索引 |
+| [docs/spec/004-live-input-slice.md](docs/spec/004-live-input-slice.md) | 已驗原版雙人鍵盤與斬的快捷輸入切片，限定 READY |
+| [tools/input_receipt.go](tools/input_receipt.go) | public oracle API 的正常入口、同快照基本輸入與招式輪詢實驗 |
+| [tools/play_server.go](tools/play_server.go) | 舊 HTTP 研究工具，原生主入口見規格 005 |
+| [tools/live-play.html](tools/live-play.html) | 即時原貌、雙手把指派與逐角色四格設定介面 |
+| [tools/live_smoke.py](tools/live_smoke.py) | 正常玩家路徑的本機 HTTP 整合檢查，不冒充 GUI 或手把實測 |
+| [tools/build_play.sh](tools/build_play.sh) | Docker 內驗證 dosgolem 來源、建置操作入口並記錄雜湊 |
+| [tools/play.sh](tools/play.sh) | 舊 HTTP 研究工具啟動，不作玩家入口 |
+| [tools/browser_smoke.mjs](tools/browser_smoke.mjs) | Docker 內 Chromium 正常玩家路徑、合成雙手把與設定檢查，不能代替實體裝置驗收 |
+
+新增文件前依文件職責路由檢查等價入口，並在同輪加入本索引或 CONTEXT。後續按需建立 `RESEARCH-LOG.md` 保存逆向證據、`VERIFICATION-MATRIX.md` 保存實測範圍、`docs/spec/` 保存行為契約；不得將未建立檔案列為可用入口。
+
+`README.md` 只放穩定用途、使用方法與現況摘要。完整歷程只進 WORKLOG，唯一現況只進 CONTEXT，不建立重複的 HANDOFF 或 REMAKE-PLAN。
+
+## 授權、遠端與交付
+
+- 已授權本機接入、原版查證、手把開發與 HD 規劃；未授權建立遠端儲存庫、推送原版素材或發布套件。
+- 原版包、EXE／COM、資料、美術、音訊、記憶體快照及含原版內容的收據留在本機。私人儲存庫也不得直接提交。
+- 自有程式與文件依使用者共用規則採 RRSAL-1.0。建立 LICENSE 前讀 `/home/anr2/.codex/knowledge-base/local/rrsal-1.0.md`，使用 `/home/anr2/.codex/skills/reverse-engineer-retro-game-remake/assets/project-template/LICENSE` 全文，只替換占位符；原版與第三方素材另查權利。
+- 交付根目錄為 `dist-all/`。建立前讀 `/home/anr2/.codex/knowledge-base/local/retro-remake-dist-all-output.md`，由該檔決定子目錄與素材邊界。
+- 正式版號採 `v.<主版>.<次版>.<修訂版>-YYYYMMDD`；定版前讀 `/home/anr2/.codex/knowledge-base/local/retro-remake-release-versioning.md`。已發布 tag 與 Release 不覆寫。
+- 發行前逐平台驗證封包、啟動、必要素材、設定／存檔位置、SHA-256 與手把實測。容器編譯或 Linux 測試不代替 Windows／macOS 真機驗收。

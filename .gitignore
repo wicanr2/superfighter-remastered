@@ -1,0 +1,22 @@
+# 原始遊戲資料僅留本機。
+/快打至尊.jsdos
+/快打至尊*.zip
+
+# 研究、中間產物與交付物另依專案契約管理。
+/workplace/
+/dist-all/
+
+# 容器內本機模組掛載。
+/go.work
+/go.work.sum
+
+# 本機設定、憑證與工具快取。
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.DS_Store
+.agents/
+.codex/
+.aws/

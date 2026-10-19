@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="zh-Hant">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>快打至尊｜手把與 HD 設計稿</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,"Noto Sans TC",sans-serif;background:#0b101c;color:#edf1ff}*{box-sizing:border-box}body{max-width:1160px;margin:auto;padding:32px 20px 64px}h1{margin:8px 0;font-size:32px}h2{font-size:20px}p{line-height:1.7;color:#b9c5dd}a{color:#82d5ff}button,select{font:inherit;color:inherit;background:#202c43;border:1px solid #4f6385;border-radius:8px;padding:10px 14px;cursor:pointer}button:focus-visible,select:focus-visible{outline:3px solid #ffd55b}label{display:inline-flex;gap:10px;align-items:center;margin:8px 14px 8px 0}.badge{color:#ffd55b;letter-spacing:2px;font-size:12px}.panel{border:1px solid #2c3b57;background:#111b2b;border-radius:16px;padding:22px;margin:22px 0}.controls{display:flex;gap:14px;flex-wrap:wrap;align-items:center}.live{color:#71e6b6}.controller{position:relative;max-width:680px;min-height:300px;margin:28px auto;background:#26334b;border:2px solid #5a6c8c;border-radius:90px 90px 110px 110px;box-shadow:inset 0 -18px 35px #131b2a}.dpad{position:absolute;left:12%;top:66px;display:grid;grid-template-columns:repeat(3,42px);gap:4px}.dpad button{padding:0;height:42px;border-radius:6px}.dpad .center{display:grid;place-items:center;color:#9aa6c0}.face{position:absolute;right:10%;top:42px;width:160px;height:180px}.face button{position:absolute;width:66px;height:66px;padding:0;border-radius:50%;font-size:14px}.face .north{left:48px;top:0;color:#8e9bb5}.face .west{left:0;top:56px;border-color:#68baff}.face .south{left:48px;top:112px;border-color:#66e2a5}.face .east{left:96px;top:56px;color:#8e9bb5}.middle{position:absolute;top:104px;left:39%;width:22%;display:flex;gap:8px;justify-content:center}.middle button{font-size:12px;padding:9px}.stick{position:absolute;left:27%;top:218px;font-size:12px;color:#bcc9df}.active{background:#f2c95b!important;color:#101929!important;border-color:#ffea9e!important;box-shadow:0 0 18px #ffd65b65}.output{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.output div{background:#0b1320;border-radius:10px;padding:16px}.output small{display:block;color:#92a9c9;margin-bottom:8px}.output strong{font-size:20px}table{border-collapse:collapse;width:100%;font-size:14px}td,th{text-align:left;padding:12px 8px;border-bottom:1px solid #2d3b53}th{color:#abc2e4}.art{display:grid;grid-template-columns:1fr 1fr;gap:18px}figure{margin:0}figure img{width:100%;display:block;border-radius:8px}figcaption{line-height:1.7;margin:10px 0;color:#b9c5dd}.original{max-width:480px}.original img{image-rendering:pixelated}#events{white-space:pre-wrap;min-height:84px;font:13px/1.7 monospace;color:#8fd8fd}.note{font-size:13px}footer{font-size:13px;color:#90a3bf;margin-top:36px}@media(max-width:660px){body{padding:20px 12px}.panel{padding:14px}.controller{min-height:265px}.dpad{left:5%;top:60px;grid-template-columns:repeat(3,34px)}.dpad button{height:34px}.face{right:3%;transform:scale(.85);transform-origin:right top}.middle{left:39%;top:176px;width:30%}.stick{left:12%;top:205px}.output{gap:6px}.output div{padding:10px}.output strong{font-size:16px}.art{grid-template-columns:1fr}}
+</style>
+<style>.shortcuts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.shortcut{padding:14px;background:#0b1320;border-radius:10px}.shortcut select{width:100%;margin:10px 0;font-size:14px;padding:8px}.shortcut button{width:100%;border-color:#a58cff}.shortcut small{display:block;color:#a9c2e4;line-height:1.6;min-height:48px}.players{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}.players div{background:#0b1320;padding:14px;border-radius:10px}.players small{display:block;color:#9fb7d8;margin-top:8px}@media(max-width:660px){.shortcuts,.players{grid-template-columns:1fr 1fr}}</style>
+<body>
+<span class="badge">DRAFT · 操作與美術比較</span>
+<h1>快打至尊 Remastered</h1>
+<p>八方向、拳、腳。以下只預覽配置，不向遊戲注入輸入。HD 圖是靜態概念稿。</p>
+<section class="panel">
+<h2>手把配置</h2>
+<div class="controls">
+<label>玩家 <select id="player"><option value="0">第一人</option><option value="1">第二人</option></select></label>
+<label>裝置 <select id="device"><option value="">螢幕按鈕／鍵盤預覽</option></select></label>
+<button id="scan">重新偵測手把</button>
+<button id="reset">釋放預覽按鍵</button>
+</div>
+<p id="status" role="status">可用滑鼠、觸控、方向鍵、J 拳、K 腳預覽。實體手把需瀏覽器支援 Gamepad API。</p>
+<div class="controller" aria-label="手把配置圖">
+<div class="dpad" aria-label="八方向">
+<button data-dir="-1,-1" aria-label="左上">↖</button><button data-dir="0,-1" aria-label="上">↑</button><button data-dir="1,-1" aria-label="右上">↗</button>
+<button data-dir="-1,0" aria-label="左">←</button><span class="center">方向</span><button data-dir="1,0" aria-label="右">→</button>
+<button data-dir="-1,1" aria-label="左下">↙</button><button data-dir="0,1" aria-label="下">↓</button><button data-dir="1,1" aria-label="右下">↘</button>
+</div>
+<div class="middle"><button data-ui="說明">Select<br>說明</button><button data-ui="暫停">Start<br>暫停</button></div>
+<span class="stick">左搖桿同為八方向</span>
+<div class="face"><button class="north" disabled>Y／△<br>未綁定</button><button class="west" data-action="punch">X／□<br>拳</button><button class="east" disabled>B／○<br>返回</button><button class="south" data-action="kick">A／×<br>腳</button></div>
+</div>
+<div class="output" aria-live="polite"><div><small>目前方向</small><strong id="direction">中立</strong></div><div><small>原版按鍵候選</small><strong id="legacy">無</strong></div><div><small>攻擊</small><strong id="attack">無</strong></div></div>
+<p class="note">同時按西側與南側面鍵就是拳腳同按。防禦由後退觸發。Start／Select 預覽前端選單，不送 Esc。</p>
+<p class="note">搖桿試用值：死區 0.25、進入門檻 0.30、遲滯 7.5°。十字鍵優先。相反方向在本預覽會回到中立，正式規則仍待原版實測。</p>
+<div id="events" role="status">等待輸入。</div>
+</section>
+<section class="panel">
+<h2>逐角色快速出招，最多四個</h2>
+<p>R1＝絕招 1、R2＝絕招 2、L1＝絕招 3、L2＝絕招 4。可任選招式或留空；五招角色也只綁四個。</p>
+<label>目前玩家的角色 <select id="character"></select></label>
+<label>預覽朝向 <select id="facing"><option value="right">面向右</option><option value="left">面向左</option></select></label>
+<button id="reset-shortcuts">還原此角色四招</button>
+<div class="shortcuts" id="shortcuts"></div>
+<p id="storage-status" class="note" role="status"></p>
+<p class="note">本頁只顯示招式指令，不執行招式。朝向由這裡手動選擇，正式版須讀取原版狀態。蓄力、近身與空中條件仍需符合原版規則。</p>
+<div class="players"><div>第一人 <span id="p1-character">斬</span><small id="p1-device">未指派手把</small><small id="p1-move">尚未預覽快捷招式</small></div><div>第二人 <span id="p2-character">法蘭克</span><small id="p2-device">未指派手把</small><small id="p2-move">尚未預覽快捷招式</small></div></div>
+<p class="note">用上方「玩家」切換第一／第二人，各自選擇裝置與角色。同一裝置不能指派給兩人。兩人的快捷配置分開保存，裝置指派只保留當次連線。鍵盤 U／I／O／P 可預覽目前玩家的 R1／R2／L1／L2。</p>
+</section>
+<section class="panel"><h2>原版按鍵對照</h2>
+<table><thead><tr><th>動作</th><th>第一人</th><th>第二人</th></tr></thead><tbody><tr><td>八方向</td><td>Q W E ／ A · D ／ Z X C</td><td>數字鍵盤 7 8 9 ／ 4 · 6 ／ 1 2 3</td></tr><tr><td>拳</td><td>Tab</td><td>Enter</td></tr><tr><td>腳</td><td>左 Shift</td><td>右 Shift</td></tr></tbody></table>
+<p class="note">來源：<a href="https://chiuinan.github.io/game/game/intro/ch/c51/sf.htm">快打至尊說明與招式表</a>。網頁標示 v1.1，目前包內自述 v2.0；逐項映射尚待實跑。鍵盤 J／K 只供本頁預覽。</p>
+</section>
+<section class="panel"><h2>HD 比較稿</h2>
+<p class="live">已選定 B「街機手繪」方向。A 保留作比較；B 的既有造型偏差仍需依原版修正。</p>
+<div class="art"><figure><img src="../workplace/design/hd-a-faithful.png" alt="A 忠實精修，高解析像素繪的城市屋頂對戰概念"><figcaption><b>A 忠實精修</b><br>保留明亮藍紫色與像素語言，增加服裝、表情與場景細節。</figcaption></figure><figure><img src="../workplace/design/hd-b-painted.png" alt="B 街機手繪，墨線與色塊陰影的城市屋頂對戰概念"><figcaption><b>B 街機手繪</b><br>清楚墨線與色塊陰影，重繪人物、背景及介面。</figcaption></figure></div>
+<figure class="original"><img src="../workplace/probe-two-confirm-130m/screen.png" alt="dosgolem 原版首戰，320乘200"><figcaption>共同參考：dosgolem 原版首戰。以上生成圖仍有造型與比例差異，沒有接入遊戲。</figcaption></figure>
+<p class="note">概念圖實際為 1586×992。B 畫風已確認；正式倍率、顯示比例、首批範圍與預設模式待確認。</p>
+</section>
+<footer><a href="../docs/spec/002-gamepad-design.md">手把規格草案</a> · <a href="../docs/spec/003-hd-design.md">HD 規格草案</a> · 本機研究用，含原版衍生美術。</footer>
+<script src="quick-moves.js"></script>
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const directions = ["→","↘","↓","↙","←","↖","↑","↗"];
+const vectors = [[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1],[1,-1]];
+const legacy = [{"-1,-1":"Q","0,-1":"W","1,-1":"E","-1,0":"A","1,0":"D","-1,1":"Z","0,1":"X","1,1":"C"},{"-1,-1":"KP7","0,-1":"KP8","1,-1":"KP9","-1,0":"KP4","1,0":"KP6","-1,1":"KP1","0,1":"KP2","1,1":"KP3"}];
+const pointer = new Map(), keys = new Set();
+let sector = null, last = "", selected = "", blocked = false, padButtons = new Set();
+const Q=globalThis.QuickMoves, assigned=[null,null], characters=["jaan","frank"], facings=["right","right"], quickEdges=[Q.edgeTracker(),Q.edgeTracker()], quickArmed=[false,false];
+let profiles=[Q.defaults(),Q.defaults()];
+try { const saved=JSON.parse(localStorage.getItem("kdzz-shortcuts-prototype-v1")||"null"); if(saved?.revision===1&&Array.isArray(saved.players)) profiles=[Q.normalize(saved.players[0]),Q.normalize(saved.players[1])]; } catch { $("storage-status").textContent="無法讀取儲存設定，使用預設配置。"; }
+function saveProfiles(){try { localStorage.setItem("kdzz-shortcuts-prototype-v1",JSON.stringify({revision:1,players:profiles})); $("storage-status").textContent="兩名玩家各角色的四個快捷位置已儲存於此瀏覽器。";}catch {$("storage-status").textContent="瀏覽器不允許儲存；設定只保留在本頁。";}}
+function clear() { pointer.clear(); keys.clear(); sector=null; padButtons.clear(); blocked=true; quickEdges.forEach(e=>e.reset()); quickArmed.fill(false); }
+function triggerShortcut(player,slot) {
+  const result=Q.resolve(profiles[player],characters[player],slot,facings[player]);
+  const message=result ? `${slot}：${result.name}　${result.command}` : `${slot}：未綁定`;
+  $(`p${player+1}-move`).textContent=message;
+  notice(`第 ${player+1} 人 ${Q.character(characters[player]).name}\n${message}\n僅預覽，尚未送入原版。`);
+}
+function renderShortcuts(){
+  const player=Number($("player").value), c=Q.character(characters[player]);
+  $("character").replaceChildren(...Q.catalog.map(c=>new Option(c.name,c.id))); $("character").value=c.id; $("facing").value=facings[player];
+  $("shortcuts").replaceChildren(...Q.slots.map((slot,index)=>{
+    const box=document.createElement("div");box.className="shortcut";
+    const button=document.createElement("button");button.textContent=`${slot} · 絕招 ${index+1}`;button.type="button";button.onclick=()=>triggerShortcut(player,slot);
+    const select=document.createElement("select");select.setAttribute("aria-label",`${slot} 綁定招式`);select.add(new Option("未綁定",""));c.moves.forEach(m=>select.add(new Option(`${m.id}. ${m.name}`,m.id)));select.value=profiles[player][c.id][slot];
+    const label=document.createElement("small");const refresh=()=>{const m=Q.resolve(profiles[player],c.id,slot,facings[player]);label.textContent=m?.command||"未綁定";};
+    select.onchange=()=>{clear();profiles[player][c.id][slot]=select.value;saveProfiles();refresh();};refresh();box.append(button,select,label);return box;
+  }));
+  characters.forEach((id,p)=>$(`p${p+1}-character`).textContent=Q.character(id).name);
+}
+function notice(text) { $("events").textContent = text; }
+function scan() {
+  const player=Number($("player").value), old=assigned[player];
+  $("device").replaceChildren(new Option("螢幕按鈕／鍵盤預覽", ""));
+  if (!navigator.getGamepads) { $("status").textContent="此瀏覽器不支援 Gamepad API，仍可用螢幕與鍵盤預覽。"; return; }
+  for (const p of navigator.getGamepads()) if (p) $("device").add(new Option(`${p.index+1}. ${p.id}${p.mapping === "standard" ? "" : "（配置未標準化）"}`,String(p.index)));
+  if (old!==null && [...$("device").options].some(o=>o.value===old)) $("device").value=old;
+}
+function quantize(x,y) {
+  const r=Math.hypot(x,y);
+  if (r < .25 || (sector===null && r < .30)) { sector=null; return [0,0]; }
+  const angle=Math.atan2(y,x), step=Math.PI/4;
+  const candidate=((Math.round(angle/step)%8)+8)%8;
+  if (sector===null) sector=candidate;
+  else { const delta=Math.atan2(Math.sin(angle-sector*step),Math.cos(angle-sector*step)); if (Math.abs(delta)>step/2+Math.PI/24) sector=candidate; }
+  return vectors[sector];
+}
+function frame() {
+  let x=0,y=0,punch=false,kick=false;
+  for (const v of pointer.values()) { if (Array.isArray(v)) {x+=v[0]; y+=v[1];} else {punch ||= v==="punch"; kick ||= v==="kick";} }
+  x+=Number(keys.has("ArrowRight"))-Number(keys.has("ArrowLeft")); y+=Number(keys.has("ArrowDown"))-Number(keys.has("ArrowUp"));
+  punch ||= keys.has("KeyJ"); kick ||= keys.has("KeyK");
+  selected=$("device").value;
+  const pad=selected!=="" && navigator.getGamepads ? navigator.getGamepads()[Number(selected)] : null;
+  const pads=navigator.getGamepads ? navigator.getGamepads() : [];
+  for(let player=0;player<2;player++) {
+    const gp=assigned[player]!==null ? pads[Number(assigned[player])] : null;
+    $(`p${player+1}-device`).textContent=gp ? gp.id : "未指派手把";
+    const current=Number($("player").value)===player;
+    if(!document.hidden && document.hasFocus()) {
+      const valid=gp?.mapping==="standard";
+      const padSlots=valid ? [["R1",5],["R2",7],["L1",4],["L2",6]].filter(([,i])=>gp.buttons[i]?.pressed).map(([slot])=>slot) : [];
+      const keyboardSlots=current ? [["R1","KeyU"],["R2","KeyI"],["L1","KeyO"],["L2","KeyP"]].filter(([,key])=>keys.has(key)).map(([slot])=>slot) : [];
+      if(!quickArmed[player] && (!valid || (!gp.buttons.some(b=>b.pressed) && Math.hypot(gp.axes[0]||0,gp.axes[1]||0)<.25)))quickArmed[player]=true;
+      quickEdges[player].update(quickArmed[player] ? [...padSlots,...keyboardSlots] : []).forEach(slot=>triggerShortcut(player,slot));
+    }
+  }
+  if (pad && pad.mapping === "standard") {
+    const press=i=>Boolean(pad.buttons[i]?.pressed);
+    const axes=[pad.axes[0]||0,pad.axes[1]||0];
+    if(blocked && !pad.buttons.some(b=>b.pressed) && Math.hypot(...axes)<.25) blocked=false;
+    if (!blocked) {
+      const dx=Number(press(15))-Number(press(14)),dy=Number(press(13))-Number(press(12));
+      const dpadAny=[12,13,14,15].some(press);
+      const v=dpadAny ? [dx,dy] : quantize(...axes);
+      x+=v[0];y+=v[1];punch ||= press(2);kick ||= press(0);
+      for (const [i,name] of [[8,"說明"],[9,"暫停"]]) if(press(i)&&!padButtons.has(i)) { notice(`${name}選單預覽。沒有向遊戲送 Esc。`); clear(); break; }
+    }
+    padButtons=new Set(pad.buttons.flatMap((b,i)=>b.pressed?[i]:[]));
+    $("status").textContent=`已選擇：${pad.id}${blocked ? "。請放開所有按鍵並將搖桿回中立。" : "。僅顯示預覽輸出。"}`;
+  } else if (selected!=="") { sector=null; $("status").textContent=pad ? "此裝置未提供標準配置，本預覽不猜測按鈕索引。" : "裝置已離線，預覽不保留其按住狀態。"; }
+  x=Math.sign(x); y=Math.sign(y);
+  const dir=x||y ? directions[vectors.findIndex(v=>v[0]===x&&v[1]===y)] : "中立";
+  const p=Number($("player").value), output=[];
+  if(x||y) output.push(legacy[p][`${x},${y}`]);
+  if(punch) output.push(p ? "Enter" : "Tab");
+  if(kick) output.push(p ? "右 Shift" : "左 Shift");
+  const state=`${dir}|${punch}|${kick}|${p}|${selected}`;
+  if(last!==state) {
+    $("direction").textContent=dir; $("legacy").textContent=output.join(" + ")||"無"; $("attack").textContent=punch&&kick ? "拳＋腳" : punch ? "拳" : kick ? "腳" : "無";
+    document.querySelectorAll("[data-dir]").forEach(b=>b.classList.toggle("active",b.dataset.dir===`${x},${y}`));
+    document.querySelector("[data-action=punch]").classList.toggle("active",punch); document.querySelector("[data-action=kick]").classList.toggle("active",kick);
+    last=state;
+  }
+  requestAnimationFrame(frame);
+}
+document.querySelectorAll("[data-dir],[data-action]").forEach(b=>{
+  b.addEventListener("pointerdown",e=>{ e.preventDefault(); b.setPointerCapture(e.pointerId); pointer.set(e.pointerId,b.dataset.dir ? b.dataset.dir.split(",").map(Number) : b.dataset.action); });
+  for(const event of ["pointerup","pointercancel","lostpointercapture"]) b.addEventListener(event,e=>pointer.delete(e.pointerId));
+});
+document.querySelectorAll("[data-ui]").forEach(b=>b.addEventListener("click",()=>{clear();notice(`${b.dataset.ui}選單預覽。沒有向遊戲送 Esc。`);}));
+window.addEventListener("keydown",e=>{if(e.target.matches("select,input,textarea")||e.ctrlKey||e.metaKey||e.altKey)return;if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight","KeyJ","KeyK","KeyU","KeyI","KeyO","KeyP"].includes(e.code)){e.preventDefault();keys.add(e.code);}});
+window.addEventListener("keyup",e=>keys.delete(e.code));
+window.addEventListener("blur",clear);
+document.addEventListener("visibilitychange",()=>{if(document.hidden)clear();});
+window.addEventListener("gamepadconnected",()=>{clear();scan();});
+window.addEventListener("gamepaddisconnected",event=>{clear();assigned.forEach((index,p)=>{if(index===String(event.gamepad.index))assigned[p]=null;});scan();notice("裝置已斷線。請重新指派玩家，避免重連後誤用另一支手把。");});
+$("scan").onclick=scan; $("reset").onclick=()=>{clear();notice("預覽按鍵已釋放。");};
+$("device").onchange=()=>{clear();const p=Number($("player").value), value=$("device").value;if(value!==""&&assigned[1-p]===value){$("device").value=assigned[p]??"";notice("這支手把已指派給另一名玩家。請選擇其他裝置。");return;}assigned[p]=value===""?null:value;};
+$("player").onchange=()=>{clear();scan();renderShortcuts();};
+$("character").onchange=()=>{clear();characters[Number($("player").value)]=$("character").value;renderShortcuts();};
+$("facing").onchange=()=>{clear();facings[Number($("player").value)]=$("facing").value;renderShortcuts();};
+$("reset-shortcuts").onclick=()=>{clear();const p=Number($("player").value),id=characters[p];profiles[p][id]=Q.defaults()[id];saveProfiles();renderShortcuts();};
+scan();renderShortcuts(); requestAnimationFrame(frame);
+</script>
+</body>
+</html>
