@@ -176,6 +176,8 @@ func (a *HUD) Select(s *renderdata.HUDSnapshot, pixels []byte, palette [256][3]u
 			labels[player] = "PHO HUANG"
 		case 4:
 			labels[player] = "FRANK"
+		case 5:
+			labels[player] = "ONIMALU"
 		default:
 			return nil, "此角色的高解析介面尚未完成"
 		}
