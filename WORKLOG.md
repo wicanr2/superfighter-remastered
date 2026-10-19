@@ -326,3 +326,19 @@
 - 最新 166 份自有來源與文件整理到既有獨立 Git 副本 /tmp/kdzz-superfighter-publish。保留 main 已驗基底及 wip/sarkov-victory 最新實作，不以未完成勝利流程覆蓋穩定分支。原版資料、HD 衍生美術、私有 dosgolem、收據、二進位與快取仍排除。
 - 本輪準備完整歷史備份 workplace/github-bullet-integration-progress.bundle，逐檔來源及稽核存 github-bullet-integration-progress-source.json。遠端建立與推送仍受環境權限限制，不能聲稱已上傳。
 - 保存前確認 v3 已完成 receipt，沒有 failure；20.001 秒區間推進 1000 萬步／16 格。保留 CPU 原樣本供後續判讀，不用單次結果聲稱換後端有效。相關診斷容器已全部結束，kdzz 容器清單為空。
+
+## 2026-10-20 鳳凰一般姿態與原姓名整合
+
+- 上輪 0150a9d 保存完整 Git 上傳前核對，遠端仍受環境權限限制。本輪依完整 HD 目標繼續，沒有重試 GitHub 登入或搬運憑證。
+- 沿用內建 imagegen，補齊鳳凰其餘 49 組來源。六張採用 PNG、61 組姿態、九份精確請求在 phoenix-art-v1；02／04 初稿因無完整透明分隔被拒絕，保留原稿與原因後，只重做留白。原 PNG bytes 不改，透明登錄門檻不放寬。
+- NAME 槽 3 解碼並目視為 PHO HUANG／93×11，檔案偏移 0874h，完整字圖 SHA-256 be3a0b687780fc71d73935f00062b26c8cd814d45db4617b967122fa13faead9。不改設定識別字 phoenix。完整來源及工具身分見 phoenix-evidence-review.json 與規格 021。
+- 589 鍵／31 PNG／八份來源的完整候選保留原 517 鍵及所有舊 PNG。Go 嚴格讀取器驗 72 槽、61 組來源及 124 個正常 consumer 通過後，021 由 DRAFT 升 READY。原候選測試來源另存 phoenix-source-v1/candidate-test-source.go，與審查時雜湊吻合。
+- 在隔離 feature/phoenix-hd 補姓名白名單及角色 3 的普通操作／獨立核對工具。未改原版核心、輸入、資料格式或設定。完整 internal／cmd 測試及 go vet 通過；正常原生 HUD 的 PHO HUANG／93×11 與未知拒絕另有定向測試通過。
+- 初次隔離工作樹沒有供子掛載使用的 workplace 目錄，唯讀掛載時容器未啟動；建立正確的 UID 1000 掛載點後，用相同工具鏈重跑，四個候選編譯及檔頭／35 份輸入核對通過。沒有另建映像或在主機執行工作負載。
+- Linux GUI v1 使用建置映像時缺 xdotool，零步結束；兩份環境失敗原封保留。確認既有三平台映像有 Xvfb／xdotool、ldd 無缺件後，同一普通操作流程在 v2 乾淨重跑。未改原生二進位或放寬驗收門檻。
+- native-phoenix-v2／windows-phoenix-v1 各七項、九張擷取，native-phoenix-missing-v2 九張整格原貌，全部由原檔獨立重組通過。兩平台各自恢復 HD 逐點一致，核心、來源、設定與裝置指派不變；不稱跨平台同狀態。鳳凰輸出變動 18,099 點，姓名 9,207 點；字形、人物與跳躍另目視確認。
+- 021 升限定 CONFORMED。8f70fc5 完成隔離接入，bb5adef 合入 wip/sarkov-victory；README 加入目前鳳凰及跳躍圖片。四個已驗候選及原編譯收據原封移入 bin，記錄為 phoenix-build-v1/promotion.json；舊子彈四份保留於 bullet-build-v1/bin，來源由 phoenix-pre-integration-baseline.json 綁定。
+- 另完成 Wine CPU 診斷判讀及固定 Ebitengine v2.9.9 後端契約核對，輸入雜湊見 desktop-performance-v3/analysis.json。兩個單次區間不構成效能修復證據，未改步速、遊戲、文字或正式後端，也未盲目重跑長勝利案例。
+- 下一角色鬼丸已解出 72 槽／66 組原圖。初次正常來源探針實際為 5／1，保留失敗，不冒稱 5／4；選角診斷另存原始畫面，未將錯誤對手套用屋頂或候選。
+- 完整 HD、鳳凰 WIN／快捷／特效與完整動畫、其餘角色／場景／畫面、Wine 勝利下一回合、實體平台及雙手把、音訊／速度與正式封包仍未完成。Goal 保持 active。自有來源保存於獨立 Git 及 workplace/github-phoenix-integration-progress.bundle；原版、衍生美術、研究資料與二進位不入 Git。
+- 鬼丸後續以一個普通 Left 選到法蘭克，hd-frame-onimaru-v2 共 124 格的實際 5／4、完整圖像 bytes 及屋頂來源全部吻合。私有探針來源 SHA 與收據相符，沒有修改正式工具或原版狀態。原先七次 Right 的錯誤對手及逐步圖保留，原因未證實；不深挖已不阻塞本角色來源準備的選單內部。

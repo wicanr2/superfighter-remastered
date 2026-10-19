@@ -368,3 +368,21 @@ go run -p 1 /project/tools/input_receipt.go -root /orig -out /project/workplace/
 已證實於本次成對重播：9,290 個比較邊界，原版狀態及即時 RGB 不變；23 個 WIN serial 取樣及六個保存畫格重組，下一回合清除勝利快照並顯示 1／0。這是取樣與正常生命週期證據，不是每個動畫畫格或原生視窗驗收。五張生成姿態及 72 槽讀取已驗，三個原生工作尚未結束。
 
 子彈：SFMAN03 一般表 B28h／基底 C48h 解出 58 組不同來源。hd-frame-bullet-v1 在 runtime 01B9:5DD3 保存 124 格，實際 2／4 角色、完整指標／bytes、原背景均吻合。NAME 槽 2 的檔案偏移為 05C8h，字圖為 BULLET／62×11，完整字圖 SHA-256 fcbd1dcf514526450e7588972384ed34896a601c1a9e432764fd664ab0e362c8；正常原貌與字圖均已目視。完整輸入 SHA-256、工具與來源記錄在 bullet-evidence-review.json。58 張手繪稿、72 槽與 typed 讀取測試通過，但尚未接入原生，不推定快捷、WIN、特效或完整動畫已驗。
+
+## 2026-10-20 鳳凰一般來源與正常原生追加驗證
+
+已證實於固定來源：SFMAN04.DAT SHA-256 2cd299e9c10814ae37bb044c2e3ae7adf940d8b1accd8feffa3844bbfb43356b；檔案 B28h 的 72-entry 表、C48h 圖像基底、AC8h 正常色盤，解出 61 組不同 bytes。NAME.XBB SHA-256 60c0bbe367e44ab9fda512df2ba93ad62d70147df90079d07ff15818f21bad82，槽 3 的檔案偏移 0874h、93×11 字圖為 PHO HUANG，完整像素 SHA-256 be3a0b687780fc71d73935f00062b26c8cd814d45db4617b967122fa13faead9。原始字圖保持不變，設定 ID 沿用 phoenix。
+
+原始程式仍為 SF.EXE SHA-256 24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300。hd-frame-phoenix-v1 由正常 3／4 選角取得 124 個 runtime 01B9:5DD3 完整畫格，兩人指標及 packed bytes 吻合原檔，I2 背景 RAM 相同；角色 3 取樣槽 0／1／2／3／4／6／11／12／16／22／23／24。以上 runtime 段位址與檔案偏移分開使用。Go 1.24.13、Pillow 11.3.0、執行器 1719 檔 manifest、工具及來源雜湊由 phoenix-evidence-review.json 與各收據綁定。
+
+槽 15／39／56／57／58／60 原圖為能量或揮擊，槽 48／59 有洋紅特殊輪廓；只確認圖像，不推定其觸發條件。六張內建 imagegen 透明圖集按原槽及別名登錄，保留這些差異。02／04 初稿沒有完整透明分隔，不能安全裁切；用 imagegen 修正留白後通過未改動的登錄器，原稿及精確提示詞保留，沒有程式修改生成 PNG。
+
+已證實於本次正常原生樣本：native-phoenix-v2／windows-phoenix-v1 的人物、屋頂、原姓名與陰影同格 HD。各自九張擷取從原檔獨立重組；普通行走、蹲、跳、拳及切換通過，恢復 HD 逐點一致，姓名標籤及 93×11 原矩形另由真實 HUD 測試及目視確認。缺角色 3 的舊群組在九張擷取均整格原貌。這只支持規格 021 的限定範圍，不證明完整動畫、WIN、替代色盤、快捷或實體平台／手把完成。
+
+追加前項進度勘誤：薩爾可夫三個首勝工作已全部結束。Linux 與舊素材完整通過，Wine 僅六張勝利／切換且未取得下一回合，019 保持 READY；部分核對不改寫原失敗。子彈一般姿態已於後續 020 限定 CONFORMED，不能沿用前段「尚未接入」作為現況。
+
+## 2026-10-20 Wine 後端 CPU 診斷
+
+已證實於單次診斷區間：OpenGL v2 在 20.003 秒推進 875 萬步／14 格，DirectX 要求的 v3 在 20.001 秒推進 1000 萬步／16 格；均未截圖或送新輸入。v2 CPU 取樣以 commandQueue.flush 至 purego.SyscallN 為主，v3 的 9.52 秒取樣有 5.17 秒 cgocall，呼叫者包含 GLFW 事件分派、輪詢及游標。固定 Ebitengine v2.9.9 的 graphics.go 與 ui_windows.go 確認 directx/opengl 環境選項，及 Windows 10 以上先嘗試 DirectX 的自動選取契約。
+
+輸入二進位、私有取樣入口、CPU 原檔、區間資料、固定 API 來源雜湊與限制保存於 desktop-performance-v3/analysis.json。兩個初始狀態不完全相同的單次區間不足以證明換後端解決速度；精確原因仍未知，不歸咎特定驅動或原版核心。沒有據此修改步速、文字、規則或正式後端。這不是 Windows 真機效能或正式平台驗收。
