@@ -8,6 +8,15 @@ import shutil
 import subprocess
 
 
+def compiled_inputs(project):
+    paths = [project / name for name in ["go.mod", "go.sum", "go.work",
+             "workplace/dosgolem-patched-manifest.json", "internal/desktop/assets/source.json",
+             "internal/desktop/assets/NotoSansCJKtc-Regular.otf"]]
+    paths += [path for directory in ("cmd", "internal") for path in sorted((project / directory).rglob("*.go"))
+              if not path.name.endswith("_test.go")]
+    return {str(path.relative_to(project)): hashlib.sha256(path.read_bytes()).hexdigest() for path in paths}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("stage", choices=["dependencies", "linux", "cross", "verify"])
@@ -41,7 +50,14 @@ def main():
                        MACOSX_DEPLOYMENT_TARGET="11.0")
             command = ["go", "build", "-p", "1", "-mod=readonly", "-trimpath", "-o", str(out / name), "./cmd/superfighter"]
             print("Building " + name, flush=True)
+            before = compiled_inputs(p)
             subprocess.run(command, env=env, check=True)
+            assert compiled_inputs(p) == before, "建置期間來源改變，拒絕登錄二進位"
+            build = {"kind": "per-target compiler receipt", "goos": goos, "goarch": arch,
+                     "cgo": cgo, "cc": cc, "command": command, "compiled_inputs": before,
+                     "go_version": subprocess.check_output(["go", "version"], text=True).strip(),
+                     "binary_sha256": sha(out / name)}
+            (out / (name + ".build.json")).write_text(json.dumps(build, ensure_ascii=False, indent=2) + "\n")
         return
     paths = [out / name for name in ["superfighter-linux-amd64", "superfighter-windows-amd64.exe", "superfighter-macos-amd64", "superfighter-macos-arm64"]]
     linux, windows, intel, arm = [f.read_bytes() for f in paths]
@@ -50,11 +66,19 @@ def main():
     assert windows[:2] == b"MZ" and windows[pe:pe+4] == b"PE\x00\x00" and int.from_bytes(windows[pe+4:pe+6], "little") == 0x8664
     for binary, cpu in [(intel, 0x01000007), (arm, 0x0100000c)]:
         assert binary[:4] == bytes.fromhex("cffaedfe") and int.from_bytes(binary[4:8], "little") == cpu
-    files = [p / n for n in ["go.mod", "go.sum", "go.work", "docs/spec/005-native-desktop.md", "docs/spec/006-rooftop-background.md", "tools/prepare_hd_background.py", "tools/build_desktop.py", "tools/build_desktop.sh"]] + sorted((p / "cmd").rglob("*.go")) + sorted((p / "internal").rglob("*.go"))
+    compiler_receipts = {}
+    for path in paths:
+        source = out / (path.name + ".build.json")
+        build = json.loads(source.read_text())
+        assert build["compiled_inputs"] == compiled_inputs(p), path.name + " 的實際編譯來源已過期"
+        assert build["binary_sha256"] == sha(path), path.name + " 的二進位已變動"
+        compiler_receipts[str(source.relative_to(p))] = sha(source)
+    files = [p / n for n in ["go.mod", "go.sum", "go.work", "docs/spec/005-native-desktop.md", "docs/spec/006-rooftop-background.md", "docs/spec/008-hd-characters.md", "tools/prepare_hd_background.py", "tools/prepare_hd_characters.py", "tools/build_desktop.py", "tools/build_desktop.sh"]] + sorted((p / "cmd").rglob("*.go")) + sorted((p / "internal").rglob("*.go"))
     receipt = {"kind": "native intermediate builds; not release packages or macOS hardware acceptance",
                "go_version": subprocess.check_output(["go", "version"], text=True).strip(),
                "images": {"linux": "dosgolem-go-ebiten:1.24-r1", "cross": "tokugawa-desktop-platforms:go1.24.13-sdk15.5-noble-r1"},
                "inputs": {str(f.relative_to(p)): sha(f) for f in files},
+               "compiler_receipts": compiler_receipts,
                "font_manifest_sha256": sha(p / "internal/desktop/assets/source.json"),
                "dosgolem_manifest_sha256": sha(p / "workplace/dosgolem-patched-manifest.json"),
                "outputs": [{"path": str(f.relative_to(p)), "sha256": sha(f), "bytes": f.stat().st_size} for f in paths],

@@ -360,7 +360,7 @@ func (g *Game) Update() error {
 	keyboard := [2]map[uint8]bool{{}, {}}
 	any := false
 	for key, value := range keyMap {
-		if ebiten.IsKeyPressed(key) {
+		if keyboardPressed(key) {
 			any = true
 			keyboard[value.p][value.scan] = true
 		}
@@ -499,6 +499,9 @@ func (g *Game) observe() {
 		return
 	}
 	value := struct {
+		FrontendUpdates    uint64                `json:"frontend_updates"`
+		MouseLeft          bool                  `json:"mouse_left"`
+		Editing            [2]int                `json:"editing"`
 		Core               gamecore.Status       `json:"core"`
 		Panel              bool                  `json:"panel"`
 		Settings           controls.Settings     `json:"settings"`
@@ -510,7 +513,7 @@ func (g *Game) observe() {
 		HDActive           bool                  `json:"hd_active"`
 		HDReason           string                `json:"hd_reason"`
 		HDCharactersActive bool                  `json:"hd_characters_active"`
-	}{Core: g.core.Status(), Panel: g.panel, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, HDCharactersActive: g.hdActive && g.hdCharacters != nil}
+	}{FrontendUpdates: g.updates, MouseLeft: ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft), Editing: g.editing, Core: g.core.Status(), Panel: g.panel, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, HDCharactersActive: g.hdActive && g.hdCharacters != nil}
 	b, e := json.MarshalIndent(value, "", "  ")
 	if e == nil {
 		e = os.WriteFile(g.opts.Observe+".tmp", b, 0600)

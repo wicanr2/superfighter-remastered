@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--batch", type=int, choices=range(4), default=0)
+    parser.add_argument("--batch", type=int, choices=range(6), default=0)
     args = parser.parse_args()
     args.output.mkdir(exist_ok=False)
     source = Path("/project/workplace/sprite-source-v1")
@@ -18,13 +18,19 @@ def main():
     sha = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
     records = []
     jaan = [list(range(10)) + [11, 12], list(range(13, 25)),
-            list(range(25, 37)), list(range(37, 45)) + list(range(49, 53))]
+            list(range(25, 37)), list(range(37, 45)) + list(range(49, 53)),
+            [10, 45, 46, 53, 54, 55, 56, 47, 48, 57, 58, 59], [60]]
     frank = [list(range(12)), list(range(13, 25)),
-             list(range(25, 37)), list(range(38, 43)) + list(range(44, 51))]
+             list(range(25, 37)), list(range(38, 43)) + list(range(44, 51)),
+             [51, 52, 53, 54, 12, 37, 43, 55, 56, 12, 37, 43], []]
     for file, name, slots in [("SFMAN01.DAT", "jaan", jaan[args.batch]),
                               ("SFMAN05.DAT", "frank", frank[args.batch])]:
+        if not slots:
+            continue
         original = next(item for item in evidence["files"] if item["source"] == file)
-        sheet = Image.new("RGBA", (1536, 1152), (19, 27, 43, 255))
+        cols = min(4, len(slots))
+        rows = (len(slots) + cols - 1) // cols
+        sheet = Image.new("RGBA", (cols * 384, rows * 384), (19, 27, 43, 255))
         draw = ImageDraw.Draw(sheet)
         cells = []
         for ordinal, slot in enumerate(slots):
@@ -33,7 +39,7 @@ def main():
             assert sha(path) == frame["sha256"]
             image = Image.open(path).convert("RGBA")
             assert image.size == tuple(frame["size"])
-            x, y = ordinal % 4 * 384, ordinal // 4 * 384
+            x, y = ordinal % cols * 384, ordinal // cols * 384
             w, h = image.size
             scale = min(3, 336 / w, 312 / h)
             rw, rh = round(w * scale), round(h * scale)
@@ -47,12 +53,12 @@ def main():
         output = args.output / (name + f"-poses-{args.batch:02d}.png")
         sheet.save(output)
         records.append({"character": name, "batch": args.batch, "original_file": file, "original_sha256": original["sha256"],
-                        "sheet": output.name, "sha256": sha(output), "cells": cells})
+                        "sheet": output.name, "sha256": sha(output), "grid": [cols, rows], "cells": cells})
     manifest = {"kind": "original pose reference, not HD assets", "tool": "sc-cht-hdtools:pillow11.3.0-r1",
                 "script_sha256": sha(Path(__file__)), "evidence_sha256": sha(source / "evidence.json"),
                 "records": records}
     (args.output / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
-    print(json.dumps({"sheets": [item["sheet"] for item in records], "poses": 24}))
+    print(json.dumps({"sheets": [item["sheet"] for item in records], "poses": sum(len(item["cells"]) for item in records)}))
 
 
 if __name__ == "__main__":

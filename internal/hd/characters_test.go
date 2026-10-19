@@ -69,7 +69,7 @@ func TestCharacterPackSourceSelectionAndAtomicRejection(t *testing.T) {
 			break
 		}
 	}
-	for _, change := range []func(*renderdata.Sprite){func(s *renderdata.Sprite) { s.Slot = 56 }, func(s *renderdata.Sprite) { s.SourceSHA256 = "wrong" }, func(s *renderdata.Sprite) { s.Flags = 192 }, func(s *renderdata.Sprite) { s.TopClip = 1 }, func(s *renderdata.Sprite) { s.PaletteBase ^= 16 }} {
+	for _, change := range []func(*renderdata.Sprite){func(s *renderdata.Sprite) { s.Slot = 72 }, func(s *renderdata.Sprite) { s.SourceSHA256 = "wrong" }, func(s *renderdata.Sprite) { s.Flags = 192 }, func(s *renderdata.Sprite) { s.TopClip = 1 }, func(s *renderdata.Sprite) { s.PaletteBase ^= 16 }} {
 		copyFrame := append([]renderdata.Layer(nil), frame...)
 		s := *frame[body].Sprite
 		change(&s)

@@ -153,12 +153,14 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [internal/hd/characters.go](internal/hd/characters.go)、[tools/prepare_hd_characters.py](tools/prepare_hd_characters.py) | 原生角色素材來源、packed bytes、圖集、透明矩形與整組回退 |
 | [internal/controls/settings.go](internal/controls/settings.go)、[設定驗證](internal/controls/settings_test.go) | 兩人逐角色四格配置、第五招、原子保存及錯誤資料保留 |
 | [internal/desktop/game.go](internal/desktop/game.go) | Ebitengine 視窗、原生鍵鼠／標準手把、設定與有界中文文字 |
+| [Windows 按鍵適配](internal/desktop/keyboard_windows.go)、[其他平台](internal/desktop/keyboard_other.go) | 以個別 Win32 VK 保留左右 Shift 的獨立按住狀態，其他平台沿用 Ebitengine |
 | [internal/desktop/characters.go](internal/desktop/characters.go) | 原生 GPU 依原版圖層順序繪製高解析角色及保留原貌特效 |
 | [角色素材驗證](internal/hd/characters_test.go)、[圖層定位驗證](internal/renderdata/layers_test.go) | 原始 fixture、素材拒絕、完整重組與鏡像／裁切的獨立驗證 |
 | [字型來源](internal/desktop/assets/source.json)、[OFL 授權](internal/desktop/assets/OFL.txt) | Noto Sans CJK TC 固定來源、SHA-256 與授權 |
 | [tools/build_desktop.sh](tools/build_desktop.sh)、[建置階段](tools/build_desktop.py) | Docker 三平台建置、來源／檔頭核對與中間二進位收據 |
 | [tools/desktop_smoke.py](tools/desktop_smoke.py) | Docker Xvfb 正常原生視窗玩家路徑及設定重啟驗證 |
 | [tools/windows_native_smoke.py](tools/windows_native_smoke.py) | Docker Wine 的 Windows 原生視窗檢查，不能代替真機驗收 |
+| [tools/windows_shift_probe.go](tools/windows_shift_probe.go)、[驅動](tools/windows_shift_probe.py) | Docker Wine 只讀核對 Win32 左右 Shift 的獨立狀態，不改遊戲核心 |
 | [tools/go.mod](tools/go.mod) | 讓舊獨立 Go 探針與正式桌面模組隔離，不修改舊收據的工具來源 |
 | [AGENTS.md](AGENTS.md) | 穩定目標、工作契約與文件入口 |
 | [CONTEXT.md](CONTEXT.md) | 有日期的唯一現況、有效決策、輸入來源與限制 |
@@ -188,11 +190,13 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [tools/audit_sprite_study.py](tools/audit_sprite_study.py) | 獨立重組分層收據，核對角色素材、觀測介面與證據版本 |
 | [docs/spec/006-rooftop-background.md](docs/spec/006-rooftop-background.md) | 原生屋頂 HD 背景的同畫格合成、完整原貌前景及回退契約 |
 | [docs/spec/007-memory-write-observation.md](docs/spec/007-memory-write-observation.md) | 同值重寫也可觀測的通用 public oracle 薄介面與取消契約 |
-| [docs/spec/008-hd-characters.md](docs/spec/008-hd-characters.md) | 完整角色分層、姿態來源、重繪註冊、完成門檻與已驗比較稿，DRAFT |
+| [docs/spec/008-hd-characters.md](docs/spec/008-hd-characters.md) | 六層原生角色、姿態來源、重繪登錄與完成門檻，限定 READY |
 | [tools/apply_write_observer.py](tools/apply_write_observer.py)、[觀測來源](tools/dosgolem-observer/memory_write_observer.go)、[合成程式驗證](tools/dosgolem-observer/memory_write_observer_test.go) | 在獨立副本新增通用 RAM 觀測，逐字保留前版 manifest |
 | [tools/prepare_hd_background.py](tools/prepare_hd_background.py) | Docker 準備本機背景素材與來源 manifest，保留原 PNG bytes |
 | [tools/verify_hd_capture.py](tools/verify_hd_capture.py) | Docker 核對原生同狀態 PNG、前景保留與 HD 切換重現性 |
+| [tools/verify_character_capture.py](tools/verify_character_capture.py) | Docker 獨立重組原生六層畫格，核對角色替換、介面遮擋、同狀態切換及整張回退 |
 | [tools/audit_hd.py](tools/audit_hd.py) | Docker 核對目前來源、三平台二進位、HD 收據、文件回填與擁有權 |
+| [tools/audit_native_characters.py](tools/audit_native_characters.py) | Docker 核對六層角色版的逐平台實際編譯來源、正常視窗、獨立重組及完整回退 |
 | [tools/ida_ai_evidence.py](tools/ida_ai_evidence.py) | IDA 9.4 AI 載入與決策的原始位址、運算元及 bytes 匯出 |
 | [docs/game-history.md](docs/game-history.md) | 青衫與 SP Moves 的歷史、招式、圖片快照與差異索引 |
 | [docs/spec/004-live-input-slice.md](docs/spec/004-live-input-slice.md) | 已驗原版雙人鍵盤與斬的快捷輸入切片，限定 READY |

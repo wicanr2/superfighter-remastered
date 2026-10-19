@@ -17,6 +17,8 @@ def main():
     parser.add_argument("--hd-assets", type=Path)
     parser.add_argument("--hd-characters", type=Path)
     parser.add_argument("--expect-missing", action="store_true")
+    parser.add_argument("--exercise-poses", action="store_true")
+    parser.add_argument("--exercise-backstep", action="store_true")
     parser.add_argument("--wine", action="store_true")
     parser.add_argument("--opponent", choices=["jaan", "frank"], default="jaan")
     args = parser.parse_args()
@@ -52,6 +54,18 @@ def main():
     def xdo(*words):
         return subprocess.check_output(["xdotool", *map(str, words)], env=env, text=True, timeout=5).strip()
 
+    def visible_window():
+        deadline = time.monotonic() + 30
+        while time.monotonic() < deadline:
+            try:
+                matches = xdo("search", "--onlyvisible", "--name", "Remastered").splitlines()
+                if matches:
+                    return matches[-1]
+            except subprocess.CalledProcessError:
+                pass
+            time.sleep(.05)
+        raise TimeoutError("native window did not become visible")
+
     def state():
         try:
             return json.loads(observe.read_text())
@@ -73,14 +87,16 @@ def main():
     def click(x, y):
         xdo("mousemove", "--window", window, x, y)
         xdo("mousedown", 1)
-        time.sleep(.09)
+        pressed = wait(lambda s: s["mouse_left"], timeout=5)
         xdo("mouseup", 1)
-        time.sleep(.06)
+        wait(lambda s: not s["mouse_left"] and s["frontend_updates"] > pressed["frontend_updates"], timeout=5)
 
     def key(name):
+        before = state()["frontend_updates"]
         xdo("keydown", name)
-        time.sleep(.07)
+        pressed = wait(lambda s: s["frontend_updates"] >= before + 2, timeout=5)
         xdo("keyup", name)
+        wait(lambda s: s["frontend_updates"] >= pressed["frontend_updates"] + 2, timeout=5)
 
     def shot(name):
         capture.unlink(missing_ok=True)
@@ -116,7 +132,7 @@ def main():
         time.sleep(.3)
         game = spawn(command, "native")
         wait(lambda s: s["core"]["paused"], timeout=75 if args.wine else 30)
-        window = xdo("search", "--onlyvisible", "--name", "Remastered").splitlines()[-1]
+        window = visible_window()
         xdo("windowfocus", "--sync", window)
         click(110, 32)
         wait(lambda s: s["core"]["steps"] >= 40_000_000, timeout=45)
@@ -166,6 +182,25 @@ def main():
                     events.append({"native_hd_jump": jumped})
                     wait(lambda s: s["core"]["paths"] == [0, 0] and s["hd_characters_active"])
                     checks.append("normal native walking and both-player jump select distinct original HD poses")
+                    if args.exercise_poses:
+                        ground_y = state()["presentation"]["actors"][0]["y"]
+                        xdo("keydown", "w")
+                        wait(lambda s: s["presentation"]["actors"][0]["y"] < ground_y - 16)
+                        xdo("keydown", "Shift_L")
+                        kicked = wait(lambda s: s["hd_characters_active"] and s["presentation"]["actors"][0]["slot"] == 25, timeout=20)
+                        shot("hd-air-kick.png")
+                        xdo("keyup", "w", "Shift_L")
+                        events.append({"native_hd_air_kick": kicked})
+                        wait(lambda s: s["core"]["paths"] == [0, 0] and s["hd_characters_active"])
+                        checks.append("new airborne kick pose is selected by normal keyboard input and rendered in native HD")
+                    if args.exercise_backstep:
+                        xdo("keydown", "a")
+                        backstep = wait(lambda s: s["hd_characters_active"] and s["presentation"]["actors"][0]["slot"] == 56, timeout=20)
+                        shot("hd-backstep.png")
+                        xdo("keyup", "a")
+                        events.append({"native_hd_backstep": backstep})
+                        wait(lambda s: s["core"]["paths"] == [0, 0] and s["hd_characters_active"])
+                        checks.append("previously missing backward-step pose 56 now has native HD during normal movement")
             else:
                 assert not enabled["hd_active"]
                 checks.append("unsupported dojo scene falls back to complete original frame")
@@ -191,7 +226,7 @@ def main():
         events.append({"native_R1": thunder})
         checks.append("native R1 button reaches original thunder path 24h")
         shot("quick-thunder.png")
-        if args.hd_characters:
+        if args.hd_characters and args.opponent == "frank":
             if args.expect_missing:
                 missing = wait(lambda s: s["hd_enabled"] and not s["hd_active"] and s["presentation"]["layers_complete"])
                 shot("missing-pose-original.png")
@@ -221,6 +256,7 @@ def main():
         wait(lambda s: s["panel"])
         for _ in range(3):
             click(260, 301)
+        wait(lambda s: s["editing"][0] == 3)
         for _ in range(4):
             click(280, 366)
         for _ in range(4):
@@ -237,11 +273,11 @@ def main():
             subprocess.run(["wineserver", "-k"], env=env, timeout=10, check=True)
         observe.unlink(missing_ok=True)
         game = spawn(command, "native-restart")
-        restored = wait(lambda s: s["core"]["paused"] and s["core"]["steps"] == 0)
+        restored = wait(lambda s: s["core"]["paused"] and s["core"]["steps"] == 0, timeout=75 if args.wine else 30)
         assert restored["settings"]["players"][0]["phoenix"] == [5, 0, 3, 4]
         assert restored["assigned"] == [-1, -1]
         checks.append("native process restart restores profiles and requires fresh device assignment")
-        window = xdo("search", "--onlyvisible", "--name", "Remastered").splitlines()[-1]
+        window = visible_window()
         xdo("windowfocus", "--sync", window)
         click(110, 32)
         wait(lambda s: s["core"]["steps"] > 1_000_000)

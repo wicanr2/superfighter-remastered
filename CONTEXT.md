@@ -7,7 +7,7 @@
 - 參考 `/home/anr2/cht/zeliard` 的包裹與呈現方式。
 - dosgolem 直接執行原版核心，本專案處理前端、手把與 HD 呈現。
 - 使用者明確指定三平台原生桌面：Windows、macOS、Linux。玩家入口不使用 web；舊 HTTP／HTML 及瀏覽器收據只保留研究用途。
-- 支援手把操作，並規劃 HD。已開始本機接入與研究工具實作，美術量產尚未開始。
+- 支援手把操作與 HD。原生背景、兩名角色的部分動作及素材登錄已接入，其他角色與畫面仍在製作。
 - 使用者於 2026-10-19 回覆「ok B」，選定 HD 的 B「街機手繪」方向；只確認畫風，原版造型仍為修正依據。
 - 使用者後續明確同意 HD 規格開工，首批為屋頂、斬、法蘭克與對戰介面；技術未知仍依規格閘門處理。
 - 已授權逐角色快速出招，最多四格，R1／R2／L1／L2 預設對應絕招 1／2／3／4；五招角色可任選四招。兩名玩家分開保存設定，並規劃雙手把雙打。
@@ -21,12 +21,12 @@
 | 研究工具 | 已建立 | 安全盤點、IDA、逐次繪製與完整 RAM 分層；規格 007 的通用觀測介面限定 CONFORMED，獨立副本新增兩檔，共用來源未改 |
 | dosgolem 啟動 | 已到第一場對戰 | 獨立副本補齊監督佇列 IF；正常鏈到標題、選角、Jaan 對 Frank；結算與返回尚未驗 |
 | 原版輸入 | 雙人基本輸入與斬四招已驗 | 正常單打、雙打各 25 組基本輸入；雙打兩人的斬各四招均進入原版對應路徑；十二輪詢蓄力是已驗充分條件，未稱最短時間 |
-| 前端與手把 | 三平台共用原生桌面已接核心 | Ebitengine 視窗、鍵鼠、標準手把指派、四格設定與來源所有權；屋頂 HD 下正常雙打 GUI 十項通過，道場回退九項通過。實體手把未驗 |
-| HD | 原生屋頂背景與 48 個角色重繪姿態 | 原生二進位仍為 006 背景版。研究工具已逐點重組 716 個完整畫格，斬／法蘭克各 24 姿態；16 個比較狀態中 15 個有雙方 HD，1 個缺斬 slot 56。角色尚未接原生入口，完整動畫、HUD 與其他角色／畫面未完成 |
+| 前端與手把 | 三平台共用原生桌面已接核心 | Ebitengine 視窗、鍵鼠、標準手把指派、四格設定與來源所有權；Linux／Windows Wine 各十四項正常 HD 雙打通過。Windows 左右 Shift 已分開讀取並驗獨立放開。實體手把未驗 |
+| HD | 六層屋頂與部分原生角色，121 張圖登錄全部 144 槽 | 純背景、介面、兩名角色及原貌特效依原序合成。Linux／Wine 均走正常入口並顯示新空中踢擊與退步 slot 56；兩側各十三張擷取已獨立重組。缺件素材另驗整張原貌回退。完整動畫、HD HUD／特效與其他角色／畫面未完成 |
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | Windows／macOS／Linux 已定 | Linux amd64、Windows amd64、macOS Intel／Apple Silicon 二進位皆建置且核對檔頭；Windows Wine 三項通過。未作 macOS 真機、簽章或正式封包 |
+| 平台與發布 | Windows／macOS／Linux 已定 | Linux amd64、Windows amd64、macOS Intel／Apple Silicon 已重建角色版，各保存實際編譯來源。Windows Wine 十四項通過；未作 Windows／macOS 真機、簽章或正式封包 |
 
 ## 固定輸入
 
@@ -78,13 +78,13 @@ sf
 
 ## 待確認決策與下一步
 
-下一步將已驗分層接入原生呈現，補齊斬與法蘭克的其餘 HD 姿態、特殊技、倒地及替代色盤，再擴充 HUD、其他角色、場景、標題／選角／結果畫面。使用者目前 Goal 為「完成快打至尊HD」，不能只以屋頂或首批兩人切片宣稱完成。完整回合、其他角色快捷及實體雙手把另續驗。規格 004、005、006 限定 READY，007 限定 CONFORMED；002、003、008 仍 DRAFT。
+六層原生角色已接入並驗證。下一步補齊斬與法蘭克的其餘 HD 姿態、特殊技、倒地及替代色盤，再擴充 HUD、其他角色、場景、標題／選角／結果畫面。使用者目前 Goal 為「完成快打至尊HD」，不能只以屋頂或首批兩人切片宣稱完成。完整回合、其他角色快捷及實體雙手把另續驗。規格 004、005、006、008 限定 READY，007 限定 CONFORMED；002、003 仍 DRAFT。
 
 使用者指定的[說明書頁面](https://chiuinan.github.io/game/game/intro/ch/c51/sf.htm)及兩張圖片已存檔；其版本自述為 1.1。手把草案採西側面鍵拳、南側面鍵腳與八方向，Start 提議開啟前端暫停選單，避開說明書記載的 Esc 按住補血。這些是提案，仍待目前來源實測與使用者確認。
 
-HD 採 B「街機手繪」，首批屋頂、斬、法蘭克及對戰介面已獲開工授權。屋頂背景已接原生遊戲區並可切回原貌。新角色素材是四張透明姿態表，共 48 姿態，保留原 PNG、提示詞與雜湊；比較稿依原版圖像矩形、鏡像加一像素起點及成對裁切定位。已動態核對三種翻轉與左右場邊；C0h 同時翻轉、頂部裁切、完整動畫、替代色盤及 HD HUD 待補。正式倍率、像素比例與預設模式尚未定版。
+HD 採 B「街機手繪」，首批屋頂、斬、法蘭克及對戰介面已獲開工授權。屋頂背景與部分角色已接原生，可切回原貌。正式試作群組為 `hd-characters-study-v5`，十一張原始透明圖集共 121 張人物及特效圖，對應 117 組不同原始 bytes，包含兩名角色全部 144 個來源槽；PNG、提示詞與雜湊保存在 `hd-sprite-art-v1` 至 `v5`。登錄沿實際透明間隔，保留完整肢體而不修改 PNG。來源槽齊全不等於完整動畫已驗；特效仍由原貌點陣層繪製，尚未使用新增特效圖。C0h 同時翻轉、頂部裁切、受擊替代色盤及 HD HUD 待補。正式倍率、像素比例與預設模式尚未定版。
 
-研究用 dosgolem 副本現有 1715 份來源，原有 1713 份 bytes 全不變；只在 oracle 新增普通 RAM 每次寫入觀測與合成程式驗證。前版 manifest 逐字保存在 `dosgolem-patched-manifest-v1.json`，新 manifest SHA-256 為 `6ad93295a80dbf590b88b64fab3acf1ffa6c31a32eb305e0a53936cb849f9732`。現行四個原生二進位仍是前版背景切片，不能用新研究收據冒充角色已接原生或已重建全部平台。
+研究用 dosgolem 副本現有 1715 份來源，原有 1713 份 bytes 全不變；只在 oracle 新增普通 RAM 每次寫入觀測與合成程式驗證。前版 manifest 逐字保存在 `dosgolem-patched-manifest-v1.json`，新 manifest SHA-256 為 `6ad93295a80dbf590b88b64fab3acf1ffa6c31a32eb305e0a53936cb849f9732`。現行四個原生二進位已重建角色版，每個目標另有編譯前後來源及輸出雜湊收據，不能以舊背景版 GUI 收據冒充目前角色版驗收。
 
 目前 dosgolem 的線性 320×200 API 未套用 CRTC 起點，兩種呈現均沿用相同完整快照。硬體捲動與震動畫面仍屬 oracle 限制，不宣稱實機 CRTC parity。HD 背景只在來源、色盤與相機範圍吻合時啟用，其他情況整張退回原貌。詳見規格 006。
 
@@ -98,7 +98,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 本次上傳前再次嘗試依主機規則執行 `gh auth status`，提升權限仍遭自動核准政策拒絕。未重試受限環境的憑證判定，沒有建立或推送成功證據。最新程式仍先保存於獨立 Git 副本及本機 bundle；不可把預定 origin 當成已存在的儲存庫。
 
-最新程式包含原生角色載入與圖層呈現。`native-actors-v1` 保存五層版 Linux 13 項正常流程收據及當版來源／二進位；目前來源改為六層，分離純背景與介面寫入，尚待 GUI 重驗。此項現況優先於下方仍指向背景版二進位及角色離線比較稿的歷史入口，不能將舊收據當作目前六層版驗收。
+`native-actors-v1` 保存五層首版 Linux 收據及當版來源／二進位，僅供歷史回查。現行六層版以 `native-actors-v6`、`windows-actors-v6` 及 `native-actors-missing-v2` 為準，分別驗新角色動作、Windows 原生適配及缺件回退。
 
 使用者已授權建立儲存庫並上傳成果。預定名稱為 `wicanr2/superfighter-remastered`，公開方式未定案，先採私人設定。遠端 API 目前連線失敗，未取得建立成功證據，不宣稱儲存庫已存在。主機升權呼叫亦被環境拒絕，受限環境的 auth 訊息不能當作主機憑證失效的結論。
 
@@ -114,14 +114,16 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 - [手把草案](docs/spec/002-gamepad-design.md)、[HD 草案](docs/spec/003-hd-design.md)：說明書導出的設計，均為 DRAFT。
 - [原生桌面入口](README.md)：`bash tools/build_desktop.sh` 產生三平台中間二進位，玩家以 `-data` 指定原版資料。此共用主機的建置／GUI 驗證均在 Docker。
 - [桌面規格 005](docs/spec/005-native-desktop.md)：限定 READY，明定原生視窗、設定、標準手把與三平台界線。
-- `workplace/hd-native-v2/receipt.json`：目前 Linux 二進位的正常屋頂雙打與 HD 十項通過；含兩人輸入、R1、同狀態切換、四格設定、保存、重啟與失焦。README 截圖出自此輪。
-- `workplace/hd-native-v2/comparison.json`：同狀態原貌／HD 的色號與色盤一致，190,818 個 HUD／高色盤前景輸出像素完全保留；385,169 個背景輸出像素改變，切回 HD 的遊戲區逐點相同。
-- `workplace/hd-fallback-v1/receipt.json`：目前二進位正常道場雙打九項通過，HD 開啟仍整張保留原貌。
-- `workplace/windows-native-v4/receipt.json`：目前 Windows PE 的 Wine 開窗、中文設定、原版啟動與暫停；不能代替 Windows 真機或實體手把。
-- `workplace/desktop-build.json`：四個二進位的 SHA-256、ELF／PE／Mach-O 檔頭、架構、固定依賴與字型來源。
+- `workplace/native-actors-v6/receipt.json`、`windows-actors-v6/receipt.json`：目前 Linux 與 Windows PE 各十四項正常入口、屋頂六層 HD、行走、雙跳、新 slot 25 空中踢擊、slot 56 退步、兩人獨立放開、R1、暫停、設定、保存重啟及失焦通過；README 截圖出自 Linux 此輪。Wine 不能代替 Windows 真機。
+- 兩目錄的 `comparison.json`：各十三張原生六層擷取逐點重組回原版；各平台內暫停三張原始色號、色盤與定位相同。Linux 範例的 47,978 個原角色輸出像素已替換、489,092 個背景像素改變、35,451 個最後原貌層像素保留。HD 切回遊戲區逐點相同，不宣稱兩平台即時操作是跨平台同狀態。
+- `workplace/native-actors-missing-v2/receipt.json` 與 `comparison.json`：目前 Linux 使用舊版缺件素材，十三項正常流程通過；缺件時整個 960×600 遊戲區與當格原貌逐點相同。`native-actors-fallback-v1` 另保存六層版正常道場九項回退。
+- `workplace/windows-shift-v1/receipt.json`：只讀 Win32 探針確認左右 Shift 可獨立取得。限定原因與修復契約見規格 005；修復後 Windows 正常雙打已驗獨立放開。
+- `workplace/desktop-build.json`：四個角色版二進位 SHA-256、ELF／PE／Mach-O 檔頭、固定依賴與字型來源；每個 `workplace/bin/*.build.json` 保存實際編譯前後一致的來源及輸出雜湊。
+- `workplace/native-character-checks.log`：目前角色版的 `go test -count=1 -p 1 ./...`、`go vet -p 1 ./...` 通過，載入真實原版分層與 144 槽素材。`native-actors-v1/source` 已用獨立 module 隔離，避免其部分存檔誤當正式套件。
+- `workplace/native-character-audit.json`：目前四個實際編譯收據、十四／十四／十三項 GUI、原始 128 檔、1715 份 dosgolem 及 144 槽群組核對；不包含完整 HD 或實體平台驗收。
 - `workplace/hd-checks.log`：原生背景切片當輪的 `go test -count=1 -p 1 ./...` 與 `go vet` 通過，HD 測試載入 16 張原始畫格。
 - `workplace/hd-audit.json`：背景版來源、二進位、GUI 收據與原始資料核對；已明確辨識二進位仍使用前版來源快照。它不驗角色試作，角色研究另以 sprite-study-audit 為準。
-- [角色分層草案 008](docs/spec/008-hd-characters.md)：DRAFT；`sprite-draw-v1`／`sprite-layers-v1` 各 1,432 次繪製全部吻合，新舊步數、位置、姿態與來源相同；後者 716 個完整畫格全部逐點重組相同。
+- [角色分層規格 008](docs/spec/008-hd-characters.md)：限定 READY，已接六層原生呈現。早期 `sprite-draw-v1`／`sprite-layers-v1` 各 1,432 次繪製吻合；後者 716 個五層歷史畫格全部逐點重組相同，與現在六層收據分開列明。
 - [觀測規格 007](docs/spec/007-memory-write-observation.md)：限定 CONFORMED；`workplace/write-observer-test.jsonl` 驗同值重寫、指令起點、獨立取消及完整機器狀態不變。沒有改 CPU 或原版資料。
 - `workplace/hd-sprite-art-v1/manifest.json`：四張 1448×1086 透明 PNG，共 48 姿態；提示詞及參考表逐組保存，使用內建 image_gen，僅留本機。
 - `workplace/hd-actor-preview-v3/receipt.json`：16 個保存狀態、15 個雙人 HD 比較，缺斬 slot 56 時明示缺件。待機、蹲與跳圖已目視；未作原生完整動畫驗收。

@@ -25,6 +25,19 @@
 
 桌面設定格式為版本 1、兩人逐角色四格整數，0 為空。這是未發行的本機切片格式；瀏覽器研究設定不混入桌面資料。未知版本明示錯誤並保留原檔。角色編號及招式順序沿用青衫整理，不冒稱原版內部招式 ID。
 
+## Windows 左右 Shift 證據與適配
+
+限定 READY。`windows-actors-v2` 的正常雙打記錄證實：兩人同按拳腳時為 `[48,48]`，第一人放開左 Shift 後，第二人尚按右 Shift 卻變成 `[0,16]`。固定 Ebitengine 2.9.9 的 `internal/glfw/win32_window_windows.go` 在 `_WM_KEYUP` 且 `_VK_SHIFT` 時明確呼叫兩鍵的 Release；此為來源事實，不推論 Windows 實體鍵盤一定同樣失敗。
+
+獨立只讀探針 `tools/windows_shift_probe.go` 在同一 Wine 工具鏈、相同原生視窗焦點，以 `GetAsyncKeyState` 的 bit 15 取得 VK_LSHIFT=0xA0、VK_RSHIFT=0xA1。`workplace/windows-shift-v1/receipt.json` 證實未按、雙按、只放左鍵、再放右鍵依序為 `[false,false]`、`[true,true]`、`[false,true]`、`[false,false]`。不寫入遊戲或作業系統按鍵狀態。
+
+- Windows 對戰按鍵僅將左右 Shift 的持續狀態改由這兩個明確 VK 讀取，其他鍵仍由 Ebitengine 提供。Linux 與 macOS 不改取值方式。
+- 讀取只發生在既有焦點、設定、暫停與重新啟用檢查內。失焦仍釋放兩人來源；恢復時仍要求先放開按鍵。鍵盤與手把最後來源放開規則不變。
+- 不改 DOS 掃描碼、快捷、傷害或設定格式。Win32 僅取 bit 15，不使用代表「自上次呼叫後曾按下」的 bit 0。
+- 實作後重跑兩人同按與獨立放開的正常原生流程；Wine 證據仍不取代 Windows 真機。
+
+研究用 `-observe` 可附上前端更新序號、左滑鼠鍵持續狀態及目前編輯角色。這些是只讀前端狀態，不進設定檔或原版記憶體。GUI 驅動逐次等待按下／放開各被前端取樣，再送下一次操作，不以固定短暫等待假設每個事件都已處理。正常玩家不需開啟此輸出。
+
 ## 工具與驗收
 
 - Linux 編譯沿用 `dosgolem-go-ebiten:1.24-r1`，X11／OpenGL 標頭來源為 `/home/anr2/cht/dosgolem/tools/docker/go-ebiten.Dockerfile`。跨平台與 GUI 沿用 `tokugawa-desktop-platforms:go1.24.13-sdk15.5-noble-r1`，已核對 Go 1.24.13、Ebitengine 2.9.9、Clang、Xvfb、xdotool、Wine 及 osxcross。套件複製到專案自有快取後固定版本，避免回寫 image 快取。
