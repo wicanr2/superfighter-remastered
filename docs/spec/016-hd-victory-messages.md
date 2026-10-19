@@ -52,3 +52,9 @@
 - 全套 Go 測試及 go vet 通過，版本 1／2 相容與來源拒絕另驗。四個三平台中間二進位已重建並核對實際來源及檔頭。獨立工具為 `tools/verify_victory_capture.py`，彙總入口為 `tools/audit_native_victory.py`。
 
 原版、字圖、VRAM、資料庫及含原版內容的收據僅留本機。平手與單打特殊分支若只有靜態證據，保持明示限制；不能以一般雙打樣本稱全模式已驗。
+
+## 第二人擴充驗證
+
+`victory-animation-frank-v1` 由第二人正常操作，在時間歸零後取得 `winner_word=8004h`，生命為 [76,124]。5,534 個成對核心比較邊界不改原版狀態或即時 RGB，下一回合顯示 [0,1]。`native-frank-victory-v1` 七張擷取已獨立核對，FRANK 與 WIN 兩個原矩形內各有高解析字圖，原貌／HD／切回的來源與恢復畫面相同；每張 HD 字圖有 5,130 個變動像素及 1,444 個金色實心像素。
+
+Windows Wine 的第二人案例仍待完成，暫不擴大本規格的兩平台 CONFORMED 範圍。首次 Wine 等待畫格逾時時，原版仍在持續推進；失敗保留於 `windows-frank-victory-v1`，重跑為 `windows-frank-victory-v2`。觀測工具對畫格等待改用原 180 秒無進展期限，整局仍受 1800 秒與外層 1950 秒上限限制，不修改遊戲速度或像素判準。

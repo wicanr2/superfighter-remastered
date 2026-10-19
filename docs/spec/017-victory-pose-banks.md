@@ -43,3 +43,9 @@
 上述限定範圍已由 `victory-core-compat-v2`、`native-victory-v1`、`windows-victory-v1` 及 `native-victory-legacy-v1` 通過，細節與 GPU 核對見[規格 016](016-hd-victory-messages.md)。正常首勝保留原槽 3 並辨識為 `source_bank=victory`；獨立核對重新解析 WIN 原檔，不靠角色名或勝負旗標猜來源。
 
 研究入口為 `tools/victory_pose_reference.py`。本機原始來源、PNG、研究收據與二進位不公開散布；規格及自有工具可依專案授權保存。
+
+## 兩側正常勝利姿態取樣
+
+- `victory-animation-jaan-v1` 取得 5,293 個成對比較邊界，13 個 WIN 快照取樣，涵蓋斬的槽 0／2／3。`victory-animation-frank-v1` 取得 5,534 個邊界，8 個 WIN 快照取樣，涵蓋法蘭克槽 0／2。全部取樣的圖層完整、角色來源可選；五種來源的固定畫格另由原檔、HUD、陰影及背景獨立重組。
+- 取樣在回合結束後以每 10,000 個指令步進觀察，保留 serial、counter、來源與文字前後狀態。這證明所取樣的動畫來源對應，不能稱原生逐格連續動畫已驗；兩人的槽 1 仍只有原檔與靜態登錄證據。
+- Linux 第二人首勝已呈現抱胸槽 2 與 FRANK WIN。Wine 第二人案例仍在重跑，其完成前不擴大兩平台正式驗收範圍。新角色候選來源另見[規格 018](018-sarkov-hd.md)。

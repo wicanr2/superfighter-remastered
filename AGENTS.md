@@ -243,12 +243,18 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [tools/victory_reference.py](tools/victory_reference.py) | 從 NAME 原檔獨立核對勝負文字、透明覆蓋、同值寫入與實際可見視窗 |
 | [tools/victory_core_receipt.go](tools/victory_core_receipt.go) | 正常首勝與下一回合的成對核心觀測比較、完整原貌及全部 HD 來源選擇核對 |
 | [tools/verify_victory_capture.py](tools/verify_victory_capture.py) | 正常勝利的獨立原檔／完整圖層重播、WIN 圖像群組、原生字圖邊界、同狀態切換與舊素材整格回退 |
+| [tools/verify_victory_animation.py](tools/verify_victory_animation.py) | 兩側正常首勝的 WIN 姿態取樣、來源與圖層重組，以及第二人原生勝利字圖、切換與下一回合清除 |
+| [tools/audit_victory_animation.py](tools/audit_victory_animation.py) | 同時要求兩側核心來源與第二人 Linux／Wine 首勝收據；缺案例不輸出通過稽核 |
 | [tools/audit_native_victory.py](tools/audit_native_victory.py) | 核對勝負切片的原檔、七個姿態來源、四份編譯、正常核心／視窗收據及舊版缺件回退 |
 | [internal/renderdata/victories.go](internal/renderdata/victories.go)、[核心觀測](internal/gamecore/victories.go) | 規格 016 的勝負狀態、不可變直接繪製快照與最後介面光柵觀測 |
 | [internal/hd/victories.go](internal/hd/victories.go)、[原生字圖](internal/desktop/victories.go) | 原 NAME 字圖、位置與完整覆蓋驗證，以及同一顯示映射的金色高解析呈現 |
 | [internal/hd/victories_test.go](internal/hd/victories_test.go) | 兩組正常勝者的四份重播、實際 STOSB 覆蓋、錯誤來源拒絕及特殊字圖靜態邊界驗證 |
 | [docs/spec/017-victory-pose-banks.md](docs/spec/017-victory-pose-banks.md) | WIN 圖像表與一般動作槽的來源區分、素材相容及斬首勝接入，限定 CONFORMED |
 | [tools/victory_pose_reference.py](tools/victory_pose_reference.py) | 解碼斬／法蘭克 WIN 圖像 144 個入口、七個不同來源及原姿勢參考 |
+| [tools/character_pose_reference.py](tools/character_pose_reference.py) | 依固定原檔與既知格式整理其他角色的 72 個 SFMAN 槽、別名及參考圖；不當作正常動態來源驗證 |
+| [tools/prepare_character_extension.py](tools/prepare_character_extension.py) | 保留基底原 PNG，登錄其他角色一般姿態的候選群組；來源、透明區與全部別名先驗，原生驗收另記 |
+| [docs/spec/018-sarkov-hd.md](docs/spec/018-sarkov-hd.md) | 薩爾可夫的一般來源、原字圖 SARORKOV、候選姿態與原生接入契約，限定 READY |
+| [internal/hd/sarkov_test.go](internal/hd/sarkov_test.go) | 既有 Go 讀取器核對薩爾可夫候選群組、72 個入口、基底不變及 124 個正常原版 consumer；原生 UI 另驗 |
 | [internal/gamecore/sprite_sources.go](internal/gamecore/sprite_sources.go) | 以完整 RAM 指標表與原檔表辨識一般／勝利圖像，保留原動作槽號 |
 | [internal/gamecore/sprite_sources_test.go](internal/gamecore/sprite_sources_test.go)、[素材群組測試](internal/hd/victory_poses_test.go) | 原表辨識、未知／歧義拒絕、301 個姿態登錄與舊素材隔離；正常玩家分類另驗 |
 | [tools/prepare_victory_characters.py](tools/prepare_victory_characters.py) | 保留舊 PNG，準備含兩種圖像群組的版本 3 私有試作素材及來源登錄 |

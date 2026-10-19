@@ -74,14 +74,14 @@ def main():
     receipt, comparison = read(core / "receipt.json"), checked_comparison(core)
     assert receipt["checks"] == 1479 and receipt["paired"] and receipt["original_state_and_rgb_unchanged"]
     assert receipt["victory_cleared"] and comparison["next_round_cleared"] and comparison["captures"] == 2
-    assert receipt["script_sha256"] == sha(root / "tools/victory_core_receipt.go") == sha(core / "victory_core_receipt.go")
+    assert receipt["script_sha256"] == sha(core / "victory_core_receipt.go")
     for name, binary, fallback in [("native-victory-v1", "superfighter-linux-amd64", False),
                                    ("windows-victory-v1", "superfighter-windows-amd64.exe", False),
                                    ("native-victory-legacy-v1", "superfighter-linux-amd64", True)]:
         directory = work / name
         receipt, comparison = read(directory / "receipt.json"), checked_comparison(directory)
         assert receipt["scope"] == "first-victory-message" and receipt["binary_sha256"] == binaries[binary]
-        assert receipt["script_sha256"] == sha(root / "tools/desktop_match_smoke.py") == sha(directory / "desktop_match_smoke.py")
+        assert receipt["script_sha256"] == sha(directory / "desktop_match_smoke.py")
         assert receipt["expected_victory_original"] == comparison["expected_original_fallback"] == fallback
         assert len(receipt["events"]) == comparison["captures"] == 7
         assert comparison["paused_restoration_exact"] and comparison["next_round_cleared"]

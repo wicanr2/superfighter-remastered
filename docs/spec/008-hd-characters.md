@@ -67,7 +67,7 @@ SF.EXE SHA-256：`24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d83
 
 ## 現有素材與比較稿
 
-現行原生群組為 `workplace/hd-characters-study-v5`。十一張 PNG 共 121 張人物／特效圖，對應 117 組不同來源及兩名角色全部 144 個原版槽。原圖與提示詞分批保存在 `hd-sprite-art-v1` 至 `v5`；登錄矩形、透明間隔與工具身分另存群組的 registration.json。槽位齊全只代表已繪製並核對來源，不等於全部動作已經正常流程驗收；新特效圖尚未用於原生特效。
+早期原生群組 `workplace/hd-characters-study-v5` 的十一張 PNG 共 121 張人物／特效圖，對應 117 組不同來源及兩名角色全部 144 個原版槽。原圖與提示詞分批保存在 `hd-sprite-art-v1` 至 `v5`；登錄矩形、透明間隔與工具身分另存群組的 registration.json。這是該版的來源身分，現行 v8 的勝利圖像見[規格 017](017-victory-pose-banks.md)，下一角色薩爾可夫候選見[規格 018](018-sarkov-hd.md)。槽位齊全不等於全部動作已正常驗收。
 
 `native-actors-v6` 與 `windows-actors-v6` 各十四項正常流程通過，使用相同群組，含 slot 25 新空中踢擊、slot 56 退步、雙人跳躍、R1、兩人獨立放開及設定重啟。兩側各十三張完整原生畫格已由 Python 獨立重組六層並核對背景來源。`native-actors-missing-v2` 以舊版素材驗整張回退；這些是目前播放器收據，下述早期離線比較保留歷史定位。
 

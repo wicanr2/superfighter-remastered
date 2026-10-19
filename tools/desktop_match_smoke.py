@@ -15,6 +15,7 @@ def main():
     parser.add_argument("--binary", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--wine", action="store_true")
+    parser.add_argument("--attacker", type=int, choices=(0, 1), default=0, help="以普通輸入取得首勝的玩家")
     parser.add_argument("--hd-characters", type=Path, default=Path("/project/workplace/hd-characters-study-v7"))
     parser.add_argument("--first-round-only", action="store_true",
                         help="只驗正常首勝後的 HD 勝場及同狀態切換，不作完整比賽驗收")
@@ -23,6 +24,10 @@ def main():
     parser.add_argument("--quit-after-seconds", type=int, default=1800,
                         help="原生程式的有界執行期限；軟體繪圖完整比賽預設 1800 秒")
     args = parser.parse_args()
+    loser = 1 - args.attacker
+    movement = ("a", "d") if args.attacker == 0 else ("KP_Left", "KP_Right")
+    punch = "Tab" if args.attacker == 0 else "Return"
+    release_keys = (*movement, punch)
     if args.quit_after_seconds <= 0:
         parser.error("--quit-after-seconds must be positive")
     if args.first_round_only and args.victory_only:
@@ -61,10 +66,12 @@ def main():
         except (FileNotFoundError, json.JSONDecodeError):
             return None
 
-    def wait(predicate, seconds=90):
+    def wait(predicate, seconds=90, progress=False):
         end = time.monotonic() + seconds
+        hard_end = started + args.quit_after_seconds
+        last_steps = None
         last = None
-        while time.monotonic() < end:
+        while time.monotonic() < min(end, hard_end):
             if game is not None and game.poll() is not None:
                 raise RuntimeError(f"native process exited: {game.returncode}")
             last = state()
@@ -72,6 +79,13 @@ def main():
                 raise AssertionError(last)
             if last and predicate(last):
                 return last
+            if progress and last:
+                steps = last["core"]["steps"]
+                if last_steps is not None and steps > last_steps:
+                    # 持續推進的模擬不因單次觀測期限被當成卡死。
+                    # 無進展仍受原期限限制，整個程式也有 quit-after 上限。
+                    end = min(time.monotonic() + seconds, hard_end)
+                last_steps = steps
             time.sleep(.02)
         raise TimeoutError(last)
 
@@ -126,11 +140,11 @@ def main():
             if not s["core"]["battle"] or s["core"]["frames"] >= target or s["core"]["steps"] >= budget:
                 return True
             h = hud(s)
-            if h and (h["display_health"][1] == 0 or h["round_state"] != 0):
+            if h and (h["display_health"][loser] == 0 or h["round_state"] != 0):
                 return True
             actors = s["presentation"]["actors"]
             return approach and abs(actors[0]["x"] - actors[1]["x"]) <= 44
-        return wait(done, 180)
+        return wait(done, 180, progress=True)
 
     try:
         spawn(["Xvfb", ":89", "-screen", "0", "1280x1024x24", "-nolisten", "tcp"], "xvfb")
@@ -167,18 +181,20 @@ def main():
         wait(lambda s: s["hd_active"] and s.get("hd_hud_active"))
         paused_shot("normal-battle")
         knockouts = set()
+        finishes = {}
         for cycle in range(24):
             s = state()
             if not s["core"]["battle"]:
                 break
             h = hud(s)
             assert h, "missing observed HUD state"
-            if h["display_health"][1] == 0 or h["round_state"] != 0:
-                xdo("keyup", "a", "d", "Tab")
+            if h["display_health"][loser] == 0 or h["round_state"] != 0:
+                xdo("keyup", *release_keys)
                 round_index = h["round_index"]
                 if round_index not in knockouts:
                     knockouts.add(round_index)
-                    paused_shot(f"knockout-{round_index}")
+                    finishes[round_index] = "knockout" if h["display_health"][loser] == 0 else "time-expiry"
+                    paused_shot(f"{finishes[round_index]}-{round_index}")
                     before = state()["core"]["steps"]
                     wait(lambda s: s["core"]["steps"] >= before + 10_000_000 or not s["core"]["battle"])
                     paused_shot(f"transition-{round_index}")
@@ -190,7 +206,8 @@ def main():
                     wait(victory_ready,180)
                     click(265,32)
                     frozen=wait(lambda s:s["core"]["paused"])
-                    assert frozen["presentation"]["victory"]["state"]["winner_word"]==0
+                    winner = frozen["presentation"]["victory"]["state"]["winner_word"]
+                    assert winner & 255 == frozen["core"]["fighters"][args.attacker]
                     shot("victory-hd")
                     click(830,32);original=wait(lambda s:not s["hd_enabled"] and not s["hd_active"]);shot("victory-original")
                     click(830,32);restored=wait(lambda s:s["hd_enabled"] and victory_ready(s));shot("victory-restored")
@@ -204,7 +221,9 @@ def main():
                 if state()["core"]["battle"]:
                     paused_shot("next-round")
                     if args.first_round_only:
-                        assert hud(state())["display_wins"] == [1, 0]
+                        expected_wins = [0, 0]
+                        expected_wins[args.attacker] = 1
+                        assert hud(state())["display_wins"] == expected_wins
                         click(265, 32)
                         wait(lambda s: s["core"]["paused"])
                         shot("win-hd")
@@ -217,16 +236,16 @@ def main():
                         break
                 continue
             actors = s["presentation"]["actors"]
-            direction = "d" if actors[0]["x"] < actors[1]["x"] else "a"
+            direction = movement[1] if actors[args.attacker]["x"] < actors[loser]["x"] else movement[0]
             xdo("keydown", direction)
             frames(180, True)
             xdo("keyup", direction)
-            xdo("keydown", "Tab")
+            xdo("keydown", punch)
             frames(40)
-            xdo("keyup", "Tab")
+            xdo("keyup", punch)
             frames(30)
             print("cycle", cycle, hud(state()), flush=True)
-        xdo("keyup", "a", "d", "Tab")
+        xdo("keyup", *release_keys)
         if args.first_round_only or args.victory_only:
             assert knockouts == {0}
         else:
@@ -241,7 +260,9 @@ def main():
             paused_shot("after-result-return")
         receipt = {"kind": "normal native first-win HD marker experiment; not complete-match acceptance" if args.first_round_only else "normal native two-player match and return experiment; not all-game or physical-controller acceptance",
                    "scope": "first-round-win-marker" if args.first_round_only else "complete-match-return",
+                   "attacker": args.attacker,
                    "command": command, "events": events, "knockout_rounds": sorted(knockouts),
+                   "round_finishes": finishes,
                    "elapsed_seconds": time.monotonic() - started, "binary_sha256": hashlib.sha256(args.binary.read_bytes()).hexdigest(),
                    "script_sha256": hashlib.sha256(source).hexdigest(), "inputs": "X11 keyboard/mouse only; no memory, health, winner, position or RNG injection"}
         if args.victory_only:

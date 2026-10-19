@@ -262,3 +262,17 @@
 - 四個中間二進位已重建並核對來源及檔頭。native-victory-audit 通過 128 原檔、1719 份來源且原 1715 檔不變、四份實際編譯、301 姿態鍵、核心與二十一張原生擷取。前版 5c1bf7c 四個二進位及 30 份編譯輸入另存 display 基底，舊收據不換版本身分。
 - 第二人正常勝利 HD、完整勝利動畫、其他角色／場景／畫面、替代色盤、其他快捷、實體平台與雙手把、音訊、速度及正式封包仍未完成。Goal 保持 active。自有來源續存獨立 Git 副本與 github-native-victory.bundle，逐檔身分見 github-native-victory-source.json；原版、衍生美術及二進位繼續排除，未建立遠端或 Release。
 - 收尾核對 25 份 Markdown 的 353 個相對連結及全部 Python 語法通過；未發現 root-owned 檔案或誤建 Markdown 目錄。Wine 前綴的 z: 連結以 lstat 核對連結本身，不把其指向的容器根誤報為專案檔案。所有本輪核心、建置、Xvfb／Wine 與檢查容器均已結束，kdzz 容器清單為空。
+
+## 2026-10-19：第二人首勝與下一角色候選
+
+- 前輪為進展：be9a6d3 接通斬首勝人物與文字、同狀態切換及舊素材回退。本輪沿規格與驗收路由續作，Goal 保持「完成快打至尊HD」，沒有重試被環境拒絕的 GitHub 操作。
+- 正式 Go 程式與四個二進位不變。研究工具增加第二人普通輸入及回合結束後的姿態取樣；兩側各以 baseline／observed 核心比較，取得 5,293／5,534 個邊界、13／8 個 WIN 快照。完整圖層與五種姿態來源獨立重組通過，下一回合勝負 metadata 清除。
+- Linux native-frank-victory-v1 以第二人正常操作取得時間結束勝利，七張擷取通過來源、WIN、抱胸、右側首勝、恢復 HD 逐點一致及下一回合 [0,1]。兩張 GPU 字圖各有 5,130 個變動像素、1,444 個金色實心像素。README 加入目前法蘭克勝利畫面。
+- Windows 第一輪在等 180 個畫格時逾時，但原版仍推進到 404M 步、431 格，並未當機。保留 windows-frank-victory-v1 的失敗。畫格觀測改以 180 秒無進展為逾時，整局仍以 1800 秒、外層 1950 秒封頂；沒有改遊戲步速、像素判準或勝負。讀取 cgroup 的 nr_throttled 為零，沒有據此提高 CPU 配額。
+- Windows 重跑為 windows-frank-victory-v2，執行 session 95060、容器 kdzz-windows-frank-victory-v2，仍在單獨執行。這是有界且有 finally 清理的現行工作，尚無完成收據；下一輪先核對同一 handle，不因觀測期限重新啟動。新 audit_victory_animation.py 會要求兩側核心及第二人 Linux／Wine 全部案例，缺件即拒絕，不產生假通過。
+- 薩爾可夫 SFMAN02 解析 72 個入口、45 組不同來源。正常選角 v1 實際選到 1／5，保留研究身分；從原游標行為修正輸入後，v2 為 1／4、124 格來源及屋頂背景全部吻合。NAME 槽 1 重新核對為八字母 SARORKOV；初稿漏記第二個 R 已訂正，設定 ID sarkov 不變。
+- 沿用內建 imagegen 技能，依原像素姿態與既有手繪風格生成薩爾可夫 45 張姿態。四張採用 PNG 與精確提示詞存 sarkov-art-v1；首張留白不足的九格稿被登錄器拒絕，另生 03-v2 並保留原稿。沒有改原 PNG bytes 或放寬透明分隔。一次 Docker 指令的 socket 拒絕改以儲存庫檔案編輯保存請求，未提升權限或改在主機執行工作負載。
+- prepare_character_extension 準備 373 鍵候選，保留舊 301 鍵及十五張 PNG，新增 72 槽／四張圖集。TestSarkovCandidateMatchesNormalOriginalSources 與 hd 套件 go vet 通過，核對全部入口、舊基底不變及 124 個正常 consumer。正式原生仍用 v8；候選不當作第三名角色已完成。規格 018 READY，下一步依契約接人物與原姓名。
+- be9a6d3 的 35 份精確編譯輸入、四個二進位及編譯收據另存 native-frank-victory-v1/build-baseline，供下一角色實作前保留基準。自有來源續存獨立 Git 副本及 github-victory-animation-progress.bundle，身分見 github-victory-animation-progress-source.json；原版、衍生美術、研究資料及二進位仍排除，遠端未建立或推送。
+- 完整動畫、Wine 第二人、薩爾可夫原生、其他角色／場景／畫面、快捷、替代色盤、音訊、速度、實體平台與雙手把及正式封包仍未完成。只保留上述明示的 Wine 有界工作，其他本輪容器均已結束；擁有權、文件連結與原檔檢查於本輪保存時核對。
+- 保存前核對 26 份 Markdown、372 個相對連結、全部 Python 語法、128 原檔與 1719 執行器來源通過；沒有 root-owned 檔案或誤建 Markdown 目錄。舊文件／測試檔名已以 grep 反查無遺留引用。四份二進位重驗檔頭及實際編譯輸入通過，沒有重建未改的正式程式。Wine 第二人仍為唯一執行中的本輪容器，結束後才跑完整兩側稽核。

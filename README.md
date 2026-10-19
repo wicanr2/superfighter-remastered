@@ -4,9 +4,11 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 玩家入口使用 Ebitengine 原生視窗，直接處理鍵鼠與標準手把。原版核心負責規則、碰撞、AI 及流程。既有網頁只保留研究用途。
 
-目前已有原生雙打、兩人拳腳、斬四招、設定保存，以及可切換的屋頂 HD 背景、部分人物動作、已驗招式特效、柔邊地面陰影、生命條、計時、名字與勝場圖示。開場 `ROUND`／`FIGHT !` 已接高解析字圖與原版展開窗口；斬首勝的鞠躬與 `JAAN WIN` 也已同格顯示 HD。Linux 雙打基準已正常打完兩回合、顯示結果並返回標題，後續擴充另驗各自範圍。完整角色 HD、實體手把、其他角色快捷、音訊與正式速度仍待驗收。最近收據及各平台限制見 [CONTEXT](CONTEXT.md)。
+目前已有原生雙打、兩人拳腳、斬四招、設定保存，以及可切換的屋頂 HD 背景、部分人物動作、已驗招式特效、柔邊地面陰影、生命條、計時、名字與勝場圖示。開場 `ROUND`／`FIGHT !`、斬首勝的鞠躬與 `JAAN WIN` 已接 HD；第二人法蘭克的抱胸、`FRANK WIN` 與右側首勝也已在 Linux 驗證。Linux 雙打基準曾正常打完兩回合、顯示結果並返回標題，後續擴充另驗各自範圍。完整角色 HD、實體手把、其他角色快捷、音訊與正式速度仍待驗收。最近收據及各平台限制見 [CONTEXT](CONTEXT.md)。
 
 斬與法蘭克已對應全部 144 個一般來源槽、13 組第二色盤特效，以及 WIN 圖像的 144 個入口。WIN 入口對應七張不同勝利姿態，與一般動作分開辨識；登錄齊全不代表完整動畫已驗。介面基底的 Linux 案例通過 16 項檢查，Windows Wine 的斬、法蘭克案例各通過 16 項，包含特效、介面及同狀態切換。兩平台的法蘭克案例另驗到實際扣血。完整動畫與其他角色仍未完成，製作契約見[角色](docs/spec/008-hd-characters.md)、[特效](docs/spec/009-hd-effects.md)、[戰鬥介面](docs/spec/010-hd-battle-hud.md)及[勝利姿態](docs/spec/017-victory-pose-banks.md)。
+
+下一名薩爾可夫已完成 45 張不同姿態稿、72 個一般來源入口及候選資料核對，尚未接入正式原生呈現。原圖、透明 PNG 與提示詞只留本機，接入契約見[規格 018](docs/spec/018-sarkov-hd.md)。
 
 ## 目前整合畫面
 
@@ -19,6 +21,10 @@ Windows 原生程式在 Wine 中顯示的設定介面，擷取於原版核心執
 ![正常首勝的 HD 鞠躬、勝負文字與雙人快捷列](workplace/native-victory-v1/victory-hd.png)
 
 Linux 原生版由正常對戰取得斬首勝，鞠躬讀取原版獨立 WIN 圖像來源，中央顯示高解析 `JAAN WIN`。[同狀態原貌](workplace/native-victory-v1/victory-original.png)及[切回 HD](workplace/native-victory-v1/victory-restored.png)的核心與來源相同，恢復畫面逐點一致。七張擷取已由原檔重組；文字 GPU 寫入限制在原字圖矩形。這是首勝樣本，其他勝者與完整勝利動畫另驗，詳見[勝負文字規格](docs/spec/016-hd-victory-messages.md)。下方四格快捷與手把設定入口沿用既有操作。
+
+![第二人法蘭克首勝的抱胸、FRANK WIN 與右側勝場](workplace/native-frank-victory-v1/victory-hd.png)
+
+Linux 由第二人正常方向與拳鍵操作，在時間歸零後獲勝，保留原版兩人生命值與結束方式。抱胸讀取 FFWIN.FIG，中央顯示 `FRANK WIN`；[同狀態原貌](workplace/native-frank-victory-v1/victory-original.png)與[恢復 HD](workplace/native-frank-victory-v1/victory-restored.png)已逐點核對，下一回合右側顯示一勝。這個第二人案例的 Windows Wine 重跑仍在進行，不稱兩平台均已通過。
 
 ![目前整合的 HD 屋頂、人物、介面與開場](workplace/native-display-opening-v2/round-hd.png)
 

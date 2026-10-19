@@ -26,7 +26,11 @@ func main() {
 	root := flag.String("root", "/orig", "original data")
 	out := flag.String("out", "", "new output directory")
 	mode := flag.String("mode", "single", "single or versus-frank")
+	player0 := flag.Int("player0", 0, "normal selectable first-player character 0..7")
 	flag.Parse()
+	if *player0 < 0 || *player0 > 7 {
+		panic("player0 must be 0..7")
+	}
 	if *out == "" {
 		panic("out required")
 	}
@@ -34,6 +38,9 @@ func main() {
 		panic("output already exists")
 	}
 	must(os.MkdirAll(*out, 0755))
+	script, e := os.ReadFile("/project/tools/hd_frame_receipt.go")
+	must(e)
+	must(os.WriteFile(filepath.Join(*out, "hd_frame_receipt.go"), script, 0644))
 	exe, e := os.ReadFile(filepath.Join(*root, "SF.EXE"))
 	must(e)
 	if digest(exe) != "24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300" {
@@ -57,11 +64,15 @@ func main() {
 	must(o.Run(1_000_000))
 	o.ReleaseButton(0)
 	must(o.Run(24_000_000))
+	for i := 0; i < *player0; i++ {
+		must(o.SendKeys("Right"))
+		must(o.Run(1_000_000))
+	}
 	must(o.SendKeys("Return"))
 	must(o.Run(20_000_000))
 	if *mode == "versus-frank" {
-		// 原版八名角色為單列，由目前斬的位置往右四格選法蘭克。
-		for i := 0; i < 4; i++ {
+		// 正常選角的第二人游標沿用第一人位置，0／1 已由實跑核對。
+		for i := 0; i < (4-*player0+8)%8; i++ {
 			must(o.SendKeys("Right"))
 			must(o.Run(1_000_000))
 		}
@@ -76,6 +87,9 @@ func main() {
 		panic("ISR mismatch")
 	}
 	ds := binary.LittleEndian.Uint16(isr[6:8])
+	if int(o.Word(oracle.Far(ds, 0x12ac))) != *player0 || *mode == "versus-frank" && o.Word(oracle.Far(ds, 0x12ae)) != 4 {
+		panic(fmt.Sprintf("selection mismatch: got %d/%d", o.Word(oracle.Far(ds, 0x12ac)), o.Word(oracle.Far(ds, 0x12ae))))
+	}
 	bgFile, e := os.Open("/project/workplace/hd-source-probe-v3/I2.XGB.png")
 	must(e)
 	bgImg, e := png.Decode(bgFile)
@@ -87,7 +101,7 @@ func main() {
 	}
 	sources := map[int][]byte{}
 	hashes := map[string]string{"SF.EXE": digest(exe)}
-	for _, char := range []int{0, 4} {
+	for char := 0; char < 11; char++ {
 		name := fmt.Sprintf("SFMAN%02d.DAT", char+1)
 		b, e := os.ReadFile(filepath.Join(*root, name))
 		must(e)
@@ -183,11 +197,9 @@ func main() {
 		}
 		fmt.Println(phase.name, "samples", phase.count)
 	}
-	script, e := os.ReadFile("/project/tools/hd_frame_receipt.go")
-	must(e)
 	sourceManifest, e := os.ReadFile("/project/workplace/dosgolem-patched-manifest.json")
 	must(e)
-	receipt := map[string]any{"kind": "normal-path coherent-frame HD source experiment; not HD art parity", "mode": *mode, "input_sha256": hashes, "script_sha256": digest(script), "dosgolem_manifest_sha256": digest(sourceManifest), "snapshot_control": "one continuous normal path; no state injections or RNG outcome selection", "address_space": "runtime real-mode segment:offset and DS-relative offsets; source file offsets separately labeled", "capture_ip": "01B9:5DD3", "background_reference": "I2.XGB decoded paletted PNG, 480x204", "frames": frames, "opened": o.Opened(), "unimplemented": o.Unimplemented()}
+	receipt := map[string]any{"kind": "normal-path coherent-frame HD source experiment; not HD art parity", "mode": *mode, "requested_player0": *player0, "input_sha256": hashes, "script_sha256": digest(script), "dosgolem_manifest_sha256": digest(sourceManifest), "snapshot_control": "one continuous normal path; no state injections or RNG outcome selection", "address_space": "runtime real-mode segment:offset and DS-relative offsets; source file offsets separately labeled", "capture_ip": "01B9:5DD3", "background_reference": "I2.XGB decoded paletted PNG, 480x204; comparison may differ for other stages", "frames": frames, "opened": o.Opened(), "unimplemented": o.Unimplemented()}
 	data, e := json.MarshalIndent(receipt, "", "  ")
 	must(e)
 	must(os.WriteFile(filepath.Join(*out, "receipt.json"), append(data, '\n'), 0644))

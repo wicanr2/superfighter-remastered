@@ -7,9 +7,11 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"reflect"
+	"strings"
 
 	"github.com/wicanr2/superfighter-remastered/internal/gamecore"
 	"github.com/wicanr2/superfighter-remastered/internal/hd"
@@ -26,8 +28,14 @@ func digest(b []byte) string { return fmt.Sprintf("%x", sha256.Sum256(b)) }
 func main() {
 	out := flag.String("out", "", "new output directory")
 	characterDir := flag.String("hd-characters", "/project/workplace/hd-characters-study-v8", "character asset directory")
+	attacker := flag.Int("attacker", 0, "normal attacking player: 0 or 1")
+	poseSamples := flag.Bool("pose-samples", false, "sample WIN-bank poses from knockout through next round")
 	diagnostic := flag.Bool("diagnostic", false, "single-core source diagnostics; no paired-state acceptance")
 	flag.Parse()
+	if *attacker < 0 || *attacker > 1 {
+		panic("attacker must be 0 or 1")
+	}
+	loser := 1 - *attacker
 	if *out == "" {
 		panic("out required")
 	}
@@ -40,6 +48,28 @@ func main() {
 	script, e := os.ReadFile("/project/tools/victory_core_receipt.go")
 	must(e)
 	write("victory_core_receipt.go", script)
+	sourceInputs := map[string]string{}
+	for _, dir := range []string{"internal", "cmd"} {
+		must(filepath.WalkDir(filepath.Join("/project", dir), func(path string, entry fs.DirEntry, err error) error {
+			if err != nil {
+				return err
+			}
+			if entry.IsDir() || !strings.HasSuffix(path, ".go") || strings.HasSuffix(path, "_test.go") {
+				return nil
+			}
+			b, e := os.ReadFile(path)
+			if e != nil {
+				return e
+			}
+			sourceInputs[strings.TrimPrefix(path, "/project/")] = digest(b)
+			return nil
+		}))
+	}
+	for _, name := range []string{"go.mod", "go.sum", "go.work", "workplace/dosgolem-patched-manifest.json"} {
+		b, e := os.ReadFile(filepath.Join("/project", name))
+		must(e)
+		sourceInputs[name] = digest(b)
+	}
 	cores := make([]*gamecore.Core, 2)
 	for i, name := range []string{"baseline", "observed"} {
 		c, e := gamecore.New("/orig", filepath.Join(*out, name))
@@ -75,6 +105,10 @@ func main() {
 	cleared := false
 	var victoryStep uint64
 	var captures []string
+	var poseCaptures []string
+	var poseTrace []map[string]any
+	seenPoses := map[string]bool{}
+	var lastPoseSerial uint64
 	save := func(stem string, f gamecore.Presentation) {
 		if !f.LayersComplete || !renderdata.Match(f.Layers, f.Pixels) || !f.Scanout.Matches(f.Pixels, f.VRAMTail) {
 			panic("incomplete frozen source")
@@ -123,6 +157,28 @@ func main() {
 		}
 		checks++
 		f := observed.Presentation()
+		if *poseSamples && f.Serial != 0 && f.Serial != lastPoseSerial {
+			lastPoseSerial = f.Serial
+			var sprites []*renderdata.Sprite
+			for _, layer := range f.Layers {
+				if s := layer.Sprite; s != nil && s.SourceBank == "victory" {
+					sprites = append(sprites, s)
+				}
+			}
+			if len(sprites) > 0 {
+				selected, why := characters.Select(f.Layers, f.Palette)
+				poseTrace = append(poseTrace, map[string]any{"steps": b.Steps, "frame_steps": f.Steps, "serial": f.Serial, "counter": f.Counter, "complete": f.LayersComplete, "sprites": sprites, "characters_selected": selected != nil, "reason": why, "victory_message": f.Victory != nil})
+				for _, s := range sprites {
+					key := fmt.Sprintf("%d:%d:%d:%s", s.Player, s.Character, s.Slot, s.SourceSHA256)
+					if f.LayersComplete && !seenPoses[key] {
+						stem := fmt.Sprintf("victory-pose-%02d", len(poseCaptures))
+						save(stem, f)
+						poseCaptures = append(poseCaptures, stem)
+						seenPoses[key] = true
+					}
+				}
+			}
+		}
 		if f.Victory != nil && !captured {
 			save("victory-frame", f)
 			writeJSON("victory-source-diagnostic.json", map[string]any{"actors": f.Actors, "layers": f.Layers, "state": f.Victory.State, "paired": !*diagnostic})
@@ -160,7 +216,9 @@ func main() {
 			fmt.Println("victory", f.Victory.State, "steps", b.Steps, "serial", f.Serial)
 		}
 		if captured && b.Steps > victoryStep && f.Victory == nil && f.HUD != nil && f.HUD.State.Round > 0 && f.HUD.State.RoundState == 0 && f.HUD.State.Health == [2]uint16{124, 124} {
-			if f.HUD.State.DisplayWins != [2]uint16{1, 0} {
+			expectedWins := [2]uint16{}
+			expectedWins[*attacker] = 1
+			if f.HUD.State.DisplayWins != expectedWins {
 				panic("next-round displayed wins lost")
 			}
 			save("after-victory", f)
@@ -203,7 +261,7 @@ func main() {
 		for _, c := range cores {
 			var source []gamecore.Source
 			if len(keys) > 0 {
-				source = []gamecore.Source{{Player: 0, Name: "keyboard", Keys: keys}}
+				source = []gamecore.Source{{Player: *attacker, Name: "keyboard", Keys: keys}}
 			}
 			must(c.SetInput(source))
 		}
@@ -214,7 +272,7 @@ func main() {
 		for observed.Status().Frames < end && observed.Status().Steps < limit && !captured {
 			step(250_000)
 			f := observed.Presentation()
-			if f.HUD != nil && (f.HUD.State.Health[1] == 0 || f.HUD.State.RoundState != 0) {
+			if f.HUD != nil && (f.HUD.State.Health[loser] == 0 || f.HUD.State.RoundState != 0) {
 				return
 			}
 			distance := f.Actors[1].X - f.Actors[0].X
@@ -226,30 +284,41 @@ func main() {
 			}
 		}
 	}
-	for cycle := 0; cycle < 16 && !captured; cycle++ {
+	for cycle := 0; cycle < 24 && !captured; cycle++ {
 		f := observed.Presentation()
 		if f.HUD == nil {
 			panic("missing normal HUD")
 		}
-		if f.HUD.State.Health[1] == 0 || f.HUD.State.RoundState != 0 {
+		if f.HUD.State.Health[loser] == 0 || f.HUD.State.RoundState != 0 {
 			input()
 			limit := observed.Status().Steps + 150_000_000
 			for !captured && observed.Status().Steps < limit {
-				step(250_000)
+				budget := uint64(250_000)
+				if *poseSamples {
+					budget = 10_000
+				}
+				step(budget)
 			}
 			continue
 		}
 		dir := uint8(0x20)
+		punch := uint8(0xf)
 		if f.Actors[0].X > f.Actors[1].X {
 			dir = 0x1e
 		}
+		if *attacker == 1 {
+			dir, punch = 0x4b, 0x1c
+			if f.Actors[1].X < f.Actors[0].X {
+				dir = 0x4d
+			}
+		}
 		input(dir)
 		frames(180, true)
-		input(0xf)
+		input(punch)
 		frames(40, false)
 		input()
 		frames(30, false)
-		fmt.Println("cycle", cycle, "steps", observed.Status().Steps)
+		fmt.Println("cycle", cycle, "steps", observed.Status().Steps, "health", observed.Presentation().HUD.State.Health)
 	}
 	if !captured {
 		panic("no complete victory snapshot")
@@ -257,11 +326,22 @@ func main() {
 	input()
 	limit := observed.Status().Steps + 150_000_000
 	for !cleared && observed.Status().Steps < limit {
-		step(250_000)
+		budget := uint64(250_000)
+		if *poseSamples {
+			budget = 10_000
+		}
+		step(budget)
 	}
 	if !cleared {
 		panic("victory metadata did not clear on normal next round")
 	}
-	writeJSON("receipt.json", map[string]any{"kind": "paired normal Core victory observation; not native GUI", "script_sha256": digest(script), "checks": checks, "captures": captures, "victory_cleared": cleared, "original_state_and_rgb_unchanged": !*diagnostic, "paired": !*diagnostic, "final_core": observed.Status(), "limits": "first Jaan victory and next normal round; special glyphs have separate static tests"})
+	for name, want := range sourceInputs {
+		b, e := os.ReadFile(filepath.Join("/project", name))
+		must(e)
+		if digest(b) != want {
+			panic("source changed during replay: " + name)
+		}
+	}
+	writeJSON("receipt.json", map[string]any{"kind": "paired normal Core victory observation; not native GUI", "script_sha256": digest(script), "source_inputs": sourceInputs, "attacker": *attacker, "pose_captures": poseCaptures, "pose_trace": poseTrace, "checks": checks, "captures": captures, "victory_cleared": cleared, "original_state_and_rgb_unchanged": !*diagnostic, "paired": !*diagnostic, "final_core": observed.Status(), "limits": "normal Jaan/Frank first victory and next round; pose trace is sampled at 10000 instructions after knockout, not a complete native animation acceptance"})
 	fmt.Println("checks", checks, "captured", captured, "cleared", cleared)
 }
