@@ -146,11 +146,7 @@ func (g *Game) drawHUD(dst *ebiten.Image, selected *hd.HUDSelection) {
 			fill(bottom, color.RGBA{222, 159, 29, 255})
 		}
 		label(selected.Layout.Players[p], fmt.Sprintf("%dP", p+1))
-		name := "JAAN"
-		if selected.State.Characters[p] == 4 {
-			name = "FRANK"
-		}
-		label(selected.Layout.Names[p], name)
+		label(selected.Layout.Names[p], selected.Labels[p])
 		for _, marker := range selected.Layout.WinMarkers[p] {
 			box := physical(marker)
 			texture := g.hudWinTexture()
