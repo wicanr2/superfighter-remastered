@@ -50,6 +50,66 @@ func (g *Game) hudLabel(value string) *ebiten.Image {
 	return texture
 }
 
+// hudWinTexture 用曲線重繪原版的拇指圖示，保留同向輪廓與安全邊界。
+func (g *Game) hudWinTexture() *ebiten.Image {
+	if g.hudWinMarker != nil {
+		return g.hudWinMarker
+	}
+	texture := ebiten.NewImageWithOptions(image.Rect(0, 0, 120, 144), &ebiten.NewImageOptions{Unmanaged: true})
+	var hand vector.Path
+	hand.MoveTo(12, 133.2)
+	hand.LineTo(12, 62.4)
+	hand.QuadTo(12, 54, 24, 54)
+	hand.LineTo(40.8, 54)
+	hand.QuadTo(46.8, 51.6, 51.6, 39.6)
+	hand.LineTo(61.2, 9.6)
+	hand.QuadTo(64.8, 2.4, 73.2, 6)
+	hand.QuadTo(80.4, 9.6, 79.2, 20.4)
+	hand.LineTo(75.6, 46.8)
+	hand.LineTo(98.4, 46.8)
+	hand.QuadTo(112.8, 46.8, 112.8, 58.8)
+	hand.QuadTo(112.8, 66, 106.8, 69.6)
+	hand.QuadTo(115.2, 73.2, 112.8, 82.8)
+	hand.QuadTo(112.8, 88.8, 108, 92.4)
+	hand.QuadTo(114, 98.4, 109.2, 108)
+	hand.QuadTo(108, 114, 102, 116.4)
+	hand.QuadTo(105.6, 126, 96, 130.8)
+	hand.LineTo(68.4, 136.8)
+	hand.LineTo(21.6, 136.8)
+	hand.QuadTo(12, 136.8, 12, 133.2)
+	hand.Close()
+	options := func(ink color.Color) *vector.DrawPathOptions {
+		op := &vector.DrawPathOptions{AntiAlias: true}
+		op.ColorScale.ScaleWithColor(ink)
+		return op
+	}
+	vector.FillPath(texture, &hand, nil, options(color.RGBA{255, 209, 68, 255}))
+	vector.StrokePath(texture, &hand, &vector.StrokeOptions{Width: 5.4}, options(color.RGBA{77, 43, 39, 255}))
+	var cuff vector.Path
+	cuff.MoveTo(17, 61)
+	cuff.LineTo(35, 61)
+	cuff.LineTo(35, 130)
+	cuff.LineTo(17, 130)
+	cuff.Close()
+	vector.FillPath(texture, &cuff, nil, options(color.RGBA{222, 159, 29, 255}))
+	var fingers vector.Path
+	fingers.MoveTo(50, 68)
+	fingers.QuadTo(77, 62, 106, 70)
+	fingers.MoveTo(50, 89)
+	fingers.QuadTo(78, 82, 107, 92)
+	fingers.MoveTo(50, 110)
+	fingers.QuadTo(77, 105, 101, 116)
+	vector.StrokePath(texture, &fingers, &vector.StrokeOptions{Width: 3.6}, options(color.RGBA{143, 77, 35, 255}))
+	var highlight vector.Path
+	highlight.MoveTo(58, 39)
+	highlight.LineTo(65, 15)
+	highlight.MoveTo(44, 60)
+	highlight.QuadTo(62, 54, 86, 54)
+	vector.StrokePath(texture, &highlight, &vector.StrokeOptions{Width: 4}, options(color.RGBA{255, 245, 174, 255}))
+	g.hudWinMarker = texture
+	return texture
+}
+
 func (g *Game) drawHUD(dst *ebiten.Image, selected *hd.HUDSelection) {
 	sx, sy := float64(screenRect.Dx())/320, float64(screenRect.Dy())/200
 	physical := func(rect image.Rectangle) image.Rectangle {
@@ -91,6 +151,14 @@ func (g *Game) drawHUD(dst *ebiten.Image, selected *hd.HUDSelection) {
 			name = "FRANK"
 		}
 		label(selected.Layout.Names[p], name)
+		for _, marker := range selected.Layout.WinMarkers[p] {
+			box := physical(marker)
+			texture := g.hudWinTexture()
+			op := &ebiten.DrawImageOptions{Filter: ebiten.FilterLinear}
+			op.GeoM.Scale(float64(box.Dx())/float64(texture.Bounds().Dx()), float64(box.Dy())/float64(texture.Bounds().Dy()))
+			op.GeoM.Translate(float64(box.Min.X), float64(box.Min.Y))
+			dst.DrawImage(texture, op)
+		}
 	}
 	label(selected.Layout.Timer, fmt.Sprintf("%02d", selected.State.Timer))
 	g.hdHUDActive = true

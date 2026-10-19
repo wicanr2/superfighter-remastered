@@ -73,7 +73,7 @@ def main():
         assert build["compiled_inputs"] == compiled_inputs(p), path.name + " 的實際編譯來源已過期"
         assert build["binary_sha256"] == sha(path), path.name + " 的二進位已變動"
         compiler_receipts[str(source.relative_to(p))] = sha(source)
-    files = [p / n for n in ["go.mod", "go.sum", "go.work", "docs/spec/005-native-desktop.md", "docs/spec/006-rooftop-background.md", "docs/spec/008-hd-characters.md", "docs/spec/009-hd-effects.md", "docs/spec/010-hd-battle-hud.md", "tools/prepare_hd_background.py", "tools/prepare_hd_characters.py", "tools/build_desktop.py", "tools/build_desktop.sh"]] + sorted((p / "cmd").rglob("*.go")) + sorted((p / "internal").rglob("*.go"))
+    files = [p / n for n in ["go.mod", "go.sum", "go.work", "docs/spec/005-native-desktop.md", "docs/spec/006-rooftop-background.md", "docs/spec/008-hd-characters.md", "docs/spec/009-hd-effects.md", "docs/spec/010-hd-battle-hud.md", "docs/spec/011-hd-win-markers.md", "tools/prepare_hd_background.py", "tools/prepare_hd_characters.py", "tools/build_desktop.py", "tools/build_desktop.sh"]] + sorted((p / "cmd").rglob("*.go")) + sorted((p / "internal").rglob("*.go"))
     receipt = {"kind": "native intermediate builds; not release packages or macOS hardware acceptance",
                "go_version": subprocess.check_output(["go", "version"], text=True).strip(),
                "images": {"linux": "dosgolem-go-ebiten:1.24-r1", "cross": "tokugawa-desktop-platforms:go1.24.13-sdk15.5-noble-r1"},

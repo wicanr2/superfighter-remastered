@@ -68,9 +68,27 @@ func TestOriginalHUDSourcesVisibleHealthAndScoreLatch(t *testing.T) {
 			t.Fatal("visible health changed")
 		}
 		for offset, value := range bitmap {
-			// 勝場圖示只在前十二列；其餘非零介面像素都應有高解析替換。
-			if offset/320 >= 12 && value != 0 && selected.Replace[record.State.Rows*320+offset] != 1 {
+			// 包含第二回合勝場圖示；所有已核對的非零介面像素都須替換。
+			if value != 0 && selected.Replace[record.State.Rows*320+offset] != 1 {
 				t.Fatalf("%s: original HUD pixel left outside replacement at %d,%d", stem, offset%320, offset/320)
+			}
+		}
+		for player, count := range record.State.DisplayWins {
+			for ordinal := 1; ordinal <= 2; ordinal++ {
+				if ordinal <= int(count) {
+					continue
+				}
+				x := 6 + ordinal*12
+				if player == 1 {
+					x = 304 - ordinal*12
+				}
+				for y := 0; y < 12; y++ {
+					for column := 0; column < 10; column++ {
+						if selected.Replace[(record.State.Rows+y)*320+x+column] != 0 {
+							t.Fatalf("%s: unearned marker replaces pixels for player %d ordinal %d", stem, player, ordinal)
+						}
+					}
+				}
 			}
 		}
 		if record.State.Pending != [2]uint16{} {

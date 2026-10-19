@@ -83,6 +83,7 @@ type Game struct {
 	hdHUDRequired    bool
 	hdHUDActive      bool
 	hudLabels        map[string]*ebiten.Image
+	hudWinMarker     *ebiten.Image
 }
 
 func New(opts Options) (*Game, error) {
@@ -689,6 +690,25 @@ func (g *Game) Draw(dst *ebiten.Image) {
 		}
 		if e != nil {
 			g.notice = "擷取失敗：" + e.Error()
+		}
+		if e == nil && g.opts.Observe != "" {
+			liveW, liveH, liveRGB := g.core.RGB()
+			source := "live-original"
+			if g.hdAssets != nil && len(frame.Pixels) == 64000 {
+				source = "completed-battle-frame"
+			}
+			metadata := map[string]any{"core": g.core.Status(), "original_source": source, "selected_width": w, "selected_height": h, "live_width": liveW, "live_height": liveH, "presentation_serial": frame.Serial, "presentation_steps": frame.Steps, "hd_enabled": g.hdEnabled, "hd_active": g.hdActive}
+			var data []byte
+			data, e = json.MarshalIndent(metadata, "", "  ")
+			if e == nil {
+				e = os.WriteFile(path+".capture.json", data, 0600)
+			}
+			if e == nil {
+				e = os.WriteFile(path+".selected.rgb", rgb, 0600)
+			}
+			if e == nil {
+				e = os.WriteFile(path+".live.rgb", liveRGB, 0600)
+			}
 		}
 		if e == nil && g.opts.Observe != "" && g.hdAssets != nil && len(frame.Pixels) == 64000 {
 			e = os.WriteFile(path+".idx", frame.Pixels, 0600)

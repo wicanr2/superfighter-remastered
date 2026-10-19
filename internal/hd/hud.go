@@ -22,6 +22,7 @@ type HUD struct {
 type HUDLayout struct {
 	Names, Players, Bars, Interior [2]image.Rectangle
 	Timer                          image.Rectangle
+	WinMarkers                     [2][]image.Rectangle
 }
 type HUDSelection struct {
 	State   renderdata.HUDState
@@ -137,10 +138,20 @@ func (a *HUD) Reference(s renderdata.HUDState) ([]byte, bool) {
 }
 
 func (a *HUD) Layout(s renderdata.HUDState) HUDLayout {
-	return HUDLayout{Names: [2]image.Rectangle{image.Rect(18, 21, 18+a.names[s.Characters[0]].width, 32), image.Rect(302-a.names[s.Characters[1]].width, 21, 302, 32)},
+	layout := HUDLayout{Names: [2]image.Rectangle{image.Rect(18, 21, 18+a.names[s.Characters[0]].width, 32), image.Rect(302-a.names[s.Characters[1]].width, 21, 302, 32)},
 		Players:  a.players,
 		Bars:     [2]image.Rectangle{image.Rect(18, 12, 143, 20), image.Rect(177, 12, 302, 20)},
 		Interior: [2]image.Rectangle{image.Rect(19, 13, 143, 19), image.Rect(177, 13, 301, 19)}, Timer: image.Rect(145, 9, 175, 24)}
+	for player, count := range s.DisplayWins {
+		for ordinal := 1; ordinal <= int(count); ordinal++ {
+			x := 6 + ordinal*12
+			if player == 1 {
+				x = 304 - ordinal*12
+			}
+			layout.WinMarkers[player] = append(layout.WinMarkers[player], image.Rect(x, 0, x+a.names[11].width, a.names[11].height))
+		}
+	}
+	return layout
 }
 
 func (a *HUD) Select(s *renderdata.HUDSnapshot, pixels []byte, palette [256][3]uint8, layers []renderdata.Layer) (*HUDSelection, string) {
@@ -172,6 +183,7 @@ func (a *HUD) Select(s *renderdata.HUDSnapshot, pixels []byte, palette [256][3]u
 	rects := []image.Rectangle{selection.Layout.Timer}
 	for p := 0; p < 2; p++ {
 		rects = append(rects, selection.Layout.Names[p], selection.Layout.Players[p], selection.Layout.Bars[p])
+		rects = append(rects, selection.Layout.WinMarkers[p]...)
 	}
 	for i, v := range s.Bitmap {
 		if (v > 15 && v != 0xad && v != 0xae) || v&15 != expected[i] || (v == 0) != (expected[i] == 0) {

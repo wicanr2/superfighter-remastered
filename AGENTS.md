@@ -165,6 +165,10 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [字型來源](internal/desktop/assets/source.json)、[OFL 授權](internal/desktop/assets/OFL.txt) | Noto Sans CJK TC 固定來源、SHA-256 與授權 |
 | [tools/build_desktop.sh](tools/build_desktop.sh)、[建置階段](tools/build_desktop.py) | Docker 三平台建置、來源／檔頭核對與中間二進位收據 |
 | [tools/desktop_smoke.py](tools/desktop_smoke.py) | Docker Xvfb 正常原生視窗玩家路徑及設定重啟驗證 |
+| [tools/desktop_match_smoke.py](tools/desktop_match_smoke.py) | 正常原生雙打至勝負、過場及返回；保存選用原貌與當下原版 RGB，不以改生命或勝負代替 |
+| [tools/verify_match_capture.py](tools/verify_match_capture.py) | 獨立核對比賽擷取的選用／即時原版來源、完整原貌回退及離開對戰後快照清除 |
+| [勝場規格 011](docs/spec/011-hd-win-markers.md)、[獨立證據工具](tools/hud_wins_evidence.py) | 原版拇指圖像、鎖存勝場及兩側位置來源；高解析呈現依規格狀態接入 |
+| [勝場與比賽稽核](tools/audit_native_wins.py) | 核對目前勝場版、另存的完整比賽基準、四平台編譯來源、原檔與實際擷取；不替代完整 HD 驗收 |
 | [tools/windows_native_smoke.py](tools/windows_native_smoke.py) | Docker Wine 的 Windows 原生視窗檢查，不能代替真機驗收 |
 | [tools/windows_shift_probe.go](tools/windows_shift_probe.go)、[驅動](tools/windows_shift_probe.py) | Docker Wine 只讀核對 Win32 左右 Shift 的獨立狀態，不改遊戲核心 |
 | [tools/go.mod](tools/go.mod) | 讓舊獨立 Go 探針與正式桌面模組隔離，不修改舊收據的工具來源 |
@@ -196,6 +200,7 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [tools/effect_core_receipt.go](tools/effect_core_receipt.go) | 正常輸入下比較開關特效觀測的原版狀態、畫格及指令步數，不修改遊戲狀態 |
 | [tools/ida_hud_evidence.py](tools/ida_hud_evidence.py) | IDA 9.4 的生命、計時及原介面繪製直接引用與函式匯出，保留原始名稱，不能代替動態驗證 |
 | [tools/hud_draw_receipt.go](tools/hud_draw_receipt.go) | 正常雙打的介面 bitmap、原始欄位、每次 RAM 寫入與完整繪製後畫面實驗，尚非 HD 驗收 |
+| [tools/match_core_receipt.go](tools/match_core_receipt.go) | 以 public Core 與普通雙打輸入走完整比賽，保存畫面及快照生命週期，不注入勝負或生命 |
 | [tools/hud_reference.py](tools/hud_reference.py) | 從 BOARD、NAME、0-9 與原版色盤獨立重組介面，核對動態 bitmap fixture |
 | [tools/hd_sprite_reference.py](tools/hd_sprite_reference.py) | 供重繪使用的原版姿態、尺寸與位置參考表，不把放大圖稱為 HD 美術 |
 | [tools/hd_actor_preview.go](tools/hd_actor_preview.go) | 以原版分層收據核對 HD 姿態、鏡像與裁切的可丟棄比較稿 |

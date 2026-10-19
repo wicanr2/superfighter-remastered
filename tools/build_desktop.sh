@@ -2,10 +2,14 @@
 set -euo pipefail
 project_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 test -d "$project_root/workplace/dosgolem-source"
+test -d "$project_root/workplace/orig"
 test -f "$project_root/go.sum"
 test -f "$project_root/internal/desktop/assets/NotoSansCJKtc-Regular.otf"
 common=(--rm --user "$(id -u):$(id -g)" --memory 1536m --cpus 2 --pids-limit 128
-  --mount "type=bind,source=$project_root,target=/project" -w /project
+  --mount "type=bind,source=$project_root,target=/project,readonly"
+  --mount "type=bind,source=$project_root/workplace,target=/project/workplace"
+  --mount "type=bind,source=$project_root/workplace/orig,target=/project/workplace/orig,readonly"
+  --mount "type=bind,source=$project_root/workplace/dosgolem-source,target=/project/workplace/dosgolem-source,readonly" -w /project
   -e GOCACHE=/project/workplace/cache/native-go-build
   -e GOMODCACHE=/project/workplace/cache/native-go-mod -e GOMAXPROCS=2)
 docker run "${common[@]}" --network bridge -e GOPROXY=https://proxy.golang.org -e GOSUMDB=sum.golang.org \

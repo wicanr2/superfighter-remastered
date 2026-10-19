@@ -170,3 +170,26 @@
 - native-hud-audit 核對 128 原檔、1715 份執行器來源及原有 1713 檔不變、四份編譯、157 個素材鍵與上述 GUI／回退，依此將 010 在明列範圍升 CONFORMED。README 換目前整合截圖入口，CONTEXT、WORKLIST、003／008 與驗證矩陣同步回填。剩餘 HD 及完整流程仍留待辦。
 - 自有來源續存獨立 Git 副本及 workplace/github-native-hud.bundle，原版、衍生美術及二進位排除。最終文件、來源與 Docker 清理核對於本節後續記錄；未建立 Release 或正式發行包。
 - 最終 native-hud-audit 通過目前編譯與三個十六項／一個十三項 GUI，18 份 Markdown 的 221 個本機連結、十個新增入口及 24 份 Python 語法核對通過。工作根沒有 root-owned 檔案或誤建的 Markdown 目錄，kdzz 容器清單已清空，沒有新建 image 或留下 Xvfb／Wine 背景程序。下一輪先驗原生完整回合、結果／返回與快照生命週期，再續陰影、勝場／回合及其餘美術。
+
+## 2026-10-19：完整比賽驗證與執行環境受阻
+
+- GitHub 回合只核對既有 989c1ca 原始碼 bundle 與獨立 Git 副本，未建立遠端。主機 gh auth status 的提升權限請求遭自動核准政策拒絕，沒有重新判定憑證或繞過限制。
+- 本輪重新取得既有原生 GUI 工作 session 8448 的執行輸出，確認它仍在第二回合，而非只依狀態檔假定存活。之後同一 handle 回報退出碼 1，failure.json 記錄遊戲本身退出碼 0、步數 791,750,000。測試使用 900 秒自動結束，未完成第二次擊倒、結算與返回；這是驗證期限不足，不據此宣稱玩法故障。
+- 原生四張擷取及其舊 comparison.json 只驗到正常對戰、首個擊倒、換場與第二回合，選用原貌與即時原版 RGB 相同。未擴張為完整比賽或完整 HD 通過。match-core-v1 的普通輸入收據另走完兩次擊倒至結果報紙，離開對戰後快照清空，但不代替 GUI 驗收。
+- 調整 desktop_match_smoke.py：預設執行期限改為 1800 秒並可用 --quit-after-seconds 設定；失敗另記命令、實際經過時間及工具雜湊。調整 verify_match_capture.py：完整模式要求成功收據、兩次擊倒、八張具名擷取、事件核心一致及結果／返回的原貌來源；部分檢查必須指定 --partial，另寫 comparison-partial.json。
+- 上述兩項工具調整尚未重跑。Docker socket 存取回報 permission denied，沒有改在主機執行測試、分析或遊戲。舊測試 session 99164 已無 handle，現存 log 只能確認測試輸出與已啟動 go vet，未取得退出碼，不能宣稱本輪完整檢查通過。
+- CONTEXT、WORKLIST 回填實際結果與下一步。原版與 HD 衍生素材留在本機；本輪沒有 commit、push、正式封包或新 image。既有 GUI handle 已終止，但目前無法查 Docker 容器清單及清理狀態。恢復 Docker 存取後，先核對清理及檔案擁有權，再以新輸出目錄重跑完整比賽及獨立驗證，續做剩餘 HD。
+
+## 2026-10-19：原生 HD 勝場與完整雙打返回
+
+- 前一輪調整驗證工具屬 progress。本輪直接 Docker 呼叫可用；先前把複合主機指令的 socket 拒絕歸成整個 Docker 工具鏈受阻，判定過廣，已修正 CONTEXT。沿用既有映像，沒有在主機執行分析、遊戲或測試。
+- 重跑前先驗兩份 Python 語法、四個二進位及 88 筆實際編譯輸入。native-match-v2 正常標題、雙打選角、普通移動及拳擊，完成兩次擊倒、結果報紙及 Return 返回標題，八張擷取通過。離開對戰後完整快照清空，兩張非對戰 viewport 逐點等於即時原貌；沒有改生命、勝負、座標或亂數。
+- 勝場擴充前，把上述基準四個二進位、22 份精確編譯輸入及來源雜湊另存 native-match-v2/build-baseline。前一介面版二進位也已保留於 native-hud-frank-v2，避免新版覆寫後讓舊收據失去版本身分。
+- NAME.XBB 的 10×12 拇指圖示及 93 點非零來源、兩側位置、勝場鎖存與 33 個真實 fixture 經獨立核對後，規格 011 由 DRAFT 升限定 READY。原生程式以高解析曲線重繪拇指，使用獨立 GPU 紋理；加入已鎖存勝場的精確非零替換，原始圖層及玩法核心不變。右側及第二圖示只有本輪靜態證據，仍列驗收限制。
+- native-win-markers-v1 以目前勝場版正常取得首勝，七張擷取及原版六層獨立重組通過。三張暫停切換的核心、色號、色盤、快照與即時 RGB 相同，恢復 HD 的遊戲區逐點一致；勝場區已換新圖。與完整比賽基準相比，只有三份前端／HD 呈現檔改變，核心來源相同。這不把歷史完整比賽二進位改稱目前版本。
+- win-markers-checks-v1 有兩項因環境變數誤寫為 KDZZ_HD_CHARACTER_ASSETS 而跳過。修正為既有測試使用的 KDZZ_HD_CHARACTERS 後，v2 全套 go test 與 go vet 通過，33 個 HUD／19 個特效 fixture 沒有跳過。後增的未獲勝區域拒絕檢查另以 win-marker-coverage-v1 重跑 33 個 fixture 通過。
+- 比賽驗證工具現在分完整比賽、首勝圖示及明示部分檢查。完整模式會拒絕舊失敗收據；首勝模式核對同狀態切換；兩者均重組實際原版圖層並保存 PNG 及側檔雜湊。新增側檔雜湊檢查初次誤要求非對戰 frame.json，已依擷取契約改為只對有完整快照的畫格要求，未補造歷史側檔。
+- 勝場版的 Linux、Windows、macOS Intel／Apple Silicon 已重建，核對四份編譯來源及 ELF／PE／Mach-O。建置腳本同步改為工作根唯讀、workplace 輸出可寫，原始資料與 dosgolem 別名唯讀。新勝場尚未跑 Wine 或實體平台；前版 Wine 收據不改名。
+- 陰影以唯讀原 EXE 建立兩個一次性 IDA 9.4 資料庫，確認 SHADOW.XLP、固定地面列、兩人位置及透明繪製；第二人會直接落入 helper。只保存靜態證據，未接正式陰影。下一步由 dosgolem 普通輸入逐寫對拍，之後再審查 HD 陰影規格。
+- README 加目前勝場截圖入口，CONTEXT、WORKLIST、驗證矩陣與較早規格回填現況。完整 HD、其他角色／場景／畫面、音訊、速度、實體手把與正式封包仍未完成。自有來源續存獨立 Git 副本及 github-native-wins.bundle；未建立遠端、push 或 Release。最終來源稽核、備份與 Docker 清理結果續記於本節。
+- native-win-markers-audit 最終核對通過：128 原檔、1715 份執行器來源及原有 1713 檔不變、四份編譯、歷史完整比賽八張與目前首勝七張擷取。勝場矩形的背景變化不當作新圖示證據，另核對 254 個原版色盤沒有的原生金色筆畫像素。工作根未發現 root-owned 檔案或誤建 Markdown 目錄；GUI／IDA 容器均已結束，kdzz 清單為空。備份的提交與 bundle 身分記於 workplace/github-native-wins-source.json，不把本輪切片宣稱為完整 HD。
