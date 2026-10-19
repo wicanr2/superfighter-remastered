@@ -18,12 +18,27 @@ def main():
     parser.add_argument("--original-root", type=Path, required=True)
     parser.add_argument("--background", type=Path, required=True)
     parser.add_argument("--core", action="store_true")
+    parser.add_argument("--partial-native", action="store_true",
+                        help="只核對失敗檔中的六張首勝及切換擷取，明示下一回合未驗，不產生完整通過收據")
     args = parser.parse_args()
     root = args.output
-    receipt = json.loads((root / "receipt.json").read_text())
-    player = receipt["attacker"]
+    if args.core and args.partial_native:
+        parser.error("partial native evidence cannot be used as paired core acceptance")
+    source_file = "failure.json" if args.partial_native else "receipt.json"
+    receipt = json.loads((root / source_file).read_text())
+    if args.partial_native:
+        assert not (root / "receipt.json").exists()
+        last = receipt["state"]
+        assert last["hd_active"] and last["presentation"]["victory"]["complete"]
+        winner = last["presentation"]["victory"]["state"]["winner_word"]
+        assert winner & 0x7f00 == 0
+        player = (winner >> 15) & 1
+        characters = last["core"]["fighters"]
+    else:
+        player = receipt["attacker"]
+        characters = [receipt.get("player0", 0), 4]
     assert player in (0, 1)
-    character = [receipt.get("player0", 0), 4][player]
+    character = characters[player]
     wins = [0, 0]
     wins[player] = 1
     reference = (args.background / "reference.idx").read_bytes()
@@ -39,14 +54,16 @@ def main():
         serials = [row["serial"] for row in receipt["pose_trace"]]
         assert serials == sorted(set(serials))
     else:
-        assert receipt["scope"] == "first-victory-message" and receipt["knockout_rounds"] == [0]
+        if not args.partial_native:
+            assert receipt["scope"] == "first-victory-message" and receipt["knockout_rounds"] == [0]
         assert receipt["script_sha256"] == sha(root / "desktop_match_smoke.py")
-        expected_original = receipt["expected_victory_original"]
+        expected_original = False if args.partial_native else receipt["expected_victory_original"]
         names = [event["name"] + ".png" for event in receipt["events"]]
-        finish = receipt["round_finishes"]["0"]
+        finish = ("knockout" if "knockout-0.png" in names else "time-expiry") if args.partial_native else receipt["round_finishes"]["0"]
         assert finish in ("knockout", "time-expiry")
-        assert names == ["normal-battle.png", f"{finish}-0.png", "transition-0.png", "victory-hd.png",
-                         "victory-original.png", "victory-restored.png", "after-victory.png"]
+        expected_names = ["normal-battle.png", f"{finish}-0.png", "transition-0.png", "victory-hd.png",
+                          "victory-original.png", "victory-restored.png"]
+        assert names == expected_names + ([] if args.partial_native else ["after-victory.png"])
     frames = {name: read_frame(root, name, reference, args.original_root, image_required=not args.core) for name in names}
     sources = {name: check_sprite_sources(args.original_root, frame[2]) for name, frame in frames.items()}
     victory_name = "victory-frame" if args.core else "victory-hd.png"
@@ -60,20 +77,25 @@ def main():
             assert state["health"][1 - player] == 0
         else:
             assert state["timer"] == 0 and 0 < state["health"][1 - player] < state["health"][player]
-    after = frames["after-victory" if args.core else "after-victory.png"][2]
-    assert after.get("victory") is None and after["hud"]["state"]["display_wins"] == wins
-    assert after["hud"]["state"]["round_state"] == 0
+    if not args.partial_native:
+        after = frames["after-victory" if args.core else "after-victory.png"][2]
+        assert after.get("victory") is None and after["hud"]["state"]["display_wins"] == wins
+        assert after["hud"]["state"]["round_state"] == 0
     unique = sorted({(s["player"], s["slot"], s["source_sha256"]) for values in sources.values()
                      for s in values if s["source_bank"] == "victory"})
     result = {"kind": "independent normal victory animation source samples and lifecycle",
-              "attacker": player, "captures": len(names), "victory_sources": unique, "next_round_cleared": True,
+              "attacker": player, "captures": len(names), "victory_sources": unique,
+              "partial_native": args.partial_native, "full_scenario_complete": not args.partial_native,
+              "next_round_cleared": None if args.partial_native else True,
               "limits": "requested normal first-victory samples; no all-mode or every-frame native animation claim"}
     if args.core:
         result["paired_core_checks"] = receipt["checks"]
         result["sampled_win_frames"] = len(receipt["pose_trace"])
     else:
         events = {event["name"]: event["state"] for event in receipt["events"]}
-        assert events["normal-battle"]["hd_active"] and events["after-victory"]["hd_active"]
+        assert events["normal-battle"]["hd_active"]
+        if not args.partial_native:
+            assert events["after-victory"]["hd_active"]
         group = [frames[f"victory-{mode}.png"] for mode in ("hd", "original", "restored")]
         assert group[0][:3] == group[1][:3] == group[2][:3]
         states = [events[f"victory-{mode}"] for mode in ("hd", "original", "restored")]
@@ -117,13 +139,17 @@ def main():
         result["expected_victory_original"] = expected_original
         result["paused_restoration_exact"] = True
     result["files"] = {p.name: sha(p) for p in root.iterdir() if p.is_file()
-                       and p.name not in ("animation-comparison.json", "capture.png")
+                       and p.name not in ("animation-comparison.json", "animation-comparison-partial.json", "capture.png")
                        and not p.name.startswith("capture.png.")}
     result["script_sha256"] = sha(Path(__file__))
     result["dependencies"] = {name: sha(Path(__file__).with_name(name)) for name in
                               ("verify_character_capture.py", "verify_victory_capture.py", "victory_reference.py",
                                "hud_reference.py", "shadow_reference.py", "round_reference.py", "display_reference.py")}
-    (root / "animation-comparison.json").write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+    if args.partial_native:
+        result["kind"] = "independent partial native victory and paused switching; scenario remains incomplete"
+        result["limits"] += "; next-round lifecycle not observed before failure deadline"
+    output_name = "animation-comparison-partial.json" if args.partial_native else "animation-comparison.json"
+    (root / output_name).write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
     print(json.dumps({k: v for k, v in result.items() if k not in ("files", "dependencies")}, ensure_ascii=False))
 
 

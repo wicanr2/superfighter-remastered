@@ -31,13 +31,15 @@ def main():
     effect_case.add_argument("--exercise-frank-effects", action="store_true")
     parser.add_argument("--wine", action="store_true")
     parser.add_argument("--opponent", choices=["jaan", "frank"], default="jaan")
-    parser.add_argument("--player0", type=int, choices=(0, 1), default=0)
+    parser.add_argument("--player0", type=int, choices=(0, 1, 2), default=0)
     parser.add_argument("--quit-after-seconds", type=int, default=300)
     args = parser.parse_args()
     if args.quit_after_seconds <= 0:
         parser.error("--quit-after-seconds must be positive")
-    if args.player0 == 1 and (args.opponent != "frank" or not args.hd_assets or not args.hd_characters or args.round_opening_only or args.shadow_overlap_only or args.exercise_effects or args.exercise_frank_effects):
-        parser.error("player0=1 requires the normal Sarorkov/Frank rooftop character scope")
+    if args.player0 in (1, 2) and (args.opponent != "frank" or not args.hd_assets or not args.hd_characters or args.round_opening_only or args.shadow_overlap_only or args.exercise_effects or args.exercise_frank_effects):
+        parser.error("player0=1/2 requires the normal rooftop character scope against Frank")
+    normal = {1: ("sarkov", "Sarorkov", (0, 4), 14, (19, 20, 21), (5, 9, 10)),
+              2: ("bullet", "Bullet", (0, 17), 11, (16, 18, 19, 20, 21, 22), (1, 2))}.get(args.player0)
     if args.round_opening_only and not (args.hd_assets and args.hd_characters and args.opponent == "frank"):
         parser.error("--round-opening-only requires rooftop characters and Frank")
     if args.shadow_overlap_only and not (args.exercise_shadows and args.hd_assets and args.hd_characters and args.opponent == "frank"):
@@ -187,19 +189,19 @@ def main():
             click(830, 32)
             wait(lambda s: s["hd_enabled"])
         click(110, 32)
-        wait(lambda s: s["core"]["steps"] >= 40_000_000, timeout=45, progress=args.player0 == 1)
+        wait(lambda s: s["core"]["steps"] >= 40_000_000, timeout=45, progress=normal is not None)
         xdo("mousemove", "--window", window, 455, 607)
         xdo("mousedown", 1)
         initial = state()["core"]["steps"]
         wait(lambda s: s["core"]["steps"] >= initial + 1_250_000)
         xdo("mouseup", 1)
-        wait(lambda s: s["core"]["steps"] >= 65_000_000, progress=args.player0 == 1)
+        wait(lambda s: s["core"]["steps"] >= 65_000_000, progress=normal is not None)
         for _ in range(args.player0):
             before = state()["core"]["steps"]
             key("Right")
             wait(lambda s: s["core"]["steps"] >= before + 1_000_000, progress=True)
         key("Return")
-        wait(lambda s: s["core"]["steps"] >= 85_000_000, progress=args.player0 == 1)
+        wait(lambda s: s["core"]["steps"] >= 85_000_000, progress=normal is not None)
         if not state()["core"]["battle"]:
             moves = ((4 if args.opponent == "frank" else 0) - args.player0) % 8
             if moves:
@@ -246,12 +248,13 @@ def main():
             (args.output / "desktop_smoke.py").write_bytes(script_source)
             print(json.dumps({"scope": receipt["scope"], "checks": checks}, ensure_ascii=False))
             return
-        ready = wait(lambda s: s["core"]["battle"] and s["core"]["frames"] > 8, timeout=45, progress=args.player0 == 1)
+        ready = wait(lambda s: s["core"]["battle"] and s["core"]["frames"] > 8, timeout=45, progress=normal is not None)
         assert ready["core"]["fighters"] == [args.player0, 4 if args.opponent == "frank" else 0] and ready["core"]["mode"] == 1, ready
-        checks.append("native window normal title -> versus selection -> " + ("Sarorkov/" if args.player0 else "Jaan/") + args.opponent + " battle")
+        checks.append("native window normal title -> versus selection -> " + (normal[1] + "/" if normal else "Jaan/") + args.opponent + " battle")
         events.append({"normal_battle": ready})
         shot("normal-versus.png")
-        if args.player0 == 1:
+        if normal:
+            slug, character_name, idle_slots, crouch_slot, jump_slots, punch_slots = normal
             click(830, 32)
 
             def presentation_ready(s):
@@ -261,22 +264,22 @@ def main():
 
             wait(presentation_ready, timeout=60, progress=True)
             shot("hd-rooftop.png")
-            checks.append("Sarorkov normal character, original-name HUD and rooftop select together or fall back together")
+            checks.append(character_name + " normal character, original-name HUD and rooftop select together or fall back together")
             for label, key_name, predicate in [
                 ("walk", "d", lambda s: s["presentation"]["actors"][0]["x"] > ready["presentation"]["actors"][0]["x"] + 4),
-                ("crouch", "x", lambda s: s["presentation"]["actors"][0]["slot"] == 14),
-                ("jump", "w", lambda s: s["presentation"]["actors"][0]["slot"] in (19, 20, 21)),
-                ("punch", "Tab", lambda s: s["presentation"]["actors"][0]["slot"] in (5, 9, 10)),
+                ("crouch", "x", lambda s: s["presentation"]["actors"][0]["slot"] == crouch_slot),
+                ("jump", "w", lambda s: s["presentation"]["actors"][0]["slot"] in jump_slots),
+                ("punch", "Tab", lambda s: s["presentation"]["actors"][0]["slot"] in punch_slots),
             ]:
                 xdo("keydown", key_name)
                 observed_pose = wait(lambda s: predicate(s) and presentation_ready(s), timeout=90, progress=True)
-                events.append({"sarkov_" + label: observed_pose})
+                events.append({slug + "_" + label: observed_pose})
                 shot(label + ".png")
                 xdo("keyup", key_name)
                 wait(lambda s: s["core"]["key_values"][0] == 0
-                     and s["presentation"]["actors"][0]["slot"] in (0, 4)
+                     and s["presentation"]["actors"][0]["slot"] in idle_slots
                      and presentation_ready(s), timeout=60, progress=True)
-                checks.append("ordinary Sarorkov " + label + " reaches a verified original source")
+                checks.append("ordinary " + character_name + " " + label + " reaches a verified original source")
             click(265, 32)
             paused = wait(lambda s: s["core"]["paused"])
             shot("hd-paused.png")
@@ -288,10 +291,10 @@ def main():
             shot("hd-restored.png")
             for field in ("core", "presentation", "settings", "assigned"):
                 assert paused[field] == original[field] == restored[field], field
-            checks.append("paused Sarorkov switching preserves original state, profiles and device assignments")
-            events.append({"sarkov_paused": paused, "original": original, "restored": restored})
-            receipt = {"kind": "normal native Sarorkov/Frank source and switching; not complete-character or controller acceptance",
-                       "scope": "normal-sarkov", "expected_missing": args.expect_missing,
+            checks.append("paused " + character_name + " switching preserves original state, profiles and device assignments")
+            events.append({slug + "_paused": paused, "original": original, "restored": restored})
+            receipt = {"kind": "normal native " + character_name + "/Frank source and switching; not complete-character or controller acceptance",
+                       "scope": "normal-" + slug, "expected_missing": args.expect_missing,
                        "checks": checks, "events": events, "command": command,
                        "binary_sha256": hashlib.sha256(args.binary.read_bytes()).hexdigest(),
                        "script_sha256": hashlib.sha256(script_source).hexdigest()}
