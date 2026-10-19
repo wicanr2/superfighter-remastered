@@ -1,6 +1,6 @@
 # 020：子彈的一般姿態與姓名
 
-狀態：READY。日期：2026-10-20。原版來源、58 張姿態稿、全部 72 個入口及 124 個正常 consumer 已完成來源審查；Go 嚴格讀取通過，原生尚未接入。沿用[一般角色契約](018-sarkov-hd.md)與[版本 3 來源群組](017-victory-pose-banks.md)，只補角色 2 的一般姿態及姓名，不改資料格式、設定或玩法。
+狀態：CONFORMED，限定已驗的一般姿態、正常色盤與戰鬥姓名。日期：2026-10-20。Linux／Wine 正常操作與切換各七項、九張擷取，以及 Linux 缺件九張整格回退通過。沿用[一般角色契約](018-sarkov-hd.md)與[版本 3 來源群組](017-victory-pose-banks.md)，不改資料格式、設定或玩法；完整角色 HD 仍未完成。
 
 ## 已有證據
 
@@ -19,4 +19,8 @@
 
 WIN、第二色盤特效、受擊替代色盤、未支援幾何與完整動畫另驗，未知或缺件沿用整格原貌回退。原版、衍生美術及研究收據只留本機；自有規格、工具與測試依專案授權保存。
 
-首項已有 `bullet-candidate-checks-v1.log` 通過，目視原版正常畫面及 NAME 字圖確認 `BULLET`／62×11。第二項起仍待實作與原生驗證，不以資料讀取測試稱為人物 HD 已完成。
+首項由 `bullet-candidate-checks-v1.log` 通過，目視原版正常畫面及 NAME 字圖確認 `BULLET`／62×11。接入後 `bullet-integration-checks-v1.log` 的完整程式套件測試與 go vet 通過；`bullet-hud-checks-v1.log` 使用真實原生 HUD，核對名稱、矩形及未知角色拒絕。
+
+`native-bullet-v1`／`windows-bullet-v1` 各九張擷取經 [一般角色核對工具](../../tools/verify_sarkov_capture.py)的 `--player0 2` 完整重組。各自的暫停三張來源／核心／設定相同，恢復 HD 的遊戲區逐點一致；不稱跨平台同狀態。Linux 範例的子彈輸出變動 18,567 點、姓名矩形 6,138 點，字形另由實際標籤與目視核對。`native-bullet-missing-v1` 的九張全部等於原貌，證明缺角色 2 時沒有只切換介面。
+
+四個二進位沿用精確 35 份編譯輸入，ELF／PE／兩種 Mach-O 已核對；Wine 不代替 Windows 真機。薩爾可夫勝利基底另保留版本身分，020 的一般角色驗證不補足 019 尚缺的 Wine 下一回合收據。
