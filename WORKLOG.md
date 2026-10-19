@@ -358,3 +358,16 @@
 - 本輪建置、正常來源探針、Xvfb／Wine 與三個 GUI 案例容器均已結束。沒有重啟舊勝利工作；019 的 Wine 下一回合仍未驗完。完整 HD、其餘角色／場景／畫面、各角色 WIN／特效／快捷及完整動畫、實體平台／雙手把、音訊／速度與正式封包仍待完成，Goal 保持 active。
 - 自有來源、文件及完整 Git 歷史保存於獨立副本與 workplace/github-onimaru-integration-progress.bundle，逐檔身分見 github-onimaru-integration-progress-source.json。原版、衍生美術、研究資料與二進位仍排除 Git，遠端未建立或推送。
 - 收尾工具先誤用舊角色成功標記，再以不存在的 effect 欄位分類，將 13 個 palette_bank=1 入口算入一般槽。對照實際日誌、manifest 及 Go 型別後修正工具，保留一般 432／特效 13／WIN 216 的原預期，未改素材、程式或產品驗收門檻；乾淨重跑收尾核對。
+
+## 2026-10-20 嵐一般姿態與姓名整合
+
+- 前一輪 GitHub 工作因主機權限政策拒絕而未建立或推送，對 HD 目標沒有進展。本輪核對現況、工作樹及容器，沿復古重製路由與內建 imagegen 繼續嵐，未重試 GitHub 權限。
+- 依 SFMAN07 的 59 組原圖製作六張圖集，保留紅長衫、白袖口、深褐褲及原側。獨立氣勁與槽 39 的褐色輪廓依原圖保存，不自行推定觸發條件。原參考最後十一格拆成八格與三格；只整理原圖參考，未以程式修改生成美術。
+- 八格初稿因第二排第三、四格沒有完整透明間隔而拒絕，診斷在 lan-art-v1/rejected-04.json。內建工具重排 v2 通過，原稿及七份精確請求保留；六張採用 PNG bytes 不變，沒有放寬透明或來源門檻。
+- 原姓名為 LAN，NAME 槽 6、實檔偏移 11E3h、31×11；原字圖 SHA-256 2e79ac33da75905e9f9e9cfa6347083f8170594bb87d3b6a7f397e47354edf41。設定 ID lan 及兩人逐角色四格格式保持原狀。
+- 候選 733 鍵／43 PNG／十份來源保留舊 661 鍵與所有舊 PNG。Go 嚴格讀取驗 72 槽、59 組來源及正常 6／4 的 124 格，通過後審查升 READY。DRAFT 原文、提示詞、來源及初始測試身分保存於 lan-evidence-review.json。
+- 隔離 feature/lan-hd 只補 LAN 姓名及普通操作核對工具。Linux／Wine 以正常選角各完成行走、蹲、跳、拳及切換七項、九張擷取。每個案例內核心、來源、設定及指派不變，恢復 HD 逐點一致；缺件九張整格原貌。獨立重組、造型及字形目視通過，023 升限定 CONFORMED。
+- 完整 internal／cmd 測試與 go vet 通過，真實原生 HUD 的 LAN／31×11 與未知拒絕另驗。四個候選的 ELF／PE／兩種 Mach-O 及 35 份編譯輸入通過；原封移入 bin，記錄為 lan-build-v1/promotion.json。鬼丸四份留於 onimaru-build-v1/bin，lan-pre-integration-baseline.json 綁定其身分。
+- README 加入嵐的整合畫面、跳躍、原貌與恢復 HD，操作範例改用現行 733 鍵群組；CONTEXT、工作清單與驗證矩陣同步。原版、衍生美術、研究收據及二進位仍排除 Git，不作 Release 或正式封包。
+- 下一角色金太極已解 72 槽／57 組。私有探針以第二人普通 Left 三次選法蘭克，hd-frame-kim-v1 正常 7／4 共 124 格的完整 bytes 與屋頂吻合，kim-source-review.json 綁定來源。尚無 HD 稿或原生接入。
+- 本輪沿用既有 Go、三平台 GUI 與 Pillow 映像，沒有新增映像或修改共用 dosgolem。來源探針、建置、測試、Xvfb／Wine 與三個 GUI 案例均已結束；沒有重啟舊首勝工作。完整 HD、其他角色／場景／畫面、WIN／特效／快捷與完整動畫、實體平台／雙手把、音訊／速度及正式封包仍待完成，Goal 保持 active。
