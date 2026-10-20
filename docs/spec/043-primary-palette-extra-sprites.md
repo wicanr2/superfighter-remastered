@@ -4,6 +4,8 @@
 
 ## 固定輸入及範圍
 
+045 勘誤：[主角色第二色盤](045-secondary-palette-main-sprites.md)補證主圖像亦可選 D0h／F0h，定位為 IDA MZ linear 1425Dh／143FEh。043 的額外圖像來源、返回點及主色盤範圍不變；不能將未標 Effect 的圖像固定解讀為 bank 0。
+
 SF.EXE SHA 24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300，原檔、執行器、Go 與目前 042 程式身分沿 CONTEXT。special-onimaru-v3 的 sample-18 為序號 221、246,505,248 步，layer_error 是「特效色盤未對應」，不是未知的泛用重組失敗。
 
 既有 beginEffect 只接受 D0h／F0h，再以對應玩家的原版 72 槽 RAM 指標核對來源。新探針由正常選角 5／4、PK 及後蓄／前拳輸入，獨立保存全部 blit 寄存器、返回位址、兩人來源表匹配、完整 packed bytes 與 CPU 前後／覆蓋。位址採 runtime 01B9:IP、DS 相對資料與原檔偏移，分別記錄；不推測改名。

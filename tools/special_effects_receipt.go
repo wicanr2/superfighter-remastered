@@ -63,6 +63,12 @@ func main() {
 	if total > 600 {
 		panic("sequence frame budget")
 	}
+	inputs := map[string]string{}
+	for _, name := range []string{"workplace/source-manifest.json", "workplace/dosgolem-patched-manifest.json", "internal/hd/characters.go", "internal/hd/geometry.go", "internal/hd/duplicate_palette.go", "internal/hd/secondary_main_palette.go", "internal/gamecore/core.go", "internal/gamecore/layers.go", "tools/special_effects_receipt.go"} {
+		b, e := os.ReadFile(filepath.Join("/project", name))
+		must(e)
+		inputs[name] = digest(b)
+	}
 	*characterOnly = experiment.Character
 	if *characterOnly < -1 || *characterOnly > 10 {
 		panic("invalid character")
@@ -271,11 +277,10 @@ func main() {
 		runtime.GC()
 		fmt.Println("finished", character, "snapshots", len(trace), "missing", list(missing), "reasons", reasons)
 	}
-	inputs := map[string]string{}
-	for _, name := range []string{"workplace/source-manifest.json", "workplace/dosgolem-patched-manifest.json", "internal/hd/characters.go", "internal/hd/geometry.go", "internal/gamecore/core.go"} {
+	for name, before := range inputs {
 		b, e := os.ReadFile(filepath.Join("/project", name))
 		must(e)
-		inputs[name] = digest(b)
+		if digest(b) != before { panic("diagnostic input changed during run: " + name) }
 	}
 	writeJSON(filepath.Join(*out, "receipt.json"), map[string]any{"kind": "normal keyboard special-action source sampling; not shortcut enablement, full animation or native GUI acceptance", "script_sha256": digest(script), "character_manifest_sha256": digest(manifest), "baseline_manifest_sha256": baselineHash, "requested_character": *characterOnly, "go_version": runtime.Version(), "inputs": inputs, "experiment_name": experiment.Name, "sequence_sha256": digest(sequence), "phases": phases, "cases": cases, "limits": "one declared ordinary keyboard sequence and normal versus path; attempted named action is not proof of its exact move identity; no injected state, forced wins, training, shortcut enablement, controlled RNG comparison or full animation claim"})
 }

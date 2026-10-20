@@ -4,6 +4,8 @@
 
 後續[043 主色盤額外圖像](043-primary-palette-extra-sprites.md)另補證鬼丸來源 35 的 C0h／E0h、第二人 4523h 返回及同角替代色盤。009 的第二色盤取樣限制保留；`Sprite.Effect` 代表額外繪圖，不能再單由此欄推定 bank 1。未驗主色盤呼叫仍拒絕。
 
+045 勘誤：[主角色第二色盤](045-secondary-palette-main-sprites.md)已證實主圖像也可用 D0h／F0h。IDA MZ linear 1425Dh、143FEh 的原主圖像呼叫會依狀態 bit 10h 選色盤。下文「0 表正常人物、1 表特效」只保留為初期取樣分類；正式 bank 表示色盤，不能推定繪圖種類。主圖像 bank 1 共用已登錄 bank 0 的同姿態視圖，額外圖像仍需明確美術登錄。
+
 ## 原始證據
 
 SF.EXE SHA-256 為 `24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300`。SFMAN01.DAT 為 `da5de4b2f997e411582949c2f0ab2f0540324f1e83d90bd282b78b2901a860b9`，SFMAN05.DAT 為 `b5b77d590420b92db2d265aa89483de70d58193caf442fd41eba338eb111d653`。dosgolem 1715 檔來源沿用 008 的固定 manifest，共用來源不改。

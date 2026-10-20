@@ -60,6 +60,7 @@ type Characters struct {
 	palettes map[[2]int][16][3]uint8
 	alternatePalettes map[int][16][3]uint8
 	alternatePoses map[[3]int]*PoseArt
+	secondaryMainPoses map[[3]int]*PoseArt
 }
 
 func graphicBank(name string) (int,bool) {
@@ -162,7 +163,7 @@ func LoadCharacters(dir, originalRoot string) (*Characters, error) {
 			return nil, fmt.Errorf("角色圖集重複或尺寸錯誤")
 		}
 		totalPixels += atlas.Width * atlas.Height
-		// 042 的十份光效原圖需 105,769,615 像素；101 Mi 仍有明確總量限制。
+		// 044 的光效群組共 115,204,291 像素；110 Mi 保留明確總量限制。
 		if totalPixels > 110*1024*1024 {
 			return nil, fmt.Errorf("角色圖集超過記憶體限制")
 		}
@@ -223,6 +224,7 @@ func LoadCharacters(dir, originalRoot string) (*Characters, error) {
 		}
 		a.poses[key] = &PoseArt{Pose: pose, Image: img, Bounds: r, packed: data[offset:end]}
 		a.addAlternatePose(key, a.poses[key])
+		a.addSecondaryMainPose(a.poses[key])
 	}
 	return a, nil
 }
@@ -250,11 +252,10 @@ func (a *Characters) Select(layers []renderdata.Layer, palette [256][3]uint8) ([
 			return nil, "角色次序未對應"
 		}
 		bank := 0
+		if s.PaletteBase == uint8(0xd0+s.Player*0x20) {
+			bank = 1
+		}
 		if s.Effect {
-			// 額外圖像可能使用主色盤，仍由實際色號區塊決定來源鍵。
-			if s.PaletteBase == uint8(0xd0+s.Player*0x20) {
-				bank = 1
-			}
 			if s.Flags&192 != 0 && s.Flags&192 != 64 || s.LeftClip != 0 || s.RightClip != 0 || s.TopClip != 0 {
 				return nil, "此特效翻轉或裁切保留原貌"
 			}
@@ -264,6 +265,9 @@ func (a *Characters) Select(layers []renderdata.Layer, palette [256][3]uint8) ([
 		key,knownSource:=characterArtKey(s.Character,s.Slot,bank,s.SourceBank)
 		if !knownSource{return nil,"角色圖像群組未對應，保留原貌"}
 		art := a.poses[key]
+		if !s.Effect && bank == 1 {
+			art = a.secondaryMainPoses[key]
+		}
 		if art == nil {
 			return nil, "此動作的 HD 素材尚未完成，保留原貌"
 		}
@@ -273,7 +277,7 @@ func (a *Characters) Select(layers []renderdata.Layer, palette [256][3]uint8) ([
 		if s.PaletteBase != uint8(0xc0+s.Player*0x20+bank*16) {
 			return nil, "此色盤保留原貌"
 		}
-		if (s.Effect && bank == 0 || !s.Effect && (s.Flags&192 == 192 || s.TopClip != 0)) && !spriteGeometryMatches(s, art.packed, layer) {
+		if (s.Effect && bank == 0 || !s.Effect && (bank == 1 || s.Flags&192 == 192 || s.TopClip != 0)) && !spriteGeometryMatches(s, art.packed, layer) {
 			return nil, "翻轉或裁切未吻合原版圖層，保留原貌"
 		}
 		if !matchesCharacterPalette(palette, s.PaletteBase, a.palettes[[2]int{s.Character, bank}]) {

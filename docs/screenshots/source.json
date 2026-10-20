@@ -203,6 +203,32 @@
       "character_manifest_sha256": "164eef46667563bed1d239a2af113f95f47e7a8831f98f82ffe97e3fc13adb20",
       "authorization": "使用者要求 HD 上傳及 GitHub 可見整合截圖",
       "limits": "普通原生光效、同狀態切換及恢復；全部動畫與快捷另驗"
+    },
+    {
+      "kind": "正常原生主角色第二色盤 HD；原貌與原始來源留本機",
+      "file": "phoenix-secondary-main-hd.png",
+      "sha256": "e49aefc14fd60b5bfa1c4b7ba23b27be8ae42ac57963f51b84780d9c753b1c6b",
+      "source": "workplace/secondary-main-native-v1/phoenix-cyan-hd.png",
+      "platform": "Linux amd64 Docker Xvfb；非其他平台或實體手把驗收",
+      "receipt_sha256": "3749906e1e447c34bb02b0ea8b0d0a4a0ad5a01aa9f9dd06de10064853411d24",
+      "comparison_sha256": "da30a34b01b15a579fda52eedade882e5a342f7d229b44a403ca974574aebab7",
+      "binary_sha256": "ae99fbe7b609afeb96d262ac1d9d4c511fdb76f9252a02ca0e30dfbf908c2a7d",
+      "character_manifest_sha256": "164eef46667563bed1d239a2af113f95f47e7a8831f98f82ffe97e3fc13adb20",
+      "authorization": "使用者要求 HD 上傳及 GitHub 可見的 README 整合截圖",
+      "limits": "普通 3/4 雙打，來源 48／54、同狀態切換及恢復；RGB 近似，非全動畫"
+    },
+    {
+      "kind": "正常原生主角色第二色盤 HD；原貌與原始來源留本機",
+      "file": "frank-secondary-main-hd.png",
+      "sha256": "319f09efa89555666d9c8cf28a91f332e77758e091625931c0337b0e858757b8",
+      "source": "workplace/secondary-main-native-v1/frank-cyan-hd.png",
+      "platform": "Linux amd64 Docker Xvfb；非其他平台或實體手把驗收",
+      "receipt_sha256": "3749906e1e447c34bb02b0ea8b0d0a4a0ad5a01aa9f9dd06de10064853411d24",
+      "comparison_sha256": "da30a34b01b15a579fda52eedade882e5a342f7d229b44a403ca974574aebab7",
+      "binary_sha256": "ae99fbe7b609afeb96d262ac1d9d4c511fdb76f9252a02ca0e30dfbf908c2a7d",
+      "character_manifest_sha256": "164eef46667563bed1d239a2af113f95f47e7a8831f98f82ffe97e3fc13adb20",
+      "authorization": "使用者要求 HD 上傳及 GitHub 可見的 README 整合截圖",
+      "limits": "普通 3/4 雙打，來源 48／54、同狀態切換及恢復；RGB 近似，非全動畫"
     }
   ],
   "version": "v.0.1.0-20261020",

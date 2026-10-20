@@ -2,6 +2,8 @@
 
 狀態：CONFORMED，限定已列來源、真實 fixture 與 Linux 法蘭克正常案例。保留原版兩名同角色的服裝辨識及 HD 畫稿細節。先前因第二人色盤不同而整格回退，現已依完整來源核對接入替代色。原版程式、顏色、幀序及輸入不改。
 
+045 範圍註記：[主角色第二色盤](045-secondary-palette-main-sprites.md)由 DAT AC8h 轉 AF8h，限用來源實際非透明色號。041 的 MAN.COL 主色盤替換及原全色盤權重不受影響；兩種視圖依完整實際色盤分開選擇。
+
 ## 已有證據與缺口
 
 SF.EXE SHA 24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300。原版正常法蘭克雙打的第二人 16 色，與 MAN.COL 實檔 192、REFMAN.PIC 實檔 209 的 48 bytes 相同；來源身分見 edge-clip-research-v1/alternate-palette-source.json。這只證明檔案相同，尚未證實正常 runtime 讀哪份、其他角色對應或 HD 調色方法。

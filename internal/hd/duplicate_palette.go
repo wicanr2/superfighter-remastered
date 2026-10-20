@@ -75,6 +75,7 @@ func matchesCharacterPalette(actual [256][3]uint8, base uint8, expected [16][3]u
 type alternateCharacterImage struct {
 	image.Image
 	base, alternate [16][3]uint8
+	active uint16 // 0 保留 041 全色盤；其他值只使用該來源已用色號。
 }
 
 func (v *alternateCharacterImage) ColorModel() color.Model { return color.NRGBAModel }
@@ -88,6 +89,9 @@ func (v *alternateCharacterImage) At(x, y int) color.Color {
 	var delta [3]float64
 	sum := 0.0
 	for i := 1; i < len(v.base); i++ {
+		if v.active != 0 && v.active&(1<<i) == 0 {
+			continue
+		}
 		distance := 0.0
 		for k := range rgb {
 			d := float64(rgb[k]) - float64(v.base[i][k])

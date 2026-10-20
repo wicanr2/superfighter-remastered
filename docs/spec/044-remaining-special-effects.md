@@ -2,6 +2,8 @@
 
 狀態：CONFORMED，限定二十一個原檔來源及 Linux 六類普通出招光效。原檔／CPU／色盤、六張生成原 PNG 及資源需求已審查；實作前快照與綁定見 `workplace/remaining-special-audit-v1/art-v1/044-ready.md`、evidence-review.json。完整動畫與其餘色盤仍未完成。
 
+045 勘誤：本輪歷史取樣中的鳳凰十格色盤拒絕，已由[主角色第二色盤](045-secondary-palette-main-sprites.md)補證並驗證。原主圖像呼叫在 IDA MZ linear 1425Dh／143FEh 選 D0h／F0h，涉及鳳凰來源 48 與法蘭克來源 54。下文保留 044 當時限制，現況以 045 為準；原二十一張光效登錄及 PNG 不變。
+
 ## 已證實的取樣
 
 `workplace/remaining-special-audit-v1` 保存五份普通輸入序列、原生核心取樣及獨立來源核對。工具為 Go 1.24.13、固定 dosgolem 副本與 Pillow 11.3.0；原 EXE、manifest 雜湊及三種位址空間契約沿 CONTEXT。沒有快捷、練習、狀態注入、強制勝利或原版資料改寫。

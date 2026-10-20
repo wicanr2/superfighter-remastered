@@ -97,6 +97,7 @@ def main():
     files += [p / name for name in ("docs/spec/042-kim-effects.md", "tools/special_effects_receipt.go", "tools/verify_special_effects.py", "tools/prepare_kim_effects.py", "tools/kim_effects_smoke.py", "tools/verify_kim_effects.py")]
     files += [p / name for name in ("docs/spec/043-primary-palette-extra-sprites.md", "tools/ida_primary_extra_evidence.py", "tools/primary_extra_draw_receipt.go", "tools/verify_primary_extra.py", "tools/primary_extra_core_receipt.go", "tools/primary_extra_smoke.py", "tools/verify_primary_extra_native.py")]
     files += [p / name for name in ("docs/spec/044-remaining-special-effects.md", "tools/prepare_special_effect_references.py", "tools/import_special_effect_art.py", "tools/prepare_remaining_special_effects.py", "tools/import_remaining_effect_assets.py", "tools/remaining_effects_smoke.py", "tools/verify_remaining_effects_native.py")]
+    files += [p / name for name in ("docs/spec/045-secondary-palette-main-sprites.md", "tools/verify_secondary_main.py", "tools/secondary_main_smoke.py", "tools/verify_secondary_main_native.py")]
     receipt = {"kind": "native intermediate builds; not release packages or macOS hardware acceptance",
                "version": version,
                "go_version": subprocess.check_output(["go", "version"], text=True).strip(),

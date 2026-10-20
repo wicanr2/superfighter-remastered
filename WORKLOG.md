@@ -820,3 +820,14 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 
 - 最終 remaining-effects-build-v1/final-audit.json 通過：128 原檔、1719 執行器來源、正式 i64、首版八包及本機原曲影片不變。1516 鍵／74 圖集、舊 1495 鍵、103 PNG／114 catalog／118 素材檔及六圖原 bytes 核對，155 個 README 相對連結均已追蹤。沒有原版、raw 或工作產物入 Git；擁有權／誤建目錄通過，所有本專案容器均已清空。
 - 實作提交 `d23429413aaa6ffbe4a4c83ee6f0142b267b5b36` 已推送 origin/main，完整遠端提交核對相同。首版 tag 仍為 `807579d01c145db327050c2e870e2bf46e6bcb68`；本段為其後的文件收尾，不建立新 Release。
+
+## 2026-10-21：045 主角色第二色盤接入
+
+- 續 044 十格色盤拒絕。原呼叫與獨立原版 414 次 blit／200 格證實主角色也使用 D0h／F0h，來源為鳳凰 48／法蘭克 54。先比較實際來源色號與 HD 調色，保存 READY 全文及 review.json 後才改正式 Select。
+- 使用原 bank 0 的同姿態不可變視圖，限該來源實際非透明色號參與 RGB 轉移，保留 alpha／PNG／清單。每次選擇核對完整十六色及原 CPU 幾何，不轉用額外光效美術。修正與回填索引見 045；原版規則、快捷、存檔與素材格式保持。
+- secondary-main-core-v3 的 338 格全維持 HD；與 044 同序列來源 trace 比較補十格、無退步。Linux 新／舊程式各八張普通出招／受招，獨立核對原檔、完整層／HUD／陰影／CRTC、切回原貌、恢復與後續操作。兩張 HD 整合截圖及來源已加入 README，原貌及完整收據留本機。
+- 例行 internal／cmd 測試及 vet 通過。兩來源真實 fixture、同角替代色、金太極、鬼丸及四人光效回歸 67.790 秒通過；失敗工具紀錄與原因另見 RESEARCH-LOG，不因 hash 失敗忽略來源檢查。
+- 四平台每份 46 個編譯輸入與 ELF／PE／Mach-O 架構核對通過。secondary-main-build-v1 保存二進位與收據，Linux SHA ae99fbe7b609afeb96d262ac1d9d4c511fdb76f9252a02ca0e30dfbf908c2a7d；045 沿未發行 v.0.1.1-20261020，044 舊版保留。素材仍為 1516 鍵／74 圖集、103 PNG／114 catalog／118 檔。
+- 完整 HD 仍有蜘蛛女其餘姿勢／WIN、背景與標題／選角／結果等工作。029 格式問題仍待原回覆，不因普通繼續擴張授權。本輪不新建 Release；首版八包、原曲影片與 tag 保持。最終稽核、二進位晉升、容器清理及推送結果另追加。
+
+- 最終 secondary-main-build-v1/final-audit.json 通過：128 原檔、1719 執行器來源、正式 i64、1516 鍵／74 圖集與 118 素材檔不變；首版八包及本機原曲影片保持。158 個 README 相對連結均已追蹤，四份規格勘誤護欄通過。八個二進位／收據已晉升 bin，044 基底保留；無原版及 raw 入 Git，擁有權／誤建目錄通過，本專案容器已清空。

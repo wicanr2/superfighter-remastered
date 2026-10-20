@@ -1,4 +1,4 @@
-// Disposable normal Onimaru primary-palette extra-draw probe; no state writes.
+// Disposable normal all-blit pointer/palette probe; default Onimaru, no state writes.
 package main
 
 import (
@@ -124,10 +124,12 @@ func predict(b *Blit, base uint32) ([]byte, []byte) {
 func main() {
 	out := flag.String("out", "", "new output directory")
 	root := flag.String("root", "/orig", "original root")
-	player := flag.Int("player", 0, "Onimaru player 0 or 1; the other player is Frank")
-	same := flag.Bool("same-character", false, "normal Onimaru / Onimaru selection")
+	player := flag.Int("player", 0, "input player 0 or 1; the other player is Frank")
+	character := flag.Int("character", 5, "normal selected character 0..10")
+	chargeBoth := flag.Bool("charge-both", false, "ordinary forward punch and kick after charge; also save secondary-palette main draws")
+	same := flag.Bool("same-character", false, "normal same-character selection")
 	flag.Parse()
-	if *player < 0 || *player > 1 {
+	if *player < 0 || *player > 1 || *character < 0 || *character > 10 {
 		panic("invalid player")
 	}
 	if *out == "" {
@@ -139,19 +141,19 @@ func main() {
 	must(os.MkdirAll(filepath.Join(*out, "scratch"), 0755))
 	hashes := map[string]string{}
 	files := map[int][]byte{}
-	for _, n := range []string{"SF.EXE", "SF.COM", "NOKEY.EXE", "SFMAN01.DAT", "SFMAN05.DAT", "SFMAN06.DAT", "MAN.COL"} {
+	names := []string{"SF.EXE", "SF.COM", "NOKEY.EXE", "MAN.COL"}
+	for _, c := range []int{0, 4, *character} {
+		if files[c] == nil {
+			b, e := os.ReadFile(filepath.Join(*root, fmt.Sprintf("SFMAN%02d.DAT", c+1)))
+			must(e)
+			files[c] = b
+			hashes[fmt.Sprintf("SFMAN%02d.DAT", c+1)] = digest(b)
+		}
+	}
+	for _, n := range names {
 		b, e := os.ReadFile(filepath.Join(*root, n))
 		must(e)
 		hashes[n] = digest(b)
-		if n == "SFMAN01.DAT" {
-			files[0] = b
-		}
-		if n == "SFMAN06.DAT" {
-			files[5] = b
-		}
-		if n == "SFMAN05.DAT" {
-			files[4] = b
-		}
 	}
 	if hashes["SF.EXE"] != "24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300" {
 		panic("wrong original")
@@ -167,7 +169,7 @@ func main() {
 	must(o.Run(1_000_000))
 	o.ReleaseButton(0)
 	must(o.Run(24_000_000))
-	firstCharacter := 5
+	firstCharacter := *character
 	if *player == 1 && !*same {
 		firstCharacter = 4
 	}
@@ -177,11 +179,15 @@ func main() {
 	}
 	must(o.SendKeys("Return"))
 	must(o.Run(20_000_000))
-	secondDirection := "Left"
-	if *player == 1 {
-		secondDirection = "Right"
+	secondCharacter := 4
+	if *player == 1 || *same {
+		secondCharacter = *character
 	}
-	if !*same {
+	secondDirection, moves := "Right", secondCharacter-firstCharacter
+	if moves < 0 {
+		secondDirection, moves = "Left", -moves
+	}
+	for i := 0; i < moves; i++ {
 		must(o.SendKeys(secondDirection))
 		must(o.Run(1_000_000))
 	}
@@ -196,12 +202,12 @@ func main() {
 	}
 	ds := binary.LittleEndian.Uint16(isr[6:8])
 	selected := [2]int{int(o.Word(oracle.Far(ds, 0x12ac))), int(o.Word(oracle.Far(ds, 0x12ae)))}
-	expected := [2]int{5, 4}
+	expected := [2]int{*character, 4}
 	if *player == 1 {
-		expected = [2]int{4, 5}
+		expected = [2]int{4, *character}
 	}
 	if *same {
-		expected = [2]int{5, 5}
+		expected = [2]int{*character, *character}
 	}
 	if selected != expected {
 		panic("normal character selection mismatch")
@@ -257,7 +263,7 @@ func main() {
 			}
 		}
 		class := fmt.Sprintf("%04x-%s-%02x-%02x-%d-%d-%d", b.Return, b.SHA, b.Palette, b.Flags&192, b.Top, b.Left, b.Right)
-		if b.Role == "effect" && !fixtures[class] && len(fixtures) < 48 {
+		if (b.Role == "effect" || *chargeBoth && b.Role == "body" && b.Palette&16 != 0) && !fixtures[class] && len(fixtures) < 48 {
 			fixtures[class] = true
 			b.Fixture = fmt.Sprintf("blit-%04d", len(records))
 			must(os.WriteFile(filepath.Join(*out, b.Fixture+".before.idx"), b.before, 0644))
@@ -359,7 +365,7 @@ func main() {
 					replay[i] = l.Pixels[i]
 				}
 			}
-			if l.Draw != nil && l.Draw.Role == "effect" {
+			if l.Draw != nil && (l.Draw.Role == "effect" || *chargeBoth && l.Draw.Role == "body" && l.Draw.Palette&16 != 0) {
 				class += fmt.Sprintf("-%04x-%02x-%s", l.Draw.Return, l.Draw.Palette, l.Draw.SHA[:8])
 			}
 		}
@@ -402,6 +408,14 @@ func main() {
 	if *player == 1 {
 		inputs = []inputPhase{{"idle", nil, 12}, {"punch-kick", []uint8{0x1c, 0x36}, 2}, {"release-pk", nil, 70}, {"charge-back", []uint8{0x4d}, 24}, {"forward-punch", []uint8{0x4b, 0x1c}, 2}, {"release-charge", nil, 90}}
 	}
+	if *chargeBoth {
+		kick := uint8(0x2a)
+		if *player == 1 {
+			kick = 0x36
+		}
+		inputs[4].keys = append(inputs[4].keys, kick)
+		inputs[4].name = "forward-punch-kick"
+	}
 
 	for _, p := range inputs {
 		phase = p.name
@@ -438,6 +452,6 @@ func main() {
 	must(os.WriteFile(filepath.Join(*out, "primary_extra_draw_receipt.go"), script, 0644))
 	manifest, e := os.ReadFile("/project/workplace/dosgolem-patched-manifest.json")
 	must(e)
-	writeJSON(filepath.Join(*out, "receipt.json"), map[string]any{"kind": "normal Onimaru all-blit/source/palette oracle experiment; not production HD or exact prior-Core-state replay", "address_space": "runtime 01B9:IP; DS-relative tables; source file offsets separately labeled", "inputs": hashes, "script_sha256": digest(script), "dosgolem_manifest_sha256": digest(manifest), "phases": phases, "records": records, "frames": frames, "unimplemented": o.Unimplemented(), "player": *player, "same_character": *same, "selected": selected, "game_data_segment": ds, "composition_buffer_segment": uint16(base / 16), "state_control": "normal selection 5/4, 4/5 or 5/5 and declared PK/charge keyboard inputs only; independent oracle uses original completed-frame counters, not exact prior Core poll timing; no state/RNG injection"})
-	fmt.Println("blits", len(records), "frames", len(frames), "effect fixtures", len(fixtures))
+	writeJSON(filepath.Join(*out, "receipt.json"), map[string]any{"kind": "normal all-blit/source/palette oracle experiment; not production HD or exact prior-Core-state replay", "address_space": "runtime 01B9:IP; DS-relative tables; source file offsets separately labeled", "inputs": hashes, "script_sha256": digest(script), "dosgolem_manifest_sha256": digest(manifest), "phases": phases, "records": records, "frames": frames, "unimplemented": o.Unimplemented(), "player": *player, "character": *character, "charge_both": *chargeBoth, "same_character": *same, "selected": selected, "game_data_segment": ds, "composition_buffer_segment": uint16(base / 16), "state_control": "normal menu selection and declared keyboard inputs only; independent oracle uses original completed-frame counters, not exact prior Core poll timing; no state/RNG injection"})
+	fmt.Println("blits", len(records), "frames", len(frames), "saved blit fixtures", len(fixtures))
 }

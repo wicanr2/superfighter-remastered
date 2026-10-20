@@ -26,7 +26,8 @@ catalog 的 114 筆素材及清單共 130,915,661 bytes，整個素材目錄 118
 
 | 項目 | 狀態 | 最近證據與限制 |
 |---|---|---|
-| 四人特殊技光效 | 044 限定 CONFORMED | 鳳凰／嵐／小丑／印第安喬二十一鍵、六 PNG；現行 1516 鍵／74 圖集。1,388 格同格新舊比較補齊 76 格，沒有退步；鳳凰十格色盤拒絕保留。Linux 六類新光效、四人代表舊包回退共 49 張，來源、切換／恢復與光效消失後操作通過；四平台 45 份輸入與 bin 已更新。完整動畫／第二側另驗 |
+| 主角色第二色盤 | 045 限定 CONFORMED | 鳳凰來源 48／法蘭克來源 54，原 Oracle 414 次 blit／200 格及原主圖像呼叫已證實。338 格同序列補齊十格，沒有退步；Linux 新／舊程式各八張、原貌切換與恢復通過。沿用原稿作 RGB 近似，1516 鍵／74 PNG 保持；四平台 46 份輸入已更新，全部主圖像／動畫另驗 |
+| 四人特殊技光效 | 044 限定 CONFORMED | 鳳凰／嵐／小丑／印第安喬二十一鍵、六 PNG；現行 1516 鍵／74 圖集。1,388 格同格新舊比較補齊 76 格，沒有退步；當時鳳凰十格色盤拒絕另由 045 補齊。Linux 六類新光效、四人代表舊包回退共 49 張，來源、切換／恢復與光效消失後操作通過；四平台 45 份輸入與 bin 已更新。完整動畫／第二側另驗 |
 | 金太極特殊光效 | 042 限定 CONFORMED | 十個第二色盤鍵，該切片 1495 鍵／68 PNG；352 格同格比較補齊 25 格缺件。Linux 三類光效與舊包各十一張，原來源、可見色系、切換／恢復及繼續操作通過。十份真實 fixture／拒絕、例行測試／vet 及四平台 45 份輸入通過並更新 bin；完整特殊技動畫另驗 |
 | 鬼丸主色盤額外圖像 | 043 限定 CONFORMED | 原呼叫、兩側及同角原始來源通過；三組正式核心共 602 格全部 HD，559 成對邊界狀態／像素相同。Linux 新／舊程式各五張、切換／恢復與後續操作通過；沿用來源 35 既有美術。四平台 45 份輸入已更新，P1／同角 GPU 及完整動畫另驗 |
 | 十一景捲動與候選修稿 | 正常來源及私有比較完成，029 仍 DRAFT | 雙人普通左右行走，每景八份，共 88 格／176 角色 CPU 層；各景觀察相機 0／159 邊界。原檔、裁切、完整圖層、顯示尾列獨立重組通過。首稿與兩張修稿已作私有比較，石窟／舞廳底線仍需複核，街道字形待修。未接正式載入、不稱全 camera 或原生 HD 通過 |
@@ -70,7 +71,7 @@ catalog 的 114 筆素材及清單共 130,915,661 bytes，整個素材目錄 118
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | 開發版與已發布首版分開 | remaining-effects-build-v1 四份 v.0.1.1 二進位核對 45 份編譯輸入並移入 bin；043 保存在 primary-extra-build-v1，042 保存在 kim-effects-build-v1，038 保存在 character-geometry-build-v1，嵐版保存在 lan-victory-build-v1，035 首版保存在 keyboard-release-build-v1。已發布 v.0.1.0 的八個封包／影片／tag 不變；本輪未建立新 Release，未作 Windows／macOS 真機或簽章 |
+| 平台與發布 | 開發版與已發布首版分開 | secondary-main-build-v1 四份 v.0.1.1 二進位核對 46 份編譯輸入並移入 bin；044 保存在 remaining-effects-build-v1，043 保存在 primary-extra-build-v1，042 保存在 kim-effects-build-v1，038 保存在 character-geometry-build-v1，嵐版保存在 lan-victory-build-v1，035 首版保存在 keyboard-release-build-v1。已發布 v.0.1.0 的八個封包／影片／tag 不變；本輪未建立新 Release，未作 Windows／macOS 真機或簽章 |
 
 ## 固定輸入
 
@@ -142,7 +143,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ### 四人特殊技光效
 
-- [044](docs/spec/044-remaining-special-effects.md)限定 CONFORMED。remaining-special-audit-v1 保存五人 1,654 格原始來源及二十一缺件；四份 remaining-special-paired-*-v1 同格比較 1,388 格，補齊 76 格，鳳凰十格色盤拒絕保留。art-v1 保存精確請求、六 PNG 原 bytes、透明登錄、視覺／資源審查及 READY 快照。
+- [044](docs/spec/044-remaining-special-effects.md)限定 CONFORMED。remaining-special-audit-v1 保存五人 1,654 格原始來源及二十一缺件；四份 remaining-special-paired-*-v1 同格比較 1,388 格，補齊 76 格，當時鳳凰十格色盤拒絕另由 045 補齊。art-v1 保存精確請求、六 PNG 原 bytes、透明登錄、視覺／資源審查及 READY 快照。
 - remaining-effects-build-v1/native-summary.json 核對四人六類新光效與四人五個代表舊光效，共 49 張；原檔、完整 CPU／HUD／陰影／CRTC、切換、恢復及後續操作通過。小丑舊包完整案例為新局分離光影；未通過的長序列及個別嘗試留原失敗，不宣稱全部輸入或 GPU 動畫。
 - remaining-effects-build-v1 為現行四平台／45 份輸入與 bin。Linux SHA `5834c7b894ab51116e8ac6a58e4069c637cc4a852124564e93eeeb8853c7429d`；正式清單 SHA `164eef46667563bed1d239a2af113f95f47e7a8831f98f82ffe97e3fc13adb20`。1516 鍵／74 圖集，原版、執行器、正式 DB 及首版八包／影片不變。
 

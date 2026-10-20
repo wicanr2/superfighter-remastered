@@ -1,4 +1,4 @@
-"""IDA 9.4：主色盤額外繪圖的原始呼叫點及函式，正式資料庫唯讀。"""
+"""IDA 9.4：繪圖原始呼叫點及函式，正式資料庫唯讀；預設沿 043。"""
 import hashlib
 import json
 import os
@@ -27,7 +27,9 @@ def main():
                 'operand': ida_lines.tag_remove(idc.generate_disasm_line(ea, 0) or '')}
 
     functions = []
-    for anchor in (0x14390, 0x14520):
+    anchors = [int(value, 16) for value in os.environ.get('KDZZ_PRIMARY_ANCHORS', '14390,14520').split(',')]
+    assert 1 <= len(anchors) <= 8
+    for anchor in anchors:
         function = ida_funcs.get_func(anchor)
         assert function and idc.print_insn_mnem(anchor) == 'call'
         functions.append({'anchor': instruction(anchor), 'original_name': idc.get_func_name(anchor),

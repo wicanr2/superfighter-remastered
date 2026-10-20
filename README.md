@@ -50,6 +50,12 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 ## 目前整合畫面
 
+![鳳凰蓄力出招時的青藍主角色 HD](docs/screenshots/phoenix-secondary-main-hd.png)
+
+![法蘭克受招時的青藍主角色 HD](docs/screenshots/frank-secondary-main-hd.png)
+
+Linux 開發版已接入主角色的第二色盤。正常鳳凰出招與法蘭克受招沿用同姿態 HD，依原版色盤轉為青藍色；原貌切換、恢復與舊程式回退已核對。配色為保留原稿的 RGB 近似，完整動畫另驗。[來源與範圍](docs/spec/045-secondary-palette-main-sprites.md)。
+
 ![鳳凰踢擊的金黃 HD 光弧](docs/screenshots/phoenix-gold-arc-hd.png)
 
 ![小丑旋轉時分離的青藍光影與橢圓環](docs/screenshots/clown-rings-hd.png)

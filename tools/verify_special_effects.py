@@ -13,6 +13,7 @@ def sha(p):
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
 def key(s):
+    # 主角色第二色盤沿 045 共用原 bank 0 美術，不冒稱另有登錄鍵。
     bank = int(s.get('effect', False) and s['palette_base'] == 0xd0 + s['player'] * 32)
     return f'{s["character"]}:{s.get("source_bank","normal")}:{bank}:{s["slot"]}'
 

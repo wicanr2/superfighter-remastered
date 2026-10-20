@@ -149,6 +149,12 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [主角色第二色盤原生操作](tools/secondary_main_smoke.py)、[獨立核對](tools/verify_secondary_main_native.py) | 普通 3／4 雙打的鳳凰出招與法蘭克受招、完整原層／色盤及切換，舊程式回退另驗 |
+| [主角色第二色盤真實測試](internal/hd/secondary_main_palette_test.go) | 原 Oracle 圖層、已用色號錨點／alpha、兩側主圖像及 CPU 幾何／來源／色盤拒絕，保留原稿身分 |
+| [主角色第二色盤視圖](internal/hd/secondary_main_palette.go) | 同原稿與 alpha 的已用來源色號調色，完整色盤／CPU 幾何核對後才選擇，不轉用額外光效圖 |
+| [主角色第二色盤比較](tools/duplicate_palette_preview.go) | `--secondary-main --characters 3:48,4:54` 以既有原稿比較 DAT 第一／第二色盤的不可變調色近似；不接 production |
+| [主角色第二色盤獨立核對](tools/verify_secondary_main.py) | 驗普通 3／4 來源指標、414 次 blit／200 格與 11 次主圖像第二色盤；原圖色盤比較只留本機 |
+| [主角色第二色盤](docs/spec/045-secondary-palette-main-sprites.md) | 追查鳳凰來源 48／法蘭克來源 54 主圖像 D0h／F0h，原呼叫、原 Oracle、同序列與正常 Linux 兩側主圖像已驗；限定 CONFORMED，RGB 近似 |
 | [其餘特殊技素材收錄](tools/import_remaining_effect_assets.py) | 既有 1495 鍵及 PNG 保持，核對六 PNG 原 bytes、21 個鍵及 catalog；來源與原貌收據不公開 |
 | [其餘特殊技原生操作](tools/remaining_effects_smoke.py)、[獨立核對](tools/verify_remaining_effects_native.py) | 四人普通方向／拳腳觸發新光效族，驗完整 CPU／HUD／陰影／CRTC、原貌切換與舊包回退 |
 | [其餘特殊技真實測試](internal/hd/remaining_effects_test.go) | 四人二十一份原始來源、既有選擇不退步、未知來源／色盤與超量清單拒絕，鳳凰未驗色盤保持回退 |
