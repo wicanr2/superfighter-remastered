@@ -423,3 +423,8 @@
 - 蜘蛛女的已選定全覆蓋連身衣十二格稿，仍被內建工具於輸出階段拒絕，請求 ID 18314280-85c6-4256-8e08-d2aa8d613bfe。沒有 PNG，也沒有反覆重試或改變已選方案；accepted-design.json 與 covered-generation-failure-00.json 分別保存決定與失敗。正常 8／4 的 124 格來源及 WIDOW／57×11 姓名已驗，原生仍保留原貌。
 - 道場下一背景依 I5 原構圖生成 1922×818 候選原 PNG，來源與精確請求在 dojo-art-v1，尚未接 production。正常 0／0 的 124 格均為 scene 0，背景 RAM、角色 bytes 與八份背景色盤全部吻合，camera 80–145；dojo-source-review-v1.json 綁定來源。後續才處理多場景載入與原生接入。
 - 沿用既有 Docker 映像，沒有改共用 dosgolem、原版規則／速度、設定格式、快捷或歷史收據。子彈建置、來源、測試與 GUI 工作均已結束；道場來源亦已結束。自有來源與完整歷史保存於 workplace/github-bullet-victory-integration-progress.bundle，核對記錄為 github-bullet-victory-integration-progress-source.json。未推送、未發布，完整 HD 與正式封包仍未完成。
+
+## 2026-10-20 多場景背景草案
+
+- 子彈首勝接入 6c549de，1a3080e 合入進度分支，185 份自有來源與工作根相同。完整 Git 備份 22 refs，SHA-256 a99bba3cdf4367deeb26ad257cee844db9dca8a7d8d6bc76d6999fae91fe209a，128 原檔／1719 執行器來源／490 本機 Markdown 連結通過核對。該批容器全部移除。
+- 建立 029 DRAFT，提議同一版本 2 背景包自動對應屋頂、道場，舊屋頂包不需轉檔。依使用者的資料格式決策規則及 grilling 技能提出相容方案，等待回答前不進 production；正常來源與候選已備妥，原生現行仍是單屋頂包。其他 WIN 製作繼續。
