@@ -936,3 +936,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 十一人純 HD 總覽已目視，原對照只留本機。薩爾可夫兩眼閉合、鬼丸嘴巴張幅、嵐浮腫弱化、子彈圓形頰痕及各人五官／傷勢均有近似，逐人記錄，不稱完全忠實或視覺定版。沒有新的正常比賽執行。
 - 素材現為 130 PNG／147 catalog／151 檔、190,895,498 payload bytes，舊 136 筆保持。README、048、素材索引與現況表已更新。正式 1516 鍵／74 圖集、46 份編譯輸入、四平台 bin、已發布首版及本機原曲影片保持；048 維持 DRAFT，不新增正式格式或 Release。最終稽核、清理及推送另記。
 - result-portraits-import-v1/final-audit.json 通過：十一張原 RGB、十張生成原 bytes／提示詞／參照面板、既有法蘭克與總覽來源；舊 136 筆素材相同。209 個 README 相對連結、工具索引、128 原檔、1719 執行器來源、正式 i64、46 份輸入、四平台程式及首版封包／原曲影片保持。無原圖或 raw 入 Git，UID／誤建目錄檢查通過，本輪專案容器已清空。
+- 十人新稿與總覽提交 `708ad1705aca48999deb3670146fb5559851bfcb` 已推送 origin/main，遠端完整提交核對相同；首版 tag 維持 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段只保存推送結果，048 仍為美術候選，未新增 Release。
