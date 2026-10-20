@@ -125,6 +125,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ### 蜘蛛女低伏
 
+- 接入提交 `d4e940ed03f3f456cf8c0f138a1fa2c30a76fd1d` 已推送 origin/main，遠端完整提交核對相同；收尾提交只補交接紀錄。
 - [034](docs/spec/034-spider-low-guard.md)限定 CONFORMED。使用者最新回覆「ok 同意這版蜘蛛女」，採已展示的相近低伏。三組正常來源與原姓名沿用已驗 124 格證據；同一張外部稿只作水平鏡像及透明留白裁切，候選原 bytes 保持。
 - 現行 `assets/hd/characters` 與 `workplace/hd-characters-spider-low-guard-v1` 相同，1411 鍵／65 PNG／二十來源。清單 SHA-256：`078e8a896968688a23556d03f8335252b07a7add204f9b3b8db2341683f4fd0e`。原版資料與 1719 份執行器來源不改動。
 - `native-spider-low-guard-v1` 及 `native-spider-low-guard-missing-v1` 各四項、五張，兩份 spider-comparison.json 驗來源、圖層、HUD、陰影、顯示起點、移動回退與切換；README 已收錄實際 HD 擷取。沒有將離線比較圖冒稱原生畫面。
