@@ -754,3 +754,16 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 
 - 收尾核對 128 原檔／1719 runtime、原 i64、94 PNG／102 payload 共 121,070,684 bytes、1485 鍵／67 PNG、四份新二進位與 44 份輸入通過。README 與素材索引有 131 個受追蹤相對連結；首版八 ZIP 與本機影片 SHA 保持，沒有 root-owned／.md 目錄或專案容器殘留。建稽核腳本的一次動態 shell 命令遇 Docker socket 拒絕，後續改用掛載的 Python 檔在容器內生成及執行，通過 final-audit.json；沒有回到主機分析。
 - 下一步為同角色色盤、蜘蛛女其餘動作及其他畫面；029 格式仍待回答。完整 HD 保持 active，未重發首版、移動 tag 或把已驗切片當全目標。功能提交 57dc20cb0df83fbd6a8a4e95c99bd0aa354fd6c8 已推送 origin/main 並由 ls-remote 核對；首版 tag 仍固定 807579d01c145db327050c2e870e2bf46e6bcb68。
+
+
+## 2026-10-21：同角色雙色 HD 與第二人首勝
+
+- 依既有 B 畫風及保留原版辨識範圍接續 041。固定 IDA 9.4 image 查原 i64 一次性副本，直接字串 xref 為空，改由 immediate operand 與資料段基底找到原 man.col 載入端；原名／bytes／位址分級保留。正式庫及原檔唯讀。
+- Docker Go 1.24.13 執行 duplicate_palette_receipt.go，十一人正常同角雙打各待機／行走；獨立 verify_duplicate_palettes.py 核對二十二格、四十四角色層、原色盤及十一景來源。四組私有比較覆蓋十一人；印第安喬錯用特效槽的早稿保留，以正常槽 1 補正。
+- READY 後接入不可變配色視圖。只接受同角色第二人的完整已驗主色盤，原圖與 alpha 保持；FX、第一人、異角及未知色盤不套用。HD RGB 轉移是呈現近似，沒有移除來源核對、改姿態鍵或原版狀態。
+- duplicate-palette-build-v1/tests.log 保存真實二十二份 fixture 的二十一選擇／一份缺稿回退、色盤錨點／透明度、壞檔與未知拒絕、先前幾何／光效及可用 internal／cmd 測試／vet。四平台建置為四十五份實際編譯輸入，逐平台來源與檔頭核對後移入 bin，040 基底保留於 edge-clip-build-v1。
+- duplicate-palette-native-new-v1／old-v1 因腳本把 KP_Left 的觀測值誤判為 1 而失敗，保留 failure。正常來源確認為 2，只修腳本；v2 新／舊程式各七張通過行走、放開、同狀態切換與恢復。這是驗證腳本問題，不列產品缺陷。
+- duplicate-palette-win-core-v1 經 5,543 成對邊界、八份 WIN 取樣及四份來源重組；Linux duplicate-palette-win-native-v1 七張，綠色第二人首勝、FRANK WIN、切換／恢復、下一回合與右側一勝通過。此案時間歸零、生命 76／124，未冒稱擊倒。verify_duplicate_palette_native.py 獨立核對三組二十一張的完整來源與藍綠可見服裝。
+- README 新增同角雙色截圖，圖片及 source.json 收錄 Git；原貌、原色盤、比較稿及完整收據留本機。素材維持 1485 鍵／67 圖集、94 PNG，沒有改生成圖。跨日沿用已凍結、未發行的 v.0.1.1-20261020，不移動首版 tag 或重包已發布檔案。
+- 首版範圍再次依使用者回覆確認：鍵盤重綁、魔王選角及已驗斬四招，其他角色四格可保存而實際快捷拒絕。首版已發布；本輪 041 屬後續開發版，不改既有 Release 範圍。029 多場景格式待回答，蜘蛛女其餘稿、完整動畫、其餘畫面及音訊仍未完成。
+- final-audit.json 通過：128 原檔、1719 執行器來源、94 PNG／102 素材、1485 鍵／67 圖集、正式 i64、首版八包及影片雜湊保持；四平台 45 份輸入與晉升八檔吻合，134 個 README 相對連結可由 Git 清單找到。二十一張新原生收據及相依檔雜湊通過，沒有 root-owned 檔或誤建 Markdown 目錄；專案 Docker 容器清單為空。首版 tag 仍為 807579d01c145db327050c2e870e2bf46e6bcb68。

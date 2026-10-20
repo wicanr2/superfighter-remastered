@@ -556,3 +556,14 @@ EEWIN.FIG 共 6,279 bytes，SHA-256 `65f8536cdd3ba96c63d116df5c701b401776e39643f
 四份正常 CPU 層包含法蘭克槽 10／11，實檔偏移 32879／35869，2,603／2,499 寫入點全部覆蓋及色號吻合新公式；舊公式分別有 2,006／3,209 不符點。完整 HD 影像定位亦吻合。僅更正 C0h 來源起點，038 的每格核對不移除；原版程式、幀序、座標及美術保持。兩新原生案例與舊程式對照的同狀態切換另由 verify_edge_native.py 核對，不將原始資料重組當成 GPU 完成。
 
 另已證實檔案事實：同角色法蘭克的第二人 16 色與 MAN.COL 實檔 192、REFMAN.PIC 實檔 209 的 48 bytes 完全吻合，身分及 SHA 保存於 alternate-palette-source.json。尚未追到 runtime 載入選擇端，不能判定實際讀哪份，更未決定 HD 重繪／調色方法；此項不因場邊修正完成。原始色盤 bytes 不寫入公開文件。
+
+
+## 2026-10-21：同角色替代色盤載入端與 HD 近似
+
+輸入為 SF.EXE SHA 24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300、MAN.COL SHA 7153214bf444684179b5296ad1c4dfc874385cbf6e2d5e0c215c13e711749ce5，原 i64 SHA 5a122f625e659633f1e29ea1cb024fb4b1c31405031bf90d92dfe115ac00e2ca。IDA 9.4 固定 image，在一次性副本匯出；正式庫唯讀。證據入口為 [041](docs/spec/041-duplicate-palettes.md)。
+
+已證實：IDA MZ 線性 1000h 映像，seg002 基底 1A410h，字串 EA 1E3F8h 對應 DS:3FE8h。沒有自動字串 xref；第一次直接引用查詢為空，第二次以 immediate operand 回查 sub_13C38。13D7Ch／13D7Fh 比較 ds:12ACh／12AEh，13D83h 在異角返回；13D85h 指向 man.col，13D93h..13DA6h 按角色×30h seek，13DABh..13DB9h 讀 30h bytes 至 ds:2E8h。caller 為 sub_15D16 的 15D2Eh。這些是 IDA 線性位址；MAN.COL 的 character×48 是檔案偏移，DS:2E8h 是資料段偏移，不能混為 runtime 線性位址。原函式名、operand、bytes 及 caller 均保留於 duplicate-palette-research-v1/ida-v2.json。
+
+十一種正常同角色雙打，待機及雙向行走共二十二份，第一人主色盤吻合 DAT AC8h，第二人吻合 MAN.COL 的 character×48。四十四角色層及十一個背景獨立重組通過；只替換第二人主色盤，特效沿原 DAT 第二色盤。這補足 040 當時只有檔案同色、載入端未知的結論。來源收據 SHA 為 0ce2dbd8fe8489e7de7d7d7492d8e1b27722ad32d496400936730ab0d082bf31。
+
+HD 依原表轉移 RGB 色差，保留原 PNG、明暗細節及 alpha，並非原版像素或材質分割 parity。四份比較覆蓋十一人；印第安喬早期用了特效槽 0，v2 依正常待機來源改為槽 1，舊稿留存。READY review 綁定原檔、IDA、來源比較及四份視覺比較，正式接入不新增素材格式、設定或玩法。Linux 法蘭克三組二十一張核對與 5,543 成對核心邊界見 041；其他角色原生場景及完整動畫不外推。

@@ -58,6 +58,8 @@ type Characters struct {
 	Manifest CharacterManifest
 	poses    map[[3]int]*PoseArt
 	palettes map[[2]int][16][3]uint8
+	alternatePalettes map[int][16][3]uint8
+	alternatePoses map[[3]int]*PoseArt
 }
 
 func graphicBank(name string) (int,bool) {
@@ -150,6 +152,9 @@ func LoadCharacters(dir, originalRoot string) (*Characters, error) {
 			a.palettes[[2]int{source.Character, bank}] = palette
 		}
 	}
+	if err := a.loadAlternatePalettes(originalRoot); err != nil {
+		return nil, err
+	}
 	images := map[string]image.Image{}
 	totalPixels := 0
 	for _, atlas := range m.Atlases {
@@ -216,6 +221,7 @@ func LoadCharacters(dir, originalRoot string) (*Characters, error) {
 			return nil, fmt.Errorf("角色素材缺少圖像或透明區")
 		}
 		a.poses[key] = &PoseArt{Pose: pose, Image: img, Bounds: r, packed: data[offset:end]}
+		a.addAlternatePose(key, a.poses[key])
 	}
 	return a, nil
 }
@@ -227,6 +233,13 @@ func (a *Characters) Select(layers []renderdata.Layer, palette [256][3]uint8) ([
 	}
 	var out []*PoseArt
 	var players [2]bool
+	characters := [2]int{-1, -2}
+	for _, layer := range layers {
+		if s := layer.Sprite; s != nil && !s.Effect && s.Player >= 0 && s.Player < 2 {
+			characters[s.Player] = s.Character
+		}
+	}
+	sameCharacter := characters[0] >= 0 && characters[0] == characters[1]
 	for _, layer := range layers {
 		s := layer.Sprite
 		if s == nil {
@@ -259,10 +272,14 @@ func (a *Characters) Select(layers []renderdata.Layer, palette [256][3]uint8) ([
 		if !s.Effect && (s.Flags&192 == 192 || s.TopClip != 0) && !spriteGeometryMatches(s, art.packed, layer) {
 			return nil, "翻轉或裁切未吻合原版圖層，保留原貌"
 		}
-		for i, p := range a.palettes[[2]int{s.Character, bank}] {
-			if palette[int(s.PaletteBase)+i] != p {
+		if !matchesCharacterPalette(palette, s.PaletteBase, a.palettes[[2]int{s.Character, bank}]) {
+			alternate, known := a.alternatePalettes[s.Character]
+			alternateArt := a.alternatePoses[key]
+			if s.Effect || s.Player != 1 || !sameCharacter || !known || alternateArt == nil ||
+				!matchesCharacterPalette(palette, s.PaletteBase, alternate) {
 				return nil, "角色色盤轉場，保留原貌"
 			}
+			art = alternateArt
 		}
 		out = append(out, art)
 	}

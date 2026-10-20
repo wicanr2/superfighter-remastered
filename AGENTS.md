@@ -148,6 +148,14 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [同角色原生色彩核對](tools/verify_duplicate_palette_native.py) | 真實主色盤、原圖層／HUD／陰影／CRTC、藍綠雙色及切換／勝利生命週期，與 HD 配色近似分級 |
+| [同角色原生操作](tools/duplicate_palette_smoke.py) | 正常同角法蘭克雙色、第二人行走／放開、同狀態原貌切換與舊程式回退；不改原版狀態 |
+| [同角色配色真實測試](internal/hd/duplicate_palette_test.go) | 二十二份正常 fixture、缺稿回退、兩人／異角隔離、來源拒絕及色盤錨點／alpha 保持 |
+| [同角色 HD 配色](internal/hd/duplicate_palette.go) | 固定 MAN.COL 原版身分與不可變配色視圖；只在受驗同角第二人主色盤呈現，保留原圖及 alpha |
+| [同角色 HD 色彩比較](tools/duplicate_palette_preview.go) | 原稿不變的可丟棄 RGB 色彩轉移呈現，並列原版兩色與 HD；不接正式呈現或假稱逐像素 |
+| [同角色色盤獨立核對](tools/verify_duplicate_palettes.py) | 原 DAT／MAN.COL、二十二份正常畫格、四十四份角色層與十一個背景來源，與 HD 呈現證據分開 |
+| [同角色正常色盤取樣](tools/duplicate_palette_receipt.go) | 十一人正常雙打同角、兩側待機與行走的原檔色盤及 CPU 層；只讀診斷，不接 HD |
+| [同角色替代色盤](docs/spec/041-duplicate-palettes.md)、[原始載入引用](tools/ida_duplicate_palette_evidence.py) | 同角色色盤檔名、原載入端、正常雙打色盤與 HD 比較閘門；不只移除色盤核對 |
 | [原生場邊獨立核對](tools/verify_edge_native.py) | 新舊原生畫格的 CPU 來源、完整重組、實際 HD 替換、同狀態切換與恢復後操作 |
 | [正常場邊投擲](tools/edge_clipping_smoke.py) | 十七階段普通鍵鼠輸入、場邊 C0h 裁切、暫停切換與恢復後操作；輸入互斥且程序有界 |
 | [場邊裁切真實測試](internal/hd/edge_clipping_test.go) | 四份正常場邊 CPU fixture、已知完整群組選擇及壞遮罩拒絕；蜘蛛女未知本體不冒稱完整 HD |

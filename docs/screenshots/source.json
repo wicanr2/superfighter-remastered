@@ -138,6 +138,19 @@
       "character_manifest_sha256": "2557a3bc5136cd8ff403632f28e161c7d9c1aacd82c3984dbcdf0079ea0c9a8d",
       "authorization": "user requested integrated HD screenshots in repository",
       "limits": "Linux ordinary clipped throw sample; not full animation or all clipping combinations"
+    },
+    {
+      "kind": "正常同角色雙色 HD 整合，原貌與原始收據只留本機",
+      "file": "duplicate-frank-hd.png",
+      "sha256": "56f72025710c08c127aa91707f31e71e3c3975621b16638222f942f0369ea42a",
+      "source": "workplace/duplicate-palette-native-new-v2/idle-hd.png",
+      "platform": "Linux amd64，Docker Xvfb；不代表其他平台或實體手把驗收",
+      "receipt_sha256": "ae43ae02d9d1f612d8715c06c09a9186d58876a6e8488e8f3a9078d3cbfb71a9",
+      "comparison_sha256": "e6d7c1e313c3a06e140ce8af96c8453b2b5e4aa5b860c1759ebbc473d389a635",
+      "binary_sha256": "23f6d7f521ddb4c8a25878975384fcb948e6dbf2a1a59c4d3cea1376f1a1791f",
+      "character_manifest_sha256": "2557a3bc5136cd8ff403632f28e161c7d9c1aacd82c3984dbcdf0079ea0c9a8d",
+      "authorization": "使用者要求 HD 上傳及 GitHub 可見的 README 整合截圖",
+      "limits": "法蘭克正常同角待機與行走；替代色是依原表的 HD 色彩轉移近似，完整動畫另驗"
     }
   ],
   "version": "v.0.1.0-20261020",
