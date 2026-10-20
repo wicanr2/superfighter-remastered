@@ -819,3 +819,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 後續仍有鳳凰其他色盤、蜘蛛女其餘姿勢／勝利、背景格式決定及標題／選角／結果等完整 HD，不能以這批光效完成宣稱全作完成。收尾與推送結果另追加。
 
 - 最終 remaining-effects-build-v1/final-audit.json 通過：128 原檔、1719 執行器來源、正式 i64、首版八包及本機原曲影片不變。1516 鍵／74 圖集、舊 1495 鍵、103 PNG／114 catalog／118 素材檔及六圖原 bytes 核對，155 個 README 相對連結均已追蹤。沒有原版、raw 或工作產物入 Git；擁有權／誤建目錄通過，所有本專案容器均已清空。
+- 實作提交 `d23429413aaa6ffbe4a4c83ee6f0142b267b5b36` 已推送 origin/main，完整遠端提交核對相同。首版 tag 仍為 `807579d01c145db327050c2e870e2bf46e6bcb68`；本段為其後的文件收尾，不建立新 Release。
