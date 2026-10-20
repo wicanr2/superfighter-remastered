@@ -438,3 +438,4 @@
 - 030 升限定 CONFORMED，四份 ELF／PE／兩種 Mach-O 的 37 份實際編譯輸入通過，原封移入 bin；舊子彈首勝四份在 bullet-victory-build-v1/bin，移入收據為 phoenix-victory-build-v1/promotion.json。README 加入鳳凰首勝、原貌與恢復圖，現行群組改為 1093 鍵／60 PNG，工作文件同步。
 - 另將剩餘六份 WIN 原檔靜態解碼為 432 入口／30 組：鬼丸 4、嵐 6、金太極 8、蜘蛛女 5、小丑 3、印第安喬 4。來源、雜湊及別名保存於 remaining-victory-source-v1/manifest.json，尚未作正常消費端或 HD 接入聲明。
 - 原版、衍生美術、私有執行器、收據與二進位繼續排除 Git。沿用既有映像，未改共用 dosgolem、原版規則／速度、設定或快捷；鳳凰全部建置、核心、測試及 GUI 容器均已結束。自有來源與完整歷史備份為 workplace/github-phoenix-victory-integration-progress.bundle，核對記錄為 github-phoenix-victory-integration-progress-source.json，遠端未建立或推送。029 仍為 DRAFT，未實作多場景新格式。
+- 隔離接入 commit 8539701，490d8b4 合入進度分支；main 保留 636f6ad 穩定基底。多場景確認仍待回答，未將未決格式寫進正式程式。
