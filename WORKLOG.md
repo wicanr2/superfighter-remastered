@@ -565,3 +565,4 @@
 - 已展示原版／相近低伏試排，依 grilling 詢問是否先採相近姿勢、缺件回退原貌，或繼續保留原版輪廓；正式接入依賴此選擇，候選保存與推送不受影響。這不是新的遊戲規則或資料格式實作，未新增 production spec 或修改正式動畫對照。
 - 素材目錄目前 82 張 PNG、90 檔，catalog 86 筆 payload 共 97,619,462 bytes。正式角色包仍是 1381 鍵／64 PNG／十九來源，manifest SHA-256 `fbb4d57d313d2d9e01383c4f95468826e41c225d062ecef1bc506df0e72a2df9` 不變。
 - `workplace/spider-art-v1/repo-audit-v1.json` 通過全部收錄 PNG、檔案大小／尺寸／雜湊、十五張複製來源、128 原檔與 1719 執行器來源保持。README 的 63 個相對連結、六張圖片及三份素材索引的 44 個相對連結都已由 Git 清單核對；Python 語法、git diff --check 與 root-owned／誤建 .md 目錄檢查通過。沒有改 Go 正式程式，因此未重跑無關的遊戲測試或重建二進位。
+- 提交 `ed213c387bc936e579237fc7220a591f7ca8c238` 已推送 origin/main，遠端分支核對相同完整提交。初次合併命令的工具呼叫曾出現 Docker socket 拒絕及 Git DNS 失敗；將相同命令分開呼叫後成功，未改憑證、網路或產品程式，記為呼叫環境限制。本輪 kdzz-spider 容器已全部移除，未新增映像或清理其他專案資源。
