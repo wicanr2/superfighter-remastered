@@ -28,36 +28,43 @@ type shortcut struct {
 	keys             []uint8
 }
 type Status struct {
-	Paused    bool    `json:"paused"`
-	Battle    bool    `json:"battle"`
-	Steps     uint64  `json:"steps"`
-	Frames    uint64  `json:"frames"`
-	Mode      int     `json:"mode"`
-	Fighters  [2]int  `json:"fighters"`
-	Paths     [2]int  `json:"paths"`
-	KeyValues [2]int  `json:"key_values"`
-	Quick     [2]bool `json:"quick"`
-	Error     string  `json:"error,omitempty"`
+	Selection *Selection `json:"selection,omitempty"`
+	Paused    bool       `json:"paused"`
+	Battle    bool       `json:"battle"`
+	Steps     uint64     `json:"steps"`
+	Frames    uint64     `json:"frames"`
+	Mode      int        `json:"mode"`
+	Fighters  [2]int     `json:"fighters"`
+	Paths     [2]int     `json:"paths"`
+	KeyValues [2]int     `json:"key_values"`
+	Quick     [2]bool    `json:"quick"`
+	Error     string     `json:"error,omitempty"`
 }
 
 // Core 由桌面 Update 所在執行緒獨占；沒有背景 goroutine 或網路。
 type Core struct {
-	o            *oracle.Oracle
-	paused       bool
-	manual       map[string]Source
-	jobs         [2]*shortcut
-	frames       uint64
-	counter      uint16
-	seen         bool
-	err          string
-	presentation Presentation
-	recording    layerRecording
-	hud          hudRecording
-	shadows      shadowRecording
-	rounds       roundRecording
-	display      bool
-	victory      victoryRecording
-	spriteSources [11]spriteSourceTables
+	selecting        bool
+	selectionTarget  int
+	selectionConfirm bool
+	selectionPixels  []byte
+	selectionCancel  func()
+	selectionBorder  bool
+	o                *oracle.Oracle
+	paused           bool
+	manual           map[string]Source
+	jobs             [2]*shortcut
+	frames           uint64
+	counter          uint16
+	seen             bool
+	err              string
+	presentation     Presentation
+	recording        layerRecording
+	hud              hudRecording
+	shadows          shadowRecording
+	rounds           roundRecording
+	display          bool
+	victory          victoryRecording
+	spriteSources    [11]spriteSourceTables
 }
 
 var allowed = [2]map[uint8]bool{
@@ -85,12 +92,13 @@ func New(root, scratch string) (*Core, error) {
 	o.SetScratch(scratch)
 	o.Enqueue("SF.COM", "")
 	c := &Core{o: o, paused: true, manual: map[string]Source{}}
-	c.spriteSources=loadSpriteSourceTables(root)
+	c.installSelection()
+	c.spriteSources = loadSpriteSourceTables(root)
 	o.OnCall(oracle.Far(0x01b9, 0x5d9f), c.frame)
 	o.OnCall(oracle.Far(0x01b9, 0x3e9d), c.capturePresentation)
 	return c, nil
 }
-func (c *Core) Close() { c.stopLayers(); c.Release(); c.o.Close() }
+func (c *Core) Close() { c.stopSelectionDisplay(); c.stopLayers(); c.Release(); c.o.Close() }
 func (c *Core) dataSegment() (uint16, bool) {
 	if c.o.Word(oracle.Far(0, 0x24)) != 0x524c || c.o.Word(oracle.Far(0, 0x26)) != 0x01b9 {
 		return 0, false
@@ -107,6 +115,7 @@ func (c *Core) dataSegment() (uint16, bool) {
 }
 func (c *Core) Status() Status {
 	s := Status{Paused: c.paused, Steps: c.o.Steps(), Frames: c.frames, Mode: -1, Fighters: [2]int{-1, -1}, Error: c.err, Quick: [2]bool{c.jobs[0] != nil, c.jobs[1] != nil}}
+	s.Selection = c.selectionState()
 	if ds, ok := c.dataSegment(); ok {
 		s.Battle = true
 		s.Mode = int(c.o.Word(oracle.Far(ds, 0x18)))
@@ -119,7 +128,12 @@ func (c *Core) Status() Status {
 	return s
 }
 func (c *Core) RGB() (int, int, []byte) { return c.o.ScreenRGB() }
-func (c *Core) Pause(value bool)        { c.Release(); c.o.ReleaseButton(0); c.paused = value }
+func (c *Core) Pause(value bool) {
+	c.Release()
+	c.cancelSelectionInput()
+	c.o.ReleaseButton(0)
+	c.paused = value
+}
 func (c *Core) Release() {
 	c.manual = map[string]Source{}
 	c.jobs = [2]*shortcut{}
@@ -162,6 +176,9 @@ func (c *Core) MenuKey(name string) error {
 	if name != "Return" && name != "Left" && name != "Right" && name != "Up" && name != "Down" {
 		return fmt.Errorf("未知選單按鍵")
 	}
+	if handled, e := c.selectionKey(name); handled {
+		return e
+	}
 	if c.o.KeysPending() < 4 {
 		return c.o.SendKeys(name)
 	}
@@ -175,6 +192,7 @@ func (c *Core) Mouse(x, y int, down bool) error {
 	if c.paused || c.Status().Battle {
 		return nil
 	}
+	c.cancelSelectionInput()
 	if x < 0 || x >= 320 || y < 0 || y >= 200 {
 		return fmt.Errorf("點選超出遊戲區域")
 	}

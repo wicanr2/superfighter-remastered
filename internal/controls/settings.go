@@ -22,6 +22,9 @@ var Catalog = []Character{
 	{"onimaru", "鬼丸", []string{"旋風忍術", "龜忍術", "空摔", "鬼啃頭"}},
 	{"lan", "嵐", []string{"劈掛掌", "龍捲風", "雙截踢", "大佛腳", "大車輪"}},
 	{"kim", "金太極", []string{"太極刀光", "太極波", "疾刺", "八卦掌", "空拋"}},
+	{"spider", "蜘蛛女", []string{"鞭擊", "後空摔"}},
+	{"clown", "小丑", []string{"蝦蟆功", "人肉戰車", "金剛陀螺", "辮子鞭", "辮子功"}},
+	{"joe", "印第安喬", []string{"強力迫擊波", "旋轉衝擊", "無影腳", "擒拿摔"}},
 }
 var Slots = [4]string{"R1", "R2", "L1", "L2"}
 
@@ -35,7 +38,13 @@ func Defaults() Settings {
 	for p := range s.Players {
 		s.Players[p] = map[string][4]int{}
 		for _, c := range Catalog {
-			s.Players[p][c.ID] = [4]int{1, 2, 3, 4}
+			var slots [4]int
+			for i := range slots {
+				if i < len(c.Moves) {
+					slots[i] = i + 1
+				}
+			}
+			s.Players[p][c.ID] = slots
 		}
 	}
 	return s
@@ -71,6 +80,17 @@ func Load(path string) (Settings, error) {
 	var saved Settings
 	if e = json.Unmarshal(b, &saved); e != nil {
 		return s, e
+	}
+	// 版本 1 的舊八人設定只補三名新角色；不補壞掉的既有角色。
+	for p := range saved.Players {
+		if saved.Players[p] == nil {
+			continue
+		}
+		for _, c := range Catalog[8:] {
+			if _, ok := saved.Players[p][c.ID]; !ok {
+				saved.Players[p][c.ID] = s.Players[p][c.ID]
+			}
+		}
 	}
 	if e = saved.Validate(); e != nil {
 		return s, e

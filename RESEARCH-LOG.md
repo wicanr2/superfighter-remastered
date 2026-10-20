@@ -434,3 +434,25 @@ kim-source-probe-left-v1.go SHA-256 9fe5e8b1fbc321ba0c0d685566bd16e8694baa1f6f03
 已證實於乾淨原生樣本：native-kim-v2／windows-kim-v1 各七項、九張擷取，由 SFMAN、屋頂及介面原檔獨立重組，行走、蹲、跳、拳及切換通過。各案例內核心、來源、設定與指派相同，恢復 HD 逐點一致；金太極輸出各變動 24,741 點，姓名各變動 10,791 點，字形及位置另經目視。native-kim-missing-v1 九張均整格原貌。像素數相同不當作跨平台同狀態證據。
 
 Go 1.24.13 完整 internal／cmd 測試及 go vet 通過，後續真實 HUD 測試驗 KING TAI CHI／109×11 及未知角色拒絕。Pillow 11.3.0 作原圖解碼、透明登錄與獨立重組，工具及輸入 SHA 由各 receipt／kim-comparison 綁定。四份候選的 ELF／PE／兩種 Mach-O 及 35 份編譯輸入吻合，原封移入 bin，前一嵐基底仍在 lan-build-v1/bin。八名可選角色的一般來源為 576 槽、463 組不同 bytes，全部群組為 805 鍵／48 PNG／十一份來源。規格 024 限定 CONFORMED，不外推完整動畫、WIN、替代色盤、快捷或實體平台／手把。
+
+## 2026-10-20 十一人選角與魔王原版來源
+
+使用者確認蜘蛛女、小丑、印第安喬在單打、雙打都可選。固定 SF.EXE 仍為 SHA-256 24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300。IDA 9.4 的原 sf-input-v5.i64／匯出已顯示 sub_110E0 在 IDA 線性 112ACh 比較 10，右移十一人循環；11261h／11269h 仍用八人左移，11208h 的滑鼠縮圖上限亦為八人。正常原版 v2 四組雙打與 v3 三組單打探針吻合，沒有原狀態注入。早期以八人取模推算第二人游標的假設不適用目前包，普通選角改依十一人循環，未替換 EXE。
+
+原生新介面透過普通 Right／Return 定位與確認，兩名玩家角色及輸入仍交原版處理。首版 Linux 三單打／三雙打與 Wine 一單打／一雙打通過基本操作，但目視發現魔王縮圖框會畫出直線，不能把這八組當作修正後畫面。規格 025 返回 DRAFT 補證，原收據保留。
+
+新 IDA 9.4 資料庫 sf-boss-selection-v1.i64／ida-boss-selection-v1.json 直接確認 sub_10DA6：IDA 線性 10DADh 將 SI 乘八，10DAFh 起以 DS:12D7h 表畫框，10DF5h 返回；索引 8–10 沒有有效縮圖矩形。只讀候選以 ObserveWrites 重組獨立顯示影本，略過這三個非法索引的框線寫入，原版 RAM、CPU、角色及輸入不寫回。採既有規格 007 的非破壞性觀測契約，執行器 1719 份來源不改。
+
+sub_10E86 的原 BIGFIG.XBB 有十一筆、每筆 21F1h。前 60h 色盤先拷貝，SI 再加 2A0h，因此肖像實檔相對偏移為 300h，89×89。左側 (11,15) 加 A0h，右側從 (302,15) 反向寫 89 點，加 C0h。探針 v1 漏算已前進的 60h，v2 將右鏡像起點少算一點；兩份原失敗及腳本保留。依原指令修正後 v3 十五個肖像全部吻合，正常八人前綴沒有過濾，累計排除 1,280,000 次非法框線寫入。全部原定位及完整 SHA 在 boss-selection-filter-review.json，不把 IDA 線性與 runtime 01B9 段偏移混用。
+
+已證實於修正版取樣：Linux／Wine 各一組單打及雙打完成十一人按鈕、三名原肖像、左循環、原確認、實際模式、兩側基本操作及放開。四份 boss-comparison 共十二張圖的 89×89 原肖像、色盤、實際 960×600 視窗逐點吻合，頂列沒有直線；原 RGB 另存，修正版來源標 selection-filtered-original。舊設定只補三名魔王欄位、載入不覆寫原檔；蜘蛛女兩招，其餘兩格留空，快捷仍只啟用斬。025 限定 CONFORMED，不外推完整單打過關、結局或實體手把。
+
+## 2026-10-20 小丑一般 HD 與 JOKER 姓名
+
+已證實 SFMAN10.DAT SHA-256 31c0547e255f23f1af5d3475ef53c2f82817b3b5f1cdea01340da6c8b14699a4，實檔 B28h 表／C48h 圖像基底／AC8h 正常色盤，共 72 槽、62 組不同 bytes。hd-frame-clown-v1 由正常 9／4 選角、第二人 Left 五次，在 runtime 01B9:5DD3 保存 124 格，兩人完整 bytes 與 I2 屋頂 RAM 相同。取樣槽 0／1／2／3／4／10／11／15／25／26／27，未推定其他動畫或觸發條件。
+
+NAME.XBB SHA-256 60c0bbe367e44ab9fda512df2ba93ad62d70147df90079d07ff15818f21bad82，槽 9、實檔 1A60h、52×11 為 JOKER；像素 SHA-256 7e031e7b909b0885d448fb4c8516fe402d1ab5db3fa359a2a6b71899042d9313。六份內建 imagegen 精確請求及原 PNG 保存在 clown-art-v1，62 組保留禿頭黑辮、金黃色正常色盤、紫褲、黃短靴及原獨立氣勁。六張均通過同一透明門檻，候選 877 鍵／54 PNG 保留舊 805 鍵及原 PNG。clown-evidence-review.json 綁定 DRAFT、候選、初始測試及來源身分，先 READY 再接 JOKER。
+
+native-clown-v1／windows-clown-v1 各七項、九張完整重組及同狀態切換通過；native-clown-missing-v1 九張整格原貌。各案例內核心、來源、設定及指派相同，恢復 HD 逐點一致。小丑輸出各變動 27,594 點，姓名各變動 5,148 點；人物、跳躍、原貌與 Wine 畫面已目視。Go 1.24.13 完整程式測試、vet 與真實 HUD 的 JOKER／52×11 通過，Pillow 11.3.0 獨立核對。四份最終 ELF／PE／兩種 Mach-O 綁定 37 份精確編譯來源，026 限定 CONFORMED。
+
+蜘蛛女 SFMAN09 原圖 45 組，第一份內建 imagegen 請求遭 output moderation 拒絕，沒有可採用 PNG。request-00.json 與 generation-failure-00.json 保留工具請求 ID，沒有以程式改造型或繞過工具。印第安喬 44 組原圖待製作；這兩人的 HD 狀態與已可選、可操作分開列示。

@@ -31,19 +31,29 @@ def main():
     effect_case.add_argument("--exercise-frank-effects", action="store_true")
     parser.add_argument("--wine", action="store_true")
     parser.add_argument("--opponent", choices=["jaan", "frank"], default="jaan")
-    parser.add_argument("--player0", type=int, choices=(0, 1, 2, 3, 5, 6, 7), default=0)
+    parser.add_argument("--player0", type=int, choices=range(11), default=0)
+    parser.add_argument("--boss-selection", action="store_true")
+    parser.add_argument("--single", action="store_true")
+    parser.add_argument("--player1", type=int, choices=range(11), default=4)
     parser.add_argument("--quit-after-seconds", type=int, default=300)
     args = parser.parse_args()
+    if (args.single or args.player0 in (4, 8, 10)) and not args.boss_selection:
+        parser.error("single and additional player choices require --boss-selection")
+    if args.boss_selection and args.player0 < 8:
+        parser.error("boss scope requires player0=8/9/10")
     if args.quit_after_seconds <= 0:
         parser.error("--quit-after-seconds must be positive")
-    if args.player0 in (1, 2, 3, 5, 6, 7) and (args.opponent != "frank" or not args.hd_assets or not args.hd_characters or args.round_opening_only or args.shadow_overlap_only or args.exercise_effects or args.exercise_frank_effects):
-        parser.error("player0=1/2/3/5/6/7 requires the normal rooftop character scope against Frank")
+    if not args.boss_selection and args.player0 in (1, 2, 3, 5, 6, 7, 9) and (args.opponent != "frank" or not args.hd_assets or not args.hd_characters or args.round_opening_only or args.shadow_overlap_only or args.exercise_effects or args.exercise_frank_effects):
+        parser.error("player0=1/2/3/5/6/7/9 requires the normal rooftop character scope against Frank")
     normal = {1: ("sarkov", "Sarorkov", (0, 4), 14, (19, 20, 21), (5, 9, 10)),
               2: ("bullet", "Bullet", (0, 17), 11, (16, 18, 19, 20, 21, 22), (1, 2)),
               3: ("phoenix", "Pho Huang", (0, 1), 16, (22, 23, 24), (6, 11, 12)),
               5: ("onimaru", "Onimalu", (0, 1), 19, (25, 26, 27, 28), (8,)),
               6: ("lan", "Lan", (0, 1), 15, (22, 23, 24, 25, 27), (5, 8)),
-              7: ("kim", "King Tai Chi", (0, 1), 16, (28, 29, 30), (4, 11))}.get(args.player0)
+              7: ("kim", "King Tai Chi", (0, 1), 16, (28, 29, 30), (4, 11)),
+              9: ("clown", "Joker", (0, 1), 15, (25, 26, 27), (4, 10, 11))}.get(args.player0)
+    if args.boss_selection:
+        normal = None
     if args.round_opening_only and not (args.hd_assets and args.hd_characters and args.opponent == "frank"):
         parser.error("--round-opening-only requires rooftop characters and Frank")
     if args.shadow_overlap_only and not (args.exercise_shadows and args.hd_assets and args.hd_characters and args.opponent == "frank"):
@@ -194,6 +204,83 @@ def main():
             wait(lambda s: s["hd_enabled"])
         click(110, 32)
         wait(lambda s: s["core"]["steps"] >= 40_000_000, timeout=45, progress=normal is not None)
+        if args.boss_selection:
+            xdo("mousemove", "--window", window, 245 if args.single else 455, 607)
+            xdo("mousedown", 1)
+            initial = state()["core"]["steps"]
+            wait(lambda s: s["core"]["steps"] >= initial + 1_250_000, progress=True)
+            xdo("mouseup", 1)
+            wait(lambda s: s["core"].get("selection") is not None, timeout=60, progress=True)
+
+            def selected(character, player):
+                return wait(lambda s: s["core"].get("selection") is not None
+                            and s["core"]["selection"]["cursor"] == character
+                            and s["core"]["selection"]["target"] == -1
+                            and s["core"]["selection"]["player"] == player, timeout=60, progress=True)
+
+            def choose(character):
+                click(24 + (character % 6) * 180 + 86, 718 + (character // 6) * 40)
+
+            key("Left")
+            wrapped = selected(10, 0)
+            events.append({"left_wrap": wrapped})
+            shot("selection-wrap.png")
+            checks.append("eleven-choice left wrap reaches original character 10")
+            for character, slug in [(8, "spider"), (9, "clown"), (10, "joe")]:
+                choose(character)
+                events.append({"selected_" + slug: selected(character, 0)})
+                shot("selection-" + slug + ".png")
+            checks.append("all three visible boss buttons reach their original portraits")
+            choose(args.player0)
+            click(1010, 758)
+            if not args.single:
+                wait(lambda s: s["core"].get("selection") is not None
+                     and s["core"]["selection"]["player"] == 1, timeout=60, progress=True)
+                choose(args.player1)
+                selected(args.player1, 1)
+                shot("selection-player2.png")
+                click(1010, 758)
+            battle = wait(lambda s: s["core"]["battle"] and s["core"]["frames"] > 8, timeout=90, progress=True)
+            assert battle["core"]["fighters"][0] == args.player0
+            assert battle["core"]["mode"] == (0 if args.single else 1)
+            assert "selection" not in battle["core"]
+            if not args.single:
+                assert battle["core"]["fighters"][1] == args.player1
+            events.append({"battle": battle})
+            shot("battle.png")
+            checks.append("normal confirmation enters requested original mode and fighters")
+            for player, direction, punch, sign in [(0, "d", "Tab", 1), (1, "KP_Left", "Return", -1)][:1 if args.single else 2]:
+                before = state()["presentation"]["actors"][player]["x"]
+                xdo("keydown", direction)
+                moved = wait(lambda s: sign * (s["presentation"]["actors"][player]["x"] - before) > 4
+                             and s["core"]["key_values"][player] == (1 if player == 0 else 2), timeout=60, progress=True)
+                xdo("keyup", direction)
+                wait(lambda s: s["core"]["key_values"][player] == 0 and s["core"]["paths"][player] == 0, timeout=60, progress=True)
+                xdo("keydown", punch)
+                attacked = wait(lambda s: s["core"]["key_values"][player] == 16 and s["core"]["paths"][player] == 27, timeout=60, progress=True)
+                shot(f"player{player + 1}-punch.png")
+                xdo("keyup", punch)
+                released = wait(lambda s: s["core"]["key_values"][player] == 0, timeout=60, progress=True)
+                events.append({f"player{player + 1}_moved": moved, "punched": attacked, "released": released})
+                checks.append(f"player {player + 1} ordinary movement and punch reach original input paths and release")
+            key("Escape")
+            wait(lambda s: s["core"]["paused"])
+            shot("battle-paused.png")
+            key("F10")
+            settings = wait(lambda s: s["panel"])
+            assert all(name in profile for profile in settings["settings"]["players"] for name in ["spider", "clown", "joe"])
+            shot("settings.png")
+            key("Escape")
+            wait(lambda s: not s["panel"] and s["core"]["paused"])
+            checks.append("boss profiles and settings remain available and close while paused")
+            receipt = {"kind": "normal native boss selection and basic controls; not full single-player progression or HD art acceptance",
+                       "scope": "boss-selection", "single": args.single, "requested": [args.player0, args.player1],
+                       "checks": checks, "events": events, "command": command,
+                       "binary_sha256": hashlib.sha256(args.binary.read_bytes()).hexdigest(),
+                       "script_sha256": hashlib.sha256(script_source).hexdigest()}
+            (args.output / "receipt.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n")
+            print(json.dumps({"scope": receipt["scope"], "single": args.single, "requested": receipt["requested"], "checks": checks}, ensure_ascii=False))
+            return
         xdo("mousemove", "--window", window, 455, 607)
         xdo("mousedown", 1)
         initial = state()["core"]["steps"]
@@ -207,10 +294,10 @@ def main():
         key("Return")
         wait(lambda s: s["core"]["steps"] >= 85_000_000, progress=normal is not None)
         if not state()["core"]["battle"]:
-            moves = ((4 if args.opponent == "frank" else 0) - args.player0) % 8
+            moves = ((4 if args.opponent == "frank" else 0) - args.player0) % 11
             selector = "Right"
-            if moves > 4:
-                selector, moves = "Left", 8 - moves
+            if moves > 5:
+                selector, moves = "Left", 11 - moves
             if moves:
                 for _ in range(moves):
                     before = state()["core"]["steps"]
@@ -285,7 +372,7 @@ def main():
                 xdo("keyup", key_name)
                 wait(lambda s: s["core"]["key_values"][0] == 0
                      and s["presentation"]["actors"][0]["slot"] in idle_slots
-                     and (args.player0 != 7 or s["core"]["paths"][0] == 0)
+                     and (args.player0 not in (7, 9) or s["core"]["paths"][0] == 0)
                      and presentation_ready(s), timeout=60, progress=True)
                 checks.append("ordinary " + character_name + " " + label + " reaches a verified original source")
             click(265, 32)
