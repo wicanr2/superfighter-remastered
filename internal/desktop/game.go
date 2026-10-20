@@ -311,6 +311,9 @@ func (g *Game) widgets() []widget {
 	if g.panel {
 		return append(out, g.fields()...)
 	}
+	if s.Selection != nil {
+		return append(out, g.selectionWidgets(s.Selection,s.Paused)...)
+	}
 	for p := 0; p < 2; p++ {
 		for slot := 0; slot < 4; slot++ {
 			i := slot
@@ -625,6 +628,7 @@ func (g *Game) Draw(dst *ebiten.Image) {
 	var rgb []byte
 	var display *renderdata.Scanout
 	displayError := ""
+	selectionFiltered := false
 	palette := frame.Palette
 	if len(frame.Pixels) == 64000 {
 		w, h = 320, 200
@@ -638,6 +642,10 @@ func (g *Game) Draw(dst *ebiten.Image) {
 		w, h, rgb = g.core.RGB()
 		var err error
 		display, palette, err = g.core.LiveDisplay()
+		if clean := g.core.SelectionDisplay(); clean != nil {
+			display = clean
+			selectionFiltered = true
+		}
 		if err != nil {
 			displayError = err.Error()
 		}
@@ -746,6 +754,8 @@ func (g *Game) Draw(dst *ebiten.Image) {
 				}
 			}
 		}
+	} else if s.Selection != nil {
+		g.selectionLabel(dst,s.Selection)
 	} else {
 		for p := 0; p < 2; p++ {
 			name := "等待選角"
@@ -791,6 +801,7 @@ func (g *Game) Draw(dst *ebiten.Image) {
 		if e == nil && g.opts.Observe != "" {
 			liveW, liveH, liveRGB := g.core.RGB()
 			source := "live-original"
+			if selectionFiltered { source = "selection-filtered-original" }
 			if len(frame.Pixels) == 64000 {
 				source = "completed-battle-frame"
 			}
