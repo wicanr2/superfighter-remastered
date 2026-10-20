@@ -18,7 +18,9 @@ def main():
     p.add_argument('--binary',type=Path,required=True)
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--fallback',action='store_true')
+    p.add_argument('--cursor-only',action='store_true',help='另驗可見原游標、原右下限界與滑鼠雙打入口')
     a=p.parse_args();a.output.mkdir(exist_ok=False)
+    assert not(a.cursor_only and a.fallback)
     script=Path(__file__).read_bytes();(a.output/'title_native_smoke.py').write_bytes(script)
     for name in('home','runtime'):(a.output/name).mkdir(mode=0o700)
     env=dict(os.environ,DISPLAY=':89',HOME=str(a.output/'home'),XDG_RUNTIME_DIR=str(a.output/'runtime'),LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS='2',GOMAXPROCS='2')
@@ -81,7 +83,25 @@ def main():
         click(830,32);restored=wait(lambda s:s['hd_enabled']);shot('title-restored')
         for field in('core','presentation','settings','assigned'):assert frozen[field]==original[field]==restored[field],field
         resume()
-        if a.fallback:
+        if a.cursor_only:
+            for name,x,y,actual_x,actual_y in [('body',150,120,150,120),('right-edge',318,100,304,100),('bottom-edge',150,198,150,184)]:
+                wait(lambda s:s['core']['title_prototype_input']['runtime_ip']==0x037a and s['core']['title_prototype_input']['buttons']&1==0)
+                before=state()['core']['steps'];xdo('mousemove','--window',window,80+x*3+1,64+y*3+1);xdo('mousedown',1)
+                wait(lambda s:s['core']['title_prototype_input']['runtime_ip']==0x037a and s['core']['title_prototype_input']['steps']>before and s['core']['title_prototype_input']['buttons']&1 and not s['core']['title_prototype_input']['old_buttons']&1,90)
+                xdo('mouseup',1)
+                wait(lambda s:title(s)and not title(s)['cursor_hidden'] and title(s)['cursor_offset']==actual_y*320+actual_x,90)
+                pause();assert title(state())and not title(state())['cursor_hidden']
+                frozen=state();shot('cursor-'+name+'-hd')
+                click(830,32);original=wait(lambda s:not s['hd_enabled']);shot('cursor-'+name+'-original')
+                click(830,32);restored=wait(lambda s:s['hd_enabled']and s['title_hd_prototype']);shot('cursor-'+name+'-restored')
+                for field in('core','presentation','settings','assigned'):assert frozen[field]==original[field]==restored[field],field
+                resume()
+            wait(lambda s:s['core']['title_prototype_input']['runtime_ip']==0x037a and s['core']['title_prototype_input']['buttons']&1==0)
+            before=state()['core']['steps'];xdo('mousemove','--window',window,440,607);xdo('mousedown',1)
+            wait(lambda s:s['core']['title_prototype_input']['runtime_ip']==0x037a and s['core']['title_prototype_input']['steps']>before and s['core']['title_prototype_input']['buttons']&1 and not s['core']['title_prototype_input']['old_buttons']&1,90)
+            xdo('mouseup',1)
+            wait(lambda s:s['core'].get('selection')is not None and not title(s)and not s['title_hd_prototype']);pause();shot('mouse-versus-selection')
+        elif a.fallback:
             key('Right');selected(1);pause();shot('fallback-next-selection')
         else:
             wait(lambda s:len(seen)==8,180)
@@ -104,7 +124,7 @@ def main():
                 current=state()['core']['selection']['cursor'];key('Right');wait(lambda s:s['core'].get('selection',{}).get('cursor')==current+1)
             key('Return');wait(lambda s:s['core']['battle']and s['core']['frames']>8 and s['hd_active']);pause();shot('battle-hd-after-title')
             assert not title(state())and not state()['title_hd_prototype']and state()['core']['fighters']==[0,4]
-        receipt={'kind':'disposable native 046 prototype; not production acceptance','command':command,'fallback':a.fallback,
+        receipt={'kind':'disposable native 046 prototype; not production acceptance','command':command,'fallback':a.fallback,'cursor_only':a.cursor_only,
                  'events':events,'observed_HD_phases':sorted(seen),'script_sha256':hashlib.sha256(script).hexdigest(),
                  'binary_sha256':sha(a.binary),'character_manifest_sha256':sha(Path('/project/assets/hd/characters/manifest.json')),
                  'input':'X11 keyboard/mouse only, no injected game state or training','elapsed_seconds':time.monotonic()-started,

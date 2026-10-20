@@ -149,6 +149,7 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [標題游標定位探針](tools/title_cursor_receipt.go) | 正常原入口及公開 MoveMouse 的中央／右下邊界座標取樣，不寫原狀態或當 HD 驗收 |
 | [隔離原生標題獨立核對](tools/verify_title_native.py) | 原檔完整重組、同狀態切換、設定／選角／對戰轉移及未載入候選的原貌回退，不晉升正式格式 |
 | [隔離原生標題操作](tools/title_native_smoke.py) | 正常標題八相位、原貌切換、設定往返與進入雙打，缺原型美術另驗；不當正式發布驗收 |
 | [原生標題隔離原型準備／建置](tools/prepare_title_native_prototype.py) | 由正式來源複製隔離 module、精確套用模板並綁定編譯來源，輸出只在 workplace，不晉升或改正式格式 |

@@ -82,4 +82,14 @@ TITLE 底圖加 SFNAME 透明色號 0 疊於原座標 18／96，再加第一按�
 
 [獨立核對](../../tools/verify_title_native.py)由原 CPM、SF.EXE 表與實際色盤重建全部十份有效標題來源，並驗十三張顯示資料。暫停的 HD／原貌／恢復三張之原核心、設定、呈現及指派相同，色號與色盤完全相同，恢復 HD 的視窗像素相同；原生 HD 與原貌有 309,024 個可見像素不同。離開標題後的設定／選角保持原貌，屋頂對戰的完整原圖層另由既有重組器核對。正式 46 份編譯輸入未變。
 
-範圍限制：這些擷取的原游標均隱藏，可見游標的 GPU 覆繪未驗；完整換色速度、正式包缺件／損壞、Windows／macOS、實體手把與所有原標題流程仍未驗。先前 165 份原版取樣的可見游標證據保留原範圍。材質投影與版面仍待視覺定版，正式載入契約仍待審，046 維持 DRAFT。公開原生候選截圖及來源分類見 [screenshots/source.json](../screenshots/source.json)，原貌與原始收據只留本機。
+首次原型的十三張擷取中原游標均隱藏，可見游標由下節補驗。完整換色速度、正式包缺件／損壞、Windows／macOS、實體手把與所有原標題流程仍未驗。先前 165 份原版取樣保留原範圍。材質投影與版面仍待視覺定版，正式載入契約仍待審，046 維持 DRAFT。公開原生候選截圖及來源分類見 [screenshots/source.json](../screenshots/source.json)，原貌與原始收據只留本機。
+
+## 原游標的原生補驗
+
+[定位探針](../../tools/title_cursor_receipt.go)從正常載入鏈啟動，只用公開 `MoveMouse`，不寫原記憶體。`workplace/title-cursor-source-v2` 在 runtime `01B9:0359`、DS `0BFAh` 保存十二份穩定畫面。中央要求 150／120，實際為 150／120；右界要求 318／100，實際為 304／100；下界要求 150／198，實際為 150／184。三組游標目的偏移分別為 38550、32304、59030，均可見。這證實固定原程式在 dosgolem 中的限界結果，不宣稱硬體滑鼠時序或越界換列是正常玩家可達狀態。
+
+`title-native-cursor-v2` 以同一隔離二進位保存十三張，涵蓋中央、右界、下界三組 HD／原貌／恢復，以及普通滑鼠進入選角。原 CPM、SF.EXE 遮罩與當前色盤獨立重建十二份原來源及十二份有效標題擷取；GPU 上每個游標黑白像素的 3×3 顯示均相同。三組切換保持原核心／設定／指派／呈現，恢復後像素相同。滑鼠選角後標題覆繪清除，選角畫面逐點維持原貌。沒有修改原型模板、正式程式或編譯輸入。
+
+首輪原生測試曾錯把要求座標 318 當成實際游標位置，等待超時後走到原版示範對戰；失敗保留於 `title-native-cursor-v1`，不算通過。定位探針首輪四百萬步不足四次穩定色盤邊界，`title-cursor-source-v1` 亦保留；修正只增加有界觀測預算，達四次邊界即停止。來源證據確認限界後，才以正確期望乾淨重跑原生操作。
+
+本次三份新審查均另存 `comparison-v2.json`，原九張／四張的 `comparison.json` 與公開截圖所引用的 SHA 保持。可重播驗證命令為 `python3 tools/verify_title_native.py workplace/title-native-cursor-v2 --build workplace/title-native-prototype-v1 --cursor-source workplace/title-cursor-source-v2 --report-name comparison-v2.json`，在既有 Pillow 11.3.0 Docker 中執行。重審既有報告必須另指定檔名，不覆寫歷史報告；舊驗證器可從 Git 提交 `f37cb4e` 取出並唯讀掛載至原工具路徑。累計二十六張原生擷取只證明列明原型範圍，視覺與正式載入閘門仍待確認。
