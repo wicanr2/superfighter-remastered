@@ -149,6 +149,11 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [主色盤原生操作](tools/primary_extra_smoke.py)、[獨立核對](tools/verify_primary_extra_native.py) | 鬼丸正常蓄力後武器的 HD／原貌切換、舊程式整格回退及恢復操作；不代表其他額外圖像全驗 |
+| [主色盤成對核心](tools/primary_extra_core_receipt.go)、[真實來源測試](internal/hd/primary_extra_test.go) | 觀測開關不改原版狀態、兩側及同角色盤來源與 CPU 遮罩／色號篡改拒絕 |
+| [主色盤原呼叫](tools/ida_primary_extra_evidence.py) | 由唯讀正式資料庫複本匯出兩側額外圖像的原始函式、位址、bytes 與引用，不覆寫命名 |
+| [主色盤額外圖像獨立核對](tools/verify_primary_extra.py) | 原始來源指標表、第一色盤、四次 blit／完整 RAM 重組及既有 HD 剪影；來源與額外圖像角色分開 |
+| [主色盤額外繪圖](docs/spec/043-primary-palette-extra-sprites.md)、[原始 blit 探針](tools/primary_extra_draw_receipt.go) | 鬼丸 path 38 額外圖像的來源指標、實際色盤及 CPU 寫入審查；未達 READY 不放寬分層／呈現 |
 | [金太極光效圖](assets/hd/characters/kim-effects.png)、[來源與精確提示詞](assets/hd/characters/kim-effects-source.json) | 十種第二色盤生成原圖與透明矩形；原始 bytes／色盤／原圖留本機 |
 | [金太極光效原生獨立核對](tools/verify_kim_effects.py) | 三類實際原生光效、完整 CPU／HUD／陰影／CRTC、第二色盤、可見替換及模式恢復；不外推十種 GPU 動畫全驗 |
 | [金太極原生光效](tools/kim_effects_smoke.py) | 正常鍵盤方向／拳腳觸發金黃彈、青藍刀光與拳影，驗同狀態切換／恢復及舊包回退；不使用快捷或狀態注入 |

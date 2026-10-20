@@ -35,7 +35,10 @@ func main() {
 	characterDir := flag.String("hd-characters", "/project/assets/hd/characters", "character pack")
 	baselineDir := flag.String("baseline", "", "optional old pack for same-frame selection comparison")
 	sequencePath := flag.String("sequence", "", "explicit experiment sequence JSON")
+	player := flag.Int("player", 0, "input player 0 or 1")
+	sameCharacter := flag.Bool("same-character", false, "normal same-character selection")
 	flag.Parse()
+	if *player < 0 || *player > 1 { panic("invalid input player") }
 	if *sequencePath == "" {
 		panic("sequence required")
 	}
@@ -96,7 +99,7 @@ func main() {
 	keys := map[string]bool{}
 	key := func(s *renderdata.Sprite) string {
 		bank := 0
-		if s.Effect {
+		if s.Effect && s.PaletteBase == uint8(0xd0+s.Player*0x20) {
 			bank = 1
 		}
 		src := s.SourceBank
@@ -141,13 +144,16 @@ func main() {
 		step(1_000_000)
 		must(c.Mouse(125, 181, false))
 		step(24_000_000)
-		for i := 0; i < character; i++ {
+		selected := [2]int{character, 4}
+		if *player == 1 { selected = [2]int{4, character} }
+		if *sameCharacter { selected = [2]int{character, character} }
+		for i := 0; i < selected[0]; i++ {
 			must(c.MenuKey("Right"))
 			step(1_000_000)
 		}
 		must(c.MenuKey("Return"))
 		step(20_000_000)
-		direction, count := "Right", 4-character
+		direction, count := "Right", selected[1]-selected[0]
 		if count < 0 {
 			direction, count = "Left", -count
 		}
@@ -157,7 +163,7 @@ func main() {
 		}
 		must(c.MenuKey("Return"))
 		step(75_000_000)
-		if c.Status().Fighters != [2]int{character, 4} {
+		if c.Status().Fighters != selected {
 			panic("normal selection mismatch")
 		}
 		for {
@@ -189,7 +195,7 @@ func main() {
 		for _, p := range phases {
 			var input []gamecore.Source
 			if len(p.Keys) > 0 {
-				input = []gamecore.Source{{Player: 0, Name: "keyboard", Keys: p.Keys}}
+				input = []gamecore.Source{{Player: *player, Name: "keyboard", Keys: p.Keys}}
 			}
 			must(c.SetInput(input))
 			end := c.Status().Frames + p.Frames
@@ -257,7 +263,7 @@ func main() {
 			sort.Strings(v)
 			return v
 		}
-		row := map[string]any{"character": character, "opponent": 4, "samples": samples, "trace": trace, "reasons": reasons, "observed_keys": list(observed), "missing_keys": list(missing), "training_modified": c.Status().Training.Modified, "final_steps": c.Status().Steps}
+		row := map[string]any{"character": character, "opponent": selected[1-*player], "player": *player, "selected": selected, "samples": samples, "trace": trace, "reasons": reasons, "observed_keys": list(observed), "missing_keys": list(missing), "training_modified": c.Status().Training.Modified, "final_steps": c.Status().Steps}
 		writeJSON(filepath.Join(dir, "receipt.json"), row)
 		delete(row, "trace")
 		cases = append(cases, row)

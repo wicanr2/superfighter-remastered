@@ -1,4 +1,4 @@
-"""獨立核對特殊動作普通輸入、第二色盤及完整 CPU 層，輸出私有原圖參考。"""
+"""獨立核對特殊動作普通輸入、實際色盤及完整 CPU 層，輸出私有原圖參考。"""
 import argparse
 from collections import Counter
 import hashlib
@@ -13,7 +13,8 @@ def sha(p):
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
 def key(s):
-    return f'{s["character"]}:{s.get("source_bank","normal")}:{int(s.get("effect",False))}:{s["slot"]}'
+    bank = int(s.get('effect', False) and s['palette_base'] == 0xd0 + s['player'] * 32)
+    return f'{s["character"]}:{s.get("source_bank","normal")}:{bank}:{s["slot"]}'
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
@@ -43,7 +44,9 @@ def main():
         character=row['character'];directory=root/f'character-{character:02d}'
         case=json.loads((directory/'receipt.json').read_text())
         assert {k:v for k,v in case.items() if k!='trace'}==row
-        assert case['opponent']==4 and not case['training_modified']
+        assert not case['training_modified']
+        selected=case.get('selected',[character,4])
+        assert case['opponent']==selected[1-case.get('player',0)]
         observed=set();missing=set();reasons=Counter();last_serial=last_steps=0
         trace=case['trace'];by_serial={}
         phase_names=[x['name'] for x in receipt['phases']]
@@ -58,7 +61,7 @@ def main():
             assert sorted(s['player'] for s in event['sprites'] if not s.get('effect'))==[0,1]
             absent=[]
             for s in event['sprites']:
-                assert s['character']==[character,4][s['player']] and s.get('source_bank','normal')=='normal'
+                assert s['character']==selected[s['player']] and s.get('source_bank','normal')=='normal'
                 data=sources[s['character']];seg,off=struct.unpack_from('<HH',data,0xb28+s['slot']*4)
                 at=0xc48+seg*16+off;width,height=data[at:at+2];end=at+2+(width+1)//2*height
                 assert width==s['width'] and height==s['height'] and end<=len(data)
@@ -89,10 +92,16 @@ def main():
                     geometry_mismatches.append({'character':character,'sample':stem,'sprite':s,'reason':str(exc)})
                     continue
                 if s.get('effect'):
-                    assert s['palette_base']==0xc0+s['player']*32+16
+                    bank = s['palette_base'] - (0xc0 + s['player']*32)
+                    assert bank in (0, 16)
                     data=sources[s['character']]
-                    expected_palette=[[v*4+v//16 for v in data[0xaf8+i*3:0xaf8+(i+1)*3]] for i in range(16)]
+                    palette_at = 0xac8 + bank*3
+                    if bank == 0 and s['player'] == 1 and selected[0] == selected[1]:
+                        path=a.original_root/'MAN.COL';assert sha(path)==source_files['MAN.COL']
+                        data=path.read_bytes();palette_at=s['character']*48
+                    expected_palette=[[v*4+v//16 for v in data[palette_at+i*3:palette_at+(i+1)*3]] for i in range(16)]
                     assert colors[s['palette_base']:s['palette_base']+16]==expected_palette
+                    proof['runtime_palette']=expected_palette
                     proof['capture']=str(directory.relative_to(root))+'/'+stem
                     effect_evidence.append(proof)
             assert combined==(directory/(stem+'.idx')).read_bytes()
@@ -108,7 +117,7 @@ def main():
         sheet=Image.new('RGBA',(columns*240,rows*320),(18,24,34,255));draw=ImageDraw.Draw(sheet)
         for ordinal,((character,slot),item)in enumerate(sorted(unique.items())):
             data=sources[character];at=item['source_file_offset'];width,height=data[at:at+2];stride=(width+1)//2
-            colours=[tuple(v*4+v//16 for v in data[0xaf8+i*3:0xaf8+(i+1)*3]) for i in range(16)]
+            colours=[tuple(v) for v in item['runtime_palette']]
             sprite_image=Image.new('RGBA',(width,height))
             for y in range(height):
                 for x in range(width):

@@ -27,7 +27,7 @@ catalog 的 107 筆素材及清單共 125,769,763 bytes，整個素材目錄 111
 | 項目 | 狀態 | 最近證據與限制 |
 |---|---|---|
 | 金太極特殊光效 | 042 限定 CONFORMED | 十個第二色盤鍵，現行 1495 鍵／68 PNG；352 格同格比較補齊 25 格缺件。Linux 三類光效與舊包各十一張，原來源、可見色系、切換／恢復及繼續操作通過。十份真實 fixture／拒絕、例行測試／vet 及四平台 45 份輸入通過並更新 bin；完整特殊技動畫另驗 |
-| 鬼丸蓄力後動作 | 原始快照缺口，未解 | special-onimaru-v2／v3 在 path 38 的 246,505,248 步空層、LayersComplete=false；後者保存失敗畫格及核心診斷。PK 的 path 36 已觀察維持 HD；缺口不能用補圖或放寬核對通過，需另追快照建立端 |
+| 鬼丸主色盤額外圖像 | 043 限定 CONFORMED | 原呼叫、兩側及同角原始來源通過；三組正式核心共 602 格全部 HD，559 成對邊界狀態／像素相同。Linux 新／舊程式各五張、切換／恢復與後續操作通過；沿用來源 35 既有美術。四平台 45 份輸入已更新，P1／同角 GPU 及完整動畫另驗 |
 | 十一景捲動與候選修稿 | 正常來源及私有比較完成，029 仍 DRAFT | 雙人普通左右行走，每景八份，共 88 格／176 角色 CPU 層；各景觀察相機 0／159 邊界。原檔、裁切、完整圖層、顯示尾列獨立重組通過。首稿與兩張修稿已作私有比較，石窟／舞廳底線仍需複核，街道字形待修。未接正式載入、不稱全 camera 或原生 HD 通過 |
 | 同角色替代配色 | 041 限定 CONFORMED | 十一人二十二格／四十四份 CPU 來源與 MAN.COL 載入端已證實；二十一份已登錄姿態可選，蜘蛛女行走仍缺稿回退。Linux 法蘭克新／舊操作與第二人首勝各七張、原貌切換及下一回合通過；HD 色彩轉移為近似。四平台四十五份輸入與 bin 已更新，素材及首版不變 |
 | 場邊雙向翻轉 | 040 限定 CONFORMED | 原 i64 確認 C0h 來源起點不同；四份正常 CPU 層逐點吻合。兩個新原生場邊投擲及舊程式對照各五張、切換與恢復後操作通過；舊 038／光效及 32 定位樣本不退步。素材保持，該切片四平台 44 份輸入；現行 bin 見 041。其他幾何及完整動畫不外推 |
@@ -69,7 +69,7 @@ catalog 的 107 筆素材及清單共 125,769,763 bytes，整個素材目錄 111
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | 開發版與已發布首版分開 | kim-effects-build-v1 四份 v.0.1.1 二進位核對 45 份編譯輸入並移入 bin；038 保存在 character-geometry-build-v1，嵐版保存在 lan-victory-build-v1，035 首版保存在 keyboard-release-build-v1。已發布 v.0.1.0 的八個封包／影片／tag 不變；本輪未建立新 Release，未作 Windows／macOS 真機或簽章 |
+| 平台與發布 | 開發版與已發布首版分開 | primary-extra-build-v1 四份 v.0.1.1 二進位核對 45 份編譯輸入並移入 bin；042 保存在 kim-effects-build-v1，038 保存在 character-geometry-build-v1，嵐版保存在 lan-victory-build-v1，035 首版保存在 keyboard-release-build-v1。已發布 v.0.1.0 的八個封包／影片／tag 不變；本輪未建立新 Release，未作 Windows／macOS 真機或簽章 |
 
 ## 固定輸入
 
@@ -143,7 +143,8 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 - [042](docs/spec/042-kim-effects.md)限定 CONFORMED。`special-kim-v1`／`v2` 保存原檔／CPU 審查、352 格同格新舊選擇及十種第二色盤來源；新包補齊 25 格回退。`kim-effects-art-v1` 保存原 PNG、精確提示詞、透明登錄及 READY 審查快照。
 - `kim-effects-native-full-v1`／`old-v2` 各十一張，原生金黃彈、青藍刀光及拳影、原貌切換／恢復、舊包原貌及繼續操作通過。實際抽測三類，不外推十種 GPU 動畫全驗。`kim-effects-build-v1` 保存真實 fixture、例行測試／vet、四平台編譯與八檔晉升；Linux SHA 為 `a6caf28092c1b499d794edbebaae1c44e370eb8d395c1d24c3bd8541ee3756c4`。
-- `special-onimaru-v3/failure.json` 及 character-05/sample-18 保存空層診斷，path 38、序號 221、原 frame 步數 246,505,248，背景／兩人狀態仍存在，原因未知。先查 layers 快照建立端及原呼叫；不盲目重跑相同序列或用新圖放行。
+- [043](docs/spec/043-primary-palette-extra-sprites.md)已補證鬼丸來源 35 使用主色盤，原先「特效色盤未對應」拒絕，第二人另缺 4523h 返回。`special-onimaru-v3` 失敗保存；`v4` 第一人 200 格及 `primary-extra-core-p2-v1`／`duplicate-v1` 各 201 格完整通過。三組原始 Oracle、IDA、559 成對核心邊界與 Linux 新／舊各五張均已核對，原始及完整收據只留本機。
+- `primary-extra-build-v1` 為現行四平台／45 份輸入與 bin，Linux SHA `47ff4670d1b726f7ee94cc47be6c30ce3bbd6cb9fd6f3e64c0725cf47f657ad9`。素材 1495 鍵／68 圖集不變；P1／同角 GPU、其餘來源與完整動畫另驗。
 
 ### 背景捲動及修稿
 

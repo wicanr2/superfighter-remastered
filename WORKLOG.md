@@ -793,3 +793,12 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 原 READY spec 已存 kim-effects-art-v1/042-ready.md，prepare_kim_effects.py 原始碼及審查 SHA 一同保留。重生舊 READY 審查時，Docker 將該已驗檔唯讀覆蓋 /project/docs/spec/042-kim-effects.md，執行 `python tools/prepare_kim_effects.py --base workplace/hd-characters-phoenix-effects-v1 --output workplace/<新的輸出目錄>`；不把目前 CONFORMED 的文件雜湊或新包冒充當時輸入。
 - kim-effects-build-v1/final-audit.json 通過：原 1485 鍵／67 PNG、104 筆未變 payload、128 原檔、1719 執行器來源、正式 i64、首版八包及影片均保持；只更新角色 manifest 並加入新圖／來源。現行 1495 鍵／68 圖集、97 PNG／107 payload、147 個 README 相對連結及四平台 45 份輸入核對。22 張新原生畫格、25 格同格改善、READY 快照及來源 SHA 可回查；沒有 root-owned 檔、誤建 Markdown 目錄或專案殘留容器，git diff --check 通過。
 - 實作、圖集／提示詞與正常 HD 截圖提交 f7c5ce2ffebe5730ae575fd505ea66ced51e5aa1，成功推送 origin/main 並由 ls-remote 核對。首版 tag 仍是 807579d01c145db327050c2e870e2bf46e6bcb68；本筆只追加推送紀錄。
+
+## 2026-10-21：鬼丸額外武器分層與 HD
+
+- 根因為主色盤額外圖像遭既有 D0h／F0h 限制拒絕，第二人另缺 4523h 返回。先以正常原版兩側／同角各 200 格、404 次 blit 及 IDA 9.4 原呼叫審查，保存 READY 全文及雜湊後才實作 043。
+- 分層只接受已驗主色盤返回點及對應玩家 RAM 指標；HD 依實際色盤選 bank，主色盤額外圖像再核對 CPU 覆蓋／色號。同角替代色沿 041；既有美術、原版規則、輸入及存檔保持。
+- 三組正式 Core 共 602 格全部完整且選到 HD，559 個觀測關／開成對邊界的原版狀態及像素一致。Linux 新／舊程式各五張完整核對切換／恢復與繼續操作；新版來源 35 武器維持 HD，舊版安全原貌。README 已加入實際 HD 截圖及來源。
+- Go 例行測試／vet、三組真實來源／拒絕及金太極第二色盤／同角回歸通過，真實 fixture 組 22.583 秒。四平台四十五份編譯輸入及檔頭通過；primary-extra-build-v1 保存八個編譯產物／收據及 promotion.json，移入 bin。Linux SHA 47ff4670d1b726f7ee94cc47be6c30ce3bbd6cb9fd6f3e64c0725cf47f657ad9，版本仍為未發行 v.0.1.1-20261020。042 基底及已發布首版八包／影片／tag 不覆寫。
+- 驗證條件及診斷腳本失敗、原因與乾淨重跑見 RESEARCH-LOG 的 043 紀錄。第二人及同角只驗原執行／Select；完整動畫、蜘蛛女其餘動作、背景、音訊及實體手把另續。029 格式仍等原問題回覆，不自行決定。
+- 收尾核對與 Git 推送結果另追加；所有正式來源及原始資料唯讀，容器使用有界 --rm／UID 1000。

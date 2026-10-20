@@ -164,6 +164,19 @@
       "character_manifest_sha256": "26e83f78aa42b6e02ef61884183da7a5a1e9402af42731aeb672f1f871e0dcdb",
       "authorization": "使用者要求 HD 素材上傳及 GitHub 可見的 README 截圖",
       "limits": "三類正常原生光效、切換及恢復；十個來源另經 fixture 驗證，不稱全部 GPU 動畫或快捷已啟用"
+    },
+    {
+      "kind": "鬼丸正常蓄力後的主色盤額外武器，原生 HD 整合；原貌與 raw 留本機",
+      "file": "onimaru-primary-weapon-hd.png",
+      "source": "workplace/primary-extra-native-full-v2/primary-weapon-hd.png",
+      "sha256": "368c01756c00ea5ab16efcf1e6ce2efb0d9fad6b49c750200ddb437a91a4f9a9",
+      "platform": "Linux amd64，Docker Xvfb；非其他平台或實體手把驗收",
+      "receipt_sha256": "b4091c0374b9de56fdaa45f1eec74e4f12696b165299c5e771cae7f566dd71c8",
+      "comparison_sha256": "1e006ba31695a7f97d8c3c00710448f15698c60d4bb713668b73568c76df7b83",
+      "binary_sha256": "47ff4670d1b726f7ee94cc47be6c30ce3bbd6cb9fd6f3e64c0725cf47f657ad9",
+      "character_manifest_sha256": "26e83f78aa42b6e02ef61884183da7a5a1e9402af42731aeb672f1f871e0dcdb",
+      "authorization": "使用者要求 HD 上傳及 GitHub 可見的 README 整合截圖",
+      "limits": "第一人鬼丸普通後蓄／前拳路徑；兩側及同角原始來源另驗，完整動畫另續"
     }
   ],
   "version": "v.0.1.0-20261020",

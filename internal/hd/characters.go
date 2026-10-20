@@ -251,7 +251,10 @@ func (a *Characters) Select(layers []renderdata.Layer, palette [256][3]uint8) ([
 		}
 		bank := 0
 		if s.Effect {
-			bank = 1
+			// 額外圖像可能使用主色盤，仍由實際色號區塊決定來源鍵。
+			if s.PaletteBase == uint8(0xd0+s.Player*0x20) {
+				bank = 1
+			}
 			if s.Flags&192 != 0 && s.Flags&192 != 64 || s.LeftClip != 0 || s.RightClip != 0 || s.TopClip != 0 {
 				return nil, "此特效翻轉或裁切保留原貌"
 			}
@@ -270,13 +273,13 @@ func (a *Characters) Select(layers []renderdata.Layer, palette [256][3]uint8) ([
 		if s.PaletteBase != uint8(0xc0+s.Player*0x20+bank*16) {
 			return nil, "此色盤保留原貌"
 		}
-		if !s.Effect && (s.Flags&192 == 192 || s.TopClip != 0) && !spriteGeometryMatches(s, art.packed, layer) {
+		if (s.Effect && bank == 0 || !s.Effect && (s.Flags&192 == 192 || s.TopClip != 0)) && !spriteGeometryMatches(s, art.packed, layer) {
 			return nil, "翻轉或裁切未吻合原版圖層，保留原貌"
 		}
 		if !matchesCharacterPalette(palette, s.PaletteBase, a.palettes[[2]int{s.Character, bank}]) {
 			alternate, known := a.alternatePalettes[s.Character]
 			alternateArt := a.alternatePoses[key]
-			if s.Effect || s.Player != 1 || !sameCharacter || !known || alternateArt == nil ||
+			if bank != 0 || s.Player != 1 || !sameCharacter || !known || alternateArt == nil ||
 				!matchesCharacterPalette(palette, s.PaletteBase, alternate) {
 				return nil, "角色色盤轉場，保留原貌"
 			}

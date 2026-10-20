@@ -589,3 +589,14 @@ special-kim-v1 由正常選角 7／4、明示四組方向／拳腳序列取得 3
 special-kim-v2 對同一畫格比較新／舊選擇，327→352，25 格缺件消除，無回退退步。Linux 新／舊包三類光效及各自模式切換的結果見 042 與 comparison.json；兩次實機流程不是跨案例同狀態。old-v1 沒觸發第一招，不據此稱舊包有問題；old-v2 等待原版讀到按鍵值再計輪詢，正常三類回退通過。首版其他角色快捷限制保持。
 
 鬼丸正常 PK 進 path 36、114 格選擇成功，未觀察 Effect。加入後蓄／前拳後，special-onimaru-v2／v3 在 path 38 的原 frame 246,505,248 步／序號 221 出現空層，背景與兩個 actor 描述仍存在，LayersComplete=false。v3/failure.json 及 character-05/sample-18 保存原始診斷。尚未知是合法動作的繪圖分支或觀測缺口，不能憑缺少主角色層猜原因，更不能以補圖／移除完整性核對放行；下一個窄任務是追 layers 快照建立端。
+
+## 2026-10-21：043 鬼丸主色盤額外圖像
+
+- 已證實：原先 special-onimaru-v3/sample-18 的空層原因是「特效色盤未對應」，並非缺少美術。原檔 SFMAN06.DAT SHA f398370820cfebbce670433130fd3718651ed4943259604fb55c851fa3906cbb；來源 35、原檔偏移 83706、17×66、packed SHA ced0a80c16760634f865d7879786a00ad2a5e4d5fb1790f5c610c15b596d99d4。
+- 已證實：三組正常獨立 Oracle 分別為 5／4、4／5、5／5，每組 200 格、404 次 blit、四次額外圖像，來源表／CPU 色號與覆蓋、完整 RAM 重組均吻合。普通使用 DAT AC8h 主色盤 C0h／E0h，同角第二人使用 MAN.COL 角色 5 區塊。三份 source-review.json 保存在 primary-extra-oracle-v2、primary-extra-p2-oracle-v1、primary-extra-duplicate-oracle-v1。
+- 已證實：IDA 9.4 原始函式 sub_142C0 的 IDA MZ linear 14351h..14358h 由 2F04h 的 10h 位元加 C0h，來源表 1706h／1708h 加 132Ah；sub_14461 的 144F2h..144F9h 對應 2F0Ah、E0h、1826h／1828h 加 132Ch。14390h bytes E85503 呼叫 sub_146E8；14520h bytes E84201 呼叫 sub_14665。runtime 返回為 01B9:4393／4523，與 IDA linear 分開記錄，不作檔案偏移。原名及 bytes 未改。正式 i64 SHA 5a122f625e659633f1e29ea1cb024fb4b1c31405031bf90d92dfe115ac00e2ca 保持，查詢複本與輸出在 primary-extra-research-v1。
+- 工具：Go 1.24.13、dosgolem 固定 manifest d79cc85bc1ce29dbe54c19e7857a9ac07b2e3a1754fb342632ead9e36e619fc3、IDA 9.4／292 函式。正式實作前的 READY 全文及來源／舊程式雜湊保存於 043-ready.md、review.json。
+- 正式驗收：special-onimaru-v4 200 格、primary-extra-core-p2-v1／duplicate-v1 各 201 格全部完整且選到 HD；獨立 CPU 來源／色盤核對通過。primary-extra-core-paired-v2 的 559 個相同步數邊界，原版狀態／像素／尾列／角色／色盤相同，實際含來源 35 四格。Display 兩側共用，其餘觀測關／開，沒有固定或宣稱亂數機制 parity。
+- Linux 新／舊程式各五張由原檔、HUD／陰影／CRTC 重新核對，模式切換／恢復與繼續操作通過。新版額外圖像改變 3,654 個可見像素，保留橘色手杖與握持部分；舊程式整格原貌。原始對照留本機，README 僅加入實際 HD。真實 fixture 的來源、位置、覆蓋與色盤篡改拒絕，以及既有金太極十種第二色盤與同角來源通過。
+- 勘誤：先前原探針預期第二人返回 45AFh，實際為 4523h，核對腳本已按原始寄存器及 IDA 修正，失敗版本保留。IDA 首次漏掛 /orig 為環境失敗，補唯讀掛載並從正式 DB 重新複製後通過。成對 v1 比較未啟用 Display 的空尾列與已啟用資料，屬驗證條件錯誤，v2 共用 Display 後乾淨通過。原生 v1 對舊版空 layers 的診斷及核對器假設 frame.json 必有，均按實際 capture 契約修正；v2 兩程式乾淨重跑，舊版資料以同次 observe／capture 的序號及步數核對，不偽造完整層。
+- 停止線：043 限定 CONFORMED。第二人／同角原生 GPU、其餘額外圖像與完整動畫仍未驗，不新增快捷；HD 同角配色仍為 041 的近似。素材不變，原版、執行器、正式 DB、首版八包及本機影片均保留。

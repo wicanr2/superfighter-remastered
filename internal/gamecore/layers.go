@@ -52,7 +52,7 @@ func (c *Core) EnableLayers() {
 			r.layers = append(r.layers, newRaster())
 		})
 	}
-	for _, ip := range []uint16{0x4393, 0x45af, 0x4618} {
+	for _, ip := range []uint16{0x4393, 0x4523, 0x45af, 0x4618} {
 		c.o.OnCall(oracle.Far(0x1b9, ip), func(o *oracle.Oracle) {
 			r := &c.recording
 			if !r.effects || r.effectReturn == 0 || r.effectReturn != o.IP().Off || o.SP() != r.effectSP+2 {
@@ -129,7 +129,7 @@ func (c *Core) beginSprite(o *oracle.Oracle) {
 		p = 1
 	}
 	if p < 0 {
-		if r.effects && (ret == 0x4393 || ret == 0x45af || ret == 0x4618) {
+		if r.effects && (ret == 0x4393 || ret == 0x4523 || ret == 0x45af || ret == 0x4618) {
 			c.beginEffect(o)
 		}
 		return
@@ -216,10 +216,10 @@ func (c *Core) beginEffect(o *oracle.Oracle) {
 	}
 	palette := uint8(o.DX() >> 8)
 	player := -1
-	if palette == 0xd0 {
+	if palette == 0xd0 || palette == 0xc0 && o.StackWord(0) == 0x4393 {
 		player = 0
 	}
-	if palette == 0xf0 {
+	if palette == 0xf0 || palette == 0xe0 && o.StackWord(0) == 0x4523 {
 		player = 1
 	}
 	if player < 0 {

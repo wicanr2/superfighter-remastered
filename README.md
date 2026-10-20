@@ -50,6 +50,10 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 ## 目前整合畫面
 
+![鬼丸蓄力出招的 HD 武器與角色](docs/screenshots/onimaru-primary-weapon-hd.png)
+
+Linux 開發版以普通後蓄／前拳觸發鬼丸的額外武器。已核對原版主色盤、來源與圖層，原貌切換、恢復及繼續操作通過。沿用既有美術，未擴大快捷出招範圍。[接入範圍](docs/spec/043-primary-palette-extra-sprites.md)。
+
 ![金太極正常方向／拳腳觸發的青藍 HD 刀光](docs/screenshots/kim-effects-hd.png)
 
 Linux 開發版以普通鍵盤輸入驗金黃光彈、青藍刀光與拳影三類效果。十個第二色盤來源已補圖；原貌切換、恢復與舊包整格回退已核對，全部動畫與快捷出招仍另驗。[來源與範圍](docs/spec/042-kim-effects.md)。
