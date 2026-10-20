@@ -383,3 +383,4 @@
 - 完整 internal／cmd 測試及 go vet、後續真實 HUD 姓名／尺寸與未知拒絕測試通過。四個候選 ELF／PE／兩種 Mach-O 的 35 份精確編譯輸入通過，沿用既有工具映像，不改共用 dosgolem。原封移入 bin 的記錄為 kim-build-v1/promotion.json，舊嵐四份在 lan-build-v1/bin。
 - 024 升限定 CONFORMED。README 加入金太極目前畫面、跳躍與同狀態切換，範例改用 805 鍵／48 PNG 群組。八名可選角色一般來源共 576 槽、463 組不同 bytes；登錄齊全不當作完整動畫或全遊戲完成。
 - 三個乾淨 GUI 案例、診斷、建置與測試均已結束；沒有重啟舊首勝工作。完整 HD、WIN／替代色盤／快捷與完整動畫、其餘角色／場景／畫面、實體平台／雙手把、音訊／速度及正式封包仍待完成，Goal 保持 active。原版、衍生美術、研究收據及二進位仍排除 Git，遠端未建立或推送。
+- 隔離接入 commit 1096a38，1aac2b2 合入進度分支。自有來源備份使用 workplace/github-kim-integration-progress.bundle，逐檔、原始資料、執行器、編譯來源與本機連結稽核記錄為 github-kim-integration-progress-source.json。現行 main 穩定基底不移動，本輪專案容器均已移除。
