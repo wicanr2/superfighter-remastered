@@ -958,3 +958,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - full-v2 與 fallback-v2 各十張，正常鍵鼠完成兩回合零血 KO、結果 HD／原貌／恢復與 Return 返回；fallback 未載候選。verify_result_native.py 通過六份完整原結果、兩份 GPU 候選／鏡像及兩組核心／呈現／設定／指派不變，原貌／回退逐點相同，恢復視區像素完全相同；返回清空結果覆繪。Pillow 只辨識身分，不當 GPU 逐點 oracle。
 - 新原生結果截圖已目視並放 README，分類清楚標為隔離原型。視區全為新不透明報紙、生成肖像、向量旗幟與專案字型；原貌圖／參照／色盤只留本機。素材仍為 130 PNG／147 catalog／151 檔、190,895,498 payload bytes。只有 Linux 一組雙打、第 0 結果與兩面旗幟通過，其他角色／模式／結果／旗幟／平台及視覺／正式載入仍待完成；048 DRAFT，不新增 Release。最終稽核、容器清理及推送另記。
 - result-native-prototype-v1/final-audit.json 通過：二十張正常原生擷取、六份完整原結果與兩份 GPU 身分／鏡像、切換／恢復及返回清除；參照 JSON 全組重新對原檔，25 項美術及 85 份隔離來源核對。212 個 README 相對連結與工具索引通過；128 原檔、1719 執行器來源、正式 i64、所有素材、正式 46 份輸入、四平台程式、首版封包及原曲影片保持。UID／誤建目錄通過，無原圖／原參照／raw 入 Git，本輪專案容器已清空。
+- 隔離原生結果與正常操作驗證提交 `9522381b5444ee305577be290a9031851769ad80` 已推送 origin/main，遠端完整提交核對相同；首版 tag 維持 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段只記錄推送結果，048 保持 DRAFT，不新增 Release。
