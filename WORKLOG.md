@@ -778,3 +778,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 檢視十一景全景與右端、火車左端及石窟／舞廳修稿，發現底線偏高與街道字形差異。依 imagegen 技能使用內建工具，各產生一張 B 畫風修稿；改善但尚未定版，不用調參數或 Python 扭圖當作忠實度通過。兩份原 PNG、原來源／父稿 SHA 與精確提示詞由 import_background_revisions.py 收錄，舊 PNG 全部保持。
 - 素材目前 96 PNG／105 筆 payload／125,079,293 bytes，目錄 109 檔；角色包仍 1485 鍵／67 圖集。原圖／色盤、原版前景比較及 raw 收據只留 workplace。README 只更新穩定候選入口，029 仍 DRAFT。四平台 041 程式、VERSION 及首版八包／影片／tag 均不改。
 - background-scroll-preview-v2/final-audit.json 通過：102 筆原 payload 逐筆保持，新增兩張 PNG 及一份來源 JSON；128 原檔、1719 執行器檔、正式 i64、四平台 45 份實際編譯輸入及已發布八包／影片均吻合。88 格／176 角色來源與兩輪比較逐檔 SHA 可回查，141 個 README 相對連結可由 Git 清單找到。沒有 root-owned 檔或 Markdown 目錄，專案 Docker 容器為空；Git diff --check 通過。第一輪 verifier 原始碼已按其既有 SHA 保存，沒有以新版工具冒充舊收據。
+- 來源工具、兩張修稿、精確提示詞及文件已提交 a3a4cd8ce66ae2201b2733902cf0818d908105e7 並成功推送 origin/main，ls-remote 核對一致；首版 tag 仍為 807579d01c145db327050c2e870e2bf46e6bcb68。本筆只追加推送紀錄。
