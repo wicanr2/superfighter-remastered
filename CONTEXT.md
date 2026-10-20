@@ -122,6 +122,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ### 練習模式
 
+- 功能提交 `38088ee6b420f43caeea64c1b146d22ceb59d868` 已推送 `origin/main` 並由 `ls-remote` 核對；程式、規格與 README 圖片均已包含。收尾提交只補交接紀錄。
 - [規格 032](docs/spec/032-training-mode.md)限定 CONFORMED。使用者確認補滿並鎖滿血；工具列、F9 與 `-training` 共用請求，在可操作回合邊界啟用。關閉不倒帶回血；曾介入的執行保留 modified。
 - `training-evidence-review-v1.json` 綁定 IDA 與同狀態差異探針；`training-core-v3.json`、`training-checks-v3.log` 及 `training-checks-v3.json` 保存核心、七個拒絕邊界、全套程式測試及 vet。舊 HD 外部 fixture 未另供給；訓練 HUD 由原檔獨立重組。
 - `training-native-single-v1` 七項、`training-native-v4` 及 `training-wine-v2` 各八項通過。README 的 [training-hd.png](docs/screenshots/training-hd.png)為 Linux 普通雙打入口、練習中暫停的 HD 擷取；原貌單打及所有原始 sidecar 留本機。

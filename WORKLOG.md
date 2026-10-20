@@ -512,3 +512,4 @@
 - README 新增實際 HD 練習截圖 `docs/screenshots/training-hd.png`，SHA-256 `a0caf30e4014c6f2ab85870993e4de7e42394c659e89680ca9d4464090ae790d`。視覺檢查確認工具列、生命、99 計時與底列標記可讀；來源、二進位、素材及收據雜湊追加於 source.json。所有 60 個 README 相對連結及五張圖片均由 Git 追蹤清單核對通過，沒有 workplace 圖片嵌入。
 - 四平台各自編譯並核對 38 份實際來源、ELF／PE／兩種 Mach-O 與雜湊，八份二進位／編譯收據原封移入 bin，見 `training-build-v1/promotion.json`。鬼丸前版保留於 `onimaru-victory-build-v1/bin`，歷史收據不覆寫。沒有建立 Release、tag 或正式封包。
 - `training-integration-audit-v1.json` 通過：128 原檔、1719 執行器來源、64 生成 PNG 皆未變；264 個 Git 追蹤檔、67 PNG、38 編譯來源、三組原生收據、截圖及設定範圍皆核對。沒有 root-owned 檔案或誤建 .md 目錄。本輪 kdzz-training 容器全部結束並移除，未建立新映像，其他專案資源不動。來源與練習功能準備提交；推送結果另記。
+- 功能提交 `38088ee6b420f43caeea64c1b146d22ceb59d868` 已成功推送 `origin/main`，`ls-remote` 核對相同完整提交。新增程式、規格、測試、README 練習截圖及來源紀錄皆已在遠端；原版、私有執行器、研究收據及中間二進位沒有推送。這次只追加提交結果，沒有修改已通過的程式或素材。
