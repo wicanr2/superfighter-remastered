@@ -882,3 +882,13 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 新原 PNG 與精確提示詞收錄 assets/hd/candidates，catalog 增為 106 PNG／119 筆／123 檔、135,498,255 payload bytes，舊 117 筆、1516 鍵／74 圖集保持。README／素材索引／029／現況表已更新；另修素材索引把標題誤稱尚無原生候選的舊敘述。正式 bin、首版八包與影片保持，收尾稽核與推送另記。
 - street-revision-v1/final-audit.json 通過：八份新比較、十六個原角色層、相機 0／159、生成原 bytes、精確提示詞與舊 117 筆素材保持。175 個 README 相對連結與新檔索引通過；128 原檔、1719 執行器來源、正式 i64、46 份編譯輸入、四平台程式、首版八包及原曲影片不變。未公開原版、raw 或比較圖；UID／誤建目錄通過，本專案容器已清空。
 - 修稿與工具提交 `17e43385f7125fb4f95de7fae66c72075fbd809f` 已推送 origin/main，遠端完整提交核對相同；首版 tag 仍為 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段為文件收尾，029 仍 DRAFT，不新增 Release。
+
+## 2026-10-21：047 十一人選角肖像候選
+
+- 上輪街道修稿已推送，屬於進展。本輪回到尚無 HD 美術的選角肖像，沿 025 已驗原消費端與 B 畫風，不重開來源函式考古。047 為 DRAFT，沒有更動正式選角、按鈕／導航、資料格式、角色動作或原版規則。
+- export_selection_portraits.py 核對 BIGFIG.XBB SHA 4897b865c3fef8fd1c788ec5e32226de7086dbd8ff1987a5efc62ea15bd29477、十一筆 21F1h 與每筆 300h 起的 89×89 色號，輸出原圖只在 selection-portraits-v1。原定位及正常兩側證據沿 025，不把靜態匯出當作新增正常玩家路徑。
+- 內建 imagegen 逐一產出十一張 1254×1254、不透明肖像原 PNG。各自原肖像控制身分、顏色與裁切，斬的新稿僅作筆觸參照。全部已與原圖並列目視，主要辨識特徵可對應，但鬍鬚／瀏海／面部彩繪／頭飾及五官比例仍是近似，不宣稱臉部完全忠實。蜘蛛女這次只有臉、髮與頸，不代替仍缺的戰鬥動作。
+- import_selection_portraits.py 保存原 bytes、十一份完整提示詞、原來源偏移／色號與色盤 hash，並作純 HD 候選接觸圖。原圖／HD 並列只留本機，公開預覽明列非正式 UI；模型版本未由工具公開，不自行填寫。沒有重編碼生成原 PNG，舊 119 筆素材保持。
+- verify_selection_portraits.py 直接從原 bytes 重建十一份 RGB，原參考、角色順序／偏移、候選 PNG、1254×1254／不透明及 catalog／預覽來源核對通過。首版驗證器在 convert 後才呼叫 Pillow verify，觸發檔案生命週期錯誤；改為重新開檔先 verify，乾淨重跑通過，不列產品缺陷。
+- 素材現為 117 PNG／131 筆 catalog／135 檔、161,069,925 payload bytes；正式 1516 鍵／74 圖集及 bin 保持。README、素材索引、047、CONTEXT／WORKLIST 已更新。標題定版與背景格式原問題仍待回答，本候選不代答、不擴張首版。最終原始資料／素材／交付／連結與 Docker 衛生稽核、推送另記。
+- selection-portrait-import-v1/final-audit.json 通過：十一張 1254×1254 與內建工具原輸出逐檔相同，十一份原 RGB、角色順序／偏移、純 HD 預覽來源及舊 119 筆素材保持。183 個 README 相對連結、047 與新檔索引通過。128 原檔、1719 執行器來源、正式 i64、46 份編譯輸入、四平台程式、首版八包與原曲影片不變。無原版／原色盤／原圖比較或 raw 入 Git，UID／誤建目錄通過，本專案容器已清空。

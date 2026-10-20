@@ -268,6 +268,18 @@
       "platform": "Linux amd64 copied module in Docker Xvfb",
       "authorization": "user requested HD upload and GitHub-visible README screenshots",
       "limits": "DRAFT material source-mask hypothesis; formal program, asset schema, packages and release unchanged; no original-mode image or raw receipt included"
+    },
+    {
+      "kind": "HD art contact sheet, not native capture or original-mode art",
+      "file": "selection-portrait-candidates.png",
+      "sha256": "9aacdd20a3fe8fa18b41a14befb52d1e4e23d981a340d939f7d2a81d13bbde5e",
+      "source": "assets/hd/candidates/selection-portraits-source.json",
+      "source_sha256": "991062cb63228d03458208da002a205487544d99753756f1e1eb41a2216517a3",
+      "renderer": "tools/import_selection_portraits.py",
+      "renderer_sha256": "65b90bf7a9f063ab41f1f49f6028832ad121e6e3410f27c77e8ecd29debfa3a9",
+      "platform": "Pillow 11.3.0 in Docker; not runtime or platform acceptance",
+      "authorization": "user requested HD upload and GitHub-visible pictures",
+      "limits": "candidate art only, no original images or palette; not formal selection UI or integration"
     }
   ]
 }

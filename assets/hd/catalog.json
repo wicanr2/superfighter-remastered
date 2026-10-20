@@ -13,7 +13,7 @@
     "sources": 21,
     "complete_HD": false
   },
-  "pngs": 106,
+  "pngs": 117,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -1447,6 +1447,166 @@
       "sha256": "98cdb41aad76e5427f63eefb75c19151c296d6dfaaa794e2fc60fc117b372381",
       "bytes": 2981,
       "status": "candidate-revision-provenance"
+    },
+    {
+      "file": "candidates/selection-jaan-v1.png",
+      "sha256": "0b508cbf83e5769769e908de77bfeb24a54d307e1d2dece4c19b771e4623bb1d",
+      "bytes": 2298227,
+      "size": [
+        1254,
+        1254
+      ],
+      "status": "candidate-selection-portrait-not-integrated",
+      "tool": "built-in imagegen",
+      "source_file": "BIGFIG.XBB",
+      "character": "jaan",
+      "generated_source": "exec-b2bd6b1a-e2db-48ed-bf26-27f99c2511e0.png"
+    },
+    {
+      "file": "candidates/selection-sarkov-v1.png",
+      "sha256": "5ec97036c9e6e1239ec90cf01479782994941ad867d68b8a46bbfa31e6fdd918",
+      "bytes": 2284697,
+      "size": [
+        1254,
+        1254
+      ],
+      "status": "candidate-selection-portrait-not-integrated",
+      "tool": "built-in imagegen",
+      "source_file": "BIGFIG.XBB",
+      "character": "sarkov",
+      "generated_source": "exec-8c7839bf-b814-4257-ad93-5dc6ffda391d.png"
+    },
+    {
+      "file": "candidates/selection-bullet-v1.png",
+      "sha256": "7f48fcb0a3b762588494e7d8a6a7dff6710d4c3bd350e733d4e0ee4d58167146",
+      "bytes": 2378113,
+      "size": [
+        1254,
+        1254
+      ],
+      "status": "candidate-selection-portrait-not-integrated",
+      "tool": "built-in imagegen",
+      "source_file": "BIGFIG.XBB",
+      "character": "bullet",
+      "generated_source": "exec-1ff45e60-e87f-45c7-9cbc-d32f51df78c7.png"
+    },
+    {
+      "file": "candidates/selection-phoenix-v1.png",
+      "sha256": "ec21503287006099c45774c8643dddc1888bd8dd24e786ff6389ca26ee3348bd",
+      "bytes": 2368376,
+      "size": [
+        1254,
+        1254
+      ],
+      "status": "candidate-selection-portrait-not-integrated",
+      "tool": "built-in imagegen",
+      "source_file": "BIGFIG.XBB",
+      "character": "phoenix",
+      "generated_source": "exec-6e6882a0-f384-4cc1-9512-93b2620ac0ac.png"
+    },
+    {
+      "file": "candidates/selection-frank-v1.png",
+      "sha256": "367929c844d8fb85ce4756d59af5c5927a5a732c94ebafb6d335729dbb67f920",
+      "bytes": 2639682,
+      "size": [
+        1254,
+        1254
+      ],
+      "status": "candidate-selection-portrait-not-integrated",
+      "tool": "built-in imagegen",
+      "source_file": "BIGFIG.XBB",
+      "character": "frank",
+      "generated_source": "exec-69c2add0-3390-4e1b-b51e-5e3fa4dd44de.png"
+    },
+    {
+      "file": "candidates/selection-onimaru-v1.png",
+      "sha256": "ab002d06e6afade7ce103b6599e85268edac2712fd3a911796aa5a4d8f419326",
+      "bytes": 2379966,
+      "size": [
+        1254,
+        1254
+      ],
+      "status": "candidate-selection-portrait-not-integrated",
+      "tool": "built-in imagegen",
+      "source_file": "BIGFIG.XBB",
+      "character": "onimaru",
+      "generated_source": "exec-b09df757-061c-498c-ad39-243d7e23d645.png"
+    },
+    {
+      "file": "candidates/selection-lan-v1.png",
+      "sha256": "4e47fc128073607b0681adc7451867b0fd0f91fcc3aa875e6a86e3fccd9a08c4",
+      "bytes": 2248975,
+      "size": [
+        1254,
+        1254
+      ],
+      "status": "candidate-selection-portrait-not-integrated",
+      "tool": "built-in imagegen",
+      "source_file": "BIGFIG.XBB",
+      "character": "lan",
+      "generated_source": "exec-c934c47f-b2f5-4d05-920f-55bd3a3b6177.png"
+    },
+    {
+      "file": "candidates/selection-kim-v1.png",
+      "sha256": "48918b8af81f9362bef3f1c9ba1c989412fedf9f3bc2a92daab1a781839b4784",
+      "bytes": 2288106,
+      "size": [
+        1254,
+        1254
+      ],
+      "status": "candidate-selection-portrait-not-integrated",
+      "tool": "built-in imagegen",
+      "source_file": "BIGFIG.XBB",
+      "character": "kim",
+      "generated_source": "exec-b657510b-b157-4b93-a599-287f45752d20.png"
+    },
+    {
+      "file": "candidates/selection-spider-v1.png",
+      "sha256": "9e2a4a67c07bc2f708a4f3cd00bcf3962ab0aa99951d8f17936b5ed3aed6b986",
+      "bytes": 2098426,
+      "size": [
+        1254,
+        1254
+      ],
+      "status": "candidate-selection-portrait-not-integrated",
+      "tool": "built-in imagegen",
+      "source_file": "BIGFIG.XBB",
+      "character": "spider",
+      "generated_source": "exec-8936256f-31ae-484d-a7c1-880cba8a7d93.png"
+    },
+    {
+      "file": "candidates/selection-clown-v1.png",
+      "sha256": "c3445d5bbb2bdf186ac61af7d02bc474dbc38025de048c8aa2f792db18301fdb",
+      "bytes": 2183549,
+      "size": [
+        1254,
+        1254
+      ],
+      "status": "candidate-selection-portrait-not-integrated",
+      "tool": "built-in imagegen",
+      "source_file": "BIGFIG.XBB",
+      "character": "clown",
+      "generated_source": "exec-22cc40aa-988b-46b9-86c9-28cadbd446c5.png"
+    },
+    {
+      "file": "candidates/selection-joe-v1.png",
+      "sha256": "1d9cc16bf29915699c527e3c6d226ca5a00a9137ab11cb0ab709c8f8a9be0489",
+      "bytes": 2374230,
+      "size": [
+        1254,
+        1254
+      ],
+      "status": "candidate-selection-portrait-not-integrated",
+      "tool": "built-in imagegen",
+      "source_file": "BIGFIG.XBB",
+      "character": "joe",
+      "generated_source": "exec-6d6e1c04-b927-4a9e-b758-97756a6a8f86.png"
+    },
+    {
+      "file": "candidates/selection-portraits-source.json",
+      "sha256": "991062cb63228d03458208da002a205487544d99753756f1e1eb41a2216517a3",
+      "bytes": 29323,
+      "status": "candidate-selection-portrait-provenance"
     }
   ],
   "original_game_data_included": false

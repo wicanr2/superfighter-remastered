@@ -149,6 +149,9 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [選角肖像獨立核對](tools/verify_selection_portraits.py) | 原 BIGFIG 十一張 RGB、角色順序／偏移、生成原 PNG 與純 HD 接觸圖身分，不代替視覺定版或原生驗收 |
+| [選角肖像候選收錄](tools/import_selection_portraits.py)、[來源與精確提示詞](assets/hd/candidates/selection-portraits-source.json) | 十一張生成原 PNG 與純 HD 接觸圖；原肖像比較只留本機，不當正式選角 UI |
+| [選角肖像 HD 候選](docs/spec/047-hd-selection-portraits.md)、[原肖像匯出](tools/export_selection_portraits.py) | 沿 025 已驗的 BIGFIG.XBB 十一人來源準備高解析肖像，DRAFT，不改正式格式／導航／流程 |
 | [街道塗鴉修稿收錄](tools/import_street_revision.py)、[來源與精確提示詞](assets/hd/candidates/street-revision-source.json) | 保留舊圖與生成原 bytes，量測整圖重畫差異；文字為來源字形的強推論，未定版或接入 |
 | [標題游標定位探針](tools/title_cursor_receipt.go) | 正常原入口及公開 MoveMouse 的中央／右下邊界座標取樣，不寫原狀態或當 HD 驗收 |
 | [隔離原生標題獨立核對](tools/verify_title_native.py) | 原檔完整重組、同狀態切換、設定／選角／對戰轉移及未載入候選的原貌回退，不晉升正式格式 |
