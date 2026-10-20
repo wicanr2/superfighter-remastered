@@ -687,3 +687,12 @@ managed 紋理版的 selection-native-full-v2 在 p0-08 原貌／HD 恢復比較
 - 已證實於取樣：selection-native-full-v3 的二十七份選角來源，由完整 SELMAN 加 BIGFIG 兩側來源重組。所有差異均在八格周界，色號僅 F0h／F1h；保留實際邊線後完整色號與 RGB 相同，背景前 160 色及使用中肖像各 32 色均相符。原程式對歷史框線的未觀察重畫時序仍未知。
 - 定位沿 025：SF.EXE MZ load-image 檔頭移除後偏移 B6E7h 的八組 little-endian 四 word，為 (28+33i,150,60+33i,182)，i=0..7，雙端包含。該表相對 DS:12D7h；不與 runtime IP 或 MZ linear 混稱。來源 SF.EXE SHA-256 24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300。
 - 工具為 Docker 中 Pillow 11.3.0、tools/preview_selection_screen.py。原背景、原 RGB 與來源收據只留本機。新 VS 及完整 HD 比較的來源、提示詞與限制見規格 047；比較不證明正式操作與格式已完成。
+
+
+## 2026-10-21：048 結果報紙來源完整重組
+
+- 已證實於既有正常結果：SHIN.FIG 是 320×200 報紙底圖，OVER.FIG 是另一張群像。原檔名不足以判斷用途，第一個 OVER 探測已排除，不據此實作。
+- 來源的固定 SHA、檔案偏移與座標見規格 048。BIGFIG 的斬 0 為 18,34；LOSEFIG 的法蘭克 4 於 214,34 水平鏡像。兩檔都為十一筆 8689 bytes，前 96 bytes 為 32 色、偏移 768 起 89×89 色號。使用正常 BIGFIG 法蘭克替代 LOSEFIG 時有 1164 個 RGB byte 不同，鏡像 LOSEFIG 則逐點相同，不能共用一般肖像當敗者。
+- WC.XBB 三筆 65×169 raw 色號，步長 10987 bytes；FLAG.XBB 七筆 65×33，步長 2147 bytes。該結果 WC 第 0 筆位置 128,15，旗幟第 0／1 筆位置 30,154／226,154。旗幟使用 FLAG.FIG 色盤，用 SHIN 色盤會顯示黑圖；色盤來源由完整 RGB 比對證實，不靠圖檔名稱猜測。
+- NAME.XBB 沿既有 010 的 little-endian word offset，斬／法蘭克來源偏移 46／3189，42×11／54×11，位置 42,134／232,134。非零像素映黑、零映 219 灰。七份原檔完整重組 native-match-v2/result-newspaper.png.live.rgb 的 64000 像素 RGB，全等。工具為 Docker 中 Pillow 11.3.0；收據 result-source-v3/receipt.json SHA abdf7cb7f6b783c4daef5f2e66af7460a1b0e4dc94c3b2c80b1d1a6f802294ee。
+- 這次是重新核對先前普通輸入完成的結果，沒有宣稱新跑完整比賽。三結果字圖只證明素材存在，勝負分類門檻、其他角色旗幟對照與正式結果生命週期仍未知；不為本美術切片深入判勝函式。

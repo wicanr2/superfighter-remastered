@@ -149,6 +149,8 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [結果候選收錄與靜態比較](tools/import_result_candidates.py)、[來源及完整提示詞](assets/hd/candidates/result-source.json) | 原新聞底圖與法蘭克敗者肖像重繪，生成原 bytes 保持；純 HD 比較不當正常原生擷取 |
+| [結果報紙 HD](docs/spec/048-hd-result-newspaper.md)、[原來源匯出與重組](tools/export_result_source.py) | 七份原檔與既有正常結果 RGB 完整核對，原參照只留本機；結果美術候選為 DRAFT，不改正式判勝或流程 |
 | [選角 VS 候選收錄](tools/import_selection_vs.py)、[來源與完整提示詞](assets/hd/candidates/selection-vs-source.json) | 紅金 VS 透明生成原 PNG，原檔參照留本機；不當正式選角素材格式 |
 | [完整選角靜態比較](tools/preview_selection_screen.py)、[八格／十一格比較圖](docs/screenshots/selection-layout-candidates.png) | 完整 SELMAN／BIGFIG／八格框線核對後，以新 HD 美術重畫兩種版面；不是遊戲擷取或已可點選介面 |
 | [隔離選角原生獨立核對](tools/verify_selection_native.py) | 原 BIGFIG／色盤、兩側候選及方向辨識、框外原貌、同狀態切換與退出；不宣稱 GPU 逐點採樣一致 |

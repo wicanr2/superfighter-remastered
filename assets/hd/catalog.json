@@ -13,7 +13,7 @@
     "sources": 21,
     "complete_HD": false
   },
-  "pngs": 118,
+  "pngs": 120,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -1625,6 +1625,36 @@
       "sha256": "85e6d5bc5fcfdacb0ccbbbbc91f84d539acb3868f5f650cb04bcd7da66b07a78",
       "bytes": 2434,
       "status": "candidate-selection-vs-provenance"
+    },
+    {
+      "file": "candidates/result-newspaper-v1.png",
+      "size": [
+        1586,
+        992
+      ],
+      "sha256": "74406265d48c446deac7fef2c7f2c300f8fafaa0a08a53805781b4b45a4f00d6",
+      "bytes": 2463986,
+      "status": "candidate-result-not-integrated",
+      "tool": "built-in imagegen",
+      "generated_source": "exec-e03eef52-e8ea-412d-b05f-f74de2379e64.png"
+    },
+    {
+      "file": "candidates/result-loser-frank-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "a56c4244a390f0c2155f963e2fca923444abd102fb0bd7217eb8a6890fc1aa37",
+      "bytes": 2615633,
+      "status": "candidate-result-not-integrated",
+      "tool": "built-in imagegen",
+      "generated_source": "exec-25f27176-f5e1-4f54-8404-334d99538348.png"
+    },
+    {
+      "file": "candidates/result-source.json",
+      "sha256": "98e9ab300a8f77f1509a2f5ab76475450dc0c402b4262026efae890297a1f394",
+      "bytes": 6762,
+      "status": "candidate-result-provenance"
     }
   ],
   "original_game_data_included": false

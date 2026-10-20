@@ -310,6 +310,18 @@
       "platform": "Pillow 11.3.0 in Docker; static preview only",
       "authorization": "existing B art style and HD upload request; no repository visibility change",
       "limits": "new art and vector geometry; no original pixels, no interactive buttons or formal UI approval"
+    },
+    {
+      "kind": "static HD result art comparison; not native capture",
+      "file": "result-newspaper-candidate.png",
+      "sha256": "04b0253f0f696dede083f5c172840ad4637492e415a62a149b0860d2bc23e1ee",
+      "source": "assets/hd/candidates/result-source.json",
+      "source_sha256": "98e9ab300a8f77f1509a2f5ab76475450dc0c402b4262026efae890297a1f394",
+      "renderer": "tools/import_result_candidates.py",
+      "renderer_sha256": "00de448afab812bc29d9430ed0ac085a0b6bf0ed8fc90e3f1beb9db73e5310d8",
+      "platform": "Pillow 11.3.0 in Docker; no native platform acceptance",
+      "authorization": "existing user request for HD generation and repository upload",
+      "limits": "new HD and vector elements only; no original pixels or formal result UI"
     }
   ]
 }

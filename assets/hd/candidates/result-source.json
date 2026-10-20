@@ -1,0 +1,70 @@
+{
+  "kind": "HD result newspaper and defeated Frank candidates; original references local only",
+  "authorization": "existing B style and generated-HD upload scope; visibility unchanged",
+  "records": [
+    {
+      "id": "paper",
+      "file": "result-newspaper-v1.png",
+      "size": [
+        1586,
+        992
+      ],
+      "sha256": "74406265d48c446deac7fef2c7f2c300f8fafaa0a08a53805781b4b45a4f00d6",
+      "bytes": 2463986,
+      "tool": "built-in image_gen",
+      "model_version": "not exposed by tool",
+      "prompt": "Reference image: the attached SHIN.FIG newspaper background from the 1993 Taiwanese DOS fighting game Super Fighter / 快打至尊. Generate one faithful high-resolution 2D hand-painted arcade HD newspaper BACKGROUND asset, landscape 8:5 aspect ratio, around 1600 by 1000. The reference controls layout, grayscale paper, dense narrow columns and two thin muted yellow-gold square portrait frames. Keep a flat pale gray paper sheet filling the full canvas, with subtle paper grain and clean dark gray print, not aged brown parchment, not an object photographed on a table. Preserve the two portrait windows exactly in their relative positions: left inner blank opening x=18..106, y=34..122 on a 320x200 logical canvas, right opening x=214..302, y=34..122; their thin gold/black frames around x=14..111 and x=210..307, y=30..127. Both openings stay plain light gray and empty, no people. Reserve the central vertical column x=128..192, y=15..183 as plain light gray for a later result headline. Leave flat blank gray name bands around y=131..147 under both frames, and blank flag areas x=30..94 and 226..290, y=154..186. Newspaper microprint remains in the surrounding margins, bottom and narrow columns: render fine abstract typographic strokes and rules, not readable invented news stories. The top masthead area should have decorative horizontal rules and small abstract black typographic shapes, no readable words, dates, prices or logos; title lettering will be added separately. High-resolution crisp ink, subtle painted paper texture consistent with a respectful retro remaster. No large center title, no VS, no photos, no flags, no buttons, no modern UI, no added ornaments. This is new painted artwork based on layout reference, not a pixel upscale. Opaque background.",
+      "generated_source": "exec-e03eef52-e8ea-412d-b05f-f74de2379e64.png",
+      "transparent_background": false,
+      "original_reference_sha256": "1978f880c2fe1095313213040fc8e86bfd6e75d0e79158c8dbcfc2ee140384cc",
+      "source_file": "SHIN.FIG",
+      "source_sha256": "28659c54fe5ce751c630424c3ef234717debd8aa9fe451eaab1d1e2639670845",
+      "status": "candidate-not-approved-or-integrated"
+    },
+    {
+      "id": "loser-frank",
+      "file": "result-loser-frank-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "a56c4244a390f0c2155f963e2fca923444abd102fb0bd7217eb8a6890fc1aa37",
+      "bytes": 2615633,
+      "tool": "built-in image_gen",
+      "model_version": "not exposed by tool",
+      "prompt": "Create one square high-resolution HD defeated-result portrait of Frank / 法蘭克 from the 1993 Taiwanese DOS game Super Fighter / 快打至尊. Reference 1 (small original LOSEFIG portrait) is the authority for the defeated pose, injuries and character identity. Reference 2 (new high-resolution normal Frank portrait) is the paint style and consistent face/hair/clothing reference, NOT an instruction to keep the confident expression. Use the same head-and-shoulders crop and facing direction as both references: silver-white long flowing hair swept across forehead and behind neck, strong angular tan male face, dark eyebrows, stubble, broad muscular shoulder with a narrow cyan-blue garment trim. Convert the confident HD face into the original defeated expression: one eye squinting/swollen, tired uneven mouth, restrained cheek/forehead bruises and short fine red abrasion marks visible in the small original. Keep injuries mild and stylized, no gore, no open wounds, no dripping blood, no missing teeth or new bandages. Preserve recognizable silver hair, long fringe, cheek shape and cyan shoulder trim. The result should look like the SAME Frank as the HD style reference after a fight. Detailed hand-painted arcade brushwork, strong readable planes and dark outlines, respectful faithful 1990s HD remaster, no photorealism or 3D. Fully opaque square white background, no lettering, no frame, no flags, no extra people, entire head crop and shoulder similar to HD reference. Around 1254x1254 or larger. New painted approximation of the original defeated portrait, not an upscale.",
+      "generated_source": "exec-25f27176-f5e1-4f54-8404-334d99538348.png",
+      "transparent_background": false,
+      "original_reference_sha256": "e383019b83537453826cab5a501fa87fa70cd3b2424a92bd0078787d35f337a9",
+      "source_file": "LOSEFIG.XBB",
+      "source_sha256": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+      "status": "candidate-not-approved-or-integrated"
+    }
+  ],
+  "original_source_inputs": {
+    "SHIN.FIG": "28659c54fe5ce751c630424c3ef234717debd8aa9fe451eaab1d1e2639670845",
+    "BIGFIG.XBB": "4897b865c3fef8fd1c788ec5e32226de7086dbd8ff1987a5efc62ea15bd29477",
+    "LOSEFIG.XBB": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+    "WC.XBB": "774f14af079c7148fb05a5db21fdfb17abc0a658c9fcd9a82958166ebaf8b0e0",
+    "FLAG.XBB": "87a5bf27cb516d1e5612252dd0a3dff5f3980c837ea4b96b644ece0257acc6d1",
+    "FLAG.FIG": "64ad397ba0a29808b5e8dc147c456be6c1f26df6d94258a3d2340b0f2a2e51ce",
+    "NAME.XBB": "60c0bbe367e44ab9fda512df2ba93ad62d70147df90079d07ff15818f21bad82"
+  },
+  "source_receipt_sha256": "abdf7cb7f6b783c4daef5f2e66af7460a1b0e4dc94c3b2c80b1d1a6f802294ee",
+  "requests_sha256": "cdf01f6c201d3f6cde52db196830be5bbbb035ec305fb9a6ce471d27c28bfa42",
+  "importer_sha256": "00de448afab812bc29d9430ed0ac085a0b6bf0ed8fc90e3f1beb9db73e5310d8",
+  "style_reference": {
+    "file": "selection-frank-v1.png",
+    "sha256": "367929c844d8fb85ce4756d59af5c5927a5a732c94ebafb6d335729dbb67f920"
+  },
+  "winner_reference": {
+    "file": "selection-jaan-v1.png",
+    "sha256": "0b508cbf83e5769769e908de77bfeb24a54d307e1d2dece4c19b771e4623bb1d"
+  },
+  "preview": {
+    "file": "docs/screenshots/result-newspaper-candidate.png",
+    "sha256": "04b0253f0f696dede083f5c172840ad4637492e415a62a149b0860d2bc23e1ee"
+  },
+  "review": "底圖為新印刷紋理，細字不可當原文；框線位置為近似。法蘭克保留白髮與青藍衣緣，眼部腫傷／嘴角與原圖程度不同，未宣稱完全忠實。",
+  "limits": "only one defeated portrait; headline uses modern Traditional Chinese type, not original calligraphy; static layout, no formal result integration"
+}
