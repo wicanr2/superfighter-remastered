@@ -322,6 +322,18 @@
       "platform": "Pillow 11.3.0 in Docker; no native platform acceptance",
       "authorization": "existing user request for HD generation and repository upload",
       "limits": "new HD and vector elements only; no original pixels or formal result UI"
+    },
+    {
+      "kind": "HD defeated portrait contact sheet; not native capture",
+      "file": "result-portrait-candidates.png",
+      "sha256": "ffd3ca4bfbde67dbee9955814a37c21cd84b8083532e320193d2e5e3bf2d350a",
+      "source": "assets/hd/candidates/result-portraits-source.json",
+      "source_sha256": "8489cab845587cdbc0c2cb640ceff5f79cb07ecf2e7008f06aa041b74906fc65",
+      "renderer": "tools/import_remaining_result_portraits.py",
+      "renderer_sha256": "1efbc166c204cc266858713f749241bcecbf47a9bd142193ee4f383025b9cff3",
+      "platform": "Pillow 11.3.0 in Docker; not runtime acceptance",
+      "authorization": "existing user HD upload request",
+      "limits": "generated art only; original images and comparison stay local"
     }
   ]
 }

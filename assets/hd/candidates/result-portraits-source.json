@@ -1,0 +1,387 @@
+{
+  "kind": "eleven defeated result portrait candidates; ten new, Frank reused unchanged",
+  "authorization": "existing B style and generated-HD upload scope; visibility unchanged",
+  "source_file": "LOSEFIG.XBB",
+  "source_sha256": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+  "records": [
+    {
+      "id": "jaan",
+      "file": "result-loser-jaan-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "de3b2adada1153fef83d4dcd35ae265875c251c4f895760bb6de0493aef4af06",
+      "bytes": 2313356,
+      "prompt": "Create ONE new square HD defeated-result portrait for jaan from the 1993 Taiwanese DOS fighting game Super Fighter / 快打至尊. The attached reference panel has LEFT: the ORIGINAL defeated portrait, which is the authority for expression, pose and injury placement. RIGHT: the existing HD NORMAL portrait, which is the authority for consistent character identity, crop, palette and hand-painted style. Do not copy the normal confident expression. Do not output a two-panel comparison. Output only the one NEW defeated portrait, square around 1254x1254 or larger, opaque white background. A strong tan male martial artist with an angular flat-top haircut, gray-white hair streaks, black-trimmed white gi and bare upper chest as cropped in the portrait. Defeated expression: brows tense, one eye squeezed, red scuff at forehead and small red marks at lip/chin. Keep the head tilt and face angle of the original; no new props. Faithful hand-painted 1990s arcade HD remaster: detailed brush strokes, crisp dark contours, readable facial planes, same person as the right portrait, facing in the same direction as the references. Injuries must be mild and stylized: no gore, no open wounds, no dripping blood, no disfigurement. Keep original clear tears where specified. Do not invent accessories, scars, clothing, props or backstory. No lettering, frame, flags, UI, extra faces, photorealism, 3D rendering, pixel art or pixel upscale. This is a newly painted approximation based on an existing game portrait, not a claim of exact historical pixels.",
+      "tool": "built-in image_gen",
+      "model_version": "not exposed by tool",
+      "generated_source": "exec-76b3099e-0792-4d9d-957b-1de44b066d47.png",
+      "transparent_background": false,
+      "reference_panel_sha256": "e73fbfee983a3beca2d665b5baf3dd4811efedfaaf1695989b46b6a29b5f22e6",
+      "style_reference": {
+        "file": "selection-jaan-v1.png",
+        "sha256": "0b508cbf83e5769769e908de77bfeb24a54d307e1d2dece4c19b771e4623bb1d"
+      },
+      "index": 0,
+      "name": "斬",
+      "source_file": "LOSEFIG.XBB",
+      "source_sha256": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+      "record_file_offset": 0,
+      "pixels_file_offset": 768,
+      "original_reference_sha256": "8045e131b169d2e151763978ae40b864736e1ed05cb8041a9494c2a550cbd31f",
+      "original_RGB_sha256": "fbb3d76ee9d894e5c58f230fdcaa2dbaac95d50b31831336f7273db31caf5e4d",
+      "original_size": [
+        89,
+        89
+      ],
+      "status": "candidate-not-approved-or-integrated",
+      "review": "平頭及白服保持；閉眼、嘴形與擦傷程度為近似。"
+    },
+    {
+      "id": "sarkov",
+      "file": "result-loser-sarkov-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "05c038c5fcdae93e5bacaea6d0658968e75cbb1f3369ace75092f363c7592383",
+      "bytes": 2154930,
+      "prompt": "Create ONE new square HD defeated-result portrait for sarkov from the 1993 Taiwanese DOS fighting game Super Fighter / 快打至尊. The attached reference panel has LEFT: the ORIGINAL defeated portrait, which is the authority for expression, pose and injury placement. RIGHT: the existing HD NORMAL portrait, which is the authority for consistent character identity, crop, palette and hand-painted style. Do not copy the normal confident expression. Do not output a two-panel comparison. Output only the one NEW defeated portrait, square around 1254x1254 or larger, opaque white background. Bald muscular older tan man, massive long brown pointed beard, thick brows, red neck scarf and bare shoulder as already cropped. Defeated expression: both eyes tightly closed, tired mouth behind beard, fine forehead/cheek scratches and restrained small red lip marks. Keep beard length and red scarf; no new bandages. Faithful hand-painted 1990s arcade HD remaster: detailed brush strokes, crisp dark contours, readable facial planes, same person as the right portrait, facing in the same direction as the references. Injuries must be mild and stylized: no gore, no open wounds, no dripping blood, no disfigurement. Keep original clear tears where specified. Do not invent accessories, scars, clothing, props or backstory. No lettering, frame, flags, UI, extra faces, photorealism, 3D rendering, pixel art or pixel upscale. This is a newly painted approximation based on an existing game portrait, not a claim of exact historical pixels.",
+      "tool": "built-in image_gen",
+      "model_version": "not exposed by tool",
+      "generated_source": "exec-43433f25-673c-404a-833f-ad8cdc5fe04b.png",
+      "transparent_background": false,
+      "reference_panel_sha256": "646b3f324432f5dd4d744c833864258fc3f1a8a6d26cf054d333e41325521a04",
+      "style_reference": {
+        "file": "selection-sarkov-v1.png",
+        "sha256": "5ec97036c9e6e1239ec90cf01479782994941ad867d68b8a46bbfa31e6fdd918"
+      },
+      "index": 1,
+      "name": "薩爾可夫",
+      "source_file": "LOSEFIG.XBB",
+      "source_sha256": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+      "record_file_offset": 8689,
+      "pixels_file_offset": 9457,
+      "original_reference_sha256": "356a0ddeb8f0401951f13c1c533f1eeba87e5110e9ba7c633766e70553fe3d9b",
+      "original_RGB_sha256": "fad722d9b532a948ed900de686b6d47eeb9c1e4e9273f85f9c71b56677344bd8",
+      "original_size": [
+        89,
+        89
+      ],
+      "status": "candidate-not-approved-or-integrated",
+      "review": "光頭、長鬍與紅巾保持；兩眼閉合與原版單眼狀態不同。"
+    },
+    {
+      "id": "bullet",
+      "file": "result-loser-bullet-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "5fd0fd4aba9b5412798dadea3dffe12aadb08af987ed2fb47b04d9e8583c6a17",
+      "bytes": 2483965,
+      "prompt": "Create ONE new square HD defeated-result portrait for bullet from the 1993 Taiwanese DOS fighting game Super Fighter / 快打至尊. The attached reference panel has LEFT: the ORIGINAL defeated portrait, which is the authority for expression, pose and injury placement. RIGHT: the existing HD NORMAL portrait, which is the authority for consistent character identity, crop, palette and hand-painted style. Do not copy the normal confident expression. Do not output a two-panel comparison. Output only the one NEW defeated portrait, square around 1254x1254 or larger, opaque white background. Young fair-skinned blond male with long fringe under a deep blue hood, bright yellow and blue outfit, one gloved/cloth-covered fist raised beside his chin as in the references. Defeated expression: one eye narrowed, pained mouth, a small round red cheek scuff and restrained lip marks. Keep the distinctive fringe and hood; no new equipment. Faithful hand-painted 1990s arcade HD remaster: detailed brush strokes, crisp dark contours, readable facial planes, same person as the right portrait, facing in the same direction as the references. Injuries must be mild and stylized: no gore, no open wounds, no dripping blood, no disfigurement. Keep original clear tears where specified. Do not invent accessories, scars, clothing, props or backstory. No lettering, frame, flags, UI, extra faces, photorealism, 3D rendering, pixel art or pixel upscale. This is a newly painted approximation based on an existing game portrait, not a claim of exact historical pixels.",
+      "tool": "built-in image_gen",
+      "model_version": "not exposed by tool",
+      "generated_source": "exec-db924a6b-bd24-46f2-bda9-9f4b9cefd46c.png",
+      "transparent_background": false,
+      "reference_panel_sha256": "ac3178145dd62734f8d976634fa69b4e1f7d2682443f96ee410f69d7fcb0ebb1",
+      "style_reference": {
+        "file": "selection-bullet-v1.png",
+        "sha256": "7f48fcb0a3b762588494e7d8a6a7dff6710d4c3bd350e733d4e0ee4d58167146"
+      },
+      "index": 2,
+      "name": "子彈",
+      "source_file": "LOSEFIG.XBB",
+      "source_sha256": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+      "record_file_offset": 17378,
+      "pixels_file_offset": 18146,
+      "original_reference_sha256": "3e66d84d62fefaaadd713f33ca9c4ff2826f3c1880f8f3f38c4e05655798b26d",
+      "original_RGB_sha256": "f201b4dbc131a9418f8d0999033da94426b71015e0f5101faa9cacb9ff0128b7",
+      "original_size": [
+        89,
+        89
+      ],
+      "status": "candidate-not-approved-or-integrated",
+      "review": "藍黃兜帽與抬拳保持；雙眼開度及臉頰圓印為重繪近似。"
+    },
+    {
+      "id": "phoenix",
+      "file": "result-loser-phoenix-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "85b68bfb4bf9bd5d85c3595792c56b84eb17ea9f8fc60e268b28b3b5c888c8a7",
+      "bytes": 2591867,
+      "prompt": "Create ONE new square HD defeated-result portrait for phoenix from the 1993 Taiwanese DOS fighting game Super Fighter / 快打至尊. The attached reference panel has LEFT: the ORIGINAL defeated portrait, which is the authority for expression, pose and injury placement. RIGHT: the existing HD NORMAL portrait, which is the authority for consistent character identity, crop, palette and hand-painted style. Do not copy the normal confident expression. Do not output a two-panel comparison. Output only the one NEW defeated portrait, square around 1254x1254 or larger, opaque white background. Young fair-skinned fighter with long chestnut-brown hair and magenta-purple shoulder garment with bright yellow piping, turned back over her shoulder. The original defeated expression is CRYING: eyes closed, clear tears streaming down both cheeks, dejected trembling mouth and slumped expression. Do NOT replace tears with generic bruises or blood. Preserve face direction, hair fringe and outfit. Faithful hand-painted 1990s arcade HD remaster: detailed brush strokes, crisp dark contours, readable facial planes, same person as the right portrait, facing in the same direction as the references. Injuries must be mild and stylized: no gore, no open wounds, no dripping blood, no disfigurement. Keep original clear tears where specified. Do not invent accessories, scars, clothing, props or backstory. No lettering, frame, flags, UI, extra faces, photorealism, 3D rendering, pixel art or pixel upscale. This is a newly painted approximation based on an existing game portrait, not a claim of exact historical pixels.",
+      "tool": "built-in image_gen",
+      "model_version": "not exposed by tool",
+      "generated_source": "exec-60e6c4ba-8e38-4c02-8f88-f8db8f515a96.png",
+      "transparent_background": false,
+      "reference_panel_sha256": "3b82eacee595d8e64960fd1584f91e87fab56d221eeac6ff8f3f76061b6510b0",
+      "style_reference": {
+        "file": "selection-phoenix-v1.png",
+        "sha256": "ec21503287006099c45774c8643dddc1888bd8dd24e786ff6389ca26ee3348bd"
+      },
+      "index": 3,
+      "name": "鳳凰",
+      "source_file": "LOSEFIG.XBB",
+      "source_sha256": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+      "record_file_offset": 26067,
+      "pixels_file_offset": 26835,
+      "original_reference_sha256": "5abe95bf170b8f1c26ae89f72eb057b5e72302f08adaa26c4c1a20532e41c75d",
+      "original_RGB_sha256": "6b01482c43e6d76ff7d9ae14bc92d52815b86230eca0dc97117d0dfccf3a7b36",
+      "original_size": [
+        89,
+        89
+      ],
+      "status": "candidate-not-approved-or-integrated",
+      "review": "保留雙眼落淚與回首；髮量、嘴形及淚痕不是原像素。"
+    },
+    {
+      "id": "frank",
+      "file": "result-loser-frank-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "a56c4244a390f0c2155f963e2fca923444abd102fb0bd7217eb8a6890fc1aa37",
+      "bytes": 2615633,
+      "tool": "built-in image_gen",
+      "model_version": "not exposed by tool",
+      "prompt": "Create one square high-resolution HD defeated-result portrait of Frank / 法蘭克 from the 1993 Taiwanese DOS game Super Fighter / 快打至尊. Reference 1 (small original LOSEFIG portrait) is the authority for the defeated pose, injuries and character identity. Reference 2 (new high-resolution normal Frank portrait) is the paint style and consistent face/hair/clothing reference, NOT an instruction to keep the confident expression. Use the same head-and-shoulders crop and facing direction as both references: silver-white long flowing hair swept across forehead and behind neck, strong angular tan male face, dark eyebrows, stubble, broad muscular shoulder with a narrow cyan-blue garment trim. Convert the confident HD face into the original defeated expression: one eye squinting/swollen, tired uneven mouth, restrained cheek/forehead bruises and short fine red abrasion marks visible in the small original. Keep injuries mild and stylized, no gore, no open wounds, no dripping blood, no missing teeth or new bandages. Preserve recognizable silver hair, long fringe, cheek shape and cyan shoulder trim. The result should look like the SAME Frank as the HD style reference after a fight. Detailed hand-painted arcade brushwork, strong readable planes and dark outlines, respectful faithful 1990s HD remaster, no photorealism or 3D. Fully opaque square white background, no lettering, no frame, no flags, no extra people, entire head crop and shoulder similar to HD reference. Around 1254x1254 or larger. New painted approximation of the original defeated portrait, not an upscale.",
+      "generated_source": "exec-25f27176-f5e1-4f54-8404-334d99538348.png",
+      "transparent_background": false,
+      "original_reference_sha256": "e383019b83537453826cab5a501fa87fa70cd3b2424a92bd0078787d35f337a9",
+      "source_file": "LOSEFIG.XBB",
+      "source_sha256": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+      "status": "candidate-not-approved-or-integrated",
+      "reused_from": "assets/hd/candidates/result-source.json",
+      "index": 4,
+      "name": "法蘭克",
+      "record_file_offset": 34756,
+      "pixels_file_offset": 35524,
+      "original_RGB_sha256": "f67b39f5cc921d4cbf5e801ab4e9cb3333cfa75f75be17c611a23f5cb6b5c1b8",
+      "original_size": [
+        89,
+        89
+      ],
+      "review": "沿首張白髮、青藍衣緣與腫眼候選；傷勢與原版不同，未修改舊 PNG。"
+    },
+    {
+      "id": "onimaru",
+      "file": "result-loser-onimaru-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "cf2f7585e60504d98fc42b64bd07d94724205040caed00a743f173dc5a72e560",
+      "bytes": 2377897,
+      "prompt": "Create ONE new square HD defeated-result portrait for onimaru from the 1993 Taiwanese DOS fighting game Super Fighter / 快打至尊. The attached reference panel has LEFT: the ORIGINAL defeated portrait, which is the authority for expression, pose and injury placement. RIGHT: the existing HD NORMAL portrait, which is the authority for consistent character identity, crop, palette and hand-painted style. Do not copy the normal confident expression. Do not output a two-panel comparison. Output only the one NEW defeated portrait, square around 1254x1254 or larger, opaque white background. Gray-green humanoid cyborg fighter with angular panelled face, yellow eye, metal forehead plate and purple hood. Defeated expression: one eye closed, head turned in pain, small scuffs on forehead and cheek, strained open mouth with only restrained red lip marks. Keep metal structure, skin tone and purple hood; no exposed machinery, gore or invented broken parts. Faithful hand-painted 1990s arcade HD remaster: detailed brush strokes, crisp dark contours, readable facial planes, same person as the right portrait, facing in the same direction as the references. Injuries must be mild and stylized: no gore, no open wounds, no dripping blood, no disfigurement. Keep original clear tears where specified. Do not invent accessories, scars, clothing, props or backstory. No lettering, frame, flags, UI, extra faces, photorealism, 3D rendering, pixel art or pixel upscale. This is a newly painted approximation based on an existing game portrait, not a claim of exact historical pixels.",
+      "tool": "built-in image_gen",
+      "model_version": "not exposed by tool",
+      "generated_source": "exec-b3ba60c1-d67b-4cca-81e8-0ca3367705ef.png",
+      "transparent_background": false,
+      "reference_panel_sha256": "275013eaa0cd8609a0c640ea7e6d2c81433b454c184fe987f444fff8aa6ef985",
+      "style_reference": {
+        "file": "selection-onimaru-v1.png",
+        "sha256": "ab002d06e6afade7ce103b6599e85268edac2712fd3a911796aa5a4d8f419326"
+      },
+      "index": 5,
+      "name": "鬼丸",
+      "source_file": "LOSEFIG.XBB",
+      "source_sha256": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+      "record_file_offset": 43445,
+      "pixels_file_offset": 44213,
+      "original_reference_sha256": "dcabce827a9d3f5387d411fec4e2a6cdf1dead5f04711fdb36c5e2ae127c4e66",
+      "original_RGB_sha256": "8e102e8e3412eba73847b0f08b748d208b662d5a77ee77ef2c16463e9ea61e5a",
+      "original_size": [
+        89,
+        89
+      ],
+      "status": "candidate-not-approved-or-integrated",
+      "review": "灰綠臉、金屬板及紫罩保持；嘴巴張幅較原版小。"
+    },
+    {
+      "id": "lan",
+      "file": "result-loser-lan-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "a776867831f7160f89f44cd41c0a7b10979ff0df2c4391906fa9c9d6247fc38d",
+      "bytes": 2096449,
+      "prompt": "Create ONE new square HD defeated-result portrait for lan from the 1993 Taiwanese DOS fighting game Super Fighter / 快打至尊. The attached reference panel has LEFT: the ORIGINAL defeated portrait, which is the authority for expression, pose and injury placement. RIGHT: the existing HD NORMAL portrait, which is the authority for consistent character identity, crop, palette and hand-painted style. Do not copy the normal confident expression. Do not output a two-panel comparison. Output only the one NEW defeated portrait, square around 1254x1254 or larger, opaque white background. Young fair-skinned fighter with short chestnut-brown layered hair and high red collar. Defeated expression: tired half-lidded eyes with puffy pale cheeks, red cheek scratch, tense mouth with only a small red lip scuff. Keep the exact short hair identity and collar; no new accessories or bandages. Faithful hand-painted 1990s arcade HD remaster: detailed brush strokes, crisp dark contours, readable facial planes, same person as the right portrait, facing in the same direction as the references. Injuries must be mild and stylized: no gore, no open wounds, no dripping blood, no disfigurement. Keep original clear tears where specified. Do not invent accessories, scars, clothing, props or backstory. No lettering, frame, flags, UI, extra faces, photorealism, 3D rendering, pixel art or pixel upscale. This is a newly painted approximation based on an existing game portrait, not a claim of exact historical pixels.",
+      "tool": "built-in image_gen",
+      "model_version": "not exposed by tool",
+      "generated_source": "exec-51477e38-a902-4cf6-969b-909b249430ca.png",
+      "transparent_background": false,
+      "reference_panel_sha256": "18d2b8769910cf2284a85fe98c2f0dbe85a959cc4f76cdca9d1e89538ace13f8",
+      "style_reference": {
+        "file": "selection-lan-v1.png",
+        "sha256": "4e47fc128073607b0681adc7451867b0fd0f91fcc3aa875e6a86e3fccd9a08c4"
+      },
+      "index": 6,
+      "name": "嵐",
+      "source_file": "LOSEFIG.XBB",
+      "source_sha256": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+      "record_file_offset": 52134,
+      "pixels_file_offset": 52902,
+      "original_reference_sha256": "f1ff2b3db7b738cbfae8f2d2c39b60b87e4f0e67eab9064aab6c37bbaa15d1cb",
+      "original_RGB_sha256": "3233650501c4d93d38acaf680edd1fd4abef565781bd0d36848d89e02033c6ed",
+      "original_size": [
+        89,
+        89
+      ],
+      "status": "candidate-not-approved-or-integrated",
+      "review": "短棕髮與紅領保持；原版浮腫臉頰被弱化，嘴角及神情仍待定版。"
+    },
+    {
+      "id": "kim",
+      "file": "result-loser-kim-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "3fb2232528a211b5edf6b6e06075c296a0a4e5efa79a6cf7a2fca07623a879a4",
+      "bytes": 2269927,
+      "prompt": "Create ONE new square HD defeated-result portrait for kim from the 1993 Taiwanese DOS fighting game Super Fighter / 快打至尊. The attached reference panel has LEFT: the ORIGINAL defeated portrait, which is the authority for expression, pose and injury placement. RIGHT: the existing HD NORMAL portrait, which is the authority for consistent character identity, crop, palette and hand-painted style. Do not copy the normal confident expression. Do not output a two-panel comparison. Output only the one NEW defeated portrait, square around 1254x1254 or larger, opaque white background. Tan male fighter with a bald forehead, sharply swept-back black hair, dark brow, large round gold hoop earring and broad bare shoulder as cropped. Defeated expression: eyes closed, slumped grimace, small forehead/cheek scratches and restrained red lip mark. Keep the large hoop, side-facing profile and heavy brow. Faithful hand-painted 1990s arcade HD remaster: detailed brush strokes, crisp dark contours, readable facial planes, same person as the right portrait, facing in the same direction as the references. Injuries must be mild and stylized: no gore, no open wounds, no dripping blood, no disfigurement. Keep original clear tears where specified. Do not invent accessories, scars, clothing, props or backstory. No lettering, frame, flags, UI, extra faces, photorealism, 3D rendering, pixel art or pixel upscale. This is a newly painted approximation based on an existing game portrait, not a claim of exact historical pixels.",
+      "tool": "built-in image_gen",
+      "model_version": "not exposed by tool",
+      "generated_source": "exec-c9758cb1-bb6f-44a2-9489-02c20913fbcc.png",
+      "transparent_background": false,
+      "reference_panel_sha256": "43a50ae4cfae9558b1a0c98a9e608a0b724916c548c28c18c462782bea5f5d45",
+      "style_reference": {
+        "file": "selection-kim-v1.png",
+        "sha256": "48918b8af81f9362bef3f1c9ba1c989412fedf9f3bc2a92daab1a781839b4784"
+      },
+      "index": 7,
+      "name": "金太極",
+      "source_file": "LOSEFIG.XBB",
+      "source_sha256": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+      "record_file_offset": 60823,
+      "pixels_file_offset": 61591,
+      "original_reference_sha256": "2c700aef5a77af40680fdd0c312e696d723e8ca7513deb10b1097cabc53973df",
+      "original_RGB_sha256": "fe1138049fa7a31688dff91167da74bf5ea62adfd78dfac53a18aaaf351fb7a1",
+      "original_size": [
+        89,
+        89
+      ],
+      "status": "candidate-not-approved-or-integrated",
+      "review": "禿額、後掠髮及金環保持；金環與側面比例及傷勢為近似。"
+    },
+    {
+      "id": "spider",
+      "file": "result-loser-spider-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "f6dbceacd585907c07bed462ac803379afbc204412c987028b51dacdef7d5591",
+      "bytes": 2489254,
+      "prompt": "Create ONE new square HD defeated-result portrait for spider from the 1993 Taiwanese DOS fighting game Super Fighter / 快打至尊. The attached reference panel has LEFT: the ORIGINAL defeated portrait, which is the authority for expression, pose and injury placement. RIGHT: the existing HD NORMAL portrait, which is the authority for consistent character identity, crop, palette and hand-painted style. Do not copy the normal confident expression. Do not output a two-panel comparison. Output only the one NEW defeated portrait, square around 1254x1254 or larger, opaque white background. Adult woman, FACE/HAIR/NECK ONLY, with long voluminous golden-blond hair and purple theatrical face paint around the eyes and cheeks. Defeated expression: eyes closed in pain, clear tears over the purple paint, small red cheek/lip scuff, sad mouth. Keep face paint boundaries and blond hair recognisable. Crop tightly to head, hair and neck only, with an opaque white background; no body, cleavage, costume change, or suggestive pose. Faithful hand-painted 1990s arcade HD remaster: detailed brush strokes, crisp dark contours, readable facial planes, same person as the right portrait, facing in the same direction as the references. Injuries must be mild and stylized: no gore, no open wounds, no dripping blood, no disfigurement. Keep original clear tears where specified. Do not invent accessories, scars, clothing, props or backstory. No lettering, frame, flags, UI, extra faces, photorealism, 3D rendering, pixel art or pixel upscale. This is a newly painted approximation based on an existing game portrait, not a claim of exact historical pixels.",
+      "tool": "built-in image_gen",
+      "model_version": "not exposed by tool",
+      "generated_source": "exec-680558cc-165a-4b98-a85d-005dd7e01067.png",
+      "transparent_background": false,
+      "reference_panel_sha256": "6a806b137dfac9b49d985d0597dd916fcd4e88709cf7f0f8a06240d71882437e",
+      "style_reference": {
+        "file": "selection-spider-v1.png",
+        "sha256": "9e2a4a67c07bc2f708a4f3cd00bcf3962ab0aa99951d8f17936b5ed3aed6b986"
+      },
+      "index": 8,
+      "name": "蜘蛛女",
+      "source_file": "LOSEFIG.XBB",
+      "source_sha256": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+      "record_file_offset": 69512,
+      "pixels_file_offset": 70280,
+      "original_reference_sha256": "20da18bd19d9e85eb974b001e331a7402f2318e2d26caca09e60699673bd06e5",
+      "original_RGB_sha256": "9a27ccd0abce41cbf81f1497e3fc069ce9b918ac8ebc5ab34e02aea7c811b73d",
+      "original_size": [
+        89,
+        89
+      ],
+      "status": "candidate-not-approved-or-integrated",
+      "review": "只含頭髮、臉與頸，保留紫色彩繪及淚痕；不對應身體服裝或戰鬥動畫。"
+    },
+    {
+      "id": "clown",
+      "file": "result-loser-clown-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "bba096e54241447e2e20d0d3fd2c005439ceee884638ae815d115a9cea2cac3f",
+      "bytes": 2212879,
+      "prompt": "Create ONE new square HD defeated-result portrait for clown from the 1993 Taiwanese DOS fighting game Super Fighter / 快打至尊. The attached reference panel has LEFT: the ORIGINAL defeated portrait, which is the authority for expression, pose and injury placement. RIGHT: the existing HD NORMAL portrait, which is the authority for consistent character identity, crop, palette and hand-painted style. Do not copy the normal confident expression. Do not output a two-panel comparison. Output only the one NEW defeated portrait, square around 1254x1254 or larger, opaque white background. Bald broad-headed tan male fighter with round heavy cheeks, huge chin, thick brows and a dark long braided neck cord/tuft as in the source portrait. Defeated expression: one eye squeezed, downturned mouth, round pale cheek scuff outline and restrained small red lip marks. Keep the neck braid, facial proportions and visible shoulder crop; no new clown makeup, hat or nose. Faithful hand-painted 1990s arcade HD remaster: detailed brush strokes, crisp dark contours, readable facial planes, same person as the right portrait, facing in the same direction as the references. Injuries must be mild and stylized: no gore, no open wounds, no dripping blood, no disfigurement. Keep original clear tears where specified. Do not invent accessories, scars, clothing, props or backstory. No lettering, frame, flags, UI, extra faces, photorealism, 3D rendering, pixel art or pixel upscale. This is a newly painted approximation based on an existing game portrait, not a claim of exact historical pixels.",
+      "tool": "built-in image_gen",
+      "model_version": "not exposed by tool",
+      "generated_source": "exec-7104d304-0761-4a40-8254-27906b31cf9a.png",
+      "transparent_background": false,
+      "reference_panel_sha256": "7918e44919ec25d76f527db98e04256fa23a05d1f14896c01063c075fae98762",
+      "style_reference": {
+        "file": "selection-clown-v1.png",
+        "sha256": "c3445d5bbb2bdf186ac61af7d02bc474dbc38025de048c8aa2f792db18301fdb"
+      },
+      "index": 9,
+      "name": "小丑",
+      "source_file": "LOSEFIG.XBB",
+      "source_sha256": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+      "record_file_offset": 78201,
+      "pixels_file_offset": 78969,
+      "original_reference_sha256": "5298826de2dcf7053c2298e8789c5503ec018c3a3d2171e2eef0731ddde2404a",
+      "original_RGB_sha256": "415c8b661722e3b8b5e2dde5d3f573cc0eff6da4c93b4d41afb6dc493ae46cc8",
+      "original_size": [
+        89,
+        89
+      ],
+      "status": "candidate-not-approved-or-integrated",
+      "review": "光頭、厚下顎、頸前辮子與圓形臉頰痕保持；表情與細節為近似。"
+    },
+    {
+      "id": "joe",
+      "file": "result-loser-joe-v1.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "sha256": "823dbdac0995f7d9f5c98aa2c5498761e8c452d5f4862c38276e719c3ce4b8ac",
+      "bytes": 2344499,
+      "prompt": "Create ONE new square HD defeated-result portrait for joe from the 1993 Taiwanese DOS fighting game Super Fighter / 快打至尊. The attached reference panel has LEFT: the ORIGINAL defeated portrait, which is the authority for expression, pose and injury placement. RIGHT: the existing HD NORMAL portrait, which is the authority for consistent character identity, crop, palette and hand-painted style. Do not copy the normal confident expression. Do not output a two-panel comparison. Output only the one NEW defeated portrait, square around 1254x1254 or larger, opaque white background. Tan male fighter with long angular nose, white-and-red feathered headband/headdress, strong black eyebrows and distinctive red/white face paint. Defeated expression: one eye swollen shut, pained uneven mouth, small dark red cheek/lip scuffs. Preserve the face paint as paint, not all as blood. Keep headband, white hair/feathers and long nose, no new weapons or gore. Faithful hand-painted 1990s arcade HD remaster: detailed brush strokes, crisp dark contours, readable facial planes, same person as the right portrait, facing in the same direction as the references. Injuries must be mild and stylized: no gore, no open wounds, no dripping blood, no disfigurement. Keep original clear tears where specified. Do not invent accessories, scars, clothing, props or backstory. No lettering, frame, flags, UI, extra faces, photorealism, 3D rendering, pixel art or pixel upscale. This is a newly painted approximation based on an existing game portrait, not a claim of exact historical pixels.",
+      "tool": "built-in image_gen",
+      "model_version": "not exposed by tool",
+      "generated_source": "exec-c8d6ceff-15b9-4111-8fd4-2a3405261c0c.png",
+      "transparent_background": false,
+      "reference_panel_sha256": "cd1f23fbd6a8ec21be27903ee628b9d03a2959043eb1176e8236b99a34a8be98",
+      "style_reference": {
+        "file": "selection-joe-v1.png",
+        "sha256": "1d9cc16bf29915699c527e3c6d226ca5a00a9137ab11cb0ab709c8f8a9be0489"
+      },
+      "index": 10,
+      "name": "印第安喬",
+      "source_file": "LOSEFIG.XBB",
+      "source_sha256": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+      "record_file_offset": 86890,
+      "pixels_file_offset": 87658,
+      "original_reference_sha256": "9f9dc94c5b4709b2eb2f3110770d0144aa02323ca2d4d2c85c2d344ca935cf29",
+      "original_RGB_sha256": "de025defc498a413e43f397ba02e5a2c6cab71fa0598422e3cab78d726666992",
+      "original_size": [
+        89,
+        89
+      ],
+      "status": "candidate-not-approved-or-integrated",
+      "review": "紅白彩繪、頭帶羽飾與長鼻保持；腫眼、擦傷及張嘴程度為近似。"
+    }
+  ],
+  "requests_sha256": "f64a870f42a832bf9abbaebe1f63c5b6b1f7e2fb51ae79a6f2889301da494e64",
+  "importer_sha256": "1efbc166c204cc266858713f749241bcecbf47a9bd142193ee4f383025b9cff3",
+  "selection_portraits_source_sha256": "991062cb63228d03458208da002a205487544d99753756f1e1eb41a2216517a3",
+  "first_result_source_sha256": "98e9ab300a8f77f1509a2f5ab76475450dc0c402b4262026efae890297a1f394",
+  "preview": {
+    "file": "docs/screenshots/result-portrait-candidates.png",
+    "sha256": "ffd3ca4bfbde67dbee9955814a37c21cd84b8083532e320193d2e5e3bf2d350a"
+  },
+  "limits": "new painted approximations; not visual approval, source-exact expressions or injuries, runtime schema, normal result verification, or full HD"
+}

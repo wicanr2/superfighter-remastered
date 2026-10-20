@@ -52,7 +52,11 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 ![斬勝法蘭克的結果報紙 HD 靜態候選，非遊戲擷取](docs/screenshots/result-newspaper-candidate.png)
 
-結果報紙已有新底圖與法蘭克受傷肖像，搭配既有斬肖像製作上述候選。細字印刷、現代標題字型及傷勢為近似，原版結果仍保留。其餘十名敗者肖像、完整結果流程與正式接入尚未完成；[來源、完整提示詞與限制](docs/spec/048-hd-result-newspaper.md)均已記錄。
+結果報紙已有新底圖與法蘭克受傷肖像，搭配既有斬肖像製作上述候選。細字印刷、現代標題字型及傷勢為近似，原版結果仍保留。[來源、完整提示詞與限制](docs/spec/048-hd-result-newspaper.md)均已記錄。
+
+![十一人敗者肖像 HD 候選，未接正式結果畫面](docs/screenshots/result-portrait-candidates.png)
+
+十一人敗者肖像已有首輪候選。鳳凰與蜘蛛女保留落淚神情，其餘按各自原受傷圖重繪，表情與傷勢仍有差異；[逐人紀錄與完整提示詞](assets/hd/candidates/result-portraits-source.json)可回查。這批是美術候選，完整結果流程與正式接入尚未完成。
 
 [蜘蛛女的十五張外部 HD 稿](assets/hd/candidates/spider/README.md)也已收錄。使用者確認的雙手觸地低伏已接入，另作無損鏡像及透明留白裁切；同一張圖對應三組低伏來源。其他稿仍有姿勢差異，未對應動作整格回退原貌。
 
