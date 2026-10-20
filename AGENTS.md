@@ -149,6 +149,9 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [隔離選角原生獨立核對](tools/verify_selection_native.py) | 原 BIGFIG／色盤、兩側候選及方向辨識、框外原貌、同狀態切換與退出；不宣稱 GPU 逐點採樣一致 |
+| [隔離選角原生操作](tools/selection_native_smoke.py) | 正常雙打兩側十一人、魔王切換、原貌恢復與進對戰清除；未載候選另驗，不當正式發布驗收 |
+| [隔離選角原型準備／建置](tools/prepare_selection_native_prototype.py)、[繪圖模板](tools/selection-native-prototype/desktop.go.in) | 正式來源副本中的兩側大肖像，逐張核對原色號／色盤才畫，未知原貌；不更動正式介面或格式 |
 | [選角肖像獨立核對](tools/verify_selection_portraits.py) | 原 BIGFIG 十一張 RGB、角色順序／偏移、生成原 PNG 與純 HD 接觸圖身分，不代替視覺定版或原生驗收 |
 | [選角肖像候選收錄](tools/import_selection_portraits.py)、[來源與精確提示詞](assets/hd/candidates/selection-portraits-source.json) | 十一張生成原 PNG 與純 HD 接觸圖；原肖像比較只留本機，不當正式選角 UI |
 | [選角肖像 HD 候選](docs/spec/047-hd-selection-portraits.md)、[原肖像匯出](tools/export_selection_portraits.py) | 沿 025 已驗的 BIGFIG.XBB 十一人來源準備高解析肖像，DRAFT，不改正式格式／導航／流程 |

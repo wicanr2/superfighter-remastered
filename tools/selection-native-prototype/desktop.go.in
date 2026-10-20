@@ -1,0 +1,89 @@
+// Disposable 047 native portrait experiment. Never compiled into production.
+package desktop
+
+import (
+    "bytes"
+    "crypto/sha256"
+    "encoding/json"
+    "fmt"
+    "image"
+    "image/png"
+    "os"
+    "path/filepath"
+
+    "github.com/hajimehoshi/ebiten/v2"
+    "github.com/wicanr2/superfighter-remastered/internal/controls"
+)
+
+type selectionPrototypeAssets struct {
+    data []byte
+    portraits [11]*ebiten.Image
+    loaded bool
+}
+
+type selectionPrototypeState struct {
+    Player int `json:"player"`
+    Cursor int `json:"cursor"`
+    Portraits [2]int `json:"portraits"`
+    OriginalSHA256 string `json:"original_sha256"`
+    Boxes [2][4]int `json:"boxes"`
+}
+
+func loadSelectionPrototype(root string) *selectionPrototypeAssets {
+    data,e:=os.ReadFile(filepath.Join(root,"BIGFIG.XBB"))
+    if e!=nil||len(data)!=11*8689||fmt.Sprintf("%x",sha256.Sum256(data))!="4897b865c3fef8fd1c788ec5e32226de7086dbd8ff1987a5efc62ea15bd29477"{return nil}
+    assets:=&selectionPrototypeAssets{data:data}
+    path:=os.Getenv("KDZZ_SELECTION_PROTOTYPE_ART");if path==""{return assets}
+    manifest,e:=os.ReadFile(filepath.Join(path,"selection-portraits-source.json"))
+    if e!=nil||len(manifest)>128*1024||fmt.Sprintf("%x",sha256.Sum256(manifest))!="991062cb63228d03458208da002a205487544d99753756f1e1eb41a2216517a3"{return assets}
+    var source struct{Records []struct{ID string `json:"id"`;Index int `json:"index"`;File string `json:"file"`;SHA string `json:"sha256"`} `json:"records"`}
+    if json.Unmarshal(manifest,&source)!=nil||len(source.Records)!=11{return assets}
+    var images [11]image.Image
+    for i,row:=range source.Records{
+        if row.ID!=controls.Catalog[i].ID||row.Index!=i||filepath.Base(row.File)!=row.File{return assets}
+        file:=filepath.Join(path,row.File);info,e:=os.Stat(file);if e!=nil||info.Size()>16*1024*1024{return assets}
+        raw,e:=os.ReadFile(file);if e!=nil||fmt.Sprintf("%x",sha256.Sum256(raw))!=row.SHA{return assets}
+        config,e:=png.DecodeConfig(bytes.NewReader(raw));if e!=nil||config.Width!=1254||config.Height!=1254{return assets}
+        decoded,e:=png.Decode(bytes.NewReader(raw));if e!=nil{return assets};images[i]=decoded
+    }
+    // Keep portrait texture coordinates independent from the automatic atlas used
+    // by changing controls/font glyphs. Mipmap minification remains enabled.
+    for i,decoded:=range images{assets.portraits[i]=ebiten.NewImageFromImageWithOptions(decoded,&ebiten.NewImageFromImageOptions{Unmanaged:true})}
+    assets.loaded=true;return assets
+}
+
+func (g *Game) selectionPrototypeState() *selectionPrototypeState {
+    assets:=g.selectionPrototype;if assets==nil{return nil}
+    selected:=g.core.Status().Selection;if selected==nil||selected.Player<0||selected.Player>1{return nil}
+    display:=g.core.SelectionDisplay();_,palette,err:=g.core.LiveDisplay()
+    if display==nil||err!=nil||!display.Valid()||display.Width!=320||display.Height!=200||display.StartByte!=0||display.PitchByte!=320{return nil}
+    state:=&selectionPrototypeState{Player:selected.Player,Cursor:selected.Cursor,Portraits:[2]int{-1,-1},Boxes:[2][4]int{{11,15,100,104},{214,15,303,104}},OriginalSHA256:fmt.Sprintf("%x",sha256.Sum256(display.Indices))}
+    for side:=0;side<2;side++{
+        bank:=160+side*32
+        for character:=0;character<11;character++{
+            record:=assets.data[character*8689:(character+1)*8689];match:=true
+            for i:=0;i<32&&match;i++{for k:=0;k<3;k++{v:=record[i*3+k];if palette[bank+i][k]!=v*4+v/16{match=false;break}}}
+            for y:=0;y<89&&match;y++{for x:=0;x<89;x++{
+                targetX:=11+x;if side==1{targetX=302-x}
+                if display.Indices[(15+y)*320+targetX]!=record[768+y*89+x]+uint8(bank){match=false;break}
+            }}
+            if match{if state.Portraits[side]>=0{return nil};state.Portraits[side]=character}
+        }
+    }
+    if state.Portraits[state.Player]!=state.Cursor||state.Player==1&&state.Portraits[0]<0{return nil}
+    return state
+}
+
+func (g *Game) drawSelectionPrototype(dst *ebiten.Image,state *selectionPrototypeState) bool {
+    assets:=g.selectionPrototype;if assets==nil||!assets.loaded||state==nil{return false}
+    for side,character:=range state.Portraits{
+        if character<0{continue}
+        op:=&ebiten.DrawImageOptions{Filter:ebiten.FilterLinear}
+        scale:=267.0/1254
+        if side==0{op.GeoM.Scale(scale,scale);op.GeoM.Translate(float64(g.activeRect.Min.X+11*3),float64(g.activeRect.Min.Y+15*3))}else{
+            op.GeoM.Scale(-scale,scale);op.GeoM.Translate(float64(g.activeRect.Min.X+303*3),float64(g.activeRect.Min.Y+15*3))
+        }
+        dst.DrawImage(assets.portraits[character],op)
+    }
+    return true
+}

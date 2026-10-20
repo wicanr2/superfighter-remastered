@@ -669,3 +669,13 @@ HD 材質是假說：全 RGB 轉移因來源 7／18 同 RGB、但只有 7 轉色
 已證實於目前執行器取樣：要求座標 318／100，回報座標 304／100；要求 150／198，回報 150／184；中央 150／120 不變。runtime 01B9:0359 的十二份穩定畫面、DS 0BFA:0654 游標目的及 0648 可見狀態一致。原 CPM 加框線、黑白遮罩逐色號重組吻合；原 CPU 游標函式的既有 IDA MZ linear 10512h..1053Eh 以回報座標計算目的。此為固定來源在 dosgolem 的結果，不擴張為硬體時序證明。
 
 原生 cursor-v1 錯用要求座標作期望而超時，走到原 mode=4 示範對戰，已保留失敗。原探針 v1 只有四百萬步，未達四份穩定邊界；v2 改採每組最多三千二百萬步、取得四份即停止，不更動原狀態。來源確認後的 cursor-v2 十三張正常擷取通過中央／右界／下界的 GPU 黑白像素、三組原貌切換／恢復及滑鼠選角清除。舊九張／四張亦以新驗證器重審，另存 comparison-v2.json；原 comparison.json 及公開截圖引用的 hash 保持。正式程式與原型模板未變，046 材質定版及格式仍待確認，停止追查游標內部。
+
+## 2026-10-21：047 選角肖像原生原型與紋理對照
+
+固定 BIGFIG.XBB SHA `4897b865c3fef8fd1c788ec5e32226de7086dbd8ff1987a5efc62ea15bd29477`，原 SF.EXE／執行器沿 CONTEXT。原位置、色盤與 89×89 源塊沿 025 已驗的 sub_10E86；沒有新增 IDA 分析、改名或原記憶體寫入。selection-native-prototype-v2 保存正式來源副本，85 份檔案，Go 1.24.13／Ebitengine v2.9.9；Linux 原型 SHA `cde6e389e4aacb6141e9d5d62192925e9ee540f55f0778a757f2d90623b396ad`。正式 46 份編譯輸入保持。
+
+已證實於取樣：每側三十二色及完整 89×89 原色號吻合 BIGFIG 對應角色，右側以 x=302−x 的原順序重建。兩份 v1 操作腳本誤以為切第二人時游標歸零；觀測保持第一人的 10，既有 boss-selection-filter-probe-v3.go 也用 (*p1-*p0+11)%11 移動。修正只在正常切換後以實際游標定位，不修改原行為。
+
+managed 紋理版的 selection-native-full-v2 在 p0-08 原貌／HD 恢復比較有 386 個像素不等，每色差最多 1；原色號、色盤、核心與設定保持，p1-10 則完全相同。差異記錄於 restore-difference.json。固定模組快取 `github.com/hajimehoshi/ebiten/v2@v2.9.9/image.go` 的 DrawImageOptions 與 NewImageFromImageOptions 註解明定：FilterLinear 縮小預設使用 mipmap，Unmanaged 不進自動紋理圖集。隔離原型只改肖像的 Unmanaged=true，沒有關閉 mipmap 或降低美術。
+
+已證實於 v3 雙打案例：兩組暫停切換後 HD 像素完全相同，兩側十一張候選及鏡像方向的 GPU 辨識通過，框外逐點保留原貌；正常／未載候選共 44 張、61 份原肖像與 38 份 GPU 候選／方向比較通過。把差異歸因於自動圖集配置是強推論，不宣稱驅動層精確原因或跨平台皆解決。Pillow 的雙線性縮小與 GPU mipmap 不逐點相同，獨立比較只判候選身分／方向，不偽造採樣 parity。停止追查 GPU 內部，回到版面、視覺與正式載入閘門。
