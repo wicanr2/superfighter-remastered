@@ -14,6 +14,13 @@ def gh(*words,json_output=False):
     result=subprocess.check_output(['gh',*map(str,words)],text=True,timeout=900)
     return json.loads(result) if json_output else result.strip()
 
+def read_release(version):
+    # 草稿尚未建立正式 tag；以有權限的清單取得草稿本身，再按 id／資產核對。
+    releases=gh('api',f'repos/{REPO}/releases?per_page=100',json_output=True)
+    matches=[x for x in releases if x['tag_name']==version]
+    assert len(matches)==1,'找不到唯一的發行版本'
+    return matches[0]
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('stage',choices=['draft','publish','verify'])
@@ -58,7 +65,7 @@ Linux 與 Windows Wine 已驗解壓後啟動、資料匯入及自動準備 HD �
 ''')
         gh('release','create',version,'--repo',REPO,'--draft','--target',a.target,'--title','快打至尊 Remastered '+version,'--notes-file',notes)
         for item in assets.values():gh('release','upload',version,'--repo',REPO,item['path'])
-    release=gh('api',f'repos/{REPO}/releases/tags/{version}',json_output=True)
+    release=read_release(version)
     assert release['tag_name']==version and release['target_commitish']==a.target
     remote={x['name']:x for x in release['assets']};assert set(remote)==set(assets)
     for name,item in assets.items():
@@ -72,7 +79,7 @@ Linux 與 Windows Wine 已驗解壓後啟動、資料匯入及自動準備 HD �
     if a.stage=='publish':
         assert release['draft'],'已發布版不可變更'
         gh('release','edit',version,'--repo',REPO,'--draft=false')
-        release=gh('api',f'repos/{REPO}/releases/tags/{version}',json_output=True)
+        release=read_release(version)
         assert not release['draft'] and release['published_at']
     report={'version':version,'target':a.target,'url':release['html_url'],'draft':release['draft'],'published_at':release['published_at'],
             'assets':[{k:v for k,v in x.items() if k in ('name','size','digest','browser_download_url')} for x in release['assets']],

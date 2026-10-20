@@ -597,6 +597,7 @@
 - README 補官方來源的故事背景、首版與限制、鍵盤／手把說明及本輪五張新擷取。GitHub 圖片只引用受追蹤檔案；source.json 記錄版本／來源／收據／二進位 SHA。HD 包仍是 1411 鍵／65 PNG／二十來源，公開資產 83 PNG／92 檔不變；完整 HD、其他快捷、音訊、正式速度、實體手把與真機仍待完成。
 - final-audit.json 核對原始 jsdos、128 原檔與 1719 執行器來源不變、README 七十個受追蹤相對連結、七張截圖來源、文件索引、Python 語法與 macOS metadata。全工作樹沒有 root-owned 檔案或誤建 .md 目錄。已驗二進位與封包雜湊不因文件收尾改動。
 - GitHub 發布工具限定四個 patch ZIP 與 release-manifest.json，先草稿、核對遠端大小與 SHA 再發布。既有 gh 設定中的舊憑證失效；改用已存在且有效的 Git credential store 唯讀供容器取得 GH_TOKEN，沒有搬運、輸出、保存或修改憑證。GitHub release list 為空，尚無相同 tag。後續實際提交、發布與遠端核對追加於下方。
+- 首次來源提交 35075f4d0cc83c920d222f35cc56cee1ff474f59 已推送。五個資產上傳草稿後，工具用 tags API 查未發布草稿得到 404，沒有發布或覆寫。改由授權可見的 releases 清單查唯一草稿，再核對 target／資產；這是發布工具的查詢錯誤，封包與正式程式 bytes 不變。修正提交另推送，草稿目標在正式 tag 建立前更新到修正版。
 
 重現命令在容器 `/project` 內執行，原版掛 `/orig` 唯讀，工作樹與 workplace 為本專案輸出。每次 docker run 均使用 --rm、--user 1000:1000、--network none、相稱資源限制與 timeout；只有 GitHub API 上傳開網路。
 
