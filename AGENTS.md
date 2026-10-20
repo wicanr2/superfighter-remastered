@@ -149,6 +149,13 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [金太極光效圖](assets/hd/characters/kim-effects.png)、[來源與精確提示詞](assets/hd/characters/kim-effects-source.json) | 十種第二色盤生成原圖與透明矩形；原始 bytes／色盤／原圖留本機 |
+| [金太極光效原生獨立核對](tools/verify_kim_effects.py) | 三類實際原生光效、完整 CPU／HUD／陰影／CRTC、第二色盤、可見替換及模式恢復；不外推十種 GPU 動畫全驗 |
+| [金太極原生光效](tools/kim_effects_smoke.py) | 正常鍵盤方向／拳腳觸發金黃彈、青藍刀光與拳影，驗同狀態切換／恢復及舊包回退；不使用快捷或狀態注入 |
+| [金太極光效真實測試](internal/hd/kim_effects_test.go) | 十份正常第二色盤 fixture、新群組選擇及來源／未知色盤整格拒絕；不以來源鍵齊全代替動畫驗收 |
+| [金太極光效準備](tools/prepare_kim_effects.py) | 綁定 READY 來源與原 PNG，新增十個第二色盤鍵、保留舊素材及清單，核對實際圖集與清單上限 |
+| [特殊光效獨立核對](tools/verify_special_effects.py)、[金太極特殊光效](docs/spec/042-kim-effects.md) | 正常序列、全部保存 CPU 層與十份第二色盤原圖，先審查再接既有格式；鬼丸快照缺口另記 |
+| [特殊動作來源診斷](tools/special_effects_receipt.go) | 以明示的普通鍵盤序列、正常選角取樣光效與 HD 缺件；不接快捷、不注入狀態，沿 009 的原圖層及第二色盤契約 |
 | [背景捲動正常來源](tools/background_scroll_receipt.go)、[私有比較稿](tools/background_scroll_preview.py) | 十一景正常雙打的雙人行走、相機邊界與完整 CPU 圖層；只作捲動／構圖比較，029 格式確認前不接 production |
 | [同角色原生色彩核對](tools/verify_duplicate_palette_native.py) | 真實主色盤、原圖層／HUD／陰影／CRTC、藍綠雙色及切換／勝利生命週期，與 HD 配色近似分級 |
 | [同角色原生操作](tools/duplicate_palette_smoke.py) | 正常同角法蘭克雙色、第二人行走／放開、同狀態原貌切換與舊程式回退；不改原版狀態 |

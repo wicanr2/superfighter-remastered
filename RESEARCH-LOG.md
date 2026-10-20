@@ -576,3 +576,16 @@ HD 依原表轉移 RGB 色差，保留原 PNG、明暗細節及 alpha，並非�
 background_scroll_receipt.go 以正常選角進十一景，普通雙人左／右行走分別 96／192 格，完整觀察相機集合及八份保存快照。每景觀察到 0／159，未宣稱所有整數相機都曾到達。background_scroll_preview.py 由原 XGB 獨立核對 88 格背景、全色盤、六層 RAM 及 176 角色 packed／CPU 遮罩／色號，再由完整 tail 與 CRTC 核對可見範圍，全部通過。released 保存點只清除了輸入來源，未等待下一輪詢，不作放開中立驗收。
 
 來源事實與 HD 視覺分開。私有 v1／v2 比較按同一相機及顯示起點，以候選背景加原版前景呈現；沒有生產路徑或新 schema。視覺複核發現首稿石窟及舞廳交界偏高，兩份內建 imagegen 修稿改善仍需複核，原稿不覆寫；街道塗鴉字形也待修。輸出及精確提示詞／父稿 SHA 見資產修稿索引，正常資料與含原版前景比較只留 workplace。此結果推進 029 的來源與構圖審查，不將 DRAFT 升為 READY 或外推單打順序、全部相機、原生 GPU、完整動畫。
+
+
+## 2026-10-21：金太極第二色盤與鬼丸快照缺口
+
+輸入 SF.EXE SHA 24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300；SFMAN08.DAT SHA 5579dee3e846d65905db84d769fae4378051e1a5cec74bed509885754cef165c；固定 1719 檔 dosgolem 副本與 Go 1.24.13。位址依 009 分開：原 DAT 的 B28h 指標表、C48h payload 與 AF8h 色盤為檔案偏移；本次 snapshot 步數與序號是 runtime 觀測，不新增 IDA 函式語意。
+
+special-kim-v1 由正常選角 7／4、明示四組方向／拳腳序列取得 352 格，十個 effect=true 來源為槽 6／37／49..56。獨立 verify_special_effects.py 核對每個 trace 原檔身分、保存的完整 CPU 層與第二色盤，十份光效原 bytes／覆蓋／色號吻合。兩個一輪詢方向階段沒有完整 draw 樣本，診斷記錄該限制；原 verifier 從普通長階段沿用的「每階段必有畫面」假設已修為已宣告階段子集及順序檢查，不將沒畫面當成輸入未送達。
+
+來源表中十種光效為青藍拳影／刀光與金黃彈，現有一般 palette_bank=0 圖稿配色不同，沒有直接重用。內建 imagegen 生成 1774×887 RGBA 原圖，SHA 3358ccf75dc54972eadaed4c571a74649d8a49e830154b1e6f2c464be084f433；按既有透明間隔／alpha 門檻登錄十鍵，原 PNG 不改。READY 審查及原稿提示詞在 kim-effects-art-v1；總量 105,769,615，原上限以最小整 Mi 增至 101 Mi，仍有明確拒絕與逐檔上限，新增最壞 RGBA 預算 4 MiB，不改格式欄位。
+
+special-kim-v2 對同一畫格比較新／舊選擇，327→352，25 格缺件消除，無回退退步。Linux 新／舊包三類光效及各自模式切換的結果見 042 與 comparison.json；兩次實機流程不是跨案例同狀態。old-v1 沒觸發第一招，不據此稱舊包有問題；old-v2 等待原版讀到按鍵值再計輪詢，正常三類回退通過。首版其他角色快捷限制保持。
+
+鬼丸正常 PK 進 path 36、114 格選擇成功，未觀察 Effect。加入後蓄／前拳後，special-onimaru-v2／v3 在 path 38 的原 frame 246,505,248 步／序號 221 出現空層，背景與兩個 actor 描述仍存在，LayersComplete=false。v3/failure.json 及 character-05/sample-18 保存原始診斷。尚未知是合法動作的繪圖分支或觀測缺口，不能憑缺少主角色層猜原因，更不能以補圖／移除完整性核對放行；下一個窄任務是追 layers 快照建立端。

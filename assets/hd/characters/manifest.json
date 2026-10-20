@@ -520,6 +520,12 @@
       "sha256": "3f02eaff747f18818c3ad46a8bc2aad38454c79918e0a7652f57ee6988bc76c7",
       "width": 1774,
       "height": 887
+    },
+    {
+      "file": "kim-effects.png",
+      "sha256": "3358ccf75dc54972eadaed4c571a74649d8a49e830154b1e6f2c464be084f433",
+      "width": 1774,
+      "height": 887
     }
   ],
   "poses": [
@@ -23532,6 +23538,166 @@
         1526,
         706
       ]
+    },
+    {
+      "character": 7,
+      "palette_bank": 1,
+      "slot": 6,
+      "width": 54,
+      "height": 60,
+      "source_offset": 22707,
+      "source_sha256": "61259a1e685a3e7c4a2100ea4a990d660d0bbc69a2e296075bce68c9782e93c5",
+      "atlas": "kim-effects.png",
+      "rect": [
+        47,
+        119,
+        321,
+        432
+      ]
+    },
+    {
+      "character": 7,
+      "palette_bank": 1,
+      "slot": 37,
+      "width": 51,
+      "height": 85,
+      "source_offset": 106243,
+      "source_sha256": "be2f3a381fae96e47fdedc0348b4b675693863ef10f955372ca5ddb6b68590cf",
+      "atlas": "kim-effects.png",
+      "rect": [
+        416,
+        46,
+        686,
+        447
+      ]
+    },
+    {
+      "character": 7,
+      "palette_bank": 1,
+      "slot": 49,
+      "width": 62,
+      "height": 14,
+      "source_offset": 147031,
+      "source_sha256": "8fdd243d51a0b79fc69931375c65525ad37f8841b63a66e502da95c378d8eb6b",
+      "atlas": "kim-effects.png",
+      "rect": [
+        730,
+        212,
+        1064,
+        313
+      ]
+    },
+    {
+      "character": 7,
+      "palette_bank": 1,
+      "slot": 50,
+      "width": 47,
+      "height": 15,
+      "source_offset": 147467,
+      "source_sha256": "488ea8d7804d8377eb9dc39577ce76c620ade0cd064528d7dbadc0f467af89d6",
+      "atlas": "kim-effects.png",
+      "rect": [
+        1139,
+        215,
+        1406,
+        311
+      ]
+    },
+    {
+      "character": 7,
+      "palette_bank": 1,
+      "slot": 51,
+      "width": 25,
+      "height": 25,
+      "source_offset": 147829,
+      "source_sha256": "1492b488d60784b880c0310409cc8860fb0664d92a27f1f0afe4921dce0f669b",
+      "atlas": "kim-effects.png",
+      "rect": [
+        1544,
+        189,
+        1693,
+        337
+      ]
+    },
+    {
+      "character": 7,
+      "palette_bank": 1,
+      "slot": 52,
+      "width": 23,
+      "height": 26,
+      "source_offset": 148156,
+      "source_sha256": "0d25f04a1ad781c083de0a64e3e6e79e84907ba9c2d4d9feacd6531816756cea",
+      "atlas": "kim-effects.png",
+      "rect": [
+        95,
+        565,
+        282,
+        766
+      ]
+    },
+    {
+      "character": 7,
+      "palette_bank": 1,
+      "slot": 53,
+      "width": 18,
+      "height": 31,
+      "source_offset": 148470,
+      "source_sha256": "ba0b4d189ce404dfafc26a1e908cb18884fb9d5002b33e5c68eed5d56b84587a",
+      "atlas": "kim-effects.png",
+      "rect": [
+        470,
+        559,
+        603,
+        770
+      ]
+    },
+    {
+      "character": 7,
+      "palette_bank": 1,
+      "slot": 54,
+      "width": 55,
+      "height": 14,
+      "source_offset": 148751,
+      "source_sha256": "8bb920374a64487881787f201b9de628f32e39c3bf5fbabfce067d1cc46f6a81",
+      "atlas": "kim-effects.png",
+      "rect": [
+        730,
+        611,
+        1056,
+        699
+      ]
+    },
+    {
+      "character": 7,
+      "palette_bank": 1,
+      "slot": 55,
+      "width": 75,
+      "height": 55,
+      "source_offset": 149145,
+      "source_sha256": "1c22a1ce4c5da3980f4c2015253ea7919fb4afe8ce0b51ae6b2399f808f54407",
+      "atlas": "kim-effects.png",
+      "rect": [
+        1088,
+        531,
+        1394,
+        792
+      ]
+    },
+    {
+      "character": 7,
+      "palette_bank": 1,
+      "slot": 56,
+      "width": 59,
+      "height": 73,
+      "source_offset": 151237,
+      "source_sha256": "a6e0c07996d81155e61cf3dbdfcc89a31bf8d882307331dc3823ffac75920825",
+      "atlas": "kim-effects.png",
+      "rect": [
+        1451,
+        496,
+        1748,
+        825
+      ]
     }
   ],
   "evidence": [
@@ -23552,6 +23718,7 @@
     "docs/spec/017-victory-pose-banks.md",
     "victory-pose-registration.json",
     "docs/spec/037-lan-victory.md",
-    "docs/spec/039-phoenix-effects.md"
+    "docs/spec/039-phoenix-effects.md",
+    "docs/spec/042-kim-effects.md"
   ]
 }

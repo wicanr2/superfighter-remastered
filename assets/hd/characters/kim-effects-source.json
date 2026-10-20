@@ -1,0 +1,180 @@
+{
+  "kind": "Kim normal-input second-palette effects, generated PNG bytes preserved",
+  "tool_sha256": "95284a0125277bad7830ca812986d945c639921f78906f3b5a7880caebcc8e25",
+  "base_manifest_sha256": "2557a3bc5136cd8ff403632f28e161c7d9c1aacd82c3984dbcdf0079ea0c9a8d",
+  "source_file": "SFMAN08.DAT",
+  "source_sha256": "5579dee3e846d65905db84d769fae4378051e1a5cec74bed509885754cef165c",
+  "request": {
+    "tool": "built-in image_gen",
+    "prompt": "Use case: stylized-concept. Asset type: transparent HD effects sprite atlas for the DOS game Super Fighter Remastered, Kim Tai Chi. Input image 1 is the authoritative original second-palette effects reference: ten cells, FIVE columns and TWO rows, slots in row-major order 6,37,49,50,51 / 52,53,54,55,56. Input image 2 provides only the approved hand-painted arcade B rendering finish, NOT its incorrect silver/gold effect colours and NOT its character. Faithfully redraw exactly the TEN effects from image 1 in the same grid and order, on actual transparent alpha. Keep each cell completely separate with a broad fully transparent gutter; no effect may touch another cell. Preserve EACH original silhouette, facing, number of disconnected parts and their relative positions. Row1: (1) two detached blue energy fists with white/cyan curling trails, upper right and lower left; (2) tall white/cyan crescent blade arc, concave/open to the RIGHT, blue tips; (3) wide yellow/white comet pointing LEFT with thin trails to the RIGHT; (4) shorter yellow/white comet pointing LEFT with trails RIGHT; (5) round bright white orb with yellow rim. Row2: (1) yellow crescent impact fan with its spikes extending RIGHT; (2) narrower yellow impact fan, same facing; (3) long narrow golden/orange comet pointing LEFT with white trails RIGHT; (4) exactly the two blue energy fist swirls from the reference in their exact relative upper-left/lower-right arrangement; (5) exactly the two longer blue energy fist swirls from the reference in their exact upper-left/lower-right arrangement. The blue effects must retain bright WHITE/CYAN edges, BLUE cores and no brown hands, no gold flames. Yellow effects must retain bright WHITE/YELLOW cores and controlled orange accents, not silver. Refine the source into crisp readable arcade-painted light, smooth energetic brush edges and subtle alpha fading within the original footprint, not chunky pixels. No people, weapons, scene, shadow, frame, labels, numbers, text, watermark, opaque background or checkerboard. Do not invent rings, extra trails or particles outside the original effects. Output a single high-resolution RGBA PNG atlas, approximately 2000x1000, exactly 5 columns by 2 rows with all ten full effects visible, transparent background.",
+    "transparent_background": true,
+    "generated": "exec-c69b4275-a0e3-4f26-8644-9be3354d30bf.png",
+    "references": [
+      "workplace/special-kim-v1/effects-reference.png",
+      "assets/hd/characters/kim-poses-04.png"
+    ],
+    "reference_sha256": {
+      "workplace/special-kim-v1/effects-reference.png": "e5babe43c63eeeb34e8758c35ba2cc80c4367c2cc62cee262974c2202f1d67b2",
+      "assets/hd/characters/kim-poses-04.png": "0ab18901156d19976d384ee77ad3131cdfd55dac164e9940bbf6f6b4a774a390"
+    },
+    "image_sha256": "3358ccf75dc54972eadaed4c571a74649d8a49e830154b1e6f2c464be084f433"
+  },
+  "image_sha256": "3358ccf75dc54972eadaed4c571a74649d8a49e830154b1e6f2c464be084f433",
+  "evidence_review_sha256": "514416714888e8cf70cd8fed825c050d4ebc1144cb2df1d64f02b383b0604e9f",
+  "regions": [
+    {
+      "region": [
+        0,
+        0,
+        354,
+        447
+      ],
+      "rect": [
+        47,
+        119,
+        321,
+        432
+      ]
+    },
+    {
+      "region": [
+        354,
+        0,
+        709,
+        447
+      ],
+      "rect": [
+        416,
+        46,
+        686,
+        447
+      ]
+    },
+    {
+      "region": [
+        709,
+        0,
+        1064,
+        447
+      ],
+      "rect": [
+        730,
+        212,
+        1064,
+        313
+      ]
+    },
+    {
+      "region": [
+        1064,
+        0,
+        1419,
+        447
+      ],
+      "rect": [
+        1139,
+        215,
+        1406,
+        311
+      ]
+    },
+    {
+      "region": [
+        1419,
+        0,
+        1774,
+        447
+      ],
+      "rect": [
+        1544,
+        189,
+        1693,
+        337
+      ]
+    },
+    {
+      "region": [
+        0,
+        447,
+        354,
+        887
+      ],
+      "rect": [
+        95,
+        565,
+        282,
+        766
+      ]
+    },
+    {
+      "region": [
+        354,
+        447,
+        709,
+        887
+      ],
+      "rect": [
+        470,
+        559,
+        603,
+        770
+      ]
+    },
+    {
+      "region": [
+        709,
+        447,
+        1064,
+        887
+      ],
+      "rect": [
+        730,
+        611,
+        1056,
+        699
+      ]
+    },
+    {
+      "region": [
+        1064,
+        447,
+        1419,
+        887
+      ],
+      "rect": [
+        1088,
+        531,
+        1394,
+        792
+      ]
+    },
+    {
+      "region": [
+        1419,
+        447,
+        1774,
+        887
+      ],
+      "rect": [
+        1451,
+        496,
+        1748,
+        825
+      ]
+    }
+  ],
+  "registered_effect_slots": [
+    6,
+    37,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56
+  ],
+  "limits": "ten sources in declared normal keyboard sequences; not complete animation or quick-move enablement",
+  "rights": "user authorized HD generation and repository upload; original references/palettes/CPU sidecars stay local"
+}

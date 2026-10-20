@@ -151,6 +151,19 @@
       "character_manifest_sha256": "2557a3bc5136cd8ff403632f28e161c7d9c1aacd82c3984dbcdf0079ea0c9a8d",
       "authorization": "使用者要求 HD 上傳及 GitHub 可見的 README 整合截圖",
       "limits": "法蘭克正常同角待機與行走；替代色是依原表的 HD 色彩轉移近似，完整動畫另驗"
+    },
+    {
+      "kind": "正常金太極方向／拳腳三類光效的原生 HD 整合；原貌與 raw 留本機",
+      "file": "kim-effects-hd.png",
+      "source": "workplace/kim-effects-native-full-v1/blue-blade-hd.png",
+      "sha256": "62a2c0f854d8ad0081b24eea7b1556ad0433ad3824d9290437cfd2e8062fdc8c",
+      "platform": "Linux amd64，Docker Xvfb；不代表 Windows/macOS 真機或實體手把",
+      "receipt_sha256": "fbf1a3f2807c88d6bac10e4916321050cb9047e8d71e19ccbf8ff2e54b90a886",
+      "comparison_sha256": "9f3b380007247f0e3608a8627b0f7857ffb20f372fd6247b13ae9c8d09a4e7ff",
+      "binary_sha256": "a6caf28092c1b499d794edbebaae1c44e370eb8d395c1d24c3bd8541ee3756c4",
+      "character_manifest_sha256": "26e83f78aa42b6e02ef61884183da7a5a1e9402af42731aeb672f1f871e0dcdb",
+      "authorization": "使用者要求 HD 素材上傳及 GitHub 可見的 README 截圖",
+      "limits": "三類正常原生光效、切換及恢復；十個來源另經 fixture 驗證，不稱全部 GPU 動畫或快捷已啟用"
     }
   ],
   "version": "v.0.1.0-20261020",

@@ -8,12 +8,12 @@
     "scope": "generated HD PNG and mapping metadata only; not original game data or release"
   },
   "characters": {
-    "atlases": 67,
-    "registered_keys": 1485,
+    "atlases": 68,
+    "registered_keys": 1495,
     "sources": 21,
     "complete_HD": false
   },
-  "pngs": 96,
+  "pngs": 97,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -797,8 +797,8 @@
     },
     {
       "file": "characters/manifest.json",
-      "sha256": "2557a3bc5136cd8ff403632f28e161c7d9c1aacd82c3984dbcdf0079ea0c9a8d",
-      "bytes": 517863,
+      "sha256": "26e83f78aa42b6e02ef61884183da7a5a1e9402af42731aeb672f1f871e0dcdb",
+      "bytes": 521555,
       "status": "current-character-mapping",
       "copied_from": "workplace/hd-characters-phoenix-effects-v1/manifest.json",
       "generated_source": "workplace/hd-characters-spider-low-guard-v1/manifest.json"
@@ -1290,6 +1290,26 @@
       "sha256": "b6ddcd3ef936c0cda89930e96683da42cadb54f248b70e31e1735fef8a40a7bf",
       "bytes": 4632,
       "status": "candidate-revision-provenance"
+    },
+    {
+      "file": "characters/kim-effects.png",
+      "sha256": "3358ccf75dc54972eadaed4c571a74649d8a49e830154b1e6f2c464be084f433",
+      "bytes": 681242,
+      "status": "current-effects-atlas",
+      "copied_from": "workplace/hd-characters-kim-effects-v1/kim-effects.png",
+      "size": [
+        1774,
+        887
+      ],
+      "tool": "built-in imagegen",
+      "generated_source": "workplace/kim-effects-art-v1/kim-effects.png"
+    },
+    {
+      "file": "characters/kim-effects-source.json",
+      "sha256": "8e2e1dda9a082f5d73f1e44adb5baaeb9c1a401d5cda7d7d44c5d180667216b6",
+      "bytes": 5536,
+      "status": "current-effects-provenance",
+      "copied_from": "workplace/hd-characters-kim-effects-v1/kim-effects-source.json"
     }
   ],
   "original_game_data_included": false

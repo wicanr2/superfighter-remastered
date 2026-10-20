@@ -779,3 +779,16 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 素材目前 96 PNG／105 筆 payload／125,079,293 bytes，目錄 109 檔；角色包仍 1485 鍵／67 圖集。原圖／色盤、原版前景比較及 raw 收據只留 workplace。README 只更新穩定候選入口，029 仍 DRAFT。四平台 041 程式、VERSION 及首版八包／影片／tag 均不改。
 - background-scroll-preview-v2/final-audit.json 通過：102 筆原 payload 逐筆保持，新增兩張 PNG 及一份來源 JSON；128 原檔、1719 執行器檔、正式 i64、四平台 45 份實際編譯輸入及已發布八包／影片均吻合。88 格／176 角色來源與兩輪比較逐檔 SHA 可回查，141 個 README 相對連結可由 Git 清單找到。沒有 root-owned 檔或 Markdown 目錄，專案 Docker 容器為空；Git diff --check 通過。第一輪 verifier 原始碼已按其既有 SHA 保存，沒有以新版工具冒充舊收據。
 - 來源工具、兩張修稿、精確提示詞及文件已提交 a3a4cd8ce66ae2201b2733902cf0818d908105e7 並成功推送 origin/main，ls-remote 核對一致；首版 tag 仍為 807579d01c145db327050c2e870e2bf46e6bcb68。本筆只追加推送紀錄。
+
+
+## 2026-10-21：金太極十種特殊光效接入
+
+- 上輪背景捲動及修稿為有效進展。029 格式仍待回答，本輪不重問或依沉默實作；改從特殊動作正常來源推進 HD。載入 remake／驗證／規格閘門與 009。
+- special_effects_receipt.go 以明示鍵盤序列取樣。鬼丸 PK 114 格維持 HD；蓄力後出拳 v2／v3 於相同原 frame 空層，v3 補存 failure 與 sample-18。沒有補圖放行或再盲重跑，缺口另列。金太極四組普通方向／拳腳取得 352 格、十份第二色盤來源，二十五格缺件。
+- verify_special_effects.py 獨立核對原檔、來源、CPU 覆蓋與第二色盤。初版 verifier 沿用每個長階段都有 draw 的假設，在兩個一輪詢階段失敗；改檢查明示階段子集及順序，缺少畫面階段明列，不改產品。十份光效及完整 CPU 重組通過。
+- 使用內建 imagegen，依原圖生成青藍拳影／刀光、金黃彈，保存原 PNG、提示詞、參考 SHA 與透明矩形。READY 後以既有版本 3 登錄十鍵，所有舊姿態／PNG 不變；只將圖集上限由 100 增至 101 Mi 像素，最壞 RGBA 增 4 MiB，其他驗證保持。候選總像素 105,769,615，清單 521,555 bytes。
+- special-kim-v2 同格新舊選擇 327→352，補齊 25 格、無退步；十份真實 fixture、未知槽／壞來源／錯色盤拒絕，以及 038／040／041／039 既有測試通過。首次全套測試帶入所有 fixture 環境，120 秒範圍太大而逾時，tests.log 原樣保留；在同工具鏈移除該全域 fixture 環境後，例行 internal／cmd 與 vet 通過於 routine-checks.log，沒有把環境／測試範圍問題列產品缺陷。
+- Linux kim-effects-native-full-v1 十一張及 old-v2 十一張通過普通選角、實際方向／拳腳、三類光效、完整原圖層／介面／陰影／CRTC、第二色盤、切換／恢復逐點及繼續操作。新例可見變動點 4,023／12,983／6,506。old-v1 未觸發首招，失敗及原腳本保留；新版腳本等待原版 key_values 實際讀入後計最低輪詢，old-v2 成功，沒有重寫舊成功收據或宣稱跨案例相同時序。
+- 四平台四十五份編譯輸入、檔頭及逐檔 SHA 通過後晉升八檔至 bin，041 基底保留。素材晉升為 1495 鍵／68 圖集，整個目錄 97 PNG／107 payload／125,769,763 bytes、111 檔；原資料及已發布首版不變。README 補青藍刀光的正常 HD 截圖，圖與精確提示詞一起收錄 repo。
+- 原 READY spec 已存 kim-effects-art-v1/042-ready.md，prepare_kim_effects.py 原始碼及審查 SHA 一同保留。重生舊 READY 審查時，Docker 將該已驗檔唯讀覆蓋 /project/docs/spec/042-kim-effects.md，執行 `python tools/prepare_kim_effects.py --base workplace/hd-characters-phoenix-effects-v1 --output workplace/<新的輸出目錄>`；不把目前 CONFORMED 的文件雜湊或新包冒充當時輸入。
+- kim-effects-build-v1/final-audit.json 通過：原 1485 鍵／67 PNG、104 筆未變 payload、128 原檔、1719 執行器來源、正式 i64、首版八包及影片均保持；只更新角色 manifest 並加入新圖／來源。現行 1495 鍵／68 圖集、97 PNG／107 payload、147 個 README 相對連結及四平台 45 份輸入核對。22 張新原生畫格、25 格同格改善、READY 快照及來源 SHA 可回查；沒有 root-owned 檔、誤建 Markdown 目錄或專案殘留容器，git diff --check 通過。
