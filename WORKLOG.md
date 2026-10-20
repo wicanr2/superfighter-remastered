@@ -802,3 +802,6 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - Go 例行測試／vet、三組真實來源／拒絕及金太極第二色盤／同角回歸通過，真實 fixture 組 22.583 秒。四平台四十五份編譯輸入及檔頭通過；primary-extra-build-v1 保存八個編譯產物／收據及 promotion.json，移入 bin。Linux SHA 47ff4670d1b726f7ee94cc47be6c30ce3bbd6cb9fd6f3e64c0725cf47f657ad9，版本仍為未發行 v.0.1.1-20261020。042 基底及已發布首版八包／影片／tag 不覆寫。
 - 驗證條件及診斷腳本失敗、原因與乾淨重跑見 RESEARCH-LOG 的 043 紀錄。第二人及同角只驗原執行／Select；完整動畫、蜘蛛女其餘動作、背景、音訊及實體手把另續。029 格式仍等原問題回覆，不自行決定。
 - 收尾核對與 Git 推送結果另追加；所有正式來源及原始資料唯讀，容器使用有界 --rm／UID 1000。
+
+- 最終稽核 `primary-extra-build-v1/final-audit.json` 通過：128 原檔、1719 執行器來源、正式 i64、97 PNG／107 catalog／111 素材檔及首版八包／原曲影片不變。149 個 README 相對連結均已追蹤，無原版或 raw 暫存入 Git；擁有權／誤建目錄通過，本專案容器已清空。
+- 實作提交 `8f4209345f3235cd569a5adf2459683a2950268f` 已推送 origin/main，遠端完整提交相同。首版 tag 仍為 `807579d01c145db327050c2e870e2bf46e6bcb68`；本段為其後的文件收尾，不建立新 Release。
