@@ -1,5 +1,12 @@
 # 快打至尊 Remastered
 
+## 工作目錄與遠端
+
+- 唯一開發工作樹為 `/home/anr2/cht/快打至尊/superfighter-remastered`。Git 命令、程式編輯與 Docker 的 `/project` 掛載皆使用此目錄。
+- 遠端為 `https://github.com/wicanr2/superfighter-remastered.git`，目前使用 `main` 追蹤 `origin/main`。原 `/tmp/kdzz-superfighter-publish` 已移入，不再同步兩份來源。
+- `workplace/`、`快打至尊.jsdos` 及 `go.work` 已隨工作樹移入，繼續由 `.gitignore` 排除。父目錄的同名連結只維持歷史路徑；父目錄程式與文件是搬移前快照，不作新修改。
+- 遠端與搬移現況見 [CONTEXT.md](CONTEXT.md)，過程見 [WORKLOG.md](WORKLOG.md)。歷史收據保留原日期與雜湊，不隨路徑搬移重寫。
+
 ## 每次開工
 
 1. 先讀 [CONTEXT.md](CONTEXT.md) 的唯一現況表，再讀 [WORKLIST.md](WORKLIST.md)。以目前程式與最近實跑收據判斷進度。

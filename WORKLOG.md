@@ -446,3 +446,13 @@
 - 主機權限的 gh auth status 被環境的禁止提權政策拒絕。一般權限檢查回報登入失敗，不能當作主機憑證失效證據；git ls-remote origin 可達 GitHub，但回覆 Repository not found，不能區分不存在或無存取權。
 - 實際執行 gh repo create wicanr2/superfighter-remastered --private，因無法連上 api.github.com 失敗。未建立、未推送，未將預定 URL 宣稱為成果連結。已在 CONTEXT 更新實際結果及恢復後推送目前 HEAD 到遠端 main 的命令。
 - 本輪僅更新文件，不重跑程式測試。Docker 清單初查沒有 kdzz 容器，後續映像檢查遭 socket 權限拒絕；未啟動新容器、建立映像或發布套件。既有完整歷史 bundle 保留，不覆寫已保存的歷史收據。
+
+## 2026-10-20 GitHub 確認與工作樹搬移
+
+- 使用者已自行建立遠端並要求移入 workspace。git ls-remote 成功核對 HEAD 及 refs/heads/main 均為 69f91cd5513625b5942701b7ed7afc35c461cc16，與本機最新成果相同，確認先前建立及上傳受阻已解除。
+- 父目錄 .git 是受保護的空目錄。完整 Git 工作樹因此從 /tmp/kdzz-superfighter-publish 移至 /home/anr2/cht/快打至尊/superfighter-remastered，沒有另建研究目錄或同步副本。先在容器核對 188 個自有檔案與原工作根相同、UID/GID 1000:1000 及目標不存在。main 從 636f6ad 快進至已核對的遠端提交，追蹤 origin/main，所有舊分支與提交保留。
+- workplace、快打至尊.jsdos 與 go.work 隨工作樹移入。父目錄同名符號連結保留舊路徑，原版資料與 HD 美術繼續被 Git 排除。父目錄 AGENTS、CONTEXT、README 指向新入口，其餘來源保留搬移前快照，後續只編輯新工作樹。
+- 新工作樹 AGENTS 記錄唯一目錄與掛載方式，README 加入遠端穩定連結，CONTEXT 修正遠端及現行分支狀態。歷史 WORKLOG 與 source.json 的未推送欄位保留當時事實，不重寫舊收據。
+- Docker 搬移檢查通過 128 原檔、1719 執行器來源、四份二進位及各 37 份精確編譯輸入，歷史完整 bundle 雜湊未變。所有六個 Go 套件在新掛載位置離線解析成功。所有權及錯誤的 .md 目錄檢查通過。沒有遊戲程式變更，不重跑 GUI 或整套遊戲測試。
+- git fetch 有一次 DNS 失敗，後續 ls-remote 再次核對相同遠端提交；GitHub API 讀取仍無法連線，未另行確認可見性欄位，授權仍限私人設定。一次文件編輯容器遭 Docker socket 權限拒絕，改用儲存庫檔案編輯工具；後續唯讀驗證與 Go 路徑檢查均成功，未視為產品缺陷。
+- 本批容器使用 --rm，收尾沒有 kdzz 容器，未建立映像或 Release。HD 接續新工作樹的 WORKLIST；029 多場景格式仍待回答，蜘蛛女仍保留已選連身衣與生成拒絕紀錄，未重新決定造型或資料格式。

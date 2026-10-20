@@ -2,6 +2,8 @@
 
 更新日期：2026-10-20。此檔為唯一現況，工作順序見 [WORKLIST.md](WORKLIST.md)，穩定規則與文件索引見 [AGENTS.md](AGENTS.md)。
 
+目前工作樹為 `/home/anr2/cht/快打至尊/superfighter-remastered`，使用 `main` 追蹤 `origin/main`。使用者已建立 [GitHub 儲存庫](https://github.com/wicanr2/superfighter-remastered)，遠端核對已包含搬移前最新提交 `69f91cd`。父目錄程式與文件只保留舊快照；後續編輯在本工作樹進行。
+
 ## 已確認方向
 
 - 參考 `/home/anr2/cht/zeliard` 的包裹與呈現方式。
@@ -114,20 +116,20 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 - [規格 030](docs/spec/030-phoenix-victory.md)限定 CONFORMED。三格原 PNG、精確內建請求、原檔及初始候選來源綁定於 `phoenix-victory-evidence-review.json`。1093 鍵／60 PNG 保留舊 1021 鍵；一般、特效及前四人的 WIN 不改。
 - `phoenix-victory-core-v1` 的 5,952 個成對邊界、八個 WIN 取樣及四張原檔重組通過。Linux／Wine 與缺件三案例各七張通過，勝利切換及下一回合清除完整。各平台內字圖變動 6,881 點、金色實心 1,970 點，另目視，不稱跨平台同狀態。
-- 四份已驗候選原封移入 bin，37 份精確編譯輸入吻合，記錄於 `phoenix-victory-build-v1/promotion.json`；舊子彈四份留於 `bullet-victory-build-v1/bin`。自有來源及完整歷史備份為 `workplace/github-phoenix-victory-integration-progress.bundle`，核對記錄為 `github-phoenix-victory-integration-progress-source.json`。遠端未建立或推送。
+- 四份已驗候選原封移入 bin，37 份精確編譯輸入吻合，記錄於 `phoenix-victory-build-v1/promotion.json`；舊子彈四份留於 `bullet-victory-build-v1/bin`。自有來源及完整歷史備份為 `workplace/github-phoenix-victory-integration-progress.bundle`，核對記錄為 `github-phoenix-victory-integration-progress-source.json`。備份當時尚未推送；目前遠端見「GitHub 儲存庫與工作目錄」。
 
 ### 子彈勝利整合基底
 
 - [規格 028](docs/spec/028-bullet-victory.md)限定 CONFORMED。候選 1021 鍵／59 PNG 保留舊 949 鍵，新增 CCWIN 四組來源與 72 個 WIN 入口。DRAFT、正常診斷與圖集身分綁定於 `bullet-victory-evidence-review.json`。
 - `bullet-victory-core-v1` 的 6,018 個成對邊界、11 個 WIN 取樣及五張保存畫格通過獨立重組。Linux／Wine 與缺件三案例各七張通過，勝利切換及下一回合清除完整。兩平台各案例內字圖變動 5,109 點、金色實心 1,552 點，另目視確認；不稱跨平台同狀態。
-- 四份已驗候選原封移入 bin，37 份編譯輸入吻合，記錄於 `bullet-victory-build-v1/promotion.json`；舊印第安喬四份保留於 `joe-build-v1/bin`。自有來源及完整歷史備份為 `workplace/github-bullet-victory-integration-progress.bundle`，稽核記錄為 `github-bullet-victory-integration-progress-source.json`。遠端未建立或推送。
+- 四份已驗候選原封移入 bin，37 份編譯輸入吻合，記錄於 `bullet-victory-build-v1/promotion.json`；舊印第安喬四份保留於 `joe-build-v1/bin`。自有來源及完整歷史備份為 `workplace/github-bullet-victory-integration-progress.bundle`，稽核記錄為 `github-bullet-victory-integration-progress-source.json`。備份當時尚未推送；目前遠端見「GitHub 儲存庫與工作目錄」。
 
 ### 印第安喬整合基底
 
 - [規格 027](docs/spec/027-joe-hd.md)限定 CONFORMED。四張原 PNG 與精確內建 imagegen 請求在 `joe-art-v1`，72 槽／44 組來源、949 鍵及舊 877 鍵不變由 Go 嚴格讀取驗證。補證 DRAFT 與來源身分見 `joe-evidence-review-v2.json`。
 - `hd-frame-joe-v2` 正常 10／4 的 124 格，兩人完整 bytes 與屋頂吻合。只有第一人出拳時 path 27 使用 5／6／7；第一份雙人拳階段的 11／12 是 path 10，不再當拳擊期望值。原 v1 與追加勘誤保留於 `joe-punch-source-correction.json`。
 - `native-joe-v2`／`windows-joe-v2` 各七項、九張完整重組與切換，缺件九張整格原貌通過；每個案例內恢復 HD 逐點一致。真實 HUD 的 INDIAN JOE／96×11 與未知拒絕通過。四個候選及 37 份實際編譯輸入已核對並原封移入 bin，舊版留在 `boss-clown-build-v2/bin`。
-- 自有來源及完整 Git 歷史備份為 `workplace/github-joe-integration-progress.bundle`，逐檔與來源核對記錄為 `github-joe-integration-progress-source.json`。原版、衍生美術、研究收據及二進位不入 Git，遠端仍未建立或推送。
+- 自有來源及完整 Git 歷史備份為 `workplace/github-joe-integration-progress.bundle`，逐檔與來源核對記錄為 `github-joe-integration-progress-source.json`。原版、衍生美術、研究收據及二進位不入 Git；備份當時尚未推送，目前遠端見「GitHub 儲存庫與工作目錄」。
 
 ### 已保留的角色與勝利基底
 
@@ -149,7 +151,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 - 現行 733 鍵／43 PNG 保留原 661 鍵與所有舊 PNG。只新增 LAN 姓名白名單與普通操作工具，設定、快捷、核心及步速不變。完整 internal／cmd 測試及 go vet、真實 HUD 的 LAN／31×11 與未知角色拒絕通過。`native-lan-v1`／`windows-lan-v1` 各七項、九張完整重組，`native-lan-missing-v1` 九張整格原貌；每個案例切回 HD 逐點一致，嵐輸出各變動 24,372 點、姓名各 3,069 點。另目視確認字形及造型，不稱跨平台同狀態。
 - 四個已驗嵐編譯產物與原編譯收據原封移入 bin，35 份輸入吻合，記錄為 `lan-build-v1/promotion.json`。舊鬼丸四份保留在 `onimaru-build-v1/bin`，由 `lan-pre-integration-baseline.json` 綁定。自有來源及完整歷史本機備份為 `workplace/github-lan-integration-progress.bundle`，身分見 `workplace/github-lan-integration-progress-source.json`；原版、衍生美術與二進位不入 Git。
 - 下一角色金太極的 `kim-source-v1` 有 57 組不同來源、72 入口，固定 SFMAN08.DAT SHA-256 `5579dee3e846d65905db84d769fae4378051e1a5cec74bed509885754cef165c`。`hd-frame-kim-v1` 普通選角 7／4 共 124 格，兩人完整 bytes 與屋頂吻合；私有探針使用第二人普通 Left 三次，身分由 `kim-source-review.json` 綁定。尚無 HD 稿，不外推原生或完整動畫。
-- 來源審查見 [薩爾可夫勝利](workplace/sarkov-victory-evidence-review.json)與[子彈](workplace/bullet-evidence-review.json)。子彈階段備份為 `workplace/github-bullet-integration-progress.bundle`，身分見 `workplace/github-bullet-integration-progress-source.json`。完整 HD、Wine 勝利生命週期與正式交付未完成，GitHub 遠端仍未建立。
+- 來源審查見 [薩爾可夫勝利](workplace/sarkov-victory-evidence-review.json)與[子彈](workplace/bullet-evidence-review.json)。子彈階段備份為 `workplace/github-bullet-integration-progress.bundle`，身分見 `workplace/github-bullet-integration-progress-source.json`。完整 HD、Wine 勝利生命週期與正式交付未完成；目前遠端見「GitHub 儲存庫與工作目錄」。
 
 ### 薩爾可夫一般姿態基底
 
@@ -158,7 +160,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 - `native-sarkov-missing-v2` 使用舊 v8，九張均整張原貌，操作仍正常推進。三個 v1 目錄保留驗證腳本在落地前按拳的診斷與中止紀錄，不當通過；v2 只修輸入順序。
 - `sarkov-integration-checks-v2.log` 的完整程式套件測試及 go vet 通過。四個二進位的 35 份精確編譯輸入均吻合，目前檔案在 `bin/`，原始候選編譯收據與移入紀錄在 `sarkov-build-v1/`。舊 be9a6d3 的四個二進位及來源保存在 `native-frank-victory-v1/build-baseline`。
 - 本切片不證明薩爾可夫 WIN、替代色盤、快捷、所有動作、其他角色／場景或實體平台與手把完成。原始包及 dosgolem 來源保持不變；完整 HD 目標仍進行中。
-- 整合核對見[收尾來源核對](workplace/sarkov-integration-audit.json)。自有來源與完整歷史保存在[Git 備份](workplace/github-sarkov-integration.bundle)，逐檔身分見[來源紀錄](workplace/github-sarkov-integration-source.json)；原版、衍生美術與二進位不入 Git，GitHub 遠端仍未建立。
+- 整合核對見[收尾來源核對](workplace/sarkov-integration-audit.json)。自有來源與完整歷史保存在[Git 備份](workplace/github-sarkov-integration.bundle)，逐檔身分見[來源紀錄](workplace/github-sarkov-integration-source.json)；原版、衍生美術與二進位不入 Git。目前遠端見「GitHub 儲存庫與工作目錄」。
 
 ### 勝負切片基底
 
@@ -193,7 +195,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 - `native-display-legacy-v2` 十三項、十一張擷取驗舊版素材及缺件整張原貌。實體手把及其他角色快捷仍未驗。
 - `display-checks-v1.log` 保存全套 Go 測試及 go vet；`display-runtime-installed-tests.log` 保存安裝後 API、17 個拒絕條件、保存還原與只讀複本測試。四個 Linux／Windows／macOS Intel／Apple Silicon 二進位已重建，`desktop-build.json` 與 `bin/*.build.json` 綁定實際來源及輸出。
 - 稽核入口為 [tools/audit_native_scanout.py](tools/audit_native_scanout.py)，結果 `workplace/native-display-audit.json` 綁定 128 原檔、1719 份來源、四份實際編譯與 46 張具名映射擷取。前版 9623266 與 30 份編譯輸入保存在 `native-rounds-v1/build-baseline`。舊稽核保留當版身分。
-- [目前 HD 開場](workplace/native-display-opening-v2/round-hd.png)已目視確認。自有來源備份為 `workplace/github-native-display.bundle`，逐檔身分見 `workplace/github-native-display-source.json`。原版、衍生美術、收據與二進位不入 Git；GitHub 尚未建立或推送。
+- [目前 HD 開場](workplace/native-display-opening-v2/round-hd.png)已目視確認。自有來源備份為 `workplace/github-native-display.bundle`，逐檔身分見 `workplace/github-native-display-source.json`。原版、衍生美術、收據與二進位不入 Git；目前遠端見「GitHub 儲存庫與工作目錄」。
 - 完整 HD、後續回合／勝負訊息、其他角色與場景、完整動作、其他模式、實體平台與雙手把、音訊、速度及正式封包仍未完成。正式倍率與預設模式仍未定案。
 
 ### 顯示候選基底
@@ -216,7 +218,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 - 目前 Linux 一般對戰為 `native-round-battle-v1` 十七項、十五張具名擷取，另核對十二張陰影合成；舊版 1 與缺件整張原貌由 `native-round-legacy-v1` 另驗。全套測試與 go vet 使用 `round-checks-v3`，沒有跳過；最初跨平台 image 預設關閉 cgo 的編譯失敗屬環境，改用既有 Linux image 與明示 cgo 後乾淨重跑。
 - 四份實際編譯來源及二進位見 `bin/*.build.json`／`desktop-build.json`，目前來源稽核入口為 `tools/audit_native_rounds.py`。陰影基底的四個二進位、26 個精確編譯輸入及舊稽核保存在 `native-shadows-v1/build-baseline`，綁定 `d04670d`；舊收據保留版本身分。
 - 開場背景不覆寫頂端十二列；目前原貌與 HD 都沿 oracle 線性 A0000 契約保留此內容，因此開場頂部仍可見資料列。這是實際可見的 oracle 限制，尚未處理，不能以本切片宣稱完整 HD。
-- 自有來源保存於獨立 Git 副本與 `workplace/github-native-rounds.bundle`，提交及逐檔雜湊見 `workplace/github-native-rounds-source.json`。原版、衍生美術、研究收據與二進位繼續排除，GitHub 沒有建立或推送。
+- 自有來源保存於 `workplace/github-native-rounds.bundle`，提交及逐檔雜湊見 `workplace/github-native-rounds-source.json`。原版、衍生美術、研究收據與二進位繼續排除；目前工作樹與遠端見「GitHub 儲存庫與工作目錄」。
 
 ### 陰影基底
 
@@ -228,7 +230,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 - `native-shadow-overlap-v1` 普通走近取得重疊，七張具名擷取、五張陰影合成核對通過，其中三張確有透明度重疊。`native-shadow-legacy-v1` 十三項及十一張具名擷取驗舊版 1 與缺件整張原貌，沒有混入新版柔邊陰影。
 - `shadow-match-core-v1` 以普通輸入走完兩次擊倒及第二回合，當時陰影快照完整；結果報紙階段快照清空。此為目前核心的生命週期證據，原生返回標題仍保留下一節基準的版本身分。
 - 四個目前二進位與編譯來源由 `desktop-build.json` 及 `bin/*.build.json` 記錄。勝場版的四個二進位、精確來源、舊稽核已保存於 `native-win-markers-v1/build-baseline`，不把舊收據當目前版。最新稽核入口為 `tools/audit_native_shadows.py`，輸出 `native-shadows-audit.json`。
-- 自有來源續存獨立 Git 副本與 `workplace/github-native-shadows.bundle`，備份身分及逐檔雜湊見 `workplace/github-native-shadows-source.json`。原版、衍生美術與二進位不納入提交；GitHub 仍未建立或推送。
+- 自有來源保存於 `workplace/github-native-shadows.bundle`，備份身分及逐檔雜湊見 `workplace/github-native-shadows-source.json`。原版、衍生美術與二進位不納入提交；目前工作樹與遠端見「GitHub 儲存庫與工作目錄」。
 
 ### 勝場與完整比賽基底
 
@@ -239,7 +241,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 - `native-match-v2` 使用另存的擷取診斷基準，普通選單、移動與拳擊走完兩次擊倒、結果報紙及返回標題，八張擷取通過。對戰六張完整原版分層重組一致；結果／標題整個 960×600 區域等於即時原貌，對戰快照清空。其四個二進位及精確編譯輸入保存在 `native-match-v2/build-baseline`，與目前勝場版分開。兩版 gameplay core 來源相同，僅三份前端／HD 呈現檔改變。
 - 原生初次 `native-match-v1` 的 900 秒期限不足，失敗與四張部分擷取保留。1800 秒重跑已通過；部分檢查須指定 `--partial`，另寫 comparison-partial.json，不能代替完整比賽收據。直接 Docker 指令目前可用，先前複合主機指令的 socket 拒絕不再列為整個 Docker 工具鏈受阻。
 - 陰影已由原檔及 IDA 9.4 追到載入、兩人位置、固定第 178 列與透明繪製端，證據在 `ida-shadow-v1/v2.json`、`sf-shadow-v1/v2.i64` 及 RESEARCH-LOG。尚未作 dosgolem 逐寫對拍或 HD 替換，不宣稱陰影完成。
-- 目前四份編譯來源、原始資料、首勝與歷史完整比賽的核對入口為 `tools/audit_native_wins.py`，輸出 `workplace/native-win-markers-audit.json`。自有來源續存於獨立 Git 副本及 `workplace/github-native-wins.bundle`，逐檔來源與備份身分見 `workplace/github-native-wins-source.json`。原版、衍生美術與二進位排除，遠端仍未建立或推送。
+- 此切片四份編譯來源、原始資料、首勝與歷史完整比賽的核對入口為 `tools/audit_native_wins.py`，輸出 `workplace/native-win-markers-audit.json`。自有來源保存於 `workplace/github-native-wins.bundle`，逐檔來源與備份身分見 `workplace/github-native-wins-source.json`。原版、衍生美術與二進位排除；目前工作樹與遠端見「GitHub 儲存庫與工作目錄」。
 
 ### 介面切片基底
 
@@ -262,23 +264,17 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 - `windows-effects-v1`、`windows-frank-effects-v1` 保留初次等待逾時；單獨重跑後，v2 的畫面比對發現取樣末位差異。改用獨立 GPU 紋理後，`windows-effects-v3`／`windows-frank-effects-v3` 的原貌／HD 切換逐點相同。現行 GUI 已由上方介面版收據取代。
 - 前版角色收據及原二進位另保留於 `native-actors-v6`。下列六層角色版、缺件回退與 native-character-audit 均屬前版證據，不能當成目前特效版的完整稽核。
 
-### GitHub 儲存庫準備
+### GitHub 儲存庫與工作目錄
 
-2026-10-20 使用者再次指定先建立儲存庫。主機權限的 `gh auth status` 被環境拒絕，原因為禁止提權；一般權限檢查回報登入失敗，但不能據此判定主機憑證失效。一般權限的 `git ls-remote origin` 已可達 GitHub，回覆 `Repository not found`，不能區分遠端不存在或未獲存取權。實際執行 `gh repo create wicanr2/superfighter-remastered --private` 時無法連上 `api.github.com`，沒有建立或推送成功證據。origin 仍只是預定 URL。
+2026-10-20 使用者已建立 [wicanr2/superfighter-remastered](https://github.com/wicanr2/superfighter-remastered)。`git ls-remote origin` 核對遠端 HEAD 與 main 均為 `69f91cd5513625b5942701b7ed7afc35c461cc16`，包含鳳凰首勝及建立儲存庫嘗試的文件提交。先前「遠端未建立」已是歷史狀態，失敗過程保留於 [WORKLOG.md](WORKLOG.md)。GitHub API 仍無法連線，沒有另外取得可見性欄位；授權繼續限私人設定及自有來源與文件。
 
-上傳副本位於 `/tmp/kdzz-superfighter-publish`。目前成果保存在 `wip/sarkov-victory` 進度分支，main 保留既有穩定基底。現行完整歷史備份為 `workplace/github-phoenix-victory-integration-progress.bundle`，核對記錄為同名 `-source.json`；`github-upload-20261019.bundle` 只代表早期上傳基底。原版、HD 衍生美術、私有 dosgolem 來源及二進位均排除。主機連線及權限恢復後，先建立私人儲存庫，再以 `git -C /tmp/kdzz-superfighter-publish push -u origin HEAD:main` 上傳目前成果，不能只推送舊的本機 main。下列段落保留早期準備紀錄。
+完整 Git 儲存庫已從 `/tmp/kdzz-superfighter-publish` 移至 `/home/anr2/cht/快打至尊/superfighter-remastered`，不再維護同步副本。父目錄的 `.git` 受環境保護，因此在其下保存可正常操作的完整工作樹。本機 main 已快進至已核對的遠端提交並追蹤 origin/main；舊進度分支及歷史均保留，沒有重寫提交。
 
-前輪上傳副本的 `main` 保留顯示修正版本，`wip/victory-hd` 保存當時尚未整合驗證的勝負來源；完整備份為 `workplace/github-upload-latest.bundle`，身分見 `workplace/github-upload-latest-source.json`。本輪已完成限定首勝整合驗證，最新來源另存 `workplace/github-native-victory.bundle` 與 `github-native-victory-source.json`，並更新獨立副本的 main。原版、HD 美術、研究輸入及二進位繼續排除；遠端未建立或推送。
+原版包、workplace 及 go.work 已移入本工作樹，父目錄同名符號連結維持舊路徑。這些檔案繼續被 Git 排除。後續程式、文件編輯與 Docker 的 /project 掛載都使用新工作樹，父目錄其他來源只留搬移前快照。
 
-`native-actors-v1` 保存五層首版來源／二進位，`native-actors-v6` 等保存後續六層版；均為歷史，現行收據以本檔「最新原生介面切片」為準。
+Git 只收自有程式、規格、歷史整理、RRSAL-1.0、OFL 字型與不含原版畫面的手把設定截圖。原版、HD 衍生美術、私有 dosgolem 來源、研究收據及二進位不入 Git，未建立 Release 或正式封包。
 
-使用者已授權建立儲存庫並上傳成果。預定名稱為 `wicanr2/superfighter-remastered`，公開方式未定案，先採私人設定。遠端 API 目前連線失敗，未取得建立成功證據，不宣稱儲存庫已存在。主機升權呼叫亦被環境拒絕，受限環境的 auth 訊息不能當作主機憑證失效的結論。
-
-工作根的 `.git` 在本次環境不可寫，已在 `/tmp/kdzz-superfighter-publish` 準備獨立 Git 提交副本，不改受保護的 metadata。副本只收程式、規格、歷史整理、RRSAL-1.0、中文字型與不含原版畫面的手把設定截圖。原版包、workplace、衍生 HD 美術與二進位皆排除；遠端建立及 push 尚待完成。
-
-首份提交為 `8365aeb91f79032227ff3c4b5cc8daed5fc3e4bd`，共 60 檔；完整 Git 備份為 `workplace/github-initial-8365aeb.bundle`，已通過 `git bundle verify`。可在連線與權限恢復後從該副本推送 main；origin 只保存預定 URL，不表示遠端已建立。後續 HD 變更仍以目前工作根為準。
-
-角色研究早期備份為 `github-hd-study-00dfe7e.bundle`；特效提交為 `3807ee3`，備份 `github-native-effects.bundle`。介面基底、勝場與目前陰影來源分別保存於 `workplace/github-native-hud.bundle`、`github-native-wins.bundle`、`github-native-shadows.bundle`；原版、衍生美術及二進位持續排除，遠端仍未建立或推送。
+現行完整歷史備份為 `workplace/github-phoenix-victory-integration-progress.bundle`，核對記錄為 `github-phoenix-victory-integration-progress-source.json`。其 remote_created／pushed 欄位描述備份當時狀態，保留原檔，不改為本次遠端收據。更早的 github-initial、github-native-victory 等 bundle 亦只描述各自切片。
 
 ### 穩定文件與早期切片
 
