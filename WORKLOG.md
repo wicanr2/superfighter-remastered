@@ -871,3 +871,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 新驗證器也重審前輪九張／四張，總二十六張通過。新報告另存 comparison-v2.json；前輪 comparison.json 由 Git 保存的原驗證器在原工具路徑重生並核對舊 hash，公開截圖的來源關聯不變。新工具對已有且內容不同的報告拒絕覆寫，須明示新檔名。
 - CONTEXT／WORKLIST／046／README 已把可見游標改為限定通過，RESEARCH-LOG 保存根因及來源；沒有新增美術或公開原游標擷取。材質與正式載入仍待原問題回答，046 保持 DRAFT，不新建 Release。最終稽核、容器清理與推送另記。
 - title-native-cursor-v2/final-audit.json 通過：三份新審查共二十六張擷取、十二份新增來源及舊 165 份標題證據相符；公開截圖引用的歷史報告 hash 保持。128 原檔、1719 執行器來源、正式 i64、105 PNG／117 catalog／121 檔、46 份編譯輸入、四平台程式、首版八包及原曲影片保持。170 個 README 相對連結與工具索引通過，無原版或 raw 入 Git，擁有權／誤建目錄通過，本專案容器已清空。
+- 補驗提交 `e9a0f2f76f6aabc509ad7f47d3675e5900e0a15e` 已推送 origin/main，遠端完整提交核對相同；首版 tag 仍為 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段為文件收尾，046 視覺問題保持待回覆，不新增 Release 或重複提問。
