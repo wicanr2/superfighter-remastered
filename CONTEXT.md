@@ -6,9 +6,9 @@
 
 GitHub 目前 visibility 為 PRIVATE，Release 需由有權限帳號查看。引擎公開包是內容分類，本輪未改儲存庫可見性；匿名查詢回 404 與已登入帳號的發布／資產驗證分開記錄。
 
-使用者後續明確要求「HD素材上傳」，本輪又要求「hd記得放進去 repo」。[assets/hd/README.md](assets/hd/README.md)收錄 83 張生成 PNG 及現行角色清單，包含 65 張正式角色／特效圖集、屋頂、道場候選、蜘蛛女舊比較稿及十五張外部候選；逐檔身分見 [catalog.json](assets/hd/catalog.json)。外部稿保留去背處理前後的雜湊。這些授權取代以下舊切片的 HD 圖只留本機限制，原版檔案、原版色號／色盤、原圖、私有執行器與研究收據仍不上傳。沒有改變儲存庫可見性、原版資料權利或 HD 完成標準。
+使用者後續明確要求「HD素材上傳」與「hd記得放進去 repo」。[assets/hd/README.md](assets/hd/README.md)目前收錄 93 張 PNG 及現行角色清單，包含 66 張正式角色／特效圖集、屋頂、道場及其餘九景候選、蜘蛛女舊比較稿與十五張外部候選；逐檔身分見 [catalog.json](assets/hd/catalog.json)。外部稿保留去背處理前後的雜湊。這些授權取代以下舊切片的 HD 圖只留本機限制，原版檔案、原版色號／色盤、原圖、私有執行器與研究收據仍不上傳。沒有改變儲存庫可見性、原版資料權利或 HD 完成標準。
 
-素材及清單共 98,133,629 bytes，整個素材目錄 92 檔。所有 PNG、來源雜湊、尺寸及角色清單均核對；鬼丸首勝 031 及其餘三人首勝 033 已通過限定接入，仍不代表完整角色／場景完成。README 的圖片與相對連結另比對 Git 追蹤清單，HD 整合截圖收錄於 [docs/screenshots/](docs/screenshots/)，原貌對照及原始收據保留本機。
+catalog 的一百筆素材及清單共 120,619,633 bytes，整個素材目錄 104 檔。所有 PNG、來源雜湊、尺寸及角色清單均核對；嵐首勝 037 已通過 Linux 限定接入，完整角色／場景仍未完成。README 的圖片與相對連結另比對 Git 追蹤清單，HD 整合截圖收錄於 [docs/screenshots/](docs/screenshots/)，原貌對照及原始收據保留本機。
 
 首批 HD 素材提交 `4209aad83089c7f74c5ef853a4f1d865e6739f78` 已成功推送 `origin/main` 並由 `ls-remote` 核對。原版與候選的接入限制不因上傳改變，後續 HD 製作仍依工作清單。
 
@@ -26,10 +26,12 @@ GitHub 目前 visibility 為 PRIVATE，Release 需由有權限帳號查看。引
 
 | 項目 | 狀態 | 最近證據與限制 |
 |---|---|---|
+| 嵐勝利 HD | 037 限定 CONFORMED，開發版 v.0.1.1-20261020 未發行 | 兩組既有一般圖重用、四組新稿，新增 72 WIN 鍵。現行 1483 鍵／66 PNG／二十一來源；8,835 成對邊界、十三取樣與六份原檔重組通過。Linux 首勝與舊包缺件各七張、LAN WIN、切回逐點及下一回合清除通過。四平台編譯與 bin 已更新；首版 Release 不變，Wine／第二人／完整動畫另驗 |
+| 其餘九景候選 | 首輪稿已保存，尚未接原生 | I1／I3／I4／I7／I8／I9／I10／I12／I13 各一張原生成 PNG，共 21,785,162 bytes，約 1920×818。原 SHA、精確提示詞、尺寸、透明度與原 bytes 核對；連同屋頂、道場覆蓋十一個 XGB 檔。九景正常 scene 對應、捲動與接入未驗，029 格式確認仍待回答 |
 | 鍵盤重綁與快捷 | 035 限定 CONFORMED | 每人十四欄、兩人四格快捷，保存及舊檔相容。Linux／Wine 各六項正常路徑通過；兩人斬第一招 path 24h、按住一次、方向與拳腳獨立。實際 Linux 封包另驗失焦中立。其他角色快捷仍拒絕，斬完整四招沿用 004 |
 | 首版交付 | v.0.1.0-20261020 已發布並核對 | [Release](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.0.1.0-20261020)的四個引擎包及 manifest 遠端大小／SHA 正確，tag 固定 807579d01c145db327050c2e870e2bf46e6bcb68。dist-all 同版 patch／full-local 各四包，本機各 125 原檔。Linux／Wine 啟動、公開匯入／拒絕覆寫及自動 HD 通過；macOS 只驗內容／架構。六十秒原曲推廣片只留本機 |
 | 原版音訊與 HD 評估 | 格式盤點完成，遊戲串流未接 | SF000.MUS 十五段 MIDI；十七個 PPM 容器四十筆 Compact PCM。首段原曲供本機影片，語音取樣率／編碼／角色標籤仍未知；見 docs/audio-hd-assessment.md，不稱音訊 HD 完成 |
-| 首輪三人 WIN | 已接原生，033 限定 CONFORMED | 該切片 1381 鍵／64 PNG／十九來源。22,020 個成對邊界、18 張原檔重組、真實姓名與新來源測試通過；三個 Linux 首勝及缺件案例各七張切換／清除通過。小丑為時間到判勝。四平台 38 份輸入及 bin 已更新；本切片未驗 Wine／真機。嵐 alpha 與蜘蛛女姿勢卡點先跳過；道場整理完成，029 格式仍待確認 |
+| 首輪三人 WIN | 已接原生，033 限定 CONFORMED | 該切片 1381 鍵／64 PNG／十九來源。22,020 個成對邊界、18 張原檔重組、真實姓名與新來源測試通過；三個 Linux 首勝及缺件案例各七張切換／清除通過。小丑為時間到判勝。四平台 38 份輸入及 bin 已更新；本切片未驗 Wine／真機。當時跳過的嵐已由 037 補齊，蜘蛛女其餘姿勢另續；道場整理完成，029 格式仍待確認 |
 | 練習模式 | 已接原生，032 限定 CONFORMED | 工具列／F9／-training 共用；雙方補滿且鎖血、停時、AI 中立，關閉恢復。核心單／雙打、七個拒絕邊界、Linux 單打七項與 Linux／Wine 雙打 HD 各八項通過；重啟預設關，曾啟用標示 modified。完整程式測試及 vet 通過 |
 | jsdos 下載 | 已完成 | 1,281,787 bytes；SHA-256 與來源物件檔名一致；ZIP CRC 通過 |
 | 來源盤點 | 已完成 | 128 個檔案、130 個 ZIP 項目；逐檔 SHA-256；作弊資料隔離；原始副本唯讀使用 |
@@ -48,7 +50,7 @@ GitHub 目前 visibility 為 PRIVATE，Release 需由有權限帳號查看。引
 | 魔王選角 | 已接原生，025 限定 CONFORMED | 單打／雙打可選蜘蛛女、小丑、印第安喬；普通輸入定位，原版程式與狀態不改。原八人框線越界只在獨立呈現影本排除。基底八案例及修正版 Linux／Wine 各單打、雙打通過；十二張原肖像／原生視窗核對，完整 Go 測試及 vet、舊設定補齊通過。完整過關／結局未驗 |
 | 小丑 HD | 已接原生，026 限定 CONFORMED | 62 組／72 槽、877 鍵／54 PNG，舊 805 鍵不變；Linux／Wine 各七項、九張完整重組及缺件九張整格原貌通過。JOKER／52×11、真實 HUD、完整程式測試及四平台來源通過；bin 已更新，WIN／快捷／完整動畫另驗 |
 | 印第安喬 HD | 已接原生，027 限定 CONFORMED | 44 組／72 槽、949 鍵／58 PNG，舊 877 鍵不變；Linux／Wine 各七項、九張重組及缺件九張整格原貌通過。INDIAN JOE／96×11、真實 HUD、完整 Go 測試及四平台來源通過；拳擊來源已補證為 path 27 的 5／6／7，v1 錯誤期望保留勘誤。WIN／快捷／完整動畫另驗 |
-| 蜘蛛女 HD | 034 限定 CONFORMED，低伏已接原生 | 使用者確認 normal-01 相近姿勢；一張稿對應一般 0／1／41 與別名三十鍵。現行 1411 鍵／65 PNG／二十來源，舊 1381 鍵與 64 PNG 不變。Linux 與缺件各四項／五張通過原檔重組、移動整格原貌、放開恢復與同狀態切換。WIDOW、候選與既有八人真實姓名測試通過。其他 42 組一般來源、WIN、完整動畫、第二側與實體手把另驗 |
+| 蜘蛛女 HD | 034 限定 CONFORMED，低伏已接原生 | 使用者確認 normal-01 相近姿勢；一張稿對應一般 0／1／41 與別名三十鍵。該切片 1411 鍵／65 PNG／二十來源，舊 1381 鍵與 64 PNG 不變。Linux 與缺件各四項／五張通過原檔重組、移動整格原貌、放開恢復與同狀態切換。WIDOW、候選與既有八人真實姓名測試通過。其他 42 組一般來源、WIN、完整動畫、第二側與實體手把另驗 |
 | 子彈勝利 HD | 已接原生，028 限定 CONFORMED | 1021 鍵／59 PNG，新增四組／72 WIN 入口，舊 949 鍵不變；6,018 成對邊界、11 個 WIN 取樣及五張來源通過。Linux／Wine 各七張勝利、切換與下一回合清除通過，缺件七張回退。完整 Go 測試、真實字圖及四平台 37 份編譯來源通過；第二人／完整動畫另驗 |
 | 鳳凰勝利 HD | 已接原生，030 限定 CONFORMED | 1093 鍵／60 PNG，新增三組／72 WIN 入口，舊 1021 鍵不變；5,952 成對邊界、八個 WIN 取樣及四張來源通過。Linux／Wine 各七張與缺件七張回退通過，PHO HUANG WIN、切換、下一回合清除及四平台 37 份來源均核對；第二人／完整動畫另驗 |
 | 鬼丸勝利 HD | 已接原生，031 限定 CONFORMED | 1165 鍵／61 PNG，新增四組／72 WIN 入口，舊 1093 鍵不變；12,272 成對邊界、29 個取樣與五張來源通過。Linux／Wine 各七張及缺件七張完整通過，ONIMALU WIN、切換、下一回合、完整測試／vet 與四平台 37 份來源均核對；第二人／完整動畫另驗 |
@@ -58,7 +60,7 @@ GitHub 目前 visibility 為 PRIVATE，Release 需由有權限帳號查看。引
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | 三平台四架構首版已建置 | keyboard-release-build-v1 四份二進位核對 43 份編譯輸入；034 前版保存在 spider-low-guard-build-v1/bin。新版 Linux 魔王單打與蜘蛛女 HD 重驗通過；公開／本機封包各四份。未作 Windows／macOS 真機或簽章 |
+| 平台與發布 | 開發版與已發布首版分開 | lan-victory-build-v1 四份 v.0.1.1 二進位核對 43 份編譯輸入並移入 bin，035 首版保存在 keyboard-release-build-v1。已發布 v.0.1.0 的八個封包／影片／tag 不變；本輪未建立新 Release，未作 Windows／macOS 真機或簽章 |
 
 ## 固定輸入
 
@@ -116,7 +118,7 @@ sf
 
 使用者指定的[說明書頁面](https://chiuinan.github.io/game/game/intro/ch/c51/sf.htm)及兩張圖片已存檔，版本自述為 1.1。原生入口目前採西側面鍵拳、南側面鍵腳與八方向；Start／Esc 暫停前端，沒有把 Esc 送原版觸發說明書記載的補血。鍵鼠正常路徑已驗，實體手把另驗；完整手把規格仍有未驗部分。
 
-HD 採 B「街機手繪」。現行群組為 `hd-characters-spider-low-guard-v1`，與公開 `assets/hd/characters` 相同，共 65 張透明圖集、1411 個姿態鍵：十人 720 個一般來源槽、蜘蛛女三十個低伏鍵、13 個第二色盤特效鍵及九人 648 個 WIN 入口。蜘蛛女為使用者明確同意的一張靜態近似稿，未對應動作整格回退。來源槽或別名齊全不等於完整動畫；C0h 同時翻轉、頂部裁切、受擊替代色盤及其餘畫面仍待補。正式倍率、像素比例與預設模式尚未定版。
+HD 採 B「街機手繪」。現行群組為 `hd-characters-lan-victory-v1`，與 `assets/hd/characters` 的 PNG 及清單相同，共 66 張透明圖集、1483 個姿態鍵：十人 720 個一般來源槽、蜘蛛女三十個低伏鍵、13 個第二色盤特效鍵及十人 720 個 WIN 入口。蜘蛛女為使用者明確同意的一張靜態近似稿，未對應動作整格回退。來源槽或別名齊全不等於完整動畫；C0h 同時翻轉、頂部裁切、受擊替代色盤及其餘畫面仍待補。正式倍率、像素比例與預設模式尚未定版。
 
 目前 dosgolem 獨立副本有 1719 份來源，前版 1715 份 bytes 不變，新增四份已驗顯示 API 與測試。舊 manifest 保存於 `dosgolem-patched-manifest-v2.json`，現行身分見 `dosgolem-patched-manifest.json`。四個二進位的實際編譯身分見 `bin/*.build.json`；目前勝負切片以 `victory-core-compat-v2`、`native-victory-v1` 及 `windows-victory-v1` 為準。顯示修正基底的四個二進位與 30 份編譯輸入另存 `native-display-opening-v2/build-baseline`，舊收據保留各自版本身分。
 
@@ -127,6 +129,12 @@ HD 採 B「街機手繪」。現行群組為 `hd-characters-spider-low-guard-v1`
 AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整研究在 RESEARCH-LOG。短檔作弊效果的因果仍屬強推論，未作同狀態替換實驗，也未新增 AI 難度設定。032 另在練習模式將 AI 輸入清為中立，不替換 AIDATA；關閉即恢復原版決策。使用者已確認首版發布已驗功能，明列其他角色快捷限制；公開引擎包不含原版，本機完整版含原版，含原曲的影片只放本機。
 
 ## 現行證據入口
+
+### 嵐勝利與其餘九景
+
+- [037](docs/spec/037-lan-victory.md)限定 CONFORMED；`hd-first-pass-v1/lan-diagnostic-v2` 為正常原版來源，`lan-paired-v2` 為成對狀態與獨立圖層比較。`native-lan-victory-v2`／`native-lan-victory-missing-v2` 各七張正常首勝、切換與下一回合，原貌及 raw 只留本機。
+- `lan-victory-build-v1` 保存四架構、測試、43 份編譯輸入及八檔移入 bin 的 promotion.json。正式 PNG 為 `assets/hd/characters/lan-win.png`，另兩組沿用一般來源同 bytes 圖像。清單 SHA 為 e0f55d85c350aef533a7e416f597165412945765b83a3a5e3621af4e020aeaf6。首版編譯與 dist-all/v.0.1.0-20261020 不變。
+- [九景候選索引](assets/hd/candidates/README.md)及 backgrounds-source.json 保存原 PNG、原來源 SHA 與精確提示詞。生成提示詞不是原版事實；I3 誤寫 lion，候選及原圖實為象，已在來源註記。九景尚未作正常場景對應／捲動驗證，不把候選登錄為 runtime。
 
 ### 鍵盤與首版交付
 
@@ -139,7 +147,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 - 接入提交 `d4e940ed03f3f456cf8c0f138a1fa2c30a76fd1d` 已推送 origin/main，遠端完整提交核對相同；收尾提交只補交接紀錄。
 - [034](docs/spec/034-spider-low-guard.md)限定 CONFORMED。使用者最新回覆「ok 同意這版蜘蛛女」，採已展示的相近低伏。三組正常來源與原姓名沿用已驗 124 格證據；同一張外部稿只作水平鏡像及透明留白裁切，候選原 bytes 保持。
-- 現行 `assets/hd/characters` 與 `workplace/hd-characters-spider-low-guard-v1` 相同，1411 鍵／65 PNG／二十來源。清單 SHA-256：`078e8a896968688a23556d03f8335252b07a7add204f9b3b8db2341683f4fd0e`。原版資料與 1719 份執行器來源不改動。
+- 034 的保留基底位於 `workplace/hd-characters-spider-low-guard-v1`，1411 鍵／65 PNG／二十來源。清單 SHA-256：`078e8a896968688a23556d03f8335252b07a7add204f9b3b8db2341683f4fd0e`。原版資料與 1719 份執行器來源不改動。
 - `native-spider-low-guard-v1` 及 `native-spider-low-guard-missing-v1` 各四項、五張，兩份 spider-comparison.json 驗來源、圖層、HUD、陰影、顯示起點、移動回退與切換；README 已收錄實際 HD 擷取。沒有將離線比較圖冒稱原生畫面。
 - `spider-low-guard-build-v1` 保存四平台編譯、檔頭核對、完整可用測試／vet 與八檔原封移入 bin 的 promotion.json。033 舊版保存在 first-pass-hd-build-v1/bin。外部 fixture 僅採已完成的針對測試，不宣稱整批舊動畫重驗。
 - 其餘十四張外部稿尚未登錄；其他 42 組一般來源、WIN、第二側、替代色盤及完整動畫另驗。此切片未驗 Wine、真機或實體手把。

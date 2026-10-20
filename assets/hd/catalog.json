@@ -8,12 +8,12 @@
     "scope": "generated HD PNG and mapping metadata only; not original game data or release"
   },
   "characters": {
-    "atlases": 65,
-    "registered_keys": 1411,
-    "sources": 20,
+    "atlases": 66,
+    "registered_keys": 1483,
+    "sources": 21,
     "complete_HD": false
   },
-  "pngs": 83,
+  "pngs": 93,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -797,10 +797,10 @@
     },
     {
       "file": "characters/manifest.json",
-      "sha256": "078e8a896968688a23556d03f8335252b07a7add204f9b3b8db2341683f4fd0e",
-      "bytes": 491301,
+      "sha256": "e0f55d85c350aef533a7e416f597165412945765b83a3a5e3621af4e020aeaf6",
+      "bytes": 516942,
       "status": "current-character-mapping",
-      "copied_from": "workplace/hd-characters-spider-low-guard-v1/manifest.json",
+      "copied_from": "workplace/hd-characters-lan-victory-v1/manifest.json",
       "generated_source": "workplace/hd-characters-spider-low-guard-v1/manifest.json"
     },
     {
@@ -1116,6 +1116,128 @@
       "copied_from": "workplace/hd-characters-spider-low-guard-v1/spider-low-guard-source.json",
       "source_index": "characters/spider-low-guard-source.json",
       "tool": "tools/prepare_spider_low_guard.py"
+    },
+    {
+      "file": "characters/lan-win.png",
+      "sha256": "5b6a313c5443ad0ef373165549b820a5ff0e5f8456cd347f1b2499fc803a5a48",
+      "bytes": 653195,
+      "status": "current-character-atlas",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in image_gen"
+    },
+    {
+      "file": "characters/lan-victory-source.json",
+      "sha256": "59255c88338fddee65c5958fb5cffe2e8bd7b6bf54843ae11ccba5b5c279585a",
+      "bytes": 3407,
+      "status": "source-metadata"
+    },
+    {
+      "file": "candidates/backgrounds-source.json",
+      "sha256": "85d5a9a65610e28c732376de559d75239463d83bb13daf6f29dfc356698f950c",
+      "bytes": 18599,
+      "status": "source-metadata"
+    },
+    {
+      "file": "candidates/hall-i1.png",
+      "sha256": "7f733da6ee5d4dc634fc3a2d610ff9c6627eb9bac76871b1eb9e75489b0ee931",
+      "bytes": 2479324,
+      "status": "generated-background-candidate",
+      "size": [
+        1923,
+        817
+      ],
+      "tool": "built-in image_gen"
+    },
+    {
+      "file": "candidates/jungle-i3.png",
+      "sha256": "ce369d95777e9c8628b45cd5d276edd2e8f4145c2d7b69a2b472ed31c987dc67",
+      "bytes": 2973824,
+      "status": "generated-background-candidate",
+      "size": [
+        1922,
+        818
+      ],
+      "tool": "built-in image_gen"
+    },
+    {
+      "file": "candidates/street-i4.png",
+      "sha256": "945fbfa0b4e7632a36d85dadfb33459eefd17f53b2148aadd1022c83d3085beb",
+      "bytes": 2360955,
+      "status": "generated-background-candidate",
+      "size": [
+        1922,
+        818
+      ],
+      "tool": "built-in image_gen"
+    },
+    {
+      "file": "candidates/palace-i7.png",
+      "sha256": "89293e14b004f4c27b47fca83ea04dfcf21e775ecfe7ead785e2777e39945440",
+      "bytes": 2802174,
+      "status": "generated-background-candidate",
+      "size": [
+        1922,
+        818
+      ],
+      "tool": "built-in image_gen"
+    },
+    {
+      "file": "candidates/auditorium-i8.png",
+      "sha256": "1f6270970d0c06ad144c88061bcc30240af9ad68af9202b5efbb1cc255140e5d",
+      "bytes": 1848780,
+      "status": "generated-background-candidate",
+      "size": [
+        1921,
+        819
+      ],
+      "tool": "built-in image_gen"
+    },
+    {
+      "file": "candidates/harbor-i9.png",
+      "sha256": "050e181f8d1b9a6f2baa74e048ac778918cbc670c7069d00dc91a69ca79faaa4",
+      "bytes": 2922848,
+      "status": "generated-background-candidate",
+      "size": [
+        1922,
+        818
+      ],
+      "tool": "built-in image_gen"
+    },
+    {
+      "file": "candidates/grotto-i10.png",
+      "sha256": "82b5412e7e57756626cbce8407ffca140dc9c8bcfa099ab48ab06833388ea534",
+      "bytes": 2319868,
+      "status": "generated-background-candidate",
+      "size": [
+        1922,
+        818
+      ],
+      "tool": "built-in image_gen"
+    },
+    {
+      "file": "candidates/icefield-i12.png",
+      "sha256": "380118d022af44422ef0846288ca62ef67f60a9ed47af95e95b3a2a77c1ddb28",
+      "bytes": 1985709,
+      "status": "generated-background-candidate",
+      "size": [
+        1923,
+        817
+      ],
+      "tool": "built-in image_gen"
+    },
+    {
+      "file": "candidates/train-i13.png",
+      "sha256": "67442ba23f2848a1b51d1dcbefa346dc3126d1b377947b625597a4af3101fe62",
+      "bytes": 2091680,
+      "status": "generated-background-candidate",
+      "size": [
+        1923,
+        818
+      ],
+      "tool": "built-in image_gen"
     }
   ],
   "original_game_data_included": false

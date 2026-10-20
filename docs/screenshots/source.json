@@ -84,6 +84,20 @@
       "authorization": "user requested integrated screenshots in repository",
       "limits": "partial HD; training modifies rules; not full animation or native OS hardware",
       "comparison_sha256": "92ffd0ee14c4721e8f575379dbac715d14745df916b46fddcb431c060db9c098"
+    },
+    {
+      "kind": "normal native first-player LAN victory HD integration; development version, not original-mode image",
+      "file": "lan-victory-hd.png",
+      "sha256": "5f64c7f750c58a47ff377e4fb27737bdd0717a42a5ac552e3a446ea700fb7eaf",
+      "source": "workplace/hd-first-pass-v1/native-lan-victory-v2/victory-hd.png",
+      "version": "v.0.1.1-20261020",
+      "receipt_sha256": "6c6f003073dc7ba1721666a1aaa5982f97977f22c36f248d2c1b87107524e2ea",
+      "comparison_sha256": "0e764d5e5af7bdab06fbb8372d5b8dd284519d557cd77d3269bb9b21fea8d7ab",
+      "binary_sha256": "6833b9407615994e5400e86a50de44895fcd1b28ea1b7efbfe00349f29842678",
+      "character_manifest_sha256": "e0f55d85c350aef533a7e416f597165412945765b83a3a5e3621af4e020aeaf6",
+      "platform": "Linux amd64 Docker Xvfb; not Wine/native OS hardware or physical controller acceptance",
+      "authorization": "user requested HD assets and actual integrated screenshots in repository",
+      "limits": "normal first victory and paused mode switch; source slot 2 sampled, not complete animation or all modes"
     }
   ],
   "version": "v.0.1.0-20261020",

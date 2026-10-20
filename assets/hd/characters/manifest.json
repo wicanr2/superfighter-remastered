@@ -110,6 +110,12 @@
       "character": 8,
       "file": "SFMAN09.DAT",
       "sha256": "76f1a2484fd551c574279138e16f2f70971c4a7259858406e90c0211a2f3f53e"
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "file": "HHWIN.FIG",
+      "sha256": "ac2cac7c82882a7cbf4abc17fb28b4d722dc798cf6e94234117c929f7c371589"
     }
   ],
   "atlases": [
@@ -502,6 +508,12 @@
       "sha256": "a73ead9feed91ad8c23cc3e5e78fcf72ed7a9f013fe69f89e7820a19fc2d2aeb",
       "width": 716,
       "height": 563
+    },
+    {
+      "file": "lan-win.png",
+      "sha256": "5b6a313c5443ad0ef373165549b820a5ff0e5f8456cd347f1b2499fc803a5a48",
+      "width": 1448,
+      "height": 1086
     }
   ],
   "poses": [
@@ -22330,6 +22342,1158 @@
         716,
         563
       ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 0,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 1,
+      "width": 62,
+      "height": 88,
+      "source_offset": 2906,
+      "source_sha256": "4b79f6ad8e5e8d860fae13ae22a74205e9b37e9d5739b507bf07029bd202da28",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        434,
+        35,
+        677,
+        355
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 2,
+      "width": 81,
+      "height": 100,
+      "source_offset": 5636,
+      "source_sha256": "8f68fa9e193008a278d55a71e6508a9ff81a9c64fa32d6c09afc2c2025fb7c81",
+      "atlas": "lan-win.png",
+      "rect": [
+        198,
+        9,
+        623,
+        528
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 3,
+      "width": 47,
+      "height": 94,
+      "source_offset": 9738,
+      "source_sha256": "a32529c9c502cc11fd97fa8ec6089aa307d445a01b58ab485fbe60a4f03d524b",
+      "atlas": "lan-win.png",
+      "rect": [
+        864,
+        56,
+        1129,
+        533
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 4,
+      "width": 47,
+      "height": 94,
+      "source_offset": 11996,
+      "source_sha256": "2659a2c3dccbdd3e28bb60eb0e594a5cbb6be26733781a96cde3944feb4d0e4d",
+      "atlas": "lan-win.png",
+      "rect": [
+        338,
+        564,
+        548,
+        1052
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 5,
+      "width": 57,
+      "height": 94,
+      "source_offset": 14254,
+      "source_sha256": "05daa2b3c8e26c2a132206f5efafbae3496a39af2d90a88a38582b40e2ec8429",
+      "atlas": "lan-win.png",
+      "rect": [
+        867,
+        573,
+        1188,
+        1053
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 6,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 7,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 8,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 9,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 10,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 11,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 12,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 13,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 14,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 15,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 16,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 17,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 18,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 19,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 20,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 21,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 22,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 23,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 24,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 25,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 26,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 27,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 28,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 29,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 30,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 31,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 32,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 33,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 34,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 35,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 36,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 37,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 38,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 39,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 40,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 41,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 42,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 43,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 44,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 45,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 46,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 47,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 48,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 49,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 50,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 51,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 52,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 53,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 54,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 55,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 56,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 57,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 58,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 59,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 60,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 61,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 62,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 63,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 64,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 65,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 66,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 67,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 68,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 69,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 70,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
+    },
+    {
+      "character": 6,
+      "source_bank": "victory",
+      "slot": 71,
+      "width": 60,
+      "height": 84,
+      "source_offset": 384,
+      "source_sha256": "cccb02b422e1795fcc53c5713c99b1f3125c70795c0e4cfc9fa725f1f9d11882",
+      "atlas": "lan-poses-00.png",
+      "rect": [
+        68,
+        32,
+        324,
+        356
+      ]
     }
   ],
   "evidence": [
@@ -22348,6 +23512,7 @@
     "docs/spec/017-victory-pose-banks.md",
     "victory-pose-registration.json",
     "docs/spec/017-victory-pose-banks.md",
-    "victory-pose-registration.json"
+    "victory-pose-registration.json",
+    "docs/spec/037-lan-victory.md"
   ]
 }

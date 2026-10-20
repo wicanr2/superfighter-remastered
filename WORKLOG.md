@@ -615,3 +615,34 @@ python3 tools/promo_release.py check
 ```
 
 前兩項可以直接重驗既有輸出。啟動測試需要新輸出目錄與乾淨解壓的公開包；不要在已匯入的測試副本重跑並誤判來源缺少檢查。影片 prepare 用 sc-cht-hdtools:pillow11.3.0-r1，render／check 用 fd2-promo:20261017-r1；目視抽查及其紀錄另人工補入 promo-checks.json。
+
+## 2026-10-20：嵐勝利 HD 與其餘九景首輪稿
+
+- 本輪接續 active goal「完成快打至尊HD」，前一輪為首版發布的實質進展，不把首版當作完整 HD 完成。開工核對 main 的 2d917260120d0ceeca66b9b82edca652c591d031 與乾淨工作樹；載入復古 remake、規格閘門、文件、imagegen、grilling 及版號規則。原版、執行器、已發布版本及父目錄快照不改。
+- 嵐舊六格 WIN 圖再次交內建 image_gen 去除底色，結果仍為 alpha 0..254，保留 lan-win-alpha-v2.png／request／inspection，不降低檢查條件。曾詢問是否沿用本地工具修 alpha；之後改走可獨立完成的來源核對與新稿路徑，沒有因沉默視為授權，也沒有本地去背。
+- 從正常 6／4 選角、靠近與拳擊取得嵐首勝。lan-diagnostic-v2 有 8,835 次單核心觀測、十三個 WIN 取樣、四種實際來源及下一回合清除；六份畫格由原檔獨立重組圖層、HUD、陰影與 CRTC。它不是成對對拍。NAME.XBB 槽 6 的 LAN、runtime SI 11E3h、caller 01B9:39DCh、矩形 (125,54,31,11)，以及 WIN 槽 17／SI 368Ch／01B9:39F9h／(165,54,31,11) 均核對原 bytes。
+- 查明 HHWIN 六組中的 0／1 與一般來源完整 bytes 相同，重用已驗 lan-poses-00.png 的兩格；只有 2／3／4／5 需要新稿。內建 image_gen 直接依原四姿態及現有 HD 身分生成 1448×1086 四格，PNG SHA 為 5b6a313c5443ad0ef373165549b820a5ff0e5f8456cd347f1b2499fc803a5a48。alpha 0..255、透明間隔及未貼邊通過，原 PNG bytes 保留。舊六格半透明候選未接入，無須等待其去背決定。
+- 037 先建立 DRAFT、保存正常來源／姓名／實際色盤及候選審查，再升 READY，才加入 LAN 字圖分支與 WIN 登錄。tools/prepare_lan_victory.py 保留舊 1411 鍵與 65 PNG，增加 72 個 WIN 鍵、一張新圖及一份 HHWIN 來源，成為 1483 鍵／66 PNG／二十一來源。沒有改規則、快捷、設定格式、原版狀態或多場景格式。
+- 真實七十二入口／六組來源、兩組重用、舊群組保持、LAN 原字圖與篡改拒絕測試通過。可用 internal／cmd 套件測試及 vet 通過，未另供整批舊外部動畫 fixture。Go 及精確版本凍結後建四架構，均核對 43 份實際輸入、ELF／PE／兩種 Mach-O；正式版號依規則升為未發行 v.0.1.1-20261020，已發行 v.0.1.0 不覆寫。
+- lan-paired-v2 通過 8,835 成對邊界，原版狀態與即時 RGB 一致；十三個 WIN 取樣及六份原檔重組通過。核心實際來源為槽 0／3／4／5；原生首勝另驗到槽 2，沒有將六組靜態對照稱為六組動態已驗。
+- sc-cht-dosboxx-bridge:e0b4287-r1 內執行真實 Linux Go 程式，正常原生 native-lan-victory-v2 與舊包 native-lan-victory-missing-v2 各七張通過。前者 LAN WIN 矩形內變動 3,730 點、金色字圖 1,039 點；原貌／HD／恢復原始狀態相同，切回逐點一致，下一回合清除。後者缺 WIN 整格原貌，下一回合恢復 HD。沒有用 DOSBox 代替 dosgolem 收據，也沒有強制勝利、鎖血或狀態注入。本切片未驗 Wine、第二人、真機、實體手把或完整動畫。
+- 037 限定 CONFORMED 後，已驗候選及八份二進位／收據移入 assets/hd/characters 與 workplace/bin；keyboard-release-build-v1 保留首版，lan-victory-build-v1/promotion.json 記錄前後 SHA。第一次移入預檢誤將本機基底的 evidence-review.json 當成公開檔案，尚未寫入即拒絕；改核對公開既有檔及清單所有圖集後通過。這是移入工具的檔案範圍錯誤，不改圖或放寬來源檢查。
+- 依已確認的 B 街機手繪方向，內建 image_gen 另為 I1／I3／I4／I7／I8／I9／I10／I12／I13 生成九景首輪稿。約 1920×818，PNG 共 21,785,162 bytes。tools/organize_background_candidates.py 先全批驗原檔 SHA、PNG、尺寸、比例及不透明性，再原封收錄候選。初次腳本在 Pillow 解碼後才 verify，遇 API 順序限制，未寫入；改為先 verify、再重開檢像素後通過，沒有重生或編輯圖。
+- 九景的原 SHA、參考 PNG SHA、精確提示詞與生成原 bytes 由 assets/hd/candidates/backgrounds-source.json 保存。I3 提示詞誤稱中央動物為 lion，原圖與候選實為象，保留原提示詞並註明它不是事實證據。小字、群像、裝飾及構圖仍為候選；僅屋頂已接，029 格式決定與九景正常 scene／捲動尚未驗，沒有自動將候選放進 production。十一份 XGB 含屋頂／道場均已有首輪稿。
+- 素材成為 93 PNG／104 檔，catalog 一百筆 payload 共 120,619,633 bytes。README 新增正常原生 LAN WIN 畫面與來源雜湊；CONTEXT 唯一現況、WORKLIST、驗證矩陣與素材索引同步，區分 main 未發行開發版及已發布首版。原版資料、原圖、背景色盤及原始收據不上傳。
+
+本輪主要命令在上述受限、非 root Docker 工具鏈內執行；資料掛 /orig 唯讀，工作樹掛 /project。建置、測試、重組及原生自動化均未在主機啟動。
+
+```sh
+go run -p 1 tools/victory_core_receipt.go -out /project/workplace/hd-first-pass-v1/lan-diagnostic-v2 -hd-characters /project/assets/hd/characters -player0 6 -diagnostic -pose-samples
+python3 tools/prepare_lan_victory.py --output /project/workplace/hd-characters-lan-victory-v1
+go test -p 1 ./internal/hd -run TestLanVictory -count=1 -v
+go run -p 1 tools/victory_core_receipt.go -out /project/workplace/hd-first-pass-v1/lan-paired-v2 -hd-characters /project/workplace/hd-characters-lan-victory-v1 -player0 6 -pose-samples
+python3 tools/desktop_match_smoke.py --binary /project/workplace/lan-victory-build-v1/bin/superfighter-linux-amd64 --output /project/workplace/hd-first-pass-v1/native-lan-victory-v2 --hd-characters /project/workplace/hd-characters-lan-victory-v1 --player0 6 --victory-only --quit-after-seconds 1800
+python3 tools/verify_victory_animation.py /project/workplace/hd-first-pass-v1/lan-paired-v2 --original-root /orig --background /project/workplace/hd-rooftop-study --core
+```
+
+重建嵐包需以保留的 hd-characters-spider-low-guard-v1 作 --base，並指定新輸出；上述未加 --base 的命令記錄當時尚未接入前的輸入。Go 真實 fixture 測試需 KDZZ_HD_FIXTURES=/project/workplace、KDZZ_ORIGINAL_ROOT=/orig。首版 Release、八包與本機影片本輪不重發，完整 HD 目標仍保持 active。
+
+- 收尾 final-audit.json 通過 128 原檔／1719 執行器來源不變、93 PNG／一百筆 payload、118 個首頁及素材索引的受追蹤相對連結、八張截圖、四份編譯收據與 43 份輸入。首版八個 ZIP 及影片 SHA 全部保持，沒有 root-owned 檔案或誤建 .md 目錄。本工作樹掛載過濾的 Docker 容器為空，本輪容器均已移除，沒有新建映像或清理其他專案資源。
+- 缺件原生案例當時使用尚未更新的 assets/hd/characters；現在重跑需指定保留的 workplace/hd-characters-spider-low-guard-v1。打包工具預設改讀目前 workplace/bin，避免開發版誤選固定首版編譯目錄；未執行新封包或新 Release 發布。提交及遠端核對後續記錄另補。

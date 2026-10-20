@@ -89,6 +89,7 @@ def main():
     files.append(p / "docs/spec/033-first-pass-victories.md")
     files.append(p / "docs/spec/034-spider-low-guard.md")
     files += [p / name for name in ("docs/spec/035-keyboard-bindings.md", "docs/spec/036-release-packages.md", "VERSION", "internal/gamefiles/source-manifest.json")]
+    files += [p / name for name in ("docs/spec/037-lan-victory.md", "tools/prepare_lan_victory.py")]
     receipt = {"kind": "native intermediate builds; not release packages or macOS hardware acceptance",
                "version": version,
                "go_version": subprocess.check_output(["go", "version"], text=True).strip(),

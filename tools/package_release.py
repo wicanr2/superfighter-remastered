@@ -95,7 +95,7 @@ def archive_tree(source,target,version):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('stage',choices=['licenses','packages','audit'])
-    p.add_argument('--build-dir',type=Path,default=ROOT/'workplace/keyboard-release-build-v1/bin')
+    p.add_argument('--build-dir',type=Path,default=ROOT/'workplace/bin')
     p.add_argument('--license-dir',type=Path,default=ROOT/'workplace/release-licenses-v1')
     p.add_argument('--original-root',type=Path,default=Path('/orig'))
     a=p.parse_args()

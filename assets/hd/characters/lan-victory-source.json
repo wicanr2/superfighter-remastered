@@ -1,0 +1,87 @@
+{
+  "kind": "LAN victory registration with exact source reuse",
+  "tool_sha256": "effd06be3f4b994a740c81a99fdeedb36d0cab9870bde6fc04a26141354f9e1f",
+  "base_manifest_sha256": "078e8a896968688a23556d03f8335252b07a7add204f9b3b8db2341683f4fd0e",
+  "source_sha256": "ac2cac7c82882a7cbf4abc17fb28b4d722dc798cf6e94234117c929f7c371589",
+  "image_sha256": "5b6a313c5443ad0ef373165549b820a5ff0e5f8456cd347f1b2499fc803a5a48",
+  "request": {
+    "prompt": "Use case: stylized-concept. Asset type: production transparent hand-painted arcade sprite atlas. Create exactly FOUR full-body victory sprites of LAN, an adult male martial artist from Super Fighter. Image 1 is the authoritative original six-pose strip; use ONLY its THIRD, FOURTH, FIFTH and SIXTH poses, in that order. Image 2 is the accepted HD identity and painting style; keep its face, brown hair, red long-sleeved Chinese tunic, white collar and broad white cuffs, loose dark brown trousers, white ankle wraps and brown flat shoes. Arrange TWO equal columns by TWO equal rows. Top-left: original third pose, extremely wide bent-knee stance, one open hand down-left and the other hand raised high above the head, exact original leg/arm silhouette. Top-right: original fourth pose, upright relaxed stance, left hand extended down-left, other hand at abdomen. Bottom-left: original fifth pose, upright reserved stance, both arms closer to torso, red tunic hem flared outward. Bottom-right: original sixth pose, upright gracious pose, open hand extended left and other hand at chest. Preserve the source silhouettes and facing, not generic victory poses. Crisp smooth hand-painted arcade contours and cloth shading, same identity across all four sprites. Each entire figure must fit well inside its own cell with very generous transparent margins on EVERY side and uninterrupted empty gutters between all cells. Genuine transparent RGBA background. Fully opaque clothing, skin, hair and shoes; alpha only on outside contour antialiasing. No ground, no background gradient, no colored matte, no haze, no glow, no shadow, no grid, no checkerboard, no labels, no text or watermark.",
+    "referenced_image_paths": [
+      "workplace/remaining-victory-source-v1/lan-win-source.png",
+      "assets/hd/characters/lan-poses-00.png"
+    ],
+    "transparent_background": true,
+    "tool": "built-in image_gen",
+    "output": "lan-win-four-v1.png"
+  },
+  "reused_source_ordinals": [
+    0,
+    1
+  ],
+  "new_source_ordinals": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "regions": [
+    {
+      "region": [
+        0,
+        0,
+        724,
+        543
+      ],
+      "rect": [
+        198,
+        9,
+        623,
+        528
+      ]
+    },
+    {
+      "region": [
+        724,
+        0,
+        1448,
+        543
+      ],
+      "rect": [
+        864,
+        56,
+        1129,
+        533
+      ]
+    },
+    {
+      "region": [
+        0,
+        543,
+        724,
+        1086
+      ],
+      "rect": [
+        338,
+        564,
+        548,
+        1052
+      ]
+    },
+    {
+      "region": [
+        724,
+        543,
+        1448,
+        1086
+      ],
+      "rect": [
+        867,
+        573,
+        1188,
+        1053
+      ]
+    }
+  ],
+  "limits": "six registered sources; normal runtime samples 0/3/4/5, not complete animation or second player",
+  "rights": "user authorized generated HD art and mapping metadata in repository; original references remain local"
+}
