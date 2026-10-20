@@ -831,3 +831,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 完整 HD 仍有蜘蛛女其餘姿勢／WIN、背景與標題／選角／結果等工作。029 格式問題仍待原回覆，不因普通繼續擴張授權。本輪不新建 Release；首版八包、原曲影片與 tag 保持。最終稽核、二進位晉升、容器清理及推送結果另追加。
 
 - 最終 secondary-main-build-v1/final-audit.json 通過：128 原檔、1719 執行器來源、正式 i64、1516 鍵／74 圖集與 118 素材檔不變；首版八包及本機原曲影片保持。158 個 README 相對連結均已追蹤，四份規格勘誤護欄通過。八個二進位／收據已晉升 bin，044 基底保留；無原版及 raw 入 Git，擁有權／誤建目錄通過，本專案容器已清空。
+- 實作提交 `7d577e86ae60569d6107fd65e20324871a56f369` 已推送 origin/main，遠端完整提交核對相同。首版 tag 遠端仍為 `807579d01c145db327050c2e870e2bf46e6bcb68`；本機未抓取該 tag，採遠端核對。本段為文件收尾，沒有新 Release。
