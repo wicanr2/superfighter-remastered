@@ -851,3 +851,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - title-animation-v3 保存八配色、十六格 PNG、候選 GIF 與四選項比較。GIF 只留本機，速度是示意值；README 新接觸圖明列候選及未接原生。新構圖也修正後三個原按鈕各一像素位置差異，舊靜態稿留作歷史。
 - 原來源研究已足夠，後續回到正式載入方式、材質視覺與原生驗收，不再深挖檔案 helper 或硬體迴圈。046 仍 DRAFT，029 原格式問題保持；沒有 formal API、資料格式、存檔、原版或四平台程式修改，不重建或重發首版。素材維持 105 PNG／117 catalog／121 檔；收尾與推送另記。
 - title-research-v1/final-audit.json 通過候選範圍稽核：165 份原標題、十個 runtime 定位／112 筆 MZ 重定位、八配色／十六步及原稿保留通過。170 個 README 相對連結均已追蹤，003 回填護欄及新檔索引通過。128 原檔、1719 執行器來源、正式 i64、105 PNG／117 catalog／121 檔、四平台 46 份編譯輸入、首版八包及影片保持；沒有原版、raw、GIF 或工作產物加入 Git。擁有權／誤建目錄通過，本專案標題容器已清空。
+- 工具與比較稿提交 `08d84714def56c78280a1cd19200002825362feb` 已推送 origin/main，遠端完整提交核對相同；首版 tag 仍為 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段為其後的文件收尾，046 維持 DRAFT，不建立新 Release。
