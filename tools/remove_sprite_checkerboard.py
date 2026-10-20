@@ -102,10 +102,10 @@ def main():
     (args.output / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
     (args.output / "README.txt").write_text(
         "蜘蛛女透明 PNG\n\n"
-        "五張圖沿用原檔名與尺寸，只改背景 alpha，不重畫、不縮放，也不更動 RGB。\n"
-        "原圖與原始 ZIP 均未修改。逐檔雜湊與處理方式見 manifest.json。\n"
+        f"共 {len(records)} 張圖，沿用原檔名與尺寸，只改背景 alpha，不重畫、不縮放，也不更動 RGB。\n"
+        "原始輸入檔案均未修改。逐檔雜湊與處理方式見 manifest.json。\n"
         "這份是去背素材，尚未接入遊戲；圖格數、檔名及姿勢仍須對照原版。\n",
-        encoding="utf-8-sig")
+        encoding="utf-8-sig", newline="\r\n")
     with zipfile.ZipFile(archive, "x", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
         for path in sorted(args.output.iterdir()):
             info = zipfile.ZipInfo(path.name, date_time=(2026, 10, 20, 0, 0, 0))

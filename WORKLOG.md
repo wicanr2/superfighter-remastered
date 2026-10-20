@@ -545,3 +545,13 @@
 - 接入與中間二進位移入證據為 `workplace/hd-first-pass-v1/promotion.json`、`workplace/first-pass-hd-build-v1/promotion.json`。128 原檔與 1719 執行器來源均未變；本輪未改遊戲規則、練習模式、快捷或設定格式。首頁、現況表、工作清單、規格與驗證矩陣同步，完整 HD 仍未完成。
 - 收尾 `integration-audit-v1.json` 通過原檔、執行器、67 張生成 PNG、70 筆素材、28 張正常原生擷取、實際素材來源及 bin 原封移入。README 的 62 個相對連結、六張圖片均已納入 Git；Python 語法、git diff --check、工作樹 root-owned／誤建 .md 目錄檢查通過。本輪 kdzz-first-pass／kdzz-spider 容器均已結束並移除，未新增映像或清理其他專案資源。
 - 接入提交 `8f1f5bde4ed76cd6c163a4ce5efb931b03b5634a` 已推送 `origin/main`，`ls-remote` 核對相同完整提交，工作樹乾淨。三張新 WIN 圖、角色清單、印第安喬 HD 截圖、道場索引及補稿工具均已在遠端；蜘蛛女原始參考、去背外部稿、原圖 ZIP、私有執行器與中間二進位仍保留本機。
+
+## 2026-10-20：第二批蜘蛛女十張補稿的本地去背
+
+- 使用者提供父目錄 `spider-woman-hd/spider-normal-hd-png-v2`，明確指定使用本地工具處理透明色。沿已授權的 Python 路徑，在 Docker 內使用既有 Pillow 11.3.0 工具鏈，未呼叫圖片生成模型。
+- 十張來源均為 784×1168 RGBA，只有部分白格透明，灰色棋盤仍寫在圖內。沿原 `remove_sprite_checkerboard.py` 的連通淺灰背景遮罩處理，原圖唯讀掛載。只修改背景 alpha，所有 RGB、尺寸、檔名與十份來源 SHA-256 不變。
+- 工具說明原先寫死五張，這次改由實際處理數量產生，並將 README.txt 寫成 UTF-8 BOM／CRLF。去背演算法與門檻未調整，不修改前次輸出。
+- 成品目錄為父目錄 `spider-woman-hd/spider-normal-hd-png-v2-transparent-v1`，同名 ZIP 為 8,528,750 bytes，SHA-256 `c9a24071206197ff557d25a3728261cb9f0d61b24e5812db8700fb4273bee229`。ZIP 含十張 PNG、manifest.json 與 README.txt。
+- `workplace/spider-art-v1/alpha-normal-v2-validation.json` 獨立核對十張原始／輸出雜湊、逐像素 RGB、尺寸、彩色前景 alpha 保持、四角透明、PNG 重讀、ZIP CRC／每項內容及 UID/GID 1000。兩頁深色／白底預覽亦已目視，檔名為同目錄 `alpha-normal-v2-preview-0.png`／`alpha-normal-v2-preview-1.png`。
+- 本次只完成去背，沒有重排檔名、核准動作對應或更新正式角色包；完整 HD 與來源對應仍依現有工作清單。原版、使用者輸入及十張透明成品留本機，不新增公開圖片。
+- 本輪一次性處理／驗證容器均已結束並移除，未建立映像。工作樹與素材目錄的 root-owned 檔案／誤建 .md 目錄檢查及 git diff --check 通過；其他專案資源未動。
