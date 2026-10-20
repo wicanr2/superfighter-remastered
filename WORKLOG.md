@@ -579,3 +579,34 @@
 - 收尾核對與 Git 推送結果追加於本節後續紀錄；本輪 Docker 一次性容器均使用 UID/GID 1000，完成後檢查本專案容器與擁有權。
 - 收尾核對通過：原始包、128 原檔及 1719 份執行器來源不變；83 PNG、catalog 全部大小／尺寸／雜湊正確；新圖逐像素等於已確認稿的鏡像及透明裁切。README 65 個相對連結與三份素材索引共 48 個連結均存在且受 Git 追蹤。final-audit.json 保存結果。沒有 root-owned 檔案或誤建 .md 目錄；Docker 以工作樹掛載過濾為空，本輪容器已移除，未建立新 image。
 - 接入提交 d4e940ed03f3f456cf8c0f138a1fa2c30a76fd1d 已推送 origin/main，ls-remote 核對完整提交相同。後續只補本項推送與交接紀錄，未再改程式、素材或二進位。
+
+## 2026-10-20：鍵盤組態、首版封包與本機原曲影片
+
+- 使用者授權鍵盤重綁與四格快速出招、魔王選角、三平台封包、README 故事及截圖、Release。後續明確指定公開包不含遊戲，本機完整版要含遊戲；影片只留本機、使用原版音樂，另評估音樂與語音 HD。快捷範圍確認為先發布已驗功能，明列其他角色限制，不等待全部角色。基底為 cce25aadca358797cd7473f24295d3140b997f4b。
+- 載入復古 remake、規格閘門、文件、版號、dist-all、RRSAL、推廣片與原音樂來源路由，並讀 grilling／grill-me。035、036 完成證據審查與 READY 後才接正式路徑；既有雙人、四格與魔王決策不重問。版號統一 v.0.1.0-20261020。
+- 新增每人十四個鍵盤欄位、設定面板鍵盤頁、捕捉中立閘門、衝突／保留鍵拒絕及重啟保存。設定版本 1 只補可選欄位，舊檔讀取不回寫。Enter 與數字鍵盤 Enter 保留原第二人拳別名。鍵盤四格共用手把角色招式，只有已驗斬四招啟用，其他角色明示拒絕；沒有改招式、傷害或連發規則。
+- 鍵盤正常路徑在 Linux／Windows Wine 各六項通過，收據為 workplace/keyboard-native-v1／keyboard-wine-v1。從原版零步設定、衝突拒絕、還原／清空、重啟、兩人方向與拳腳獨立、兩人斬第一招 path 24h、按住只請求一次均核對。首次腳本讓 P1 飛行特效打斷 P2，未達預期路徑；保留 *-attack-overlap，加入原版待機／無特效／無待結傷害的出招前提，乾淨重跑通過，不改遊戲規則。斬四招完整原版證據沿用 004。
+- 新增合法來源匯入：內嵌 125 個正常根目錄檔案的大小與 SHA，沒有原版 bytes。原目錄或 jsdos ZIP 先全驗，再原子建立新目錄，拒絕既有目的地、惡意路徑、重複及來源不符。HD 屋頂參考由使用者原檔建立，公開包不含 reference.idx／palette.rgb。正式程式增加 -version、自動封包資產與 macOS Resources 根定位。
+- 可用 internal／cmd 全套測試與 vet、實際 125 檔匯入及 HD 參考測試通過，記錄 workplace/keyboard-release-build-v1/tests.log。使用既有 dosgolem-go-ebiten:1.24-r1 與 tokugawa-desktop-platforms:go1.24.13-sdk15.5-noble-r1 建置四架構，每份綁定 43 份實際編譯輸入及版本。四份檔頭與來源核對後，八檔原封移入 workplace/bin，034 前版保留，promotion.json 保存前後 SHA。沒有擴跑舊外部動畫 fixture 或重建無關工具鏈。
+- 新版正常魔王單打五項及三個肖像重組通過；新版蜘蛛女 HD 四項／五張及原檔獨立比較通過。初次並行載入約一億像素圖集超過舊三十秒腳本期限，日誌無產品錯誤；保留 *-startup-budget，觀察程序仍活著後將載入等待改為九十秒，以同一 image／同一正常入口重跑，沒有改正式載入或狀態。
+- tools/package_release.py 收集實際十一個依賴模組及 Go／Noto 授權，乾淨建立 dist-all/v.0.1.0-20261020 的八包。patch 四份各約 100 MB，只含引擎、可公開 HD、文件與匯入功能；full-local 四份各約 101 MB，各含 125 原檔，均排除作弊資料。ZIP 固定日期、可執行權限、UTF-8 BOM 說明、完整 manifest／SHA／CRC 與公開原版雜湊排除通過。macOS 數字平台欄位為 0.1.0，完整版本另保存在原生 release 欄位；兩種 Mach-O 與四個 plist 已驗，沒有真機／簽章聲明。
+- tools/package_startup_smoke.py 從解壓包驗 Linux／Wine 公開及本機共四次啟動、程式版本、公開缺資料提示、ZIP 匯入、拒絕覆寫、125 檔、HD 參考與原生視窗開始執行。Wine 初次觀測檔先於視窗可見，腳本搜尋視窗失敗；保留 windows-startup-window-race 與匯入成品，改成有界等待可見視窗，從未匯入的乾淨公開包重跑通過。這是自動化時序問題，正式程式未改。
+- tools/package_smoke.py 在 sc-cht-dosboxx-bridge:e0b4287-r1 執行實際 Linux Go 程式，沒有使用 DOSBox 作原版收據。正常選角斬／法蘭克、HD、鍵盤快捷及移動、真實 X11 失焦／恢復按住中立、F9 滿血練習四項通過，並錄十八秒原生畫面。三張對戰／出招／練習截圖由原始資料重組六層、姓名、HUD、陰影及顯示起點，結果為 smoke/linux-play-record/capture-comparison.json。
+- 原音訊盤點確認 SF000.MUS 有十五段完整標準 MIDI，十七個 PPM 容器有四十筆 Compact PCM。PCM 編碼／取樣率／角色標籤仍未知，不猜補。首段 MIDI 用 TiMidity++ 2.14.0 與 FluidR3_GM.sf2 軟體演奏，沒有重作旋律、沒有原機 DAC／OPL 音色聲明。格式、原 bytes 及工具雜湊見 workplace/original-audio-v1，公開評估寫在 docs/audio-hd-assessment.md；遊戲音訊串流仍未完成。
+- tools/promo_release.py 完成本機六十秒影片：1280×720／30fps／AAC 48kHz 雙聲道，十八秒原生實錄，其餘明示靜態截圖與標題。來源／分鏡／字幕邊界／字型／SoundFont 雜湊完整；完整解碼、無黑幀、音量峰值 -1 dB、聯絡表及實際操作畫面抽看通過。實錄有數秒畫面停留，原生來源與成片凍結檢測均保存，不稱正式速度通過；技術音量不等於人耳抽聽。首輪字幕超出底部安全邊界由工具拒絕，依實際字框重排後才合成。影片 SHA-256 為 721376ad5a00ad7f71b1708bb9208d9d640456445ed82bbe90b154bef30bae54，成品只留本機 promo。
+- README 補官方來源的故事背景、首版與限制、鍵盤／手把說明及本輪五張新擷取。GitHub 圖片只引用受追蹤檔案；source.json 記錄版本／來源／收據／二進位 SHA。HD 包仍是 1411 鍵／65 PNG／二十來源，公開資產 83 PNG／92 檔不變；完整 HD、其他快捷、音訊、正式速度、實體手把與真機仍待完成。
+- final-audit.json 核對原始 jsdos、128 原檔與 1719 執行器來源不變、README 七十個受追蹤相對連結、七張截圖來源、文件索引、Python 語法與 macOS metadata。全工作樹沒有 root-owned 檔案或誤建 .md 目錄。已驗二進位與封包雜湊不因文件收尾改動。
+- GitHub 發布工具限定四個 patch ZIP 與 release-manifest.json，先草稿、核對遠端大小與 SHA 再發布。既有 gh 設定中的舊憑證失效；改用已存在且有效的 Git credential store 唯讀供容器取得 GH_TOKEN，沒有搬運、輸出、保存或修改憑證。GitHub release list 為空，尚無相同 tag。後續實際提交、發布與遠端核對追加於下方。
+
+重現命令在容器 `/project` 內執行，原版掛 `/orig` 唯讀，工作樹與 workplace 為本專案輸出。每次 docker run 均使用 --rm、--user 1000:1000、--network none、相稱資源限制與 timeout；只有 GitHub API 上傳開網路。
+
+```sh
+python3 tools/build_desktop.py verify --output-dir /project/workplace/keyboard-release-build-v1/bin --receipt /project/workplace/keyboard-release-build-v1/build-verification.json
+python3 tools/package_release.py audit
+python3 tools/package_startup_smoke.py --platform windows-amd64 --output /project/dist-all/v.0.1.0-20261020/smoke/windows-startup
+python3 tools/promo_release.py prepare
+python3 tools/promo_release.py render
+python3 tools/promo_release.py check
+```
+
+前兩項可以直接重驗既有輸出。啟動測試需要新輸出目錄與乾淨解壓的公開包；不要在已匯入的測試副本重跑並誤判來源缺少檢查。影片 prepare 用 sc-cht-hdtools:pillow11.3.0-r1，render／check 用 fd2-promo:20261017-r1；目視抽查及其紀錄另人工補入 promo-checks.json。

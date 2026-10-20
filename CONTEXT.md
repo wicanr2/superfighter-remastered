@@ -24,6 +24,9 @@
 
 | 項目 | 狀態 | 最近證據與限制 |
 |---|---|---|
+| 鍵盤重綁與快捷 | 035 限定 CONFORMED | 每人十四欄、兩人四格快捷，保存及舊檔相容。Linux／Wine 各六項正常路徑通過；兩人斬第一招 path 24h、按住一次、方向與拳腳獨立。實際 Linux 封包另驗失焦中立。其他角色快捷仍拒絕，斬完整四招沿用 004 |
+| 首版交付 | v.0.1.0-20261020 封包已驗，遠端發布待核對 | dist-all 同版 patch 四包及 full-local 四包逐檔／CRC／SHA 通過。公開不含原版，本機各 125 原檔。Linux／Wine 公開包匯入、拒絕覆寫、兩種包啟動與 HD 自動準備通過；macOS 只驗內容及架構。推廣片只留本機，採原版 MIDI 軟體演奏 |
+| 原版音訊與 HD 評估 | 格式盤點完成，遊戲串流未接 | SF000.MUS 十五段 MIDI；十七個 PPM 容器四十筆 Compact PCM。首段原曲供本機影片，語音取樣率／編碼／角色標籤仍未知；見 docs/audio-hd-assessment.md，不稱音訊 HD 完成 |
 | 首輪三人 WIN | 已接原生，033 限定 CONFORMED | 該切片 1381 鍵／64 PNG／十九來源。22,020 個成對邊界、18 張原檔重組、真實姓名與新來源測試通過；三個 Linux 首勝及缺件案例各七張切換／清除通過。小丑為時間到判勝。四平台 38 份輸入及 bin 已更新；本切片未驗 Wine／真機。嵐 alpha 與蜘蛛女姿勢卡點先跳過；道場整理完成，029 格式仍待確認 |
 | 練習模式 | 已接原生，032 限定 CONFORMED | 工具列／F9／-training 共用；雙方補滿且鎖血、停時、AI 中立，關閉恢復。核心單／雙打、七個拒絕邊界、Linux 單打七項與 Linux／Wine 雙打 HD 各八項通過；重啟預設關，曾啟用標示 modified。完整程式測試及 vet 通過 |
 | jsdos 下載 | 已完成 | 1,281,787 bytes；SHA-256 與來源物件檔名一致；ZIP CRC 通過 |
@@ -53,7 +56,7 @@
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | Windows／macOS／Linux 已定 | 034 四份二進位核對 38 份編譯輸入，收據為 spider-low-guard-build-v1；已驗版移入 workplace/bin，033 前版仍保留 first-pass-hd-build-v1/bin。只驗 Linux 034 畫面，未作 Windows／macOS 真機、簽章或正式封包 |
+| 平台與發布 | 三平台四架構首版已建置 | keyboard-release-build-v1 四份二進位核對 43 份編譯輸入；034 前版保存在 spider-low-guard-build-v1/bin。新版 Linux 魔王單打與蜘蛛女 HD 重驗通過；公開／本機封包各四份。未作 Windows／macOS 真機或簽章 |
 
 ## 固定輸入
 
@@ -119,9 +122,16 @@ HD 採 B「街機手繪」。現行群組為 `hd-characters-spider-low-guard-v1`
 
 快捷四格與雙手把已接本機操作入口，預設 R1／R2／L1／L2 對應 1／2／3／4，兩名玩家各自保存。斬的四招可送原版輸入，其他角色尚未驗證的快捷明示拒絕。投技仍需近身，沒有自動走近或改寫座標。實體裝置驗收仍待進行。
 
-AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整研究在 RESEARCH-LOG。短檔作弊效果的因果仍屬強推論，未作同狀態替換實驗，也未新增 AI 難度設定。032 另在練習模式將 AI 輸入清為中立，不替換 AIDATA；關閉即恢復原版決策。三平台已固定，公開方式與完整發行門檻尚未決定。
+AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整研究在 RESEARCH-LOG。短檔作弊效果的因果仍屬強推論，未作同狀態替換實驗，也未新增 AI 難度設定。032 另在練習模式將 AI 輸入清為中立，不替換 AIDATA；關閉即恢復原版決策。使用者已確認首版發布已驗功能，明列其他角色快捷限制；公開引擎包不含原版，本機完整版含原版，含原曲的影片只放本機。
 
 ## 現行證據入口
+
+### 鍵盤與首版交付
+
+- [035 鍵盤](docs/spec/035-keyboard-bindings.md)、[036 發行](docs/spec/036-release-packages.md)是本輪契約；`VERSION` 固定同一版號。建置位於 `workplace/keyboard-release-build-v1`，兩平台鍵盤收據位於 `keyboard-native-v1`／`keyboard-wine-v1`。
+- 唯一交付根為 `dist-all/v.0.1.0-20261020/`：`patch` 供公開、`full-local` 只留本機、`promo` 為本機原曲影片、`smoke` 保存解壓啟動與操作證據。根目錄 `SHA256SUMS.json` 記錄八個 ZIP；公開 manifest 只列四個引擎 ZIP。
+- `smoke/linux-startup` 與 `windows-startup` 各驗公開／本機兩種包；`linux-play-record` 驗正常雙打 HD、預設快捷、失焦、練習與真實錄影，三張畫面另由原檔重組。`workplace/release-boss-single-v1` 重驗正常魔王單打，`release-spider-hd-v1` 重驗低伏切換與回退。
+- README 更新故事出處與本次鍵盤、手把、對戰、練習、蜘蛛女 HD 截圖，來源存 `docs/screenshots/source.json`。原版 raw／音樂／原貌收據均不上傳。影片有原版 MIDI 軟體演奏，沒有宣稱原機 DAC／OPL 音色或遊戲串流已完成。
 
 ### 蜘蛛女低伏
 

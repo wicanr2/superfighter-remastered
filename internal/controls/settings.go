@@ -29,12 +29,13 @@ var Catalog = []Character{
 var Slots = [4]string{"R1", "R2", "L1", "L2"}
 
 type Settings struct {
-	Version int                  `json:"version"`
-	Players [2]map[string][4]int `json:"players"`
+	Version  int                  `json:"version"`
+	Players  [2]map[string][4]int `json:"players"`
+	Keyboard [][]string           `json:"keyboard,omitempty"`
 }
 
 func Defaults() Settings {
-	s := Settings{Version: 1}
+	s := Settings{Version: 1, Keyboard: KeyboardDefaults()}
 	for p := range s.Players {
 		s.Players[p] = map[string][4]int{}
 		for _, c := range Catalog {
@@ -52,6 +53,9 @@ func Defaults() Settings {
 func (s Settings) Validate() error {
 	if s.Version != 1 {
 		return fmt.Errorf("設定版本不支援：%d", s.Version)
+	}
+	if err := validateKeyboard(s.Keyboard); err != nil {
+		return err
 	}
 	for p := range s.Players {
 		for _, c := range Catalog {
@@ -80,6 +84,9 @@ func Load(path string) (Settings, error) {
 	var saved Settings
 	if e = json.Unmarshal(b, &saved); e != nil {
 		return s, e
+	}
+	if saved.Keyboard == nil {
+		saved.Keyboard = KeyboardDefaults()
 	}
 	// 版本 1 的舊八人設定只補三名新角色；不補壞掉的既有角色。
 	for p := range saved.Players {

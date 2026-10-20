@@ -142,7 +142,7 @@ def main():
         spawn(["Xvfb", ":89", "-screen", "0", "1280x1024x24", "-nolisten", "tcp"], "xvfb")
         time.sleep(.3)
         game = spawn(command, "native")
-        wait(lambda s: s["core"]["paused"])
+        wait(lambda s: s["core"]["paused"], timeout=90)
         window = visible_window()
         xdo("windowfocus", "--sync", window)
         click(110, 32)

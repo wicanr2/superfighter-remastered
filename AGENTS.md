@@ -148,6 +148,14 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [Release 發布](tools/publish_release.py) | 核對封包／操作／本機影片收據，只上傳四個 patch 引擎包與公開 manifest；先驗草稿資產大小及 SHA-256，才發布，不覆寫已發行版本 |
+| [本機推廣片](tools/promo_release.py) | 原生封包錄影、靜態畫面標示、原版 MIDI 配樂、字幕邊界與音畫檢查；成品與來源只留 dist-all 的本機 promo |
+| [鍵盤組態](docs/spec/035-keyboard-bindings.md)、[三平台發行](docs/spec/036-release-packages.md) | 使用者指定的鍵盤與四格出招、公開無原版包／本機完整包、私有原曲推廣片與驗收範圍 |
+| [鍵盤資料](internal/controls/keyboard.go)、[鍵盤介面](internal/desktop/keyboard.go)、[設定測試](internal/controls/keyboard_test.go) | 兩人十四欄、衝突／保留鍵、原版輸出及中立閘門 |
+| [資料匯入](internal/gamefiles/import.go)、[原檔身分](internal/gamefiles/source-manifest.json)、[匯入測試](internal/gamefiles/import_test.go)、[VERSION](VERSION) | 公開包不含原版 bytes；合法來源驗證、全新目錄原子匯入及使用者端屋頂參考準備 |
+| [音樂與語音 HD 評估](docs/audio-hd-assessment.md)、[原音訊盤點](tools/inspect_original_audio.py) | 原版 MIDI 與 Compact PCM 證據、HD 可行性、未知格式及本機影片音訊來源界線 |
+| [三平台封包工具](tools/package_release.py) | 收集實際依賴授權、四平台公開包與本機完整包、固定版號、逐檔 SHA 及原版資料排除檢查 |
+| [鍵盤正常路徑](tools/keyboard_smoke.py)、[封包啟動](tools/package_startup_smoke.py)、[封包操作與錄影](tools/package_smoke.py) | Linux／Wine 重綁及原版出招、公開包匯入／自動 HD 參考、實際封包正常雙打、失焦中立與私有錄影 |
 | [蜘蛛女低伏接入](docs/spec/034-spider-low-guard.md)、[準備工具](tools/prepare_spider_low_guard.py) | 已確認的相近低伏稿、三組一般來源與別名、朝向正規化、原姓名及未覆蓋動作回退 |
 | [蜘蛛女原生驗證](tools/spider_low_guard_smoke.py)、[獨立核對](tools/verify_spider_low_guard.py)、[來源測試](internal/hd/spider_low_guard_test.go) | 普通雙打低伏、移動原貌回退、釋放恢復、同狀態切換與原字圖／圖層重組 |
 | [首輪其餘勝利 HD](docs/spec/033-first-pass-victories.md) | 金太極、小丑、印第安喬的 WIN 擴充；嵐／蜘蛛女卡點先跳過，道場候選另整理，依證據閘門接入 |

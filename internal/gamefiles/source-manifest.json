@@ -1,0 +1,627 @@
+[
+  {
+    "name": "FIV-1.PPM",
+    "sha256": "029504f8e5c799cd4af29aa016ae8bd079bbab0aa4bbdf9d995595c7871d3611",
+    "bytes": 15290
+  },
+  {
+    "name": "SFMAN02.DAT",
+    "sha256": "e169a26f348ad6efc6563abe945698a7ccc2586134af611b5d5391e7984a30d6",
+    "bytes": 153003
+  },
+  {
+    "name": "FIV-19.PPM",
+    "sha256": "2f42c28c9ba8568d504b5157a57de507c4dc650e7af58db13e7466d320b72b88",
+    "bytes": 2961
+  },
+  {
+    "name": "FIV-4.PPM",
+    "sha256": "297a7680ad944f854056a4a6e9fec0329cda6ed72cb3e355f0a9961544b8c0d2",
+    "bytes": 5367
+  },
+  {
+    "name": "IIWIN.PAH",
+    "sha256": "cc98f0fae695956f9dc28e211bf3919416d07334b85995b2981e28c8fe9576f9",
+    "bytes": 1536
+  },
+  {
+    "name": "FIV-5.PPM",
+    "sha256": "0b95e744b810d5ff99407b5842085b01970d808b64917d00046febfc67232753",
+    "bytes": 6474
+  },
+  {
+    "name": "SFMAN03.DAT",
+    "sha256": "46556b2f4909e3d6def6c74f54cee88b15ae0c3a634d92942dace6ccd0f94bf4",
+    "bytes": 144763
+  },
+  {
+    "name": "FIV-15.PPM",
+    "sha256": "dfc061ae28ecc6abd47d4617d62a6228d351b28c0a0f2dc97249b5fe5b6ed98e",
+    "bytes": 1673
+  },
+  {
+    "name": "SFMAN10.DAT",
+    "sha256": "31c0547e255f23f1af5d3475ef53c2f82817b3b5f1cdea01340da6c8b14699a4",
+    "bytes": 150068
+  },
+  {
+    "name": "SH.XBB",
+    "sha256": "852bd5b565dd140c66ccce5c98eeb5dfb209609bacd229e532e2c3fcffdd7191",
+    "bytes": 7355
+  },
+  {
+    "name": "INSTALL.EXE",
+    "sha256": "8a9342244eac9dec095cd63a7833c4a8c36e01ca2969cc277eeefeaa3830fd76",
+    "bytes": 21962
+  },
+  {
+    "name": "SFMAN01.DAT",
+    "sha256": "da5de4b2f997e411582949c2f0ab2f0540324f1e83d90bd282b78b2901a860b9",
+    "bytes": 152602
+  },
+  {
+    "name": "FIV-6.PPM",
+    "sha256": "af881bd070968c36e2f3949f33c926410cd32d7d407252ceeff429cad5273112",
+    "bytes": 260
+  },
+  {
+    "name": "FIV-10.PPM",
+    "sha256": "c933f4716f0783ad2ca6a79a4583ea3d744332b654fcce999291b5de11ac05e3",
+    "bytes": 2480
+  },
+  {
+    "name": "REFMAN.PIC",
+    "sha256": "7ecacb00c8a69dcaaafa6692476a9a34c4b89f01314b2a310ad9151bf9ec70fc",
+    "bytes": 867
+  },
+  {
+    "name": "FFWIN.PAH",
+    "sha256": "9d2fa6a9c14dd46c2f2665567459d61e01675437124409033187bd62d3cbd76a",
+    "bytes": 1536
+  },
+  {
+    "name": "Z21.FIG",
+    "sha256": "daf9af505c9c1bb520baf7439fb4990d491745d32227e9a4ccb3d33f04ad646a",
+    "bytes": 5740
+  },
+  {
+    "name": "GGWIN.PAH",
+    "sha256": "29cf65dc3414e3826c2da9bf483a255e585100f650c3b76ca919bdf6755bb925",
+    "bytes": 1536
+  },
+  {
+    "name": "MORE3.FIG",
+    "sha256": "7399c4e5eb2a7e00e59bba31bf72bc729f2edfd1ce347cbcba805f4c301a810a",
+    "bytes": 3970
+  },
+  {
+    "name": "Z15.FIG",
+    "sha256": "d430024d28d5642063f2cd415791de78da9e2d7866e4d77988eb927aa26dac50",
+    "bytes": 2393
+  },
+  {
+    "name": "I9.XGB",
+    "sha256": "b27d6582c71827cd8575fbf144c083a84a36a9063db0c5ed1f3a62b71e879d37",
+    "bytes": 52005
+  },
+  {
+    "name": "Z1.FIG",
+    "sha256": "8a6dc07c22d1999f2166253c6346a8adc718630c42edeb45eb387f41519ef258",
+    "bytes": 1679
+  },
+  {
+    "name": "SELECT.CPM",
+    "sha256": "24022b7141d825b5ea0603b10dfb014dba7d744de549fe15e3d90084cefb2a0a",
+    "bytes": 14459
+  },
+  {
+    "name": "FIV-2.PPM",
+    "sha256": "7c151bd816b1ee17d91bc5deaa82a0bfa90ebe28fe0428d37ac8bc53a015b00a",
+    "bytes": 20664
+  },
+  {
+    "name": "DDWIN.PAH",
+    "sha256": "ae00642512572ecaa751e0af6ea056c3aacbffe1cc0c977f9c3d5b2de29d1083",
+    "bytes": 1536
+  },
+  {
+    "name": "FIV-16.PPM",
+    "sha256": "b7129eccc81bba0e756727a0a881a575dcbbe56409efc996d59299610c10fbb8",
+    "bytes": 2131
+  },
+  {
+    "name": "BIGFIG.XBB",
+    "sha256": "4897b865c3fef8fd1c788ec5e32226de7086dbd8ff1987a5efc62ea15bd29477",
+    "bytes": 95579
+  },
+  {
+    "name": "SECRET3.FIG",
+    "sha256": "f2d9bec1b01f7743a5b57726487cd312565ef1a9d0272245b8caaf0f8c88d099",
+    "bytes": 3811
+  },
+  {
+    "name": "I1.XGB",
+    "sha256": "28971dd27aaed3596b1c1a94df88d41b6b39093554f2cd12319a65dbbf3ee29b",
+    "bytes": 59825
+  },
+  {
+    "name": "NAME.XBB",
+    "sha256": "60c0bbe367e44ab9fda512df2ba93ad62d70147df90079d07ff15818f21bad82",
+    "bytes": 17474
+  },
+  {
+    "name": "FIV-11.PPM",
+    "sha256": "ff5c5aaef676c5c0b7147eb9a5bd6894b70035c20f680955eecf24c5e08d2b09",
+    "bytes": 1361
+  },
+  {
+    "name": "I13.XGB",
+    "sha256": "a6638b131ce5cfe0a12f34d779f18de4f997959ffe5d50ecec3711fef7a0efea",
+    "bytes": 39528
+  },
+  {
+    "name": "B_B.XBB",
+    "sha256": "2b0b903f72f20832a4d138e34d6531e2a86d75aa56908243de7211a8a92b6e4b",
+    "bytes": 74096
+  },
+  {
+    "name": "AAWIN.FIG",
+    "sha256": "0c332b13bb923116460a7fa8cf474b105d8f1d2b180a8d7ede5af6f92209f8f7",
+    "bytes": 9697
+  },
+  {
+    "name": "Z17.FIG",
+    "sha256": "ca5d9ce2ef3d598f49a929b3d9c46bb606b05aa8663f73984b162b302268fc83",
+    "bytes": 2972
+  },
+  {
+    "name": "OVER.FIG",
+    "sha256": "71568fb0b910d818cadde4466566d5a5098de833b00f12e6b023b3ed9fce45fb",
+    "bytes": 28146
+  },
+  {
+    "name": "B_A.XBB",
+    "sha256": "1d97875275a3e5a0cf1cbf69be04fe0b5ea70deddff0c2eb29ed4d49e5834457",
+    "bytes": 96282
+  },
+  {
+    "name": "CCWIN.FIG",
+    "sha256": "1fcf7dda4b8d78e706497f83e188c97890d6d5f17c8e6c65f82088d7b3e28402",
+    "bytes": 10103
+  },
+  {
+    "name": "I8.XGB",
+    "sha256": "3d3f521e3cc56f9c90ae5b287b31fe7fdeb0fae9f62dd66a8fd7b0a344905f4b",
+    "bytes": 23732
+  },
+  {
+    "name": "CITY3.FIG",
+    "sha256": "298db8b1f5209592ef628436a13e6f5dfad2c4c0108427a571929a883cf01436",
+    "bytes": 12677
+  },
+  {
+    "name": "I10.XGB",
+    "sha256": "b79e145bfa34fa05420e72752d2012eb2c4e5260149092c8f1c3a05100be5228",
+    "bytes": 38693
+  },
+  {
+    "name": "KKWIN.FIG",
+    "sha256": "bb24c0340af2964056136ce9faa9256b486c9afe8a9159065d942509ebea907a",
+    "bytes": 14204
+  },
+  {
+    "name": "SF000.MUS",
+    "sha256": "78af89020939bc7f2013f3869332aae1a67a2600c14ec7820146599e31cdaeda",
+    "bytes": 172513
+  },
+  {
+    "name": "SIX.FIG",
+    "sha256": "c7ff641c4c5a547567dec6b93cccbdaa63570c270b6ff3efb245780e1f4033cb",
+    "bytes": 28119
+  },
+  {
+    "name": "Z2.FIG",
+    "sha256": "2b273efaecf840fd2d2dbb798c0d36d0e01bd3169edc05a1f4cd7ed9c539fc0d",
+    "bytes": 2581
+  },
+  {
+    "name": "I5.XGB",
+    "sha256": "44d8adf7662c46396092581175fd0b85ca7179b9f99fe9c66b680f0ff50a9b61",
+    "bytes": 27100
+  },
+  {
+    "name": "Z8.FIG",
+    "sha256": "26d395e78ce972ac796b77a22aaed8fc513ff34be7120e04def0dc49431f834f",
+    "bytes": 2340
+  },
+  {
+    "name": "Z18.FIG",
+    "sha256": "13cac8e4a8ae0acaced1e50ddd1775395e4b303c9e32c8a89885f7667e294193",
+    "bytes": 3643
+  },
+  {
+    "name": "SFMAN09.DAT",
+    "sha256": "76f1a2484fd551c574279138e16f2f70971c4a7259858406e90c0211a2f3f53e",
+    "bytes": 108989
+  },
+  {
+    "name": "Z16.FIG",
+    "sha256": "a9383b43d812e6f97641092cf3bb3ef24657d691f92b788fed3adffe4e34b43a",
+    "bytes": 3519
+  },
+  {
+    "name": "FIV-3.PPM",
+    "sha256": "a8484c717e30883629d1c1843bbfa13b5d6149124011847924d51910bf8e874d",
+    "bytes": 9083
+  },
+  {
+    "name": "GGWIN.FIG",
+    "sha256": "2ec882c5a3827d249c8048ef33c0604c4b5be2b5626e37ed3db5ae1bd78ec233",
+    "bytes": 12362
+  },
+  {
+    "name": "NOKEY.EXE",
+    "sha256": "5757324e9e4cebeda2527b60c3f04fc8628c2a67aba6123282e57eea1a1e8b8c",
+    "bytes": 1220
+  },
+  {
+    "name": "B_E.XBB",
+    "sha256": "86d41d4b4cae4e54b694edd3187e26c37c60010059a797efcb82bfca4fbd324f",
+    "bytes": 99730
+  },
+  {
+    "name": "SFNAME.CPM",
+    "sha256": "9268d0093b84b67508ea1e2280ec5707c20b6d31a929bfd736b89e132a1842bc",
+    "bytes": 14085
+  },
+  {
+    "name": "SFMAN05.DAT",
+    "sha256": "b5b77d590420b92db2d265aa89483de70d58193caf442fd41eba338eb111d653",
+    "bytes": 153305
+  },
+  {
+    "name": "B_H.XBB",
+    "sha256": "dfc860124575f021806b680ef8c2982d2417e8419de5770526199d007c27be25",
+    "bytes": 70700
+  },
+  {
+    "name": "I7.XGB",
+    "sha256": "2c39a97a2d0c14b9984f5a3c8ffa24e2b7f6f04049f76343502c753007ad5836",
+    "bytes": 53162
+  },
+  {
+    "name": "SF.COM",
+    "sha256": "f194ff7cce7975aabff3f8ec5f92a8b0ca2db0368c33ed29aba7bd7b70f6392e",
+    "bytes": 876
+  },
+  {
+    "name": "SFMAN08.DAT",
+    "sha256": "5579dee3e846d65905db84d769fae4378051e1a5cec74bed509885754cef165c",
+    "bytes": 153429
+  },
+  {
+    "name": "I4.XGB",
+    "sha256": "fa8fcd79b70f030a3fff0cae6106fe0fc915fb02da0eaa6dfaf7250235d7fc7b",
+    "bytes": 35716
+  },
+  {
+    "name": "Z9.FIG",
+    "sha256": "1783f1f01d16c95c4322790062a784868f4ec83d2834baadf7bccc46d744cbff",
+    "bytes": 2387
+  },
+  {
+    "name": "LOSEFIG.XBB",
+    "sha256": "b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c",
+    "bytes": 95579
+  },
+  {
+    "name": "README.TXT",
+    "sha256": "9e47c44d4b6a9361622f8d753045c30acf913bc0b92c694b6975c5c71d37edef",
+    "bytes": 161
+  },
+  {
+    "name": "B_C.XBB",
+    "sha256": "e9b8393ee877c9768280c0518d3fb94243b3e4890a70b2cc3026a2298aeb1c82",
+    "bytes": 64936
+  },
+  {
+    "name": "CCWIN.PAH",
+    "sha256": "d94ebdae42b26384b5de78dfe2b8f2cb58e0f773902722aa9874b85e34549aef",
+    "bytes": 1536
+  },
+  {
+    "name": "HHWIN.PAH",
+    "sha256": "f66866895574f4ac5758236a7f26246cc9f33f309cd84cce7d501b696626ee21",
+    "bytes": 1536
+  },
+  {
+    "name": "B_G.XBB",
+    "sha256": "5c1df3699875b40fcd64620a6d590da6ce28ea810e87c9871a328f675b181f20",
+    "bytes": 63547
+  },
+  {
+    "name": "0-9.XBB",
+    "sha256": "07a3829bbb7ec794459e83d6f2776c31b00c10fcc7a256871cb5fc16ec295fc9",
+    "bytes": 2100
+  },
+  {
+    "name": "JJWIN.PAH",
+    "sha256": "5bc59769ff106e31f4ab7e4dd573f337ab23625e1a304d700ab2309fe8580c77",
+    "bytes": 1536
+  },
+  {
+    "name": "SHIN.FIG",
+    "sha256": "28659c54fe5ce751c630424c3ef234717debd8aa9fe451eaab1d1e2639670845",
+    "bytes": 22331
+  },
+  {
+    "name": "B_F.XBB",
+    "sha256": "0fcbfb3eb2f8756a98ad160f267c622a4f0846f40590da2bef651e5f9225861c",
+    "bytes": 77957
+  },
+  {
+    "name": "FIV-17.PPM",
+    "sha256": "c3d6bf5daf387f6a0628d8f87ab19ad87dc01dfa6287af1108a3fccb74ea457b",
+    "bytes": 1786
+  },
+  {
+    "name": "BBWIN.PAH",
+    "sha256": "f25c13b31cd55fd8803446b53f918d857761b70fdc5c3c4c8b9de1da340051ee",
+    "bytes": 1536
+  },
+  {
+    "name": "IIWIN.FIG",
+    "sha256": "868037238edeeeefcc3cdf43cfd04a96403c9377169ffabc2ed4df31b6fff137",
+    "bytes": 27844
+  },
+  {
+    "name": "CSDN.NFO",
+    "sha256": "4288c7c57e113ba90c16c124272c840d6d9806d38948403790e02cce5e3018e2",
+    "bytes": 2681
+  },
+  {
+    "name": "AIDATA.DAT",
+    "sha256": "72b10b129c9f557a8b9beb0a400b5636ab690fec5af97b55672980283042f4d8",
+    "bytes": 576
+  },
+  {
+    "name": "PLAY.BAT",
+    "sha256": "6e9475c883e145ceb9155c6a3b197b96d4bb34153e994fb0b1791ff521b8b6b4",
+    "bytes": 14
+  },
+  {
+    "name": "Z4.FIG",
+    "sha256": "201d86e85d2b39763bb913b0e8ddea379ce6e4c5d0d93ec936403306149ec536",
+    "bytes": 2264
+  },
+  {
+    "name": "AAWIN.PAH",
+    "sha256": "1496e03dd259180faa447722ec073ad002e1fa80830606bda25b9fe08a8f9f05",
+    "bytes": 1536
+  },
+  {
+    "name": "FIV-14.PPM",
+    "sha256": "7d7d1bc560822f0c0088657985a2371b9cca25d510c2ae8ff3bb237368c3470f",
+    "bytes": 5075
+  },
+  {
+    "name": "FLAG.FIG",
+    "sha256": "64ad397ba0a29808b5e8dc147c456be6c1f26df6d94258a3d2340b0f2a2e51ce",
+    "bytes": 1527
+  },
+  {
+    "name": "FLAG.XBB",
+    "sha256": "87a5bf27cb516d1e5612252dd0a3dff5f3980c837ea4b96b644ece0257acc6d1",
+    "bytes": 15029
+  },
+  {
+    "name": "SFMAN04.DAT",
+    "sha256": "2cd299e9c10814ae37bb044c2e3ae7adf940d8b1accd8feffa3844bbfb43356b",
+    "bytes": 153369
+  },
+  {
+    "name": "EEWIN.PAH",
+    "sha256": "2cbc29c327a3ac2ff66b1e9d1f7254b6f2aae6a4f7c336b403c2efe0824014fb",
+    "bytes": 1536
+  },
+  {
+    "name": "FIV-12.PPM",
+    "sha256": "745bd20bc1c0a5b496573b3220364436f0201c66a41432866a1192e87f6eb29e",
+    "bytes": 747
+  },
+  {
+    "name": "MAN.COL",
+    "sha256": "7153214bf444684179b5296ad1c4dfc874385cbf6e2d5e0c215c13e711749ce5",
+    "bytes": 768
+  },
+  {
+    "name": "BOARD.XBB",
+    "sha256": "a1b789d9187f77c70b28a5dfe782af258f6a84c6260ac4b20e55817e0c00b7ff",
+    "bytes": 10240
+  },
+  {
+    "name": "DDWIN.FIG",
+    "sha256": "b7450f925f64228b96aa7ed96682d8fe50d8f9513c80e7600be61df0dd7ac2f5",
+    "bytes": 9360
+  },
+  {
+    "name": "B_I.XBB",
+    "sha256": "b058a98ec4ba492506de6dd3cc1486da2cfa961a9edf9e7ee58aad5ed626145e",
+    "bytes": 67670
+  },
+  {
+    "name": "TITLE.CPM",
+    "sha256": "a4790f1da67dbff8eec45c573826b95ee9e9c48ed165f99dfc1cf9176ef03f10",
+    "bytes": 13656
+  },
+  {
+    "name": "SFMAN06.DAT",
+    "sha256": "f398370820cfebbce670433130fd3718651ed4943259604fb55c851fa3906cbb",
+    "bytes": 152110
+  },
+  {
+    "name": "SHADOW.XLP",
+    "sha256": "a25f777105cc86468c91111152e8ef10dd4911d9b150e3c1a1020e21b7590bf1",
+    "bytes": 533
+  },
+  {
+    "name": "Z12.FIG",
+    "sha256": "78f908b15335a1ef51aa74594853e7d4963a53c05b95230ea31cf8caf3f819f4",
+    "bytes": 3522
+  },
+  {
+    "name": "Z20.FIG",
+    "sha256": "cb7835d056581691fe2e82a9df421bd60a5a67a061c0a7e401e8b8d076e8a740",
+    "bytes": 4746
+  },
+  {
+    "name": "I3.XGB",
+    "sha256": "58819f1db7fac5297698298159796a95a239458e8208b256e6285f5446608567",
+    "bytes": 55123
+  },
+  {
+    "name": "SFSIGN.RSC",
+    "sha256": "be5d4901d17c6cd62548854ad1e5e3ef48420bf46bd96c22cd36f6e57865fec8",
+    "bytes": 41105
+  },
+  {
+    "name": "Z3.FIG",
+    "sha256": "8b902bdb5bfb00e88dd651626d48444130fdee668a010ad70ffe935541af4141",
+    "bytes": 2328
+  },
+  {
+    "name": "WC.XBB",
+    "sha256": "774f14af079c7148fb05a5db21fdfb17abc0a658c9fcd9a82958166ebaf8b0e0",
+    "bytes": 32961
+  },
+  {
+    "name": "KKWIN.PAH",
+    "sha256": "a8a09591e4de3ed5915c0a991795f05b325c7b9bdfcf218687ab4766a66be5ae",
+    "bytes": 1536
+  },
+  {
+    "name": "LOAD.XBB",
+    "sha256": "5e82939cb714cb4e1193294bf55e2906b3d092e93e2d61147d6949db69519db6",
+    "bytes": 4220
+  },
+  {
+    "name": "I12.XGB",
+    "sha256": "ba316de10c5400859c773c55c3d92e06c1a71fa29312c26619f0f9428bd8ef45",
+    "bytes": 50979
+  },
+  {
+    "name": "SFMAN11.DAT",
+    "sha256": "2533818f4054f0dbbf1476d67f94461be95e903066ea517de33a6adf906afe56",
+    "bytes": 151144
+  },
+  {
+    "name": "Z10.FIG",
+    "sha256": "5e69c353c06ef75cc171a4841af7da208337e5d2aca501b6bc908575cb42bcf2",
+    "bytes": 2845
+  },
+  {
+    "name": "Z6.FIG",
+    "sha256": "024344c8464b7cfc97b3da222d6847ead1554251d0d5bf1b7bf8ac7392e386ab",
+    "bytes": 2301
+  },
+  {
+    "name": "EEWIN.FIG",
+    "sha256": "65f8536cdd3ba96c63d116df5c701b401776e39643fb5fb10c790ac1fdeb2a8c",
+    "bytes": 6279
+  },
+  {
+    "name": "SFMAN07.DAT",
+    "sha256": "5dc504b74694c84daf45f79e89ab3725948a82559ca0c92b88eac63130f49148",
+    "bytes": 151429
+  },
+  {
+    "name": "FIV-20.PPM",
+    "sha256": "303b8198f44f17dc9d6423954a64a29cdc77efd156505cb6aa47481786035a26",
+    "bytes": 2404
+  },
+  {
+    "name": "BBWIN.FIG",
+    "sha256": "bf9aaca05512785be194558ee45b5e4dcba2b122583d83f9f63e3d577c5cac3d",
+    "bytes": 17657
+  },
+  {
+    "name": "Z0.FIG",
+    "sha256": "c9357e9377912124b24a0bc35e424037f0a0a8c1ac199851e508f81b62560c66",
+    "bytes": 2087
+  },
+  {
+    "name": "FFWIN.FIG",
+    "sha256": "2a353085e1ad73d5521bf1c87e45f5678c2d2cd59148f50e291aad6995b3c9c3",
+    "bytes": 8379
+  },
+  {
+    "name": "FIGHT.CFG",
+    "sha256": "d545fcd56015ed8bc61bcf01758aed45cc9008fb4bb7818056bd51881cead086",
+    "bytes": 224
+  },
+  {
+    "name": "FIV-18.PPM",
+    "sha256": "85daeae437b9505f2177518ef45615095dd6d448e1de6fc05bdf15b67ea78144",
+    "bytes": 880
+  },
+  {
+    "name": "BOARD.COL",
+    "sha256": "33e622fa0d23ed7875b4c33e16a7e2bcc0cda4d849a419bcbe185e1db5456e71",
+    "bytes": 768
+  },
+  {
+    "name": "Z11.FIG",
+    "sha256": "16922b5b32d66214856d838e0b5d4c5b29b79c0be734bcb114d697bb8658baa4",
+    "bytes": 2250
+  },
+  {
+    "name": "Z7.FIG",
+    "sha256": "c6cddfd21c346052e83899850a66edc800ae4b383a1711cfec35e451d88869c6",
+    "bytes": 2478
+  },
+  {
+    "name": "JJWIN.FIG",
+    "sha256": "7995ef671f44c58647f66a3b1a7ba1abdbdb939774bb9f54ac93d724a8fbc4ec",
+    "bytes": 10960
+  },
+  {
+    "name": "SELMAN.CPM",
+    "sha256": "9b40caeee1eff32370a6826e1362087ae1da086237731f06de905d696b6c195a",
+    "bytes": 23466
+  },
+  {
+    "name": "FIV-13.PPM",
+    "sha256": "6ed5bddbb6c9308c2b5ffe9574ee74a8c8920a3de0d3cb20d743ea9da275b23e",
+    "bytes": 2569
+  },
+  {
+    "name": "CHINESE.XBB",
+    "sha256": "50f5b626895000a0fe5c44bce2a35fd59b2f53838386aab76bd880c7f6627161",
+    "bytes": 45395
+  },
+  {
+    "name": "I2.XGB",
+    "sha256": "81e45c775c79f1dc13f587a63d4bbeb854b9cf9ae8198621c03f6a313ee92e16",
+    "bytes": 50032
+  },
+  {
+    "name": "DAME",
+    "sha256": "4c61a6d95281a7c952337b7f7b8c6d5f169be9eac0544dd0a6e0e05a75c976f0",
+    "bytes": 198430
+  },
+  {
+    "name": "STAR.XBB",
+    "sha256": "6b7fbbea75b80e9f63fd44b11c8b35a9383f59f1b2584c9295bd6003998ccc03",
+    "bytes": 1861
+  },
+  {
+    "name": "SF.EXE",
+    "sha256": "24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300",
+    "bytes": 60702
+  },
+  {
+    "name": "HHWIN.FIG",
+    "sha256": "ac2cac7c82882a7cbf4abc17fb28b4d722dc798cf6e94234117c929f7c371589",
+    "bytes": 16982
+  }
+]

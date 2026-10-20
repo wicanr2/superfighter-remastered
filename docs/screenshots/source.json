@@ -1,10 +1,10 @@
 {
   "kind": "native settings UI before original DOS execution; no original game artwork",
   "file": "gamepad-settings.png",
-  "sha256": "8bae1e5e969799e082fca5ca315579ae09ce0bbbc4c6c1bb199fad972530e44f",
-  "source": "workplace/windows-native-v4/native-windows.png",
-  "source_sha256": "8bae1e5e969799e082fca5ca315579ae09ce0bbbc4c6c1bb199fad972530e44f",
-  "tool": "tools/windows_native_smoke.py",
+  "sha256": "83a4ab3190f2c6186a906205a5cc53d810b86d9427278e17ab494bc34222fd2e",
+  "source": "dist-all/v.0.1.0-20261020/smoke/windows-startup/patch/settings.png",
+  "source_sha256": "83a4ab3190f2c6186a906205a5cc53d810b86d9427278e17ab494bc34222fd2e",
+  "tool": "tools/package_startup_smoke.py",
   "platform": "Windows executable under Wine 9, not hardware gamepad acceptance",
   "font": "Noto Sans CJK TC, SIL OFL 1.1; internal/desktop/assets/source.json",
   "hd_captures": [
@@ -22,19 +22,6 @@
       "limits": "first-player normal first victory; not complete animation, physical controllers or full HD acceptance"
     },
     {
-      "kind": "native HD training screenshot; intentionally modified gameplay, not original-mode oracle",
-      "file": "training-hd.png",
-      "sha256": "a0caf30e4014c6f2ab85870993e4de7e42394c659e89680ca9d4464090ae790d",
-      "source": "workplace/training-native-v4/training.png",
-      "platform": "Linux amd64 in Docker Xvfb; no physical gamepad or Windows/macOS hardware claim",
-      "receipt_sha256": "bf7ec71d31ea282948fbeb5763a996ae5084d0b1cb386695a133e6c821ed08a8",
-      "capture_metadata_sha256": "bfdd5450bc93c2db771f156f3dd6df82686bccf75e2b0af3b5fef645c84fbe3a",
-      "binary_sha256": "cb79528689f3a4f5eb2c22039dae56647466fd446a9888deb6653778de5ea598",
-      "character_manifest_sha256": "2be08986ec4903929889205eabf64091ef20ae8330238e9203bb8c43ee6c726e",
-      "authorization": "user requested HD integration screenshots and GitHub-visible README images; raw receipts and original-mode screenshots remain local",
-      "limits": "ordinary versus entry with training active; both health bars 124 and timer 99; paused for capture; not original parity or full HD acceptance"
-    },
-    {
       "kind": "normal native first-victory HD integration screenshot",
       "file": "joe-victory-hd.png",
       "sha256": "4e9b9cf7a6b8811bfe0ca921247eb84da2d15bfeff810f2919fa96a262ee7b5b",
@@ -48,17 +35,57 @@
       "limits": "sampled first-player first victory and mode switching; not full HD or complete animation"
     },
     {
-      "kind": "normal native approved partial Spider low-guard HD, not original-mode image",
+      "file": "keyboard-settings.png",
+      "source": "workplace/keyboard-native-v1/keyboard-settings.png",
+      "sha256": "a21d735c901e89f99bba6399cb86ec1414f0dc87c328332cb2c515cb6260502e",
+      "version": "v.0.1.0-20261020",
+      "kind": "native settings before DOS execution",
+      "platform": "Linux amd64 Docker Xvfb; no hardware controller acceptance",
+      "receipt_sha256": "619cc365c0b2bc06ccbd8f59f11a94ad0e49c51582e077770f7e46fa91500c5b",
+      "binary_sha256": "cf840ec07f806775c302e10b7a75c0dafdf44f6fca71273cc6fb97b0b1d2cc65",
+      "authorization": "user requested integrated screenshots in repository",
+      "limits": "partial HD; training modifies rules; not full animation or native OS hardware"
+    },
+    {
+      "file": "battle-hd.png",
+      "source": "dist-all/v.0.1.0-20261020/smoke/linux-play-record/battle-hd.png",
+      "sha256": "af90d59ff242453fced20c050091cc202da44ca50f8c045ff34f552f575b3b98",
+      "version": "v.0.1.0-20261020",
+      "kind": "normal native partial HD integration; original mode receipts remain local",
+      "platform": "Linux amd64 Docker Xvfb; no hardware controller acceptance",
+      "receipt_sha256": "1df4eee6f8e0708533c55252f669b2c9884b03288f1616f90a293829b102dacd",
+      "binary_sha256": "cf840ec07f806775c302e10b7a75c0dafdf44f6fca71273cc6fb97b0b1d2cc65",
+      "authorization": "user requested integrated screenshots in repository",
+      "limits": "partial HD; training modifies rules; not full animation or native OS hardware",
+      "comparison_sha256": "765c4bdce6ecce8867504089e694cfa7f3cb1d00cacc7338fe207ff5d5ae357a"
+    },
+    {
+      "file": "training-hd.png",
+      "source": "dist-all/v.0.1.0-20261020/smoke/linux-play-record/training-hd.png",
+      "sha256": "7260637aeb18f48067f68854e47692cebd658689c054967ae6531e09364d6fed",
+      "version": "v.0.1.0-20261020",
+      "kind": "normal native partial HD integration; original mode receipts remain local",
+      "platform": "Linux amd64 Docker Xvfb; no hardware controller acceptance",
+      "receipt_sha256": "1df4eee6f8e0708533c55252f669b2c9884b03288f1616f90a293829b102dacd",
+      "binary_sha256": "cf840ec07f806775c302e10b7a75c0dafdf44f6fca71273cc6fb97b0b1d2cc65",
+      "authorization": "user requested integrated screenshots in repository",
+      "limits": "partial HD; training modifies rules; not full animation or native OS hardware",
+      "comparison_sha256": "765c4bdce6ecce8867504089e694cfa7f3cb1d00cacc7338fe207ff5d5ae357a"
+    },
+    {
       "file": "spider-low-guard-hd.png",
-      "sha256": "f52d58b0aa3035b2adf1a4d86ca590b22fa711850d42b3bb375a5d87441b60f8",
-      "source": "workplace/native-spider-low-guard-v1/hd-paused.png",
-      "platform": "Linux amd64 in Docker Xvfb; no native Windows/macOS or physical gamepad acceptance",
-      "receipt_sha256": "e382049418e834e296dd20427ffc9acfdcf0a514c89ce1d3f5c240687d3b094f",
-      "comparison_sha256": "c90984198de221d6a316ef89bde30715476bff529319639dfe2a77035fd439a7",
-      "binary_sha256": "793f16e9e25ecb799f37e4be99c234fe1c09964c99b297e0325601064b673c34",
-      "character_manifest_sha256": "078e8a896968688a23556d03f8335252b07a7add204f9b3b8db2341683f4fd0e",
-      "authorization": "user approved this approximate pose and previously requested HD assets and integrated screenshots in repo",
-      "limits": "one static approved pose reused for three normal sources; unmapped motions fall back to original, not complete animation"
+      "source": "workplace/release-spider-hd-v1/hd-paused.png",
+      "sha256": "843704fecdcf0fe8564253657dc84025f06c297f508f738a55169c7c68a60718",
+      "version": "v.0.1.0-20261020",
+      "kind": "normal native partial HD integration; original mode receipts remain local",
+      "platform": "Linux amd64 Docker Xvfb; no hardware controller acceptance",
+      "receipt_sha256": "eb8572c7ee325d2a3639275b9ce72755b5696c92a27779401ae8ad1694bcda0f",
+      "binary_sha256": "cf840ec07f806775c302e10b7a75c0dafdf44f6fca71273cc6fb97b0b1d2cc65",
+      "authorization": "user requested integrated screenshots in repository",
+      "limits": "partial HD; training modifies rules; not full animation or native OS hardware",
+      "comparison_sha256": "92ffd0ee14c4721e8f575379dbac715d14745df916b46fddcb431c060db9c098"
     }
-  ]
+  ],
+  "version": "v.0.1.0-20261020",
+  "receipt_sha256": "bd36ed2f7e7f90fc9388da294d4f2456c712d8a4a3357065a9293e99d0314b06"
 }

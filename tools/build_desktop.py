@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -11,7 +12,7 @@ import subprocess
 def compiled_inputs(project):
     paths = [project / name for name in ["go.mod", "go.sum", "go.work",
              "workplace/dosgolem-patched-manifest.json", "internal/desktop/assets/source.json",
-             "internal/desktop/assets/NotoSansCJKtc-Regular.otf"]]
+             "internal/desktop/assets/NotoSansCJKtc-Regular.otf", "VERSION", "internal/gamefiles/source-manifest.json"]]
     paths += [path for directory in ("cmd", "internal") for path in sorted((project / directory).rglob("*.go"))
               if not path.name.endswith("_test.go")]
     return {str(path.relative_to(project)): hashlib.sha256(path.read_bytes()).hexdigest() for path in paths}
@@ -26,6 +27,8 @@ def main():
     stage = args.stage
     p = Path("/project")
     os.chdir(p)
+    version = (p / "VERSION").read_text().strip()
+    assert re.fullmatch(r"v\.[0-9]+\.[0-9]+\.[0-9]+-[0-9]{8}", version), "invalid release version"
     out = args.output_dir.resolve()
     out.mkdir(parents=True, exist_ok=True)
     sha = lambda f: hashlib.sha256(f.read_bytes()).hexdigest()
@@ -51,12 +54,12 @@ def main():
         for goos, arch, cgo, cc, name in targets:
             env = dict(os.environ, GOOS=goos, GOARCH=arch, CGO_ENABLED=cgo, CC=cc,
                        MACOSX_DEPLOYMENT_TARGET="11.0")
-            command = ["go", "build", "-p", "1", "-mod=readonly", "-buildvcs=false", "-trimpath", "-o", str(out / name), "./cmd/superfighter"]
+            command = ["go", "build", "-p", "1", "-mod=readonly", "-buildvcs=false", "-trimpath", "-ldflags", "-X main.version=" + version, "-o", str(out / name), "./cmd/superfighter"]
             print("Building " + name, flush=True)
             before = compiled_inputs(p)
             subprocess.run(command, env=env, check=True)
             assert compiled_inputs(p) == before, "建置期間來源改變，拒絕登錄二進位"
-            build = {"kind": "per-target compiler receipt", "goos": goos, "goarch": arch,
+            build = {"kind": "per-target compiler receipt", "version": version, "goos": goos, "goarch": arch,
                      "cgo": cgo, "cc": cc, "command": command, "compiled_inputs": before,
                      "go_version": subprocess.check_output(["go", "version"], text=True).strip(),
                      "binary_sha256": sha(out / name)}
@@ -85,7 +88,9 @@ def main():
     files.append(p / "docs/spec/032-training-mode.md")
     files.append(p / "docs/spec/033-first-pass-victories.md")
     files.append(p / "docs/spec/034-spider-low-guard.md")
+    files += [p / name for name in ("docs/spec/035-keyboard-bindings.md", "docs/spec/036-release-packages.md", "VERSION", "internal/gamefiles/source-manifest.json")]
     receipt = {"kind": "native intermediate builds; not release packages or macOS hardware acceptance",
+               "version": version,
                "go_version": subprocess.check_output(["go", "version"], text=True).strip(),
                "images": {"linux": "dosgolem-go-ebiten:1.24-r1", "cross": "tokugawa-desktop-platforms:go1.24.13-sdk15.5-noble-r1"},
                "inputs": {str(f.relative_to(p)): sha(f) for f in files},

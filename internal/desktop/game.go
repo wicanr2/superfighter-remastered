@@ -32,9 +32,9 @@ const Width, Height = 1120, 820
 var screenRect = image.Rect(80, 64, 1040, 664)
 
 type Options struct {
-	Training                                                bool
-	Root, DataDir, Observe, Capture, HDAssets, HDCharacters string
-	QuitAfter                                               time.Duration
+	Training                                                         bool
+	Root, DataDir, Observe, Capture, HDAssets, HDCharacters, Version string
+	QuitAfter                                                        time.Duration
 }
 type device struct {
 	id       ebiten.GamepadID
@@ -68,6 +68,13 @@ type Game struct {
 	assigned              [2]ebiten.GamepadID
 	armed                 [2]bool
 	keyboardArmed         bool
+	keyboardQuick         [2][4]bool
+	quickRequests         [2][4]uint64
+	keyboardPanel         bool
+	binding               bool
+	bindingArmed          bool
+	bindingPlayer         int
+	bindingAction         int
 	starts                [2]bool
 	shoulders             [2][4]bool
 	confirm               [2]bool
@@ -184,6 +191,7 @@ func (g *Game) pause(value bool) {
 	g.core.Pause(value)
 	g.armed = [2]bool{}
 	g.keyboardArmed = false
+	g.keyboardQuick = [2][4]bool{}
 	g.shoulders = [2][4]bool{}
 	if value {
 		g.notice = "已暫停。"
@@ -199,10 +207,11 @@ func (g *Game) save() {
 	if e := g.settings.Save(g.settingsPath); e != nil {
 		g.notice = "設定保存失敗：" + e.Error()
 	} else {
-		g.notice = "兩名玩家各角色的四格設定已保存。"
+		g.notice = "兩名玩家的鍵盤與各角色四格設定已保存。"
 	}
 }
 func (g *Game) openSettings() {
+	g.binding = false
 	g.panel = !g.panel
 	g.pause(true)
 	if g.panel {
@@ -272,6 +281,7 @@ func (g *Game) deviceName(p int) string {
 	return "未指派手把"
 }
 func (g *Game) quick(p, slot int) {
+	g.quickRequests[p][slot]++
 	s := g.core.Status()
 	c := s.Fighters[p]
 	if c < 0 || c >= len(controls.Catalog) {
@@ -289,11 +299,14 @@ func (g *Game) quick(p, slot int) {
 	}
 }
 func (g *Game) fields() []widget {
+	if g.keyboardPanel {
+		return g.keyboardFields()
+	}
 	var out []widget
 	for p := 0; p < 2; p++ {
 		x := 58 + p*530
 		c := controls.Catalog[g.editing[p]]
-		out = append(out, widget{image.Rect(x, 190, x+474, 232), g.deviceName(p), func(delta int) { g.nextDevice(p, delta) }, p * 6, false})
+		out = append(out, widget{image.Rect(x, 190, x+474, 232), fmt.Sprintf("第 %d 人：%s", p+1, g.deviceName(p)), func(delta int) { g.nextDevice(p, delta) }, p * 6, false})
 		out = append(out, widget{image.Rect(x, 280, x+474, 322), c.Name, func(delta int) { g.editing[p] = (g.editing[p] + delta + len(controls.Catalog)) % len(controls.Catalog) }, p*6 + 1, false})
 		for slot := 0; slot < 4; slot++ {
 			i := slot
@@ -317,7 +330,7 @@ func (g *Game) widgets() []widget {
 	out := []widget{
 		{image.Rect(24, 12, 196, 52), "開始／繼續", func(int) { g.panel = false; g.pause(false) }, -1, false},
 		{image.Rect(208, 12, 330, 52), "暫停", func(int) { g.pause(true) }, -1, false},
-		{image.Rect(342, 12, 564, 52), "手把與快捷設定", func(int) { g.openSettings() }, -1, false},
+		{image.Rect(342, 12, 564, 52), "控制與快捷設定", func(int) { g.openSettings() }, -1, false},
 		{image.Rect(576, 12, 710, 52), "全螢幕", func(int) { ebiten.SetFullscreen(!ebiten.IsFullscreen()) }, -1, false},
 		{image.Rect(722, 12, 940, 52), "原貌／HD 背景", func(int) { g.hdEnabled = !g.hdEnabled; g.notice = "呈現已切換，角色與操作沿用原版。" }, -1, g.hdAssets == nil},
 	}
@@ -334,6 +347,17 @@ func (g *Game) widgets() []widget {
 	}
 	out = append(out, widget{image.Rect(952, 12, 1096, 52), trainingLabel, func(int) { g.toggleTraining() }, -1, false})
 	if g.panel {
+		out = append(out,
+			widget{image.Rect(58, 140, 270, 178), "手把／角色四格", func(int) { g.keyboardPanel = false; g.binding = false; g.focus = 0 }, -1, false},
+			widget{image.Rect(288, 140, 500, 178), "鍵盤組態", func(int) { g.keyboardPanel = true; g.binding = false; g.focus = 0 }, -1, false})
+		if g.keyboardPanel {
+			out = append(out, widget{image.Rect(58, 676, 350, 714), "兩人鍵盤還原預設", func(int) {
+				g.settings.Keyboard = controls.KeyboardDefaults()
+				g.binding = false
+				g.keyboardArmed = false
+				g.save()
+			}, -1, false})
+		}
 		return append(out, g.fields()...)
 	}
 	if s.Selection != nil {
@@ -343,6 +367,9 @@ func (g *Game) widgets() []widget {
 		for slot := 0; slot < 4; slot++ {
 			i := slot
 			label := controls.Slots[slot]
+			if key := g.settings.Keyboard[p][10+slot]; key != "" {
+				label = controls.KeyLabel(key) + "／" + label
+			}
 			disabled := s.Paused || !s.Battle
 			c := s.Fighters[p]
 			if c >= 0 && c < len(controls.Catalog) {
@@ -365,13 +392,6 @@ func (g *Game) widgets() []widget {
 	return out
 }
 
-var keyMap = map[ebiten.Key]struct {
-	p    int
-	scan uint8
-}{
-	ebiten.KeyQ: {0, 0x10}, ebiten.KeyW: {0, 0x11}, ebiten.KeyE: {0, 0x12}, ebiten.KeyA: {0, 0x1e}, ebiten.KeyD: {0, 0x20}, ebiten.KeyZ: {0, 0x2c}, ebiten.KeyX: {0, 0x2d}, ebiten.KeyC: {0, 0x2e}, ebiten.KeyTab: {0, 0x0f}, ebiten.KeyShiftLeft: {0, 0x2a},
-	ebiten.KeyNumpad7: {1, 0x47}, ebiten.KeyNumpad8: {1, 0x48}, ebiten.KeyNumpad9: {1, 0x49}, ebiten.KeyNumpad4: {1, 0x4b}, ebiten.KeyNumpad6: {1, 0x4d}, ebiten.KeyNumpad1: {1, 0x4f}, ebiten.KeyNumpad2: {1, 0x50}, ebiten.KeyNumpad3: {1, 0x51}, ebiten.KeyEnter: {1, 0x1c}, ebiten.KeyNumpadEnter: {1, 0x1c}, ebiten.KeyShiftRight: {1, 0x36},
-}
 var dirs = [2][3][3]uint8{{{0x10, 0x11, 0x12}, {0x1e, 0, 0x20}, {0x2c, 0x2d, 0x2e}}, {{0x47, 0x48, 0x49}, {0x4b, 0, 0x4d}, {0x4f, 0x50, 0x51}}}
 
 func (g *Game) Update() error {
@@ -380,6 +400,17 @@ func (g *Game) Update() error {
 		return ebiten.Termination
 	}
 	g.scanDevices()
+	if g.panel && g.binding {
+		if !ebiten.IsFocused() {
+			g.binding = false
+			g.bindingArmed = false
+			g.notice = "失去焦點，已取消重綁。"
+		} else {
+			g.captureBinding()
+		}
+		g.observe()
+		return nil
+	}
 	if inpututil.IsKeyJustPressed(ebiten.KeyF12) {
 		g.capture = true
 	}
@@ -423,11 +454,18 @@ func (g *Game) Update() error {
 		}
 	}
 	if g.panel {
+		if inpututil.IsKeyJustPressed(ebiten.KeyF8) {
+			g.keyboardPanel = !g.keyboardPanel
+			g.focus = 0
+			g.observe()
+			return nil
+		}
+		count := len(g.fields())
 		if inpututil.IsKeyJustPressed(ebiten.KeyTab) || inpututil.IsKeyJustPressed(ebiten.KeyArrowDown) {
-			g.focus = (g.focus + 1) % 12
+			g.focus = (g.focus + 1) % count
 		}
 		if inpututil.IsKeyJustPressed(ebiten.KeyArrowUp) {
-			g.focus = (g.focus + 11) % 12
+			g.focus = (g.focus + count - 1) % count
 		}
 		delta := 0
 		if inpututil.IsKeyJustPressed(ebiten.KeyArrowLeft) {
@@ -447,15 +485,8 @@ func (g *Game) Update() error {
 		return nil
 	}
 	s := g.core.Status()
-	keyboard := [2]map[uint8]bool{{}, {}}
-	any := false
-	for key, value := range keyMap {
-		if keyboardPressed(key) {
-			any = true
-			keyboard[value.p][value.scan] = true
-		}
-	}
-	if !any {
+	keyboard, keyboardDown, neutral := g.settings.KeyboardInput(func(name string) bool { return keyboardPressed(keyCode(name)) })
+	if neutral {
 		g.keyboardArmed = true
 	}
 	if !s.Battle && !s.Paused {
@@ -486,13 +517,21 @@ func (g *Game) Update() error {
 	for p := 0; p < 2; p++ {
 		ks := []uint8{}
 		if g.keyboardArmed && s.Battle && !s.Paused {
-			for k := range keyboard[p] {
+			for _, k := range keyboard[p] {
 				ks = append(ks, k)
 			}
 		}
 		sources = append(sources, gamecore.Source{Player: p, Name: "keyboard", Keys: ks})
 	}
 	var rising [2][]int
+	for p, row := range keyboardDown {
+		for i, down := range row {
+			if g.keyboardArmed && s.Battle && !s.Paused && down && !g.keyboardQuick[p][i] {
+				rising[p] = append(rising[p], i)
+			}
+			g.keyboardQuick[p][i] = down
+		}
+	}
 	startToggled := false
 	for p, id := range g.assigned {
 		var scans []uint8
@@ -594,10 +633,14 @@ func (g *Game) observe() {
 	}
 	value := struct {
 		FrontendUpdates    uint64                `json:"frontend_updates"`
+		Version            string                `json:"version"`
 		MouseLeft          bool                  `json:"mouse_left"`
 		Editing            [2]int                `json:"editing"`
 		Core               gamecore.Status       `json:"core"`
 		Panel              bool                  `json:"panel"`
+		KeyboardPanel      bool                  `json:"keyboard_panel"`
+		Binding            bool                  `json:"binding"`
+		QuickRequests      [2][4]uint64          `json:"quick_requests"`
 		Settings           controls.Settings     `json:"settings"`
 		Assigned           [2]ebiten.GamepadID   `json:"assigned"`
 		SettingsPath       string                `json:"settings_path"`
@@ -610,7 +653,7 @@ func (g *Game) observe() {
 		HDHUDActive        bool                  `json:"hd_hud_active"`
 		HDShadowsActive    bool                  `json:"hd_shadows_active"`
 		HDRoundsActive     bool                  `json:"hd_rounds_active"`
-	}{FrontendUpdates: g.updates, MouseLeft: ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft), Editing: g.editing, Core: g.core.Status(), Panel: g.panel, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, HDCharactersActive: g.hdActive && g.hdCharacters != nil, HDHUDActive: g.hdHUDActive, HDShadowsActive: g.hdShadowsActive, HDRoundsActive: g.hdRoundsActive}
+	}{FrontendUpdates: g.updates, Version: g.opts.Version, MouseLeft: ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft), Editing: g.editing, Core: g.core.Status(), Panel: g.panel, KeyboardPanel: g.keyboardPanel, Binding: g.binding, QuickRequests: g.quickRequests, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, HDCharactersActive: g.hdActive && g.hdCharacters != nil, HDHUDActive: g.hdHUDActive, HDShadowsActive: g.hdShadowsActive, HDRoundsActive: g.hdRoundsActive}
 	b, e := json.MarshalIndent(value, "", "  ")
 	if e == nil {
 		e = os.WriteFile(g.opts.Observe+".tmp", b, 0600)
@@ -767,24 +810,27 @@ func (g *Game) Draw(dst *ebiten.Image) {
 	}
 	if g.panel {
 		vector.DrawFilledRect(dst, 24, 80, 1072, 690, color.RGBA{17, 29, 48, 255}, false)
-		g.label(dst, image.Rect(52, 94, 1072, 130), "手把與快捷設定　Tab 選欄位，左右調整，Esc 關閉", color.White)
-		for p := 0; p < 2; p++ {
-			x := 58 + p*530
-			g.label(dst, image.Rect(x, 145, x+474, 183), fmt.Sprintf("第 %d 人手把", p+1), color.White)
-			g.label(dst, image.Rect(x, 238, x+474, 277), "設定角色，不改變原版選角", color.RGBA{170, 190, 220, 255})
-			for i, slot := range controls.Slots {
-				g.label(dst, image.Rect(x, 344+i*60, x+66, 390+i*60), slot, color.White)
-			}
-		}
-		g.label(dst, image.Rect(58, 610, 1060, 654), "R1／R2／L1／L2 最多四格，可選第五招或留空。", color.White)
-		g.label(dst, image.Rect(58, 658, 1060, 702), "斬四招已啟用；其他角色快捷待驗。近身投技不自動接近。", color.RGBA{255, 220, 110, 255})
-		if len(g.devices) == 0 {
-			g.label(dst, image.Rect(58, 710, 1060, 748), "尚未偵測到手把。USB／藍牙配對請由作業系統完成。", color.RGBA{170, 190, 220, 255})
+		g.label(dst, image.Rect(52, 94, 1072, 130), "控制與快捷設定　F8 切換頁面，Tab 選欄位，Esc 關閉", color.White)
+		if g.keyboardPanel {
+			g.drawKeyboardLabels(dst)
 		} else {
-			for _, d := range g.devices {
-				if !d.standard {
-					g.label(dst, image.Rect(58, 710, 1060, 748), "部分手把缺少標準配置，目前無法指派這些裝置。", color.RGBA{255, 220, 110, 255})
-					break
+			for p := 0; p < 2; p++ {
+				x := 58 + p*530
+				g.label(dst, image.Rect(x, 238, x+474, 277), "設定角色，不改變原版選角", color.RGBA{170, 190, 220, 255})
+				for i, slot := range controls.Slots {
+					g.label(dst, image.Rect(x, 344+i*60, x+66, 390+i*60), slot, color.White)
+				}
+			}
+			g.label(dst, image.Rect(58, 610, 1060, 654), "R1／R2／L1／L2 最多四格，可選第五招或留空。", color.White)
+			g.label(dst, image.Rect(58, 658, 1060, 702), "斬四招已啟用；其他角色快捷待驗。近身投技不自動接近。", color.RGBA{255, 220, 110, 255})
+			if len(g.devices) == 0 {
+				g.label(dst, image.Rect(58, 710, 1060, 748), "尚未偵測到手把。USB／藍牙配對請由作業系統完成。", color.RGBA{170, 190, 220, 255})
+			} else {
+				for _, d := range g.devices {
+					if !d.standard {
+						g.label(dst, image.Rect(58, 710, 1060, 748), "部分手把缺少標準配置，目前無法指派這些裝置。", color.RGBA{255, 220, 110, 255})
+						break
+					}
 				}
 			}
 		}
@@ -810,7 +856,11 @@ func (g *Game) Draw(dst *ebiten.Image) {
 		if w.disabled {
 			ink = color.RGBA{120, 139, 165, 255}
 		}
-		g.label(dst, image.Rect(w.rect.Min.X+10, w.rect.Min.Y+4, w.rect.Max.X-10, w.rect.Max.Y-4), w.label, ink)
+		paddingY := 4
+		if w.rect.Dy() < 36 {
+			paddingY = 0
+		}
+		g.label(dst, image.Rect(w.rect.Min.X+10, w.rect.Min.Y+paddingY, w.rect.Max.X-10, w.rect.Max.Y-paddingY), w.label, ink)
 	}
 	g.label(dst, image.Rect(24, 778, 1096, 814), state+"　"+g.notice, color.RGBA{255, 220, 110, 255})
 	if g.capture {
