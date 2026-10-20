@@ -7,6 +7,7 @@
 | [廳堂](hall-i1.png)、[叢林](jungle-i3.png)、[街道](street-i4.png) | I1／I3／I4.XGB；[來源與精確提示詞](backgrounds-source.json) | 首輪候選已保存，尚未接入 |
 | [宮殿](palace-i7.png)、[舞廳](auditorium-i8.png)、[港口](harbor-i9.png) | I7／I8／I9.XGB；[來源與精確提示詞](backgrounds-source.json) | 首輪候選已保存，尚未接入 |
 | [石窟](grotto-i10.png)、[冰原](icefield-i12.png)、[火車](train-i13.png) | I10／I12／I13.XGB；[來源與精確提示詞](backgrounds-source.json) | 首輪候選已保存，尚未接入 |
+| [石窟 v2](grotto-i10-v2.png)、[舞廳 v2](auditorium-i8-v2.png) | [修稿來源與精確提示詞](background-revisions-source.json) | 改善首稿底線偏高；仍待構圖複核，未定版或接入，原稿保持 |
 | [道場](dojo.png)，1922×818 | [來源清單](dojo-source.json)、[精確生成提示詞](dojo.prompt.txt) | 已核對 I5.XGB／scene 0 的 124 個正常畫格與八份色盤。新版背景格式待確認，首輪先跳過接入 |
 | [蜘蛛女連身衣比較稿](spider-coverage.png) | 原版姿勢與其他模型提示詞由本機交接包提供；見[交接工具](../../../tools/export_spider_reference.py) | 舊選定造型保留。內建工具無法產出完整圖集，遊戲暫用原貌 |
 | [蜘蛛女外部 HD 稿](spider/README.md)，兩批十五張 | 使用者提供；[來源清單](spider/source.json)保留輸入與處理雜湊 | 已本地去背並收錄。normal-01 依 [034](../../../docs/spec/034-spider-low-guard.md) 接入相近低伏；其餘姿態仍待補 |

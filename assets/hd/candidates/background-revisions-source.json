@@ -1,0 +1,44 @@
+{
+  "kind": "non-destructive candidate background layout revisions; original references remain local",
+  "authorization": "existing user scope: complete HD in style B and upload generated assets; repo visibility unchanged",
+  "requests_sha256": "bcf4950ead5799af3ca54a2ea7d6a73db50a940ae57c97a9657886a2b1854d46",
+  "records": [
+    {
+      "file": "grotto-i10-v2.png",
+      "sha256": "7a6278474d17ee5e0b842675b094f929a6964206fcb723deb8a2a67e4a780b17",
+      "bytes": 2211152,
+      "size": [
+        1922,
+        818
+      ],
+      "source_file": "I10.XGB",
+      "source_sha256": "b79e145bfa34fa05420e72752d2012eb2c4e5260149092c8f1c3a05100be5228",
+      "parent_file": "grotto-i10.png",
+      "parent_sha256": "82b5412e7e57756626cbce8407ffca140dc9c8bcfa099ab48ab06833388ea534",
+      "tool": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Asset type: non-playable candidate HD background for Super Fighter Remastered, approved hand-painted arcade style B. Image 1 is the authoritative 480x204 original I10.XGB panorama and controls ALL geometry. Image 2 is the existing 1922x818 HD art to correct, supplying the same golden palette, detailed arcade brushwork, statues and stone materials. Correct ONLY the vertical layout so it matches image 1: the horizontal bottom of the stone terrace/railing must be near original y=176 out of 204, about 86% of image height, leaving only the original shallow band of empty fighting ground at the bottom. The current HD terrace ends much too high (about 76%); lower it and restore the original proportions of the statues, niches and wall above, following image 1 rather than adding more floor. Retain the huge seated Buddha on the left, circular halo, the same four standing stone figures on the right, cave outline, tiny visitors near centre-left, and exact horizontal positions, silhouettes and relative scales from image 1. Preserve the B hand-painted arcade finish and warm gold/orange lighting of image 2. Do not redesign the scene or invent figures, architecture or props. Entire wide frame should be 480:204 aspect, approximately 1920x816, opaque. No HUD, fighters, interface, text, labels, borders or watermark. This is a faithful geometry correction, not a new art direction.",
+      "transparent_background": false,
+      "status": "candidate revision; not selected or integrated",
+      "visual_review": "欄杆及地板底線比首輪接近原版，但仍偏高，尚未定版；雕像、遊客與構圖另複核。"
+    },
+    {
+      "file": "auditorium-i8-v2.png",
+      "sha256": "7970244c1bb218ec824fedc7d4e1ead5b9eb460f9b58f89bb640165bd282856d",
+      "bytes": 1792825,
+      "size": [
+        1920,
+        819
+      ],
+      "source_file": "I8.XGB",
+      "source_sha256": "3d3f521e3cc56f9c90ae5b287b31fe7fdeb0fae9f62dd66a8fd7b0a344905f4b",
+      "parent_file": "auditorium-i8.png",
+      "parent_sha256": "1f6270970d0c06ad144c88061bcc30240af9ad68af9202b5efbb1cc255140e5d",
+      "tool": "built-in image_gen",
+      "prompt": "Use case: precise-object-edit. Asset type: HD panorama for Super Fighter Remastered, approved hand-painted arcade style B. Image 1 is the original 480x204 I8.XGB and is the authoritative geometry guide. Image 2 is the existing HD candidate whose stage is too high and whose floor is too deep. Make a faithful corrected HD version. Keep the warm orange/copper palette, oval concentric ceiling, five wall panels, two symmetrical columns, small side doors, side balconies, short stage stairs and empty floor. Follow image 1's exact framing and vertical layout: stage TOP near y=149/204 (73% of canvas height), stage BOTTOM and start of the perspective floor near y=169/204 (83%). The empty fighting floor should occupy only about the bottom 17% of this full panorama, not a third. Lower the stage and expand the wall above it as necessary, while keeping the oval ceiling at the same height as the original and all horizontal positions/symmetry. The original is a low straight-on panorama, not a redesign with a deep floor. Preserve the rich painted arcade materials of image 2 without pixels, photorealism or 3D. Wide 480:204 aspect, approximately 1920x816, opaque edge to edge. No people, fighters, HUD, health bars, text, logos, black borders or watermark.",
+      "transparent_background": false,
+      "status": "candidate revision; not selected or integrated",
+      "visual_review": "舞台已降低，仍需核對原版底線與牆面／天花板比例；尚未定版。"
+    }
+  ],
+  "limits": "stage horizon improved but exact source layout still needs review; no production format approval or native integration"
+}

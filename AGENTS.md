@@ -69,6 +69,7 @@
 
 | 項目 | 要求與驗收 |
 |---|---|
+| [背景修稿收錄](tools/import_background_revisions.py)、[修稿來源與提示詞](assets/hd/candidates/background-revisions-source.json) | 保留首輪原 PNG，另存石窟／舞廳構圖修稿的原 bytes 與來源；候選狀態不視為正式接入 |
 | 設定入口 | 前端提供可辨識的「手把設定」入口；可用鍵盤開啟、取消與離開，避免未綁定時無法設定 |
 | 裝置 | 選擇作業系統已辨識的 USB 或藍牙手把，顯示名稱及連線狀態；藍牙配對由作業系統處理 |
 | 綁定 | 方向鍵、類比軸及按鈕可綁定已證實的遊戲動作，支援重綁、取消、還原與衝突提示 |
@@ -148,6 +149,7 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [背景捲動正常來源](tools/background_scroll_receipt.go)、[私有比較稿](tools/background_scroll_preview.py) | 十一景正常雙打的雙人行走、相機邊界與完整 CPU 圖層；只作捲動／構圖比較，029 格式確認前不接 production |
 | [同角色原生色彩核對](tools/verify_duplicate_palette_native.py) | 真實主色盤、原圖層／HUD／陰影／CRTC、藍綠雙色及切換／勝利生命週期，與 HD 配色近似分級 |
 | [同角色原生操作](tools/duplicate_palette_smoke.py) | 正常同角法蘭克雙色、第二人行走／放開、同狀態原貌切換與舊程式回退；不改原版狀態 |
 | [同角色配色真實測試](internal/hd/duplicate_palette_test.go) | 二十二份正常 fixture、缺稿回退、兩人／異角隔離、來源拒絕及色盤錨點／alpha 保持 |

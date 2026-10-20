@@ -13,7 +13,7 @@
     "sources": 21,
     "complete_HD": false
   },
-  "pngs": 94,
+  "pngs": 96,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -1258,6 +1258,38 @@
       "bytes": 3146,
       "status": "current-character-provenance",
       "copied_from": "workplace/hd-characters-phoenix-effects-v1/phoenix-effects-source.json"
+    },
+    {
+      "file": "candidates/grotto-i10-v2.png",
+      "sha256": "7a6278474d17ee5e0b842675b094f929a6964206fcb723deb8a2a67e4a780b17",
+      "bytes": 2211152,
+      "size": [
+        1922,
+        818
+      ],
+      "status": "candidate-revision-not-integrated",
+      "tool": "built-in imagegen",
+      "generated_source": "exec-a8581cf2-2987-41df-891b-95b8a1110451.png",
+      "source_file": "I10.XGB"
+    },
+    {
+      "file": "candidates/auditorium-i8-v2.png",
+      "sha256": "7970244c1bb218ec824fedc7d4e1ead5b9eb460f9b58f89bb640165bd282856d",
+      "bytes": 1792825,
+      "size": [
+        1920,
+        819
+      ],
+      "status": "candidate-revision-not-integrated",
+      "tool": "built-in imagegen",
+      "generated_source": "exec-eae82eed-a02f-4b28-a4d8-acc481b09b39.png",
+      "source_file": "I8.XGB"
+    },
+    {
+      "file": "candidates/background-revisions-source.json",
+      "sha256": "b6ddcd3ef936c0cda89930e96683da42cadb54f248b70e31e1735fef8a40a7bf",
+      "bytes": 4632,
+      "status": "candidate-revision-provenance"
     }
   ],
   "original_game_data_included": false

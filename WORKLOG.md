@@ -768,3 +768,13 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 首版範圍再次依使用者回覆確認：鍵盤重綁、魔王選角及已驗斬四招，其他角色四格可保存而實際快捷拒絕。首版已發布；本輪 041 屬後續開發版，不改既有 Release 範圍。029 多場景格式待回答，蜘蛛女其餘稿、完整動畫、其餘畫面及音訊仍未完成。
 - final-audit.json 通過：128 原檔、1719 執行器來源、94 PNG／102 素材、1485 鍵／67 圖集、正式 i64、首版八包及影片雜湊保持；四平台 45 份輸入與晉升八檔吻合，134 個 README 相對連結可由 Git 清單找到。二十一張新原生收據及相依檔雜湊通過，沒有 root-owned 檔或誤建 Markdown 目錄；專案 Docker 容器清單為空。首版 tag 仍為 807579d01c145db327050c2e870e2bf46e6bcb68。
 - 實作、來源工具、041 與 README 截圖已提交為 81e9e23a9a9cb269ce21ed5f306a5fc3b75f6143，成功推送 origin/main；ls-remote 核對一致，首版 tag 保持。工作樹當時乾淨，本筆只追加推送紀錄。
+
+
+## 2026-10-21：十一景捲動與兩張候選修稿
+
+- 上輪 041 是有效進展，維持完整 HD 目標。載入現況、029、規格閘門及 grilling；重新呈現同包自動切換／單景啟動選項，尚未收到答案，不改 production。獨立先做正常來源與可丟棄比較。
+- Docker Go 1.24.13 執行 background_scroll_receipt.go，正常雙打十一景，兩人左行 96／右行 192 格；每景八份，共 88 格，所有景觀察到相機 0／159。不是每個 camera 值都已擷取；released 立即保存不作中立輪詢證據。指令上限每景八億步，程序 900 秒外層期限，原檔及執行器副本唯讀。
+- Pillow 11.3.0 執行 background_scroll_preview.py，原 XGB、背景色盤／裁切、完整 CPU 層、176 份角色原 bytes／覆蓋與顯示尾列獨立核對通過。第一輪與修稿比較各 88 張；原版前景保留，未當作原生 HD。來源執行及兩次比較工作已 terminal 0，沒有重開活著的工作。
+- 檢視十一景全景與右端、火車左端及石窟／舞廳修稿，發現底線偏高與街道字形差異。依 imagegen 技能使用內建工具，各產生一張 B 畫風修稿；改善但尚未定版，不用調參數或 Python 扭圖當作忠實度通過。兩份原 PNG、原來源／父稿 SHA 與精確提示詞由 import_background_revisions.py 收錄，舊 PNG 全部保持。
+- 素材目前 96 PNG／105 筆 payload／125,079,293 bytes，目錄 109 檔；角色包仍 1485 鍵／67 圖集。原圖／色盤、原版前景比較及 raw 收據只留 workplace。README 只更新穩定候選入口，029 仍 DRAFT。四平台 041 程式、VERSION 及首版八包／影片／tag 均不改。
+- background-scroll-preview-v2/final-audit.json 通過：102 筆原 payload 逐筆保持，新增兩張 PNG 及一份來源 JSON；128 原檔、1719 執行器檔、正式 i64、四平台 45 份實際編譯輸入及已發布八包／影片均吻合。88 格／176 角色來源與兩輪比較逐檔 SHA 可回查，141 個 README 相對連結可由 Git 清單找到。沒有 root-owned 檔或 Markdown 目錄，專案 Docker 容器為空；Git diff --check 通過。第一輪 verifier 原始碼已按其既有 SHA 保存，沒有以新版工具冒充舊收據。
