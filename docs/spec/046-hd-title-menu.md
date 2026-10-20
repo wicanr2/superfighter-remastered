@@ -71,3 +71,15 @@ TITLE 底圖加 SFNAME 透明色號 0 疊於原座標 18／96，再加第一按�
 `title-animation-v3` 保存八份配色字標、原十六步順序、框線脈動與四選項比較。所有 alpha、零相位的完整原稿及第 428 列起的固定下半字標均保持；八個相位互不相同。十六格接觸圖與四選項已目視。候選 GIF 只留本機，100 ms 是比較稿播放間隔，另有 GIF 色盤量化，不當成原版硬體時序或推廣影片。
 
 這條原版 RE 已足以支援目前標題實作設計，不追查檔案 helper、PIT／DAC 驅動或其他非玩家阻塞。後續回到正式載入方式、材質／版面定案與正常原生驗收；只有新的玩家證據推翻以上範圍，才另開窄研究。046 仍 DRAFT，正式 API、設定、原版程式及四平台二進位保持。
+
+## 隔離原生原型
+
+`tools/prepare_title_native_prototype.py` 將正式來源複製到 `workplace/title-native-prototype-v1/source`，精確套用 [Core 模板](../../tools/title-native-prototype/core.go.in)及[繪圖模板](../../tools/title-native-prototype/desktop.go.in)。原型只在獨立 module 編譯，沒有改正式 `internal/`、API 或資產格式。`recipe.json` 保存 46 份正式編譯輸入、86 份副本檔案及模板雜湊；Go 1.24.13 編譯的 Linux 原型 SHA-256 為 `95f4eeb5471d714d26271576c8dedf33519d84fe89c4cf327d4dc4d7dc6ed331`。
+
+原型在原 02CAh..0417h 生命週期內，核對完整當前原畫面、八相位、框線及游標後才顯示候選；未知或局部繪製狀態退回原貌，不重播快取畫格。候選只由 `KDZZ_TITLE_PROTOTYPE_ART` 啟用，私人目錄及固定衍生清單僅供這次比較，不是正式可攜包格式。人物填滿 960×600，字標依原 18／96 起點及 285×69 比例繪製；四個按鈕沿原表，Noto Sans CJK TC 28.8 字級經實際字面尺寸檢查。
+
+[操作工具](../../tools/title_native_smoke.py)只送 X11 鍵鼠，從正常啟動走標題、設定往返、雙打選角及斬對法蘭克屋頂對戰。`title-native-full-v1` 保存九張擷取，前端觀測到全部八相位；這不代表八相位各有保存截圖。`title-native-fallback-v1` 未設定候選目錄，四張擷取及後續導航維持完整原貌。所有工作在限資源、無網路、UID 1000 的 Docker 內執行。
+
+[獨立核對](../../tools/verify_title_native.py)由原 CPM、SF.EXE 表與實際色盤重建全部十份有效標題來源，並驗十三張顯示資料。暫停的 HD／原貌／恢復三張之原核心、設定、呈現及指派相同，色號與色盤完全相同，恢復 HD 的視窗像素相同；原生 HD 與原貌有 309,024 個可見像素不同。離開標題後的設定／選角保持原貌，屋頂對戰的完整原圖層另由既有重組器核對。正式 46 份編譯輸入未變。
+
+範圍限制：這些擷取的原游標均隱藏，可見游標的 GPU 覆繪未驗；完整換色速度、正式包缺件／損壞、Windows／macOS、實體手把與所有原標題流程仍未驗。先前 165 份原版取樣的可見游標證據保留原範圍。材質投影與版面仍待視覺定版，正式載入契約仍待審，046 維持 DRAFT。公開原生候選截圖及來源分類見 [screenshots/source.json](../screenshots/source.json)，原貌與原始收據只留本機。

@@ -149,6 +149,10 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [隔離原生標題獨立核對](tools/verify_title_native.py) | 原檔完整重組、同狀態切換、設定／選角／對戰轉移及未載入候選的原貌回退，不晉升正式格式 |
+| [隔離原生標題操作](tools/title_native_smoke.py) | 正常標題八相位、原貌切換、設定往返與進入雙打，缺原型美術另驗；不當正式發布驗收 |
+| [原生標題隔離原型準備／建置](tools/prepare_title_native_prototype.py) | 由正式來源複製隔離 module、精確套用模板並綁定編譯來源，輸出只在 workplace，不晉升或改正式格式 |
+| [原生標題原型 Core 模板](tools/title-native-prototype/core.go.in)、[繪圖模板](tools/title-native-prototype/desktop.go.in) | 只供隔離副本的完整原標題核對及候選繪圖，不編譯進正式套件、不定義正式素材格式 |
 | [標題動態構圖比較](tools/preview_title_animation.py) | 原十六步相位順序、框線脈動及四選項比較，核對 alpha／零相位／下半字標保持；GIF 只留本機 |
 | [標題換色比較](tools/title_palette_preview.go) | 以原來源已用色號及八個原色盤相位繪製既有字標的不可變 RGB 近似，不修改 PNG 或正式程式 |
 | [標題動態獨立核對](tools/verify_title_lifecycle.py) | 完整原色號／八相位／選取框脈動／16×16 游標及設定往返、閒置離開；不代替原生 HD 驗收 |

@@ -48,9 +48,9 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 以上是生成素材預覽；正常遊戲的整合驗證與限制見 [目前狀態](CONTEXT.md)及各規格。
 
-![標題與主選單的靜態 HD 候選，尚未接入遊戲](docs/screenshots/title-menu-candidate.png)
+![隔離原生視窗中的標題 HD 候選，尚未接入正式程式](docs/screenshots/title-native-prototype-hd.png)
 
-標題人物與紅金字標已重繪並收錄候選。上圖是依原版構圖製作的靜態比較，尚未定版或接入。原字標循環換色、框線及游標已補來源核對；另有[十六步 HD 材質換色比較](docs/screenshots/title-palette-candidate.png)，材質分區仍是候選。[來源及接入閘門](docs/spec/046-hd-title-menu.md)。
+標題人物與紅金字標已重繪並收錄候選。上圖擷取自隔離的 Linux 原生原型，已驗八個換色相位、原貌切換、設定往返及進入雙打。十三張擷取通過來源與狀態核對，包含未載入候選美術的回退案例。材質分區與正式載入方式尚未定版，正式程式及下載包仍維持原標題；另有[十六步材質換色比較](docs/screenshots/title-palette-candidate.png)。[來源及接入閘門](docs/spec/046-hd-title-menu.md)。
 
 ## 目前整合畫面
 

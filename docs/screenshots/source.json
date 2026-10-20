@@ -255,6 +255,19 @@
       "receipt_sha256": "e0bccc6ffdf19a4b7290705b253f195cb2604ba3ff5f60085fb2cf9b7a669a5e",
       "authorization": "既有完整 HD 與 GitHub 可見 README 圖片授權",
       "limits": "材質分區為位置投影假說；尚未接原生、輸入或正式載入。GIF 及原貌只留本機"
+    },
+    {
+      "kind": "isolated native 046 title prototype; not production integration",
+      "file": "title-native-prototype-hd.png",
+      "sha256": "409c5d112206ed6a5e3c21f68f2df2129740d33887dafd34305ca25a1d62fa2b",
+      "source": "workplace/title-native-full-v1/title-hd.png",
+      "receipt_sha256": "3e47b6e74b7a6439e2295d1f521bad6feed187909e7b99cef598973c0652cc99",
+      "comparison_sha256": "bede8a81c85fa0ace712aa68d4f267dc875574ffe7a4e82dd61c8e2474c22c98",
+      "build_sha256": "ef22ec421c630125fe5d3b74c68b444a4244d261572152e7eba11738737be5e7",
+      "binary_sha256": "95f4eeb5471d714d26271576c8dedf33519d84fe89c4cf327d4dc4d7dc6ed331",
+      "platform": "Linux amd64 copied module in Docker Xvfb",
+      "authorization": "user requested HD upload and GitHub-visible README screenshots",
+      "limits": "DRAFT material source-mask hypothesis; formal program, asset schema, packages and release unchanged; no original-mode image or raw receipt included"
     }
   ]
 }
