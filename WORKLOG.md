@@ -439,3 +439,10 @@
 - 另將剩餘六份 WIN 原檔靜態解碼為 432 入口／30 組：鬼丸 4、嵐 6、金太極 8、蜘蛛女 5、小丑 3、印第安喬 4。來源、雜湊及別名保存於 remaining-victory-source-v1/manifest.json，尚未作正常消費端或 HD 接入聲明。
 - 原版、衍生美術、私有執行器、收據與二進位繼續排除 Git。沿用既有映像，未改共用 dosgolem、原版規則／速度、設定或快捷；鳳凰全部建置、核心、測試及 GUI 容器均已結束。自有來源與完整歷史備份為 workplace/github-phoenix-victory-integration-progress.bundle，核對記錄為 github-phoenix-victory-integration-progress-source.json，遠端未建立或推送。029 仍為 DRAFT，未實作多場景新格式。
 - 隔離接入 commit 8539701，490d8b4 合入進度分支；main 保留 636f6ad 穩定基底。多場景確認仍待回答，未將未決格式寫進正式程式。
+
+## 2026-10-20 優先建立 GitHub 儲存庫
+
+- 使用者再次指定先建立儲存庫。沿用已授權的私人設定、自有來源與文件範圍；上傳副本乾淨，現行進度 HEAD 為 72724e9，未改程式或 HD 分支。
+- 主機權限的 gh auth status 被環境的禁止提權政策拒絕。一般權限檢查回報登入失敗，不能當作主機憑證失效證據；git ls-remote origin 可達 GitHub，但回覆 Repository not found，不能區分不存在或無存取權。
+- 實際執行 gh repo create wicanr2/superfighter-remastered --private，因無法連上 api.github.com 失敗。未建立、未推送，未將預定 URL 宣稱為成果連結。已在 CONTEXT 更新實際結果及恢復後推送目前 HEAD 到遠端 main 的命令。
+- 本輪僅更新文件，不重跑程式測試。Docker 清單初查沒有 kdzz 容器，後續映像檢查遭 socket 權限拒絕；未啟動新容器、建立映像或發布套件。既有完整歷史 bundle 保留，不覆寫已保存的歷史收據。

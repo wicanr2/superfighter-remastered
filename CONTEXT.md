@@ -264,9 +264,9 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ### GitHub 儲存庫準備
 
-2026-10-19 再次核對：受限環境的 `gh auth status` 回報登入失敗，`git ls-remote origin` 回報無法解析 `github.com`。先前主機權限檢查遭自動核准政策拒絕，本輪未重試提升權限，尚不能確認主機憑證失效。沒有建立或推送成功證據，不可把預定 origin 當成已存在的儲存庫。
+2026-10-20 使用者再次指定先建立儲存庫。主機權限的 `gh auth status` 被環境拒絕，原因為禁止提權；一般權限檢查回報登入失敗，但不能據此判定主機憑證失效。一般權限的 `git ls-remote origin` 已可達 GitHub，回覆 `Repository not found`，不能區分遠端不存在或未獲存取權。實際執行 `gh repo create wicanr2/superfighter-remastered --private` 時無法連上 `api.github.com`，沒有建立或推送成功證據。origin 仍只是預定 URL。
 
-上傳副本位於 `/tmp/kdzz-superfighter-publish`。目前成果保存在 `wip/sarkov-victory` 進度分支，main 保留既有穩定基底。現行備份與核對記錄見上方印第安喬入口；`github-upload-20261019.bundle` 只代表早期上傳基底。原版、HD 衍生美術、私有 dosgolem 來源及二進位均排除。遠端未建立，恢復主機 GitHub 連線及權限後再處理。
+上傳副本位於 `/tmp/kdzz-superfighter-publish`。目前成果保存在 `wip/sarkov-victory` 進度分支，main 保留既有穩定基底。現行完整歷史備份為 `workplace/github-phoenix-victory-integration-progress.bundle`，核對記錄為同名 `-source.json`；`github-upload-20261019.bundle` 只代表早期上傳基底。原版、HD 衍生美術、私有 dosgolem 來源及二進位均排除。主機連線及權限恢復後，先建立私人儲存庫，再以 `git -C /tmp/kdzz-superfighter-publish push -u origin HEAD:main` 上傳目前成果，不能只推送舊的本機 main。下列段落保留早期準備紀錄。
 
 前輪上傳副本的 `main` 保留顯示修正版本，`wip/victory-hd` 保存當時尚未整合驗證的勝負來源；完整備份為 `workplace/github-upload-latest.bundle`，身分見 `workplace/github-upload-latest-source.json`。本輪已完成限定首勝整合驗證，最新來源另存 `workplace/github-native-victory.bundle` 與 `github-native-victory-source.json`，並更新獨立副本的 main。原版、HD 美術、研究輸入及二進位繼續排除；遠端未建立或推送。
 
