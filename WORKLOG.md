@@ -721,5 +721,5 @@ python3 tools/verify_phoenix_effects.py /project/workplace/phoenix-effects-nativ
 
 原始 coverage-v1 於工具增加單角及同格比較旗標前執行，收據綁定當時工具副本。重生可用新輸出；重驗已保存資料則沿該副本 SHA，不能要求歷史工具副本與現行 gofmt 後版本相同。缺件原生案例另指定舊群組並加 --expect-original。
 
-- final-audit.json 通過 128 原檔／1719 runtime 來源不變、全部 94 PNG／102 payload、全部舊鍵／PNG、四份二進位與 44 份輸入、128 個首頁及素材索引受追蹤相對連結。首版八個 ZIP 與本機影片 SHA 保持，無 root-owned 或 .md 目錄；專案掛載過濾無容器殘留。提交與遠端核對另補。
+- final-audit.json 通過 128 原檔／1719 runtime 來源不變、全部 94 PNG／102 payload、全部舊鍵／PNG、四份二進位與 44 份輸入、128 個首頁及素材索引受追蹤相對連結。首版八個 ZIP 與本機影片 SHA 保持，無 root-owned 或 .md 目錄；專案掛載過濾無容器殘留。功能提交 e4e46a34a25d236f6163a5b6fffa2052d9a0c417 已推送 origin/main 並由 ls-remote 核對；首版 tag 仍固定 807579d01c145db327050c2e870e2bf46e6bcb68。
 - 下一步依最新取樣處理場邊幾何及同角色色盤，再續蜘蛛女與其餘畫面；029 格式仍待回答。完整 HD 目標保持 active，沒有以十七階段取樣或兩光效代替全目標。
