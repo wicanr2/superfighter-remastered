@@ -925,3 +925,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 新比較已目視，明列非遊戲擷取。報紙細字是抽象印刷紋理，標題用現代繁中字型重新排字、旗幟向量重畫；法蘭克傷勢與原版不同，都是候選近似，未宣稱原文字／字形或傷勢完全忠實。其餘十人敗者未補，不以一般肖像冒充。
 - 現行素材為 120 PNG／136 catalog／140 檔、167,527,365 payload bytes，舊 133 筆保持；1516 鍵／74 圖集、正式 46 份輸入與四平台 bin、首版封包保持。048 DRAFT 與工具／素材／README 索引已補，不新增正式結果 API、格式或 Release。最終稽核、Docker 清理與推送另記。
 - result-candidates-v1/final-audit.json 通過：七份原檔／既有正常結果的完整 RGB、兩張生成原 bytes 與提示詞、純 HD 合圖可重生，舊 133 筆素材相同。203 個 README 相對連結、新檔索引、128 原檔、1719 執行器來源、正式 i64、46 份編譯輸入、四平台程式、首版八包及原曲影片核對通過。無原圖或 raw 入 Git，UID／誤建目錄通過；本輪專案容器已清空。
+- 結果候選與工具提交 `3e1500398cd386a18a013d0a018678e98e0a485f` 已推送 origin/main，遠端完整提交核對相同；首版 tag 維持 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段只記錄推送結果，048 維持 DRAFT，未建立新 Release。
