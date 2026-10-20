@@ -33,6 +33,19 @@
       "character_manifest_sha256": "2be08986ec4903929889205eabf64091ef20ae8330238e9203bb8c43ee6c726e",
       "authorization": "user requested HD integration screenshots and GitHub-visible README images; raw receipts and original-mode screenshots remain local",
       "limits": "ordinary versus entry with training active; both health bars 124 and timer 99; paused for capture; not original parity or full HD acceptance"
+    },
+    {
+      "kind": "normal native first-victory HD integration screenshot",
+      "file": "joe-victory-hd.png",
+      "sha256": "4e9b9cf7a6b8811bfe0ca921247eb84da2d15bfeff810f2919fa96a262ee7b5b",
+      "source": "workplace/hd-first-pass-v1/native-joe-v1/victory-hd.png",
+      "platform": "Linux amd64 in Docker Xvfb; not Windows/macOS hardware acceptance",
+      "receipt_sha256": "b632b9c1c8138df48acca1c79e4d2813dcf457457801efc5067ff5816e2a7e85",
+      "comparison_sha256": "720ca0e3b0e2400a32b3d1a7998d4e0c87bf9092b1c7c88bceb87ecda8dc791b",
+      "binary_sha256": "0c413a24ad7aa6cd1f03567f572c5acd66301b59cf644ee91a9b47c3a6d8d840",
+      "character_manifest_sha256": "fbb4d57d313d2d9e01383c4f95468826e41c225d062ecef1bc506df0e72a2df9",
+      "authorization": "user requested HD upload and GitHub-visible README screenshots; raw sources remain local",
+      "limits": "sampled first-player first victory and mode switching; not full HD or complete animation"
     }
   ]
 }

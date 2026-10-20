@@ -8,12 +8,12 @@
     "scope": "generated HD PNG and mapping metadata only; not original game data or release"
   },
   "characters": {
-    "atlases": 61,
-    "registered_keys": 1165,
-    "sources": 16,
+    "atlases": 64,
+    "registered_keys": 1381,
+    "sources": 19,
     "complete_HD": false
   },
-  "pngs": 64,
+  "pngs": 67,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -797,11 +797,11 @@
     },
     {
       "file": "characters/manifest.json",
-      "sha256": "2be08986ec4903929889205eabf64091ef20ae8330238e9203bb8c43ee6c726e",
-      "bytes": 405022,
+      "sha256": "fbb4d57d313d2d9e01383c4f95468826e41c225d062ecef1bc506df0e72a2df9",
+      "bytes": 481319,
       "status": "current-character-mapping",
-      "copied_from": "workplace/hd-characters-onimaru-victory-v1/manifest.json",
-      "generated_source": "workplace/hd-characters-onimaru-victory-v1/manifest.json"
+      "copied_from": "workplace/hd-characters-first-pass-v1/manifest.json",
+      "generated_source": "workplace/hd-characters-first-pass-v1/manifest.json"
     },
     {
       "file": "backgrounds/rooftop.png",
@@ -854,6 +854,59 @@
         724
       ],
       "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/kim-win.png",
+      "sha256": "3b889b68e0a836f0b15b97bd187f98180291fefc7d69fa0bae491d8569988728",
+      "bytes": 1288074,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-first-pass-v1/kim-win.png",
+      "generated_source": "workplace/hd-first-pass-v1/kim-win.png",
+      "size": [
+        1774,
+        887
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/clown-win.png",
+      "sha256": "c710a7605a463f50f9cbd49d42ca535134a8ebdd59720eb8038eb698d972d1b2",
+      "bytes": 1063341,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-first-pass-v1/clown-win.png",
+      "generated_source": "workplace/hd-first-pass-v1/clown-win.png",
+      "size": [
+        2172,
+        724
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/joe-win.png",
+      "sha256": "273e4815c2b9906b254ba5133bea01790cac864dc2cba3d241cdae15c51d59b2",
+      "bytes": 1054906,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-first-pass-v1/joe-win.png",
+      "generated_source": "workplace/hd-first-pass-v1/joe-win.png",
+      "size": [
+        2172,
+        724
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "candidates/dojo-source.json",
+      "sha256": "1605c1af7014b5a50f2acc47a04adc88fd71079fee9e3ac5a05acfdb3a3aa42d",
+      "bytes": 1211,
+      "status": "candidate-source-metadata",
+      "tool": "tools/organize_dojo_candidate.py"
+    },
+    {
+      "file": "candidates/dojo.prompt.txt",
+      "sha256": "909822160d521d0b9d12cc638fe30b2a4c9d8759e14d8dd0f032cb7fb3d3fea9",
+      "bytes": 2188,
+      "status": "candidate-exact-prompt",
+      "tool": "tools/organize_dojo_candidate.py"
     }
   ],
   "original_game_data_included": false

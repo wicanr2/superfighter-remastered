@@ -513,3 +513,34 @@
 - 四平台各自編譯並核對 38 份實際來源、ELF／PE／兩種 Mach-O 與雜湊，八份二進位／編譯收據原封移入 bin，見 `training-build-v1/promotion.json`。鬼丸前版保留於 `onimaru-victory-build-v1/bin`，歷史收據不覆寫。沒有建立 Release、tag 或正式封包。
 - `training-integration-audit-v1.json` 通過：128 原檔、1719 執行器來源、64 生成 PNG 皆未變；264 個 Git 追蹤檔、67 PNG、38 編譯來源、三組原生收據、截圖及設定範圍皆核對。沒有 root-owned 檔案或誤建 .md 目錄。本輪 kdzz-training 容器全部結束並移除，未建立新映像，其他專案資源不動。來源與練習功能準備提交；推送結果另記。
 - 功能提交 `38088ee6b420f43caeea64c1b146d22ceb59d868` 已成功推送 `origin/main`，`ls-remote` 核對相同完整提交。新增程式、規格、測試、README 練習截圖及來源紀錄皆已在遠端；原版、私有執行器、研究收據及中間二進位沒有推送。這次只追加提交結果，沒有修改已通過的程式或素材。
+
+## 2026-10-20：蜘蛛女外部 HD 圖去背
+
+- 使用者提供 `/home/anr2/cht/快打至尊/spider-woman-hd/spider-hd-png` 的五張 1168×784 RGBA 圖。原圖只把部分白格設為透明，灰色棋盤仍是不透明像素，五張均無法通過原有透明分隔登錄。
+- 純去背的內建 imagegen 請求仍被輸出安全檢查以 sexual 拒絕，request ID `efb1a218-2cc6-49df-b249-0b8d412341a0`。使用者隨後明確回覆「授權」Python 去背，才改用 Docker 內 Pillow 11.3.0，沒有重試圖片模型或重畫角色。初始盤點與拒絕記錄在 `workplace/spider-art-v1/user-art-inspection-v1.json`。
+- 新增 `tools/remove_sprite_checkerboard.py` 並掛入 AGENTS 索引。從已透明像素與外框追蹤連通淺灰背景，只將背景 alpha 設零；所有位置的 RGB、尺寸、檔名及原始五張檔案 SHA-256 均維持。沒有猜補肢體、重排圖格或改寫正式角色包。
+- 輸出在同一素材目錄的 `transparent-v1/`，ZIP 為 `transparent-v1.zip`，含五張 PNG、處理清單及說明。ZIP SHA-256 `e41d80e61057163e7e9c8723ed36252eb4f10ae4870c7e3a6fc0a3574e66c85d`。五張各新增 419705／370934／379841／375519／384352 個透明像素，PNG 重讀與 ZIP CRC 通過。
+- 深色及白色底逐張目視確認棋盤背景去除，並獨立檢查 RGB／尺寸逐點相同、四角全透明及既有 atlas_regions 分隔通過。驗證在 `workplace/spider-art-v1/alpha-validation-v1.json`，雙底預覽為同目錄 `alpha-review-v1.png`。
+- 實際圖格依檔名為 00 九格、01 十二格、02 五格、03 十二格、win 十二格。02 目視為站立勝利稿，win 是一般動作圖；多個原版倒地、翻轉與特效姿勢未在候選中保留。去背完成不代表動作對應或遊戲接入完成，現行遊戲仍用原貌，後續先核對可用範圍。
+- 這批處理使用 non-root、network none、有界資源及 timeout 的一次性容器；原始輸入另以唯讀覆蓋掛載。未建映像、未建 Release，既有未完成 HD 改動維持；本輪的檔案擁有權與容器清理另於收尾核對。
+- 收尾核對：五份原 PNG 與來源 ZIP 雜湊未變，輸出 PNG／manifest／ZIP 內容及 CRC、腳本語法與 git diff --check 均通過。成品 ZIP 為 5,062,675 bytes。全工作樹及素材目錄沒有 root-owned 檔案或誤建 .md 目錄，本輪 kdzz-spider-alpha 容器均已移除；沒有修改其他專案資源。
+
+## 2026-10-20：蜘蛛女姿勢審查與逐格補稿
+
+- 使用者說「ok go」後，沿現有角色來源契約核對五張外部稿。低伏待機、倒地、翻轉與效果輪廓無法直接按檔名對應；`workplace/spider-art-v1/pose-review-v1.json` 與 `source-vs-candidate-v2.png` 保留首批差異。這是目視來源審查，不是正常玩家路徑驗收。沒有以站姿或蹲姿替換原版倒地，也沒有放寬正式圖集的缺件回退。
+- 使用者接著要求缺少圖片的提示詞。新增並索引 `tools/export_spider_corrections.py`，輸出逐張原圖、逐張英文提示詞、使用者外部稿的透明造型參考與中文說明。首批十張為一般槽 21／24／29／33／34／43／44 的缺件，以及 0／1／41 的低伏修正；其餘三十五張尚未審查通過，不表示只補十張就完整。
+- 原始 packed bytes 核對一般槽 0／1／41 分別與 JJWIN 槽 0／1／2 完全相同，這三張通過後可共用，不必重畫。槽 43 實際尺寸為 94×1，只確認是細長圖像來源，未將用途猜定為投射物；槽 44 描述原圖黃色輪廓，沒有猜補招式觸發。
+- 補稿包 `workplace/spider-corrections-v2.zip` 為 1,039,569 bytes，SHA-256 `fa2cbcb7d9374af4abc24cd6321fe784333788bf5fd201ce42a14ecb01b5e05d`。十張原版 PNG 與來源清單雜湊、造型參考逐檔複製、ZIP CRC、中文檔名 UTF-8 旗標與中文說明 UTF-8 BOM／CRLF 通過。v1 保留產生紀錄，v2 補齊跨平台文字換行，不覆寫既有包。
+- 原圖交接包只供本機，不加入 Git；工具與索引可版控。圖片生成交由使用者的其他模型，本次沒有再次呼叫被拒絕的圖片工具。其餘三人 WIN 的正常原生驗證同時繼續。
+
+## 2026-10-20：金太極、小丑與印第安喬勝利 HD 接入
+
+- 使用者要求卡點先跳過、先完成一輪 HD。033 經正常來源診斷、原姓名、生成 PNG 與透明矩形審查升 READY，加入三人勝利姓名後完成限定 CONFORMED。嵐兩份稿 alpha 最大值只有 254，未修改圖片或放寬門檻；蜘蛛女外部圖改走逐格補稿，道場只整理候選及來源，不擅自實作 029 新格式。
+- 金太極 IIWIN／小丑 DDWIN／印第安喬 KKWIN 合計十五組不同圖像，新增三張內建 imagegen 原 PNG 與 216 個 WIN 鍵。金太極 WIN header 與一般色盤不相同的初始研究假設，已由實際 C0h palette 讀取推翻；失敗研究腳本保留，未修改原檔。原版 WIN 表位於 60h、payload 位於 180h，與一般來源分開。
+- 三人成對核心分別 7,596／5,505／8,919 邊界，共 22,020 次原狀態及即時 RGB 比較通過，18 張畫格與十二個 WIN 取樣由原檔獨立重組。工具早期只接受固定兩張 capture，擴充為明示 pose_captures 加兩張生命週期圖，保留序列驗證；不是來源或產品缺陷。
+- Linux 正常選單、普通移動與拳擊取得三人首勝，並以舊包驗缺金太極 WIN 的整格回退。四案例各七張原檔重組、原貌／HD／恢復同狀態、恢復逐點一致與下一回合清除通過。小丑是時間到後 124／4 判勝，沒有修改傷害或偽造擊倒。GPU 文字變動點依金太極／小丑／喬為 7540／4775／7098，金色點 2142／1415／2092，全部限於原 NAME 矩形；另目視三組人物與字形。
+- 真實候選及三個姓名 fixture 的 Go 測試通過，驗 1381 鍵／64 PNG／十九來源、舊基底保持、每角 72 槽及損壞原 SI 拒絕。完整可用 internal／cmd 測試與 vet 通過，log 為 `workplace/hd-first-pass-v1/go-checks.log`；完整套件沒有另供舊外部 HD fixture，不冒稱全動畫重驗。
+- 四平台各核對 38 份實際編譯輸入及檔頭，八份編譯產物／收據原封移入 bin，前版 training-build-v1/bin 不變。這次只驗 Linux 原生首勝，沒有跑 Wine、Windows／macOS 真機或實體手把；未建 Release、tag 或正式封包。
+- 公開素材升為 67 張生成 PNG、73 檔，catalog 七十筆 payload 共 84,002,886 bytes。舊 61 張角色 PNG 不變，新圖與清單吻合已驗候選。道場新增來源清單與精確提示詞，候選狀態保留。README 新增實際印第安喬首勝 HD 擷取，來源與比較收據、二進位及素材身分寫入 docs/screenshots/source.json。
+- 接入與中間二進位移入證據為 `workplace/hd-first-pass-v1/promotion.json`、`workplace/first-pass-hd-build-v1/promotion.json`。128 原檔與 1719 執行器來源均未變；本輪未改遊戲規則、練習模式、快捷或設定格式。首頁、現況表、工作清單、規格與驗證矩陣同步，完整 HD 仍未完成。
+- 收尾 `integration-audit-v1.json` 通過原檔、執行器、67 張生成 PNG、70 筆素材、28 張正常原生擷取、實際素材來源及 bin 原封移入。README 的 62 個相對連結、六張圖片均已納入 Git；Python 語法、git diff --check、工作樹 root-owned／誤建 .md 目錄檢查通過。本輪 kdzz-first-pass／kdzz-spider 容器均已結束並移除，未新增映像或清理其他專案資源。

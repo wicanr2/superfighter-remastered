@@ -2,9 +2,11 @@
 
 目前狀態見 [CONTEXT.md](CONTEXT.md)，證據說明見 [RESEARCH-LOG.md](RESEARCH-LOG.md)。收據與原版畫面只留本機 `workplace/`。
 
+[金太極／小丑／印第安喬首勝 033](docs/spec/033-first-pass-victories.md)限定 CONFORMED。22,020 個成對邊界、18 張來源重組、真實候選與姓名／損壞拒絕通過；三個正常 Linux 案例及缺件案例各七張，原貌／HD／恢復逐點相同，下一回合清除。小丑是時間歸零判勝，非擊倒。現行包 1381 鍵／64 PNG／十九來源，四平台各核對 38 份編譯輸入；本切片未重驗 Wine、真機、實體手把或完整動畫。
+
 [練習模式 032](docs/spec/032-training-mode.md)限定 CONFORMED。核心單／雙打、七個拒絕邊界、Linux 單打七項及 Linux／Wine 雙打 HD 各八項通過。未啟用的 32 個百萬步邊界與獨立 Oracle 暫存器、DS、畫面相同；啟用後是使用者授權的規則差異，收據及截圖保留 modified，不能稱為原版 parity。正式測試與 vet 通過；真實訓練 HUD 由原檔重組，舊 HD 外部 fixture 未另供給。四平台二進位核對 38 份編譯輸入；Windows／macOS 真機、實體手把及完整勝負過場未在本功能重驗。
 
-鬼丸首勝依[規格 031](docs/spec/031-onimaru-victory.md)限定 CONFORMED。12,272 個成對邊界、29 個 WIN 取樣及五張來源重組通過，Linux／Wine 與缺件三案例各七張通過。兩平台各案例內恢復 HD 逐點一致；GPU 文字各 5,943 變動點、1,701 金色實心點。slot 1 靜態、第二人及完整動畫另驗。現行素材為 1165 鍵／61 PNG，四平台二進位與 37 份編譯來源已核對。
+鬼丸首勝依[規格 031](docs/spec/031-onimaru-victory.md)限定 CONFORMED。12,272 個成對邊界、29 個 WIN 取樣及五張來源重組通過，Linux／Wine 與缺件三案例各七張通過。兩平台各案例內恢復 HD 逐點一致；GPU 文字各 5,943 變動點、1,701 金色實心點。slot 1 靜態、第二人及完整動畫另驗。該切片素材為 1165 鍵／61 PNG，當時四平台二進位與 37 份編譯來源已核對。
 
 勝負基底依[規格 016](docs/spec/016-hd-victory-messages.md)及[規格 017](docs/spec/017-victory-pose-banks.md)，驗 Linux／Windows Wine 各七張正常首勝擷取、Linux 舊素材七張回退，以及 1,479 個成對核心比較邊界。三組同狀態原貌／HD／恢復均逐點一致，兩平台共四張 GPU 字圖均限制在原矩形。基底二進位及來源另存，與目前薩爾可夫整合版分開；第二人 Wine、完整勝利動畫與特殊分支仍待驗。
 

@@ -83,6 +83,7 @@ def main():
     files.append(p / "docs/spec/030-phoenix-victory.md")
     files.append(p / "docs/spec/031-onimaru-victory.md")
     files.append(p / "docs/spec/032-training-mode.md")
+    files.append(p / "docs/spec/033-first-pass-victories.md")
     receipt = {"kind": "native intermediate builds; not release packages or macOS hardware acceptance",
                "go_version": subprocess.check_output(["go", "version"], text=True).strip(),
                "images": {"linux": "dosgolem-go-ebiten:1.24-r1", "cross": "tokugawa-desktop-platforms:go1.24.13-sdk15.5-noble-r1"},

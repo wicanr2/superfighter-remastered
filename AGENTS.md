@@ -148,6 +148,12 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [首輪其餘勝利 HD](docs/spec/033-first-pass-victories.md) | 金太極、小丑、印第安喬的 WIN 擴充；嵐／蜘蛛女卡點先跳過，道場候選另整理，依證據閘門接入 |
+| [首輪勝利來源驗證](internal/hd/first_pass_victory_test.go) | 舊包保持、三人 216 個 WIN 鍵、原版真實姓名與損壞來源拒絕；使用 KDZZ_HD_FIXTURES 與 KDZZ_ORIGINAL_ROOT 提供本機資料 |
+| [蜘蛛女原圖交接工具](tools/export_spider_reference.py) | 在本機 workplace 輸出原版 PNG、提示詞與可驗 SHA-256 ZIP，不公開原版參考圖 |
+| [蜘蛛女逐格補稿工具](tools/export_spider_corrections.py) | 首批十張缺少或姿勢需修正的 PNG、單格提示詞與外部造型參考；核對一般／WIN 同 bytes 別名，本機原圖包不上傳 |
+| [棋盤背景去除工具](tools/remove_sprite_checkerboard.py) | 使用者明確授權 Python 後，在 Docker 的 Pillow 工具鏈執行；只改連通淺灰背景的 alpha，另存 PNG 與 ZIP，保留原 RGB、尺寸及原檔。外部圖的姿勢對應另驗 |
+| [候選素材索引](assets/hd/candidates/README.md)、[道場整理工具](tools/organize_dojo_candidate.py) | 道場原生成 PNG、來源與提示詞分開保存；清楚標示候選及尚未接入 |
 | [練習模式規格](docs/spec/032-training-mode.md) | 使用者指定的雙方鎖血、停止倒數與 AI 中立；獨立於原版／HD 對拍，依規格閘門接入 |
 | [練習適配](internal/gamecore/training.go)、[正常路徑與拒絕邊界](internal/gamecore/training_test.go)、[原生開關驗證](tools/training_smoke.py) | 固定原檔與控制點、雙模式鎖血／停時／AI 中立、原生工具列及 F9、重啟與命令列 |
 | [README.md](README.md) | 穩定用途、本機建置與操作入口、現況摘要 |

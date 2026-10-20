@@ -29,15 +29,15 @@ func main() {
 	out := flag.String("out", "", "new output directory")
 	characterDir := flag.String("hd-characters", "/project/workplace/hd-characters-study-v8", "character asset directory")
 	attacker := flag.Int("attacker", 0, "normal attacking player: 0 or 1")
-	player0 := flag.Int("player0", 0, "normal first-player character: 0..7; second player is Frank")
+	player0 := flag.Int("player0", 0, "normal first-player character: 0..10; second player is Frank")
 	poseSamples := flag.Bool("pose-samples", false, "sample WIN-bank poses from knockout through next round")
 	diagnostic := flag.Bool("diagnostic", false, "single-core source diagnostics; no paired-state acceptance")
 	flag.Parse()
 	if *attacker < 0 || *attacker > 1 {
 		panic("attacker must be 0 or 1")
 	}
-	if *player0 < 0 || *player0 > 7 {
-		panic("player0 must be 0..7")
+	if *player0 < 0 || *player0 > 10 {
+		panic("player0 must be 0..10")
 	}
 	loser := 1 - *attacker
 	if *out == "" {

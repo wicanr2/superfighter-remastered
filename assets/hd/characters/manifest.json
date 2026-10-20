@@ -87,6 +87,24 @@
       "source_bank": "victory",
       "file": "GGWIN.FIG",
       "sha256": "2ec882c5a3827d249c8048ef33c0604c4b5be2b5626e37ed3db5ae1bd78ec233"
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "file": "IIWIN.FIG",
+      "sha256": "868037238edeeeefcc3cdf43cfd04a96403c9377169ffabc2ed4df31b6fff137"
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "file": "DDWIN.FIG",
+      "sha256": "b7450f925f64228b96aa7ed96682d8fe50d8f9513c80e7600be61df0dd7ac2f5"
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "file": "KKWIN.FIG",
+      "sha256": "bb24c0340af2964056136ce9faa9256b486c9afe8a9159065d942509ebea907a"
     }
   ],
   "atlases": [
@@ -453,6 +471,24 @@
     {
       "file": "onimaru-win.png",
       "sha256": "e5e7b4295c74f9857dc2fb9883cfbf1fb94c0d35bddeef385c16d6f51f463984",
+      "width": 2172,
+      "height": 724
+    },
+    {
+      "file": "kim-win.png",
+      "sha256": "3b889b68e0a836f0b15b97bd187f98180291fefc7d69fa0bae491d8569988728",
+      "width": 1774,
+      "height": 887
+    },
+    {
+      "file": "clown-win.png",
+      "sha256": "c710a7605a463f50f9cbd49d42ca535134a8ebdd59720eb8038eb698d972d1b2",
+      "width": 2172,
+      "height": 724
+    },
+    {
+      "file": "joe-win.png",
+      "sha256": "273e4815c2b9906b254ba5133bea01790cac864dc2cba3d241cdae15c51d59b2",
       "width": 2172,
       "height": 724
     }
@@ -18377,6 +18413,3462 @@
         466,
         628
       ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 0,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 1,
+      "width": 75,
+      "height": 85,
+      "source_offset": 3768,
+      "source_sha256": "769aa49ccb25411eab8bc4f73c26e6bd65bf84dc8aa61eefc84211b8fc618e0f",
+      "atlas": "kim-win.png",
+      "rect": [
+        511,
+        95,
+        857,
+        436
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 2,
+      "width": 76,
+      "height": 96,
+      "source_offset": 7000,
+      "source_sha256": "0514e7a8e4b42c6317df89ec4c37189517edf1a5ba660d5fda5e5f0a1b9034be",
+      "atlas": "kim-win.png",
+      "rect": [
+        920,
+        47,
+        1223,
+        433
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 3,
+      "width": 86,
+      "height": 96,
+      "source_offset": 10650,
+      "source_sha256": "a44390103ddd737069e4bec3379e6cd02e163c7d1aae50aa53e1b1f22aef18ab",
+      "atlas": "kim-win.png",
+      "rect": [
+        1318,
+        47,
+        1710,
+        434
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 4,
+      "width": 91,
+      "height": 96,
+      "source_offset": 14780,
+      "source_sha256": "6e736eb81888f956b02e176c48f63c808a518c7e43161b1af406274f0879729f",
+      "atlas": "kim-win.png",
+      "rect": [
+        59,
+        461,
+        435,
+        845
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 5,
+      "width": 64,
+      "height": 96,
+      "source_offset": 19198,
+      "source_sha256": "39ffab21c317a85a45eee189cb1bb3d27f9f48c2429217ad51eba96274f090c1",
+      "atlas": "kim-win.png",
+      "rect": [
+        557,
+        451,
+        836,
+        846
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 6,
+      "width": 57,
+      "height": 96,
+      "source_offset": 22272,
+      "source_sha256": "3506241a59989b697bc6788a419bae3ffaf4ddfac0715361b3b86a5b182112aa",
+      "atlas": "kim-win.png",
+      "rect": [
+        972,
+        455,
+        1245,
+        846
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 7,
+      "width": 57,
+      "height": 96,
+      "source_offset": 25058,
+      "source_sha256": "8ec9150652949160cba53e8939e50d66c3d83f6f44fe970aee16ae859fa0dd19",
+      "atlas": "kim-win.png",
+      "rect": [
+        1402,
+        455,
+        1673,
+        849
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 8,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 9,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 10,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 11,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 12,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 13,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 14,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 15,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 16,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 17,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 18,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 19,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 20,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 21,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 22,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 23,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 24,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 25,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 26,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 27,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 28,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 29,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 30,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 31,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 32,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 33,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 34,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 35,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 36,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 37,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 38,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 39,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 40,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 41,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 42,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 43,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 44,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 45,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 46,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 47,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 48,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 49,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 50,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 51,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 52,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 53,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 54,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 55,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 56,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 57,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 58,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 59,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 60,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 61,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 62,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 63,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 64,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 65,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 66,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 67,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 68,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 69,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 70,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 7,
+      "source_bank": "victory",
+      "slot": 71,
+      "width": 75,
+      "height": 89,
+      "source_offset": 384,
+      "source_sha256": "22038e68f58c4e7e7c1690e22dce6a579a7b95a616dcca9110b1134a46acf9d0",
+      "atlas": "kim-win.png",
+      "rect": [
+        56,
+        77,
+        404,
+        435
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 0,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 1,
+      "width": 72,
+      "height": 74,
+      "source_offset": 3236,
+      "source_sha256": "04c69aa774b1312e3ad5f8ae275dd13aa6ac4696677f50e8eae5fa21bd4b0551",
+      "atlas": "clown-win.png",
+      "rect": [
+        809,
+        171,
+        1384,
+        688
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 2,
+      "width": 71,
+      "height": 96,
+      "source_offset": 5902,
+      "source_sha256": "39557efff54380a4a033c7d0768c75b7dcc8abcb9e50b030af8c06eaa2002e34",
+      "atlas": "clown-win.png",
+      "rect": [
+        1558,
+        25,
+        2062,
+        695
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 3,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 4,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 5,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 6,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 7,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 8,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 9,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 10,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 11,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 12,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 13,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 14,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 15,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 16,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 17,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 18,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 19,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 20,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 21,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 22,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 23,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 24,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 25,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 26,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 27,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 28,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 29,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 30,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 31,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 32,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 33,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 34,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 35,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 36,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 37,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 38,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 39,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 40,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 41,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 42,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 43,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 44,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 45,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 46,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 47,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 48,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 49,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 50,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 51,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 52,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 53,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 54,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 55,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 56,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 57,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 58,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 59,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 60,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 61,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 62,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 63,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 64,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 65,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 66,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 67,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 68,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 69,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 70,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 9,
+      "source_bank": "victory",
+      "slot": 71,
+      "width": 75,
+      "height": 75,
+      "source_offset": 384,
+      "source_sha256": "e590a53ea5f7c664686971e48b1948967c7306997e4908d2968dfe6084aa0648",
+      "atlas": "clown-win.png",
+      "rect": [
+        77,
+        168,
+        676,
+        689
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 0,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 1,
+      "width": 87,
+      "height": 94,
+      "source_offset": 3356,
+      "source_sha256": "0428d16082fff126d6bf3ea3530bc55a38943285ad804afdd790d627ecc7342b",
+      "atlas": "joe-win.png",
+      "rect": [
+        566,
+        143,
+        1048,
+        660
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 2,
+      "width": 87,
+      "height": 88,
+      "source_offset": 7494,
+      "source_sha256": "6fcebc4375246a0e0ad771ff1613bd5e72dcdab7672415915b45e2b0f9d28139",
+      "atlas": "joe-win.png",
+      "rect": [
+        1129,
+        173,
+        1633,
+        656
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 3,
+      "width": 52,
+      "height": 109,
+      "source_offset": 11368,
+      "source_sha256": "d7886f05548a7112680c0d839948bc8e1004f3bd00f452ef18696eb1e525d9ca",
+      "atlas": "joe-win.png",
+      "rect": [
+        1763,
+        43,
+        2061,
+        663
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 4,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 5,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 6,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 7,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 8,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 9,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 10,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 11,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 12,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 13,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 14,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 15,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 16,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 17,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 18,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 19,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 20,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 21,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 22,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 23,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 24,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 25,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 26,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 27,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 28,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 29,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 30,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 31,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 32,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 33,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 34,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 35,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 36,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 37,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 38,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 39,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 40,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 41,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 42,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 43,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 44,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 45,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 46,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 47,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 48,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 49,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 50,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 51,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 52,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 53,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 54,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 55,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 56,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 57,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 58,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 59,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 60,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 61,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 62,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 63,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 64,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 65,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 66,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 67,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 68,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 69,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 70,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
+    },
+    {
+      "character": 10,
+      "source_bank": "victory",
+      "slot": 71,
+      "width": 53,
+      "height": 110,
+      "source_offset": 384,
+      "source_sha256": "069ac2823221b0caa5b4b293e3760fe6b5c55cdf858795ac879687e121444db3",
+      "atlas": "joe-win.png",
+      "rect": [
+        118,
+        45,
+        407,
+        668
+      ]
     }
   ],
   "evidence": [
@@ -18384,6 +21876,8 @@
     "workplace/sprite-layers-v1/receipt.json",
     "registration.json",
     "docs/spec/009-hd-effects.md",
+    "docs/spec/017-victory-pose-banks.md",
+    "victory-pose-registration.json",
     "docs/spec/017-victory-pose-banks.md",
     "victory-pose-registration.json",
     "docs/spec/017-victory-pose-banks.md",

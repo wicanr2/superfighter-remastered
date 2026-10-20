@@ -51,15 +51,22 @@ def main():
     args = parser.parse_args()
     root = args.output
     receipt = json.loads((root / "receipt.json").read_text())
+    attacker, player0 = receipt.get("attacker", 0), receipt.get("player0", 0)
+    assert attacker in (0, 1) and 0 <= player0 <= 10
+    winner = player0 if attacker == 0 else 4
+    wins = [0, 0]
+    wins[attacker] = 1
     reference = (args.background / "reference.idx").read_bytes()
     if args.core:
         assert receipt["paired"] and receipt["original_state_and_rgb_unchanged"]
         assert receipt["checks"] > 1000 and receipt["victory_cleared"]
-        assert receipt["captures"] == ["victory-frame", "after-victory"]
+        assert receipt["captures"] == receipt.get("pose_captures", []) + ["victory-frame", "after-victory"]
         names = receipt["captures"]
     else:
         assert receipt["scope"] == "first-victory-message" and receipt["knockout_rounds"] == [0]
-        names = ["normal-battle", "knockout-0", "transition-0", "victory-hd",
+        finish = receipt.get("round_finishes", {}).get("0", "knockout")
+        assert finish in ("knockout", "time-expiry")
+        names = ["normal-battle", finish + "-0", "transition-0", "victory-hd",
                  "victory-original", "victory-restored", "after-victory"]
         assert [event["name"] for event in receipt["events"]] == names
         names = [name + ".png" for name in names]
@@ -69,15 +76,22 @@ def main():
     victory_name = "victory-frame" if args.core else "victory-hd.png"
     frame = frames[victory_name][2]
     victory = frame["victory"]
-    assert victory["complete"] and victory["state"]["winner_word"] == 0
-    assert [d["slot"] for d in victory["draws"]] == [0, 17]
-    assert any(s["player"] == 0 and s["source_bank"] == "victory" for s in sources[victory_name])
+    assert victory["complete"] and victory["state"]["winner_word"] == winner | (attacker << 15)
+    assert victory["state"]["characters"] == [player0, 4]
+    assert [d["slot"] for d in victory["draws"]] == [winner, 17]
+    assert any(s["player"] == attacker and s["source_bank"] == "victory" for s in sources[victory_name])
     final = frames["after-victory" if args.core else "after-victory.png"][2]
-    assert final.get("victory") is None and final["hud"]["state"]["display_wins"] == [1, 0]
+    assert final.get("victory") is None and final["hud"]["state"]["display_wins"] == wins
     assert final["hud"]["state"]["round_state"] == 0
     result = {"kind": "independent normal victory original-source and complete-layer replay",
               "captures": len(names), "sprite_sources": sources, "next_round_cleared": True,
-              "limits": "first Jaan victory; special branches and complete victory animation remain separate"}
+              "winner_character": winner, "winner_player": attacker,
+              "limits": "sampled normal first victory; special branches and complete victory animation remain separate"}
+    if args.core:
+        samples = receipt.get("pose_captures", [])
+        result["pose_sources"] = {
+            name: check_sprite_sources(args.original_root, read_frame(
+                root, name, reference, args.original_root, image_required=False)[2]) for name in samples}
     if not args.core:
         modes = ["hd", "original", "restored"]
         group = [frames[f"victory-{mode}.png"] for mode in modes]

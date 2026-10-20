@@ -1,0 +1,39 @@
+{
+  "kind": "HD background candidate inventory; not a runtime manifest",
+  "file": "dojo.png",
+  "sha256": "68a8e64e6e4dc47e61fa52f43e78471a855f6a86e2e8913ba92f13439a3db11b",
+  "bytes": 2628825,
+  "size": [
+    1922,
+    818
+  ],
+  "status": "candidate only; spec 029 format decision pending; skipped for first HD pass",
+  "generation": {
+    "tool": "built-in imagegen",
+    "prompt_file": "dojo.prompt.txt",
+    "original_request_sha256": "0d56bc59dd0424fa99aa5220633e5e8d86493b17e29365f57af057a4117a2e3f"
+  },
+  "original_source": {
+    "file": "I5.XGB",
+    "sha256": "44d8adf7662c46396092581175fd0b85ca7179b9f99fe9c66b680f0ff50a9b61",
+    "size": [
+      480,
+      204
+    ],
+    "pixel_sha256": "71c366851b72c14b1871906a42f8746fead325a26e4ee25a166b5232fb02c3ae"
+  },
+  "normal_path_evidence": {
+    "scene": 0,
+    "frames": 124,
+    "camera_range": [
+      80,
+      145
+    ],
+    "palette_samples": 8,
+    "review_sha256": "114dc97fcec851de504d5d0524c2ba9938862bd7656370afc491b21f597ef6bb"
+  },
+  "runtime_integrated": false,
+  "original_pixels_included": false,
+  "original_palette_included": false,
+  "rights": "generated candidate upload authorized; original game image and palette remain local"
+}
