@@ -753,4 +753,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 舊程式對照指定 character-geometry-build-v1/bin 並加 --expect-original；第二新案例用 player0 2。實際成功腳本副本保留於各收據目錄，現行工具已移除未執行備用分支。
 
 - 收尾核對 128 原檔／1719 runtime、原 i64、94 PNG／102 payload 共 121,070,684 bytes、1485 鍵／67 PNG、四份新二進位與 44 份輸入通過。README 與素材索引有 131 個受追蹤相對連結；首版八 ZIP 與本機影片 SHA 保持，沒有 root-owned／.md 目錄或專案容器殘留。建稽核腳本的一次動態 shell 命令遇 Docker socket 拒絕，後續改用掛載的 Python 檔在容器內生成及執行，通過 final-audit.json；沒有回到主機分析。
-- 下一步為同角色色盤、蜘蛛女其餘動作及其他畫面；029 格式仍待回答。完整 HD 保持 active，未重發首版、移動 tag 或把已驗切片當全目標。提交與遠端核對另補。
+- 下一步為同角色色盤、蜘蛛女其餘動作及其他畫面；029 格式仍待回答。完整 HD 保持 active，未重發首版、移動 tag 或把已驗切片當全目標。功能提交 57dc20cb0df83fbd6a8a4e95c99bd0aa354fd6c8 已推送 origin/main 並由 ls-remote 核對；首版 tag 仍固定 807579d01c145db327050c2e870e2bf46e6bcb68。
