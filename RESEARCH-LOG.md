@@ -526,3 +526,12 @@ EEWIN.FIG 共 6,279 bytes，SHA-256 `65f8536cdd3ba96c63d116df5c701b401776e39643f
 已證實於正常雙打：第一人固定 0，第二人逐一 0..10，原版 scene 為 0..10，來源依序為 I5／I12／I4／I7／I2／I3／I10／I9／I8／I1／I13.XGB。每景待機與普通二十格行走各一份，camera 80／105；原檔獨立解碼的 480×204 完整背景 hash、前 128 色與 320×200 裁切均吻合。十一份原檔 SHA、解碼 hash 及二十二份來源保存在 receipt.json，獨立 Python 重組結果為 source-comparison.json。
 
 已證實的檔案格式切片為表頭寬高 480×204、byte 4 為 1、實檔 305h 的 escape、306h 起的 literal／escape-count-value RLE，無零 run、截斷或輸出越界；色盤從實檔 5 起以六位元分量展開。Go 及獨立 Python 對真實十一檔重組一致。這不是原版逐週期顯示或所有 camera／單打順序的證據，也不是九景 HD 已接入。格式決策仍依 [029](docs/spec/029-multi-scene-backgrounds.md) 的 DRAFT 確認閘門。
+## 2026-10-20：雙向翻轉及頂部裁切的角色幾何
+
+固定輸入為 SF.EXE SHA 24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300、SFMAN05.DAT SHA b5b77d590420b92db2d265aa89483de70d58193caf442fd41eba338eb111d653。工具是 Go 1.24.13、既有固定 dosgolem 副本、Python 3.13／Pillow 11.3.0。IDA 9.4 MZ 線性 sub_14665／sub_146E8／sub_1477E／sub_1480A 沿 008 的原 bytes；01B9:42A5／4446 是另列的 runtime 完成點，實檔偏移不混同以上位址。
+
+已證實於保存的正常樣本：法蘭克一般槽 28、實檔 76824、105×41、C2h 的 2,298 個寫入點，及槽 27、實檔 73286、103×68、43h／TopClip 9 的 2,168 點，原檔直接重組的遮罩及色號與 CPU 層全部相同。獨立完整矩形翻轉／裁切亦吻合；character-geometry-evidence-v1/review.json 綁定輸入及來源雜湊。不是從畫稿外觀猜定位。
+
+已證實於新正常原生樣本：character-geometry-native-c0-v1 與 character-geometry-native-top-v2 各三張幾何模式切換、七張正常首勝流程，原檔層重組與 CPU 遮罩吻合，原狀態不變、切回 HD 逐點相同，解除暫停後正常下一回合清除。實際位置、裁切、原檔偏移、變動點與收據 SHA 保存於各 geometry-comparison.json。這是 Linux 正常取樣；其他組合及平台未知，不宣稱完整動畫。
+
+每個新幾何正式畫格仍要再次核對完整原版 CPU 層，未吻合則整格原貌。原檔 packed bytes 僅保留於使用者執行期私有記憶體，不加入素材 JSON 或 Git。原檔、共用執行器、1483 鍵美術群組均保持。

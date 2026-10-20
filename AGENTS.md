@@ -148,6 +148,11 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [角色翻轉與裁切](docs/spec/038-character-geometry.md)、[原版幾何審查](tools/verify_character_geometry.py) | 正常擊倒的雙向翻轉／頂部裁切、原檔與 CPU 逐點覆蓋、既有 HD 定位及接入閘門 |
+| [角色幾何核對](internal/hd/geometry.go) | 原檔私有切片與同格 CPU 遮罩／色號的逐點核對；只擴充已證實定位，不改畫稿或資料格式 |
+| [角色幾何測試](internal/hd/geometry_test.go) | 真實 C0h／TopClip 9 的完整素材選擇，以及像素、覆蓋、位置與裁切篡改拒絕；空裁切不外推正常玩家樣本 |
+| [原生角色幾何](tools/character_geometry_smoke.py) | 正常選角與拳擊擊倒期間捕捉新幾何，原貌／HD 同狀態切換，再繼續正常首勝及下一回合 |
+| [原生幾何獨立核對](tools/verify_native_character_geometry.py) | 原始角色像素、實際新幾何、同狀態模式切換及恢復後正常下一回合，不外推全動畫 |
 | [嵐的勝利 HD](docs/spec/037-lan-victory.md) | 已驗一般來源重用、四格新稿、獨立 WIN 群組、LAN WIN 姓名及正常首勝接入閘門 |
 | [嵐的 WIN 登錄](tools/prepare_lan_victory.py) | 固定來源及原 PNG、兩組既有姿態重用、四組新稿、七十二入口及舊群組保持 |
 | [嵐的 WIN 測試](internal/hd/lan_victory_test.go) | 真實七十二入口、六組來源、一般／WIN 同 bytes 重用、原版姓名矩形及篡改拒絕 |

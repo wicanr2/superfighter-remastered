@@ -52,6 +52,7 @@ type PoseArt struct {
 	Pose   CharacterPose
 	Image  image.Image
 	Bounds image.Rectangle
+	packed []byte // 使用者原檔的唯讀切片；不寫入 JSON 或發行素材。
 }
 type Characters struct {
 	Manifest CharacterManifest
@@ -214,7 +215,7 @@ func LoadCharacters(dir, originalRoot string) (*Characters, error) {
 		if !opaque || !clear {
 			return nil, fmt.Errorf("角色素材缺少圖像或透明區")
 		}
-		a.poses[key] = &PoseArt{Pose: pose, Image: img, Bounds: r}
+		a.poses[key] = &PoseArt{Pose: pose, Image: img, Bounds: r, packed: data[offset:end]}
 	}
 	return a, nil
 }
@@ -237,7 +238,7 @@ func (a *Characters) Select(layers []renderdata.Layer, palette [256][3]uint8) ([
 		bank := 0
 		if s.Effect {
 			bank = 1
-			if s.Flags&192 != 0 && s.Flags&192 != 64 || s.LeftClip != 0 || s.RightClip != 0 {
+			if s.Flags&192 != 0 && s.Flags&192 != 64 || s.LeftClip != 0 || s.RightClip != 0 || s.TopClip != 0 {
 				return nil, "此特效翻轉或裁切保留原貌"
 			}
 		} else {
@@ -252,8 +253,11 @@ func (a *Characters) Select(layers []renderdata.Layer, palette [256][3]uint8) ([
 		if s.SourceSHA256 != art.Pose.SourceSHA256 || s.Width != art.Pose.Width || s.Height != art.Pose.Height {
 			return nil, "角色來源不符，保留原貌"
 		}
-		if s.Flags&192 == 192 || s.TopClip != 0 || s.PaletteBase != uint8(0xc0+s.Player*0x20+bank*16) {
-			return nil, "此翻轉、裁切或色盤保留原貌"
+		if s.PaletteBase != uint8(0xc0+s.Player*0x20+bank*16) {
+			return nil, "此色盤保留原貌"
+		}
+		if !s.Effect && (s.Flags&192 == 192 || s.TopClip != 0) && !spriteGeometryMatches(s, art.packed, layer) {
+			return nil, "翻轉或裁切未吻合原版圖層，保留原貌"
 		}
 		for i, p := range a.palettes[[2]int{s.Character, bank}] {
 			if palette[int(s.PaletteBase)+i] != p {

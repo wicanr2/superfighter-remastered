@@ -664,3 +664,31 @@ python3 tools/verify_stage_sources.py /project/workplace/stage-source-v1 --origi
 前一命令需新輸出目錄，後者可直接重驗現有收據。原版、圖像參考與 runtime snapshots 只留本機；公開 Git 只存探針／驗證工具、原檔身分、推論等級及候選來源索引。
 
 - 補證收尾再次通過完整輸入／素材核對，首頁及素材索引相對連結增為 119 個；沒有新增原始遊戲資料、音訊或影片進 Git。十一景工作容器已完成並移除，工作樹掛載過濾為空；UID/GID 與 .md 目錄檢查通過。production Go、四平台編譯、93 PNG 及首版封包 bytes 均保持，僅補工具、來源證據與候選 metadata。
+## 2026-10-20：角色雙向翻轉與頂部裁切接入
+
+- 接續使用者確認的首版快捷限制。路由命中復古重製、規格閘門及 README，沿用 reverse-engineer-retro-game-remake 與 008。029 格式仍待回答，沒有以繼續授權代替格式選擇。
+- 從正常原生圖層定位法蘭克槽 28 的 C2h，以及槽 27 的 TopClip 9。verify_character_geometry.py 直接讀原檔，獨立重組原 blit、CPU 覆蓋／色號及矩形翻轉／裁切等價性；2,298／2,168 寫入點吻合。審查在 character-geometry-evidence-v1/review.json，038 經 DRAFT／審查升 READY 後實作。
+- LoadCharacters 保存受驗來源私有切片；geometry.go 只在新幾何逐格核對 CPU 原層，通過才用既有 Placement／GPU 翻轉／裁切。缺層或不符仍整格原貌。特效、未知色盤、資料格式、原版規則／座標／輸入不改，不把原檔 bytes 寫入 JSON 或素材。
+- 真實兩案例的完整群組、六項篡改拒絕及合法空裁切測試通過；可用 internal／cmd 測試及 vet 通過，記錄為 character-geometry-build-v1/tests.log。未另提供的舊外部 fixture 不稱全數重驗。
+- 既有 Go 1.24.13／cross image 編譯三平台四架構，44 份實際輸入與 ELF／PE／兩種 Mach-O 標頭核對。Linux SHA 為 2d0105c6f24c35aa4f94764ea18eea67ef17fb09b648d2ba424ba02d8aa2db82。八份二進位／build.json 精確晉升 workplace/bin，前一嵐版保留；promotion.json 保存前後 SHA。仍是未發行 v.0.1.1-20261020。
+- 原生實驗在 sc-cht-dosboxx-bridge:e0b4287-r1 內執行實際 Go 程式，未使用 DOSBox 作原版收據。容器 --rm／--network none／--user 1000:1000，GUI 限 3g／2 CPU／256 pids／1950 秒，程序由 finally 結束。原檔及固定 runtime 副本唯讀。
+- character-geometry-native-c0-v1 為嵐、character-geometry-native-top-v2 為金太極，均正常雙打對法蘭克。普通選角、移動及拳擊取得首勝，每案七張原流程加三張新幾何，共二十張。獨立原檔／全層／HUD／陰影／CRTC 重組、同狀態原貌切換／HD 恢復逐點及正常下一回合清除通過。可見角色 HD 變動點 16,317／14,121，另目視對齊與頂緣裁切；不外推全部動畫。
+- top-v1 已擷取裁切，但 watcher 在外層滑鼠按住期間重入 click，放開滑鼠令 mouse_left 等待逾時。failure.json 原樣保留，不建立通過收據。只修正腳本 click／key 的互斥，用同一 image／同一二進位重跑 top-v2 通過。c0-v1 成功收據仍綁定當時腳本副本，沒有改遊戲速度／座標／規則。
+- 038 限定 CONFORMED，008 補後續解決入口，CONTEXT／WORKLIST／驗證矩陣同步。README 加入 character-flip-hd.png，既有截圖 source.json 保存來源與收據 SHA。原貌及原始圖層只留本機。
+
+主要重驗命令在受限容器內執行，/project 為工作樹、/orig 唯讀。原生輸出及審查重生工具均要求全新目錄，各 verifier 可直接重驗既有收據。
+
+```sh
+KDZZ_HD_FIXTURES=/project/workplace KDZZ_ORIGINAL_ROOT=/orig go test -p 1 ./internal/hd -run TestCharacterGeometry -count=1 -v
+go test -p 1 ./internal/... ./cmd/...
+go vet -p 1 ./internal/... ./cmd/...
+python3 tools/character_geometry_smoke.py --binary /project/workplace/character-geometry-build-v1/bin/superfighter-linux-amd64 --output /project/workplace/character-geometry-native-top-v2 --hd-characters /project/assets/hd/characters --player0 7 --victory-only --geometry top --quit-after-seconds 1800
+python3 tools/verify_native_character_geometry.py /project/workplace/character-geometry-native-top-v2 --original-root /orig --background /project/workplace/hd-rooftop-study
+python3 tools/verify_victory_animation.py /project/workplace/character-geometry-native-top-v2 --original-root /orig --background /project/workplace/hd-rooftop-study
+python3 tools/build_desktop.py verify --output-dir /project/workplace/character-geometry-build-v1/bin --receipt /project/workplace/character-geometry-build-v1/build-verification.json
+```
+
+C0 案例用 player0 6／geometry c0；沒有重建已發布封包或移動 tag。
+
+- final-audit.json 通過 128 原檔／1719 runtime 來源不變、93 PNG／100 筆素材共 120,620,400 bytes 不變、1483 鍵／66 PNG 不變、四平台 44 份編譯輸入與二進位、122 個首頁及素材索引受追蹤相對連結。首版八包與本機影片 SHA 全部保持，無 root-owned 檔案或 .md 目錄。sf-geometry 容器已完成並移除，未建新映像或清理其他專案資源。
+- 完整 HD、其他角色快捷、替代色盤與全部動畫、其他平台／實體手把仍另續；首版已發布範圍及音訊評估保持。提交與遠端核對另補。

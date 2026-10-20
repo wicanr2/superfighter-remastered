@@ -26,7 +26,7 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 原版音樂已確認十五段 MIDI，Compact PCM 共四十筆；音樂重播與語音修復的可行性及未知項見[音樂與語音 HD 評估](docs/audio-hd-assessment.md)。桌面遊戲的音訊串流與完整 HD 尚未完成。
 
-目前 `main` 的開發版為 `v.0.1.1-20261020`，新增嵐的勝利姿態與 `LAN WIN`；首版下載包尚未包含此更新。其餘九景也已有[首輪 HD 候選稿](assets/hd/candidates/README.md)，與道場同樣等待多場景格式及正常遊戲接入驗證。
+目前 `main` 的開發版為 `v.0.1.1-20261020`，新增嵐的勝利姿態與 `LAN WIN`，並接入[角色雙向翻轉與頂部裁切](docs/spec/038-character-geometry.md)的逐格來源核對；首版下載包尚未包含這些更新。其餘九景也已有[首輪 HD 候選稿](assets/hd/candidates/README.md)，與道場同樣等待多場景格式及正常遊戲接入驗證。
 
 目前已有原生雙打、兩人拳腳、斬四招、設定保存，以及可切換的屋頂 HD 背景、部分人物動作、已驗招式特效、柔邊地面陰影、生命條、計時、名字與勝場圖示。開場 `ROUND`／`FIGHT !`、斬首勝的鞠躬與 `JAAN WIN` 已接 HD；第二人法蘭克的抱胸、`FRANK WIN` 與右側首勝也已在 Linux 驗證。Linux 雙打基準曾正常打完兩回合、顯示結果並返回標題，後續擴充另驗各自範圍。完整角色 HD、實體手把、其他角色快捷、音訊與正式速度仍待驗收。最近收據及各平台限制見 [CONTEXT](CONTEXT.md)。
 
@@ -49,6 +49,10 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 以上是生成素材預覽；正常遊戲的整合驗證與限制見 [目前狀態](CONTEXT.md)及各規格。
 
 ## 目前整合畫面
+
+![正常擊倒過場的角色雙向翻轉 HD](docs/screenshots/character-flip-hd.png)
+
+Linux 開發版由普通選角、移動與拳擊進入擊倒過場。這張法蘭克使用原版雙向翻轉，核對來源像素與覆蓋後維持 HD；同狀態切換、恢復與下一回合已驗。頂部裁切另有正常案例，完整動畫仍待補。[接入範圍](docs/spec/038-character-geometry.md)。
 
 ![嵐正常首勝與 LAN WIN 的開發版 HD 整合](docs/screenshots/lan-victory-hd.png)
 

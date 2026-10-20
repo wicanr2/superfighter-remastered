@@ -98,6 +98,20 @@
       "platform": "Linux amd64 Docker Xvfb; not Wine/native OS hardware or physical controller acceptance",
       "authorization": "user requested HD assets and actual integrated screenshots in repository",
       "limits": "normal first victory and paused mode switch; source slot 2 sampled, not complete animation or all modes"
+    },
+    {
+      "kind": "normal native knockout double-flip HD integration; development version, not original-mode image",
+      "file": "character-flip-hd.png",
+      "sha256": "63e98a5070d734f004ee323bc705f41b00d396e7be6bae13a65c26563ee723fc",
+      "source": "workplace/character-geometry-native-c0-v1/geometry-hd.png",
+      "version": "v.0.1.1-20261020",
+      "receipt_sha256": "faed600154f868b9108b3f8495777cb978b3c993f5b618512a36975057dd3cb8",
+      "comparison_sha256": "8599fb9191300ffdbda8300cc1b1b6cdd30d3f6249b46902b937387b16def518",
+      "binary_sha256": "2d0105c6f24c35aa4f94764ea18eea67ef17fb09b648d2ba424ba02d8aa2db82",
+      "character_manifest_sha256": "e0f55d85c350aef533a7e416f597165412945765b83a3a5e3621af4e020aeaf6",
+      "platform": "Linux amd64 Docker Xvfb; not Wine/native OS hardware or physical controller acceptance",
+      "authorization": "user requested HD assets and actual integrated screenshots in repository",
+      "limits": "normal knockout, paused switching and next round; not complete animation or every clipping combination"
     }
   ],
   "version": "v.0.1.0-20261020",
