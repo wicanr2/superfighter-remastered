@@ -33,13 +33,15 @@
 | 魔王選角 | 已接原生，025 限定 CONFORMED | 單打／雙打可選蜘蛛女、小丑、印第安喬；普通輸入定位，原版程式與狀態不改。原八人框線越界只在獨立呈現影本排除。基底八案例及修正版 Linux／Wine 各單打、雙打通過；十二張原肖像／原生視窗核對，完整 Go 測試及 vet、舊設定補齊通過。完整過關／結局未驗 |
 | 小丑 HD | 已接原生，026 限定 CONFORMED | 62 組／72 槽、877 鍵／54 PNG，舊 805 鍵不變；Linux／Wine 各七項、九張完整重組及缺件九張整格原貌通過。JOKER／52×11、真實 HUD、完整程式測試及四平台來源通過；bin 已更新，WIN／快捷／完整動畫另驗 |
 | 印第安喬 HD | 已接原生，027 限定 CONFORMED | 44 組／72 槽、949 鍵／58 PNG，舊 877 鍵不變；Linux／Wine 各七項、九張重組及缺件九張整格原貌通過。INDIAN JOE／96×11、真實 HUD、完整 Go 測試及四平台來源通過；拳擊來源已補證為 path 27 的 5／6／7，v1 錯誤期望保留勘誤。WIN／快捷／完整動畫另驗 |
-| 蜘蛛女 HD | 已選定連身衣 HD，尚未接原生 | 使用者明確採用全覆蓋紫色連身衣比較稿，這是相對原服裝的已授權差異。定版 PNG 與請求保存在 spider-art-v1/coverage-prototype.png 及 coverage-prototype-request.json；保留原版姿態與操作，45 組／72 槽待製作 |
+| 蜘蛛女 HD | 連身衣造型已選定，圖集生成受阻 | 定版圖與使用者選擇保存在 spider-art-v1/accepted-design.json；全覆蓋連身衣十二格稿亦被工具於輸出階段拒絕，沒有 PNG，未反覆重試或變更選擇。正常 8／4 的 124 格與 WIDOW／57×11 姓名已解，暫保原貌，45 組／72 槽仍待製作 |
+| 子彈勝利 HD | 已接原生，028 限定 CONFORMED | 1021 鍵／59 PNG，新增四組／72 WIN 入口，舊 949 鍵不變；6,018 成對邊界、11 個 WIN 取樣及五張來源通過。Linux／Wine 各七張勝利、切換與下一回合清除通過，缺件七張回退。完整 Go 測試、真實字圖及四平台 37 份編譯來源通過；第二人／完整動畫另驗 |
+| 道場 HD 背景 | 候選及正常來源已備妥，尚未接原生 | dojo-art-v1 保存內建生成的 1922×818 原 PNG、精確請求及 I5 來源；正常 0／0 的 124 格均為 scene 0、背景 RAM／兩人來源吻合，八份背景色盤通過。dojo-source-review-v1.json 綁定來源；多場景接入與原生驗證另續 |
 | 原生效能診斷 | v2／v3 已判讀，未修改正式程式 | v2 的 20 秒區間推進 875 萬步／14 格，Wine／OpenGL 原生圖形呼叫為主。v3 指定 DirectX 推進 1000 萬步／16 格，cgocall 包含視窗事件與游標呼叫；單次區間不證明解決速度。證據在 desktop-performance-v3/analysis.json |
 | 顯示起點修正 | 已接原生，015 限定 CONFORMED | Linux／Wine 各十張開場、Linux 對戰十五張與舊素材十一張全部核對；起點第 7／11／12 列及可見尾端逐格正確，原貌與 HD 共用映射 |
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | Windows／macOS／Linux 已定 | 印第安喬整合的四份二進位核對 37 份編譯輸入後原封移入 bin，記錄為 joe-build-v1/promotion.json。舊魔王選角／小丑四份保留於 boss-clown-build-v2/bin，其選角收據仍綁定該版。未作 Windows／macOS 真機、簽章或正式封包；Wine 不代替真機 |
+| 平台與發布 | Windows／macOS／Linux 已定 | 子彈勝利整合的四份二進位核對 37 份編譯輸入後原封移入 bin，記錄為 bullet-victory-build-v1/promotion.json。舊印第安喬四份保留於 joe-build-v1/bin，魔王選角／小丑收據仍綁定各自舊版。未作 Windows／macOS 真機、簽章或正式封包；Wine 不代替真機 |
 
 ## 固定輸入
 
@@ -91,11 +93,11 @@ sf
 
 ## 待確認決策與下一步
 
-十一人選角、小丑 026 與印第安喬 027 已通過限定範圍；十人一般來源共 720 槽、569 組不同 bytes。使用者已選定蜘蛛女的全覆蓋紫色連身衣 HD，比較稿作為定版造型參考，原版姿態與操作不變。接著續做蜘蛛女、勝利、完整動畫、替代色盤、場景及標題／選角／結果。子彈 WIN 四組候選圖通過透明登錄，正常勝利 consumer 另驗。魔王單打過關與結局另驗。019 的 Wine 下一回合與第二人法蘭克的 Wine 勝利仍未通過，不盲目重跑長場。使用者目標仍是「完成快打至尊HD」，不能以選角或一般來源登錄齊全宣稱完成。
+十一人選角、小丑 026、印第安喬 027 及子彈首勝 028 已通過限定範圍；十人一般來源共 720 槽、569 組不同 bytes。蜘蛛女已選定全覆蓋連身衣，但十二格稿仍被圖片工具拒絕，保留決定及錯誤，暫用原貌。接著接入道場候選背景，續其餘勝利、完整動畫、替代色盤及標題／選角／結果。魔王單打過關與結局另驗。019 的 Wine 下一回合與第二人法蘭克的 Wine 勝利仍未通過，不盲目重跑長場。使用者目標仍是「完成快打至尊HD」，不能以選角或一般來源登錄齊全宣稱完成。
 
 使用者指定的[說明書頁面](https://chiuinan.github.io/game/game/intro/ch/c51/sf.htm)及兩張圖片已存檔，版本自述為 1.1。原生入口目前採西側面鍵拳、南側面鍵腳與八方向；Start／Esc 暫停前端，沒有把 Esc 送原版觸發說明書記載的補血。鍵鼠正常路徑已驗，實體手把另驗；完整手把規格仍有未驗部分。
 
-HD 採 B「街機手繪」。現行群組為 `hd-characters-joe-candidate-v1`，共 58 張透明圖集、949 個姿態鍵：720 個一般來源槽、13 個第二色盤特效鍵、216 個 WIN 入口。一般來源共 569 組不同 bytes；WIN 對應斬／法蘭克／薩爾可夫十二張不同姿態。來源與提示詞留各自 art 目錄，登錄保留原 PNG bytes。來源槽齊全不等於完整動畫已驗；C0h 同時翻轉、頂部裁切、受擊替代色盤及剩餘介面待補。正式倍率、像素比例與預設模式尚未定版。
+HD 採 B「街機手繪」。現行群組為 `hd-characters-bullet-victory-v1`，共 59 張透明圖集、1021 個姿態鍵：720 個一般來源槽、13 個第二色盤特效鍵、288 個 WIN 入口。一般來源共 569 組不同 bytes；WIN 對應斬／法蘭克／薩爾可夫／子彈十六張不同姿態。來源與提示詞留各自 art 目錄，登錄保留原 PNG bytes。來源槽齊全不等於完整動畫已驗；C0h 同時翻轉、頂部裁切、受擊替代色盤及剩餘介面待補。正式倍率、像素比例與預設模式尚未定版。
 
 目前 dosgolem 獨立副本有 1719 份來源，前版 1715 份 bytes 不變，新增四份已驗顯示 API 與測試。舊 manifest 保存於 `dosgolem-patched-manifest-v2.json`，現行身分見 `dosgolem-patched-manifest.json`。四個二進位的實際編譯身分見 `bin/*.build.json`；目前勝負切片以 `victory-core-compat-v2`、`native-victory-v1` 及 `windows-victory-v1` 為準。顯示修正基底的四個二進位與 30 份編譯輸入另存 `native-display-opening-v2/build-baseline`，舊收據保留各自版本身分。
 
@@ -107,7 +109,13 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ## 現行證據入口
 
-### 目前印第安喬整合
+### 目前子彈勝利整合
+
+- [規格 028](docs/spec/028-bullet-victory.md)限定 CONFORMED。候選 1021 鍵／59 PNG 保留舊 949 鍵，新增 CCWIN 四組來源與 72 個 WIN 入口。DRAFT、正常診斷與圖集身分綁定於 `bullet-victory-evidence-review.json`。
+- `bullet-victory-core-v1` 的 6,018 個成對邊界、11 個 WIN 取樣及五張保存畫格通過獨立重組。Linux／Wine 與缺件三案例各七張通過，勝利切換及下一回合清除完整。兩平台各案例內字圖變動 5,109 點、金色實心 1,552 點，另目視確認；不稱跨平台同狀態。
+- 四份已驗候選原封移入 bin，37 份編譯輸入吻合，記錄於 `bullet-victory-build-v1/promotion.json`；舊印第安喬四份保留於 `joe-build-v1/bin`。自有來源及完整歷史備份為 `workplace/github-bullet-victory-integration-progress.bundle`，稽核記錄為 `github-bullet-victory-integration-progress-source.json`。遠端未建立或推送。
+
+### 印第安喬整合基底
 
 - [規格 027](docs/spec/027-joe-hd.md)限定 CONFORMED。四張原 PNG 與精確內建 imagegen 請求在 `joe-art-v1`，72 槽／44 組來源、949 鍵及舊 877 鍵不變由 Go 嚴格讀取驗證。補證 DRAFT 與來源身分見 `joe-evidence-review-v2.json`。
 - `hd-frame-joe-v2` 正常 10／4 的 124 格，兩人完整 bytes 與屋頂吻合。只有第一人出拳時 path 27 使用 5／6／7；第一份雙人拳階段的 11／12 是 path 10，不再當拳擊期望值。原 v1 與追加勘誤保留於 `joe-punch-source-correction.json`。

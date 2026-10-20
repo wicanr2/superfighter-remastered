@@ -411,3 +411,15 @@
 - 子彈下一批 WIN 靜態來源為 CCWIN.FIG，72 入口／四組圖。原參考、精確內建請求及四格透明候選保存於 bullet-victory-source-v1、bullet-victory-art-v1，未接 production，也未將靜態解碼當正常勝利收據。
 - 蜘蛛女原服裝生成被拒後，先展示全覆蓋紫色連身衣比較稿。使用者明確選擇「採用比較稿的連身衣 HD」，因此該圖成為已授權造型參考；原 PNG、請求及原失敗仍保留。只改 HD 服裝，原版姿態、操作與規則保留，接著繼續製作。
 - 本批建置、來源探針、測試與 GUI 容器已結束並移除。自有來源與完整歷史備份使用 workplace/github-joe-integration-progress.bundle，核對記錄為 github-joe-integration-progress-source.json。完整 HD、魔王過關／結局、實體平台／雙手把、音訊／速度與正式封包尚未完成。
+
+## 2026-10-20 子彈首勝 HD 與後續來源
+
+- 印第安喬接入 c68ecaf，f57e573 合入進度分支，183 份自有檔案與主工作根相同；完整歷史 bundle 的 20 refs 及 SHA-256 7e3a2ca56d788b7a471afd0224fd4897cd12762db21ee30e646fc5d9123de1a5 通過。收尾核對 128 原檔、1719 執行器來源及 479 本機 Markdown 連結。
+- 子彈 CCWIN.FIG 四組原圖依內建 imagegen 製作一張 2172×724 透明原 PNG，沒有程式修改。1021 鍵／59 PNG／十四來源保留舊 949 鍵，Go 嚴格候選讀取通過。原檔前 96 bytes 與 SFMAN03 的 AC8h 正常色盤相同。
+- 單核心診斷先以普通方向與拳取得正常 2／4 首勝，生命 124／0、計時 51，五張來源獨立重組及下一回合清除通過。獨立工具初版誤讀 HUD 的 health 欄位，實際 schema 為 display_health；修正工具後乾淨重跑，不改產品。DRAFT 及來源審查綁定於 bullet-victory-evidence-review.json，028 升 READY 後才補 BULLET 勝負姓名。
+- 成對核心再驗 6,018 邊界的狀態與即時 RGB 不變、11 個 WIN 取樣、槽 0／2／3 及五張保存畫格，均由原檔重組；槽 1 只有靜態證據。完整 internal／cmd 測試與 go vet、真實原字圖及錯來源拒絕通過。
+- Linux／Wine 的正常首勝與 Linux 缺 WIN 三個案例各七張完整通過。普通操作取得擊倒，BULLET WIN、原貌／HD／恢復及下一回合清除均核對；缺件時勝利整格原貌，下一回合恢復 HD。每個平台內恢復逐點一致，GPU 字圖各 5,109 變動點／1,552 金色實心點，另目視，不稱跨平台同狀態。
+- 028 升限定 CONFORMED。四個候選 ELF／PE／兩種 Mach-O 與 37 份精確編譯來源通過，原封移入 bin，舊印第安喬四份保存於 joe-build-v1/bin。README 加入目前勝利、原貌及恢復圖，現行群組改為 1021 鍵，工作文件同步。
+- 蜘蛛女的已選定全覆蓋連身衣十二格稿，仍被內建工具於輸出階段拒絕，請求 ID 18314280-85c6-4256-8e08-d2aa8d613bfe。沒有 PNG，也沒有反覆重試或改變已選方案；accepted-design.json 與 covered-generation-failure-00.json 分別保存決定與失敗。正常 8／4 的 124 格來源及 WIDOW／57×11 姓名已驗，原生仍保留原貌。
+- 道場下一背景依 I5 原構圖生成 1922×818 候選原 PNG，來源與精確請求在 dojo-art-v1，尚未接 production。正常 0／0 的 124 格均為 scene 0，背景 RAM、角色 bytes 與八份背景色盤全部吻合，camera 80–145；dojo-source-review-v1.json 綁定來源。後續才處理多場景載入與原生接入。
+- 沿用既有 Docker 映像，沒有改共用 dosgolem、原版規則／速度、設定格式、快捷或歷史收據。子彈建置、來源、測試與 GUI 工作均已結束；道場來源亦已結束。自有來源與完整歷史保存於 workplace/github-bullet-victory-integration-progress.bundle，核對記錄為 github-bullet-victory-integration-progress-source.json。未推送、未發布，完整 HD 與正式封包仍未完成。

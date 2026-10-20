@@ -470,3 +470,21 @@ Go 1.24.13 嚴格讀取候選與正常來源、完整程式測試及 vet 通過�
 已證實於原檔：CCWIN.FIG SHA-256 `1fcf7dda4b8d78e706497f83e188c97890d6d5f17c8e6c65f82088d7b3e28402`，檔案偏移 60h 表、180h 圖像基底，72 入口對應四組 bytes。原圖為兜帽防備至露出金髮的四個姿態；獨立參考與完整來源索引在 bullet-victory-source-v1/manifest.json。這是 Pillow 11.3.0 靜態解碼，尚非正常 WIN consumer 證據。
 
 內建 imagegen 生成四格透明候選，2172×724，SHA-256 `40e9ecc471cb8c1ba71016deba7ceaf70cb1d90bf3e26f4147101a6e168d70d5`。原 PNG、精確請求及嚴格透明矩形保存在 bullet-victory-art-v1；未接 production，仍需正常勝利來源與規格審查。
+
+## 2026-10-20 子彈 WIN 動態來源與接入
+
+補上正常來源：bullet-victory-core-diagnostic-v1 經普通 2／4 選角、方向及拳取得首勝，生命 124／0、計時 51、winner word 0002h，五張原檔重組通過。字圖來源 BULLET／NAME 槽 2，runtime caller IP 39DCh、SI 05C8h、矩形 (109,54,62,11)；WIN／槽 17，caller 39F9h、SI 368Ch、矩形 (180,54,31,11)。完整字圖、SHA 及來源保存在各凍結畫格，runtime 位址與 CCWIN 實檔偏移分開記錄。
+
+來源審查後 028 升 READY，再補勝負姓名。Go 1.24.13 成對核心 6,018 邊界的狀態與即時 RGB 相同，11 個 WIN 取樣含槽 0／2／3，Pillow 11.3.0 獨立重組五張來源通過。Linux／Wine 與缺件三案例各七張完整重組、各自同狀態切換及下一回合清除通過。原字圖拒絕、完整程式測試及四平台 37 份編譯來源通過，028 限定 CONFORMED；槽 1 動態、第二人與完整動畫仍未驗。
+
+## 2026-10-20 蜘蛛女已選造型與新限制
+
+使用者明確選擇全覆蓋紫色連身衣 HD。定版圖 SHA-256 `4cbd89d69901d875587d2fdd471cf487917e357d52c5773b0564ecc2a75b8b74` 與原請求綁定於 spider-art-v1/accepted-design.json。十二格連身衣請求仍被工具於輸出階段拒絕，沒有 PNG；covered-generation-failure-00.json 保存 ID 18314280-85c6-4256-8e08-d2aa8d613bfe。沒有重試相同稿或將比較圖冒充完整動畫。
+
+已證實於正常原版取樣：SFMAN09.DAT SHA-256 `76f1a2484fd551c574279138e16f2f70971c4a7259858406e90c0211a2f3f53e`，72 槽／45 組；hd-frame-spider-v1 正常 8／4 的 124 格、兩人 packed bytes 與屋頂 RAM 相同。原 NAME 槽 8、實檔 17EBh、57×11 為 WIDOW，像素 SHA-256 `87b661f0cebdf76ddc8171241d0135269add91ab45c4a4b294a8cc9d1322f608`。來源與工具身分見 spider-source-review-v1.json；尚未接 HD 或姓名白名單。
+
+## 2026-10-20 道場候選背景與正常來源
+
+已證實於原檔及正常取樣：I5.XGB SHA-256 `44d8adf7662c46396092581175fd0b85ca7179b9f99fe9c66b680f0ff50a9b61`，解碼 480×204，像素 SHA-256 `71c366851b72c14b1871906a42f8746fead325a26e4ee25a166b5232fb02c3ae`。hd-frame-dojo-v1 以正常 0／0 選角取 124 格，runtime 01B9:5DD3 的背景 RAM、角色 bytes 及八份原背景色盤全部吻合，scene 0、camera 80–145；不是所有鏡頭與動畫驗收。
+
+內建 imagegen 依原圖構圖、三名遠景練武者、暖色地板與樑柱製作候選。1922×818 原 PNG SHA-256 `68a8e64e6e4dc47e61fa52f43e78471a855f6a86e2e8913ba92f13439a3db11b`，精確請求及原 bytes 保存於 dojo-art-v1；dojo-source-review-v1.json 綁定 Go 1.24.13／Pillow 11.3.0 來源。候選尚未接多場景背景或正式玩家路徑。
