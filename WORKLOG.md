@@ -428,3 +428,13 @@
 
 - 子彈首勝接入 6c549de，1a3080e 合入進度分支，185 份自有來源與工作根相同。完整 Git 備份 22 refs，SHA-256 a99bba3cdf4367deeb26ad257cee844db9dca8a7d8d6bc76d6999fae91fe209a，128 原檔／1719 執行器來源／490 本機 Markdown 連結通過核對。該批容器全部移除。
 - 建立 029 DRAFT，提議同一版本 2 背景包自動對應屋頂、道場，舊屋頂包不需轉檔。依使用者的資料格式決策規則及 grilling 技能提出相容方案，等待回答前不進 production；正常來源與候選已備妥，原生現行仍是單屋頂包。其他 WIN 製作繼續。
+
+## 2026-10-20 鳳凰首勝 HD
+
+- 多場景包確認尚待回答，繼續不依賴新格式的鳳凰 WIN。EEWIN 三組原圖、6279 bytes、72 入口與正常色盤核對；內建 imagegen 生成一張 2172×724 三格透明原 PNG，精確請求、SHA 及矩形保存在 phoenix-victory-art-v1。沒有修改生成 PNG bytes。
+- 正常 3／4 單核心診斷以普通方向與拳取得首勝，生命 124／0、計時 51，四張凍結畫格、八個 WIN 取樣與下一回合清除由原檔獨立重組。候選 1093 鍵／60 PNG 保留舊 1021 鍵；DRAFT、候選與正常來源審查後 030 升 READY，再補 PHO HUANG 勝負姓名。
+- 成對核心完成 5,952 邊界，狀態及即時 RGB 相同，WIN 取樣為槽 0／2，槽 1 只有靜態證據。真實 PHO HUANG／WIN 原字圖、位置與錯來源拒絕、完整 internal／cmd 測試及 go vet 通過；不把單元測試當完整動畫驗收。
+- Linux／Wine 首勝與 Linux 缺件三案例各七張完整重組通過。每個案例內原貌／HD／恢復的核心、來源及設定相同，恢復逐點一致；勝利 GPU 字圖各 6,881 變動點、1,970 金色實心點，另目視人物、名字及原貌。下一回合快照清空；缺 WIN 的舊群組勝利整格原貌、下一回合恢復 HD。
+- 030 升限定 CONFORMED，四份 ELF／PE／兩種 Mach-O 的 37 份實際編譯輸入通過，原封移入 bin；舊子彈首勝四份在 bullet-victory-build-v1/bin，移入收據為 phoenix-victory-build-v1/promotion.json。README 加入鳳凰首勝、原貌與恢復圖，現行群組改為 1093 鍵／60 PNG，工作文件同步。
+- 另將剩餘六份 WIN 原檔靜態解碼為 432 入口／30 組：鬼丸 4、嵐 6、金太極 8、蜘蛛女 5、小丑 3、印第安喬 4。來源、雜湊及別名保存於 remaining-victory-source-v1/manifest.json，尚未作正常消費端或 HD 接入聲明。
+- 原版、衍生美術、私有執行器、收據與二進位繼續排除 Git。沿用既有映像，未改共用 dosgolem、原版規則／速度、設定或快捷；鳳凰全部建置、核心、測試及 GUI 容器均已結束。自有來源與完整歷史備份為 workplace/github-phoenix-victory-integration-progress.bundle，核對記錄為 github-phoenix-victory-integration-progress-source.json，遠端未建立或推送。029 仍為 DRAFT，未實作多場景新格式。
