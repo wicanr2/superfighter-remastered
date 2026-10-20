@@ -903,3 +903,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - full-v3 二十九張正常雙打擷取遍歷兩側十一人，fallback-v3 十五張以斬及三魔王兩側抽樣未載候選回退。獨立核對 61 份 BIGFIG 原色號／色盤、38 份 GPU 候選／鏡像方向、框外原貌、兩組暫停切換／恢復及進屋頂對戰清除全部通過。兩組恢復的 HD 像素相同；Pillow 與 GPU 的縮小方法不同，不稱採樣逐點 parity。
 - 私有完整原生畫面已目視，含原版背景／縮圖而不公開；README 保留純 HD 接觸圖並更新隔離原型範圍，沒有把候選圖改稱原生收據。素材仍為 117 PNG／131 catalog／135 檔、161,069,925 payload bytes、1516 鍵／74 圖集。047、029、046 的正式視覺／格式閘門保持，未驗單打、其他平台、損壞候選與實體手把。收尾稽核與推送另記。
 - selection-native-prototype-v2/final-audit.json 通過：兩條原生路徑共四十四張、61 份原來源及 38 份 GPU 候選／方向辨識，私有編譯來源及只變動肖像儲存方式的對照已核對。183 個 README 相對連結與新檔索引通過；128 原檔、1719 執行器來源、正式 i64、所有素材、正式 46 份編譯輸入、四平台程式、首版八包與原曲影片不變。未公開原版圖／raw／原型二進位；UID／誤建目錄通過，本專案容器已清空。
+- 原型與正常流程驗證提交 `68c9fd7aa5b988dbcfff9890dc0a68e823682da4` 已推送 origin/main，遠端完整提交核對相同；首版 tag 仍為 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段為文件收尾，047 保持 DRAFT，不建立新 Release。
