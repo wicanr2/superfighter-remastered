@@ -244,6 +244,17 @@
       "receipt_sha256": "a205195e31d4673ec9aa3e91501dae82e0d66c61347f938123653c977925d8da",
       "authorization": "使用者要求完整 HD、素材上傳及 GitHub 可見 README 圖片",
       "limits": "未接核心、原按鈕、游標與色盤動畫；原貌比較只留本機"
+    },
+    {
+      "file": "title-palette-candidate.png",
+      "sha256": "a9846fecca5556f9c9f8789f1acf23b7f506691b1718e9dc39674d6e94f6d313",
+      "source": "workplace/title-animation-v3/phase-sheet.png",
+      "kind": "HD 材質換色十六步候選；非原生遊戲擷取",
+      "renderer": "tools/preview_title_animation.py",
+      "renderer_sha256": "61dce36ff23985e45d12de07c51ffbb67b7525802590c5385d49519e04856f94",
+      "receipt_sha256": "e0bccc6ffdf19a4b7290705b253f195cb2604ba3ff5f60085fb2cf9b7a669a5e",
+      "authorization": "既有完整 HD 與 GitHub 可見 README 圖片授權",
+      "limits": "材質分區為位置投影假說；尚未接原生、輸入或正式載入。GIF 及原貌只留本機"
     }
   ]
 }

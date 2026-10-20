@@ -50,7 +50,7 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 ![標題與主選單的靜態 HD 候選，尚未接入遊戲](docs/screenshots/title-menu-candidate.png)
 
-標題人物與紅金字標已重繪並收錄候選。上圖是依原版構圖製作的靜態比較，尚未定版或接入；原字標的循環換色仍需保留。[來源及接入閘門](docs/spec/046-hd-title-menu.md)。
+標題人物與紅金字標已重繪並收錄候選。上圖是依原版構圖製作的靜態比較，尚未定版或接入。原字標循環換色、框線及游標已補來源核對；另有[十六步 HD 材質換色比較](docs/screenshots/title-palette-candidate.png)，材質分區仍是候選。[來源及接入閘門](docs/spec/046-hd-title-menu.md)。
 
 ## 目前整合畫面
 

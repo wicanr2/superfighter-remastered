@@ -149,6 +149,11 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [標題動態構圖比較](tools/preview_title_animation.py) | 原十六步相位順序、框線脈動及四選項比較，核對 alpha／零相位／下半字標保持；GIF 只留本機 |
+| [標題換色比較](tools/title_palette_preview.go) | 以原來源已用色號及八個原色盤相位繪製既有字標的不可變 RGB 近似，不修改 PNG 或正式程式 |
+| [標題動態獨立核對](tools/verify_title_lifecycle.py) | 完整原色號／八相位／選取框脈動／16×16 游標及設定往返、閒置離開；不代替原生 HD 驗收 |
+| [標題生命週期取樣](tools/title_lifecycle_receipt.go) | 正常待機換色、原設定往返與單打選角，保存檔案開啟寄存器及原堆疊作定位線索 |
+| [標題原呼叫匯出](tools/ida_title_evidence.py) | 唯讀正式 DB 複本的 TITLE／SFNAME 字串、引用候選與原函式，不推測改名 |
 | [標題候選收錄](tools/import_title_candidates.py)、[構圖比較](tools/preview_title_menu.py) | 保存人物／字標原 PNG 及精確請求，按原版矩形作可丟棄比較，原貌對照留本機 |
 | [標題完整來源核對](tools/verify_title_menu.py) | 獨立解碼 TITLE／SFNAME.CPM、全畫面色號／色盤重組及原四按鈕取樣，不代替標題識別或原生 HD 驗收 |
 | [標題主選單來源取樣](tools/title_menu_receipt.go) | 正常啟動四份原標題、穩定取樣及四按鈕動作，不注入狀態或改正式程式 |
