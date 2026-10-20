@@ -1,6 +1,6 @@
 # 036：三平台封包與本機推廣片
 
-狀態：封包與影片限定 CONFORMED；遠端發布另核對。使用者已要求發布 Release，且明確指定「release 不包含遊戲，但 local 完整版要」。影片只留本機，必須用原版音樂，另評估音樂及語音 HD。
+狀態：首版限定 CONFORMED，已發布並核對遠端資產。使用者已要求發布 Release，且明確指定「release 不包含遊戲，但 local 完整版要」。影片只留本機，必須用原版音樂，另評估音樂及語音 HD。
 
 ## 範圍與版號
 
@@ -32,6 +32,7 @@ macOS 的 CFBundleVersion／CFBundleShortVersionString 依 [Apple 平台格式](
 - `smoke/linux-play-record` 從實際本機封包正常雙打，四項通過：HD 資產自動載入、預設鍵盤快捷／移動、失焦與中立閘門、滿血練習。三張畫面由原始資料獨立重組。現行版魔王單打及蜘蛛女切換另由 workplace/release-boss-single-v1／release-spider-hd-v1 通過。
 - 本機影片為 `promo/v.0.1.0-20261020-local-promo.mp4`，60 秒、1280×720、30fps、AAC 48kHz 雙聲道。包含十八秒真實原生錄影，其餘靜態畫面清楚標示；有原版 MIDI 軟體演奏，保留曲目、SoundFont 與來源 SHA。字幕邊界、抽樣畫面、完整解碼、音量與黑幀已驗。原生操作有數秒畫面停留，凍結檢測結果保留，不稱正式速度通過。技術音量檢查不等於人耳抽聽。
 - 鍵盤限 035 已驗範圍；斬四招沿用 004 來源，其他角色僅配置。完整 HD、遊戲音訊串流、魔王完整過關與結局、實體手把及平台真機仍未完成，不影響使用者選定的首版有限發布。
+- [首版 Release](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.0.1.0-20261020)已發布，tag 固定提交 `807579d01c145db327050c2e870e2bf46e6bcb68`。四個引擎 ZIP 與一份 manifest 的遠端大小、SHA-256 均符合本機核對，沒有完整版或影片。儲存庫目前為 PRIVATE，僅有權限帳號可見；「公開包」指可供公開的內容分類，不代表已變更儲存庫可見性。收據在 smoke/github-publish.json，已發布 tag／Release 不移動或覆寫。
 
 ## 重現入口
 

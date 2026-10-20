@@ -598,6 +598,10 @@
 - final-audit.json 核對原始 jsdos、128 原檔與 1719 執行器來源不變、README 七十個受追蹤相對連結、七張截圖來源、文件索引、Python 語法與 macOS metadata。全工作樹沒有 root-owned 檔案或誤建 .md 目錄。已驗二進位與封包雜湊不因文件收尾改動。
 - GitHub 發布工具限定四個 patch ZIP 與 release-manifest.json，先草稿、核對遠端大小與 SHA 再發布。既有 gh 設定中的舊憑證失效；改用已存在且有效的 Git credential store 唯讀供容器取得 GH_TOKEN，沒有搬運、輸出、保存或修改憑證。GitHub release list 為空，尚無相同 tag。後續實際提交、發布與遠端核對追加於下方。
 - 首次來源提交 35075f4d0cc83c920d222f35cc56cee1ff474f59 已推送。五個資產上傳草稿後，工具用 tags API 查未發布草稿得到 404，沒有發布或覆寫。改由授權可見的 releases 清單查唯一草稿，再核對 target／資產；這是發布工具的查詢錯誤，封包與正式程式 bytes 不變。修正提交另推送，草稿目標在正式 tag 建立前更新到修正版。
+- 發布工具修正提交 807579d01c145db327050c2e870e2bf46e6bcb68 已推送，草稿目標更新後再次驗五個資產。2026-10-20T12:59:06Z 正式發布 v.0.1.0-20261020；公開 Release URL 為 https://github.com/wicanr2/superfighter-remastered/releases/tag/v.0.1.0-20261020。四個 ZIP 與 manifest 的 GitHub SHA-256 digest／大小全部吻合，只有五個指定資產，沒有 full-local／promo／原版資料；git ls-remote 核對正式 tag 等於該完整提交。發布後只補文件，沒有移動 tag、改動封包或重發。
+- 發布後匿名下載核對回 404。登入查 repo metadata 確認目前為 PRIVATE，正式 Release 為 published、非 draft，五個資產 SHA 正確。沒有以匿名失敗宣稱發布失敗，也沒有自行改可見性；README、現況與 036 補充需有權限帳號登入。以上「公開包」是素材權利與內容分類，Release URL 本身仍受私人儲存庫存取控制。後續使用有權限 API 與實際 manifest 下載核對遠端圖片及資料。
+- remote-download-check.json 通過有權限帳號的實際 manifest 下載及 SHA，五張本輪 README 圖片由 GitHub contents API 讀回 bytes，均與本機完全相同。github-verify.json 再核對已發布版本的五個資產，正式 tag 保持 807579d。後續文件收尾不改任何遊戲、素材或封包 bytes。
+- 收尾再核對 43 份編譯輸入、原始包／128 原檔／1719 執行器來源、七張截圖、相對連結、索引、Python 語法及 macOS metadata，均通過；沒有 root-owned 檔案或誤建 .md 目錄。以本工作樹掛載過濾 Docker 容器為空，本輪一次性容器全部移除，沒有新增映像或清理其他專案資源。
 
 重現命令在容器 `/project` 內執行，原版掛 `/orig` 唯讀，工作樹與 workplace 為本專案輸出。每次 docker run 均使用 --rm、--user 1000:1000、--network none、相稱資源限制與 timeout；只有 GitHub API 上傳開網路。
 

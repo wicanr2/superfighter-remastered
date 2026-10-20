@@ -16,7 +16,9 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 ## 首版下載與資料準備
 
-首版為 [v.0.1.0-20261020](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.0.1.0-20261020)。公開 Release 提供 Windows、Linux、macOS Intel 與 Apple Silicon 四個程式包、HD 生成素材及資料匯入功能，原版遊戲由玩家自行提供。執行程式時加上 `-import-data 原版目錄或jsdos檔 -data game-data`，會核對固定版本並建立新的資料目錄；既有目錄不覆寫。匯入後會從自己的原版資料準備屋頂 HD 參考。
+首版為 [v.0.1.0-20261020](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.0.1.0-20261020)。Release 提供 Windows、Linux、macOS Intel 與 Apple Silicon 四個程式包、HD 生成素材及資料匯入功能，原版遊戲由玩家自行提供。執行程式時加上 `-import-data 原版目錄或jsdos檔 -data game-data`，會核對固定版本並建立新的資料目錄；既有目錄不覆寫。匯入後會從自己的原版資料準備屋頂 HD 參考。
+
+儲存庫目前為私人，Release 與圖片需由有權限的帳號登入查看。這裡的公開包指排除原版資料的發行內容。
 
 本機完整版另包含合法持有的原版資料，保存在 `dist-all/v.0.1.0-20261020/full-local/`；含原版 MIDI 配樂的推廣片只保存在同版本的 `promo/`，兩者均不上傳。四平台檔案、啟動驗證及已知限制見[發行契約](docs/spec/036-release-packages.md)。
 

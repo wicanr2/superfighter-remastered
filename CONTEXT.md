@@ -4,6 +4,8 @@
 
 目前工作樹為 `/home/anr2/cht/快打至尊/superfighter-remastered`，使用 `main` 追蹤 `origin/main`。使用者已建立 [GitHub 儲存庫](https://github.com/wicanr2/superfighter-remastered)，遠端已建立並上傳來源，後續提交與核對見 WORKLOG。父目錄程式與文件只保留舊快照；後續編輯在本工作樹進行。
 
+GitHub 目前 visibility 為 PRIVATE，Release 需由有權限帳號查看。引擎公開包是內容分類，本輪未改儲存庫可見性；匿名查詢回 404 與已登入帳號的發布／資產驗證分開記錄。
+
 使用者後續明確要求「HD素材上傳」，本輪又要求「hd記得放進去 repo」。[assets/hd/README.md](assets/hd/README.md)收錄 83 張生成 PNG 及現行角色清單，包含 65 張正式角色／特效圖集、屋頂、道場候選、蜘蛛女舊比較稿及十五張外部候選；逐檔身分見 [catalog.json](assets/hd/catalog.json)。外部稿保留去背處理前後的雜湊。這些授權取代以下舊切片的 HD 圖只留本機限制，原版檔案、原版色號／色盤、原圖、私有執行器與研究收據仍不上傳。沒有改變儲存庫可見性、原版資料權利或 HD 完成標準。
 
 素材及清單共 98,133,629 bytes，整個素材目錄 92 檔。所有 PNG、來源雜湊、尺寸及角色清單均核對；鬼丸首勝 031 及其餘三人首勝 033 已通過限定接入，仍不代表完整角色／場景完成。README 的圖片與相對連結另比對 Git 追蹤清單，HD 整合截圖收錄於 [docs/screenshots/](docs/screenshots/)，原貌對照及原始收據保留本機。
@@ -25,7 +27,7 @@
 | 項目 | 狀態 | 最近證據與限制 |
 |---|---|---|
 | 鍵盤重綁與快捷 | 035 限定 CONFORMED | 每人十四欄、兩人四格快捷，保存及舊檔相容。Linux／Wine 各六項正常路徑通過；兩人斬第一招 path 24h、按住一次、方向與拳腳獨立。實際 Linux 封包另驗失焦中立。其他角色快捷仍拒絕，斬完整四招沿用 004 |
-| 首版交付 | v.0.1.0-20261020 封包已驗，遠端發布待核對 | dist-all 同版 patch 四包及 full-local 四包逐檔／CRC／SHA 通過。公開不含原版，本機各 125 原檔。Linux／Wine 公開包匯入、拒絕覆寫、兩種包啟動與 HD 自動準備通過；macOS 只驗內容及架構。推廣片只留本機，採原版 MIDI 軟體演奏 |
+| 首版交付 | v.0.1.0-20261020 已發布並核對 | [Release](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.0.1.0-20261020)的四個引擎包及 manifest 遠端大小／SHA 正確，tag 固定 807579d01c145db327050c2e870e2bf46e6bcb68。dist-all 同版 patch／full-local 各四包，本機各 125 原檔。Linux／Wine 啟動、公開匯入／拒絕覆寫及自動 HD 通過；macOS 只驗內容／架構。六十秒原曲推廣片只留本機 |
 | 原版音訊與 HD 評估 | 格式盤點完成，遊戲串流未接 | SF000.MUS 十五段 MIDI；十七個 PPM 容器四十筆 Compact PCM。首段原曲供本機影片，語音取樣率／編碼／角色標籤仍未知；見 docs/audio-hd-assessment.md，不稱音訊 HD 完成 |
 | 首輪三人 WIN | 已接原生，033 限定 CONFORMED | 該切片 1381 鍵／64 PNG／十九來源。22,020 個成對邊界、18 張原檔重組、真實姓名與新來源測試通過；三個 Linux 首勝及缺件案例各七張切換／清除通過。小丑為時間到判勝。四平台 38 份輸入及 bin 已更新；本切片未驗 Wine／真機。嵐 alpha 與蜘蛛女姿勢卡點先跳過；道場整理完成，029 格式仍待確認 |
 | 練習模式 | 已接原生，032 限定 CONFORMED | 工具列／F9／-training 共用；雙方補滿且鎖血、停時、AI 中立，關閉恢復。核心單／雙打、七個拒絕邊界、Linux 單打七項與 Linux／Wine 雙打 HD 各八項通過；重啟預設關，曾啟用標示 modified。完整程式測試及 vet 通過 |
