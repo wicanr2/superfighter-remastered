@@ -80,6 +80,7 @@ def main():
     files += [p / name for name in ("docs/spec/013-hd-round-messages.md", "docs/spec/014-mode13-scanout.md", "docs/spec/015-native-scanout.md", "docs/spec/016-hd-victory-messages.md", "docs/spec/017-victory-pose-banks.md", "docs/spec/018-sarkov-hd.md", "docs/spec/019-sarkov-victory.md", "docs/spec/020-bullet-hd.md", "docs/spec/021-phoenix-hd.md", "docs/spec/022-onimaru-hd.md", "docs/spec/023-lan-hd.md", "docs/spec/024-kim-hd.md", "docs/spec/025-boss-selection.md", "docs/spec/026-clown-hd.md")]
     files.append(p / "docs/spec/027-joe-hd.md")
     files.append(p / "docs/spec/028-bullet-victory.md")
+    files.append(p / "docs/spec/030-phoenix-victory.md")
     receipt = {"kind": "native intermediate builds; not release packages or macOS hardware acceptance",
                "go_version": subprocess.check_output(["go", "version"], text=True).strip(),
                "images": {"linux": "dosgolem-go-ebiten:1.24-r1", "cross": "tokugawa-desktop-platforms:go1.24.13-sdk15.5-noble-r1"},

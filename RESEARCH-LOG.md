@@ -488,3 +488,15 @@ Go 1.24.13 嚴格讀取候選與正常來源、完整程式測試及 vet 通過�
 已證實於原檔及正常取樣：I5.XGB SHA-256 `44d8adf7662c46396092581175fd0b85ca7179b9f99fe9c66b680f0ff50a9b61`，解碼 480×204，像素 SHA-256 `71c366851b72c14b1871906a42f8746fead325a26e4ee25a166b5232fb02c3ae`。hd-frame-dojo-v1 以正常 0／0 選角取 124 格，runtime 01B9:5DD3 的背景 RAM、角色 bytes 及八份原背景色盤全部吻合，scene 0、camera 80–145；不是所有鏡頭與動畫驗收。
 
 內建 imagegen 依原圖構圖、三名遠景練武者、暖色地板與樑柱製作候選。1922×818 原 PNG SHA-256 `68a8e64e6e4dc47e61fa52f43e78471a855f6a86e2e8913ba92f13439a3db11b`，精確請求及原 bytes 保存於 dojo-art-v1；dojo-source-review-v1.json 綁定 Go 1.24.13／Pillow 11.3.0 來源。候選尚未接多場景背景或正式玩家路徑。
+
+## 2026-10-20 鳳凰 WIN 來源與接入
+
+EEWIN.FIG 共 6,279 bytes，SHA-256 `65f8536cdd3ba96c63d116df5c701b401776e39643fb5fb10c790ac1fdeb2a8c`。實檔 60h 表、180h 圖像基底，72 入口對應三組 bytes；前 96 bytes 與 SFMAN04 的 AC8h 正常色盤相同。原 PNG、來源索引及精確內建請求分別在 phoenix-victory-source-v1、phoenix-victory-art-v1，候選 2172×724 SHA-256 `c4c2ba8fdefb79d0041639e958338777bf68264caa2e62d1371ff421d3119556`，未改原 bytes。
+
+正常 3／4 的單核心診斷以普通方向與拳取得首勝，生命 124／0、計時 51、winner word 0003h。字圖 PHO HUANG／NAME 槽 3，runtime caller IP 39DCh、SI 0874h、矩形 (94,54,93,11)；WIN／槽 17，caller 39F9h、SI 368Ch、矩形 (196,54,31,11)。四張原檔重組及八個 WIN 取樣通過，這些 runtime 定位與實檔偏移分開保存。
+
+來源審查後 030 升 READY。Go 1.24.13 成對核心 5,952 邊界的狀態與即時 RGB 相同，取樣槽 0／2；槽 1 只有靜態來源。Pillow 11.3.0 獨立重組 Linux／Wine 及缺件三案例各七張，勝利、同狀態切換及下一回合清除通過。每個案例內恢復逐點一致，GPU 字圖變動 6,881 點、金色實心 1,970 點，另目視。真實字圖、完整測試／vet 及四平台精確編譯來源通過，030 限定 CONFORMED，不外推第二人或完整動畫。
+
+## 2026-10-20 剩餘 WIN 靜態盤點
+
+`remaining-victory-source-v1/manifest.json` 保存六份原檔及逐組 SHA、實檔偏移、尺寸、別名與參考圖：GGWIN 四組、HHWIN 六組、IIWIN 八組、JJWIN 五組、DDWIN 三組、KKWIN 四組，合計 432 入口／30 組。Pillow 11.3.0 只完成靜態格式及範圍驗證；來源對應沿現行圖像檔索引，後續仍逐角色取正常 consumer，不把解碼當成完整 WIN 或原生驗收。

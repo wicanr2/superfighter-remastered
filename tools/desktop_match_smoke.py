@@ -16,8 +16,8 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--wine", action="store_true")
     parser.add_argument("--attacker", type=int, choices=(0, 1), default=0, help="以普通輸入取得首勝的玩家")
-    parser.add_argument("--player0", type=int, choices=(0, 1, 2), default=0,
-                        help="正常選角的第一人，0 為斬、1 為薩爾可夫、2 為子彈；第二人為法蘭克")
+    parser.add_argument("--player0", type=int, choices=(0, 1, 2, 3), default=0,
+                        help="正常選角的第一人，0 為斬、1 為薩爾可夫、2 為子彈、3 為鳳凰；第二人為法蘭克")
     parser.add_argument("--hd-characters", type=Path, default=Path("/project/workplace/hd-characters-study-v7"))
     parser.add_argument("--first-round-only", action="store_true",
                         help="只驗正常首勝後的 HD 勝場及同狀態切換，不作完整比賽驗收")

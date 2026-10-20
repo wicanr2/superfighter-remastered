@@ -174,6 +174,7 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [印第安喬 HD 規格](docs/spec/027-joe-hd.md)、[候選驗證](internal/hd/joe_test.go) | SFMAN11、44 組來源、原姓名 INDIAN JOE 與正常 10／4 consumer；依規格閘門接入 |
 | [子彈勝利規格](docs/spec/028-bullet-victory.md)、[候選驗證](internal/hd/bullet_victory_test.go) | CCWIN 四組來源、72 個獨立 WIN 入口與正常首勝接入閘門 |
 | [多場景背景草案](docs/spec/029-multi-scene-backgrounds.md) | 屋頂與道場候選、舊包相容、新版素材清單及原生接入閘門；格式擴充待確認 |
+| [鳳凰勝利規格](docs/spec/030-phoenix-victory.md)、[候選來源驗證](internal/hd/phoenix_victory_test.go) | EEWIN 三組來源、PHO HUANG WIN 與正常首勝接入閘門 |
 | [特效定位驗證](internal/renderdata/effects_test.go) | 19 個原版特效繪製／完整畫格的獨立幾何、寫入覆蓋與重組核對 |
 | [特效素材驗證](internal/hd/effects_test.go) | 原版特效 fixture 的來源、第二組色盤、整格拒絕與版本隔離 |
 | [字型來源](internal/desktop/assets/source.json)、[OFL 授權](internal/desktop/assets/OFL.txt) | Noto Sans CJK TC 固定來源、SHA-256 與授權 |
