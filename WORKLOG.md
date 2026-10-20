@@ -841,3 +841,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - tools/preview_title_menu.py 作 1600×1000 靜態構圖。人物／字標按原版矩形縮放，四個標籤範圍有界；字標 alpha 1..15 有雜點，原型採 alpha>=16 的可見 bounds，原稿保持。HD 候選預覽與來源已加入 README，原貌及完整比較留本機，不稱原生整合畫面。
 - 正式標題身分、選取狀態、色盤動畫、載入格式及視覺尚待補齊後審 READY。029 原格式問題仍待回覆，不新增未確認的產品決定。四平台程式沿 045 的 46 份編譯輸入，本輪沒有 production 修改，不重建或重發首版。原資料、正式 i64、首版八包及本機原曲影片的收尾稽核與推送結果另記。
 - workplace/title-art-v1/final-audit.json 通過：128 原檔、1719 執行器來源、正式 i64、角色清單、四平台程式、首版八包及影片不變；新增兩張 PNG 原 bytes、候選清單與 51 份來源收據核對通過。168 個 README 相對連結均已追蹤，003 勘誤及新檔索引通過，原版及 raw 未加入 Git；擁有權／誤建目錄通過，本專案標題容器已清空。
+- 候選與工具提交 `7ab724b2232d683fed43b6a2d310dfca6ec645c6` 已推送 origin/main，遠端完整提交核對相同；首版 tag 仍為 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段為其後的文件收尾，046 仍 DRAFT，沒有新 Release。
