@@ -399,3 +399,15 @@
 - README 加入十一人選角、第二人魔王與小丑 HD／跳躍／原貌／恢復截圖，現況、清單及驗證矩陣同步。沿用既有 Docker 映像，IDA、Go、交叉編譯、Xvfb／Wine 與圖片核對容器均有界並移除，沒有新增映像、改共用 dosgolem、建立 Release 或推送 GitHub。
 - 本批自有來源與完整歷史備份使用 workplace/github-boss-clown-integration-progress.bundle 及 github-boss-clown-integration-progress-source.json。原版、衍生美術、私有執行器、研究收據及二進位仍排除 Git。接著繼續印第安喬與其餘 HD，完整目標尚未完成。
 - 隔離接入 commit 5dba2f1，dcdaff5 合入進度分支；main 保留既有穩定基底。GitHub 遠端未建立或推送。
+
+## 2026-10-20 印第安喬一般 HD 與姓名整合
+
+- 沿復古重製規格及文件職責路由，製作印第安喬 44 組原圖的四張 HD 圖集。原 PNG bytes、四份精確內建 imagegen 請求及透明檢查保存在 joe-art-v1。949 鍵／58 PNG／十三份來源保留舊 877 鍵及全部舊 PNG。
+- 原姓名 INDIAN JOE 位於 NAME 槽 10、實檔 1C9Eh、96×11。初版正常探針兩人同時出拳，誤把同階段 path 10 的槽 11／12 列為拳擊期望。三個原生 v1 等不到該姿態而中止，保留圖片及原審查，不當通過。規格退回 DRAFT，以只有第一人按拳的正常 v2 重取 124 格，確認 path 27 使用槽 5／6／7；追加 joe-punch-source-correction.json，補證審查後再升 READY。
+- 原生 v2 等明確拳擊槽 6／7 及 path 27，Linux／Wine 各七項、九張完整來源重組、切換及 Linux 缺件九張原貌全部通過。各案例內恢復 HD 逐點一致，人物輸出變動 33,291 點、姓名 9,504 點，另目視站姿、跳、拳、原貌與 Wine；不稱跨平台同狀態。
+- 完整 internal／cmd 測試與 go vet 通過。補證後候選來源及真實 HUD 的 INDIAN JOE／96×11、未知拒絕定向測試通過。四份 ELF／PE／兩種 Mach-O 綁定 37 份實際編譯輸入，原封移入 bin，記錄為 joe-build-v1/promotion.json。舊魔王選角／小丑四份仍在 boss-clown-build-v2/bin。
+- 首次隔離複製遭 Docker socket 存取拒絕後，依賴它的工作仍被啟動，因缺工作區掛載點而退出；修正順序及隔離掛載後重跑。單檔唯讀掛載不能讓 gofmt 原子換檔，改用已檢查 UID 的明確來源目錄；純 Python 映像缺 Go，建置核對改回既有 Go 映像。這些均為工具與環境錯誤，未改產品門檻。
+- README 加入印第安喬目前畫面、跳、原貌及恢復 HD；CONTEXT、清單、驗證矩陣及規格同步。027 限定 CONFORMED。沿用既有映像，沒有改共用 dosgolem、玩法、速度、設定格式或快捷。原版、衍生美術、收據與二進位繼續排除 Git；未建立 Release 或推送 GitHub。
+- 子彈下一批 WIN 靜態來源為 CCWIN.FIG，72 入口／四組圖。原參考、精確內建請求及四格透明候選保存於 bullet-victory-source-v1、bullet-victory-art-v1，未接 production，也未將靜態解碼當正常勝利收據。
+- 蜘蛛女原服裝生成被拒後，先展示全覆蓋紫色連身衣比較稿。使用者明確選擇「採用比較稿的連身衣 HD」，因此該圖成為已授權造型參考；原 PNG、請求及原失敗仍保留。只改 HD 服裝，原版姿態、操作與規則保留，接著繼續製作。
+- 本批建置、來源探針、測試與 GUI 容器已結束並移除。自有來源與完整歷史備份使用 workplace/github-joe-integration-progress.bundle，核對記錄為 github-joe-integration-progress-source.json。完整 HD、魔王過關／結局、實體平台／雙手把、音訊／速度與正式封包尚未完成。

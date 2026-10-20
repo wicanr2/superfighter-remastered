@@ -171,6 +171,7 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [選角獨立核對](tools/verify_boss_selection.py) | BIGFIG 原檔肖像、無越界框線及實際原生視窗逐點比較 |
 | [選角適配](internal/gamecore/selection.go)、[正常路徑測試](internal/gamecore/selection_test.go)、[十一人介面](internal/desktop/selection.go) | 只讀原游標，送普通輸入定位與確認，保留原規則，取消時不留排程 |
 | [小丑 HD 規格](docs/spec/026-clown-hd.md)、[候選驗證](internal/hd/clown_test.go) | SFMAN10、62 組來源、原姓名 JOKER 與正常 9／4 consumer；依規格閘門接入 |
+| [印第安喬 HD 規格](docs/spec/027-joe-hd.md)、[候選驗證](internal/hd/joe_test.go) | SFMAN11、44 組來源、原姓名 INDIAN JOE 與正常 10／4 consumer；依規格閘門接入 |
 | [特效定位驗證](internal/renderdata/effects_test.go) | 19 個原版特效繪製／完整畫格的獨立幾何、寫入覆蓋與重組核對 |
 | [特效素材驗證](internal/hd/effects_test.go) | 原版特效 fixture 的來源、第二組色盤、整格拒絕與版本隔離 |
 | [字型來源](internal/desktop/assets/source.json)、[OFL 授權](internal/desktop/assets/OFL.txt) | Noto Sans CJK TC 固定來源、SHA-256 與授權 |
