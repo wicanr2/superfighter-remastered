@@ -361,6 +361,21 @@
       "platform": "Pillow 11.3.0 in Docker; not runtime acceptance",
       "authorization": "existing user HD upload request",
       "limits": "new vector artwork only; original flag images and comparison stay local"
+    },
+    {
+      "kind": "normal native capture of isolated seven-flag HD result candidate; not formal integration",
+      "file": "result-flags-native-prototype-hd.png",
+      "sha256": "b580bba41857661ec02e1da62fc30746d9b34cc384dd90880c82755115304aa7",
+      "source": "workplace/result-flags-sarkov-v1/result-hd.png",
+      "source_sha256": "b580bba41857661ec02e1da62fc30746d9b34cc384dd90880c82755115304aa7",
+      "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80",
+      "receipt_sha256": "9687f2c4d839e3a3039bf7e496fb1de1489762fe34456467ba6b064b8a6e01c6",
+      "comparison_sha256": "b181abcf66ee7f46e54610652d8044cec07b7d6df4fa50697c57d5419b4ef42b",
+      "recipe_sha256": "aa89246ee7636d93aa65f6b35f1f09440e680aa5cf0cd9ff1af6c95f396d8b0b",
+      "platform": "Linux amd64 in Docker Xvfb; not Windows/macOS hardware acceptance",
+      "authorization": "existing HD upload and GitHub-visible screenshot request; visibility unchanged",
+      "visible_art": "opaque new HD newspaper, generated portraits, seven-family new vector flags and project font; original-mode capture stays local",
+      "limits": "one normal Sarkov/Frank result shown; DRAFT art and private loader; not full HD or formal release"
     }
   ]
 }

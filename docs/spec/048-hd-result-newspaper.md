@@ -12,7 +12,7 @@
 | BIGFIG.XBB | `4897b865c3fef8fd1c788ec5e32226de7086dbd8ff1987a5efc62ea15bd29477` | 十一筆 8689 bytes；取樣勝者斬位於左側，來源 89×89，畫面起點 18,34 |
 | LOSEFIG.XBB | `b1b1781bc799dca14f3ce0f3b74e451e654bafe88341249a977a34ab909b159c` | 同一筆格式的十一張受傷肖像，不能以 BIGFIG 代替；取樣法蘭克於 214,34 水平鏡像 |
 | WC.XBB | `774f14af079c7148fb05a5db21fdfb17abc0a658c9fcd9a82958166ebaf8b0e0` | 三筆各 10987 bytes；前兩 byte 為 65×169，後接逐像素色號。取樣用第 0 筆，畫面起點 128,15 |
-| FLAG.XBB | `87a5bf27cb516d1e5612252dd0a3dff5f3980c837ea4b96b644ece0257acc6d1` | 七筆各 2147 bytes；65×33。取樣只證第 0／1 筆位於 30,154／226,154，不推定全角色旗幟表 |
+| FLAG.XBB | `87a5bf27cb516d1e5612252dd0a3dff5f3980c837ea4b96b644ece0257acc6d1` | 七筆各 2147 bytes；65×33。首輪證第 0／1 筆位於 30,154／226,154；後續七面正常取樣見下節，不推定未取樣角色 |
 | FLAG.FIG | `64ad397ba0a29808b5e8dc147c456be6c1f26df6d94258a3d2340b0f2a2e51ce` | 取樣旗幟使用其六位元 RGB 色盤，不能用 SHIN 色盤代換 |
 | NAME.XBB | `60c0bbe367e44ab9fda512df2ba93ad62d70147df90079d07ff15818f21bad82` | 沿既有 010 字圖索引。斬為偏移 46、42×11，位置 42,134；法蘭克偏移 3189、54×11，位置 232,134 |
 
@@ -84,7 +84,34 @@ Return 後完整色號由 TITLE／SFNAME 與 046 已驗的原框線程序重組�
 
 [來源與幾何紀錄](../../assets/hd/candidates/result-flags-source.json)包含原檔 SHA／筆數／RGB 雜湊、圖記邊界、卦線配置、新幾何指令、SVG／PNG 雜湊及逐筆限制。形狀、圖記詮釋及抗鋸齒為重畫近似，不宣稱法定旗樣、國徽版本或原圖逐像素 parity。
 
-這組包含前輪兩面旗幟的新來源配色版本，沒有覆寫舊靜態比較或隔離原型的私有旗幟圖。原生 prototype-v1 仍是已驗的原 25 項載入方式，只有其兩面旗幟；新版七面接入、其他角色正常結果與視覺定版另續。048 維持 DRAFT，正式格式與程式保持。
+這組包含前輪兩面旗幟的新來源配色版本，沒有覆寫舊靜態比較或隔離原型的私有旗幟圖。原生 prototype-v1 仍保留原 25 項載入方式；七面版本另建隔離副本，見下節。048 維持 DRAFT，正式格式與程式保持。
+
+## 七面旗幟的隔離原生版本
+
+[新版準備工具](../../tools/prepare_result_flag_native_prototype.py)先沿用首輪準備流程，在 `workplace/result-native-prototype-v2` 建立新副本。原 23 張候選不變，以七張公開新旗幟替換兩張私有比較圖裁切，合計 30 項。只改副本的 `internal/desktop/result_prototype.go`，調整美術清單身分、全組數量與旗幟索引上界；七份原檔的完整 RGB 識別保持。舊私有圖及 recipe 另存並核對，不覆寫 prototype-v1。
+
+Linux 二進位 SHA-256 `bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80`，recipe SHA-256 `aa89246ee7636d93aa65f6b35f1f09440e680aa5cf0cd9ff1af6c95f396d8b0b`。沿用 Go 1.24.13、既有 Xvfb 與 Pillow 容器，UID 1000、無網路，原檔唯讀；正式 46 份編譯輸入、四平台 bin 及首版封包保持。
+
+[正常操作工具](../../tools/result_flag_native_smoke.py)由標題選不同第一人，第二人固定法蘭克，只送原有方向及拳擊。兩回合各要求對手實際零血，再拍結果 HD／原貌／恢復，並以 Return 返回標題。沒有改寫生命、角色、勝者、座標或亂數，訓練保持關閉。另以薩爾可夫未載素材驗整張原貌。
+
+[獨立核對工具](../../tools/verify_result_flag_native.py)對每份結果重建完整原 RGB，核對 Go 識別的角色、旗幟、結果及姓名位置。GPU 肖像驗身分及方向，旗幟另與七張候選比對身分。暫停切換須保持核心／呈現／設定／指派，恢復視區逐點相同；Return 後除清除結果外，也須以 TITLE／SFNAME／原框線重建整張標題色號。Pillow 距離只驗身分，不當作 GPU 逐點採樣證據。
+
+小丑首輪 `result-flags-clown-v1` 實際兩次時間到，腳本卻只接受兩次 KO，沒有完成結果擷取。最後零秒、血量 124／4 及原勝場 2／0 均保存在 failure.json，未改寫成成功。另建[時間到操作腳本](../../tools/result_flag_timeout_smoke.py)及[獨立核對](../../tools/verify_result_flag_timeout.py)，保留原腳本與全部舊收據。新分支以實際零秒、已增加的原勝場及雙方生命確認時間到，回合開場 round_state 非零不能單獨成立；不修改原判勝或把時間到標成 KO。
+
+六組完整素材正常比賽及一組未載素材共 70 張擷取、21 份完整原結果，均獨立核對通過。六組各兩側共 12 份 GPU 肖像／方向與 12 份旗幟身分通過，觀測聯集為來源第 0..6 筆。下表為正常取樣的已證實對應，不是全部十一人的推測表。第二人均為法蘭克 4、右側敗者肖像、旗幟第 1 筆，結果均為 WC 第 0 筆。
+
+| 第一人 | 角色索引 | 左側旗幟索引 | 每回合結束方式 | 本機證據 |
+|---|---|---|---|---|
+| 斬 | 0 | 0 | 兩次 KO | result-flags-jaan-v1 |
+| 薩爾可夫 | 1 | 4 | 兩次 KO | result-flags-sarkov-v1 |
+| 鳳凰 | 3 | 3 | 兩次 KO | result-flags-phoenix-v1 |
+| 金太極 | 7 | 6 | 兩次 KO | result-flags-kim-v1 |
+| 蜘蛛女 | 8 | 2 | 兩次 KO | result-flags-spider-v1 |
+| 小丑 | 9 | 5 | 兩次時間到 | result-flags-clown-v2 |
+
+另有 `result-flags-sarkov-fallback-v1` 兩次 KO、結果三種切換與返回，未載任何候選。七組的原貌視區逐點等於原圖、恢復視區與切換前完全相同，返回原標題完整重組。敗者只實測法蘭克，其他十張敗者候選的正常消費仍未補證；WC 另外兩筆、單打及其他平台未驗。這些執行未固定亂數，不宣稱跨場戰鬥逐格 parity。彙整稽核在 `workplace/result-native-prototype-v2/final-audit.json`。
+
+[薩爾可夫原生截圖](../screenshots/result-flags-native-prototype-hd.png)來自正常比賽後的完整 HD 結果，視區沒有原點陣。原貌對照、色盤、原參照 JSON 與全部研究收據仍只留本機。這是 DRAFT 的 Linux 隔離版本，不代表視覺定版、正式載入、所有角色／結果／模式或其他平台已驗。
 
 ## 候選與後續閘門
 

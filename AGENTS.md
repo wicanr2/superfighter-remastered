@@ -149,6 +149,8 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [小丑時間到正常操作](tools/result_flag_timeout_smoke.py)、[獨立核對](tools/verify_result_flag_timeout.py) | 以實際零秒、原勝場及生命差確認時間到，核對完整結果與七面旗幟；保留原兩次 KO 腳本及失敗收據，不改判勝規則 |
+| [七面旗幟原生隔離版本](tools/prepare_result_flag_native_prototype.py)、[多角色正常操作](tools/result_flag_native_smoke.py)、[獨立核對](tools/verify_result_flag_native.py) | 保留首輪結果工具與原型，在新副本載入七組新旗幟，正常角色結果與來源色盤／切換另驗；不改正式格式或沿用舊收據冒充 |
 | [結果旗幟向量重畫](tools/prepare_result_flag_art.py)、[來源與幾何紀錄](assets/hd/candidates/result-flags-source.json) | 七筆原旗幟的配色／圖記位置與斷線配置作新 SVG／高解析 PNG，比較原貌只留本機；不是標準國旗修正或正式接入 |
 | [隔離結果原生獨立核對](tools/verify_result_native.py) | 原 RGB／色盤與 Go／Python 識別一致、候選身分／鏡像、切換原貌／恢復及返回清除；不宣稱 GPU 逐點取樣或完整結果皆驗收 |
 | [隔離結果原生操作](tools/result_native_smoke.py) | X11 正常斬／法蘭克雙打、兩次擊倒、結果原貌切換／恢復、未載候選及 Return 清除；不作全角色或正式發行驗收 |

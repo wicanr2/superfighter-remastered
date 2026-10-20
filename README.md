@@ -64,7 +64,11 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 ![七面結果旗幟的 HD 向量候選，未接正式程式](docs/screenshots/result-flag-candidates.png)
 
-七面結果旗幟另有獨立 SVG 與 1300×660 PNG，保留來源配色、點位與卦線配置，徽記細節為重畫近似。[來源及幾何紀錄](assets/hd/candidates/result-flags-source.json)可回查；這組仍是候選，尚未替換隔離原型的兩面旗幟或正式結果畫面。
+七面結果旗幟另有獨立 SVG 與 1300×660 PNG，保留來源配色、點位與卦線配置，徽記細節為重畫近似。[來源及幾何紀錄](assets/hd/candidates/result-flags-source.json)可回查。新版隔離原型已載入這七面候選，正式結果畫面仍為原貌。
+
+![薩爾可夫正常雙打獲勝後的新旗幟原生原型，尚未接入正式版本](docs/screenshots/result-flags-native-prototype-hd.png)
+
+這張截圖來自正常薩爾可夫對法蘭克比賽。七面旗幟已在六組正常比賽抽驗，另驗未載素材、原貌切換、恢復與返回標題。小丑以原版時間到判勝，其餘五組為擊倒；[取樣與限制](docs/spec/048-hd-result-newspaper.md)可回查。這仍是 Linux 隔離原型，視覺及正式載入尚未定版。
 
 [蜘蛛女的十五張外部 HD 稿](assets/hd/candidates/spider/README.md)也已收錄。使用者確認的雙手觸地低伏已接入，另作無損鏡像及透明留白裁切；同一張圖對應三組低伏來源。其他稿仍有姿勢差異，未對應動作整格回退原貌。
 
