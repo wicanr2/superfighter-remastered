@@ -26,6 +26,10 @@ HD 繪圖繼續使用同一 Placement、既有兩次 GeoM 翻轉與實際原版 
 
 新幾何每格均須再次核對原始 CPU 層，不能只因審查的兩張通過就盲目放行。TopClip／左右裁切拒絕負值、超過來源範圍或超過成對寬度；完全裁掉的合法空矩形只在原始覆蓋也空時接受。特效仍限既有翻轉及零裁切。原版 packed bytes 僅在使用者執行期記憶體保留，不外洩至清單或一般觀測檔。
 
+## 後續裁切補正
+
+[040](040-mirrored-edge-clipping.md)由正常場邊取樣補證 sub_1480A 的來源起點使用左裁切，與只水平翻轉不同。現行 C0h 定位依該契約修正，仍逐格核對 CPU；本文零左右裁切的原驗收保持，不外推曾未知的場邊組合。
+
 ## 實作與限定驗收
 
 已證實：`character-geometry-evidence-v1/review.json` 的兩份原檔／CPU 層逐點重組通過。`geometry_test.go` 以真實素材及完整 CPU 遮罩驗完整群組選擇，並拒絕覆蓋、色號、位置、負裁切、過高裁切與缺層篡改；合法空裁切另為受控單元測試，不外推正常玩家樣本。可用 internal／cmd 測試與 vet 均通過，記錄為 `character-geometry-build-v1/tests.log`。

@@ -125,6 +125,19 @@
       "character_manifest_sha256": "2557a3bc5136cd8ff403632f28e161c7d9c1aacd82c3984dbcdf0079ea0c9a8d",
       "authorization": "user requested HD assets and actual integrated screenshots in repository",
       "limits": "first-player Linux two ordinary effects only; not full animation, alternate palettes or hardware controllers"
+    },
+    {
+      "file": "edge-clip-hd.png",
+      "sha256": "fb794ddfb0f32cd22acee87d8d147c55358ae33829946613e78c76c4e91c892b",
+      "source": "workplace/edge-native-0-new-v1/edge-hd.png",
+      "version": "v.0.1.1-20261020",
+      "kind": "normal native mirrored edge throw HD; not original-mode image",
+      "receipt_sha256": "f9c090f9cb54c9f501b405288e93ecbb0d42f1c61c57b51d0b2ff6f649d1632c",
+      "comparison_sha256": "883c1549ce75e2ddb95b3f2921fd7fc8e9f8643543c5a753310e2409e037885b",
+      "binary_sha256": "56c9aa72fba9d04f83d59077ae9528333bdfef338d4773a0adb54166facfaae2",
+      "character_manifest_sha256": "2557a3bc5136cd8ff403632f28e161c7d9c1aacd82c3984dbcdf0079ea0c9a8d",
+      "authorization": "user requested integrated HD screenshots in repository",
+      "limits": "Linux ordinary clipped throw sample; not full animation or all clipping combinations"
     }
   ],
   "version": "v.0.1.0-20261020",

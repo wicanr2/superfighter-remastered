@@ -545,3 +545,14 @@ EEWIN.FIG 共 6,279 bytes，SHA-256 `65f8536cdd3ba96c63d116df5c701b401776e39643f
 已證實於取樣：phoenix-effects-comparison-v1 在同一正常原版畫格比較兩素材群組，437 格中舊包 418 格可選，新包 433 格可選，15 格缺件消除且無舊成功回退。四格場邊幾何仍回退；selector 成功不等於 GPU 完整度，另由兩組各八張正常 Linux 原生擷取證明兩光效的畫面替換、同狀態切換及舊包整格原貌。新資料採既有版本 3，不改程式／玩法。
 
 未知／待處理：取樣遇到同角色法蘭克對戰的色盤不符，以及少量 C0h 加奇數場邊裁切未吻合。guard 正確回退，不能只移除核對；原始 sample 及 unresolved_geometry_samples 保存在 source-comparison.json。蜘蛛女另有十八個實際未覆蓋鍵，仍需補稿及 normal consumer。這些不因鳳凰光效通過而解決。
+
+
+## 2026-10-20：雙向翻轉場邊的來源起點
+
+固定輸入為 SF.EXE SHA 24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300、SFMAN05.DAT SHA b5b77d590420b92db2d265aa89483de70d58193caf442fd41eba338eb111d653。IDA 9.4 以原 sf-hd-draw-v2.i64 的一次性副本核對四支 blit，每支六個直接 caller。位址採 IDA MZ 線性 1000h 映像，原名／operand／bytes 保持，原檔及 runtime 位址不混寫。
+
+已證實：sub_146E8 在 14729h..1472Fh 以 8AC3／8ADF／32FF／03F3 將右裁切移入 BL 後加到 SI；sub_1480A 在 14854h..14858h 的 8AC7／32FF／03F3 保留原 BL 左裁切。雙向翻轉不可沿只水平翻轉的來源起點。edge-clip-research-v1/ida.json 與舊 bytes 一致；review.json 綁定工具、來源及資料庫 SHA。
+
+四份正常 CPU 層包含法蘭克槽 10／11，實檔偏移 32879／35869，2,603／2,499 寫入點全部覆蓋及色號吻合新公式；舊公式分別有 2,006／3,209 不符點。完整 HD 影像定位亦吻合。僅更正 C0h 來源起點，038 的每格核對不移除；原版程式、幀序、座標及美術保持。兩新原生案例與舊程式對照的同狀態切換另由 verify_edge_native.py 核對，不將原始資料重組當成 GPU 完成。
+
+另已證實檔案事實：同角色法蘭克的第二人 16 色與 MAN.COL 實檔 192、REFMAN.PIC 實檔 209 的 48 bytes 完全吻合，身分及 SHA 保存於 alternate-palette-source.json。尚未追到 runtime 載入選擇端，不能判定實際讀哪份，更未決定 HD 重繪／調色方法；此項不因場邊修正完成。原始色盤 bytes 不寫入公開文件。

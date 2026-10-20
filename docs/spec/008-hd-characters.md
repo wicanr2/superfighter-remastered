@@ -83,6 +83,8 @@ SF.EXE SHA-256：`24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d83
 
 [角色翻轉與裁切 038](038-character-geometry.md)已補證初版保守拒絕的雙向翻轉與 TopClip。現行主角色在這兩類幾何逐格核對來源及 CPU 覆蓋／色號，通過才用既有 Placement 合成；Linux 正常擊倒及切換已有取樣。上文初版限制保留歷史範圍，其他色盤、未對應姿態及特效幾何不因此放行。
 
+雙向翻轉的場邊來源位移已由[040](040-mirrored-edge-clipping.md)補正；原版 sub_1480A 的來源起點與只水平翻轉不同。038 仍核對每格 CPU，其他未知組合保留回退。
+
 ## 下一個閘門與停止線
 
 勝利姿勢的來源區分已由[規格 017](017-victory-pose-banks.md)解出：原動作槽會改用 WIN.FIG 的 72-entry 表，不能把槽號當成固定 SFMAN 圖像。版本 3 以 `source_bank` 保留此區分，舊素材維持原回退。中央勝負文字則依[規格 016](016-hd-victory-messages.md)，驗收範圍以各規格及 CONTEXT 為準。

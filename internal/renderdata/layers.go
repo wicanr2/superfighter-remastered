@@ -125,7 +125,12 @@ func (s Sprite) Placement() (image.Point, image.Rectangle) {
 	clip := image.Rect(x, y, x+pairs*2, y+rows)
 	if s.Flags&64 != 0 {
 		origin := x + s.Width - s.LeftClip - s.RightClip
-		left = origin + r*2 + 1 - s.Width
+		sourcePair := r
+		if s.Flags&128 != 0 {
+			// 原 sub_1480A 保留 BL 的左裁切；只水平翻轉才改讀右側。
+			sourcePair = l
+		}
+		left = origin + sourcePair*2 + 1 - s.Width
 		clip.Min.X = origin - pairs*2 + 1
 		clip.Max.X = origin + 1
 	}

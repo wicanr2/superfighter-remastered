@@ -24,7 +24,7 @@ def verify_sprite(original,sprite,indices,coverage):
     starty=max(s['y'],0)+(rows if flipy else 0)
     expected=bytearray(64000);mask=bytearray(64000)
     for row in range(rows):
-        source_row=row if flipy else row+top;source_pair=right if flipx else left
+        source_row=row if flipy else row+top;source_pair=right if flipx and not flipy else left
         for pair in range(pairs):
             value=packed[source_row*stride+source_pair+pair]
             for nibble in range(2):
@@ -38,7 +38,8 @@ def verify_sprite(original,sprite,indices,coverage):
     originx=max(s['x'],0)-left*2;originy=max(s['y'],0)-top
     clip=[max(s['x'],0),max(s['y'],0),max(s['x'],0)+pairs*2,max(s['y'],0)+rows]
     if flipx:
-        originx=startx+right*2+1-width;clip[0]=startx-pairs*2+1;clip[2]=startx+1
+        source_pair=left if flipy else right
+        originx=startx+source_pair*2+1-width;clip[0]=startx-pairs*2+1;clip[2]=startx+1
     if flipy:
         originy=max(s['y'],0)+rows+1-height;clip[1]=max(s['y'],0)+1;clip[3]=max(s['y'],0)+rows+1
     transformed=bytearray(64000);transformed_mask=bytearray(64000)

@@ -148,6 +148,11 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [原生場邊獨立核對](tools/verify_edge_native.py) | 新舊原生畫格的 CPU 來源、完整重組、實際 HD 替換、同狀態切換與恢復後操作 |
+| [正常場邊投擲](tools/edge_clipping_smoke.py) | 十七階段普通鍵鼠輸入、場邊 C0h 裁切、暫停切換與恢復後操作；輸入互斥且程序有界 |
+| [場邊裁切真實測試](internal/hd/edge_clipping_test.go) | 四份正常場邊 CPU fixture、已知完整群組選擇及壞遮罩拒絕；蜘蛛女未知本體不冒稱完整 HD |
+| [場邊裁切獨立審查](tools/verify_edge_clipping.py) | 原 i64 bytes 與四份正常 CPU 層，核對雙向翻轉來源起點及完整影像定位，保留舊錯位量與證據 |
+| [雙向翻轉場邊裁切](docs/spec/040-mirrored-edge-clipping.md)、[原始 blit 證據](tools/ida_edge_clip_evidence.py) | 原 i64 的來源位移差異、正常 CPU 層重組與既有 HD 定位修正閘門，保留所有原始名稱 |
 | [鳳凰光效原生獨立核對](tools/verify_phoenix_effects.py) | 原檔 CPU 光效、完整原貌／HUD／陰影／CRTC、同狀態切換、實際替換及缺件整格原貌 |
 | [鳳凰光效真實測試](internal/hd/phoenix_effects_test.go) | 完整素材與正常 CPU fixture 的光效選擇，以及未知槽、壞來源、錯色盤整格拒絕 |
 | [鳳凰光效原生路徑](tools/phoenix_effects_smoke.py) | 普通選角、移動、拳腳兩光效、同狀態原貌／HD／恢復與舊包整格回退；程序有界且收尾清理 |

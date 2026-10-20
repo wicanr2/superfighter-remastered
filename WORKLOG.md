@@ -723,3 +723,34 @@ python3 tools/verify_phoenix_effects.py /project/workplace/phoenix-effects-nativ
 
 - final-audit.json 通過 128 原檔／1719 runtime 來源不變、全部 94 PNG／102 payload、全部舊鍵／PNG、四份二進位與 44 份輸入、128 個首頁及素材索引受追蹤相對連結。首版八個 ZIP 與本機影片 SHA 保持，無 root-owned 或 .md 目錄；專案掛載過濾無容器殘留。功能提交 e4e46a34a25d236f6163a5b6fffa2052d9a0c417 已推送 origin/main 並由 ls-remote 核對；首版 tag 仍固定 807579d01c145db327050c2e870e2bf46e6bcb68。
 - 下一步依最新取樣處理場邊幾何及同角色色盤，再續蜘蛛女與其餘畫面；029 格式仍待回答。完整 HD 目標保持 active，沒有以十七階段取樣或兩光效代替全目標。
+
+## 2026-10-20：雙向翻轉場邊裁切補正
+
+- 上輪鳳凰光效為實際進展。本輪查乾淨工作樹與現況，命中復古重製／畫面對拍及規格閘門；分析原函式時讀 use-ida-pro-9-4 與指定工具鏈入口。技能是指向 ida_94_official 的連結，第一次僅掛 .codex 時讀不到，改用已存在的實體專案唯讀掛載；沒有修改上游。image inspect 子命令遇 sandbox 的 Docker socket 拒絕，標準 docker inspect 成功，未改用主機工具或更換 image。
+- 沿既有 ida-pro-9.4-idapython:py312-v1 與 UID 1000，在 sf-hd-draw-v2.i64 的一次性副本查詢四支原 blit，每支六個直接 caller。正式 DB 未用作 IDA 寫入目標，SHA 保持 5a122f625e659633f1e29ea1cb024fb4b1c31405031bf90d92dfe115ac00e2ca；原檔／runtime 副本唯讀。輸出 schema、IDA 9.4、SF.EXE SHA 與舊 bytes／operand 皆核對，收據為 edge-clip-research-v1/ida.json。log 只留本機，不複製授權環境至 Git。
+- 原 sub_146E8 在 14729h..1472Fh 將右裁切移入 BL，sub_1480A 的 14854h..14858h 則保留左裁切。現行共用公式錯把兩者當相同。verify_edge_clipping.py 從原檔及四份正常 CPU 層獨立重組，槽 10／11 的 2,603／2,499 寫入點全部吻合左起點；舊公式有 2,006／3,209 不符點。完整影像翻轉與裁切亦相同，review.json 綁定來源、工具及 DB 身分。
+- 040 經 DRAFT／審查升 READY，才只修改 Placement 的 C0h 來源起點；只水平翻轉與目的 clip 不變。共享獨立 verifier 同步原版差異。沒有移除 038 每格 CPU 核對或整格回退，沒有改原版程式、規則、動畫、位置及資料格式。
+- 真實四份 CPU fixture、三份完整群組與壞遮罩拒絕通過；蜘蛛女只驗法蘭克目標層，不假稱缺稿本體已完成。038 兩類舊幾何、鳳凰兩光效、十六份原畫格／三十二個定位樣本、可用 internal／cmd 測試與 vet 通過，記錄於 edge-clip-build-v1/tests.log。
+- Linux／Windows／macOS Intel／Apple Silicon 在既有 Go 1.24.13 工具鏈編譯，44 份實際輸入及標頭核對。Linux SHA 56c9aa72fba9d04f83d59077ae9528333bdfef338d4773a0adb54166facfaae2，四平台精確產物與 build.json 晉升 bin，promotion.json 保存前後 SHA；038 二進位保留在 character-geometry-build-v1/bin。開發版仍未發行 v.0.1.1-20261020。
+- edge-native-0-new-v1／0-old-v1 各五張，以正常選角及十七階段普通動作重現槽 10 的 C0h／RightClip 1。新版本維持 HD，舊程式整格原貌；同格原圖層、HUD、陰影與 CRTC、模式切換、恢復逐點及繼續操作通過，HD 可見變動 20,835 點。
+- 子彈 v1..v3 沒有捕捉目標，failure.json 原樣保留。兩次同類失敗後重查正常玩家驗證路由，對照 phase_states／原始取樣，分清換邊、接近及普通拳與投技。v2 曾跳過前跳、v3 曾加入普通雙人接近與單拳，皆未觸發，不稱有效修法。v4 仍在原本十七階段的 close-punch 進入 path 37 並擷取槽 11／RightClip 9；沒有執行備用的接近或方向加拳分支。未驗備用程式已移除，不把成功歸因於未執行操作，也未調正式程式或亂數。
+- edge-native-2-new-v4 五張已獨立重組通過，2,499 原始寫入點、16,272 可見 HD 變動點；切換維持原狀態，恢復逐點及繼續操作通過，另目視場邊截斷與原版層次。三份成功收據共十五張，各自綁定當時的自動化副本。GUI 輸入時機可能改變投技先決條件，不宣稱每次重放都逐格相同；幾何原檔／CPU 對拍不依賴挑選亂數結果。
+- 全部工作在受限 Docker，--rm／--network none／--user 1000:1000。GUI 3g／2 CPU／256 pids／1560 秒，IDA 2g／2 CPU／128 pids／300 秒，Go 建置有界；Xvfb／遊戲均由 finally 結束。未在主機跑分析或遊戲，未新建重複 image。
+- 040 限定 CONFORMED，008／038 加後續解決入口，唯一現況、工作清單及驗證矩陣同步。README 新增 edge-clip-hd.png，來源及 SHA 保存於既有截圖索引。沒有原貌圖、色盤、資料庫或原始 CPU 層進 Git。
+- 同角色法蘭克的第二人 16 色，在 MAN.COL 實檔 192 及 REFMAN.PIC 實檔 209 找到相同 48 bytes；來源身分保存在 alternate-palette-source.json。尚未證明 runtime 選哪份或 HD 調色方法，只新增來源事實，不接未證實色盤。
+
+重驗命令於上述容器執行，輸出必須全新；原生／來源 verifier 可重驗既有資料。回查 GUI 失敗先讀 failure.json／phase_states，不因未捕捉目標改正式定位。
+
+```sh
+python3 tools/verify_edge_clipping.py --research /project/workplace/edge-clip-research-v1
+KDZZ_HD_FIXTURES=/project/workplace KDZZ_ORIGINAL_ROOT=/orig go test -p 1 ./internal/hd -run 'Test(MirroredEdge|CharacterGeometry|PhoenixEffects)' -count=1 -v
+KDZZ_HD_FIXTURES=/project/workplace KDZZ_ORIGINAL_ROOT=/orig go test -p 1 ./internal/renderdata -run TestOriginalLayerReplayAndSpritePlacement -count=1 -v
+python3 tools/edge_clipping_smoke.py --binary /project/workplace/edge-clip-build-v1/bin/superfighter-linux-amd64 --output /project/workplace/edge-native-0-new-v1 --hd-characters /project/assets/hd/characters --player0 0
+python3 tools/verify_edge_native.py /project/workplace/edge-native-0-new-v1
+python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-build-v1/bin --receipt /project/workplace/edge-clip-build-v1/build-verification.json
+```
+
+舊程式對照指定 character-geometry-build-v1/bin 並加 --expect-original；第二新案例用 player0 2。實際成功腳本副本保留於各收據目錄，現行工具已移除未執行備用分支。
+
+- 收尾核對 128 原檔／1719 runtime、原 i64、94 PNG／102 payload 共 121,070,684 bytes、1485 鍵／67 PNG、四份新二進位與 44 份輸入通過。README 與素材索引有 131 個受追蹤相對連結；首版八 ZIP 與本機影片 SHA 保持，沒有 root-owned／.md 目錄或專案容器殘留。建稽核腳本的一次動態 shell 命令遇 Docker socket 拒絕，後續改用掛載的 Python 檔在容器內生成及執行，通過 final-audit.json；沒有回到主機分析。
+- 下一步為同角色色盤、蜘蛛女其餘動作及其他畫面；029 格式仍待回答。完整 HD 保持 active，未重發首版、移動 tag 或把已驗切片當全目標。提交與遠端核對另補。
