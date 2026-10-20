@@ -153,6 +153,7 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [蜘蛛女原圖交接工具](tools/export_spider_reference.py) | 在本機 workplace 輸出原版 PNG、提示詞與可驗 SHA-256 ZIP，不公開原版參考圖 |
 | [蜘蛛女逐格補稿工具](tools/export_spider_corrections.py) | 首批十張缺少或姿勢需修正的 PNG、單格提示詞與外部造型參考；核對一般／WIN 同 bytes 別名，本機原圖包不上傳 |
 | [棋盤背景去除工具](tools/remove_sprite_checkerboard.py) | 使用者明確授權 Python 後，在 Docker 的 Pillow 工具鏈執行；只改連通淺灰背景的 alpha，另存 PNG 與 ZIP，保留原 RGB、尺寸及原檔。外部圖的姿勢對應另驗 |
+| [蜘蛛女候選收錄工具](tools/import_spider_candidates.py)、[候選圖索引](assets/hd/candidates/spider/README.md) | 在 Docker 內核對兩批外部 PNG、去背來源與雜湊並收錄 repo；檔名不是已驗證的動作對照，正式角色包另依接入規格驗收 |
 | [候選素材索引](assets/hd/candidates/README.md)、[道場整理工具](tools/organize_dojo_candidate.py) | 道場原生成 PNG、來源與提示詞分開保存；清楚標示候選及尚未接入 |
 | [練習模式規格](docs/spec/032-training-mode.md) | 使用者指定的雙方鎖血、停止倒數與 AI 中立；獨立於原版／HD 對拍，依規格閘門接入 |
 | [練習適配](internal/gamecore/training.go)、[正常路徑與拒絕邊界](internal/gamecore/training_test.go)、[原生開關驗證](tools/training_smoke.py) | 固定原檔與控制點、雙模式鎖血／停時／AI 中立、原生工具列及 F9、重啟與命令列 |

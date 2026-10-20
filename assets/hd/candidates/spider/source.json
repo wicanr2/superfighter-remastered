@@ -1,0 +1,383 @@
+{
+  "version": 1,
+  "kind": "candidate art inventory; not runtime character pack",
+  "authorization": "user requested that HD art be stored in existing GitHub repository",
+  "processing": "only connected light-gray background alpha removed; RGB unchanged",
+  "import_script_sha256": "6b2482e344b7690a63fa304d7483f74033b8ffc4431fdffa64c914c977602fb6",
+  "files": [
+    {
+      "file": "atlases-v1/spider-poses-00.png",
+      "batch": "atlases-v1",
+      "size": [
+        1168,
+        784
+      ],
+      "bytes": 950156,
+      "sha256": "59b30764a45941c8395ff41d5c7afce45c762e49a5f465af3f30b0eee5870b14",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "464bc1ebda223790a3064318d6c4e7a4ee14c50e30baa78aa9e5fb917f63ba2d",
+      "local_input": "../spider-woman-hd/spider-hd-png/spider-poses-00.png",
+      "local_processed_input": "../spider-woman-hd/transparent-v1/spider-poses-00.png",
+      "processing_script_sha256": "7e55ddab95a0d46059d1a6c0fdf885b0cd35228c6b3ebddcbb313bc5af8cfdae",
+      "processing_manifest_sha256": "f8f63c58698d37ac64074bd51fcc23718b95186b9008fec95ce26ecc93ba7781",
+      "newly_transparent_pixels": 419705,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "review_status": "sheet-order-and-pose-review-required"
+    },
+    {
+      "file": "atlases-v1/spider-poses-01.png",
+      "batch": "atlases-v1",
+      "size": [
+        1168,
+        784
+      ],
+      "bytes": 1114206,
+      "sha256": "5d41fde128a056a065dedd5d335e6584abf2111b7460d1da8a62df734cadef80",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "46bd73a2e2c75266c7bdf80a1ead0be69aba401c09bc7dc5dafaa05ff55060ac",
+      "local_input": "../spider-woman-hd/spider-hd-png/spider-poses-01.png",
+      "local_processed_input": "../spider-woman-hd/transparent-v1/spider-poses-01.png",
+      "processing_script_sha256": "7e55ddab95a0d46059d1a6c0fdf885b0cd35228c6b3ebddcbb313bc5af8cfdae",
+      "processing_manifest_sha256": "f8f63c58698d37ac64074bd51fcc23718b95186b9008fec95ce26ecc93ba7781",
+      "newly_transparent_pixels": 370934,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "review_status": "sheet-order-and-pose-review-required"
+    },
+    {
+      "file": "atlases-v1/spider-poses-02.png",
+      "batch": "atlases-v1",
+      "size": [
+        1168,
+        784
+      ],
+      "bytes": 908662,
+      "sha256": "9b9621e2e32b46ac460d7c43af4bac6f7f6498910b2c91737ac43c6400c1e211",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "f8d2cd83ddfb0f0369aa905747ca361b8b2298e3b7b5e1748bed4e00515615f7",
+      "local_input": "../spider-woman-hd/spider-hd-png/spider-poses-02.png",
+      "local_processed_input": "../spider-woman-hd/transparent-v1/spider-poses-02.png",
+      "processing_script_sha256": "7e55ddab95a0d46059d1a6c0fdf885b0cd35228c6b3ebddcbb313bc5af8cfdae",
+      "processing_manifest_sha256": "f8f63c58698d37ac64074bd51fcc23718b95186b9008fec95ce26ecc93ba7781",
+      "newly_transparent_pixels": 379841,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "review_status": "sheet-order-and-pose-review-required"
+    },
+    {
+      "file": "atlases-v1/spider-poses-03.png",
+      "batch": "atlases-v1",
+      "size": [
+        1168,
+        784
+      ],
+      "bytes": 1003413,
+      "sha256": "5b86ce41241e8d865f5e84539f19fcd4fbcda5fe8b3df30ab5f1b65ba3cd2e31",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "13ad5b6680616b49b24f712889e2ac62ea96e9534936ee188c32546526a82535",
+      "local_input": "../spider-woman-hd/spider-hd-png/spider-poses-03.png",
+      "local_processed_input": "../spider-woman-hd/transparent-v1/spider-poses-03.png",
+      "processing_script_sha256": "7e55ddab95a0d46059d1a6c0fdf885b0cd35228c6b3ebddcbb313bc5af8cfdae",
+      "processing_manifest_sha256": "f8f63c58698d37ac64074bd51fcc23718b95186b9008fec95ce26ecc93ba7781",
+      "newly_transparent_pixels": 375519,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "review_status": "sheet-order-and-pose-review-required"
+    },
+    {
+      "file": "atlases-v1/spider-win.png",
+      "batch": "atlases-v1",
+      "size": [
+        1168,
+        784
+      ],
+      "bytes": 1084106,
+      "sha256": "367fea0f37b7836b1a2744173bb0c0043e39b2f8ef476dcb3bee93d438336fc1",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "236e653a439f16560fa45d3c4bd671d3196d22944586efa3b9326fcc0d092e71",
+      "local_input": "../spider-woman-hd/spider-hd-png/spider-win.png",
+      "local_processed_input": "../spider-woman-hd/transparent-v1/spider-win.png",
+      "processing_script_sha256": "7e55ddab95a0d46059d1a6c0fdf885b0cd35228c6b3ebddcbb313bc5af8cfdae",
+      "processing_manifest_sha256": "f8f63c58698d37ac64074bd51fcc23718b95186b9008fec95ce26ecc93ba7781",
+      "newly_transparent_pixels": 384352,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "review_status": "sheet-order-and-pose-review-required"
+    },
+    {
+      "file": "cels-v2/spider-normal-00.png",
+      "batch": "cels-v2",
+      "size": [
+        784,
+        1168
+      ],
+      "bytes": 888654,
+      "sha256": "12a7b66a6c9a11f11ece964970a609751c9ac9817a95ea6eb2af9c3c417d7015",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "a3c47aec665c4c52c373cb49aeb9f64273bc056df7a665391dd8d43993b04d9f",
+      "local_input": "../spider-woman-hd/spider-normal-hd-png-v2/spider-normal-00.png",
+      "local_processed_input": "../spider-woman-hd/spider-normal-hd-png-v2-transparent-v1/spider-normal-00.png",
+      "processing_script_sha256": "922167bfc6e7d0211b3945fd61020e1c50b5e7033f4b1a0bfbfc28bcad5d8d63",
+      "processing_manifest_sha256": "badc84450e296ca28995d212450c8fed74110624ecfa774d28687b90b02c70d4",
+      "newly_transparent_pixels": 355224,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "filename_claimed_normal_slot": 0,
+      "observed_content": "低位跪伏，正面視角",
+      "review_status": "needs-pose-review",
+      "original_source_size": [
+        70,
+        57
+      ],
+      "original_packed_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a"
+    },
+    {
+      "file": "cels-v2/spider-normal-01.png",
+      "batch": "cels-v2",
+      "size": [
+        784,
+        1168
+      ],
+      "bytes": 807794,
+      "sha256": "3317f809eb860629b83bd8b83ddeac3b0c4bd5beed53b7918bd9eb7873246a1f",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "8321edd68eea44d8cc1a9d4b904c6f25152a3f46800f85a89686b27a346da68e",
+      "local_input": "../spider-woman-hd/spider-normal-hd-png-v2/spider-normal-01.png",
+      "local_processed_input": "../spider-woman-hd/spider-normal-hd-png-v2-transparent-v1/spider-normal-01.png",
+      "processing_script_sha256": "922167bfc6e7d0211b3945fd61020e1c50b5e7033f4b1a0bfbfc28bcad5d8d63",
+      "processing_manifest_sha256": "badc84450e296ca28995d212450c8fed74110624ecfa774d28687b90b02c70d4",
+      "newly_transparent_pixels": 366860,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "filename_claimed_normal_slot": 1,
+      "observed_content": "雙手觸地低伏",
+      "review_status": "needs-pose-review",
+      "original_source_size": [
+        68,
+        64
+      ],
+      "original_packed_sha256": "72300569c9285d2237d4ffd4965c4cbeb56bd6a2aa5d86bb7792c2ba0c029797"
+    },
+    {
+      "file": "cels-v2/spider-normal-21.png",
+      "batch": "cels-v2",
+      "size": [
+        784,
+        1168
+      ],
+      "bytes": 869725,
+      "sha256": "de655883a99b7eedda6ffd846471fbce78c5a70eab62a4675ce33f44c9bce6d2",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "254fe70f35a65d1d4373271e5534ac045710e65c6427d588cfb2682421927590",
+      "local_input": "../spider-woman-hd/spider-normal-hd-png-v2/spider-normal-21.png",
+      "local_processed_input": "../spider-woman-hd/spider-normal-hd-png-v2-transparent-v1/spider-normal-21.png",
+      "processing_script_sha256": "922167bfc6e7d0211b3945fd61020e1c50b5e7033f4b1a0bfbfc28bcad5d8d63",
+      "processing_manifest_sha256": "badc84450e296ca28995d212450c8fed74110624ecfa774d28687b90b02c70d4",
+      "newly_transparent_pixels": 370986,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "filename_claimed_normal_slot": 21,
+      "observed_content": "俯臥，一腿抬起",
+      "review_status": "needs-pose-review",
+      "original_source_size": [
+        83,
+        22
+      ],
+      "original_packed_sha256": "b5e173094f9a655fbc1981e21d8698e8affd04ae1dd809f86918a228636e4b0f"
+    },
+    {
+      "file": "cels-v2/spider-normal-24.png",
+      "batch": "cels-v2",
+      "size": [
+        784,
+        1168
+      ],
+      "bytes": 461705,
+      "sha256": "c4bbacbff89b0385117b60e7b062407564ad8b3c9a12b4e1e7712422b0b20cc8",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "ac8498e1b10d3e3c1e97663dcda61b9530a6756cb176fbca6b424f32cfb880fc",
+      "local_input": "../spider-woman-hd/spider-normal-hd-png-v2/spider-normal-24.png",
+      "local_processed_input": "../spider-woman-hd/spider-normal-hd-png-v2-transparent-v1/spider-normal-24.png",
+      "processing_script_sha256": "922167bfc6e7d0211b3945fd61020e1c50b5e7033f4b1a0bfbfc28bcad5d8d63",
+      "processing_manifest_sha256": "badc84450e296ca28995d212450c8fed74110624ecfa774d28687b90b02c70d4",
+      "newly_transparent_pixels": 342680,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "filename_claimed_normal_slot": 24,
+      "observed_content": "彩色水平細條",
+      "review_status": "filename-pose-mismatch",
+      "original_source_size": [
+        61,
+        50
+      ],
+      "original_packed_sha256": "e6e66bfec67727debd107243735bd90e522e9e3dd09454167d30542798cd5b7c"
+    },
+    {
+      "file": "cels-v2/spider-normal-29.png",
+      "batch": "cels-v2",
+      "size": [
+        784,
+        1168
+      ],
+      "bytes": 970934,
+      "sha256": "2f402244fa971ad77ca86aa565192c5544d0027b11266e074e630288b2c52239",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "f6f08e4fee86bbc0288f0499dfd739824dfe33a9a26e8fcd733c6322e59b482d",
+      "local_input": "../spider-woman-hd/spider-normal-hd-png-v2/spider-normal-29.png",
+      "local_processed_input": "../spider-woman-hd/spider-normal-hd-png-v2-transparent-v1/spider-normal-29.png",
+      "processing_script_sha256": "922167bfc6e7d0211b3945fd61020e1c50b5e7033f4b1a0bfbfc28bcad5d8d63",
+      "processing_manifest_sha256": "badc84450e296ca28995d212450c8fed74110624ecfa774d28687b90b02c70d4",
+      "newly_transparent_pixels": 326227,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "filename_claimed_normal_slot": 29,
+      "observed_content": "空中蜷身",
+      "review_status": "filename-pose-mismatch",
+      "original_source_size": [
+        112,
+        28
+      ],
+      "original_packed_sha256": "f535748f853bf8e9b12921add692fe42239ab87950b5bd72de427f8bc8d6440d"
+    },
+    {
+      "file": "cels-v2/spider-normal-33.png",
+      "batch": "cels-v2",
+      "size": [
+        784,
+        1168
+      ],
+      "bytes": 920222,
+      "sha256": "19f15284f6f090355e69a93dc6ff7029e29b9249cec1e9bdcbdb2805aa5db47b",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "62d099b09e8087d8566926ed673bbb071edd27482908894c84e466a5c7815bb2",
+      "local_input": "../spider-woman-hd/spider-normal-hd-png-v2/spider-normal-33.png",
+      "local_processed_input": "../spider-woman-hd/spider-normal-hd-png-v2-transparent-v1/spider-normal-33.png",
+      "processing_script_sha256": "922167bfc6e7d0211b3945fd61020e1c50b5e7033f4b1a0bfbfc28bcad5d8d63",
+      "processing_manifest_sha256": "badc84450e296ca28995d212450c8fed74110624ecfa774d28687b90b02c70d4",
+      "newly_transparent_pixels": 336988,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "filename_claimed_normal_slot": 33,
+      "observed_content": "跪蹲",
+      "review_status": "filename-pose-mismatch",
+      "original_source_size": [
+        83,
+        100
+      ],
+      "original_packed_sha256": "ec72447547a1625cb95f77c3d7af7cb8b71825f9888aecb3e85f5a070b286fa9"
+    },
+    {
+      "file": "cels-v2/spider-normal-34.png",
+      "batch": "cels-v2",
+      "size": [
+        784,
+        1168
+      ],
+      "bytes": 764512,
+      "sha256": "1ef077fc42942c39c213cdfa84e7b118055be0019c20a65557f265f0e33fe55d",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "816ae9a6a184e27253790b9da59abfeeb271e5e3a88fbe6a5924deb5c3173013",
+      "local_input": "../spider-woman-hd/spider-normal-hd-png-v2/spider-normal-34.png",
+      "local_processed_input": "../spider-woman-hd/spider-normal-hd-png-v2-transparent-v1/spider-normal-34.png",
+      "processing_script_sha256": "922167bfc6e7d0211b3945fd61020e1c50b5e7033f4b1a0bfbfc28bcad5d8d63",
+      "processing_manifest_sha256": "badc84450e296ca28995d212450c8fed74110624ecfa774d28687b90b02c70d4",
+      "newly_transparent_pixels": 376696,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "filename_claimed_normal_slot": 34,
+      "observed_content": "橫向俯臥",
+      "review_status": "filename-pose-mismatch",
+      "original_source_size": [
+        102,
+        91
+      ],
+      "original_packed_sha256": "62ce2ff3ac76ca94f6f3deb35246f66f85bf4220be4599755fcb62c1b0a3fd4b"
+    },
+    {
+      "file": "cels-v2/spider-normal-41.png",
+      "batch": "cels-v2",
+      "size": [
+        784,
+        1168
+      ],
+      "bytes": 931516,
+      "sha256": "a9125b450d2124813af7a9b546b557220fbdcdb896ccbacbcfe815dedf99332e",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "0bb098fc6656d7cacca5278f8d738a5bc7b2bc0f32ecbbefaaddd17b7c1af70d",
+      "local_input": "../spider-woman-hd/spider-normal-hd-png-v2/spider-normal-41.png",
+      "local_processed_input": "../spider-woman-hd/spider-normal-hd-png-v2-transparent-v1/spider-normal-41.png",
+      "processing_script_sha256": "922167bfc6e7d0211b3945fd61020e1c50b5e7033f4b1a0bfbfc28bcad5d8d63",
+      "processing_manifest_sha256": "badc84450e296ca28995d212450c8fed74110624ecfa774d28687b90b02c70d4",
+      "newly_transparent_pixels": 356390,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "filename_claimed_normal_slot": 41,
+      "observed_content": "仰身空中姿勢",
+      "review_status": "filename-pose-mismatch",
+      "original_source_size": [
+        70,
+        55
+      ],
+      "original_packed_sha256": "1f46be4f14daa7ba91a876403951302fbbae14490976f98423ce1359bdd7c98e"
+    },
+    {
+      "file": "cels-v2/spider-normal-43.png",
+      "batch": "cels-v2",
+      "size": [
+        784,
+        1168
+      ],
+      "bytes": 980507,
+      "sha256": "1bab144a0b997ca6dedbc25f5ea96816a9bf67b4bb693a60913b077088340848",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "ee80527bc695d583a5b10256c53d92b4324f28e604f83b210dbee895c15e1736",
+      "local_input": "../spider-woman-hd/spider-normal-hd-png-v2/spider-normal-43.png",
+      "local_processed_input": "../spider-woman-hd/spider-normal-hd-png-v2-transparent-v1/spider-normal-43.png",
+      "processing_script_sha256": "922167bfc6e7d0211b3945fd61020e1c50b5e7033f4b1a0bfbfc28bcad5d8d63",
+      "processing_manifest_sha256": "badc84450e296ca28995d212450c8fed74110624ecfa774d28687b90b02c70d4",
+      "newly_transparent_pixels": 347980,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "filename_claimed_normal_slot": 43,
+      "observed_content": "紫黃色尖形特效",
+      "review_status": "filename-pose-mismatch",
+      "original_source_size": [
+        94,
+        1
+      ],
+      "original_packed_sha256": "b5afecc0694dbb835a65fae178f14e343f3f3aed8b98f4f94a785d303465846a"
+    },
+    {
+      "file": "cels-v2/spider-normal-44.png",
+      "batch": "cels-v2",
+      "size": [
+        784,
+        1168
+      ],
+      "bytes": 942547,
+      "sha256": "1ec7c100e584811fd65ee097bd02a953bd91e28629bf516588306afd6463ab88",
+      "generator": "external model supplied by user; model/version not supplied",
+      "raw_input_sha256": "186c34c89f6209494525541f44cab85739daa4651359fd0938fe4bc88c4a80b1",
+      "local_input": "../spider-woman-hd/spider-normal-hd-png-v2/spider-normal-44.png",
+      "local_processed_input": "../spider-woman-hd/spider-normal-hd-png-v2-transparent-v1/spider-normal-44.png",
+      "processing_script_sha256": "922167bfc6e7d0211b3945fd61020e1c50b5e7033f4b1a0bfbfc28bcad5d8d63",
+      "processing_manifest_sha256": "badc84450e296ca28995d212450c8fed74110624ecfa774d28687b90b02c70d4",
+      "newly_transparent_pixels": 357888,
+      "rgb_and_dimensions_unchanged": true,
+      "runtime_registered": false,
+      "filename_claimed_normal_slot": 44,
+      "observed_content": "空中人物姿勢",
+      "review_status": "filename-pose-mismatch",
+      "original_source_size": [
+        101,
+        86
+      ],
+      "original_packed_sha256": "80c9ce8a5b67160d3815876248d5c1c4100bd2f2ec7020ad1ba63a5fbe8b7cdf"
+    }
+  ],
+  "runtime_registered_keys": 0,
+  "original_reference_pngs_included": false,
+  "raw_external_inputs_included": false,
+  "limits": "filenames are input labels, not accepted source-to-animation mappings"
+}

@@ -6,7 +6,7 @@
 |---|---|---|
 | [道場](dojo.png)，1922×818 | [來源清單](dojo-source.json)、[精確生成提示詞](dojo.prompt.txt) | 已核對 I5.XGB／scene 0 的 124 個正常畫格與八份色盤。新版背景格式待確認，首輪先跳過接入 |
 | [蜘蛛女連身衣比較稿](spider-coverage.png) | 原版姿勢與其他模型提示詞由本機交接包提供；見[交接工具](../../../tools/export_spider_reference.py) | 舊選定造型保留。內建工具無法產出完整圖集，遊戲暫用原貌 |
-| 蜘蛛女外部五張 HD 稿，本機保存 | 使用者提供；[去背工具](../../../tools/remove_sprite_checkerboard.py)及目前狀態記錄處理方式 | 已獲 Python 去背授權，原 RGB、尺寸及原檔保留。五張透明分格通過，檔名及動作對應仍待核對，尚未接入角色包 |
+| [蜘蛛女外部 HD 稿](spider/README.md)，兩批十五張 | 使用者提供；[來源清單](spider/source.json)保留輸入與處理雜湊 | 已以本地 Python 去背並收錄 repo。檔名與姿態差異逐張列出；尚未接入角色包 |
 
 道場 PNG 保留生成原 bytes，沒有重新縮放或編碼。來源清單是候選資料索引，不是執行期素材包；直接傳給 `-hd-assets` 尚不能顯示道場。接入契約見[規格 029](../../../docs/spec/029-multi-scene-backgrounds.md)。
 

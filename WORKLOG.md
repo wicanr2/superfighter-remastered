@@ -555,3 +555,13 @@
 - `workplace/spider-art-v1/alpha-normal-v2-validation.json` 獨立核對十張原始／輸出雜湊、逐像素 RGB、尺寸、彩色前景 alpha 保持、四角透明、PNG 重讀、ZIP CRC／每項內容及 UID/GID 1000。兩頁深色／白底預覽亦已目視，檔名為同目錄 `alpha-normal-v2-preview-0.png`／`alpha-normal-v2-preview-1.png`。
 - 本次只完成去背，沒有重排檔名、核准動作對應或更新正式角色包；完整 HD 與來源對應仍依現有工作清單。原版、使用者輸入及十張透明成品留本機，不新增公開圖片。
 - 本輪一次性處理／驗證容器均已結束並移除，未建立映像。工作樹與素材目錄的 root-owned 檔案／誤建 .md 目錄檢查及 git diff --check 通過；其他專案資源未動。
+
+## 2026-10-20：蜘蛛女十五張外部 HD 稿收錄 repo
+
+- 使用者再次要求「那就繼續囉 hd記得放進去 repo」。依此收錄前次兩批去背成品，取代這十五張外部生成圖只留本機的舊限制。原版參考圖、原始外部輸入、原圖交接 ZIP、私有執行器與研究收據仍保留本機。
+- 新增 `tools/import_spider_candidates.py`，在 Pillow 11.3.0 容器內重新核對十五張原始輸入／去背結果的 SHA-256、RGB、alpha 及尺寸，再逐檔複製到 `assets/hd/candidates/spider/{atlases-v1,cels-v2}`。匯入不縮放、翻轉或重新編碼，沒有將候選塞進正式角色清單。
+- `source.json` 保存兩批輸入、處理工具與清單雜湊、模型版本未提供的限制及逐檔審查。候選 README 列明五張圖集的實際格數，以及十張補稿的七個明顯檔名／姿勢不符；00／01／21 三張仍需核對朝向與肢體，沒有把相似姿勢升格為來源對應。
+- 為原版忠實度取捨做 `workplace/spider-art-v1/low-guard-prototype-v1.png` 的離線試排。使用正常來源 01-idle、角色 8 的槽 41 與外部 normal-01，標明未套正式 CRTC、非原生視窗驗收。早期試排誤把 idle 限為槽 0／1，查看收據後確認第三個低伏來源為 41，僅訂正試排條件。比較圖含原版畫面，沒有加入公開 repo。
+- 已展示原版／相近低伏試排，依 grilling 詢問是否先採相近姿勢、缺件回退原貌，或繼續保留原版輪廓；正式接入依賴此選擇，候選保存與推送不受影響。這不是新的遊戲規則或資料格式實作，未新增 production spec 或修改正式動畫對照。
+- 素材目錄目前 82 張 PNG、90 檔，catalog 86 筆 payload 共 97,619,462 bytes。正式角色包仍是 1381 鍵／64 PNG／十九來源，manifest SHA-256 `fbb4d57d313d2d9e01383c4f95468826e41c225d062ecef1bc506df0e72a2df9` 不變。
+- `workplace/spider-art-v1/repo-audit-v1.json` 通過全部收錄 PNG、檔案大小／尺寸／雜湊、十五張複製來源、128 原檔與 1719 執行器來源保持。README 的 63 個相對連結、六張圖片及三份素材索引的 44 個相對連結都已由 Git 清單核對；Python 語法、git diff --check 與 root-owned／誤建 .md 目錄檢查通過。沒有改 Go 正式程式，因此未重跑無關的遊戲測試或重建二進位。

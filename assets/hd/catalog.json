@@ -13,7 +13,7 @@
     "sources": 19,
     "complete_HD": false
   },
-  "pngs": 67,
+  "pngs": 82,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -907,6 +907,193 @@
       "bytes": 2188,
       "status": "candidate-exact-prompt",
       "tool": "tools/organize_dojo_candidate.py"
+    },
+    {
+      "file": "candidates/spider/atlases-v1/spider-poses-00.png",
+      "sha256": "59b30764a45941c8395ff41d5c7afce45c762e49a5f465af3f30b0eee5870b14",
+      "bytes": 950156,
+      "size": [
+        1168,
+        784
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/atlases-v1/spider-poses-01.png",
+      "sha256": "5d41fde128a056a065dedd5d335e6584abf2111b7460d1da8a62df734cadef80",
+      "bytes": 1114206,
+      "size": [
+        1168,
+        784
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/atlases-v1/spider-poses-02.png",
+      "sha256": "9b9621e2e32b46ac460d7c43af4bac6f7f6498910b2c91737ac43c6400c1e211",
+      "bytes": 908662,
+      "size": [
+        1168,
+        784
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/atlases-v1/spider-poses-03.png",
+      "sha256": "5b86ce41241e8d865f5e84539f19fcd4fbcda5fe8b3df30ab5f1b65ba3cd2e31",
+      "bytes": 1003413,
+      "size": [
+        1168,
+        784
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/atlases-v1/spider-win.png",
+      "sha256": "367fea0f37b7836b1a2744173bb0c0043e39b2f8ef476dcb3bee93d438336fc1",
+      "bytes": 1084106,
+      "size": [
+        1168,
+        784
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/cels-v2/spider-normal-00.png",
+      "sha256": "12a7b66a6c9a11f11ece964970a609751c9ac9817a95ea6eb2af9c3c417d7015",
+      "bytes": 888654,
+      "size": [
+        784,
+        1168
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/cels-v2/spider-normal-01.png",
+      "sha256": "3317f809eb860629b83bd8b83ddeac3b0c4bd5beed53b7918bd9eb7873246a1f",
+      "bytes": 807794,
+      "size": [
+        784,
+        1168
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/cels-v2/spider-normal-21.png",
+      "sha256": "de655883a99b7eedda6ffd846471fbce78c5a70eab62a4675ce33f44c9bce6d2",
+      "bytes": 869725,
+      "size": [
+        784,
+        1168
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/cels-v2/spider-normal-24.png",
+      "sha256": "c4bbacbff89b0385117b60e7b062407564ad8b3c9a12b4e1e7712422b0b20cc8",
+      "bytes": 461705,
+      "size": [
+        784,
+        1168
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/cels-v2/spider-normal-29.png",
+      "sha256": "2f402244fa971ad77ca86aa565192c5544d0027b11266e074e630288b2c52239",
+      "bytes": 970934,
+      "size": [
+        784,
+        1168
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/cels-v2/spider-normal-33.png",
+      "sha256": "19f15284f6f090355e69a93dc6ff7029e29b9249cec1e9bdcbdb2805aa5db47b",
+      "bytes": 920222,
+      "size": [
+        784,
+        1168
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/cels-v2/spider-normal-34.png",
+      "sha256": "1ef077fc42942c39c213cdfa84e7b118055be0019c20a65557f265f0e33fe55d",
+      "bytes": 764512,
+      "size": [
+        784,
+        1168
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/cels-v2/spider-normal-41.png",
+      "sha256": "a9125b450d2124813af7a9b546b557220fbdcdb896ccbacbcfe815dedf99332e",
+      "bytes": 931516,
+      "size": [
+        784,
+        1168
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/cels-v2/spider-normal-43.png",
+      "sha256": "1bab144a0b997ca6dedbc25f5ea96816a9bf67b4bb693a60913b077088340848",
+      "bytes": 980507,
+      "size": [
+        784,
+        1168
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/cels-v2/spider-normal-44.png",
+      "sha256": "1ec7c100e584811fd65ee097bd02a953bd91e28629bf516588306afd6463ab88",
+      "bytes": 942547,
+      "size": [
+        784,
+        1168
+      ],
+      "status": "candidate-character-not-registered",
+      "tool": "local Python/Pillow alpha-only processing of user-provided external-model art",
+      "source_index": "candidates/spider/source.json"
+    },
+    {
+      "file": "candidates/spider/source.json",
+      "sha256": "1cefae0d481f5109a4185710c5dd7ef35be659fe47ea00e9ae5ff3f5b89b8771",
+      "bytes": 17917,
+      "status": "candidate-source-metadata",
+      "tool": "tools/import_spider_candidates.py"
     }
   ],
   "original_game_data_included": false

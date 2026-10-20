@@ -1,20 +1,21 @@
 # HD 素材
 
-本目錄保存內建圖片工具生成的 HD 原 PNG，以及角色對應清單。使用者於 2026-10-20 明確要求將 HD 素材上傳至現有 GitHub 儲存庫，因此這批生成圖改為版控。原版 EXE、DAT、FIG、背景色號、色盤、原圖與記憶體收據仍留本機。
+本目錄保存 HD 生成圖、外部模型候選與角色對應清單。使用者於 2026-10-20 明確要求將 HD 素材上傳至現有 GitHub 儲存庫，因此這批生成圖改為版控。原版 EXE、DAT、FIG、背景色號、色盤、原圖與記憶體收據仍留本機。
 
 | 路徑 | 內容 | 接入狀態 |
 |---|---|---|
 | [characters/manifest.json](characters/manifest.json) | 64 張角色與特效圖集、1381 個登錄鍵 | 現行角色素材；完整動畫及各角色驗收範圍見 [CONTEXT](../../CONTEXT.md) |
 | [backgrounds/rooftop.png](backgrounds/rooftop.png) | 屋頂背景，1923×818 | 已接原生；原版參考色號與色盤不隨 Git 提供 |
 | [道場候選整理](candidates/README.md) | 道場 PNG、來源雜湊、正常畫格證據與精確提示詞 | 素材已整理；[多場景格式](../../docs/spec/029-multi-scene-backgrounds.md)尚待確認，首輪先跳過接入 |
-| [candidates/spider-coverage.png](candidates/spider-coverage.png) | 蜘蛛女全覆蓋紫色連身衣，1390×1132 | 使用者已選定造型；動作圖集尚未生成，遊戲仍用原貌 |
+| [candidates/spider-coverage.png](candidates/spider-coverage.png) | 蜘蛛女全覆蓋紫色連身衣比較稿，1390×1132 | 舊選定造型保留，外部候選另列；遊戲仍用原貌 |
+| [蜘蛛女外部候選](candidates/spider/README.md) | 第一批五張圖集及第二批十張補稿，均已本地去背 | 已收錄 repo，逐張記錄姿勢審查；尚未登錄至正式角色包 |
 | [catalog.json](catalog.json) | 每個收錄檔案的 SHA-256、大小、尺寸、原位置與分類 | 核對複製與後續變更；不包含原版圖像資料 |
 
-PNG 逐檔複製，未縮放、去背或重新編碼。角色清單沿用目前遊戲可讀的格式，記錄來源檔名、雜湊與座標；`evidence` 中的本機研究路徑不全部隨 Git 提供。`workplace/` 保留生成請求、原始審查與執行收據，不整包提交。
+內建生成 PNG 保留原 bytes。蜘蛛女外部稿先依使用者授權做本地去背，只改背景 alpha，匯入時再逐檔複製去背成品。原始輸入及處理結果的雜湊分開記錄。角色清單沿用目前遊戲可讀的格式，記錄來源檔名、雜湊與座標；`evidence` 中的本機研究路徑不全部隨 Git 提供。`workplace/` 保留生成請求、原始審查與執行收據，不整包提交。
 
 [鬼丸勝利圖集](characters/onimaru-win.png)含四組原姿態的 HD 重繪，正常首勝及 Linux／Wine 切換範圍見[規格 031](../../docs/spec/031-onimaru-victory.md)。此圖已接入，與候選資料夾分開保存。
 
-[金太極](characters/kim-win.png)、[小丑](characters/clown-win.png)及[印第安喬](characters/joe-win.png)新增十五組勝利姿態，正常首勝、Linux 切換與缺件回退範圍見[規格 033](../../docs/spec/033-first-pass-victories.md)。蜘蛛女外部稿已在本機去背，仍待姿勢修正；道場保留候選狀態。
+[金太極](characters/kim-win.png)、[小丑](characters/clown-win.png)及[印第安喬](characters/joe-win.png)新增十五組勝利姿態，正常首勝、Linux 切換與缺件回退範圍見[規格 033](../../docs/spec/033-first-pass-victories.md)。蜘蛛女外部稿已去背並收錄 repo，仍待姿勢修正；道場保留候選狀態。
 
 取得合法原版資料並備妥既有屋頂素材包後，可在專案根目錄指定這份角色包：
 

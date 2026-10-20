@@ -4,9 +4,9 @@
 
 目前工作樹為 `/home/anr2/cht/快打至尊/superfighter-remastered`，使用 `main` 追蹤 `origin/main`。使用者已建立 [GitHub 儲存庫](https://github.com/wicanr2/superfighter-remastered)，遠端已建立並上傳來源，後續提交與核對見 WORKLOG。父目錄程式與文件只保留舊快照；後續編輯在本工作樹進行。
 
-使用者後續明確要求「HD素材上傳」。[assets/hd/README.md](assets/hd/README.md)收錄 67 張生成 PNG 及現行角色清單，包含 64 張角色／特效圖集、屋頂、道場候選與蜘蛛女已選定造型；逐檔身分見 [catalog.json](assets/hd/catalog.json)。這次授權取代以下舊切片的 HD 生成圖只留本機限制，原版檔案、原版色號／色盤、原圖、私有執行器與研究收據仍不上傳。沒有改變儲存庫可見性、原版資料權利或 HD 完成標準。
+使用者後續明確要求「HD素材上傳」，本輪又要求「hd記得放進去 repo」。[assets/hd/README.md](assets/hd/README.md)收錄 82 張生成 PNG 及現行角色清單，包含 64 張正式角色／特效圖集、屋頂、道場候選、蜘蛛女舊比較稿及十五張外部候選；逐檔身分見 [catalog.json](assets/hd/catalog.json)。外部稿保留去背處理前後的雜湊。這些授權取代以下舊切片的 HD 圖只留本機限制，原版檔案、原版色號／色盤、原圖、私有執行器與研究收據仍不上傳。沒有改變儲存庫可見性、原版資料權利或 HD 完成標準。
 
-素材及清單共 84,002,886 bytes，整個素材目錄 73 檔。所有 PNG、來源雜湊、尺寸及角色清單均核對；鬼丸首勝 031 及其餘三人首勝 033 已通過限定接入，仍不代表完整角色／場景完成。README 的圖片與相對連結另比對 Git 追蹤清單，HD 整合截圖收錄於 [docs/screenshots/](docs/screenshots/)，原貌對照及原始收據保留本機。
+素材及清單共 97,619,462 bytes，整個素材目錄 90 檔。所有 PNG、來源雜湊、尺寸及角色清單均核對；鬼丸首勝 031 及其餘三人首勝 033 已通過限定接入，仍不代表完整角色／場景完成。README 的圖片與相對連結另比對 Git 追蹤清單，HD 整合截圖收錄於 [docs/screenshots/](docs/screenshots/)，原貌對照及原始收據保留本機。
 
 首批 HD 素材提交 `4209aad83089c7f74c5ef853a4f1d865e6739f78` 已成功推送 `origin/main` 並由 `ls-remote` 核對。原版與候選的接入限制不因上傳改變，後續 HD 製作仍依工作清單。
 
@@ -43,7 +43,7 @@
 | 魔王選角 | 已接原生，025 限定 CONFORMED | 單打／雙打可選蜘蛛女、小丑、印第安喬；普通輸入定位，原版程式與狀態不改。原八人框線越界只在獨立呈現影本排除。基底八案例及修正版 Linux／Wine 各單打、雙打通過；十二張原肖像／原生視窗核對，完整 Go 測試及 vet、舊設定補齊通過。完整過關／結局未驗 |
 | 小丑 HD | 已接原生，026 限定 CONFORMED | 62 組／72 槽、877 鍵／54 PNG，舊 805 鍵不變；Linux／Wine 各七項、九張完整重組及缺件九張整格原貌通過。JOKER／52×11、真實 HUD、完整程式測試及四平台來源通過；bin 已更新，WIN／快捷／完整動畫另驗 |
 | 印第安喬 HD | 已接原生，027 限定 CONFORMED | 44 組／72 槽、949 鍵／58 PNG，舊 877 鍵不變；Linux／Wine 各七項、九張重組及缺件九張整格原貌通過。INDIAN JOE／96×11、真實 HUD、完整 Go 測試及四平台來源通過；拳擊來源已補證為 path 27 的 5／6／7，v1 錯誤期望保留勘誤。WIN／快捷／完整動畫另驗 |
-| 蜘蛛女 HD | 外部五張圖集與第二批十張補稿均已本地去背，尚未接入 | 最新輸入為父目錄 spider-woman-hd/spider-normal-hd-png-v2，透明版及 ZIP 為同目錄旁的 spider-normal-hd-png-v2-transparent-v1。十張均保留 784×1168、RGB 與原檔雜湊，深／白底與 ZIP 核對通過；證據為 workplace/spider-art-v1/alpha-normal-v2-validation.json。舊五張透明版、spider-corrections-v2.zip 及 pose-review-v1.json 保留。這次只處理透明色，未核准動作對應；正常來源 124 格與 WIDOW／57×11 姓名證據保留，遊戲仍用原貌 |
+| 蜘蛛女 HD | 十五張已收錄 repo 候選，低伏試排已展示，正式接入待姿勢取捨 | [候選索引](assets/hd/candidates/spider/README.md)及 source.json 分開記錄兩批輸入、處理雜湊與動作差異。十張補稿有七張檔名與來源姿勢不符，其餘三張需核對朝向與肢體。低伏相近姿勢的試排為 workplace/spider-art-v1/low-guard-prototype-v1.png，只是離線視覺比較，沒有 CRTC 或原生驗收聲明。已用共同決策詢問是否先採相近低伏、缺件回退原貌；未回答前不擅自改正式對照。來源 124 格及 WIDOW／57×11 證據保留 |
 | 子彈勝利 HD | 已接原生，028 限定 CONFORMED | 1021 鍵／59 PNG，新增四組／72 WIN 入口，舊 949 鍵不變；6,018 成對邊界、11 個 WIN 取樣及五張來源通過。Linux／Wine 各七張勝利、切換與下一回合清除通過，缺件七張回退。完整 Go 測試、真實字圖及四平台 37 份編譯來源通過；第二人／完整動畫另驗 |
 | 鳳凰勝利 HD | 已接原生，030 限定 CONFORMED | 1093 鍵／60 PNG，新增三組／72 WIN 入口，舊 1021 鍵不變；5,952 成對邊界、八個 WIN 取樣及四張來源通過。Linux／Wine 各七張與缺件七張回退通過，PHO HUANG WIN、切換、下一回合清除及四平台 37 份來源均核對；第二人／完整動畫另驗 |
 | 鬼丸勝利 HD | 已接原生，031 限定 CONFORMED | 1165 鍵／61 PNG，新增四組／72 WIN 入口，舊 1093 鍵不變；12,272 成對邊界、29 個取樣與五張來源通過。Linux／Wine 各七張及缺件七張完整通過，ONIMALU WIN、切換、下一回合、完整測試／vet 與四平台 37 份來源均核對；第二人／完整動畫另驗 |
