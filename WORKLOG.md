@@ -892,3 +892,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - verify_selection_portraits.py 直接從原 bytes 重建十一份 RGB，原參考、角色順序／偏移、候選 PNG、1254×1254／不透明及 catalog／預覽來源核對通過。首版驗證器在 convert 後才呼叫 Pillow verify，觸發檔案生命週期錯誤；改為重新開檔先 verify，乾淨重跑通過，不列產品缺陷。
 - 素材現為 117 PNG／131 筆 catalog／135 檔、161,069,925 payload bytes；正式 1516 鍵／74 圖集及 bin 保持。README、素材索引、047、CONTEXT／WORKLIST 已更新。標題定版與背景格式原問題仍待回答，本候選不代答、不擴張首版。最終原始資料／素材／交付／連結與 Docker 衛生稽核、推送另記。
 - selection-portrait-import-v1/final-audit.json 通過：十一張 1254×1254 與內建工具原輸出逐檔相同，十一份原 RGB、角色順序／偏移、純 HD 預覽來源及舊 119 筆素材保持。183 個 README 相對連結、047 與新檔索引通過。128 原檔、1719 執行器來源、正式 i64、46 份編譯輸入、四平台程式、首版八包與原曲影片不變。無原版／原色盤／原圖比較或 raw 入 Git，UID／誤建目錄通過，本專案容器已清空。
+- 十一人候選與工具提交 `2ad3a012dbef64b77651dd4f098f3a3bd162ab4a` 已推送 origin/main，遠端完整提交核對相同；首版 tag 仍為 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段為文件收尾，047 維持 DRAFT，不建立新 Release。
