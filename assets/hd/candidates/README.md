@@ -4,6 +4,7 @@
 
 | 素材 | 來源與提示詞 | 狀態 |
 |---|---|---|
+| [七面結果旗幟向量總覽](../../../docs/screenshots/result-flag-candidates.png) | [來源與幾何紀錄](result-flags-source.json)，七組 SVG／1300×660 PNG；使用專案向量程式，沒有圖片模型提示詞 | 048 DRAFT，保留原配色與配置，形狀／徽記為向量近似；未接原生或正式載入 |
 | [十一人敗者肖像總覽](../../../docs/screenshots/result-portrait-candidates.png) | [來源與完整提示詞](result-portraits-source.json)，十張新原 PNG 加首輪法蘭克，原檔偏移與參照逐人記錄 | 048 DRAFT，美術候選齊備；傷勢／表情為近似，正式載入及完整結果流程另驗 |
 | [結果報紙底圖](result-newspaper-v1.png)、[法蘭克敗者肖像](result-loser-frank-v1.png)、[靜態比較](../../../docs/screenshots/result-newspaper-candidate.png) | [來源與完整提示詞](result-source.json)，保留兩張生成原 bytes | [048 DRAFT](../../../docs/spec/048-hd-result-newspaper.md)，另有[隔離原生結果候選](../../../docs/screenshots/result-native-prototype-hd.png)通過正常 Linux 斬／法蘭克結果、切換／回退及返回；細字、標題與傷勢仍近似，未接正式程式 |
 | [紅金 VS](selection-vs-v1.png)、[完整選角靜態比較](../../../docs/screenshots/selection-layout-candidates.png) | [來源與完整提示詞](selection-vs-source.json)，1589×990 透明生成原 PNG | 原八格與十一格並列候選；不是原生擷取，未修改滑鼠區域或正式程式 |

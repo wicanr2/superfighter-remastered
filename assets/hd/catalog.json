@@ -13,7 +13,7 @@
     "sources": 21,
     "complete_HD": false
   },
-  "pngs": 130,
+  "pngs": 137,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -1791,6 +1791,152 @@
       "sha256": "8489cab845587cdbc0c2cb640ceff5f79cb07ecf2e7008f06aa041b74906fc65",
       "bytes": 33110,
       "status": "candidate-result-portrait-provenance"
+    },
+    {
+      "file": "candidates/result-flag-00-v1.png",
+      "sha256": "d576a1d1e2a9c182c06a096e66e56792e752cee2af293f3adc2456e7b2672e98",
+      "bytes": 17803,
+      "status": "candidate-result-flag-vector-not-integrated",
+      "source_record": 0,
+      "tool": "project vector geometry + Pillow 11.3.0",
+      "size": [
+        1300,
+        660
+      ]
+    },
+    {
+      "file": "candidates/result-flag-00-v1.svg",
+      "sha256": "4b5e1284fa1d1593caa041bafaa7cbae53c7e042d1cbda22b30e2db4d25d920c",
+      "bytes": 250,
+      "status": "candidate-result-flag-vector-not-integrated",
+      "source_record": 0,
+      "tool": "project vector geometry + Pillow 11.3.0"
+    },
+    {
+      "file": "candidates/result-flag-01-v1.png",
+      "sha256": "9f19a1b40180ba3b7aa3091df6a51bb36d00109ec9671be353e39d06f6ece0b5",
+      "bytes": 22501,
+      "status": "candidate-result-flag-vector-not-integrated",
+      "source_record": 1,
+      "tool": "project vector geometry + Pillow 11.3.0",
+      "size": [
+        1300,
+        660
+      ]
+    },
+    {
+      "file": "candidates/result-flag-01-v1.svg",
+      "sha256": "fdea366f12c6ec9ce2b2238fae2ccc355b71ddf964bc2585571f81ae8fc652c4",
+      "bytes": 19388,
+      "status": "candidate-result-flag-vector-not-integrated",
+      "source_record": 1,
+      "tool": "project vector geometry + Pillow 11.3.0"
+    },
+    {
+      "file": "candidates/result-flag-02-v1.png",
+      "sha256": "933f12f7a59b43fc1074ecf740f82bdb6b6b610ef9710839d3c83d3702110b4b",
+      "bytes": 30723,
+      "status": "candidate-result-flag-vector-not-integrated",
+      "source_record": 2,
+      "tool": "project vector geometry + Pillow 11.3.0",
+      "size": [
+        1300,
+        660
+      ]
+    },
+    {
+      "file": "candidates/result-flag-02-v1.svg",
+      "sha256": "8065224a81e4c848d63d19df0ff29a0460d5e149e63c30043dc25ab5a3bdab88",
+      "bytes": 872,
+      "status": "candidate-result-flag-vector-not-integrated",
+      "source_record": 2,
+      "tool": "project vector geometry + Pillow 11.3.0"
+    },
+    {
+      "file": "candidates/result-flag-03-v1.png",
+      "sha256": "2e3e98d9e397f4a7470bd2e05d3baa1236640c48653eb1a0e8025ea4145d52e0",
+      "bytes": 16022,
+      "status": "candidate-result-flag-vector-not-integrated",
+      "source_record": 3,
+      "tool": "project vector geometry + Pillow 11.3.0",
+      "size": [
+        1300,
+        660
+      ]
+    },
+    {
+      "file": "candidates/result-flag-03-v1.svg",
+      "sha256": "e18f692650fa08bb12f1a6fa20184a7f5fbc98ae57183e8a0ab622ef76497d32",
+      "bytes": 1119,
+      "status": "candidate-result-flag-vector-not-integrated",
+      "source_record": 3,
+      "tool": "project vector geometry + Pillow 11.3.0"
+    },
+    {
+      "file": "candidates/result-flag-04-v1.png",
+      "sha256": "5a21c007282158f0e5742df9ce5c3c9fa476cc21b8bd25eb5f1dad5beb6780e9",
+      "bytes": 3945,
+      "status": "candidate-result-flag-vector-not-integrated",
+      "source_record": 4,
+      "tool": "project vector geometry + Pillow 11.3.0",
+      "size": [
+        1300,
+        660
+      ]
+    },
+    {
+      "file": "candidates/result-flag-04-v1.svg",
+      "sha256": "bb63a522686589343546a830c7c4e690d467230812777fea8166993a1da1bc46",
+      "bytes": 330,
+      "status": "candidate-result-flag-vector-not-integrated",
+      "source_record": 4,
+      "tool": "project vector geometry + Pillow 11.3.0"
+    },
+    {
+      "file": "candidates/result-flag-05-v1.png",
+      "sha256": "4f2f5a0aa293e6998149dba72009927405b0bff791a6d7e0b8499259f95e1208",
+      "bytes": 8099,
+      "status": "candidate-result-flag-vector-not-integrated",
+      "source_record": 5,
+      "tool": "project vector geometry + Pillow 11.3.0",
+      "size": [
+        1300,
+        660
+      ]
+    },
+    {
+      "file": "candidates/result-flag-05-v1.svg",
+      "sha256": "2cce593c12e6e472edc4af71275094ebbfc221aebb09ce9537deb8b1d665bab0",
+      "bytes": 1116,
+      "status": "candidate-result-flag-vector-not-integrated",
+      "source_record": 5,
+      "tool": "project vector geometry + Pillow 11.3.0"
+    },
+    {
+      "file": "candidates/result-flag-06-v1.png",
+      "sha256": "53eb25fb1e9ab2a471b9d92581f08b6eb36092d874a12df9347294f6b2ddfb25",
+      "bytes": 34598,
+      "status": "candidate-result-flag-vector-not-integrated",
+      "source_record": 6,
+      "tool": "project vector geometry + Pillow 11.3.0",
+      "size": [
+        1300,
+        660
+      ]
+    },
+    {
+      "file": "candidates/result-flag-06-v1.svg",
+      "sha256": "a61dc41ec238d579fbd1ea8d5eacb5fa7386bf0b4f034a3312a863f8c03cf2ed",
+      "bytes": 3807,
+      "status": "candidate-result-flag-vector-not-integrated",
+      "source_record": 6,
+      "tool": "project vector geometry + Pillow 11.3.0"
+    },
+    {
+      "file": "candidates/result-flags-source.json",
+      "sha256": "e7d3d8ae686698be3d438bff972f2c34e7a34c8e7258edaa10ebb6854a891d23",
+      "bytes": 139507,
+      "status": "candidate-result-flag-vector-provenance"
     }
   ],
   "original_game_data_included": false

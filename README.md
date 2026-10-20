@@ -62,6 +62,10 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 隔離 Linux 原型已由正常雙打完成斬對法蘭克的兩次擊倒，顯示上圖；原貌切換、恢復後像素一致及 Return 返回清除均通過，未載候選也能保持整張原貌。正式程式與下載包仍用原版結果畫面，其他角色、模式、結果與平台另驗。
 
+![七面結果旗幟的 HD 向量候選，未接正式程式](docs/screenshots/result-flag-candidates.png)
+
+七面結果旗幟另有獨立 SVG 與 1300×660 PNG，保留來源配色、點位與卦線配置，徽記細節為重畫近似。[來源及幾何紀錄](assets/hd/candidates/result-flags-source.json)可回查；這組仍是候選，尚未替換隔離原型的兩面旗幟或正式結果畫面。
+
 [蜘蛛女的十五張外部 HD 稿](assets/hd/candidates/spider/README.md)也已收錄。使用者確認的雙手觸地低伏已接入，另作無損鏡像及透明留白裁切；同一張圖對應三組低伏來源。其他稿仍有姿勢差異，未對應動作整格回退原貌。
 
 ![已接入遊戲的屋頂 HD 生成背景](assets/hd/backgrounds/rooftop.png)

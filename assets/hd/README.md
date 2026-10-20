@@ -4,6 +4,7 @@
 
 | 路徑 | 內容 | 接入狀態 |
 |---|---|---|
+| [七面結果旗幟](../../docs/screenshots/result-flag-candidates.png)、[來源與幾何紀錄](candidates/result-flags-source.json) | 七組 SVG／1300×660 PNG，以平滑幾何重畫原旗幟配色及圖記配置 | 新向量候選，未定版或接正式程式；前輪原生兩面旗幟及原 PNG 保持 |
 | [十一人敗者肖像](../../docs/screenshots/result-portrait-candidates.png)、[逐人來源與完整提示詞](candidates/result-portraits-source.json) | 十張新原 PNG 加既有法蘭克，皆為 1254×1254；原 LOSEFIG 十一張 RGB 核對 | 僅美術候選，表情／傷勢為近似；未接正式結果流程，不代替蜘蛛女戰鬥動畫 |
 | [結果報紙底圖](candidates/result-newspaper-v1.png)、[法蘭克受傷肖像](candidates/result-loser-frank-v1.png) | [來源與完整提示詞](candidates/result-source.json)，首輪兩張生成原 PNG、[靜態比較](../../docs/screenshots/result-newspaper-candidate.png)與[隔離原生候選](../../docs/screenshots/result-native-prototype-hd.png) | Linux 正常斬／法蘭克結果、切換／恢復、未載候選回退及返回清除已驗；未接正式程式，其他角色／模式／結果另驗，見 [048](../../docs/spec/048-hd-result-newspaper.md) |
 | [選角 VS](candidates/selection-vs-v1.png)、[來源與完整提示詞](candidates/selection-vs-source.json) | 1589×990、原透明 PNG；[八格／十一格比較](../../docs/screenshots/selection-layout-candidates.png) | 靜態構圖候選，未接遊戲，版面與操作區域未定 |

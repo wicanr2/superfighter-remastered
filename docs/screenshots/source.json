@@ -349,6 +349,18 @@
       "authorization": "existing HD upload and GitHub-visible screenshot request; visibility unchanged",
       "visible_art": "opaque new HD newspaper, generated portraits, new vector flags and project font; original-mode capture stays local",
       "limits": "one normal Jaan/Frank result; DRAFT art and private loader; not full HD or formal release"
+    },
+    {
+      "kind": "new SVG result-flag art contact sheet; not native capture",
+      "file": "result-flag-candidates.png",
+      "sha256": "dcf8bd474ff3016fe30e27ff425e5a17bcad02999fda181c8be10b5dd2a26330",
+      "source": "assets/hd/candidates/result-flags-source.json",
+      "source_sha256": "e7d3d8ae686698be3d438bff972f2c34e7a34c8e7258edaa10ebb6854a891d23",
+      "renderer": "tools/prepare_result_flag_art.py",
+      "renderer_sha256": "2ce134c01e9afab14db9dab04aa807c3f43dc79a22a76f033ac8d2dc64c13eb6",
+      "platform": "Pillow 11.3.0 in Docker; not runtime acceptance",
+      "authorization": "existing user HD upload request",
+      "limits": "new vector artwork only; original flag images and comparison stay local"
     }
   ]
 }

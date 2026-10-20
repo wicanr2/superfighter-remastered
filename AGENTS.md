@@ -149,6 +149,7 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [結果旗幟向量重畫](tools/prepare_result_flag_art.py)、[來源與幾何紀錄](assets/hd/candidates/result-flags-source.json) | 七筆原旗幟的配色／圖記位置與斷線配置作新 SVG／高解析 PNG，比較原貌只留本機；不是標準國旗修正或正式接入 |
 | [隔離結果原生獨立核對](tools/verify_result_native.py) | 原 RGB／色盤與 Go／Python 識別一致、候選身分／鏡像、切換原貌／恢復及返回清除；不宣稱 GPU 逐點取樣或完整結果皆驗收 |
 | [隔離結果原生操作](tools/result_native_smoke.py) | X11 正常斬／法蘭克雙打、兩次擊倒、結果原貌切換／恢復、未載候選及 Return 清除；不作全角色或正式發行驗收 |
 | [結果原生隔離準備／建置](tools/prepare_result_native_prototype.py)、[繪圖與來源模板](tools/result-native-prototype/desktop.go.in) | 正式來源複本中的完整原結果核對及候選繪圖；原參照與 recipe 只在 workplace，不改正式 API／格式 |
