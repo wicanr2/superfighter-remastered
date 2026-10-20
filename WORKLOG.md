@@ -914,3 +914,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 首稿的紅白預留斜紋超出肖像框，屬比較工具繪圖錯誤，失敗圖保留本機；移除該段繪圖後乾淨重跑。最終 selection-screen-preview-v3 公開合圖 SHA b6dedde62247da8c3a28a93e80568f3f056d71010a9c6f5e3c6f5fe38aa77dcd；中間 v2 相同圖樣保留，不覆寫既有來源收據。
 - 素材增為 118 PNG／133 catalog／137 檔、162,440,984 payload bytes；舊 131 筆素材、1516 鍵／74 圖集、正式 46 份編譯輸入及 bin 保持。README、047、現況與索引已補比較稿。029／046 原問題仍待回答，047 維持 DRAFT；未新增 Release、未把靜態候選當可操作完成。最終稽核、Docker 清理及推送另記。
 - selection-screen-preview-v3/final-audit.json 通過：新增二十七份完整來源重組、VS 原生成 bytes／提示詞與兩版靜態比較，舊 131 筆素材相同。191 個 README 相對連結與工具索引通過；128 原檔、1719 執行器來源、正式 i64、46 份編譯輸入、四平台程式、首版八包及原曲影片不變。無原版圖或 raw 入 Git，UID／誤建目錄檢查通過，本專案本輪容器已清空。
+- 素材與比較工具提交 `44ec0bf35687101b203bcb73a060dec8573021e1` 已推送 origin/main，遠端完整提交核對相同；首版 tag 維持 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段只記錄推送結果，不將 047 升級為正式完成。
