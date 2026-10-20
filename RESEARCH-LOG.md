@@ -696,3 +696,12 @@ managed 紋理版的 selection-native-full-v2 在 p0-08 原貌／HD 恢復比較
 - WC.XBB 三筆 65×169 raw 色號，步長 10987 bytes；FLAG.XBB 七筆 65×33，步長 2147 bytes。該結果 WC 第 0 筆位置 128,15，旗幟第 0／1 筆位置 30,154／226,154。旗幟使用 FLAG.FIG 色盤，用 SHIN 色盤會顯示黑圖；色盤來源由完整 RGB 比對證實，不靠圖檔名稱猜測。
 - NAME.XBB 沿既有 010 的 little-endian word offset，斬／法蘭克來源偏移 46／3189，42×11／54×11，位置 42,134／232,134。非零像素映黑、零映 219 灰。七份原檔完整重組 native-match-v2/result-newspaper.png.live.rgb 的 64000 像素 RGB，全等。工具為 Docker 中 Pillow 11.3.0；收據 result-source-v3/receipt.json SHA abdf7cb7f6b783c4daef5f2e66af7460a1b0e4dc94c3b2c80b1d1a6f802294ee。
 - 這次是重新核對先前普通輸入完成的結果，沒有宣稱新跑完整比賽。三結果字圖只證明素材存在，勝負分類門檻、其他角色旗幟對照與正式結果生命週期仍未知；不為本美術切片深入判勝函式。
+
+
+## 2026-10-21：048 目前核心正常結果與轉場停止線
+
+- 目前核心由 tools/result_core_receipt.go 走正常雙打 0／4，兩次擊倒、下一回合、結果穩定與 Return。實際到 1,023,750,000 步，Go 1.24.13、無網路 Docker、原檔唯讀；訓練始終關閉，僅普通選單與鍵盤輸入。收據 SHA 8f53dececcc9c6aafe80cc3d623d80da496dfcef0d9a63e7ccead853267d2410。
+- 已證實於十三份取樣：post-match-wait 與 result-stable-0..5 共七份原結果 RGB 全等七份原檔重組；四份對戰、首份離戰轉場及返回均拒絕。首份離戰在 Battle=false、Presentation 清空後仍未成為完整結果，因此僅憑離戰狀態識別結果不足。
+- tools/recognize_result_source.py 是可丟棄來源原型，使用整張 RGB 身分，不修改任何原始狀態；名字由原字圖像素搜尋，保留來源索引，不臆定全角色旗幟／分類規則。八個區域單 byte 篡改及長度錯誤均拒絕，詳見 result-core-v1/source-review.json。只有斬／法蘭克正常結果獲實跑補證，其餘來源排列與原則不外推。
+- 返回標題完整色號由原 TITLE／SFNAME 及 046 的 border helper 重組，選取 1／換色相位 5。初驗錯把 192 列 CRTC 對戰 scanout 當 200 列，另猜標題一般矩形而失敗；回讀 015／046 契約後沿用原程序，同一資料通過。一次探測容器誤用無 Pillow 的 Python image，只是環境問題；沒有新建工具鏈或改主機執行。
+- 原版亂數未固定，不聲稱跨執行戰鬥逐格 parity。無頭正常輸入不代表原生視窗 HD／單打／其他角色或結果已完成；正式來源、API 與素材格式均保持。

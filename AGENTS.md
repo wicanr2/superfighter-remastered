@@ -149,6 +149,8 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [結果完整來源識別原型](tools/recognize_result_source.py)、[正常生命週期核對](tools/verify_result_lifecycle.py) | 七份原檔識別兩側肖像／旗幟／字圖，整張 RGB 重組後才接受；驗正常結果、轉場拒絕、返回原標題與篡改拒絕，不接正式程式 |
+| [目前核心正常結果取樣](tools/result_core_receipt.go) | 沿既有普通雙打輸入取得兩次擊倒、結果穩定取樣與 Return 後來源；只讀畫面、色盤與狀態，不當原生 HD 驗收 |
 | [其餘敗者肖像收錄](tools/import_remaining_result_portraits.py)、[十一人來源與提示詞](assets/hd/candidates/result-portraits-source.json) | 十張生成原 PNG 加既有法蘭克，原 LOSEFIG 全十一張 RGB 核對與純 HD 總覽；候選不代表正式結果生命週期或全部角色驗收 |
 | [結果候選收錄與靜態比較](tools/import_result_candidates.py)、[來源及完整提示詞](assets/hd/candidates/result-source.json) | 原新聞底圖與法蘭克敗者肖像重繪，生成原 bytes 保持；純 HD 比較不當正常原生擷取 |
 | [結果報紙 HD](docs/spec/048-hd-result-newspaper.md)、[原來源匯出與重組](tools/export_result_source.py) | 七份原檔與既有正常結果 RGB 完整核對，原參照只留本機；結果美術候選為 DRAFT，不改正式判勝或流程 |
