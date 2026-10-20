@@ -398,3 +398,4 @@
 - 四份最終二進位及原編譯收據保存於 boss-clown-build-v2/bin，37 份精確輸入、檔頭及七個最終 GUI 案例均核對，原封移入 bin，舊金太極四份留於 kim-build-v1/bin。首版 boss-build-v1 仍保存其來源及收據，沒有將八組舊 GUI 換名為新版證據。
 - README 加入十一人選角、第二人魔王與小丑 HD／跳躍／原貌／恢復截圖，現況、清單及驗證矩陣同步。沿用既有 Docker 映像，IDA、Go、交叉編譯、Xvfb／Wine 與圖片核對容器均有界並移除，沒有新增映像、改共用 dosgolem、建立 Release 或推送 GitHub。
 - 本批自有來源與完整歷史備份使用 workplace/github-boss-clown-integration-progress.bundle 及 github-boss-clown-integration-progress-source.json。原版、衍生美術、私有執行器、研究收據及二進位仍排除 Git。接著繼續印第安喬與其餘 HD，完整目標尚未完成。
+- 隔離接入 commit 5dba2f1，dcdaff5 合入進度分支；main 保留既有穩定基底。GitHub 遠端未建立或推送。
