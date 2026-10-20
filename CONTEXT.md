@@ -4,6 +4,10 @@
 
 目前工作樹為 `/home/anr2/cht/快打至尊/superfighter-remastered`，使用 `main` 追蹤 `origin/main`。使用者已建立 [GitHub 儲存庫](https://github.com/wicanr2/superfighter-remastered)，遠端核對已包含搬移前最新提交 `69f91cd`。父目錄程式與文件只保留舊快照；後續編輯在本工作樹進行。
 
+使用者後續明確要求「HD素材上傳」。[assets/hd/README.md](assets/hd/README.md)收錄 63 張生成 PNG 及現行角色清單，包含 60 張角色／特效圖集、屋頂、道場候選與蜘蛛女已選定造型；逐檔身分見 [catalog.json](assets/hd/catalog.json)。這次授權取代以下舊切片的 HD 生成圖只留本機限制，原版檔案、原版色號／色盤、原圖、私有執行器與研究收據仍不上傳。沒有改變儲存庫可見性、原版資料權利或 HD 完成標準。
+
+素材及清單共 79,479,947 bytes，整個素材目錄 66 檔。所有 PNG、來源雜湊、尺寸及角色清單均核對，523 個本機 Markdown 引用通過；現有角色來源選擇與損壞拒絕測試以 `assets/hd/characters` 實際載入通過，未跳過。沒有改遊戲程式或新增已完成的角色／場景。
+
 ## 已確認方向
 
 - 參考 `/home/anr2/cht/zeliard` 的包裹與呈現方式。
@@ -274,7 +278,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 原版包、workplace 及 go.work 已移入本工作樹，父目錄同名符號連結維持舊路徑。這些檔案繼續被 Git 排除。後續程式、文件編輯與 Docker 的 /project 掛載都使用新工作樹，父目錄其他來源只留搬移前快照。
 
-Git 只收自有程式、規格、歷史整理、RRSAL-1.0、OFL 字型與不含原版畫面的手把設定截圖。原版、HD 衍生美術、私有 dosgolem 來源、研究收據及二進位不入 Git，未建立 Release 或正式封包。
+Git 收錄自有程式、規格、歷史整理、RRSAL-1.0、OFL 字型、不含原版畫面的手把設定截圖，以及使用者追加授權的 `assets/hd/` 生成素材與清單。原版檔案、原版色號／色盤、私有 dosgolem 來源、研究收據及二進位不入 Git，未建立 Release 或正式封包。
 
 現行完整歷史備份為 `workplace/github-phoenix-victory-integration-progress.bundle`，核對記錄為 `github-phoenix-victory-integration-progress-source.json`。其 remote_created／pushed 欄位描述備份當時狀態，保留原檔，不改為本次遠端收據。更早的 github-initial、github-native-victory 等 bundle 亦只描述各自切片。
 

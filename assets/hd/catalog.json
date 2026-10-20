@@ -1,0 +1,847 @@
+{
+  "version": 1,
+  "kind": "HD generated art and character mapping inventory",
+  "authorization": {
+    "date": "2026-10-20",
+    "user_instruction": "繼續啦 HD素材上傳",
+    "destination": "existing GitHub repository; visibility unchanged",
+    "scope": "generated HD PNG and mapping metadata only; not original game data or release"
+  },
+  "characters": {
+    "atlases": 60,
+    "registered_keys": 1093,
+    "sources": 15,
+    "complete_HD": false
+  },
+  "pngs": 63,
+  "files": [
+    {
+      "file": "characters/jaan-poses-00.png",
+      "sha256": "ea6713ce29aaca1cb07ed8759e9594a95c5647c344fad07c008156149747eb7a",
+      "bytes": 1435509,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/jaan-poses-00.png",
+      "generated_source": "workplace/hd-sprite-art-v1/jaan-poses-00.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/frank-poses-00.png",
+      "sha256": "52ec0135ffe2b9accddc7d1b9d669a239f26d7daeef0dce192d7e6a7730c8a24",
+      "bytes": 1236798,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/frank-poses-00.png",
+      "generated_source": "workplace/hd-sprite-art-v1/frank-poses-00.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/jaan-poses-01.png",
+      "sha256": "d52420f13fdbe53db8d6aea391d4f6a4c15a1e880090b11706248c13bbbef40c",
+      "bytes": 1305565,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/jaan-poses-01.png",
+      "generated_source": "workplace/hd-sprite-art-v1/jaan-poses-01.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/frank-poses-01.png",
+      "sha256": "92506c1fadc0bc8fdb415c25ad9d57f050acf8c82e11d40542eb39452b76af22",
+      "bytes": 1079682,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/frank-poses-01.png",
+      "generated_source": "workplace/hd-sprite-art-v1/frank-poses-01.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/jaan-poses-02.png",
+      "sha256": "59358aa704fa7d71699de9b0c4afe1efa69339858317113e4314911b02faea73",
+      "bytes": 1302028,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/jaan-poses-02.png",
+      "generated_source": "workplace/hd-sprite-art-v2/jaan-poses-02.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/frank-poses-02.png",
+      "sha256": "7bd5087c91a9dddc34325ce4b6cf848e8de2ae39d86e1f84fcccf1537a5517a4",
+      "bytes": 1151944,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/frank-poses-02.png",
+      "generated_source": "workplace/hd-sprite-art-v2/frank-poses-02.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/jaan-poses-03.png",
+      "sha256": "4486c3572398827b4b57e047e817d05a82b4f51a664ca273b6df840a934db059",
+      "bytes": 1413190,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/jaan-poses-03.png",
+      "generated_source": "workplace/hd-sprite-art-v3/jaan-poses-03.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/frank-poses-03.png",
+      "sha256": "e124dd6ce7cb029a5e6f0ec32c80d3828275ef84c83149a426a7c8cdb82371e6",
+      "bytes": 1253560,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/frank-poses-03.png",
+      "generated_source": "workplace/hd-sprite-art-v3/frank-poses-03.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/jaan-poses-04.png",
+      "sha256": "8cd39833d5fe03451bd88fcbb72722adc50b70075a612687f3efae1823093f59",
+      "bytes": 902767,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/jaan-poses-04.png",
+      "generated_source": "workplace/hd-sprite-art-v4/jaan-poses-04.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/frank-poses-04.png",
+      "sha256": "b7d610063b6834b805b1168efd4f3e34b1455f355a562c9e68f52d8f663e8fb6",
+      "bytes": 940971,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/frank-poses-04.png",
+      "generated_source": "workplace/hd-sprite-art-v4/frank-poses-04.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/jaan-poses-05.png",
+      "sha256": "d4f0921a62489417fdc39ed1e7249b1ca339d0a302b8fc36ab46bbf53da8c229",
+      "bytes": 212619,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/jaan-poses-05.png",
+      "generated_source": "workplace/hd-sprite-art-v5/jaan-poses-05.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/jaan-effects.png",
+      "sha256": "c76e7a5a93cfd6707f1ed429b0f3438c7e88498c34eb32caa5b838a33b571c3d",
+      "bytes": 485320,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/jaan-effects.png",
+      "generated_source": "workplace/hd-effect-art-v1/jaan-effects.png",
+      "size": [
+        1774,
+        887
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/frank-effects.png",
+      "sha256": "0c92339e7e948553e9114579d3a2fe7b323ab97f00dc75a3d3c8e1467c42f720",
+      "bytes": 812615,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/frank-effects.png",
+      "generated_source": "workplace/hd-effect-art-v2/frank-effects.png",
+      "size": [
+        1774,
+        887
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/jaan-win-00.png",
+      "sha256": "880f9e7cc57bfe142c9ef4ddd2b6f3804960c9c289d07ba0e162ffe49fb7ae3f",
+      "bytes": 980380,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/jaan-win-00.png",
+      "generated_source": "workplace/victory-art-v1/jaan-win-00.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/frank-win-00.png",
+      "sha256": "fab0fa80fb0be353edb7501b8931345cb837858087c305b57f8606065b4a566d",
+      "bytes": 1090516,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/frank-win-00.png",
+      "generated_source": "workplace/victory-art-v1/frank-win-00.png",
+      "size": [
+        2172,
+        724
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/sarkov-poses-00.png",
+      "sha256": "fc61c2f08a15b9e007ed53f4600e4eaee9183486b521b5144131256df2c9238e",
+      "bytes": 1496200,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/sarkov-poses-00.png",
+      "generated_source": "workplace/sarkov-art-v1/sarkov-poses-00.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/sarkov-poses-01.png",
+      "sha256": "10dd9da7373aa34dcda49ab9d57b42abe379fe747effc8c7fef8deb977fada78",
+      "bytes": 1639463,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/sarkov-poses-01.png",
+      "generated_source": "workplace/sarkov-art-v1/sarkov-poses-01.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/sarkov-poses-02.png",
+      "sha256": "a1892dd40e865e43d255f66ecbc7a2c2a950148f07505356ba9587fc86a7870d",
+      "bytes": 1448854,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/sarkov-poses-02.png",
+      "generated_source": "workplace/sarkov-art-v1/sarkov-poses-02.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/sarkov-poses-03-v2.png",
+      "sha256": "5b4324aab43ee2317df1f617ccd5dceb5ab10f843f485e2a541e9c8c6f6a9347",
+      "bytes": 1172494,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/sarkov-poses-03-v2.png",
+      "generated_source": "workplace/sarkov-art-v1/sarkov-poses-03-v2.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/sarkov-victory-poses.png",
+      "sha256": "44b4ba6ce3d99a233a5428210f08de8bca75e310bfcd28aeedffca010db261de",
+      "bytes": 1279261,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/sarkov-victory-poses.png",
+      "generated_source": "workplace/sarkov-victory-art-v1/sarkov-victory-poses.png",
+      "size": [
+        2172,
+        724
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/bullet-poses-00.png",
+      "sha256": "e7725f07b48254ba3445a77eb183fb21db139c57fc4f561ebb3ee008ac5a0ae3",
+      "bytes": 1358361,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/bullet-poses-00.png",
+      "generated_source": "workplace/bullet-art-v1/bullet-poses-00.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/bullet-poses-01.png",
+      "sha256": "adc303f13325e592880d1f875704a8d4edf966828dde1351fe1680a3ef9b669b",
+      "bytes": 1374997,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/bullet-poses-01.png",
+      "generated_source": "workplace/bullet-art-v1/bullet-poses-01.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/bullet-poses-02.png",
+      "sha256": "b0836e64aa115e3a3ceb79a7ab746b570269d122d1bb6f4005fd990c894502b9",
+      "bytes": 1272600,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/bullet-poses-02.png",
+      "generated_source": "workplace/bullet-art-v1/bullet-poses-02.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/bullet-poses-03.png",
+      "sha256": "cb02e709ec9d3b62975cbaead9c5803154ca08b98660eac19c5cc21adadecf7d",
+      "bytes": 1131804,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/bullet-poses-03.png",
+      "generated_source": "workplace/bullet-art-v1/bullet-poses-03.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/bullet-poses-04.png",
+      "sha256": "bc40c7693cb4f1aa3bf8af5cdede71d9c8590b8c7cdf41faad06451c3268cb1c",
+      "bytes": 1404540,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/bullet-poses-04.png",
+      "generated_source": "workplace/bullet-art-v1/bullet-poses-04.png",
+      "size": [
+        1891,
+        832
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/phoenix-poses-00-v2.png",
+      "sha256": "51d14e3655ecb105693d8e256ef66d9676d80d2ebb52a389d9d87f84b11d8417",
+      "bytes": 1480570,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/phoenix-poses-00-v2.png",
+      "generated_source": "workplace/phoenix-art-v1/phoenix-poses-00-v2.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/phoenix-poses-01.png",
+      "sha256": "cf14ea019780abffbc51fa3aff4a02cea7dee37aab9e12febf01c13acbc0f641",
+      "bytes": 1627899,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/phoenix-poses-01.png",
+      "generated_source": "workplace/phoenix-art-v1/phoenix-poses-01.png",
+      "size": [
+        1446,
+        1087
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/phoenix-poses-02-v2.png",
+      "sha256": "d8e58f0e3292551b90a0107ee342976c70e096d31c6f5f65a4b39475e14ea0d8",
+      "bytes": 1250338,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/phoenix-poses-02-v2.png",
+      "generated_source": "workplace/phoenix-art-v1/phoenix-poses-02-v2.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/phoenix-poses-03.png",
+      "sha256": "38616e2ec141375e72b2c0fa5823a5b01a26075372298638c694955ca9eda075",
+      "bytes": 1330885,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/phoenix-poses-03.png",
+      "generated_source": "workplace/phoenix-art-v1/phoenix-poses-03.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/phoenix-poses-04-v2.png",
+      "sha256": "9473441f6212b35cd9a74a16f9e35ba5a2176d8eebbbf25fc36074af0cb7426e",
+      "bytes": 1291254,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/phoenix-poses-04-v2.png",
+      "generated_source": "workplace/phoenix-art-v1/phoenix-poses-04-v2.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/phoenix-poses-05.png",
+      "sha256": "d91b99213b61b840113b77f0b3d1cca28dd81686c6747cde7a135b9009ac124c",
+      "bytes": 1088464,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/phoenix-poses-05.png",
+      "generated_source": "workplace/phoenix-art-v1/phoenix-poses-05.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/onimaru-poses-00.png",
+      "sha256": "7b4f06ccd657fb984dfb3eb2753353764349b9159c437bcaa980796afda4afa7",
+      "bytes": 1516743,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/onimaru-poses-00.png",
+      "generated_source": "workplace/onimaru-art-v1/onimaru-poses-00.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/onimaru-poses-01.png",
+      "sha256": "0b1bc234f4d7ce65a9fc39198f17ea6d6f28e3020d39f5a5362b9b2253f20335",
+      "bytes": 1501572,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/onimaru-poses-01.png",
+      "generated_source": "workplace/onimaru-art-v1/onimaru-poses-01.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/onimaru-poses-02.png",
+      "sha256": "8b6bc8338d1ddc5397a24ce86164915b7cd911a60f509a1a6282ed3de4b295e1",
+      "bytes": 1199525,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/onimaru-poses-02.png",
+      "generated_source": "workplace/onimaru-art-v1/onimaru-poses-02.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/onimaru-poses-03.png",
+      "sha256": "08cfa73f01519794d72f7b57356c420310d898b729da906139a7e4ff233784b2",
+      "bytes": 1389766,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/onimaru-poses-03.png",
+      "generated_source": "workplace/onimaru-art-v1/onimaru-poses-03.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/onimaru-poses-04.png",
+      "sha256": "7a744ffe05c10311f6515c0390a49b646fd012d7f7c53c5f5a24884dd2d752b8",
+      "bytes": 1384429,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/onimaru-poses-04.png",
+      "generated_source": "workplace/onimaru-art-v1/onimaru-poses-04.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/onimaru-poses-05-v3.png",
+      "sha256": "adcc58e262829e667eabad0f033d7569be560ec6ad8c482f753310923e47d49d",
+      "bytes": 1293441,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/onimaru-poses-05-v3.png",
+      "generated_source": "workplace/onimaru-art-v1/onimaru-poses-05-v3.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/lan-poses-00.png",
+      "sha256": "4b00b13210748735a63d4b61a1f95dd27bfc0126f25ed13077b395a53dc01b99",
+      "bytes": 1191556,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/lan-poses-00.png",
+      "generated_source": "workplace/lan-art-v1/lan-poses-00.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/lan-poses-01.png",
+      "sha256": "07135e8643a710b79fa3b5c2a698349cf245b736a49d853343f7f9818180a95c",
+      "bytes": 1317397,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/lan-poses-01.png",
+      "generated_source": "workplace/lan-art-v1/lan-poses-01.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/lan-poses-02.png",
+      "sha256": "7b7c11812a5d6e8d13e9ada113e29a117e78176c523d8336bb9e84c8afda8b04",
+      "bytes": 1291896,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/lan-poses-02.png",
+      "generated_source": "workplace/lan-art-v1/lan-poses-02.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/lan-poses-03.png",
+      "sha256": "15d9a649cf759d09f6aaa7b8ce7c7cf3fc58857fd9efa526cc2525acc1c5f164",
+      "bytes": 1092693,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/lan-poses-03.png",
+      "generated_source": "workplace/lan-art-v1/lan-poses-03.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/lan-poses-04-v2.png",
+      "sha256": "3dba2d5da9f567ef37acc75fc268d41106409f49a3964314368ea2abcb20c873",
+      "bytes": 641836,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/lan-poses-04-v2.png",
+      "generated_source": "workplace/lan-art-v1/lan-poses-04-v2.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/lan-poses-05.png",
+      "sha256": "197cc9453189f5655c821df937958bb1b2b61f2a37cd1d4c3fa7433fd59a5008",
+      "bytes": 469846,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/lan-poses-05.png",
+      "generated_source": "workplace/lan-art-v1/lan-poses-05.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/kim-poses-00.png",
+      "sha256": "334bde8bc0d98e45ef0f09a249890fb496fbf548009141e1ce2600d12db06a5d",
+      "bytes": 1338386,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/kim-poses-00.png",
+      "generated_source": "workplace/kim-art-v1/kim-poses-00.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/kim-poses-01.png",
+      "sha256": "260fb88af44a8a5eadb252f53d7f95d2bb6684428234028e105439681062e204",
+      "bytes": 1590217,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/kim-poses-01.png",
+      "generated_source": "workplace/kim-art-v1/kim-poses-01.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/kim-poses-02-v2.png",
+      "sha256": "9044014334d4f21df9ca422a5885af896686750826c391a098af4a97ce8d6b91",
+      "bytes": 1029615,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/kim-poses-02-v2.png",
+      "generated_source": "workplace/kim-art-v1/kim-poses-02-v2.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/kim-poses-03.png",
+      "sha256": "15307c8a0c45cf57a0e7f2db34e808dffefb9d1a6c4dcb97d5762d4a60c5e94d",
+      "bytes": 1391778,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/kim-poses-03.png",
+      "generated_source": "workplace/kim-art-v1/kim-poses-03.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/kim-poses-04.png",
+      "sha256": "0ab18901156d19976d384ee77ad3131cdfd55dac164e9940bbf6f6b4a774a390",
+      "bytes": 1080740,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/kim-poses-04.png",
+      "generated_source": "workplace/kim-art-v1/kim-poses-04.png",
+      "size": [
+        1447,
+        1087
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/clown-poses-00.png",
+      "sha256": "ca622ba4b600df41c0a85d1756e5dc274cd34313052e352bc1dcbb8635294042",
+      "bytes": 1538805,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/clown-poses-00.png",
+      "generated_source": "workplace/clown-art-v1/clown-poses-00.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/clown-poses-01.png",
+      "sha256": "7ce5e3cd04cc2c20ce8286a471dcaa4328874173c9ea920e7f1f8ed2ea7f5590",
+      "bytes": 1444541,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/clown-poses-01.png",
+      "generated_source": "workplace/clown-art-v1/clown-poses-01.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/clown-poses-02.png",
+      "sha256": "7a10d4eecacb926d6ac9af5e379fb5fd63e0b991cf841390227b69940478e88b",
+      "bytes": 1406174,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/clown-poses-02.png",
+      "generated_source": "workplace/clown-art-v1/clown-poses-02.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/clown-poses-03.png",
+      "sha256": "31742debfdd3faec04f9baae2e1400422f5b71204c8eb9f29e6e9406ea24d0d2",
+      "bytes": 1417402,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/clown-poses-03.png",
+      "generated_source": "workplace/clown-art-v1/clown-poses-03.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/clown-poses-04.png",
+      "sha256": "4e0bf144bd1e98ba3bd0a5aeca861df1aa002938d57d6d43885af1f69d322aa7",
+      "bytes": 1225187,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/clown-poses-04.png",
+      "generated_source": "workplace/clown-art-v1/clown-poses-04.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/clown-poses-05.png",
+      "sha256": "6da7236a248f2da7d46d7be7aa030430c3cf345ad97da4327a1b6bcec2c8cd57",
+      "bytes": 552361,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/clown-poses-05.png",
+      "generated_source": "workplace/clown-art-v1/clown-poses-05.png",
+      "size": [
+        2164,
+        727
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/joe-poses-00.png",
+      "sha256": "5e1d3cba53c0cb72b1e077d442ec29c9ed4e29b47765be9bb2876d5b46b9fba1",
+      "bytes": 1390146,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/joe-poses-00.png",
+      "generated_source": "workplace/joe-art-v1/joe-poses-00.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/joe-poses-01.png",
+      "sha256": "b5e6c5015554f61d30bad39d1d13f6cf3a1d5ee9fc48053b739294c412c57d6e",
+      "bytes": 1497899,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/joe-poses-01.png",
+      "generated_source": "workplace/joe-art-v1/joe-poses-01.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/joe-poses-02.png",
+      "sha256": "b41cc502ae553970cbecdc12e576d0171339ced2e2336f005ef03be06b37eb72",
+      "bytes": 1482152,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/joe-poses-02.png",
+      "generated_source": "workplace/joe-art-v1/joe-poses-02.png",
+      "size": [
+        1448,
+        1086
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/joe-poses-03.png",
+      "sha256": "6bf418b6404baeebbc7016259d9e9237f220644c4dff628edd1a0f0f342b9e66",
+      "bytes": 1323409,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/joe-poses-03.png",
+      "generated_source": "workplace/joe-art-v1/joe-poses-03.png",
+      "size": [
+        1774,
+        887
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/bullet-win.png",
+      "sha256": "40e9ecc471cb8c1ba71016deba7ceaf70cb1d90bf3e26f4147101a6e168d70d5",
+      "bytes": 1120136,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/bullet-win.png",
+      "generated_source": "workplace/bullet-victory-art-v1/bullet-win.png",
+      "size": [
+        2172,
+        724
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/phoenix-win.png",
+      "sha256": "c4c2ba8fdefb79d0041639e958338777bf68264caa2e62d1371ff421d3119556",
+      "bytes": 892930,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/phoenix-win.png",
+      "generated_source": "workplace/phoenix-victory-art-v1/phoenix-win.png",
+      "size": [
+        2172,
+        724
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/manifest.json",
+      "sha256": "cfc6c512c2b0e4aae1628196267033a11f16774a11b82f523de14a082155e404",
+      "bytes": 379321,
+      "status": "current-character-mapping",
+      "copied_from": "workplace/hd-characters-phoenix-victory-v1/manifest.json",
+      "generated_source": "workplace/hd-characters-phoenix-victory-v1/manifest.json"
+    },
+    {
+      "file": "backgrounds/rooftop.png",
+      "sha256": "b43472c099a5b11f9732c19a9bc20078f14a0a1a17e020806b5c4e5dcc06d905",
+      "bytes": 2340710,
+      "status": "integrated-background",
+      "copied_from": "workplace/hd-layers/rooftop-layer.png",
+      "generated_source": "workplace/hd-layers/rooftop-layer.png",
+      "size": [
+        1923,
+        818
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "candidates/dojo.png",
+      "sha256": "68a8e64e6e4dc47e61fa52f43e78471a855f6a86e2e8913ba92f13439a3db11b",
+      "bytes": 2628825,
+      "status": "candidate-background",
+      "copied_from": "workplace/dojo-art-v1/dojo.png",
+      "generated_source": "workplace/dojo-art-v1/dojo.png",
+      "size": [
+        1922,
+        818
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "candidates/spider-coverage.png",
+      "sha256": "4cbd89d69901d875587d2fdd471cf487917e357d52c5773b0564ecc2a75b8b74",
+      "bytes": 867065,
+      "status": "accepted-costume-only",
+      "copied_from": "workplace/spider-art-v1/coverage-prototype.png",
+      "generated_source": "workplace/spider-art-v1/coverage-prototype.png",
+      "size": [
+        1390,
+        1132
+      ],
+      "tool": "built-in imagegen"
+    }
+  ],
+  "original_game_data_included": false
+}

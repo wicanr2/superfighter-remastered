@@ -2,7 +2,7 @@
 
 Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，接入雙人手把、逐角色四格快速出招與街機手繪 HD，並保存遊戲歷史。
 
-程式與文件存放於 [GitHub 儲存庫](https://github.com/wicanr2/superfighter-remastered)。原版資料、HD 美術與遊戲二進位不隨儲存庫提供。
+程式、文件與 [HD 生成素材](assets/hd/README.md)存放於 [GitHub 儲存庫](https://github.com/wicanr2/superfighter-remastered)。原版資料與遊戲二進位不隨儲存庫提供。
 
 玩家入口使用 Ebitengine 原生視窗，直接處理鍵鼠與標準手把。原版核心負責規則、碰撞、AI 及流程。既有網頁只保留研究用途。
 
@@ -13,6 +13,16 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 原有八名角色、小丑與印第安喬的一般來源已接入原生，實測範圍見[薩爾可夫](docs/spec/018-sarkov-hd.md)、[子彈](docs/spec/020-bullet-hd.md)、[鳳凰](docs/spec/021-phoenix-hd.md)、[鬼丸](docs/spec/022-onimaru-hd.md)、[嵐](docs/spec/023-lan-hd.md)、[金太極](docs/spec/024-kim-hd.md)、[小丑](docs/spec/026-clown-hd.md)與[印第安喬](docs/spec/027-joe-hd.md)。目前群組共 1093 個鍵，包含十人的一般來源、既有特效與五人的 WIN 入口。[子彈首勝](docs/spec/028-bullet-victory.md)與[鳳凰首勝](docs/spec/030-phoenix-victory.md)已驗 Linux／Wine 完整切片；薩爾可夫的 Wine 下一回合仍未驗完。蜘蛛女、完整動畫、替代色盤、其他角色快捷及其餘場景仍在製作。
 
 十一人選角已加入蜘蛛女、小丑、印第安喬，單打、雙打皆可選，並保留原版對戰規則。Linux／Wine 已驗正常選角與首戰操作；魔王完整單打過關與結局仍待驗，詳見[選角範圍](docs/spec/025-boss-selection.md)。
+
+## HD 素材
+
+目前收錄 60 張角色／特效圖集、角色登錄清單與屋頂背景；道場候選及蜘蛛女定版造型另標示狀態。全部生成 PNG 保留原 bytes，逐檔來源與 SHA-256 見 [HD 素材目錄](assets/hd/README.md)。素材上傳不代表完整角色動畫或所有場景已完成。
+
+![已接入遊戲的屋頂 HD 生成背景](assets/hd/backgrounds/rooftop.png)
+
+![鳳凰勝利 HD 原始圖集](assets/hd/characters/phoenix-win.png)
+
+以上是生成素材預覽，正常遊戲的整合驗證與限制見下方畫面及各規格。
 
 ## 目前整合畫面
 
@@ -108,7 +118,7 @@ Linux 原生版由正常標題進入斬對法蘭克雙打。生命條讀取原�
 
 開發建置在 Docker 內執行，工作區需要已準備的 dosgolem 獨立來源及工具鏈，詳見[工作契約](AGENTS.md)和[桌面規格](docs/spec/005-native-desktop.md)。
 
-儲存庫不附原版資料、HD 衍生美術、研究收據、dosgolem 私有來源或本機快取。`go.work.example` 記錄相對目錄配置，準備來源後複製為 `go.work`；原版匯入與來源快照工具為 `tools/prepare.py`，執行器補丁為 `tools/apply_runtime_patch.py`。現行收據中的 `workplace/` 連結僅供本機核對。
+儲存庫不附原版資料、研究收據、dosgolem 私有來源或本機快取。HD 生成圖與角色清單收錄於 `assets/hd/`，屋頂原版參考色號與色盤仍需本機準備。`go.work.example` 記錄相對目錄配置，準備來源後複製為 `go.work`；原版匯入與來源快照工具為 `tools/prepare.py`，執行器補丁為 `tools/apply_runtime_patch.py`。現行收據中的 `workplace/` 連結僅供本機核對。
 
 目前執行器副本也需要普通記憶體觀測及顯示 API。準備與安裝順序見[規格 007](docs/spec/007-memory-write-observation.md)、[規格 014](docs/spec/014-mode13-scanout.md)及[規格 015](docs/spec/015-native-scanout.md)；安裝工具只修改本專案的獨立副本。
 
@@ -135,7 +145,7 @@ bash tools/build_desktop.sh
 
 本機屋頂試作素材已備妥時，可加上 `-hd-assets workplace/hd-rooftop-study`，再按「原貌／HD 背景」切換。素材準備與驗證見[背景規格](docs/spec/006-rooftop-background.md)。沒有素材或場景未對應時顯示原貌。
 
-角色與特效試作再加上 `-hd-characters workplace/hd-characters-phoenix-victory-v1`，按「原貌／HD 角色」切換。此群組保留既有基底，包含十人的一般來源及五人的 WIN 入口。背景、兩名角色、來源與圖層全部符合才顯示 HD，缺動作或未知色盤時整張回退。新版仍接受舊版角色素材。此素材群組僅供本機研究，基底準備工具為 `tools/prepare_hd_characters.py`，勝利姿態登錄使用 `tools/prepare_victory_characters.py`，一般角色擴充使用 `tools/prepare_character_extension.py`。
+角色與特效試作再加上 `-hd-characters assets/hd/characters`，按「原貌／HD 角色」切換。此群組保留既有基底，包含十人的一般來源及五人的 WIN 入口，與本機 `workplace/hd-characters-phoenix-victory-v1` 的 PNG 及清單相同。背景、兩名角色、來源與圖層全部符合才顯示 HD，缺動作或未知色盤時整張回退。新版仍接受舊版角色素材。基底準備工具為 `tools/prepare_hd_characters.py`，勝利姿態登錄使用 `tools/prepare_victory_characters.py`，一般角色擴充使用 `tools/prepare_character_extension.py`。
 
 含特效的新版群組也啟用高解析生命、計時、名字、玩家標記、勝場與地面陰影，來源驗證失敗時整張回退。舊版 1 素材保留原貌介面、特效與陰影。
 

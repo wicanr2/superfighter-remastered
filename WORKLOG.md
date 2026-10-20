@@ -457,3 +457,13 @@
 - git fetch 有一次 DNS 失敗，後續 ls-remote 再次核對相同遠端提交；GitHub API 讀取仍無法連線，未另行確認可見性欄位，授權仍限私人設定。一次文件編輯容器遭 Docker socket 權限拒絕，改用儲存庫檔案編輯工具；後續唯讀驗證與 Go 路徑檢查均成功，未視為產品缺陷。
 - 本批容器使用 --rm，收尾沒有 kdzz 容器，未建立映像或 Release。HD 接續新工作樹的 WORKLIST；029 多場景格式仍待回答，蜘蛛女仍保留已選連身衣與生成拒絕紀錄，未重新決定造型或資料格式。
 - 搬移文件提交 c809fbe 已成功推送 origin/main，ls-remote 再次核對遠端完整提交 c809fbe9cd8c12a7bc94fbe64846fa12218755d2，本機工作樹乾淨。507 個本機 Markdown 引用及三個相容連結通過；首版檢查誤將兩個掛載點的路徑字串直接比較，改用 samefile 核對檔案身分後通過，沒有修改產品或連結來迎合檢查。
+
+## 2026-10-20 HD 素材上傳授權與整理
+
+- 使用者明確要求「HD素材上傳」。此新授權取代本批生成圖只留本機的舊限制，仍不包含原版檔案、原版色號與色盤、原圖、私有執行器或含原版內容的收據，也不變更儲存庫可見性或建立 Release。
+- 命中復古重製與文件職責路由，讀取 reverse-engineer-retro-game-remake、文件職責與 README 標準。先核對實際清單，確認現行角色包 60 PNG／1093 鍵；初次盤點假定存在 registration.json 而中止，實際只有 manifest.json 與勝利登錄紀錄，改按實際檔案盤點，未補造研究證據。
+- 新增 assets/hd 作為受版控的 HD 輸入。既有 internal/desktop/assets 專供字型，docs/screenshots 保存介面截圖，workplace 保存研究及中間產物，都不適合代替正式素材來源目錄。assets/hd 的 README 與 catalog 由 AGENTS 及主 README 索引，不建立交付或研究目錄。
+- 本次收錄現行角色圖集與清單、屋頂生成圖、道場候選及已選定的蜘蛛女連身衣圖。候選狀態保留，不把上傳當作遊戲接入或完整 HD 驗收；原 PNG 只複製，不重新編碼。
+- 實際收錄 assets/hd 共 66 檔，含 63 PNG、角色 manifest、逐檔 catalog 及 README。影像與角色清單共 79,479,947 bytes。60 張角色圖集均依 SHA-256 回查既有生成來源，三張背景／造型圖亦與原生成檔相同，沒有提交原版參考色號、色盤或原圖。
+- Pillow 11.3.0 解碼與 PNG 完整性、catalog 大小／尺寸／雜湊、全部複製來源、1093 個登錄鍵、66 檔精確收錄範圍及 523 個本機 Markdown 引用通過。以 assets/hd/characters 實際載入的既有 TestCharacterPackSourceSelectionAndAtomicRejection 通過，未跳過，16.28 秒，證明目前讀取端可用這份包並維持來源選擇及損壞拒絕。
+- README 改列已收錄 HD 圖與角色包，加入屋頂及鳳凰 WIN 原圖預覽，仍標示本機整合截圖、原版資料及屋頂參考層的邊界。AGENTS 與 CONTEXT 記錄本次新授權，歷史 WORKLOG、生成來源與舊 rights 欄位保留原日期事實，未改寫舊圖或宣稱完整 HD 完成。
