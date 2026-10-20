@@ -18,6 +18,7 @@ func main() {
 	hdAssets := flag.String("hd-assets", "", "本機 HD 背景素材目錄；不提供時使用原貌")
 	hdCharacters := flag.String("hd-characters", "", "本機 HD 角色素材目錄；搭配 hd-assets 使用")
 	quit := flag.Duration("quit-after", 0, "有界驗證時限，例如 90s；0 為不限制")
+	training := flag.Bool("training", false, "預先開啟練習模式：雙方滿血、時間停止、電腦中立；F9 可切換")
 	flag.Parse()
 	if *config == "" {
 		dir, e := os.UserConfigDir()
@@ -38,7 +39,7 @@ func main() {
 	if *quit < 0 || *quit > 24*time.Hour {
 		log.Fatal("驗證時限不合法")
 	}
-	g, e := desktop.New(desktop.Options{Root: *root, DataDir: *config, Observe: *observe, Capture: *capture, HDAssets: *hdAssets, HDCharacters: *hdCharacters, QuitAfter: *quit})
+	g, e := desktop.New(desktop.Options{Root: *root, DataDir: *config, Observe: *observe, Capture: *capture, HDAssets: *hdAssets, HDCharacters: *hdCharacters, QuitAfter: *quit, Training: *training})
 	if e != nil {
 		log.Fatal(e)
 	}

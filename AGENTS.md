@@ -63,6 +63,8 @@
 
 ## 手把操作
 
+使用者於 2026-10-20 另授權[練習模式 032](docs/spec/032-training-mode.md)：雙方補滿並鎖滿血、停止倒數、AI 輸入中立。這是明示的可關閉規則擴充，只由 gamecore 適配層介入；HD 仍為只讀呈現。曾啟用的執行及其截圖保留 modified 標記，不當作未修改原版對拍。
+
 先核對原版輸入，再定義動作表與預設綁定。不能因為是格鬥遊戲，就自行補上攻擊鍵數、連招或原生搖桿契約。
 
 | 項目 | 要求與驗收 |
@@ -146,6 +148,8 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [練習模式規格](docs/spec/032-training-mode.md) | 使用者指定的雙方鎖血、停止倒數與 AI 中立；獨立於原版／HD 對拍，依規格閘門接入 |
+| [練習適配](internal/gamecore/training.go)、[正常路徑與拒絕邊界](internal/gamecore/training_test.go)、[原生開關驗證](tools/training_smoke.py) | 固定原檔與控制點、雙模式鎖血／停時／AI 中立、原生工具列及 F9、重啟與命令列 |
 | [README.md](README.md) | 穩定用途、本機建置與操作入口、現況摘要 |
 | [LICENSE](LICENSE) | 自有程式與文件的 RRSAL-1.0 完整條款，排除原版資料及第三方內容 |
 | [go.work.example](go.work.example) | 新工作樹的本機 dosgolem 相對目錄範本 |

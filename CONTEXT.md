@@ -24,6 +24,7 @@
 
 | 項目 | 狀態 | 最近證據與限制 |
 |---|---|---|
+| 練習模式 | 已接原生，032 限定 CONFORMED | 工具列／F9／-training 共用；雙方補滿且鎖血、停時、AI 中立，關閉恢復。核心單／雙打、七個拒絕邊界、Linux 單打七項與 Linux／Wine 雙打 HD 各八項通過；重啟預設關，曾啟用標示 modified。完整程式測試及 vet 通過 |
 | jsdos 下載 | 已完成 | 1,281,787 bytes；SHA-256 與來源物件檔名一致；ZIP CRC 通過 |
 | 來源盤點 | 已完成 | 128 個檔案、130 個 ZIP 項目；逐檔 SHA-256；作弊資料隔離；原始副本唯讀使用 |
 | 研究工具 | 已建立 | 安全盤點、IDA、逐次繪製與完整 RAM 分層；規格 007 的通用觀測介面限定 CONFORMED，獨立副本新增兩檔，共用來源未改 |
@@ -51,7 +52,7 @@
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | Windows／macOS／Linux 已定 | 鬼丸首勝四份二進位核對 37 份編譯輸入後原封移入 bin，記錄為 onimaru-victory-build-v1/promotion.json。前版四份保留於 phoenix-victory-build-v1/bin；歷史收據仍綁定各自版本。未作 Windows／macOS 真機、簽章或正式封包，Wine 不代替真機 |
+| 平台與發布 | Windows／macOS／Linux 已定 | 練習模式四份二進位核對 38 份編譯輸入，原封移入 bin 的收據為 training-build-v1/promotion.json。鬼丸首勝前版保留於 onimaru-victory-build-v1/bin；歷史收據仍綁定各自版本。未作 Windows／macOS 真機、簽章或正式封包，Wine 不代替真機 |
 
 ## 固定輸入
 
@@ -115,9 +116,16 @@ HD 採 B「街機手繪」。現行群組為 `hd-characters-onimaru-victory-v1`�
 
 快捷四格與雙手把已接本機操作入口，預設 R1／R2／L1／L2 對應 1／2／3／4，兩名玩家各自保存。斬的四招可送原版輸入，其他角色尚未驗證的快捷明示拒絕。投技仍需近身，沒有自動走近或改寫座標。實體裝置驗收仍待進行。
 
-AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整研究在 RESEARCH-LOG。短檔作弊效果的因果仍屬強推論，未作同狀態替換實驗，沒有新增 AI 行為。三平台已固定，公開方式與完整發行門檻尚未決定。
+AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整研究在 RESEARCH-LOG。短檔作弊效果的因果仍屬強推論，未作同狀態替換實驗，也未新增 AI 難度設定。032 另在練習模式將 AI 輸入清為中立，不替換 AIDATA；關閉即恢復原版決策。三平台已固定，公開方式與完整發行門檻尚未決定。
 
 ## 現行證據入口
+
+### 練習模式
+
+- [規格 032](docs/spec/032-training-mode.md)限定 CONFORMED。使用者確認補滿並鎖滿血；工具列、F9 與 `-training` 共用請求，在可操作回合邊界啟用。關閉不倒帶回血；曾介入的執行保留 modified。
+- `training-evidence-review-v1.json` 綁定 IDA 與同狀態差異探針；`training-core-v3.json`、`training-checks-v3.log` 及 `training-checks-v3.json` 保存核心、七個拒絕邊界、全套程式測試及 vet。舊 HD 外部 fixture 未另供給；訓練 HUD 由原檔獨立重組。
+- `training-native-single-v1` 七項、`training-native-v4` 及 `training-wine-v2` 各八項通過。README 的 [training-hd.png](docs/screenshots/training-hd.png)為 Linux 普通雙打入口、練習中暫停的 HD 擷取；原貌單打及所有原始 sidecar 留本機。
+- 四份編譯及 38 份來源在 `training-build-v1`；原版 128 檔、dosgolem 1719 來源及生成 HD 素材不因本功能修改。完整勝負過場、魔王全部動作及實體手把另驗。
 
 ### 目前鬼丸勝利整合
 

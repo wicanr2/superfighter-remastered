@@ -28,17 +28,21 @@ type shortcut struct {
 	keys             []uint8
 }
 type Status struct {
-	Selection *Selection `json:"selection,omitempty"`
-	Paused    bool       `json:"paused"`
-	Battle    bool       `json:"battle"`
-	Steps     uint64     `json:"steps"`
-	Frames    uint64     `json:"frames"`
-	Mode      int        `json:"mode"`
-	Fighters  [2]int     `json:"fighters"`
-	Paths     [2]int     `json:"paths"`
-	KeyValues [2]int     `json:"key_values"`
-	Quick     [2]bool    `json:"quick"`
-	Error     string     `json:"error,omitempty"`
+	Selection *Selection     `json:"selection,omitempty"`
+	Paused    bool           `json:"paused"`
+	Battle    bool           `json:"battle"`
+	Steps     uint64         `json:"steps"`
+	Frames    uint64         `json:"frames"`
+	Mode      int            `json:"mode"`
+	Fighters  [2]int         `json:"fighters"`
+	Paths     [2]int         `json:"paths"`
+	KeyValues [2]int         `json:"key_values"`
+	Quick     [2]bool        `json:"quick"`
+	Training  TrainingStatus `json:"training"`
+	Health    [2]uint16      `json:"health"`
+	Pending   [2]uint16      `json:"pending_damage"`
+	Timer     uint16         `json:"timer"`
+	Error     string         `json:"error,omitempty"`
 }
 
 // Core 由桌面 Update 所在執行緒獨占；沒有背景 goroutine 或網路。
@@ -64,6 +68,7 @@ type Core struct {
 	rounds           roundRecording
 	display          bool
 	victory          victoryRecording
+	training         trainingState
 	spriteSources    [11]spriteSourceTables
 }
 
@@ -96,6 +101,7 @@ func New(root, scratch string) (*Core, error) {
 	c.spriteSources = loadSpriteSourceTables(root)
 	o.OnCall(oracle.Far(0x01b9, 0x5d9f), c.frame)
 	o.OnCall(oracle.Far(0x01b9, 0x3e9d), c.capturePresentation)
+	c.installTraining(root)
 	return c, nil
 }
 func (c *Core) Close() { c.stopSelectionDisplay(); c.stopLayers(); c.Release(); c.o.Close() }
@@ -114,7 +120,7 @@ func (c *Core) dataSegment() (uint16, bool) {
 	return ds, true
 }
 func (c *Core) Status() Status {
-	s := Status{Paused: c.paused, Steps: c.o.Steps(), Frames: c.frames, Mode: -1, Fighters: [2]int{-1, -1}, Error: c.err, Quick: [2]bool{c.jobs[0] != nil, c.jobs[1] != nil}}
+	s := Status{Paused: c.paused, Steps: c.o.Steps(), Frames: c.frames, Mode: -1, Fighters: [2]int{-1, -1}, Error: c.err, Quick: [2]bool{c.jobs[0] != nil, c.jobs[1] != nil}, Training: c.training.TrainingStatus}
 	s.Selection = c.selectionState()
 	if ds, ok := c.dataSegment(); ok {
 		s.Battle = true
@@ -123,7 +129,10 @@ func (c *Core) Status() Status {
 			s.Fighters[p] = int(c.o.Word(oracle.Far(ds, uint16(0x12ac+p*2))))
 			s.Paths[p] = int(c.o.Byte(oracle.Far(ds, uint16(0x16ea+p))))
 			s.KeyValues[p] = int(c.o.Byte(oracle.Far(ds, uint16(0x3ef4+p))))
+			s.Health[p] = c.o.Word(oracle.Far(ds, uint16(0x169c+p*2)))
+			s.Pending[p] = c.o.Word(oracle.Far(ds, uint16(0x16a0+p*2)))
 		}
+		s.Timer = c.o.Word(oracle.Far(ds, 0x2f26))
 	}
 	return s
 }
@@ -160,6 +169,7 @@ func (c *Core) Step(budget uint64) error {
 		return e
 	}
 	if _, after := c.dataSegment(); before && !after {
+		c.stopTrainingRound()
 		c.Release()
 		c.frames = 0
 		c.seen = false
@@ -292,6 +302,7 @@ func (c *Core) frame(o *oracle.Oracle) {
 	c.seen = true
 	c.counter = counter
 	c.frames++
+	c.trainingFrame(ds)
 	for p, j := range c.jobs {
 		if j == nil {
 			continue

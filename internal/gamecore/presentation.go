@@ -33,6 +33,7 @@ type Presentation struct {
 	ScanoutError           string                      `json:"scanout_error,omitempty"`
 	VRAMTail               []byte                      `json:"-"`
 	Victory                *renderdata.VictorySnapshot `json:"victory,omitempty"`
+	Training               TrainingStatus              `json:"training"`
 }
 
 func (c *Core) EnableDisplay() { c.display = true }
@@ -83,6 +84,7 @@ func (c *Core) capturePresentation(o *oracle.Oracle) {
 		frame.Actors[p] = ActorPose{Character: int(o.Word(oracle.Far(ds, uint16(0x12ac+p*2)))), Slot: int(o.Byte(oracle.Far(ds, []uint16{0x16f2, 0x16fa}[p]))), X: int(int16(o.Word(oracle.Far(ds, uint16(0x16d6+p*2))))) - frame.CameraX, Y: int(int16(o.Word(oracle.Far(ds, uint16(0x16de+p*2))))), Attr: o.Byte(oracle.Far(ds, uint16(0x16fe+p))), Facing: o.Byte(oracle.Far(ds, uint16(0x16b4+p)))}
 	}
 	frame.DrawPriority = o.Byte(oracle.Far(ds, 0x1335))
+	frame.Training = c.training.TrainingStatus
 	frame.RetainedBackgroundRows = c.recording.retainedRows
 	c.finishLayers(&frame)
 	if frame.LayersComplete && c.hud.pending != nil && c.hud.pending.Complete {

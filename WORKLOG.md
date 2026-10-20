@@ -498,3 +498,17 @@
 - 收尾 onimaru-victory-integration-audit.json 通過：259 份追蹤檔、128 原檔、1719 執行器來源、37 份編譯輸入、三個七張正常 GUI、12,272 成對邊界、64 張生成 PNG 及兩張截圖，共 66 個受版控 PNG。457 個本機 Markdown 引用、README 的 57 個 Git 相對連結與四張圖片通過，README 無 workplace 圖片連結。來源與圖片逐檔 SHA-256、Python 語法、root-owned 檔案及錯誤 .md 目錄檢查通過。
 - 本輪具名 kdzz-onimaru 容器均已結束並移除，沒有新增或替換映像；其他專案容器維持原狀。原生成 PNG、精確內建 imagegen 提示詞、DRAFT 審查及歷史失敗紀錄留在本機原位置，可從 031 與本輪工作紀錄回查。
 - 接入提交 3c899a8f70ef68f3624db8e5cc6c17637509ded8 已成功推送 origin/main，ls-remote 核對相同完整提交。本機工作樹乾淨，README 的 HD 實機截圖、角色新圖、清單與程式均已包含於此遠端提交；未推送原版資料或建立 Release。
+
+## 2026-10-20：練習模式、雙方滿血及原生介面
+
+- 使用者指定練習模式的雙方鎖血、時間暫停及 AI 不動作，另確認「雙方補滿並鎖住滿血」。入口為工具列、F9 及 `-training`；保留普通單打／雙打選角與既有兩人手把輸入。重啟預設關閉，曾介入保留 modified，與原版 oracle／HD 對拍分開。
+- 路由命中 RE 技能、規格閘門、IDA 9.4 與文件職責。以既有 AI／HUD 匯出及窄範圍 IDA 補證，保留原名、原運算元與位址空間。032 依 DRAFT、動態差異探針、證據審查、READY、正式實作、限定 CONFORMED 前進。原版檔與共用 dosgolem 唯讀。
+- `training-probe-v3` 的同狀態分支驗單打 AI 中立／恢復與雙打兩側各三次命中。v1 同時攻擊只中一側、v2 關閉後擊倒仍等活動畫格，皆是探針問題；v3 分開攻擊並在正常終止後停止。v1／v2 檔及失敗保留。
+- 正式 `internal/gamecore/training.go` 只在明示訓練請求及可操作回合介入。傷害增量清零但保留暈眩及受擊，時間由原版畫數字，AI 結果在輸入歷史前清中立。滿血條讀固定 BOARD.XBB，不內嵌原圖；HD 層仍只讀。未知來源／指令、展示模式、既成擊倒與零時間均不介入。
+- `training-core-v3.json`、`training-checks-v3.log／json` 通過真實普通單／雙打、32 個未啟用獨立 Oracle 比較邊界、七個拒絕邊界、暫停、重新啟動、關閉恢復、原檔 HUD 重組、internal／cmd 全套可用測試與 vet。單打補血前 96／124，鎖血後維持 124／124；雙打兩側各兩次有效命中，關閉後均為 74。測試環境 GOMEMLIMIT=1GiB、容器 1.5GiB；oom／oom_kill 皆零。舊 HD 外部 fixture 未另供給，不冒稱完整 HD 動畫重驗。
+- 核心 v1 測試把原版站立兩格的一像素偏移當成移動；v2 修正站立／中立判準後通過，v3 再加入拒絕邊界並全套通過。只改驗證判準，正式程式保留原版呼吸動畫。初版來源快照保存在 `training-core-v1-test-source.go`。
+- Linux 單打 `training-native-single-v1` 七項、Linux 雙打 HD `training-native-v4` 八項、Wine 雙打 HD `training-wine-v2` 八項通過，均走普通視窗選單。預選、F9、暫停時關閉、繼續倒數、戰鬥中再開、重啟預設、命令列預選、截圖標記及 HD 介面逐項核對。Windows／macOS 真機、實體手把及完整魔王／勝負流程未重驗。
+- 原生 v1 誤用不存在的背景目錄後停止；v2 原版滑鼠短按錯過 DOS 輪詢，改依既有工具維持至 125 萬步；v3 的單打正常選到金太極場景，既有單場景包正確回退，不能拿它驗屋頂 HD。v4 改正常雙打選斬／法蘭克，單打另驗。Wine v1 狀態檔先於可見視窗的競態由有界視窗等待修正，v2 通過。這些環境與腳本紀錄不列產品缺陷，沒有加遊戲特例。
+- README 新增實際 HD 練習截圖 `docs/screenshots/training-hd.png`，SHA-256 `a0caf30e4014c6f2ab85870993e4de7e42394c659e89680ca9d4464090ae790d`。視覺檢查確認工具列、生命、99 計時與底列標記可讀；來源、二進位、素材及收據雜湊追加於 source.json。所有 60 個 README 相對連結及五張圖片均由 Git 追蹤清單核對通過，沒有 workplace 圖片嵌入。
+- 四平台各自編譯並核對 38 份實際來源、ELF／PE／兩種 Mach-O 與雜湊，八份二進位／編譯收據原封移入 bin，見 `training-build-v1/promotion.json`。鬼丸前版保留於 `onimaru-victory-build-v1/bin`，歷史收據不覆寫。沒有建立 Release、tag 或正式封包。
+- `training-integration-audit-v1.json` 通過：128 原檔、1719 執行器來源、64 生成 PNG 皆未變；264 個 Git 追蹤檔、67 PNG、38 編譯來源、三組原生收據、截圖及設定範圍皆核對。沒有 root-owned 檔案或誤建 .md 目錄。本輪 kdzz-training 容器全部結束並移除，未建立新映像，其他專案資源不動。來源與練習功能準備提交；推送結果另記。

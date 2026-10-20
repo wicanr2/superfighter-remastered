@@ -32,6 +32,7 @@ const Width, Height = 1120, 820
 var screenRect = image.Rect(80, 64, 1040, 664)
 
 type Options struct {
+	Training                                                bool
 	Root, DataDir, Observe, Capture, HDAssets, HDCharacters string
 	QuitAfter                                               time.Duration
 }
@@ -173,6 +174,9 @@ func New(opts Options) (*Game, error) {
 			g.notice = "HD 勝負文字來源不完整，保留原貌。"
 		}
 	}
+	if opts.Training {
+		g.toggleTraining()
+	}
 	return g, nil
 }
 func (g *Game) Close() { g.core.Close() }
@@ -208,6 +212,19 @@ func (g *Game) openSettings() {
 				g.editing[p] = c
 			}
 		}
+	}
+}
+
+func (g *Game) toggleTraining() {
+	enabled := !g.core.Status().Training.Requested
+	g.core.SetTraining(enabled)
+	g.keyboardArmed = false
+	g.armed = [2]bool{}
+	g.shoulders = [2][4]bool{}
+	if enabled {
+		g.notice = "練習已開啟：雙方滿血、停止倒數、電腦中立。F9 可關閉。"
+	} else {
+		g.notice = "練習已關閉：恢復扣血、倒數及電腦操作。"
 	}
 }
 func (g *Game) scanDevices() {
@@ -308,11 +325,19 @@ func (g *Game) widgets() []widget {
 		out[4].label = "原貌／HD 角色"
 		out[4].action = func(int) { g.hdEnabled = !g.hdEnabled; g.notice = "已切換原貌／HD。" }
 	}
+	trainingLabel := "練習：關"
+	if s.Training.Requested {
+		trainingLabel = "練習：待"
+		if s.Training.Active {
+			trainingLabel = "練習：開"
+		}
+	}
+	out = append(out, widget{image.Rect(952, 12, 1096, 52), trainingLabel, func(int) { g.toggleTraining() }, -1, false})
 	if g.panel {
 		return append(out, g.fields()...)
 	}
 	if s.Selection != nil {
-		return append(out, g.selectionWidgets(s.Selection,s.Paused)...)
+		return append(out, g.selectionWidgets(s.Selection, s.Paused)...)
 	}
 	for p := 0; p < 2; p++ {
 		for slot := 0; slot < 4; slot++ {
@@ -376,6 +401,11 @@ func (g *Game) Update() error {
 	}
 	if inpututil.IsKeyJustPressed(ebiten.KeyF10) {
 		g.openSettings()
+		g.observe()
+		return nil
+	}
+	if inpututil.IsKeyJustPressed(ebiten.KeyF9) {
+		g.toggleTraining()
 		g.observe()
 		return nil
 	}
@@ -730,7 +760,11 @@ func (g *Game) Draw(dst *ebiten.Image) {
 	if g.hdActive {
 		state += " HD"
 	}
-	g.label(dst, image.Rect(952, 14, 1096, 50), state, color.RGBA{255, 220, 110, 255})
+	if s.Training.Active {
+		state += "／練習中"
+	} else if s.Training.Requested {
+		state += "／" + s.Training.Reason
+	}
 	if g.panel {
 		vector.DrawFilledRect(dst, 24, 80, 1072, 690, color.RGBA{17, 29, 48, 255}, false)
 		g.label(dst, image.Rect(52, 94, 1072, 130), "手把與快捷設定　Tab 選欄位，左右調整，Esc 關閉", color.White)
@@ -755,7 +789,7 @@ func (g *Game) Draw(dst *ebiten.Image) {
 			}
 		}
 	} else if s.Selection != nil {
-		g.selectionLabel(dst,s.Selection)
+		g.selectionLabel(dst, s.Selection)
 	} else {
 		for p := 0; p < 2; p++ {
 			name := "等待選角"
@@ -778,7 +812,7 @@ func (g *Game) Draw(dst *ebiten.Image) {
 		}
 		g.label(dst, image.Rect(w.rect.Min.X+10, w.rect.Min.Y+4, w.rect.Max.X-10, w.rect.Max.Y-4), w.label, ink)
 	}
-	g.label(dst, image.Rect(24, 778, 1096, 814), g.notice, color.RGBA{255, 220, 110, 255})
+	g.label(dst, image.Rect(24, 778, 1096, 814), state+"　"+g.notice, color.RGBA{255, 220, 110, 255})
 	if g.capture {
 		g.capture = false
 		path := g.opts.Capture
@@ -801,7 +835,9 @@ func (g *Game) Draw(dst *ebiten.Image) {
 		if e == nil && g.opts.Observe != "" {
 			liveW, liveH, liveRGB := g.core.RGB()
 			source := "live-original"
-			if selectionFiltered { source = "selection-filtered-original" }
+			if selectionFiltered {
+				source = "selection-filtered-original"
+			}
 			if len(frame.Pixels) == 64000 {
 				source = "completed-battle-frame"
 			}

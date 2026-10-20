@@ -20,6 +20,19 @@
       "character_manifest_sha256": "2be08986ec4903929889205eabf64091ef20ae8330238e9203bb8c43ee6c726e",
       "authorization": "user requested HD upload and GitHub-visible README pictures; original-mode captures and raw receipts remain local",
       "limits": "first-player normal first victory; not complete animation, physical controllers or full HD acceptance"
+    },
+    {
+      "kind": "native HD training screenshot; intentionally modified gameplay, not original-mode oracle",
+      "file": "training-hd.png",
+      "sha256": "a0caf30e4014c6f2ab85870993e4de7e42394c659e89680ca9d4464090ae790d",
+      "source": "workplace/training-native-v4/training.png",
+      "platform": "Linux amd64 in Docker Xvfb; no physical gamepad or Windows/macOS hardware claim",
+      "receipt_sha256": "bf7ec71d31ea282948fbeb5763a996ae5084d0b1cb386695a133e6c821ed08a8",
+      "capture_metadata_sha256": "bfdd5450bc93c2db771f156f3dd6df82686bccf75e2b0af3b5fef645c84fbe3a",
+      "binary_sha256": "cb79528689f3a4f5eb2c22039dae56647466fd446a9888deb6653778de5ea598",
+      "character_manifest_sha256": "2be08986ec4903929889205eabf64091ef20ae8330238e9203bb8c43ee6c726e",
+      "authorization": "user requested HD integration screenshots and GitHub-visible README images; raw receipts and original-mode screenshots remain local",
+      "limits": "ordinary versus entry with training active; both health bars 124 and timer 99; paused for capture; not original parity or full HD acceptance"
     }
   ]
 }
