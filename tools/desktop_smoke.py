@@ -31,18 +31,19 @@ def main():
     effect_case.add_argument("--exercise-frank-effects", action="store_true")
     parser.add_argument("--wine", action="store_true")
     parser.add_argument("--opponent", choices=["jaan", "frank"], default="jaan")
-    parser.add_argument("--player0", type=int, choices=(0, 1, 2, 3, 5, 6), default=0)
+    parser.add_argument("--player0", type=int, choices=(0, 1, 2, 3, 5, 6, 7), default=0)
     parser.add_argument("--quit-after-seconds", type=int, default=300)
     args = parser.parse_args()
     if args.quit_after_seconds <= 0:
         parser.error("--quit-after-seconds must be positive")
-    if args.player0 in (1, 2, 3, 5, 6) and (args.opponent != "frank" or not args.hd_assets or not args.hd_characters or args.round_opening_only or args.shadow_overlap_only or args.exercise_effects or args.exercise_frank_effects):
-        parser.error("player0=1/2/3/5/6 requires the normal rooftop character scope against Frank")
+    if args.player0 in (1, 2, 3, 5, 6, 7) and (args.opponent != "frank" or not args.hd_assets or not args.hd_characters or args.round_opening_only or args.shadow_overlap_only or args.exercise_effects or args.exercise_frank_effects):
+        parser.error("player0=1/2/3/5/6/7 requires the normal rooftop character scope against Frank")
     normal = {1: ("sarkov", "Sarorkov", (0, 4), 14, (19, 20, 21), (5, 9, 10)),
               2: ("bullet", "Bullet", (0, 17), 11, (16, 18, 19, 20, 21, 22), (1, 2)),
               3: ("phoenix", "Pho Huang", (0, 1), 16, (22, 23, 24), (6, 11, 12)),
               5: ("onimaru", "Onimalu", (0, 1), 19, (25, 26, 27, 28), (8,)),
-              6: ("lan", "Lan", (0, 1), 15, (22, 23, 24, 25, 27), (5, 8))}.get(args.player0)
+              6: ("lan", "Lan", (0, 1), 15, (22, 23, 24, 25, 27), (5, 8)),
+              7: ("kim", "King Tai Chi", (0, 1), 16, (28, 29, 30), (4, 11))}.get(args.player0)
     if args.round_opening_only and not (args.hd_assets and args.hd_characters and args.opponent == "frank"):
         parser.error("--round-opening-only requires rooftop characters and Frank")
     if args.shadow_overlap_only and not (args.exercise_shadows and args.hd_assets and args.hd_characters and args.opponent == "frank"):
@@ -284,6 +285,7 @@ def main():
                 xdo("keyup", key_name)
                 wait(lambda s: s["core"]["key_values"][0] == 0
                      and s["presentation"]["actors"][0]["slot"] in idle_slots
+                     and (args.player0 != 7 or s["core"]["paths"][0] == 0)
                      and presentation_ready(s), timeout=60, progress=True)
                 checks.append("ordinary " + character_name + " " + label + " reaches a verified original source")
             click(265, 32)

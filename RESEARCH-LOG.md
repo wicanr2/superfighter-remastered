@@ -422,3 +422,15 @@ Go 1.24.13 完整 internal／cmd 測試與 go vet 通過，真實 HUD 的 LAN／
 已證實於固定來源：SFMAN08.DAT SHA-256 5579dee3e846d65905db84d769fae4378051e1a5cec74bed509885754cef165c，72 入口、57 組不同 bytes，實檔 B28h 表、C48h 圖像基底及 AC8h 正常色盤。kim-source-v1 保存原槽、別名、尺寸、圖集及逐檔 SHA。
 
 kim-source-probe-left-v1.go SHA-256 9fe5e8b1fbc321ba0c0d685566bd16e8694baa1f6f030b443322190ba3d7ce9a，使用普通標題與選角，第二人 Left 三次取得 7／4。hd-frame-kim-v1 在 runtime 01B9:5DD3 的 124 格取樣，兩人圖像完整 bytes 與屋頂 RAM 全部吻合，沒有未實作事件。來源收據 SHA-256 c15024f93d3e2c348e0aeae2f1f7dba2417c092fbc4a18bda0209944f87e3b14；探針與 1719 檔 runtime manifest 均由 kim-source-review.json 核對。取樣待機 0／1、行走 1／2／3、蹲 16、跳 28／29／30、拳 4／11。未注入狀態，尚無 HD 稿或原生接入，不外推其他動作。
+
+## 2026-10-20 金太極一般姿態與原生追加驗證
+
+接續上述來源，已證實 NAME.XBB 槽 7 位於實檔 133Ah，109×11 原字圖為 KING TAI CHI。NAME.XBB SHA-256 為 60c0bbe367e44ab9fda512df2ba93ad62d70147df90079d07ff15818f21bad82，像素 SHA-256 為 ed6ce285ff8784b6d9dd0485185336bc4ae9c9c0a4db5d110c56a138d4a484be。設定 ID kim 與中文名金太極不變；normal-name.json／png 保存尺寸與目視來源。
+
+五張內建 imagegen 圖集對應 57 組來源，保留赤裸上身、金邊胸飾、灰護肩、藍褲、綁帶及斜置大刀。槽 6／37／49–56 為獨立氣勁，槽 15 褐金輪廓依原圖保存，只確認圖像內容。前四張各十二格，最後原參考九格改排三欄；只改參考布局，生成 PNG bytes 不改。旋轉稿 02 初版沒有完整透明分隔，既有登錄器拒絕；內建工具重排 02-v2 後通過。六份精確請求與拒用診斷保存於 kim-art-v1，kim-evidence-review.json 綁定 DRAFT、候選、來源及初始測試身分。
+
+已證實於正常來源取樣：release-jump 第 10／11 格為槽 0、路徑 4，第 12 格才為槽 0、路徑 0。首輪視窗測試只看待機圖，過早送拳後未捕捉拳姿；外部放開並重按 Tab 後可捕捉，記錄在 native-kim-v1/diagnostic-only.json，整個案例排除驗收。這支持修正測試的放開等待條件，不推定原版全部輸入緩衝規則；遊戲程式未改。
+
+已證實於乾淨原生樣本：native-kim-v2／windows-kim-v1 各七項、九張擷取，由 SFMAN、屋頂及介面原檔獨立重組，行走、蹲、跳、拳及切換通過。各案例內核心、來源、設定與指派相同，恢復 HD 逐點一致；金太極輸出各變動 24,741 點，姓名各變動 10,791 點，字形及位置另經目視。native-kim-missing-v1 九張均整格原貌。像素數相同不當作跨平台同狀態證據。
+
+Go 1.24.13 完整 internal／cmd 測試及 go vet 通過，後續真實 HUD 測試驗 KING TAI CHI／109×11 及未知角色拒絕。Pillow 11.3.0 作原圖解碼、透明登錄與獨立重組，工具及輸入 SHA 由各 receipt／kim-comparison 綁定。四份候選的 ELF／PE／兩種 Mach-O 及 35 份編譯輸入吻合，原封移入 bin，前一嵐基底仍在 lan-build-v1/bin。八名可選角色的一般來源為 576 槽、463 組不同 bytes，全部群組為 805 鍵／48 PNG／十一份來源。規格 024 限定 CONFORMED，不外推完整動畫、WIN、替代色盤、快捷或實體平台／手把。
