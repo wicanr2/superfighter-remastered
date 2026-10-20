@@ -148,6 +148,13 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [鳳凰光效原生獨立核對](tools/verify_phoenix_effects.py) | 原檔 CPU 光效、完整原貌／HUD／陰影／CRTC、同狀態切換、實際替換及缺件整格原貌 |
+| [鳳凰光效真實測試](internal/hd/phoenix_effects_test.go) | 完整素材與正常 CPU fixture 的光效選擇，以及未知槽、壞來源、錯色盤整格拒絕 |
+| [鳳凰光效原生路徑](tools/phoenix_effects_smoke.py) | 普通選角、移動、拳腳兩光效、同狀態原貌／HD／恢復與舊包整格回退；程序有界且收尾清理 |
+| [鳳凰光效登錄](tools/prepare_phoenix_effects.py) | READY 審查後以既有第二色盤鍵加入兩光效，核對原 bytes、全部舊鍵及現行資源上限 |
+| [動作取樣獨立核對](tools/verify_hd_motion_coverage.py) | 原檔姿態身分、實際缺件鍵、保存 CPU 圖層與鳳凰光效色盤／覆蓋；不把 selector 診斷當 GPU 或全動畫證據 |
+| [鳳凰普通光效](docs/spec/039-phoenix-effects.md) | 正常動作發現的第二色盤 58／60 光效、原檔及 CPU 圖層審查、既有格式接入閘門 |
+| [正常動作 HD 取樣](tools/hd_motion_coverage.go) | 十一人普通選角、移動／蹲／跳／拳腳的實際素材選擇及回退原因；只讀診斷，不當作全部動畫或原生 GUI 驗收 |
 | [角色翻轉與裁切](docs/spec/038-character-geometry.md)、[原版幾何審查](tools/verify_character_geometry.py) | 正常擊倒的雙向翻轉／頂部裁切、原檔與 CPU 逐點覆蓋、既有 HD 定位及接入閘門 |
 | [角色幾何核對](internal/hd/geometry.go) | 原檔私有切片與同格 CPU 遮罩／色號的逐點核對；只擴充已證實定位，不改畫稿或資料格式 |
 | [角色幾何測試](internal/hd/geometry_test.go) | 真實 C0h／TopClip 9 的完整素材選擇，以及像素、覆蓋、位置與裁切篡改拒絕；空裁切不外推正常玩家樣本 |

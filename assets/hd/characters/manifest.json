@@ -514,6 +514,12 @@
       "sha256": "5b6a313c5443ad0ef373165549b820a5ff0e5f8456cd347f1b2499fc803a5a48",
       "width": 1448,
       "height": 1086
+    },
+    {
+      "file": "phoenix-effects.png",
+      "sha256": "3f02eaff747f18818c3ad46a8bc2aad38454c79918e0a7652f57ee6988bc76c7",
+      "width": 1774,
+      "height": 887
     }
   ],
   "poses": [
@@ -23494,6 +23500,38 @@
         324,
         356
       ]
+    },
+    {
+      "character": 3,
+      "palette_bank": 1,
+      "slot": 58,
+      "width": 22,
+      "height": 25,
+      "source_offset": 148526,
+      "source_sha256": "5d983e35e1d0ffc0242676ec975e2d5e31deffd8e6f02d73736a41bfa979a80d",
+      "atlas": "phoenix-effects.png",
+      "rect": [
+        326,
+        288,
+        648,
+        629
+      ]
+    },
+    {
+      "character": 3,
+      "palette_bank": 1,
+      "slot": 60,
+      "width": 32,
+      "height": 40,
+      "source_offset": 152727,
+      "source_sha256": "9096b5f23d8231ef7812e78d23d979b1097eb4c7a7bb3ad65f9dc1dead7cff58",
+      "atlas": "phoenix-effects.png",
+      "rect": [
+        1074,
+        193,
+        1526,
+        706
+      ]
     }
   ],
   "evidence": [
@@ -23513,6 +23551,7 @@
     "victory-pose-registration.json",
     "docs/spec/017-victory-pose-banks.md",
     "victory-pose-registration.json",
-    "docs/spec/037-lan-victory.md"
+    "docs/spec/037-lan-victory.md",
+    "docs/spec/039-phoenix-effects.md"
   ]
 }

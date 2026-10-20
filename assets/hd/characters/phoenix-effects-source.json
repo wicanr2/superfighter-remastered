@@ -1,0 +1,52 @@
+{
+  "kind": "phoenix ordinary attack effects, original generated PNG preserved",
+  "tool_sha256": "896f9c469c65cabd6673ff976fbceaec5e0af38dc56ed2cc65c4646ae3a5e365",
+  "base_manifest_sha256": "e0f55d85c350aef533a7e416f597165412945765b83a3a5e3621af4e020aeaf6",
+  "source_sha256": "2cd299e9c10814ae37bb044c2e3ae7adf940d8b1accd8feffa3844bbfb43356b",
+  "request": {
+    "tool": "builtin image_gen",
+    "transparent_background": true,
+    "referenced_image_paths": [
+      "/home/anr2/cht/快打至尊/superfighter-remastered/workplace/hd-motion-coverage-v1/pho-effects-reference.png"
+    ],
+    "prompt": "Generate a faithful HD remaster GAME EFFECT SPRITE ATLAS for the 1993 DOS fighting game Super Fighter, matching the attached pixel-art source reference precisely in silhouette and facing. This is a new painted effect asset, not an enlargement. Two isolated effect cels in ONE ROW, TWO COLUMNS on a truly TRANSPARENT background with large completely transparent gutters and margins. No labels, no text, no frames, no checkerboard, no floor, no shadows, no character. Target canvas roughly 1448x724 (under two million pixels). Left cel corresponds to source slot 58, a COMPACT angular arrow-like blue energy flash with a bright white/cyan OUTER edge shaped like a left-facing sharp chevron <, a dark cobalt/blue-violet triangular interior, and short jagged wisps trailing to the RIGHT. Its bounding aspect must match original 22 wide x 25 high. Right cel corresponds to source slot 60, a larger vertical CRESCENT BURST with the convex bright white/cyan leading border on the LEFT, blue-violet interior and three separated uneven pointed trails/energy fingers extending toward the RIGHT. Match original 32 wide x 40 high aspect and attached silhouette; open side is right, NOT a ring or an orb. Paint both with crisp hand-painted 2D arcade HD shading, electric cyan and white rims, blue/purple interior details, hard readable contours, restrained internal glow. Alpha should include completely transparent exterior and fully opaque bright interior; avoid faint glow spilling into the margins or between sprites. The attached reference is source evidence only: ignore its gray background and English labels. Keep each entire effect in its own cell without cutting off tips. Preserve the two DISTINCT original shapes; do not make mirrored copies."
+  },
+  "image_sha256": "3f02eaff747f18818c3ad46a8bc2aad38454c79918e0a7652f57ee6988bc76c7",
+  "evidence_review_sha256": "d2a3d71ddfea010683507bcef9bdf7b831ea63112d3060fd911967adc412a1db",
+  "regions": [
+    {
+      "region": [
+        0,
+        0,
+        887,
+        887
+      ],
+      "rect": [
+        326,
+        288,
+        648,
+        629
+      ]
+    },
+    {
+      "region": [
+        887,
+        0,
+        1774,
+        887
+      ],
+      "rect": [
+        1074,
+        193,
+        1526,
+        706
+      ]
+    }
+  ],
+  "registered_effect_slots": [
+    58,
+    60
+  ],
+  "limits": "two ordinary effect sources; not all specials, all animations or alternate palettes",
+  "rights": "user authorized generated HD assets in repository; original references and CPU sidecars local only"
+}

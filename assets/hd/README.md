@@ -4,7 +4,7 @@
 
 | 路徑 | 內容 | 接入狀態 |
 |---|---|---|
-| [characters/manifest.json](characters/manifest.json) | 66 張角色與特效圖集、1483 個登錄鍵 | 現行開發素材；包含嵐 WIN。完整動畫及各角色驗收範圍見 [CONTEXT](../../CONTEXT.md) |
+| [characters/manifest.json](characters/manifest.json) | 67 張角色與特效圖集、1485 個登錄鍵 | 現行開發素材；包含嵐 WIN 與鳳凰拳腳光效。完整動畫及各角色驗收範圍見 [CONTEXT](../../CONTEXT.md) |
 | [backgrounds/rooftop.png](backgrounds/rooftop.png) | 屋頂背景，1923×818 | 已接原生；原版參考色號與色盤不隨 Git 提供 |
 | [道場候選整理](candidates/README.md) | 道場 PNG、來源雜湊、正常畫格證據與精確提示詞 | 素材已整理；[多場景格式](../../docs/spec/029-multi-scene-backgrounds.md)尚待確認，首輪先跳過接入 |
 | [其餘九景](candidates/README.md)、[來源與提示詞](candidates/backgrounds-source.json) | 廳堂、叢林、街道、宮殿、舞廳、港口、石窟、冰原、火車的首輪稿 | 原 scene 與兩個 camera 已由普通雙打補證；保留候選，HD 捲動及正式接入仍未驗 |
@@ -20,6 +20,8 @@
 [金太極](characters/kim-win.png)、[小丑](characters/clown-win.png)及[印第安喬](characters/joe-win.png)新增十五組勝利姿態，正常首勝、Linux 切換與缺件回退範圍見[規格 033](../../docs/spec/033-first-pass-victories.md)。蜘蛛女已接使用者確認的低伏稿，其餘動作仍待補；道場保留候選狀態。
 
 [嵐勝利圖](characters/lan-win.png)新增四組姿態，另兩組與既有一般來源相同，重用已驗圖集；正常 Linux 首勝及切換見 [037](../../docs/spec/037-lan-victory.md)。目前開發版尚未發行，首版 Release 的素材保持原狀。
+
+[鳳凰拳腳光效圖](characters/phoenix-effects.png)保留透明生成原 PNG，兩個第二色盤鍵與正常 Linux 接入見 [039](../../docs/spec/039-phoenix-effects.md)。精確內建 imagegen 提示詞、原檔身分及透明區域登錄保存於[來源清單](characters/phoenix-effects-source.json)。
 
 取得合法原版資料並備妥既有屋頂素材包後，可在專案根目錄指定這份角色包：
 

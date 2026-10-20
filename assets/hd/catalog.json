@@ -8,12 +8,12 @@
     "scope": "generated HD PNG and mapping metadata only; not original game data or release"
   },
   "characters": {
-    "atlases": 66,
-    "registered_keys": 1483,
+    "atlases": 67,
+    "registered_keys": 1485,
     "sources": 21,
     "complete_HD": false
   },
-  "pngs": 93,
+  "pngs": 94,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -797,10 +797,10 @@
     },
     {
       "file": "characters/manifest.json",
-      "sha256": "e0f55d85c350aef533a7e416f597165412945765b83a3a5e3621af4e020aeaf6",
-      "bytes": 516942,
+      "sha256": "2557a3bc5136cd8ff403632f28e161c7d9c1aacd82c3984dbcdf0079ea0c9a8d",
+      "bytes": 517863,
       "status": "current-character-mapping",
-      "copied_from": "workplace/hd-characters-lan-victory-v1/manifest.json",
+      "copied_from": "workplace/hd-characters-phoenix-effects-v1/manifest.json",
       "generated_source": "workplace/hd-characters-spider-low-guard-v1/manifest.json"
     },
     {
@@ -1238,6 +1238,26 @@
         818
       ],
       "tool": "built-in image_gen"
+    },
+    {
+      "file": "characters/phoenix-effects.png",
+      "sha256": "3f02eaff747f18818c3ad46a8bc2aad38454c79918e0a7652f57ee6988bc76c7",
+      "bytes": 446217,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-phoenix-effects-v1/phoenix-effects.png",
+      "size": [
+        1774,
+        887
+      ],
+      "tool": "built-in image_gen",
+      "generated_source": "workplace/phoenix-effects-art-v1/phoenix-effects.png"
+    },
+    {
+      "file": "characters/phoenix-effects-source.json",
+      "sha256": "c9313ad682efcb276f00e81102b1cb1b2886d42063265ea7fee953b17b372564",
+      "bytes": 3146,
+      "status": "current-character-provenance",
+      "copied_from": "workplace/hd-characters-phoenix-effects-v1/phoenix-effects-source.json"
     }
   ],
   "original_game_data_included": false

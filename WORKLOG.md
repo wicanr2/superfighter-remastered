@@ -692,3 +692,34 @@ C0 案例用 player0 6／geometry c0；沒有重建已發布封包或移動 tag�
 
 - final-audit.json 通過 128 原檔／1719 runtime 來源不變、93 PNG／100 筆素材共 120,620,400 bytes 不變、1483 鍵／66 PNG 不變、四平台 44 份編譯輸入與二進位、122 個首頁及素材索引受追蹤相對連結。首版八包與本機影片 SHA 全部保持，無 root-owned 檔案或 .md 目錄。sf-geometry 容器已完成並移除，未建新映像或清理其他專案資源。
 - 完整 HD、其他角色快捷、替代色盤與全部動畫、其他平台／實體手把仍另續；首版已發布範圍及音訊評估保持。功能提交 64379b961f9b7a08ed20b8f9469c40136e3a5ad3 已推送 origin/main 並由 ls-remote 核對；首版 tag 仍固定 807579d01c145db327050c2e870e2bf46e6bcb68。
+
+## 2026-10-20：十一人正常動作取樣與鳳凰拳腳光效
+
+- 前輪 038 是實際進展。本輪重新核對乾淨工作樹、唯一現況與路由，命中復古重製／對拍及 spec 閘門，沿用 reverse-engineer-retro-game-remake。029 仍待格式決定，不依沉默實作；先處理可獨立推進的角色正常動作。
+- 新增 hd_motion_coverage.go，十一人逐一從正常雙打入口對法蘭克，依十七個普通方向／蹲／跳／拳腳階段取樣，沒有訓練、傳送、強制勝利或快捷。hd-motion-coverage-v1 保存 4,803 個 serial 與缺件原因；verify_hd_motion_coverage.py 獨立核對原檔指標、packed SHA、保存 CPU 遮罩／色號重組。不是完整動畫、每一格或受控 RNG 對拍。
+- 找到鳳凰普通拳腳會畫第二色盤的槽 60／58，原包缺鍵使 15 格回退。另發現同角色色盤不符、少量場邊 C0h 加奇數裁切，以及蜘蛛女十八個實際未覆蓋鍵。後三項保留證據及待辦，不因光效接入稱為完成。
+- 依 imagegen 技能用內建工具生成兩格透明原 PNG。精確提示詞及參考身分存 phoenix-effects-art-v1/request.json，新圖 1774×887 RGBA、alpha 0..255、SHA 3f02eaff747f18818c3ad46a8bc2aad38454c79918e0a7652f57ee6988bc76c7。只複製生成 bytes，沒有本地去背、縮放或重編碼。原始參考圖留本機。
+- phoenix-effects-source-v1 補足兩種光效的正常 CPU 層。SFMAN04.DAT SHA 2cd299e9c10814ae37bb044c2e3ae7adf940d8b1accd8feffa3844bbfb43356b，實檔 152727／148526、32×40／22×25、805／318 寫入點與第二色盤全吻合。原圖形、朝向及透明區域目視通過，039 經 DRAFT／來源及畫稿審查升 READY，才以 prepare_phoenix_effects.py 登錄既有 palette_bank=1。
+- 新群組 hd-characters-phoenix-effects-v1 為 1485 鍵／67 PNG／二十一來源，manifest SHA 2557a3bc5136cd8ff403632f28e161c7d9c1aacd82c3984dbcdf0079ea0c9a8d。舊 1483 鍵及 66 PNG 不變，總像素 104,196,077、清單 517,863 bytes，未修改現行限制或格式。phoenix-effects-comparison-v1 於同一正常核心畫格比較兩群組，437 格中成功由 418 增至 433，新增 15 格、無舊成功退回。另四格場邊仍保守回退。
+- 真實兩份 CPU fixture 的完整群組及未知槽、壞來源、錯色盤基底、色號變更拒絕通過；可用 internal／cmd 測試及 vet 通過，見 phoenix-effects-art-v1/tests.log。未另供舊外部 fixture 的套件不稱全部動畫重驗。
+- phoenix_effects_smoke.py 用 Linux 現行原生二進位，普通選角、移動及拳腳擷取兩光效。完整／舊包各八張，共十六張；verify_phoenix_effects.py 由原檔重組完整層、HUD、陰影、CRTC 及光效像素。兩種同狀態切換／恢復逐點及解除暫停後正常站立通過，新光效可見變動點 7,245／2,862；舊包兩光效都整格原貌。另目視圖形、原版翻轉及遮擋。未外推第二人、所有動作、Wine／真機或實體手把。
+- 工具沿既有 Docker image、--rm／--network none／--user 1000:1000、資源限制及逾時；原檔及固定 runtime 副本唯讀。原生 GUI 限 3g／2 CPU／256 pids／960 秒，Xvfb 與遊戲由 finally 收尾。沒有在主機啟動工作負載、建立重複工具 image 或修改共用執行器。
+- 完整驗證後三個素材檔晉升 assets/hd/characters，記錄於 phoenix-effects-art-v1/promotion.json。catalog 為 94 PNG／102 筆 payload／121,070,684 bytes，目錄 106 檔。README、素材索引及截圖來源同步；phoenix-effects-source.json 保留可讀的精確提示詞。039 限定 CONFORMED，原版圖像與原始收據不上傳。
+- 本輪為資料擴充，現行四平台二進位及 44 份編譯輸入與 038 完全相同，build-verification.json 只更新文件／測試 metadata，沒有假稱重新編譯。未重建首版八包或影片，未建立新 Release。
+
+以下命令皆在上述受限容器內執行。/orig 唯讀，輸出目錄必須全新；現行素材已晉升，重建須指定保留的舊群組。
+
+```sh
+go run -p 1 tools/hd_motion_coverage.go -out /project/workplace/hd-motion-coverage-v1 -hd-characters /project/workplace/hd-characters-lan-victory-v1
+python3 tools/verify_hd_motion_coverage.py /project/workplace/hd-motion-coverage-v1 --characters /project/workplace/hd-characters-lan-victory-v1
+python3 tools/prepare_phoenix_effects.py --base /project/workplace/hd-characters-lan-victory-v1 --output /project/workplace/hd-characters-phoenix-effects-v1
+go run -p 1 tools/hd_motion_coverage.go -out /project/workplace/phoenix-effects-comparison-v1 -character 3 -hd-characters /project/workplace/hd-characters-phoenix-effects-v1 -baseline /project/workplace/hd-characters-lan-victory-v1
+KDZZ_HD_FIXTURES=/project/workplace KDZZ_ORIGINAL_ROOT=/orig go test -p 1 ./internal/hd -run TestPhoenixEffects -count=1 -v
+python3 tools/phoenix_effects_smoke.py --binary /project/workplace/bin/superfighter-linux-amd64 --output /project/workplace/phoenix-effects-native-full-v1 --hd-characters /project/workplace/hd-characters-phoenix-effects-v1
+python3 tools/verify_phoenix_effects.py /project/workplace/phoenix-effects-native-full-v1
+```
+
+原始 coverage-v1 於工具增加單角及同格比較旗標前執行，收據綁定當時工具副本。重生可用新輸出；重驗已保存資料則沿該副本 SHA，不能要求歷史工具副本與現行 gofmt 後版本相同。缺件原生案例另指定舊群組並加 --expect-original。
+
+- final-audit.json 通過 128 原檔／1719 runtime 來源不變、全部 94 PNG／102 payload、全部舊鍵／PNG、四份二進位與 44 份輸入、128 個首頁及素材索引受追蹤相對連結。首版八個 ZIP 與本機影片 SHA 保持，無 root-owned 或 .md 目錄；專案掛載過濾無容器殘留。提交與遠端核對另補。
+- 下一步依最新取樣處理場邊幾何及同角色色盤，再續蜘蛛女與其餘畫面；029 格式仍待回答。完整 HD 目標保持 active，沒有以十七階段取樣或兩光效代替全目標。

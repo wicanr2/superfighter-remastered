@@ -26,19 +26,19 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 原版音樂已確認十五段 MIDI，Compact PCM 共四十筆；音樂重播與語音修復的可行性及未知項見[音樂與語音 HD 評估](docs/audio-hd-assessment.md)。桌面遊戲的音訊串流與完整 HD 尚未完成。
 
-目前 `main` 的開發版為 `v.0.1.1-20261020`，新增嵐的勝利姿態與 `LAN WIN`，並接入[角色雙向翻轉與頂部裁切](docs/spec/038-character-geometry.md)的逐格來源核對；首版下載包尚未包含這些更新。其餘九景也已有[首輪 HD 候選稿](assets/hd/candidates/README.md)，與道場同樣等待多場景格式及正常遊戲接入驗證。
+目前 `main` 的開發版為 `v.0.1.1-20261020`，新增嵐的勝利姿態與 `LAN WIN`，並接入[角色雙向翻轉與頂部裁切](docs/spec/038-character-geometry.md)的逐格來源核對，以及[鳳凰拳腳兩種光效](docs/spec/039-phoenix-effects.md)；首版下載包尚未包含這些更新。其餘九景也已有[首輪 HD 候選稿](assets/hd/candidates/README.md)，與道場同樣等待多場景格式及正常遊戲接入驗證。
 
-目前已有原生雙打、兩人拳腳、斬四招、設定保存，以及可切換的屋頂 HD 背景、部分人物動作、已驗招式特效、柔邊地面陰影、生命條、計時、名字與勝場圖示。開場 `ROUND`／`FIGHT !`、斬首勝的鞠躬與 `JAAN WIN` 已接 HD；第二人法蘭克的抱胸、`FRANK WIN` 與右側首勝也已在 Linux 驗證。Linux 雙打基準曾正常打完兩回合、顯示結果並返回標題，後續擴充另驗各自範圍。完整角色 HD、實體手把、其他角色快捷、音訊與正式速度仍待驗收。最近收據及各平台限制見 [CONTEXT](CONTEXT.md)。
+目前已有原生雙打、兩人拳腳、斬四招、設定保存，以及可切換的屋頂 HD 背景、部分人物動作、已驗招式及鳳凰拳腳光效、柔邊地面陰影、生命條、計時、名字與勝場圖示。開場 `ROUND`／`FIGHT !`、斬首勝的鞠躬與 `JAAN WIN` 已接 HD；第二人法蘭克的抱胸、`FRANK WIN` 與右側首勝也已在 Linux 驗證。Linux 雙打基準曾正常打完兩回合、顯示結果並返回標題，後續擴充另驗各自範圍。完整角色 HD、實體手把、其他角色快捷、音訊與正式速度仍待驗收。最近收據及各平台限制見 [CONTEXT](CONTEXT.md)。
 
-斬與法蘭克已對應全部 144 個一般來源槽、13 組第二色盤特效，以及 WIN 圖像的 144 個入口。WIN 入口對應七張不同勝利姿態，與一般動作分開辨識；登錄齊全不代表完整動畫已驗。介面基底的 Linux 案例通過 16 項檢查，Windows Wine 的斬、法蘭克案例各通過 16 項，包含特效、介面及同狀態切換。兩平台的法蘭克案例另驗到實際扣血。完整動畫與其他角色仍未完成，製作契約見[角色](docs/spec/008-hd-characters.md)、[特效](docs/spec/009-hd-effects.md)、[戰鬥介面](docs/spec/010-hd-battle-hud.md)及[勝利姿態](docs/spec/017-victory-pose-banks.md)。
+斬與法蘭克已對應全部 144 個一般來源槽、13 個第二色盤特效鍵，以及 WIN 圖像的 144 個入口。鳳凰另補兩個拳腳光效鍵。WIN 入口對應七張不同勝利姿態，與一般動作分開辨識；登錄齊全不代表完整動畫已驗。介面基底的 Linux 案例通過 16 項檢查，Windows Wine 的斬、法蘭克案例各通過 16 項，包含特效、介面及同狀態切換。兩平台的法蘭克案例另驗到實際扣血。完整動畫與其他角色仍未完成，製作契約見[角色](docs/spec/008-hd-characters.md)、[特效](docs/spec/009-hd-effects.md)、[戰鬥介面](docs/spec/010-hd-battle-hud.md)及[勝利姿態](docs/spec/017-victory-pose-banks.md)。
 
-原有八名角色、小丑與印第安喬的一般來源已接入原生，實測範圍見[薩爾可夫](docs/spec/018-sarkov-hd.md)、[子彈](docs/spec/020-bullet-hd.md)、[鳳凰](docs/spec/021-phoenix-hd.md)、[鬼丸](docs/spec/022-onimaru-hd.md)、[嵐](docs/spec/023-lan-hd.md)、[金太極](docs/spec/024-kim-hd.md)、[小丑](docs/spec/026-clown-hd.md)與[印第安喬](docs/spec/027-joe-hd.md)。目前開發群組共 1483 個鍵，包含十人的一般來源、蜘蛛女低伏、既有特效與十人的 WIN 入口。[子彈首勝](docs/spec/028-bullet-victory.md)、[鳳凰首勝](docs/spec/030-phoenix-victory.md)與[鬼丸首勝](docs/spec/031-onimaru-victory.md)已驗 Linux／Wine 完整切片；[嵐首勝](docs/spec/037-lan-victory.md)已驗 Linux，薩爾可夫的 Wine 下一回合仍未驗完。蜘蛛女其餘動作、完整動畫、替代色盤、其他角色快捷及其餘場景仍在製作。
+原有八名角色、小丑與印第安喬的一般來源已接入原生，實測範圍見[薩爾可夫](docs/spec/018-sarkov-hd.md)、[子彈](docs/spec/020-bullet-hd.md)、[鳳凰](docs/spec/021-phoenix-hd.md)、[鬼丸](docs/spec/022-onimaru-hd.md)、[嵐](docs/spec/023-lan-hd.md)、[金太極](docs/spec/024-kim-hd.md)、[小丑](docs/spec/026-clown-hd.md)與[印第安喬](docs/spec/027-joe-hd.md)。目前開發群組共 1485 個鍵，包含十人的一般來源、蜘蛛女低伏、既有特效與十人的 WIN 入口。[子彈首勝](docs/spec/028-bullet-victory.md)、[鳳凰首勝](docs/spec/030-phoenix-victory.md)與[鬼丸首勝](docs/spec/031-onimaru-victory.md)已驗 Linux／Wine 完整切片；[嵐首勝](docs/spec/037-lan-victory.md)已驗 Linux，薩爾可夫的 Wine 下一回合仍未驗完。蜘蛛女其餘動作、完整動畫、替代色盤、其他角色快捷及其餘場景仍在製作。
 
 十一人選角已加入蜘蛛女、小丑、印第安喬，單打、雙打皆可選，並保留原版對戰規則。Linux／Wine 已驗正常選角與首戰操作；魔王完整單打過關與結局仍待驗，詳見[選角範圍](docs/spec/025-boss-selection.md)。
 
 ## HD 素材
 
-目前收錄 66 張角色／特效圖集、角色登錄清單與屋頂背景；道場及其餘九景候選、蜘蛛女外部稿另標示狀態。內建生成 PNG 保留原 bytes，外部稿的去背處理另作紀錄；逐檔來源與 SHA-256 見 [HD 素材目錄](assets/hd/README.md)。素材上傳不代表完整角色動畫或所有場景已完成。
+目前收錄 67 張角色／特效圖集、角色登錄清單與屋頂背景；道場及其餘九景候選、蜘蛛女外部稿另標示狀態。內建生成 PNG 保留原 bytes，外部稿的去背處理另作紀錄；逐檔來源與 SHA-256 見 [HD 素材目錄](assets/hd/README.md)。素材上傳不代表完整角色動畫或所有場景已完成。
 
 [蜘蛛女的十五張外部 HD 稿](assets/hd/candidates/spider/README.md)也已收錄。使用者確認的雙手觸地低伏已接入，另作無損鏡像及透明留白裁切；同一張圖對應三組低伏來源。其他稿仍有姿勢差異，未對應動作整格回退原貌。
 
@@ -49,6 +49,10 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 以上是生成素材預覽；正常遊戲的整合驗證與限制見 [目前狀態](CONTEXT.md)及各規格。
 
 ## 目前整合畫面
+
+![鳳凰正常出拳的 HD 光效](docs/screenshots/phoenix-effect-hd.png)
+
+Linux 開發版從普通選角、移動與拳腳取得兩種藍色光效，依原版尺寸、朝向及層次呈現。完整素材與舊包回退、原貌切換及恢復已核對；其他招式與全部動畫仍待補。[接入範圍](docs/spec/039-phoenix-effects.md)。
 
 ![正常擊倒過場的角色雙向翻轉 HD](docs/screenshots/character-flip-hd.png)
 
@@ -121,7 +125,7 @@ bash tools/build_desktop.sh
 
 本機屋頂試作素材已備妥時，可加上 `-hd-assets workplace/hd-rooftop-study`，再按「原貌／HD 背景」切換。素材準備與驗證見[背景規格](docs/spec/006-rooftop-background.md)。沒有素材或場景未對應時顯示原貌。
 
-角色與特效試作再加上 `-hd-characters assets/hd/characters`，按「原貌／HD 角色」切換。此群組保留既有基底，包含十人的一般來源、蜘蛛女低伏及十人的 WIN 入口，與本機 `workplace/hd-characters-lan-victory-v1` 的 PNG 及清單相同。背景、兩名角色、來源與圖層全部符合才顯示 HD，缺動作或未知色盤時整張回退。新版仍接受舊版角色素材。基底準備工具為 `tools/prepare_hd_characters.py`，勝利姿態登錄使用 `tools/prepare_victory_characters.py`，一般角色擴充使用 `tools/prepare_character_extension.py`，蜘蛛女限定切片使用 `tools/prepare_spider_low_guard.py`，嵐的來源重用與勝利登錄使用 `tools/prepare_lan_victory.py`。
+角色與特效試作再加上 `-hd-characters assets/hd/characters`，按「原貌／HD 角色」切換。此群組保留既有基底，包含十人的一般來源、蜘蛛女低伏及十人的 WIN 入口，與本機 `workplace/hd-characters-phoenix-effects-v1` 的 PNG 及清單相同。背景、兩名角色、來源與圖層全部符合才顯示 HD，缺動作或未知色盤時整張回退。新版仍接受舊版角色素材。基底準備工具為 `tools/prepare_hd_characters.py`，勝利姿態登錄使用 `tools/prepare_victory_characters.py`，一般角色擴充使用 `tools/prepare_character_extension.py`，蜘蛛女限定切片使用 `tools/prepare_spider_low_guard.py`，嵐的來源重用與勝利登錄使用 `tools/prepare_lan_victory.py`。
 
 含特效的新版群組也啟用高解析生命、計時、名字、玩家標記、勝場與地面陰影，來源驗證失敗時整張回退。舊版 1 素材保留原貌介面、特效與陰影。
 

@@ -91,6 +91,7 @@ def main():
     files += [p / name for name in ("docs/spec/035-keyboard-bindings.md", "docs/spec/036-release-packages.md", "VERSION", "internal/gamefiles/source-manifest.json")]
     files += [p / name for name in ("docs/spec/037-lan-victory.md", "tools/prepare_lan_victory.py")]
     files += [p / name for name in ("docs/spec/038-character-geometry.md", "tools/verify_character_geometry.py", "tools/character_geometry_smoke.py", "tools/verify_native_character_geometry.py")]
+    files += [p / name for name in ("docs/spec/039-phoenix-effects.md", "tools/hd_motion_coverage.go", "tools/verify_hd_motion_coverage.py", "tools/prepare_phoenix_effects.py", "tools/phoenix_effects_smoke.py", "tools/verify_phoenix_effects.py")]
     receipt = {"kind": "native intermediate builds; not release packages or macOS hardware acceptance",
                "version": version,
                "go_version": subprocess.check_output(["go", "version"], text=True).strip(),

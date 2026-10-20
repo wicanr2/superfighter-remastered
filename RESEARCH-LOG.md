@@ -535,3 +535,13 @@ EEWIN.FIG 共 6,279 bytes，SHA-256 `65f8536cdd3ba96c63d116df5c701b401776e39643f
 已證實於新正常原生樣本：character-geometry-native-c0-v1 與 character-geometry-native-top-v2 各三張幾何模式切換、七張正常首勝流程，原檔層重組與 CPU 遮罩吻合，原狀態不變、切回 HD 逐點相同，解除暫停後正常下一回合清除。實際位置、裁切、原檔偏移、變動點與收據 SHA 保存於各 geometry-comparison.json。這是 Linux 正常取樣；其他組合及平台未知，不宣稱完整動畫。
 
 每個新幾何正式畫格仍要再次核對完整原版 CPU 層，未吻合則整格原貌。原檔 packed bytes 僅保留於使用者執行期私有記憶體，不加入素材 JSON 或 Git。原檔、共用執行器、1483 鍵美術群組均保持。
+
+## 2026-10-20：十一人普通動作與鳳凰第二色盤光效
+
+輸入固定於 CONTEXT 的 SF.EXE／128 原檔，Go 1.24.13、固定 dosgolem 副本與 Pillow 11.3.0。hd-motion-coverage-v1 的每名角色各自正常啟動、雙打對法蘭克，十七個移動／蹲跳／拳腳階段，共 4,803 個不同 serial 取樣。沒有狀態注入、練習、強制勝利或快捷；不是每個原版畫格、全動畫或受控 RNG 比較。
+
+已證實：獨立工具核對各 sprite 的原始指標、尺寸與 packed SHA，保存的遮罩／色號可重組原圖。鳳凰普通出拳／腳出現第二色盤 D0h 的槽 60／58，原檔為 SFMAN04.DAT SHA 2cd299e9c10814ae37bb044c2e3ae7adf940d8b1accd8feffa3844bbfb43356b。實檔偏移 152727／148526，尺寸 32×40／22×25，805／318 寫入點及全部色號、CPU 覆蓋、既有矩形定位皆吻合。指標表 B28h、payload C48h、第二色盤 AF8h，均為檔案位址，未新設 IDA 名稱。
+
+已證實於取樣：phoenix-effects-comparison-v1 在同一正常原版畫格比較兩素材群組，437 格中舊包 418 格可選，新包 433 格可選，15 格缺件消除且無舊成功回退。四格場邊幾何仍回退；selector 成功不等於 GPU 完整度，另由兩組各八張正常 Linux 原生擷取證明兩光效的畫面替換、同狀態切換及舊包整格原貌。新資料採既有版本 3，不改程式／玩法。
+
+未知／待處理：取樣遇到同角色法蘭克對戰的色盤不符，以及少量 C0h 加奇數場邊裁切未吻合。guard 正確回退，不能只移除核對；原始 sample 及 unresolved_geometry_samples 保存在 source-comparison.json。蜘蛛女另有十八個實際未覆蓋鍵，仍需補稿及 normal consumer。這些不因鳳凰光效通過而解決。

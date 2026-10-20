@@ -112,6 +112,19 @@
       "platform": "Linux amd64 Docker Xvfb; not Wine/native OS hardware or physical controller acceptance",
       "authorization": "user requested HD assets and actual integrated screenshots in repository",
       "limits": "normal knockout, paused switching and next round; not complete animation or every clipping combination"
+    },
+    {
+      "file": "phoenix-effect-hd.png",
+      "sha256": "87b31edb5eab22d09ee50164a4862712529a3f7df8af75074d6960ef1773273e",
+      "source": "workplace/phoenix-effects-native-full-v1/effect-60-hd.png",
+      "version": "v.0.1.1-20261020",
+      "kind": "normal native ordinary Phoenix punch effect HD; not original-mode image",
+      "receipt_sha256": "a9da67a2e26f6bf3605a54cd2a627c597a4c80e39d274841a5c220439be0fa41",
+      "comparison_sha256": "9e8b20a3bc8bbac7286cf023a3c715b7c6b3312eec2cff8c79ca335ecd6f395c",
+      "binary_sha256": "2d0105c6f24c35aa4f94764ea18eea67ef17fb09b648d2ba424ba02d8aa2db82",
+      "character_manifest_sha256": "2557a3bc5136cd8ff403632f28e161c7d9c1aacd82c3984dbcdf0079ea0c9a8d",
+      "authorization": "user requested HD assets and actual integrated screenshots in repository",
+      "limits": "first-player Linux two ordinary effects only; not full animation, alternate palettes or hardware controllers"
     }
   ],
   "version": "v.0.1.0-20261020",
