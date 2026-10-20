@@ -58,6 +58,10 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 十一人敗者肖像已有首輪候選。鳳凰與蜘蛛女保留落淚神情，其餘按各自原受傷圖重繪，表情與傷勢仍有差異；[逐人紀錄與完整提示詞](assets/hd/candidates/result-portraits-source.json)可回查。這批是美術候選，完整結果流程與正式接入尚未完成。
 
+![十一名敗者在正常原生結果中的 HD 原型取樣，未接正式版本](docs/screenshots/result-portraits-native.png)
+
+十一人的勝者與敗者肖像均已有正常雙打結果取樣，上圖裁自實際原生視窗。完整原結果來源、肖像方向、原貌切換／恢復與返回標題均已核對；[取樣範圍](docs/spec/048-hd-result-newspaper.md)明列。正式版本仍顯示原版結果，外觀近似、其他結果類型、第二人獲勝與平台驗收另續。
+
 ![正常雙打後的隔離原生結果 HD 候選，尚未接入正式版本](docs/screenshots/result-native-prototype-hd.png)
 
 隔離 Linux 原型已由正常雙打完成斬對法蘭克的兩次擊倒，顯示上圖；原貌切換、恢復後像素一致及 Return 返回清除均通過，未載候選也能保持整張原貌。正式程式與下載包仍用原版結果畫面，其他角色、模式、結果與平台另驗。

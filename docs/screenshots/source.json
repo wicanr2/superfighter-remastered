@@ -376,6 +376,253 @@
       "authorization": "existing HD upload and GitHub-visible screenshot request; visibility unchanged",
       "visible_art": "opaque new HD newspaper, generated portraits, seven-family new vector flags and project font; original-mode capture stays local",
       "limits": "one normal Sarkov/Frank result shown; DRAFT art and private loader; not full HD or formal release"
+    },
+    {
+      "kind": "eleven normal native defeated portrait crops; isolated prototype, not static art or formal integration",
+      "file": "result-portraits-native.png",
+      "sha256": "63581f1b6a4ef97186211c2e9e4961f73fcda6738cc1995f4d932be390b8b1b7",
+      "source": "workplace/result-portraits-native-v1/result-portraits-native.png",
+      "provenance": "workplace/result-portraits-native-v1/result-portraits-native.json",
+      "provenance_sha256": "516f3abb28058ffce79d2c916ff8a267af967398870a0c01c979ab54054e204b",
+      "builder": "tools/preview_result_native_portraits.py",
+      "builder_sha256": "213090ea4fc9346734b1864ab6465a1a46feb7c4204bbbf69a0953432ee5cc3a",
+      "platform": "Linux amd64 in Docker Xvfb; not Windows/macOS hardware acceptance",
+      "authorization": "existing HD upload and GitHub-visible screenshot request; visibility unchanged",
+      "visible_art": "exact crops of opaque new generated HD defeated portraits; new labels and background only",
+      "limits": "all eleven defeated identities in normal VS results; art and loader remain DRAFT, not full HD or formal release",
+      "records": [
+        {
+          "index": 0,
+          "id": "jaan",
+          "name": "斬",
+          "capture": "workplace/result-portraits-native-v1/case-4-0/result-hd.png",
+          "capture_sha256": "d49e2432ed2f6d37b0bf81a7715f1736745981e1258064cf0149d5997df043fa",
+          "comparison": "workplace/result-portraits-native-v1/case-4-0/comparison.json",
+          "comparison_sha256": "9f42f07e6f93b5a90dad48bf08890f28821daaa57fbbc1614a5abc78bd88cd66",
+          "receipt_sha256": "e12fe837c16284b737f2c294e9b723245715be21d4c196cc5f1fb7cfb5370ebb",
+          "crop": [
+            722,
+            166,
+            989,
+            433
+          ],
+          "destination": [
+            10,
+            86
+          ],
+          "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80"
+        },
+        {
+          "index": 1,
+          "id": "sarkov",
+          "name": "薩爾可夫",
+          "capture": "workplace/result-portraits-native-v1/case-2-1/result-hd.png",
+          "capture_sha256": "68181d6654f35612ad3f5fb01b0c83c30ce8d185a0bd06b388ca899f7d5df15c",
+          "comparison": "workplace/result-portraits-native-v1/case-2-1/comparison.json",
+          "comparison_sha256": "508d5a5b7a702e337c55ebaf243bd30f5ed2ed48954a698d4e7e119ff6d6842c",
+          "receipt_sha256": "7c83cbcd77f627a4bb82bac966920b0c3960d6a45a3b25a3747e28adceda9839",
+          "crop": [
+            722,
+            166,
+            989,
+            433
+          ],
+          "destination": [
+            298,
+            86
+          ],
+          "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80"
+        },
+        {
+          "index": 2,
+          "id": "bullet",
+          "name": "子彈",
+          "capture": "workplace/result-portraits-native-v1/case-5-2/result-hd.png",
+          "capture_sha256": "31849a35ceaefe3c421dc2add8decccae4ca4bf2e39f8a923a51ce50dc1c9286",
+          "comparison": "workplace/result-portraits-native-v1/case-5-2/comparison.json",
+          "comparison_sha256": "2fe8954585be64cef81c0c4eff50f036cb383189da4c1ca6469c55a0f8a88478",
+          "receipt_sha256": "78e9fe52c0aa31823f0a96bc0a701eaad04e4065c486f2e776f962a174b952f0",
+          "crop": [
+            722,
+            166,
+            989,
+            433
+          ],
+          "destination": [
+            586,
+            86
+          ],
+          "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80"
+        },
+        {
+          "index": 3,
+          "id": "phoenix",
+          "name": "鳳凰",
+          "capture": "workplace/result-portraits-native-v1/case-6-3/result-hd.png",
+          "capture_sha256": "cf24410dde4310be06941fed88614be7e5318dda424865a823692cda68d9ac9e",
+          "comparison": "workplace/result-portraits-native-v1/case-6-3/comparison.json",
+          "comparison_sha256": "c9143293bcedf5ecdf81c2eabaf43791a8230528eb4607f4f9bbfacfdb3cd078",
+          "receipt_sha256": "c5806a6dd8c2826eaa72a6b3c6875c1f14800fec995c62b31af9fb5e74346cef",
+          "crop": [
+            722,
+            166,
+            989,
+            433
+          ],
+          "destination": [
+            874,
+            86
+          ],
+          "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80"
+        },
+        {
+          "index": 4,
+          "id": "frank",
+          "name": "法蘭克",
+          "capture": "workplace/result-flags-jaan-v1/result-hd.png",
+          "capture_sha256": "57ba8e79a4dc8bd1a9492b0b54129be59b408159c76ef60a502b211bf371e950",
+          "comparison": "workplace/result-flags-jaan-v1/comparison.json",
+          "comparison_sha256": "8fa50279d34a0603f6258e76b1e9394ecccdd47e287b6e8219da9c87b210ca29",
+          "receipt_sha256": "24d26b9f5699198fb13a31b7f859d7e06ed448fd76c09fa8fbadbe7ebdd2e5f8",
+          "crop": [
+            722,
+            166,
+            989,
+            433
+          ],
+          "destination": [
+            10,
+            396
+          ],
+          "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80"
+        },
+        {
+          "index": 5,
+          "id": "onimaru",
+          "name": "鬼丸",
+          "capture": "workplace/result-portraits-native-v1/case-10-5/result-hd.png",
+          "capture_sha256": "f343f2716df4d62f7afe3b900c7ed577bc870ea0c1207ccb2535a4936a3a587c",
+          "comparison": "workplace/result-portraits-native-v1/case-10-5/comparison.json",
+          "comparison_sha256": "fd4e4289e110fe7cd93aa8e5b5e2dc42140ff66f6e35d84253c69c0bd661256a",
+          "receipt_sha256": "7e1ec4ca7f3a957572922df5d7c672dfbfee3ea9f06c1817d0b913a361438d9f",
+          "crop": [
+            722,
+            166,
+            989,
+            433
+          ],
+          "destination": [
+            298,
+            396
+          ],
+          "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80"
+        },
+        {
+          "index": 6,
+          "id": "lan",
+          "name": "嵐",
+          "capture": "workplace/result-portraits-native-v1/case-0-6/result-hd.png",
+          "capture_sha256": "2fd6494434b82d512ca654f558f261dbc4bf9d5a132a0827d563db209c5ab44a",
+          "comparison": "workplace/result-portraits-native-v1/case-0-6/comparison.json",
+          "comparison_sha256": "c0d0000eefbb2dd9064b4f156bf8930a4f6dcb28bb63ac40d8fb9fef6d5e7c09",
+          "receipt_sha256": "7f827842d237a925acc81504bda775e7a99d84edaf9dff0054cd40133c8d573b",
+          "crop": [
+            722,
+            166,
+            989,
+            433
+          ],
+          "destination": [
+            586,
+            396
+          ],
+          "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80"
+        },
+        {
+          "index": 7,
+          "id": "kim",
+          "name": "金太極",
+          "capture": "workplace/result-portraits-native-v1/case-0-7/result-hd.png",
+          "capture_sha256": "6a13905848c756a1bcdbd9b475cf524137928e3d22214d38e5c9126ef956827c",
+          "comparison": "workplace/result-portraits-native-v1/case-0-7/comparison.json",
+          "comparison_sha256": "d0ec07656da7e235413e4c99ae3c0e59f8f35bf0d69eae21292388de52e7b3c3",
+          "receipt_sha256": "d9acba0138d9df35fede11c92cd7c30bcdb73e02e45f40cbe45c118581d9f0eb",
+          "crop": [
+            722,
+            166,
+            989,
+            433
+          ],
+          "destination": [
+            874,
+            396
+          ],
+          "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80"
+        },
+        {
+          "index": 8,
+          "id": "spider",
+          "name": "蜘蛛女",
+          "capture": "workplace/result-portraits-native-v1/case-0-8/result-hd.png",
+          "capture_sha256": "90c3ad1d059275ec4de1c2a4799c85f08d7f03386d09cfd346bde5161bf7709f",
+          "comparison": "workplace/result-portraits-native-v1/case-0-8/comparison.json",
+          "comparison_sha256": "d0bf6389ceb686320091acc8f8a0e5013e150492072dc9e7d5ab02db707b7d5d",
+          "receipt_sha256": "627cd0f46e30fc2a2701b11e4264402a8395a670a6ca0ac8d868ea578dda2be5",
+          "crop": [
+            722,
+            166,
+            989,
+            433
+          ],
+          "destination": [
+            10,
+            706
+          ],
+          "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80"
+        },
+        {
+          "index": 9,
+          "id": "clown",
+          "name": "小丑",
+          "capture": "workplace/result-portraits-native-v1/case-0-9/result-hd.png",
+          "capture_sha256": "214011fccca04645e1ce5e79d885e1b580aa560db7ffe64136ae932de44ab2a5",
+          "comparison": "workplace/result-portraits-native-v1/case-0-9/comparison.json",
+          "comparison_sha256": "a4ab6fb6c01b3890f49a3d493a57715257466159bd2fb0d79f078ee66cc4a96a",
+          "receipt_sha256": "11db83ea20817ee34aff16b2fb88b6fd8a4bb468ded2d4bb9dd87eb70b3ac3b7",
+          "crop": [
+            722,
+            166,
+            989,
+            433
+          ],
+          "destination": [
+            298,
+            706
+          ],
+          "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80"
+        },
+        {
+          "index": 10,
+          "id": "joe",
+          "name": "印第安喬",
+          "capture": "workplace/result-portraits-native-v1/case-0-10/result-hd.png",
+          "capture_sha256": "83d494528e83c1c5ba02ca32ec2bb24992baa2d5598756ea0b3e918e3c8d6810",
+          "comparison": "workplace/result-portraits-native-v1/case-0-10/comparison.json",
+          "comparison_sha256": "2a792756ce10605a8b020d868ebe307caabaa867bcbbe01649753edfbab691e5",
+          "receipt_sha256": "476d50b02ead57a1ce0048ba53dcd4473c7c81179584b0811c4dcc5b0aaed7fb",
+          "crop": [
+            722,
+            166,
+            989,
+            433
+          ],
+          "destination": [
+            586,
+            706
+          ],
+          "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80"
+        }
+      ]
     }
   ]
 }
