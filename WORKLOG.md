@@ -691,4 +691,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/character-
 C0 案例用 player0 6／geometry c0；沒有重建已發布封包或移動 tag。
 
 - final-audit.json 通過 128 原檔／1719 runtime 來源不變、93 PNG／100 筆素材共 120,620,400 bytes 不變、1483 鍵／66 PNG 不變、四平台 44 份編譯輸入與二進位、122 個首頁及素材索引受追蹤相對連結。首版八包與本機影片 SHA 全部保持，無 root-owned 檔案或 .md 目錄。sf-geometry 容器已完成並移除，未建新映像或清理其他專案資源。
-- 完整 HD、其他角色快捷、替代色盤與全部動畫、其他平台／實體手把仍另續；首版已發布範圍及音訊評估保持。提交與遠端核對另補。
+- 完整 HD、其他角色快捷、替代色盤與全部動畫、其他平台／實體手把仍另續；首版已發布範圍及音訊評估保持。功能提交 64379b961f9b7a08ed20b8f9469c40136e3a5ad3 已推送 origin/main 並由 ls-remote 核對；首版 tag 仍固定 807579d01c145db327050c2e870e2bf46e6bcb68。
