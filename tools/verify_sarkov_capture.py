@@ -18,7 +18,7 @@ def main():
     parser.add_argument("output", type=Path)
     parser.add_argument("--original-root", type=Path, required=True)
     parser.add_argument("--background", type=Path, required=True)
-    parser.add_argument("--player0", type=int, choices=(1, 2, 3, 5, 6, 7, 9), default=1)
+    parser.add_argument("--player0", type=int, choices=(1, 2, 3, 5, 6, 7, 9, 10), default=1)
     args = parser.parse_args()
     root = args.output
     receipt = json.loads((root / "receipt.json").read_text())
@@ -31,6 +31,7 @@ def main():
         6: ("lan", 31, [("crouch", (15,)), ("jump", (22, 23, 24, 25, 27)), ("punch", (5, 8))]),
         7: ("kim", 109, [("crouch", (16,)), ("jump", (28, 29, 30)), ("punch", (4, 11))]),
         9: ("clown", 52, [("crouch", (15,)), ("jump", (25, 26, 27)), ("punch", (4, 10, 11))]),
+        10: ("joe", 96, [("crouch", (15,)), ("jump", (38, 39, 40)), ("punch", (6, 7))]),
     }[character]
     assert receipt["scope"] == "normal-" + slug and len(receipt["checks"]) == 7
     assert sha(root / "desktop_smoke.py") == receipt["script_sha256"]
@@ -48,6 +49,8 @@ def main():
         event = events[slug + "_" + label]
         assert event["presentation"]["actors"][0]["slot"] in slots, label
         assert not any(event["core"]["quick"]), label
+        if character == 10 and label == "punch":
+            assert event["core"]["paths"][0] == 27, "ordinary Joe punch path"
     assert events[slug + "_walk"]["presentation"]["actors"][0]["x"] > events["normal_battle"]["presentation"]["actors"][0]["x"] + 4
     selected = [frames[name] for name in ("hd-paused.png", "original-paused.png", "hd-restored.png")]
     assert selected[0][:3] == selected[1][:3] == selected[2][:3]

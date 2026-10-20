@@ -456,3 +456,17 @@ NAME.XBB SHA-256 60c0bbe367e44ab9fda512df2ba93ad62d70147df90079d07ff15818f21bad8
 native-clown-v1／windows-clown-v1 各七項、九張完整重組及同狀態切換通過；native-clown-missing-v1 九張整格原貌。各案例內核心、來源、設定及指派相同，恢復 HD 逐點一致。小丑輸出各變動 27,594 點，姓名各變動 5,148 點；人物、跳躍、原貌與 Wine 畫面已目視。Go 1.24.13 完整程式測試、vet 與真實 HUD 的 JOKER／52×11 通過，Pillow 11.3.0 獨立核對。四份最終 ELF／PE／兩種 Mach-O 綁定 37 份精確編譯來源，026 限定 CONFORMED。
 
 蜘蛛女 SFMAN09 原圖 45 組，第一份內建 imagegen 請求遭 output moderation 拒絕，沒有可採用 PNG。request-00.json 與 generation-failure-00.json 保留工具請求 ID，沒有以程式改造型或繞過工具。印第安喬 44 組原圖待製作；這兩人的 HD 狀態與已可選、可操作分開列示。
+
+## 2026-10-20 印第安喬一般來源及拳擊勘誤
+
+已證實於原檔：SFMAN11.DAT SHA-256 `2533818f4054f0dbbf1476d67f94461be95e903066ea517de33a6adf906afe56`，檔案偏移 B28h 表、C48h 圖像基底、AC8h 正常色盤，72 槽／44 組 bytes。NAME.XBB 槽 10、檔案偏移 1C9Eh、96×11 為 INDIAN JOE，像素 SHA-256 `57040d7fb98abd691ae808d98813218a204bfc459a91a33fed289435602a9b5c`；原 NAME 與 EXE 雜湊沿規格 027。
+
+追加勘誤：hd-frame-joe-v1 兩人同時出拳，角色 10 的槽 11／12 已轉 path 10，不能從階段名稱推定為拳擊。hd-frame-joe-v2 以正常 10／4 選角、第二人普通 Left 六次、只有第一人按拳重取 124 格；runtime 01B9:5DD3 的兩人完整 packed bytes 與 I2 屋頂 RAM 吻合。第一人拳擊 path 27 的槽為 5／6／7，其中 5 亦見於行走。原生驗證改用 6／7 及 path 27，原錯誤 DRAFT 與審查保留於 joe-evidence-review.json，新審查為 joe-evidence-review-v2.json。
+
+Go 1.24.13 嚴格讀取候選與正常來源、完整程式測試及 vet 通過；Pillow 11.3.0 獨立重組 Linux／Wine 各九張與缺件九張。各案例內原版狀態不變、恢復 HD 逐點一致；原版規則與執行器來源未改。027 只限定一般姿態取樣、正常色盤及原姓名，不外推 WIN、完整動畫或過關。
+
+## 2026-10-20 子彈 WIN 靜態來源與候選
+
+已證實於原檔：CCWIN.FIG SHA-256 `1fcf7dda4b8d78e706497f83e188c97890d6d5f17c8e6c65f82088d7b3e28402`，檔案偏移 60h 表、180h 圖像基底，72 入口對應四組 bytes。原圖為兜帽防備至露出金髮的四個姿態；獨立參考與完整來源索引在 bullet-victory-source-v1/manifest.json。這是 Pillow 11.3.0 靜態解碼，尚非正常 WIN consumer 證據。
+
+內建 imagegen 生成四格透明候選，2172×724，SHA-256 `40e9ecc471cb8c1ba71016deba7ceaf70cb1d90bf3e26f4147101a6e168d70d5`。原 PNG、精確請求及嚴格透明矩形保存在 bullet-victory-art-v1；未接 production，仍需正常勝利來源與規格審查。

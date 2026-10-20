@@ -37,21 +37,22 @@ def main():
     parser.add_argument("--player1", type=int, choices=range(11), default=4)
     parser.add_argument("--quit-after-seconds", type=int, default=300)
     args = parser.parse_args()
-    if (args.single or args.player0 in (4, 8, 10)) and not args.boss_selection:
+    if (args.single or args.player0 in (4, 8)) and not args.boss_selection:
         parser.error("single and additional player choices require --boss-selection")
     if args.boss_selection and args.player0 < 8:
         parser.error("boss scope requires player0=8/9/10")
     if args.quit_after_seconds <= 0:
         parser.error("--quit-after-seconds must be positive")
-    if not args.boss_selection and args.player0 in (1, 2, 3, 5, 6, 7, 9) and (args.opponent != "frank" or not args.hd_assets or not args.hd_characters or args.round_opening_only or args.shadow_overlap_only or args.exercise_effects or args.exercise_frank_effects):
-        parser.error("player0=1/2/3/5/6/7/9 requires the normal rooftop character scope against Frank")
+    if not args.boss_selection and args.player0 in (1, 2, 3, 5, 6, 7, 9, 10) and (args.opponent != "frank" or not args.hd_assets or not args.hd_characters or args.round_opening_only or args.shadow_overlap_only or args.exercise_effects or args.exercise_frank_effects):
+        parser.error("player0=1/2/3/5/6/7/9/10 requires the normal rooftop character scope against Frank")
     normal = {1: ("sarkov", "Sarorkov", (0, 4), 14, (19, 20, 21), (5, 9, 10)),
               2: ("bullet", "Bullet", (0, 17), 11, (16, 18, 19, 20, 21, 22), (1, 2)),
               3: ("phoenix", "Pho Huang", (0, 1), 16, (22, 23, 24), (6, 11, 12)),
               5: ("onimaru", "Onimalu", (0, 1), 19, (25, 26, 27, 28), (8,)),
               6: ("lan", "Lan", (0, 1), 15, (22, 23, 24, 25, 27), (5, 8)),
               7: ("kim", "King Tai Chi", (0, 1), 16, (28, 29, 30), (4, 11)),
-              9: ("clown", "Joker", (0, 1), 15, (25, 26, 27), (4, 10, 11))}.get(args.player0)
+              9: ("clown", "Joker", (0, 1), 15, (25, 26, 27), (4, 10, 11)),
+              10: ("joe", "Indian Joe", (1, 2), 15, (38, 39, 40), (6, 7))}.get(args.player0)
     if args.boss_selection:
         normal = None
     if args.round_opening_only and not (args.hd_assets and args.hd_characters and args.opponent == "frank"):
@@ -363,7 +364,8 @@ def main():
                 ("walk", "d", lambda s: s["presentation"]["actors"][0]["x"] > ready["presentation"]["actors"][0]["x"] + 4),
                 ("crouch", "x", lambda s: s["presentation"]["actors"][0]["slot"] == crouch_slot),
                 ("jump", "w", lambda s: s["presentation"]["actors"][0]["slot"] in jump_slots),
-                ("punch", "Tab", lambda s: s["presentation"]["actors"][0]["slot"] in punch_slots),
+                ("punch", "Tab", lambda s: s["presentation"]["actors"][0]["slot"] in punch_slots
+                 and (args.player0 != 10 or s["core"]["paths"][0] == 27)),
             ]:
                 xdo("keydown", key_name)
                 observed_pose = wait(lambda s: predicate(s) and presentation_ready(s), timeout=90, progress=True)
@@ -372,7 +374,7 @@ def main():
                 xdo("keyup", key_name)
                 wait(lambda s: s["core"]["key_values"][0] == 0
                      and s["presentation"]["actors"][0]["slot"] in idle_slots
-                     and (args.player0 not in (7, 9) or s["core"]["paths"][0] == 0)
+                     and (args.player0 not in (7, 9, 10) or s["core"]["paths"][0] == 0)
                      and presentation_ready(s), timeout=60, progress=True)
                 checks.append("ordinary " + character_name + " " + label + " reaches a verified original source")
             click(265, 32)
