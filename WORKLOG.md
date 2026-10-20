@@ -947,3 +947,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 驗證器初版把既有 015 的 192 列 scanout 當成 200，另誤套一般矩形到原標題框線。回讀 015／046 後改用既有契約及 border helper，同一原資料重跑通過。返回原標題完整色號／字標與相位確認，沒有修改產品或放寬結果全圖相等。一次工具誤用無 Pillow 的 Python image 已分類環境錯誤，不改走主機。
 - 這是目前核心新執行的正常輸入證據，不是固定 RNG 戰鬥 parity 或原生 HD 驗收；只有一組 0／4 結果，單打／其他角色與三種分類另驗。沒有新增美術，仍為 130 PNG／147 catalog／151 檔、190,895,498 payload bytes。048 維持 DRAFT，正式 46 份輸入／bin／首版保持；原生候選接入與視覺／格式閘門另續。最終稽核、清理與推送另記。
 - result-core-v1/final-audit.json 通過：十三份新取樣、七份完整結果、八區及長度篡改拒絕、返回原標題重組；source-binding.json 綁定目前 46 份適配來源、Go workspace、執行器 manifest、命令及資源限制。128 原檔、1719 執行器來源、正式 i64、所有素材、四平台程式、首版封包及原曲影片保持。工具索引、既有連結、UID／誤建目錄通過，原圖／raw 只留本機；本輪專案容器已清空。
+- 正常結果與來源原型提交 `2d9b823a2f9e0546e800ad29107515faa2d66d73` 已推送 origin/main，遠端完整提交核對相同；首版 tag 維持 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段記錄推送結果，048 仍 DRAFT，不新增 Release。
