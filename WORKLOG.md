@@ -372,3 +372,14 @@
 - 下一角色金太極已解 72 槽／57 組。私有探針以第二人普通 Left 三次選法蘭克，hd-frame-kim-v1 正常 7／4 共 124 格的完整 bytes 與屋頂吻合，kim-source-review.json 綁定來源。尚無 HD 稿或原生接入。
 - 本輪沿用既有 Go、三平台 GUI 與 Pillow 映像，沒有新增映像或修改共用 dosgolem。來源探針、建置、測試、Xvfb／Wine 與三個 GUI 案例均已結束；沒有重啟舊首勝工作。完整 HD、其他角色／場景／畫面、WIN／特效／快捷與完整動畫、實體平台／雙手把、音訊／速度及正式封包仍待完成，Goal 保持 active。
 - 隔離接入 commit 54b91d0，782f921 合入進度分支；主工作目錄的自有來源同步保存於 /tmp/kdzz-superfighter-publish。收尾備份使用 workplace/github-lan-integration-progress.bundle 與 github-lan-integration-progress-source.json，GitHub 遠端仍未建立或推送。
+
+## 2026-10-20 金太極一般姿態與姓名整合
+
+- 接續嵐的 ee4dd6e 基底，在隔離 feature/kim-hd 製作金太極。內建 imagegen 保存六份精確請求、五張採用 PNG，對應 57 組不同來源及 72 槽。大刀、護肩、胸飾、綁帶及獨立氣勁沿原圖，未改生成 PNG bytes。
+- 02 旋轉初稿因缺完整透明分隔被拒，原稿與 rejected-02.json 保留；內建工具重排 02-v2 後通過同一門檻。第一次群組建立失敗後，工具流程仍啟動測試而缺檔失敗，保留 kim-candidate-checks-v1.log；修正順序，以 v2 乾淨通過。這是工具順序問題，未放寬產品門檻。
+- 原姓名 KING TAI CHI 位於 NAME 槽 7、實檔 133Ah、109×11，字圖像素 SHA ed6ce285ff8784b6d9dd0485185336bc4ae9c9c0a4db5d110c56a138d4a484be。Go 嚴格讀取驗 72 槽／57 組、124 個正常 consumer 及原 733 鍵不變，審查後 024 升 READY，再接姓名。設定 ID kim、原版核心、步速、規則與快捷均未改。
+- 首輪 native-kim-v1 在跳躍後按拳未捕捉姿態。正常探針證明落地槽 0 仍可處於跳躍路徑 4；外部放開、重按 Tab 後捕捉到拳姿，只作診斷，不計驗收。修正測試為按鍵清空、待機圖及原版路徑 0 才進下一動作。乾淨 native-kim-v2、windows-kim-v1 及 native-kim-missing-v1 各七項、九張獨立重組全部通過，原失敗與診斷輸入保留。
+- Linux／Wine 各案例內切換保留核心、來源、設定及指派，恢復 HD 逐點一致；缺件九張整格原貌。人物輸出各變動 24,741 點、姓名 10,791 點，正常站姿、跳躍、原貌及 Wine 畫面另目視。像素數相同不稱跨平台同狀態。
+- 完整 internal／cmd 測試及 go vet、後續真實 HUD 姓名／尺寸與未知拒絕測試通過。四個候選 ELF／PE／兩種 Mach-O 的 35 份精確編譯輸入通過，沿用既有工具映像，不改共用 dosgolem。原封移入 bin 的記錄為 kim-build-v1/promotion.json，舊嵐四份在 lan-build-v1/bin。
+- 024 升限定 CONFORMED。README 加入金太極目前畫面、跳躍與同狀態切換，範例改用 805 鍵／48 PNG 群組。八名可選角色一般來源共 576 槽、463 組不同 bytes；登錄齊全不當作完整動畫或全遊戲完成。
+- 三個乾淨 GUI 案例、診斷、建置與測試均已結束；沒有重啟舊首勝工作。完整 HD、WIN／替代色盤／快捷與完整動畫、其餘角色／場景／畫面、實體平台／雙手把、音訊／速度及正式封包仍待完成，Goal 保持 active。原版、衍生美術、研究收據及二進位仍排除 Git，遠端未建立或推送。
