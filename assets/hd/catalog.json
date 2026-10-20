@@ -13,7 +13,7 @@
     "sources": 21,
     "complete_HD": false
   },
-  "pngs": 103,
+  "pngs": 105,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -1396,6 +1396,38 @@
         845
       ],
       "generated_source": "workplace/remaining-special-audit-v1/art-v1/clown-effects.png"
+    },
+    {
+      "file": "candidates/title-person-v1.png",
+      "sha256": "fc38cc33915afc7bbbf4caf39ed7c69409069d7b9d8436904709667a7a9bf3ea",
+      "bytes": 1042075,
+      "size": [
+        1586,
+        992
+      ],
+      "status": "title-candidate-not-integrated",
+      "tool": "built-in imagegen",
+      "generated_source": "exec-51307258-7b67-4743-bac2-cee1f0b865a6.png",
+      "source_file": "TITLE.CPM"
+    },
+    {
+      "file": "candidates/title-logo-v1.png",
+      "sha256": "3f224d17e40bdcdbf08a50be7e393a9d8cb708c779d659b9e4f4ba61de949ccc",
+      "bytes": 1274204,
+      "size": [
+        1983,
+        793
+      ],
+      "status": "title-candidate-not-integrated",
+      "tool": "built-in imagegen",
+      "generated_source": "exec-cd4304fc-496c-47f7-bcc1-9226e4f1ef7d.png",
+      "source_file": "SFNAME.CPM"
+    },
+    {
+      "file": "candidates/title-source.json",
+      "sha256": "aef0c560f16f92cc86adc6ecdea9f9682ab0ccdf68857792852130ce9326be55",
+      "bytes": 5012,
+      "status": "title-candidate-provenance"
     }
   ],
   "original_game_data_included": false

@@ -48,6 +48,10 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 以上是生成素材預覽；正常遊戲的整合驗證與限制見 [目前狀態](CONTEXT.md)及各規格。
 
+![標題與主選單的靜態 HD 候選，尚未接入遊戲](docs/screenshots/title-menu-candidate.png)
+
+標題人物與紅金字標已重繪並收錄候選。上圖是依原版構圖製作的靜態比較，尚未定版或接入；原字標的循環換色仍需保留。[來源及接入閘門](docs/spec/046-hd-title-menu.md)。
+
 ## 目前整合畫面
 
 ![鳳凰蓄力出招時的青藍主角色 HD](docs/screenshots/phoenix-secondary-main-hd.png)

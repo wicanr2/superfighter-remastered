@@ -4,6 +4,7 @@
 
 | 路徑 | 內容 | 接入狀態 |
 |---|---|---|
+| [標題人物與字標](candidates/README.md)、[精確提示詞](candidates/title-source.json) | 黑底紫色人物與紅金「快打至尊」透明字標 | 靜態比較候選；未接正式標題與循環換色，見 [046](../../docs/spec/046-hd-title-menu.md) |
 | [characters/manifest.json](characters/manifest.json) | 74 張角色與特效圖集、1516 個登錄鍵 | 現行開發素材；包含四人的二十一份特殊技光效。完整動畫及各角色驗收範圍見 [CONTEXT](../../CONTEXT.md) |
 | [backgrounds/rooftop.png](backgrounds/rooftop.png) | 屋頂背景，1923×818 | 已接原生；原版參考色號與色盤不隨 Git 提供 |
 | [道場候選整理](candidates/README.md) | 道場 PNG、來源雜湊、正常畫格證據與精確提示詞 | 素材已整理；[多場景格式](../../docs/spec/029-multi-scene-backgrounds.md)尚待確認，首輪先跳過接入 |

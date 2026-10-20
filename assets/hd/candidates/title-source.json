@@ -1,0 +1,55 @@
+{
+  "kind": "HD title candidates; original-mode references remain local",
+  "authorization": "existing user scope: complete style B HD and upload assets; no visibility change",
+  "records": [
+    {
+      "file": "title-person-v1.png",
+      "sha256": "fc38cc33915afc7bbbf4caf39ed7c69409069d7b9d8436904709667a7a9bf3ea",
+      "bytes": 1042075,
+      "size": [
+        1586,
+        992
+      ],
+      "source_file": "TITLE.CPM",
+      "source_sha256": "a4790f1da67dbff8eec45c573826b95ee9e9c48ed165f99dfc1cf9176ef03f10",
+      "reference": "workplace/hd-source-probe-v3/TITLE.CPM.png",
+      "generated_file": "exec-51307258-7b67-4743-bac2-cee1f0b865a6.png",
+      "tool": "built-in image_gen",
+      "prompt": "Use case: style-transfer.\nAsset type: HD title-screen background for the 1993 DOS fighting game Super Fighter (快打至尊), without title lettering or interface.\nInput image 1: original TITLE.CPM decoded image, used as the exact composition, silhouette and lighting reference.\nPrimary request: redraw this title background as detailed 1990s arcade hand-painted ink artwork, retaining the original mysterious purple male fighter on pure black.\nCanvas: 1600 by 1000, original 8:5 composition. The dark male fighter is centered slightly to the right, cropped at the waist near the lower edge, his head occupying the upper center, same head tilt, same shoulder positions, same swept hair fringe, same open sleeveless high-collared martial vest and muscular upper arms as the reference. Preserve the source silhouette and proportions; do not invent a different costume, beard, mask, weapons, accessories or scene.\nLighting: extremely low-key violet rim light with subtle purple reflected ink shading; keep almost all face detail in black shadow. Crisp drawn contours and restrained painted volume. Purple edge light only, no blue cyberpunk glow, no photorealism, no 3D.\nThe entire area outside the fighter stays pure solid black. Do not add title lettering, buttons, labels, borders, smoke, sparks, planets, city buildings or watermarks. The foreground title and four original menu buttons will be composed separately by the application. Keep the head and shoulders clear at their reference coordinates.",
+      "transparent_background": false,
+      "visible_alpha16_bounds": [
+        0,
+        0,
+        1586,
+        992
+      ],
+      "status": "candidate-not-selected-not-integrated",
+      "limits": "生成原 bytes 保持；尺寸與原構圖比例仍由比較稿複核，字標低 alpha 雜點不冒稱透明留白全淨"
+    },
+    {
+      "file": "title-logo-v1.png",
+      "sha256": "3f224d17e40bdcdbf08a50be7e393a9d8cb708c779d659b9e4f4ba61de949ccc",
+      "bytes": 1274204,
+      "size": [
+        1983,
+        793
+      ],
+      "source_file": "SFNAME.CPM",
+      "source_sha256": "9268d0093b84b67508ea1e2280ec5707c20b6d31a929bfd736b89e132a1842bc",
+      "reference": "workplace/probe-startup-if-40m/screen.png",
+      "generated_file": "exec-cd4304fc-496c-47f7-bcc1-9226e4f1ef7d.png",
+      "tool": "built-in image_gen",
+      "prompt": "Use case: style-transfer.\nAsset type: transparent HD title lettering for the 1993 DOS fighting game 快打至尊.\nInput image 1: original game title screen. Use ONLY the large Chinese title across its lower middle as the shape, character and color reference. Do not draw the person or menu.\nPrimary request: paint a high-resolution arcade title logo containing exactly the four Traditional Chinese characters \"快打至尊\", in that order, in one horizontal line, keeping the original angular block lettering, slanted cutting corners, red lower faces, bright golden yellow upper faces and white/silver edge outline with small black extrusion shadow.\nPreserve the original four-character silhouette, relative widths, spacing and low broad 1990s DOS-game title proportions. The logo is broad and low; do not turn it into four square upright font glyphs. Rich red lacquer and warm gold painted bevels, crisp hand-inked contours, no tiny illegible detail. Render at high resolution around 1920 pixels wide with transparent clear space above and below.\nText (verbatim): \"快打至尊\". Four characters only; do not simplify \"尊\", do not replace characters, no extra English subtitle, REMASTERED, trademark symbols, other text or watermarks.\nBackground: genuine alpha transparency. No colored background, no checkerboard drawn into pixels, no character portrait, no rectangular plaque, no buttons, no city, no smoke, no sparks. The result is a separate transparent title lettering layer.",
+      "transparent_background": true,
+      "visible_alpha16_bounds": [
+        61,
+        153,
+        1952,
+        621
+      ],
+      "status": "candidate-not-selected-not-integrated",
+      "limits": "生成原 bytes 保持；尺寸與原構圖比例仍由比較稿複核，字標低 alpha 雜點不冒稱透明留白全淨"
+    }
+  ],
+  "limits": "not production title recognition, palette animation, native UI or final visual approval"
+}

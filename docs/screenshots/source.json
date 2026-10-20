@@ -232,5 +232,18 @@
     }
   ],
   "version": "v.0.1.0-20261020",
-  "receipt_sha256": "bd36ed2f7e7f90fc9388da294d4f2456c712d8a4a3357065a9293e99d0314b06"
+  "receipt_sha256": "bd36ed2f7e7f90fc9388da294d4f2456c712d8a4a3357065a9293e99d0314b06",
+  "prototype_captures": [
+    {
+      "file": "title-menu-candidate.png",
+      "sha256": "c99c23d3858726a6278bde3401f4e90c2165223e9b4ff4cc133aa5192f2f9fb7",
+      "source": "workplace/title-layout-v1/title-menu-candidate.png",
+      "kind": "靜態 HD 標題候選，非遊戲擷取或定版畫面",
+      "renderer": "tools/preview_title_menu.py",
+      "renderer_sha256": "29057cbc7662912be1544c1a8efe5f95f1cc9be147b8b68d62f52111f623f1d3",
+      "receipt_sha256": "a205195e31d4673ec9aa3e91501dae82e0d66c61347f938123653c977925d8da",
+      "authorization": "使用者要求完整 HD、素材上傳及 GitHub 可見 README 圖片",
+      "limits": "未接核心、原按鈕、游標與色盤動畫；原貌比較只留本機"
+    }
+  ]
 }

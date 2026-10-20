@@ -149,6 +149,10 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [標題候選收錄](tools/import_title_candidates.py)、[構圖比較](tools/preview_title_menu.py) | 保存人物／字標原 PNG 及精確請求，按原版矩形作可丟棄比較，原貌對照留本機 |
+| [標題完整來源核對](tools/verify_title_menu.py) | 獨立解碼 TITLE／SFNAME.CPM、全畫面色號／色盤重組及原四按鈕取樣，不代替標題識別或原生 HD 驗收 |
+| [標題主選單來源取樣](tools/title_menu_receipt.go) | 正常啟動四份原標題、穩定取樣及四按鈕動作，不注入狀態或改正式程式 |
+| [標題與主選單 HD](docs/spec/046-hd-title-menu.md) | 原黑紫人物、紅金字標與四按鈕的分層比較及正常來源；DRAFT，不進正式呈現 |
 | [主角色第二色盤原生操作](tools/secondary_main_smoke.py)、[獨立核對](tools/verify_secondary_main_native.py) | 普通 3／4 雙打的鳳凰出招與法蘭克受招、完整原層／色盤及切換，舊程式回退另驗 |
 | [主角色第二色盤真實測試](internal/hd/secondary_main_palette_test.go) | 原 Oracle 圖層、已用色號錨點／alpha、兩側主圖像及 CPU 幾何／來源／色盤拒絕，保留原稿身分 |
 | [主角色第二色盤視圖](internal/hd/secondary_main_palette.go) | 同原稿與 alpha 的已用來源色號調色，完整色盤／CPU 幾何核對後才選擇，不轉用額外光效圖 |

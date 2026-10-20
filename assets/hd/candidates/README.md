@@ -4,6 +4,7 @@
 
 | 素材 | 來源與提示詞 | 狀態 |
 |---|---|---|
+| [標題人物](title-person-v1.png)、[紅金字標](title-logo-v1.png) | [來源與精確提示詞](title-source.json)，保留生成原 bytes | 黑紫人物、四字字標與四按鈕的[靜態構圖候選](../../../docs/screenshots/title-menu-candidate.png)；未定版、未接原生或色盤動畫，見 [046](../../../docs/spec/046-hd-title-menu.md) |
 | [廳堂](hall-i1.png)、[叢林](jungle-i3.png)、[街道](street-i4.png) | I1／I3／I4.XGB；[來源與精確提示詞](backgrounds-source.json) | 首輪候選已保存，尚未接入 |
 | [宮殿](palace-i7.png)、[舞廳](auditorium-i8.png)、[港口](harbor-i9.png) | I7／I8／I9.XGB；[來源與精確提示詞](backgrounds-source.json) | 首輪候選已保存，尚未接入 |
 | [石窟](grotto-i10.png)、[冰原](icefield-i12.png)、[火車](train-i13.png) | I10／I12／I13.XGB；[來源與精確提示詞](backgrounds-source.json) | 首輪候選已保存，尚未接入 |
