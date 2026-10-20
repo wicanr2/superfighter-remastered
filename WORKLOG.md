@@ -948,3 +948,13 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 這是目前核心新執行的正常輸入證據，不是固定 RNG 戰鬥 parity 或原生 HD 驗收；只有一組 0／4 結果，單打／其他角色與三種分類另驗。沒有新增美術，仍為 130 PNG／147 catalog／151 檔、190,895,498 payload bytes。048 維持 DRAFT，正式 46 份輸入／bin／首版保持；原生候選接入與視覺／格式閘門另續。最終稽核、清理與推送另記。
 - result-core-v1/final-audit.json 通過：十三份新取樣、七份完整結果、八區及長度篡改拒絕、返回原標題重組；source-binding.json 綁定目前 46 份適配來源、Go workspace、執行器 manifest、命令及資源限制。128 原檔、1719 執行器來源、正式 i64、所有素材、四平台程式、首版封包及原曲影片保持。工具索引、既有連結、UID／誤建目錄通過，原圖／raw 只留本機；本輪專案容器已清空。
 - 正常結果與來源原型提交 `2d9b823a2f9e0546e800ad29107515faa2d66d73` 已推送 origin/main，遠端完整提交核對相同；首版 tag 維持 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段記錄推送結果，048 仍 DRAFT，不新增 Release。
+
+
+## 2026-10-21：048 隔離原生結果候選
+
+- 上輪正常核心結果來源已推送，屬於進展。本輪把既有候選接進正式來源的隔離副本，沒有把待答視覺／格式問題當成同意。正式 API、資料格式、46 份編譯輸入、bin、原 PNG 與 Release 保持。
+- prepare_result_native_prototype.py 複製 85 份來源並記錄原 46 份輸入。23 張生成原 PNG 加兩個既有純 HD 比較中向量旗幟裁切，共 25 項，逐檔核對再載入獨立紋理。七份原檔與整張 RGB 重組始終保持，參照約 1.18 MB 只在 workplace。二進位 SHA 73a49e3fa9accdf087548a39fc2b87eef52f57dc3085101f2ca8f76bf0ae1c62，未晉升正式程式。
+- 第一條 full-v1 複用一般腳本，錯把第二回合開場 round_state 非零當結束，零損血卻標 time-expiry。檢查即時狀態及分支後主動停止，保留舊程式、部分圖與 stopped.json。修正只以實際零血判 KO，並要求兩次 KO；沒有因觀測期限到而重開，也沒有改原規則。
+- full-v2 與 fallback-v2 各十張，正常鍵鼠完成兩回合零血 KO、結果 HD／原貌／恢復與 Return 返回；fallback 未載候選。verify_result_native.py 通過六份完整原結果、兩份 GPU 候選／鏡像及兩組核心／呈現／設定／指派不變，原貌／回退逐點相同，恢復視區像素完全相同；返回清空結果覆繪。Pillow 只辨識身分，不當 GPU 逐點 oracle。
+- 新原生結果截圖已目視並放 README，分類清楚標為隔離原型。視區全為新不透明報紙、生成肖像、向量旗幟與專案字型；原貌圖／參照／色盤只留本機。素材仍為 130 PNG／147 catalog／151 檔、190,895,498 payload bytes。只有 Linux 一組雙打、第 0 結果與兩面旗幟通過，其他角色／模式／結果／旗幟／平台及視覺／正式載入仍待完成；048 DRAFT，不新增 Release。最終稽核、容器清理及推送另記。
+- result-native-prototype-v1/final-audit.json 通過：二十張正常原生擷取、六份完整原結果與兩份 GPU 身分／鏡像、切換／恢復及返回清除；參照 JSON 全組重新對原檔，25 項美術及 85 份隔離來源核對。212 個 README 相對連結與工具索引通過；128 原檔、1719 執行器來源、正式 i64、所有素材、正式 46 份輸入、四平台程式、首版封包及原曲影片保持。UID／誤建目錄通過，無原圖／原參照／raw 入 Git，本輪專案容器已清空。

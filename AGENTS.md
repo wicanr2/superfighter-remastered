@@ -149,6 +149,9 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [隔離結果原生獨立核對](tools/verify_result_native.py) | 原 RGB／色盤與 Go／Python 識別一致、候選身分／鏡像、切換原貌／恢復及返回清除；不宣稱 GPU 逐點取樣或完整結果皆驗收 |
+| [隔離結果原生操作](tools/result_native_smoke.py) | X11 正常斬／法蘭克雙打、兩次擊倒、結果原貌切換／恢復、未載候選及 Return 清除；不作全角色或正式發行驗收 |
+| [結果原生隔離準備／建置](tools/prepare_result_native_prototype.py)、[繪圖與來源模板](tools/result-native-prototype/desktop.go.in) | 正式來源複本中的完整原結果核對及候選繪圖；原參照與 recipe 只在 workplace，不改正式 API／格式 |
 | [結果完整來源識別原型](tools/recognize_result_source.py)、[正常生命週期核對](tools/verify_result_lifecycle.py) | 七份原檔識別兩側肖像／旗幟／字圖，整張 RGB 重組後才接受；驗正常結果、轉場拒絕、返回原標題與篡改拒絕，不接正式程式 |
 | [目前核心正常結果取樣](tools/result_core_receipt.go) | 沿既有普通雙打輸入取得兩次擊倒、結果穩定取樣與 Return 後來源；只讀畫面、色盤與狀態，不當原生 HD 驗收 |
 | [其餘敗者肖像收錄](tools/import_remaining_result_portraits.py)、[十一人來源與提示詞](assets/hd/candidates/result-portraits-source.json) | 十張生成原 PNG 加既有法蘭克，原 LOSEFIG 全十一張 RGB 核對與純 HD 總覽；候選不代表正式結果生命週期或全部角色驗收 |

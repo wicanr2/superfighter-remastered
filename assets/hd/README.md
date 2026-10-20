@@ -5,7 +5,7 @@
 | 路徑 | 內容 | 接入狀態 |
 |---|---|---|
 | [十一人敗者肖像](../../docs/screenshots/result-portrait-candidates.png)、[逐人來源與完整提示詞](candidates/result-portraits-source.json) | 十張新原 PNG 加既有法蘭克，皆為 1254×1254；原 LOSEFIG 十一張 RGB 核對 | 僅美術候選，表情／傷勢為近似；未接正式結果流程，不代替蜘蛛女戰鬥動畫 |
-| [結果報紙底圖](candidates/result-newspaper-v1.png)、[法蘭克受傷肖像](candidates/result-loser-frank-v1.png) | [來源與完整提示詞](candidates/result-source.json)，首輪兩張生成原 PNG 與[靜態比較](../../docs/screenshots/result-newspaper-candidate.png) | 一個結果組合的候選，未接遊戲；其餘十人已另存首輪候選，三種標題與正常流程另驗，見 [048](../../docs/spec/048-hd-result-newspaper.md) |
+| [結果報紙底圖](candidates/result-newspaper-v1.png)、[法蘭克受傷肖像](candidates/result-loser-frank-v1.png) | [來源與完整提示詞](candidates/result-source.json)，首輪兩張生成原 PNG、[靜態比較](../../docs/screenshots/result-newspaper-candidate.png)與[隔離原生候選](../../docs/screenshots/result-native-prototype-hd.png) | Linux 正常斬／法蘭克結果、切換／恢復、未載候選回退及返回清除已驗；未接正式程式，其他角色／模式／結果另驗，見 [048](../../docs/spec/048-hd-result-newspaper.md) |
 | [選角 VS](candidates/selection-vs-v1.png)、[來源與完整提示詞](candidates/selection-vs-source.json) | 1589×990、原透明 PNG；[八格／十一格比較](../../docs/screenshots/selection-layout-candidates.png) | 靜態構圖候選，未接遊戲，版面與操作區域未定 |
 | [十一人選角肖像](../../docs/spec/047-hd-selection-portraits.md)、[來源與精確提示詞](candidates/selection-portraits-source.json) | 十一張 1254×1254 原 PNG 與純 HD 接觸圖 | 隔離 Linux 原型已驗雙打兩側、鏡像、切換／回退與退出；仍為候選，未改正式 UI 或格式 |
 | [標題人物與字標](candidates/README.md)、[精確提示詞](candidates/title-source.json) | 黑底紫色人物與紅金「快打至尊」透明字標 | 隔離原生候選已驗換色與游標，未接正式標題，見 [046](../../docs/spec/046-hd-title-menu.md) |

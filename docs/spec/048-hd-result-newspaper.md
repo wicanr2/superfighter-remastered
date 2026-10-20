@@ -52,6 +52,20 @@ Return 後完整色號由 TITLE／SFNAME 與 046 已驗的原框線程序重組�
 
 收據 SHA-256 `8f53dececcc9c6aafe80cc3d623d80da496dfcef0d9a63e7ccead853267d2410`，`source-review.json` 記錄工具與依賴雜湊。這仍是公開 Core 的無頭正常輸入證據，不取代原生視窗／GPU、單打、其他角色、其他結果、切換／恢復或正式 HD 接入。048 保持 DRAFT。
 
+## 隔離原生結果原型
+
+[準備／建置工具](../../tools/prepare_result_native_prototype.py)只在 `workplace/result-native-prototype-v1` 複製正式來源，套用[原生模板](../../tools/result-native-prototype/desktop.go.in)。85 份副本檔案、原 46 份編譯輸入與來源雜湊均綁定 recipe。Go 1.24.13 的 Linux 二進位 SHA-256 `73a49e3fa9accdf087548a39fc2b87eef52f57dc3085101f2ca8f76bf0ae1c62`；未移入正式 bin 或封包。
+
+原型對每張完整結果核對七份原檔，左右肖像／結果字圖／旗幟／姓名由全部原 RGB 逐點辨識，再重組整張 64000 像素。只有完整相同才畫候選，Go 輸出另由前節 Python 原型獨立核對。原參照約 1.18 MB，只在本機，不當作正式資產格式或公開來源包。
+
+`KDZZ_RESULT_PROTOTYPE_REFERENCE` 指向本機固定 recipe；`KDZZ_RESULT_PROTOTYPE_ART` 才啟用候選。23 張已保存原 PNG 及兩張由純 HD 靜態比較裁出的向量旗幟合計 25 項，全組核對後才建立獨立紋理。只有旗幟來源第 0／1 筆有 HD，其餘五筆安全保留原貌。三種結果標題在原型使用現代字型重排，不據此宣稱三種正常結果或分類門檻已驗；字形、姓名與整體視覺尚未定版。
+
+[原生操作](../../tools/result_native_smoke.py)只用 X11 普通鍵鼠，從正常標題選斬／法蘭克，兩回合各實際把對手血量打至零，再到結果及 Return 返回。`result-native-full-v2` 與 `result-native-fallback-v2` 各十張，後者未載任何候選，結果整張保持原貌。首版 v1 操作沿舊腳本把第二回合開場的非零 round_state 誤標回合結束，造成未攻擊等待及假 time-expiry 標籤；確認原因後主動停止並保留部分收據。修正只以實際零血判 KO，兩個 v2 都嚴格要求兩次 KO，沒有改產品、生命或原判勝。
+
+[獨立核對](../../tools/verify_result_native.py)通過二十張原生擷取、六份完整原結果重組、兩份 GPU 候選身分／右側鏡像辨識。暫停下切換原貌／恢復保持核心、呈現、設定與指派，兩組恢復的視區像素相同；原貌與未載候選都逐點等於原結果。Return 後清除候選，整個視區回到即時原標題。Pillow 只用作候選身分比對，不宣稱 GPU 採樣逐點一致。
+
+[公開截圖](../screenshots/result-native-prototype-hd.png)確為正常比賽後的隔離原生視窗，視區由不透明新底圖、HD 肖像、向量旗幟及專案字型完整覆蓋，不含原貌比較。原圖、原色盤與原參照 JSON 仍只留本機。這是 Linux 一組雙打原型，不取代單打、其他角色／結果／旗幟、Windows／macOS、損壞素材或正式包驗收。048 保持 DRAFT。
+
 ## 候選與後續閘門
 
 1. 新報紙底圖保留灰色報紙、雙側金框與中央直排標題留白；細小印刷紋理可作近似，不能把新寫的故事或新聞當作原文字。

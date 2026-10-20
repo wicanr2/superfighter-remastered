@@ -334,6 +334,21 @@
       "platform": "Pillow 11.3.0 in Docker; not runtime acceptance",
       "authorization": "existing user HD upload request",
       "limits": "generated art only; original images and comparison stay local"
+    },
+    {
+      "kind": "normal native capture of isolated HD result candidate; not formal integration",
+      "file": "result-native-prototype-hd.png",
+      "sha256": "61e00e26ab13f5e4a83af34e5cffcddd22550dd590104639997e29774eb7579e",
+      "source": "workplace/result-native-full-v2/result-hd.png",
+      "source_sha256": "61e00e26ab13f5e4a83af34e5cffcddd22550dd590104639997e29774eb7579e",
+      "binary_sha256": "73a49e3fa9accdf087548a39fc2b87eef52f57dc3085101f2ca8f76bf0ae1c62",
+      "receipt_sha256": "7845df92e3406fa03c6c561e7ee0863f39a4a542b2e3d57e09a954a766cdc870",
+      "comparison_sha256": "6abaaca884babb836cd173eaa545f0b6ecfbecc4b5b0ef5a59e017b206358154",
+      "recipe_sha256": "a82583dd1d79fbce416bb2636956724c5b6fe94555816cdbbdf1b9bac6e70b40",
+      "platform": "Linux amd64 in Docker Xvfb; not Windows/macOS hardware acceptance",
+      "authorization": "existing HD upload and GitHub-visible screenshot request; visibility unchanged",
+      "visible_art": "opaque new HD newspaper, generated portraits, new vector flags and project font; original-mode capture stays local",
+      "limits": "one normal Jaan/Frank result; DRAFT art and private loader; not full HD or formal release"
     }
   ]
 }

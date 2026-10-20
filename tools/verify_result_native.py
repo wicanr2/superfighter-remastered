@@ -1,0 +1,129 @@
+"""獨立核對 048 原生結果原型的正常來源、切換與返回。"""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+
+from PIL import Image, ImageChops, ImageOps, ImageStat
+
+import build_desktop
+from prepare_title_native_prototype import snapshot
+from recognize_result_source import ResultSources
+
+ROOT = Path('/project')
+
+
+def sha(p):
+    return hashlib.sha256(p.read_bytes()).hexdigest()
+
+
+def main():
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('output', type=Path)
+    p.add_argument('--build', type=Path, required=True)
+    a = p.parse_args()
+    q, b = a.output, a.build
+    assert not (q/'comparison.json').exists()
+    receipt = json.loads((q/'receipt.json').read_text())
+    recipe = json.loads((b/'recipe.json').read_text())
+    build = json.loads((b/'build.json').read_text())
+    assert sha(q/'result_native_smoke.py') == receipt['script_sha256'] == sha(ROOT/'tools/result_native_smoke.py')
+    assert build['binary_sha256'] == receipt['binary_sha256'] == sha(b/'superfighter-result-prototype-linux-amd64')
+    assert build['recipe_sha256'] == sha(b/'recipe.json')
+    assert snapshot(b/'source') == recipe['source_snapshot'] == build['source_snapshot']
+    assert recipe['original_compiled_inputs'] == build_desktop.compiled_inputs(ROOT)
+    for name, digest in recipe['recipe_inputs'].items():
+        assert sha(ROOT/name) == digest
+    assert receipt['reference_sha256'] == recipe['reference_sha256'] == sha(b/'result-reference.json')
+    assert receipt['art_recipe_sha256'] == recipe['art_recipe_sha256'] == sha(b/'result-art.json')
+    assert recipe['workspace_sha256'] == sha(b/'go.work')
+    for name, digest in recipe['private_flag_SHA256'].items():
+        assert sha(b/name) == digest
+    assert receipt['knockout_rounds'] == [0, 1] and receipt['round_finishes'] == {'0': 'knockout', '1': 'knockout'}
+    assert receipt['scope'] == 'result-prototype-normal-match-return'
+    fallback = receipt['fallback']
+    source = ResultSources(ROOT/'workplace/orig')
+    pictures, raw_sources, captures, states = {}, {}, {}, {}
+    typed = {}
+    for event in receipt['events']:
+        name, state = event['name'], event['state']
+        path = q/(name+'.png')
+        meta = json.loads(Path(str(path)+'.capture.json').read_text())
+        assert meta['core'] == state['core'] and state['core']['paused']
+        assert not state['core']['training']['modified']
+        assert meta['result_hd_prototype'] == state['result_hd_prototype']
+        assert meta.get('result_prototype') == state.get('result_prototype')
+        picture = Image.open(path).convert('RGB')
+        assert picture.size == (1120, 820)
+        pictures[name], captures[name], states[name] = picture, meta, state
+        rgb = Path(str(path)+'.selected.rgb').read_bytes()
+        raw_sources[name] = rgb
+        if name.startswith('result-') or name == 'after-result-return':
+            assert meta['selected_width'] == 320 and meta['selected_height'] == 200
+            assert meta['active_rect'] == {'Min': {'X': 80, 'Y': 64}, 'Max': {'X': 1040, 'Y': 664}}
+            indices = Path(str(path)+'.display.idx').read_bytes()
+            palette = json.loads(Path(str(path)+'.prototype-palette.json').read_text())
+            assert rgb == bytes(c for v in indices for c in palette[v])
+            original = Image.frombytes('RGB', (320, 200), rgb).resize((960, 600), Image.Resampling.NEAREST)
+            actual = picture.crop((80, 64, 1040, 664))
+            found = source.identify(rgb)
+            if name.startswith('result-'):
+                assert found is not None and (found.left_character, found.right_character, found.outcome_record) == (0, 4, 0)
+                expected = {'characters': [found.left_character, found.right_character], 'outcome_record': found.outcome_record,
+                    'flag_records': list(found.flag_records), 'name_positions': list(found.name_positions),
+                    'original_rgb_sha256': found.original_RGB_sha256}
+                assert meta['result_prototype'] == expected
+                typed[name] = expected
+                active = not fallback and name != 'result-original'
+                assert state['result_hd_prototype'] == state['hd_active'] == active
+                assert state['result_art_loaded'] == (not fallback)
+                assert not state['hd_characters_active'], 'result must not be labelled as battle character HD'
+                if active:
+                    assert actual.tobytes() != original.tobytes()
+                else:
+                    assert actual.tobytes() == original.tobytes(), (name, 'full viewport must remain original')
+            else:
+                assert found is None and not state.get('result_prototype')
+                assert not state['result_hd_prototype'] and not state['hd_active']
+                assert actual.tobytes() == original.tobytes()
+        else:
+            assert not state.get('result_prototype') and not state['result_hd_prototype']
+    assert set(states) == {'normal-battle', 'knockout-0', 'transition-0', 'next-round', 'knockout-1', 'transition-1',
+                           'result-hd', 'result-original', 'result-restored', 'after-result-return'}
+    assert states['knockout-0']['core']['health'][1] == states['knockout-1']['core']['health'][1] == 0
+    for field in ('core', 'presentation', 'settings', 'assigned', 'result_prototype'):
+        assert states['result-hd'][field] == states['result-original'][field] == states['result-restored'][field]
+    assert len({raw_sources[n] for n in ('result-hd', 'result-original', 'result-restored')}) == 1
+    assert pictures['result-hd'].crop((80, 64, 1040, 664)).tobytes() == pictures['result-restored'].crop((80, 64, 1040, 664)).tobytes()
+    ranking = []
+    if not fallback:
+        for side, source_file, desired, mirrored, box in (
+                ('left', 'selection-portraits-source.json', 0, False, (134, 166, 401, 433)),
+                ('right', 'result-portraits-source.json', 4, True, (722, 166, 989, 433))):
+            references = json.loads((ROOT/'assets/hd/candidates'/source_file).read_text())['records']
+            actual = pictures['result-hd'].crop(box)
+            differences = {}
+            for row in references:
+                art_path = ROOT/'assets/hd/candidates'/row['file']
+                assert sha(art_path) == row['sha256']
+                art = Image.open(art_path).convert('RGB').resize((267, 267), Image.Resampling.BILINEAR)
+                for mirror in (False, True):
+                    candidate = ImageOps.mirror(art) if mirror else art
+                    differences[row['index'], mirror] = sum(ImageStat.Stat(ImageChops.difference(actual, candidate)).mean)/3
+            best = min(differences, key=differences.get)
+            assert best == (desired, mirrored), (side, best)
+            ranking.append({'side': side, 'character': desired, 'mirrored': mirrored, 'mean_RGB_difference': differences[best]})
+    result = {'status': 'passed', 'kind': 'isolated normal Linux result prototype verification; not formal integration',
+        'fallback': fallback, 'captures': len(states), 'full_original_result_reconstructions': len(typed),
+        'GPU_identity_and_orientation_matches': len(ranking), 'GPU_ranking': ranking,
+        'same_state_original_toggle_and_exact_viewport_restore': True, 'return_clears_result': True,
+        'receipt_sha256': sha(q/'receipt.json'), 'binary_sha256': build['binary_sha256'],
+        'verifier_sha256': sha(Path(__file__)), 'identifier_sha256': sha(ROOT/'tools/recognize_result_source.py'),
+        'files': {str(p.relative_to(q)): sha(p) for p in sorted(q.glob('*.png*')) if p.is_file()},
+        'limits': 'one normal Jaan/Frank two-KO Linux result and Return; GPU sampling differs from Pillow, no all-character/platform/flag/outcome approval or production claim'}
+    (q/'comparison.json').write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n')
+    print(json.dumps({k:v for k,v in result.items() if k not in ('files', 'GPU_ranking')}, ensure_ascii=False))
+
+
+if __name__ == '__main__':
+    main()
