@@ -8,7 +8,7 @@ GitHub 目前 visibility 為 PRIVATE，Release 需由有權限帳號查看。引
 
 使用者後續明確要求「HD素材上傳」與「hd記得放進去 repo」。[assets/hd/README.md](assets/hd/README.md)目前收錄 93 張 PNG 及現行角色清單，包含 66 張正式角色／特效圖集、屋頂、道場及其餘九景候選、蜘蛛女舊比較稿與十五張外部候選；逐檔身分見 [catalog.json](assets/hd/catalog.json)。外部稿保留去背處理前後的雜湊。這些授權取代以下舊切片的 HD 圖只留本機限制，原版檔案、原版色號／色盤、原圖、私有執行器與研究收據仍不上傳。沒有改變儲存庫可見性、原版資料權利或 HD 完成標準。
 
-catalog 的一百筆素材及清單共 120,619,633 bytes，整個素材目錄 104 檔。所有 PNG、來源雜湊、尺寸及角色清單均核對；嵐首勝 037 已通過 Linux 限定接入，完整角色／場景仍未完成。README 的圖片與相對連結另比對 Git 追蹤清單，HD 整合截圖收錄於 [docs/screenshots/](docs/screenshots/)，原貌對照及原始收據保留本機。
+catalog 的一百筆素材及清單共 120,620,400 bytes，整個素材目錄 104 檔。所有 PNG、來源雜湊、尺寸及角色清單均核對；嵐首勝 037 已通過 Linux 限定接入，完整角色／場景仍未完成。README 的圖片與相對連結另比對 Git 追蹤清單，HD 整合截圖收錄於 [docs/screenshots/](docs/screenshots/)，原貌對照及原始收據保留本機。
 
 首批 HD 素材提交 `4209aad83089c7f74c5ef853a4f1d865e6739f78` 已成功推送 `origin/main` 並由 `ls-remote` 核對。原版與候選的接入限制不因上傳改變，後續 HD 製作仍依工作清單。
 
@@ -26,8 +26,9 @@ catalog 的一百筆素材及清單共 120,619,633 bytes，整個素材目錄 10
 
 | 項目 | 狀態 | 最近證據與限制 |
 |---|---|---|
+| 十一景正常來源 | 已證實於雙打二十二份取樣 | stage-source-v1 正常 0／0..10，各取待機與二十格行走；原 XGB 完整 RAM hash、128 色與 camera 80／105 裁切，Go／獨立 Python 均吻合。原 scene 與檔名表見 029；不是 HD 接入、全部 camera 或單打順序驗收 |
 | 嵐勝利 HD | 037 限定 CONFORMED，開發版 v.0.1.1-20261020 未發行 | 兩組既有一般圖重用、四組新稿，新增 72 WIN 鍵。現行 1483 鍵／66 PNG／二十一來源；8,835 成對邊界、十三取樣與六份原檔重組通過。Linux 首勝與舊包缺件各七張、LAN WIN、切回逐點及下一回合清除通過。四平台編譯與 bin 已更新；首版 Release 不變，Wine／第二人／完整動畫另驗 |
-| 其餘九景候選 | 首輪稿已保存，尚未接原生 | I1／I3／I4／I7／I8／I9／I10／I12／I13 各一張原生成 PNG，共 21,785,162 bytes，約 1920×818。原 SHA、精確提示詞、尺寸、透明度與原 bytes 核對；連同屋頂、道場覆蓋十一個 XGB 檔。九景正常 scene 對應、捲動與接入未驗，029 格式確認仍待回答 |
+| 其餘九景候選 | 首輪稿已保存，尚未接原生 | I1／I3／I4／I7／I8／I9／I10／I12／I13 各一張原生成 PNG，共 21,785,162 bytes，約 1920×818。原 SHA、精確提示詞、尺寸、透明度與原 bytes 核對；連同屋頂、道場覆蓋十一個 XGB 檔。九景原版 scene 與兩個 camera 取樣已補證；HD 捲動與接入未驗，029 格式確認仍待回答 |
 | 鍵盤重綁與快捷 | 035 限定 CONFORMED | 每人十四欄、兩人四格快捷，保存及舊檔相容。Linux／Wine 各六項正常路徑通過；兩人斬第一招 path 24h、按住一次、方向與拳腳獨立。實際 Linux 封包另驗失焦中立。其他角色快捷仍拒絕，斬完整四招沿用 004 |
 | 首版交付 | v.0.1.0-20261020 已發布並核對 | [Release](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.0.1.0-20261020)的四個引擎包及 manifest 遠端大小／SHA 正確，tag 固定 807579d01c145db327050c2e870e2bf46e6bcb68。dist-all 同版 patch／full-local 各四包，本機各 125 原檔。Linux／Wine 啟動、公開匯入／拒絕覆寫及自動 HD 通過；macOS 只驗內容／架構。六十秒原曲推廣片只留本機 |
 | 原版音訊與 HD 評估 | 格式盤點完成，遊戲串流未接 | SF000.MUS 十五段 MIDI；十七個 PPM 容器四十筆 Compact PCM。首段原曲供本機影片，語音取樣率／編碼／角色標籤仍未知；見 docs/audio-hd-assessment.md，不稱音訊 HD 完成 |
@@ -134,7 +135,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 - [037](docs/spec/037-lan-victory.md)限定 CONFORMED；`hd-first-pass-v1/lan-diagnostic-v2` 為正常原版來源，`lan-paired-v2` 為成對狀態與獨立圖層比較。`native-lan-victory-v2`／`native-lan-victory-missing-v2` 各七張正常首勝、切換與下一回合，原貌及 raw 只留本機。
 - `lan-victory-build-v1` 保存四架構、測試、43 份編譯輸入及八檔移入 bin 的 promotion.json。正式 PNG 為 `assets/hd/characters/lan-win.png`，另兩組沿用一般來源同 bytes 圖像。清單 SHA 為 e0f55d85c350aef533a7e416f597165412945765b83a3a5e3621af4e020aeaf6。首版編譯與 dist-all/v.0.1.0-20261020 不變。
-- [九景候選索引](assets/hd/candidates/README.md)及 backgrounds-source.json 保存原 PNG、原來源 SHA 與精確提示詞。生成提示詞不是原版事實；I3 誤寫 lion，候選及原圖實為象，已在來源註記。九景尚未作正常場景對應／捲動驗證，不把候選登錄為 runtime。
+- [九景候選索引](assets/hd/candidates/README.md)及 backgrounds-source.json 保存原 PNG、原來源 SHA 與精確提示詞。生成提示詞不是原版事實；I3 誤寫 lion，候選及原圖實為象，已在來源註記。九景已補原版正常場景對應及兩個 camera 取樣；HD 捲動與接入仍未驗，不把候選登錄為 runtime。
 
 ### 鍵盤與首版交付
 

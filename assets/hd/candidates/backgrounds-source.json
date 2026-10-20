@@ -19,7 +19,8 @@
       "prompt": "Use case: stylized-concept. Asset type: HD background candidate for Super Fighter Remastered, approved hand-painted arcade style B. Image 1 is the authoritative original I1.XGB 480x204 stage. Image 2 supplies only the accepted HD painting style and colour richness, not its rooftop subject. Faithfully redraw image 1 as a wide 480:204 panoramic background, approximately 1920x816. Preserve the exact symmetrical one-point-perspective composition: dark teal and blue-purple ornate hall, massive purple columns on both sides, red and magenta trim, the two aligned pink-lit chandeliers above the centre, the central ornate golden tiered ceremonial structure with its glowing circular motif, matching smaller golden structures at either side, green-blue side lamps and the same slanted framed wall decorations. Keep the original scale, positions, architectural silhouettes and dark indigo atmosphere. Preserve the wide empty green tiled fighting floor in the lower part, its visible perspective grid and red edge strips, at the same horizon height and footprint as the reference. It must remain clear for game characters, without foreground objects or people. Rich but controlled arcade brushwork, clear silhouettes, smooth painted materials and sharper ornamental details, not pixels, not photorealistic, not 3D. Do not add a HUD, health bars, fighters, writing, logos, watermark, black letterboxing or any new props. Entire frame opaque, no transparency. This is background art only; preserve reference geometry rather than redesigning the hall.",
       "transparent_background": false,
       "status": "candidate; not native integration",
-      "limits": "normal scene mapping, scroll alignment and production loading not yet verified; scene 029 format decision pending"
+      "limits": "normal versus source mapping and two camera samples verified; HD geometry, production loading, all-camera and single-player order not verified",
+      "runtime_scene": 9
     },
     {
       "file": "jungle-i3.png",
@@ -36,7 +37,8 @@
       "prompt": "Use case: stylized-concept. Asset type: HD stage-background candidate for Super Fighter Remastered. Image 1 is the authoritative original 480x204 stage; image 2 supplies only the accepted hand-painted arcade HD style. Faithfully redraw image 1 at its exact wide 480:204 aspect ratio, approximately 1920x816. Preserve the source composition, original colour family, object positions and scales, floor horizon and unobstructed fighting area. Specifically preserve the dense dark blue-green tropical jungle, palms, hanging vines, the large sleeping tawny lion lying on the long horizontal fallen tree in the middle, colourful parrots and hanging monkeys at the same positions, the other small jungle animals already visible in the reference, and the clear earthy brown fighting foreground. Preserve the horizontal fallen tree and the lion's original silhouette and scale; add no animals. Paint crisp detailed shapes and layered arcade brush shading, not pixels, not photorealism or 3D. Preserve scene geometry rather than redesigning it. Fill the whole opaque frame. No fighters, HUD, health bars, subtitles, logos, watermark or letterboxing.",
       "transparent_background": false,
       "status": "candidate; not native integration",
-      "limits": "normal scene mapping, scroll alignment and production loading not yet verified; scene 029 format decision pending"
+      "limits": "normal versus source mapping and two camera samples verified; HD geometry, production loading, all-camera and single-player order not verified",
+      "runtime_scene": 5
     },
     {
       "file": "street-i4.png",
@@ -53,7 +55,8 @@
       "prompt": "Use case: stylized-concept. Asset type: HD stage-background candidate for Super Fighter Remastered. Image 1 is the authoritative original 480x204 stage; image 2 supplies only the accepted hand-painted arcade HD style. Faithfully redraw image 1 at its exact wide 480:204 aspect ratio, approximately 1920x816. Preserve the source composition, original colour family, object positions and scales, floor horizon and unobstructed fighting area. Specifically preserve the overcast green-grey sky, European terraced brick rooftops, large dark green pub front across the left two-thirds, red-brick house at right with dark green door, fire hydrant, bollard, three metal bins, pavement, curb and bare tree silhouettes. Retain exactly the existing pub sign text 'SILVER SLIPPER GRILL' in its original window position; preserve the small original gold lettering on the brick only as decorative marks, not invented writing. Keep the clear grey pavement foreground and original horizontal perspective. Paint crisp detailed shapes and layered arcade brush shading, not pixels, not photorealism or 3D. Preserve scene geometry rather than redesigning it. Fill the whole opaque frame. No fighters, HUD, health bars, subtitles, logos, watermark or letterboxing.",
       "transparent_background": false,
       "status": "candidate; not native integration",
-      "limits": "normal scene mapping, scroll alignment and production loading not yet verified; scene 029 format decision pending"
+      "limits": "normal versus source mapping and two camera samples verified; HD geometry, production loading, all-camera and single-player order not verified",
+      "runtime_scene": 2
     },
     {
       "file": "palace-i7.png",
@@ -70,7 +73,8 @@
       "prompt": "Use case: stylized-concept. Asset type: HD stage-background candidate for Super Fighter Remastered. Image 1 is the authoritative original 480x204 stage; image 2 supplies only the accepted hand-painted arcade HD style. Faithfully redraw image 1 at its exact wide 480:204 aspect ratio, approximately 1920x816. Preserve the source composition, original colour family, object positions and scales, floor horizon and unobstructed fighting area. Specifically preserve the symmetrical traditional Chinese palace with dark red layered tiled roof, teal and crimson facade, tiny central blue plaque, extensive pale peach-white stone terrace balustrades and the two broad stairways, set under the original pink-purple sunset sky. Preserve the exact front-on perspective, stairway placement and scale, the clear blue-purple flagstone fighting foreground, and the small distant guards already present. No extra people or architecture. Paint crisp detailed shapes and layered arcade brush shading, not pixels, not photorealism or 3D. Preserve scene geometry rather than redesigning it. Fill the whole opaque frame. No fighters, HUD, health bars, subtitles, logos, watermark or letterboxing.",
       "transparent_background": false,
       "status": "candidate; not native integration",
-      "limits": "normal scene mapping, scroll alignment and production loading not yet verified; scene 029 format decision pending"
+      "limits": "normal versus source mapping and two camera samples verified; HD geometry, production loading, all-camera and single-player order not verified",
+      "runtime_scene": 3
     },
     {
       "file": "auditorium-i8.png",
@@ -87,7 +91,8 @@
       "prompt": "Use case: stylized-concept. Asset type: HD stage-background candidate for Super Fighter Remastered. Image 1 is the authoritative original 480x204 stage; image 2 supplies only the accepted hand-painted arcade HD style. Faithfully redraw image 1 at its exact wide 480:204 aspect ratio, approximately 1920x816. Preserve the source composition, original colour family, object positions and scales, floor horizon and unobstructed fighting area. Specifically preserve the original empty warm orange-red auditorium or ballroom: wide raised rear stage with repeated rectangular wall panels and slender columns, glowing oval recessed ceiling with concentric rings, dark front edge of the stage, side steps and broad empty brown tiled foreground. Preserve the exact symmetrical single-point perspective, stage height, architectural proportions and simple uncluttered geometry. Add no curtains, chandeliers, people, chairs or new objects. Paint crisp detailed shapes and layered arcade brush shading, not pixels, not photorealism or 3D. Preserve scene geometry rather than redesigning it. Fill the whole opaque frame. No fighters, HUD, health bars, subtitles, logos, watermark or letterboxing.",
       "transparent_background": false,
       "status": "candidate; not native integration",
-      "limits": "normal scene mapping, scroll alignment and production loading not yet verified; scene 029 format decision pending"
+      "limits": "normal versus source mapping and two camera samples verified; HD geometry, production loading, all-camera and single-player order not verified",
+      "runtime_scene": 8
     },
     {
       "file": "harbor-i9.png",
@@ -104,7 +109,8 @@
       "prompt": "Use case: stylized-concept. Asset type: HD background candidate for Super Fighter Remastered in approved hand-painted arcade style B. Image 1 is the authoritative 480x204 original scene; image 2 supplies only the accepted painting style, not its rooftop subject. Faithfully redraw image 1 as a wide 480:204 panorama, approximately 1920x816. Preserve the original composition, perspective, colour family, object positions and proportions, floor horizon and clear playable foreground. Specifically preserve the original magenta and pink harbour at sunset, the large dark-hulled sailing vessel moored across the centre and right, its mast and dense rigging, pale sail fabric, diagonal foreground rope netting, weathered brown wooden dock across the bottom, and colourful town buildings lining the distant waterfront. Keep the vessel registration '144SS' where shown on the hull. Preserve the same ship silhouettes, net diagonals, camera angle, dock horizon and clear fighting strip; no additional vessels or people. Crisp layered arcade brushwork, smooth painted materials and detailed silhouettes, not pixel art, not photorealism or 3D. Keep original geometry. Opaque full frame with no HUD, fighters, health bars, captions, logo, watermark or letterboxing.",
       "transparent_background": false,
       "status": "candidate; not native integration",
-      "limits": "normal scene mapping, scroll alignment and production loading not yet verified; scene 029 format decision pending"
+      "limits": "normal versus source mapping and two camera samples verified; HD geometry, production loading, all-camera and single-player order not verified",
+      "runtime_scene": 7
     },
     {
       "file": "grotto-i10.png",
@@ -121,7 +127,8 @@
       "prompt": "Use case: stylized-concept. Asset type: HD background candidate for Super Fighter Remastered in approved hand-painted arcade style B. Image 1 is the authoritative 480x204 original scene; image 2 supplies only the accepted painting style, not its rooftop subject. Faithfully redraw image 1 as a wide 480:204 panorama, approximately 1920x816. Preserve the original composition, perspective, colour family, object positions and proportions, floor horizon and clear playable foreground. Specifically preserve the original warm golden ochre grotto: enormous serene seated Buddha carved in the rock at left, the row of smaller standing carved figures in recessed niches to the right, rough sandstone cave ceiling and wall, low stone railing and dais, and broad clear golden stone ground. Preserve the exact placement, relative scale and silhouettes of the sacred statues and the tiny distant people already visible near the seated statue's base. Respectful stone carvings, no redesign of their gestures, no added worshippers, banners or objects. Crisp layered arcade brushwork, smooth painted materials and detailed silhouettes, not pixel art, not photorealism or 3D. Keep original geometry. Opaque full frame with no HUD, fighters, health bars, captions, logo, watermark or letterboxing.",
       "transparent_background": false,
       "status": "candidate; not native integration",
-      "limits": "normal scene mapping, scroll alignment and production loading not yet verified; scene 029 format decision pending"
+      "limits": "normal versus source mapping and two camera samples verified; HD geometry, production loading, all-camera and single-player order not verified",
+      "runtime_scene": 6
     },
     {
       "file": "icefield-i12.png",
@@ -138,7 +145,8 @@
       "prompt": "Use case: stylized-concept. Asset type: HD stage-background candidate for Super Fighter Remastered, approved hand-painted arcade style B. Image 1 is the authoritative original 480x204 stage; image 2 supplies only the accepted painting style, not its rooftop subject. Faithfully redraw image 1 as a wide 480:204 panorama, approximately 1920x816. Preserve composition, original palette, silhouettes, horizon, object positions and scales and the unobstructed fighting foreground. Specifically preserve the original pale blue, white and lavender alien icefield: tall sweeping rib-like ice structures and spires at the left with dark teal fissures, large smooth wind-carved snowbanks crossing the centre, distant pointed blue mountains and the broad low snow platform and purple outcrop at the right. Preserve the exact curved silhouettes, large negative spaces, low horizon, empty flowing snow foreground, cold palette and original panorama. Treat every structure as the reference depicts it; do not invent creatures, bones, people, buildings or new objects. Crisp detailed arcade painting, smooth brush shading, not pixel art, not photorealistic or 3D. Preserve scene geometry. Full opaque frame; no HUD, health bars, added captions, logo, watermark or letterboxing.",
       "transparent_background": false,
       "status": "candidate; not native integration",
-      "limits": "normal scene mapping, scroll alignment and production loading not yet verified; scene 029 format decision pending"
+      "limits": "normal versus source mapping and two camera samples verified; HD geometry, production loading, all-camera and single-player order not verified",
+      "runtime_scene": 1
     },
     {
       "file": "train-i13.png",
@@ -155,9 +163,16 @@
       "prompt": "Use case: stylized-concept. Asset type: HD stage-background candidate for Super Fighter Remastered, approved hand-painted arcade style B. Image 1 is the authoritative original 480x204 stage; image 2 supplies only the accepted painting style, not its rooftop subject. Faithfully redraw image 1 as a wide 480:204 panorama, approximately 1920x816. Preserve composition, original palette, silhouettes, horizon, object positions and scales and the unobstructed fighting foreground. Specifically preserve the original crowded bright green railway passenger train stopped behind the fighting foreground: the huge green carriage stretches across the right, open windows with the same crowd of clothed adult travellers, travellers sitting and reclining on the carriage roof, the densely crowded platform and visible carriage junction at left, yellow carriage number markings, wheels and rail track, pale blue sky and the clear yellow-green station ground along the bottom. Preserve the original relative sizes, overlapping poses and social scene rather than creating a different train. Keep reference railway markings such as 'B 45331' and '5478' in their original places where visible. No fighters or extra foreground people, objects or luggage blocking the clear ground. Crisp detailed arcade painting, smooth brush shading, not pixel art, not photorealistic or 3D. Preserve scene geometry. Full opaque frame; no HUD, health bars, added captions, logo, watermark or letterboxing.",
       "transparent_background": false,
       "status": "candidate; not native integration",
-      "limits": "normal scene mapping, scroll alignment and production loading not yet verified; scene 029 format decision pending"
+      "limits": "normal versus source mapping and two camera samples verified; HD geometry, production loading, all-camera and single-player order not verified",
+      "runtime_scene": 10
     }
   ],
   "review": "geometry and decoration remain candidate approximations; not original pixel parity or automatic scene selection",
-  "prompt_correction": "I3 prompt called the central animal a lion; the reference and generated candidate depict elephants. Prompt kept verbatim, its wording is not evidence."
+  "prompt_correction": "I3 prompt called the central animal a lion; the reference and generated candidate depict elephants. Prompt kept verbatim, its wording is not evidence.",
+  "normal_source_inventory": {
+    "path": "workplace/stage-source-v1/source-comparison.json",
+    "sha256": "98a7028101d5d7c629a2b8b305700ea6410b365a074438bf015fe569d5b88189",
+    "samples": 22,
+    "scope": "normal versus original source only, not HD integration"
+  }
 }

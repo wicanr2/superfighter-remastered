@@ -29,3 +29,27 @@
 4. 完整程式測試、精確編譯來源與四平台二進位通過後才移入目前 bin。只驗屋頂及道場，不外推其餘九份 XGB 或完整 HD。
 
 候選、原版與衍生美術只留本機，不加入 Git 或一般發行包。Git 保存自有程式與規格。
+
+## 後續來源補證
+
+使用者後續授權 HD 生成素材收錄 repo，取代上段僅留本機的候選保存限制。原版、原圖、色盤與 raw 收據仍不公開；素材保存不表示已同意本草案的 JSON 格式。
+
+`workplace/stage-source-v1` 由 Go 1.24.13 與固定 dosgolem 副本，正常選第一人斬、逐一選第二人 0..10，再作二十格普通行走。原始 SF.EXE 及 128 檔身分沿 CONTEXT；runtime manifest SHA 為 d79cc85bc1ce29dbe54c19e7857a9ac07b2e3a1754fb342632ead9e36e619fc3。tools/stage_source_receipt.go 為只讀診斷，不新增正式載入格式。
+
+已證實於這二十二份取樣：十一份原 XGB 均為 480×204，表頭後 escape RLE 位於實檔 306h，escape 值位於 305h；原色盤從實檔 5 起讀前 128 色。每景完整 RAM 雜湊、原色盤及 camera 80／105 的 320×200 背景裁切吻合原檔，正常顯示快照亦吻合。獨立 Python 解碼及逐點裁切核對在 source-comparison.json，且 43 份 production 輸入與已驗 037 建置相同。
+
+| 第二人索引 | runtime scene | 原檔 | 首輪稿 |
+|---:|---:|---|---|
+| 0 | 0 | I5.XGB | 道場 |
+| 1 | 1 | I12.XGB | 冰原候選 |
+| 2 | 2 | I4.XGB | 街道候選 |
+| 3 | 3 | I7.XGB | 宮殿候選 |
+| 4 | 4 | I2.XGB | 已接屋頂 |
+| 5 | 5 | I3.XGB | 叢林候選 |
+| 6 | 6 | I10.XGB | 石窟候選 |
+| 7 | 7 | I9.XGB | 港口候選 |
+| 8 | 8 | I8.XGB | 舞廳候選 |
+| 9 | 9 | I1.XGB | 廳堂候選 |
+| 10 | 10 | I13.XGB | 火車候選 |
+
+此表為普通雙打來源證據，不外推單打對手／場景順序、全部 camera、HD 構圖或新背景原生接入。新增九景生成原圖與精確提示詞見 assets/hd/candidates/README.md／backgrounds-source.json，尺寸約 1920×818；小字及群像仍需複核。多場景格式選擇仍待使用者回答，029 保持 DRAFT。

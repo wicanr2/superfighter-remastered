@@ -152,6 +152,8 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [嵐的 WIN 登錄](tools/prepare_lan_victory.py) | 固定來源及原 PNG、兩組既有姿態重用、四組新稿、七十二入口及舊群組保持 |
 | [嵐的 WIN 測試](internal/hd/lan_victory_test.go) | 真實七十二入口、六組來源、一般／WIN 同 bytes 重用、原版姓名矩形及篡改拒絕 |
 | [其餘九景整理](tools/organize_background_candidates.py)、[候選來源](assets/hd/candidates/backgrounds-source.json) | 九景生成原 PNG、精確提示詞、原版來源 SHA 與未接入狀態；不修改 029 待確認格式 |
+| [場景正常來源盤點](tools/stage_source_receipt.go) | 原 XGB 嚴格解碼、正常雙打選角、背景 RAM／色盤／camera crop 的來源證據；只讀診斷，不新增正式素材格式 |
+| [十一景獨立核對](tools/verify_stage_sources.py) | 直接以原檔重組二十二份正常待機／移動來源，核對場景、色盤、背景 RAM 與捲動裁切；不當作新背景 HD 已接入 |
 | [Release 發布](tools/publish_release.py) | 核對封包／操作／本機影片收據，只上傳四個 patch 引擎包與公開 manifest；先驗草稿資產大小及 SHA-256，才發布，不覆寫已發行版本 |
 | [本機推廣片](tools/promo_release.py) | 原生封包錄影、靜態畫面標示、原版 MIDI 配樂、字幕邊界與音畫檢查；成品與來源只留 dist-all 的本機 promo |
 | [鍵盤組態](docs/spec/035-keyboard-bindings.md)、[三平台發行](docs/spec/036-release-packages.md) | 使用者指定的鍵盤與四格出招、公開無原版包／本機完整包、私有原曲推廣片與驗收範圍 |

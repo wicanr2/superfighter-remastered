@@ -518,3 +518,11 @@ EEWIN.FIG 共 6,279 bytes，SHA-256 `65f8536cdd3ba96c63d116df5c701b401776e39643f
 正式測試也拒絕零生命、致死待扣、已設擊倒旗標、時間歸零、展示模式、未知指令與未知生命條來源，不寫入原版 DS。這七項是受控邊界單元實驗，不冒稱正常玩家路徑。初版測試把站立兩格的一像素繪圖偏移當成移動；v3 改驗中立輸入、站立路徑與兩像素內的原版呼吸動畫。正式程式沒有為此凍結角色動畫。
 
 原版 BOARD.XBB 的兩個滿血矩形由固定雜湊來源讀取，啟用時只回填生命條內部。正式訓練畫格經既有 `hd.HUD.Select` 由原檔獨立重組，確認生命、數字、最後覆蓋與色盤仍吻合；HD 層保持只讀。原生、Wine、截圖與平台驗證範圍續記於 032 及 WORKLOG。
+
+## 2026-10-20：十一景正常雙打來源
+
+固定輸入仍為 CONTEXT 的 SF.EXE 與 128 檔 source-manifest。工具是 Go 1.24.13、固定 1719 份 dosgolem 副本；runtime manifest SHA 為 d79cc85bc1ce29dbe54c19e7857a9ac07b2e3a1754fb342632ead9e36e619fc3。診斷工具與逐檔雜湊由 workplace/stage-source-v1 保存，原檔唯讀。資料取 gamecore 只讀 runtime 快照，不使用或混寫 IDA 線性位址。
+
+已證實於正常雙打：第一人固定 0，第二人逐一 0..10，原版 scene 為 0..10，來源依序為 I5／I12／I4／I7／I2／I3／I10／I9／I8／I1／I13.XGB。每景待機與普通二十格行走各一份，camera 80／105；原檔獨立解碼的 480×204 完整背景 hash、前 128 色與 320×200 裁切均吻合。十一份原檔 SHA、解碼 hash 及二十二份來源保存在 receipt.json，獨立 Python 重組結果為 source-comparison.json。
+
+已證實的檔案格式切片為表頭寬高 480×204、byte 4 為 1、實檔 305h 的 escape、306h 起的 literal／escape-count-value RLE，無零 run、截斷或輸出越界；色盤從實檔 5 起以六位元分量展開。Go 及獨立 Python 對真實十一檔重組一致。這不是原版逐週期顯示或所有 camera／單打順序的證據，也不是九景 HD 已接入。格式決策仍依 [029](docs/spec/029-multi-scene-backgrounds.md) 的 DRAFT 確認閘門。

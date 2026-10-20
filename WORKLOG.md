@@ -646,3 +646,21 @@ python3 tools/verify_victory_animation.py /project/workplace/hd-first-pass-v1/la
 
 - 收尾 final-audit.json 通過 128 原檔／1719 執行器來源不變、93 PNG／一百筆 payload、118 個首頁及素材索引的受追蹤相對連結、八張截圖、四份編譯收據與 43 份輸入。首版八個 ZIP 及影片 SHA 全部保持，沒有 root-owned 檔案或誤建 .md 目錄。本工作樹掛載過濾的 Docker 容器為空，本輪容器均已移除，沒有新建映像或清理其他專案資源。
 - 缺件原生案例當時使用尚未更新的 assets/hd/characters；現在重跑需指定保留的 workplace/hd-characters-spider-low-guard-v1。打包工具預設改讀目前 workplace/bin，避免開發版誤選固定首版編譯目錄；未執行新封包或新 Release 發布。提交及遠端核對後續記錄另補。
+- 嵐／九景接入提交 3411450b75c5d1cf9681386687eeb8770f3b6ac1 已推送 origin/main，ls-remote 核對一致；首版 tag 仍固定 807579d01c145db327050c2e870e2bf46e6bcb68。後續只補來源研究與文件，不移動已發布 tag。
+
+## 2026-10-20：多場景確認前的十一景正常來源補證
+
+- 依 grilling 對 JSON schema 的確認要求，向使用者呈現同包自動切換並相容舊包、或每次指定單景的選擇；未收到答案，不改 029 格式。嵐舊稿的本地去背選擇已由直接生成新四格的獨立路徑解除，不依賴沉默授權。
+- 新增 tools/stage_source_receipt.go，先從固定原版 XGB 嚴格解碼十一檔，再以正常標題、雙打選角走 0／0..10，各取待機與二十格普通行走。只讀 Core 快照，沒有加入正式背景讀取器、改規則、鎖血、傳送或寫入狀態。初次編譯把無回傳值的 Close 當作 error，尚未建立輸出即失敗；修正探針後，以同一 image／命令乾淨重跑，沒有改 production。
+- dosgolem-go-ebiten:1.24-r1，Go 1.24.13，--rm／--network none／--memory 1g／--cpus 2／--pids-limit 128／--user 1000:1000、外層 1200 秒限制。實跑十一個正常選角案例完成，背景對應 0:I5、1:I12、2:I4、3:I7、4:I2、5:I3、6:I10、7:I9、8:I8、9:I1、10:I13.XGB。每景 camera 80／105、原色盤、完整 RAM hash 與 320×200 背景裁切均吻合。
+- tools/verify_stage_sources.py 由原檔獨立解碼，重組二十二份背景，核對來源 SHA、runtime scene、單調步數／serial、完整圖層、無練習修改、原色盤與每列裁切；原來源及正常框架都通過。production 的 43 份輸入仍與已驗嵐編譯相同，runtime manifest SHA 為 d79cc85bc1ce29dbe54c19e7857a9ac07b2e3a1754fb342632ead9e36e619fc3。收據為 workplace/stage-source-v1/receipt.json／source-comparison.json。
+- 此證據只限普通雙打兩個取樣，不能外推全部 camera、單打順序、HD 幾何或原生背景已接。029 維持 DRAFT，補入原 scene／檔名表；RESEARCH-LOG 追加推論等級與位址基準。候選來源清單追加已驗 scene 與收據 SHA，圖片 bytes 不變，catalog 同步；現行一百筆 payload 為 120,620,400 bytes，仍是 93 PNG／104 檔。
+
+```sh
+go run -p 1 tools/stage_source_receipt.go -out /project/workplace/stage-source-v1
+python3 tools/verify_stage_sources.py /project/workplace/stage-source-v1 --original-root /orig
+```
+
+前一命令需新輸出目錄，後者可直接重驗現有收據。原版、圖像參考與 runtime snapshots 只留本機；公開 Git 只存探針／驗證工具、原檔身分、推論等級及候選來源索引。
+
+- 補證收尾再次通過完整輸入／素材核對，首頁及素材索引相對連結增為 119 個；沒有新增原始遊戲資料、音訊或影片進 Git。十一景工作容器已完成並移除，工作樹掛載過濾為空；UID/GID 與 .md 目錄檢查通過。production Go、四平台編譯、93 PNG 及首版封包 bytes 均保持，僅補工具、來源證據與候選 metadata。
