@@ -177,6 +177,32 @@
       "character_manifest_sha256": "26e83f78aa42b6e02ef61884183da7a5a1e9402af42731aeb672f1f871e0dcdb",
       "authorization": "使用者要求 HD 上傳及 GitHub 可見的 README 整合截圖",
       "limits": "第一人鬼丸普通後蓄／前拳路徑；兩側及同角原始來源另驗，完整動畫另續"
+    },
+    {
+      "kind": "正常方向／拳腳的特殊技 HD；原貌及原始收據留本機",
+      "file": "phoenix-gold-arc-hd.png",
+      "sha256": "02a02b17b55ff647982e983c52722254dd8fa46320d426321ed5eb1e9ee8eff9",
+      "source": "workplace/remaining-effects-native-3-full-v1/gold-arc-hd.png",
+      "platform": "Linux amd64，Docker Xvfb；不代表其他平台或實體手把",
+      "receipt_sha256": "da184a65ed5feedc00934d8aba033ec538219b46f7cb323b67192a2c9a28cee1",
+      "comparison_sha256": "3766361a5022294f4567ed32f8c42b4976c072df4ad469b929c97ed55f747f91",
+      "binary_sha256": "5834c7b894ab51116e8ac6a58e4069c637cc4a852124564e93eeeb8853c7429d",
+      "character_manifest_sha256": "164eef46667563bed1d239a2af113f95f47e7a8831f98f82ffe97e3fc13adb20",
+      "authorization": "使用者要求 HD 上傳及 GitHub 可見整合截圖",
+      "limits": "普通原生光效、同狀態切換及恢復；全部動畫與快捷另驗"
+    },
+    {
+      "kind": "正常方向／拳腳的特殊技 HD；原貌及原始收據留本機",
+      "file": "clown-rings-hd.png",
+      "sha256": "52406adae06f702f3ba71cc63ec00764149fbde716ed537b35b14f6cc2bd7a02",
+      "source": "workplace/remaining-effects-native-9-full-v2/cyan-rings-hd.png",
+      "platform": "Linux amd64，Docker Xvfb；不代表其他平台或實體手把",
+      "receipt_sha256": "e80f93a45a82c251a1d03b49319b52db4af45912dc885181eab21f839d8be121",
+      "comparison_sha256": "23f674cbdd06515f5765d8bb6e684c880b1d25f64273da8053c65891194b804a",
+      "binary_sha256": "5834c7b894ab51116e8ac6a58e4069c637cc4a852124564e93eeeb8853c7429d",
+      "character_manifest_sha256": "164eef46667563bed1d239a2af113f95f47e7a8831f98f82ffe97e3fc13adb20",
+      "authorization": "使用者要求 HD 上傳及 GitHub 可見整合截圖",
+      "limits": "普通原生光效、同狀態切換及恢復；全部動畫與快捷另驗"
     }
   ],
   "version": "v.0.1.0-20261020",

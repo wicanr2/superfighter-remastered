@@ -1,0 +1,429 @@
+{
+  "kind": "ordinary-input second-palette generated effects, not shortcut enablement",
+  "tool": "built-in imagegen",
+  "base_manifest_sha256": "26e83f78aa42b6e02ef61884183da7a5a1e9402af42731aeb672f1f871e0dcdb",
+  "evidence_review_sha256": "260d01695a375492966333a48a419f0006fc815bba689652340fa23a5d4c851c",
+  "preparer_sha256": "d28002b08ca1d5e37ff6466b6df480dd6f15a7c1c8ae4243c6a5966c43d9b53b",
+  "records": [
+    {
+      "file": "phoenix-special-effects.png",
+      "sha256": "95507c3c4ccc6080d043786ee52fec2123d0fd01723113272817f15b8babe432",
+      "size": [
+        2172,
+        724
+      ],
+      "character": 3,
+      "source_file": "SFMAN04.DAT",
+      "source_file_sha256": "2cd299e9c10814ae37bb044c2e3ae7adf940d8b1accd8feffa3844bbfb43356b",
+      "request_sha256": "4594d74166442d0af0fb2efc8859158260eaadae2028fb71f8096c00cd9714a1",
+      "prompt": "Use case: stylized-concept.\nAsset type: transparent HD fighting-game effect sprite atlas for a faithful Super Fighter DOS remaster.\nInput image: original pixel-art SOURCE REFERENCE ONLY. Preserve its exact silhouettes and separated components.\nRepaint these 3 distinct original effect shapes as polished hand-painted arcade HD raster art. Keep side-on orientation, internal gaps, proportions, disconnected pieces and original color families.\nLayout: exactly 3 equal-width columns and 1 equal-height rows, reading left to right then top to bottom. Exactly one complete isolated effect per cell. Generous fully transparent gutters and at least 32 pixels of empty transparent padding at every outside edge. No clipping, overlaps, or content crossing a cell. Intended canvas at least 1536 pixels wide.\nSource correspondence: Cell 1: tiny compact cyan-blue curl. Cell 2: broader cyan-blue hooked arc. Cell 3: very wide low golden-white crescent slash, pointed upper left, long sharp tail extending right. Keep the unusually wide aspect of cell 3.\nStyle: clean painted arcade energy, readable silhouette, bright directional highlights and smooth high-resolution detail. No pixel blocks or enlarged pixel art. No added stars, floating particles, smoke clouds or decorative motifs outside the original silhouette. Keep details inside the original envelope.\nBackground: actual transparent RGBA alpha, transparent gaps and edge falloff. No baked checkerboard, shadow plane, background colour, labels, text, letters, numbers, watermark, border, cell lines or UI.\n",
+      "grid": [
+        3,
+        1
+      ],
+      "poses": [
+        {
+          "slot": 15,
+          "region_ordinal": 0,
+          "source_offset": 36859,
+          "source_sha256": "7fffff556ce623eba0a8c6aa832b8efd50c8190a10a27de6137f4c543c2ff37b",
+          "width": 25,
+          "height": 25,
+          "rect": [
+            191,
+            278,
+            464,
+            511
+          ]
+        },
+        {
+          "slot": 39,
+          "region_ordinal": 1,
+          "source_offset": 95691,
+          "source_sha256": "1fab564dcc1eccaf02d37ede68f7648cc1a4bd10f27f2313b0e6dbd6b94a81cc",
+          "width": 34,
+          "height": 28,
+          "rect": [
+            718,
+            238,
+            1142,
+            537
+          ]
+        },
+        {
+          "slot": 56,
+          "region_ordinal": 2,
+          "source_offset": 142729,
+          "source_sha256": "4d292a28b4b4e9367500a71320aa00d148eea509c5f6c3a29e76bcf3cfd4861b",
+          "width": 161,
+          "height": 68,
+          "rect": [
+            1273,
+            190,
+            2126,
+            549
+          ]
+        }
+      ],
+      "unused_regions": []
+    },
+    {
+      "file": "lan-effects-a.png",
+      "sha256": "9537b6abc40cf389beb6e11b084d8993ddc877ea8606b7fbd3586f7732357938",
+      "size": [
+        2172,
+        724
+      ],
+      "character": 6,
+      "source_file": "SFMAN07.DAT",
+      "source_file_sha256": "5dc504b74694c84daf45f79e89ab3725948a82559ca0c92b88eac63130f49148",
+      "request_sha256": "bdcb21ccc1d7d0e823b66c1e445d0965aa7c9e40bae5fc41ef297690e1aaa917",
+      "prompt": "Use case: stylized-concept.\nAsset type: transparent HD fighting-game effect sprite atlas for a faithful Super Fighter DOS remaster.\nInput image: original pixel-art SOURCE REFERENCE ONLY. Preserve its exact silhouettes and separated components.\nRepaint these 3 distinct original effect shapes as polished hand-painted arcade HD raster art. Keep side-on orientation, internal gaps, proportions, disconnected pieces and original color families.\nLayout: exactly 3 equal-width columns and 1 equal-height rows, reading left to right then top to bottom. Exactly one complete isolated effect per cell. Generous fully transparent gutters and at least 32 pixels of empty transparent padding at every outside edge. No clipping, overlaps, or content crossing a cell. Intended canvas at least 1536 pixels wide.\nSource correspondence: Cells 1 and 2: two distinct horizontal golden-white crescents opened to the right. Cell 3: shorter upright golden crescent with several short prongs pointing right. Keep their three distinct silhouettes.\nStyle: clean painted arcade energy, readable silhouette, bright directional highlights and smooth high-resolution detail. No pixel blocks or enlarged pixel art. No added stars, floating particles, smoke clouds or decorative motifs outside the original silhouette. Keep details inside the original envelope.\nBackground: actual transparent RGBA alpha, transparent gaps and edge falloff. No baked checkerboard, shadow plane, background colour, labels, text, letters, numbers, watermark, border, cell lines or UI.\n",
+      "grid": [
+        3,
+        1
+      ],
+      "poses": [
+        {
+          "slot": 9,
+          "region_ordinal": 0,
+          "source_offset": 28675,
+          "source_sha256": "ba66bf5ba11b01fae94bf408897250187a6d9ee5268caac2e84d55c41848773b",
+          "width": 45,
+          "height": 20,
+          "rect": [
+            98,
+            202,
+            673,
+            486
+          ]
+        },
+        {
+          "slot": 11,
+          "region_ordinal": 1,
+          "source_offset": 31629,
+          "source_sha256": "ac30c84d72e1aec85a430ac4b28196da35045dea9c9278eeaadec26e8e497b83",
+          "width": 44,
+          "height": 20,
+          "rect": [
+            855,
+            203,
+            1465,
+            488
+          ]
+        },
+        {
+          "slot": 12,
+          "region_ordinal": 2,
+          "source_offset": 32071,
+          "source_sha256": "3423e43c7f4b5e1c191716bf254a0bbca007848769b14cd847fdfa6d74326db2",
+          "width": 23,
+          "height": 27,
+          "rect": [
+            1686,
+            166,
+            2033,
+            544
+          ]
+        }
+      ],
+      "unused_regions": []
+    },
+    {
+      "file": "lan-effects-b.png",
+      "sha256": "a0911254eca3ed6a86eeef6117d878acf792525d9b3be106dd7ff3edad9a2920",
+      "size": [
+        1536,
+        1024
+      ],
+      "character": 6,
+      "source_file": "SFMAN07.DAT",
+      "source_file_sha256": "5dc504b74694c84daf45f79e89ab3725948a82559ca0c92b88eac63130f49148",
+      "request_sha256": "b69ec547daf3b947cf49ecc44dbb32609ff4b9d13734b5f57177419eea9a6dd9",
+      "prompt": "Use case: stylized-concept.\nAsset type: transparent HD fighting-game effect sprite atlas for a faithful Super Fighter DOS remaster.\nInput image: original pixel-art SOURCE REFERENCE ONLY. Preserve its exact silhouettes and separated components.\nRepaint these 4 distinct original effect shapes as polished hand-painted arcade HD raster art. Keep side-on orientation, internal gaps, proportions, disconnected pieces and original color families.\nLayout: exactly 2 equal-width columns and 2 equal-height rows, reading left to right then top to bottom. Exactly one complete isolated effect per cell. Generous fully transparent gutters and at least 32 pixels of empty transparent padding at every outside edge. No clipping, overlaps, or content crossing a cell. Intended canvas at least 1536 pixels wide.\nSource correspondence: Top left: thin upright golden crescent with right-facing prongs. Top right: round yellow-white luminous orb. Bottom left: compact jagged orange-gold flame bloom. Bottom right: long low golden-white wave with a hooked crest and narrow oval opening at the right end.\nStyle: clean painted arcade energy, readable silhouette, bright directional highlights and smooth high-resolution detail. No pixel blocks or enlarged pixel art. No added stars, floating particles, smoke clouds or decorative motifs outside the original silhouette. Keep details inside the original envelope.\nBackground: actual transparent RGBA alpha, transparent gaps and edge falloff. No baked checkerboard, shadow plane, background colour, labels, text, letters, numbers, watermark, border, cell lines or UI.\n",
+      "grid": [
+        2,
+        2
+      ],
+      "poses": [
+        {
+          "slot": 20,
+          "region_ordinal": 0,
+          "source_offset": 51512,
+          "source_sha256": "82325bb57ffd800a0db8196792b63838c80309dd29028d1bad53a932af010901",
+          "width": 18,
+          "height": 31,
+          "rect": [
+            179,
+            85,
+            457,
+            467
+          ]
+        },
+        {
+          "slot": 26,
+          "region_ordinal": 1,
+          "source_offset": 66011,
+          "source_sha256": "3597c58ef8dbcc054de0f801ac1d0404d7d7bc10805b69763f7a0e287c9fb991",
+          "width": 25,
+          "height": 25,
+          "rect": [
+            962,
+            103,
+            1331,
+            455
+          ]
+        },
+        {
+          "slot": 57,
+          "region_ordinal": 2,
+          "source_offset": 149876,
+          "source_sha256": "8800a411f713956f777fd14b34da55e7e438ded50979de933014f52066b97af2",
+          "width": 33,
+          "height": 26,
+          "rect": [
+            137,
+            591,
+            525,
+            926
+          ]
+        },
+        {
+          "slot": 58,
+          "region_ordinal": 3,
+          "source_offset": 150320,
+          "source_sha256": "30bcd449a2192b66fc670392ea561088c7b1bb81da8d1d3fbb5523dc760f8a7d",
+          "width": 81,
+          "height": 27,
+          "rect": [
+            744,
+            625,
+            1501,
+            908
+          ]
+        }
+      ],
+      "unused_regions": []
+    },
+    {
+      "file": "clown-effects.png",
+      "sha256": "b47548ade6594ea99314268925b95039e79a252d5a7182afb283410cf16455c7",
+      "size": [
+        1860,
+        845
+      ],
+      "character": 9,
+      "source_file": "SFMAN10.DAT",
+      "source_file_sha256": "31c0547e255f23f1af5d3475ef53c2f82817b3b5f1cdea01340da6c8b14699a4",
+      "request_sha256": "eddc2b45f44deefdbb056f9d4a4b131e21fa383421ae3efa20be10bebcc3b9e4",
+      "prompt": "Use case: stylized-concept.\nAsset type: transparent HD fighting-game effect sprite atlas for a faithful Super Fighter DOS remaster.\nInput image: original pixel-art SOURCE REFERENCE ONLY. Preserve its exact silhouettes and separated components.\nRepaint these 8 distinct original effect shapes as polished hand-painted arcade HD raster art. Keep side-on orientation, internal gaps, proportions, disconnected pieces and original color families.\nLayout: exactly 4 equal-width columns and 2 equal-height rows, reading left to right then top to bottom. Exactly one complete isolated effect per cell. Generous fully transparent gutters and at least 32 pixels of empty transparent padding at every outside edge. No clipping, overlaps, or content crossing a cell. Intended canvas at least 1536 pixels wide.\nSource correspondence: Top row: upright cyan-blue crescent with short right-facing prongs; squat blue orb/curl pointed right; round cyan-white orb; TWO separated blue curls ABOVE a SEPARATE thin horizontal pale blue oval ground ring. Bottom row: TWO separated blue curls ABOVE a SEPARATE long flat blue oval ring; TWO differently shaped blue wisps ABOVE a smaller flat oval ring; upright small cyan crescent with right-facing prongs; squat cyan-blue orb with ragged right-facing tail. Disconnected upper energy shapes and lower rings must remain disconnected with fully transparent gaps. No fighters or added objects.\nStyle: clean painted arcade energy, readable silhouette, bright directional highlights and smooth high-resolution detail. No pixel blocks or enlarged pixel art. No added stars, floating particles, smoke clouds or decorative motifs outside the original silhouette. Keep details inside the original envelope.\nBackground: actual transparent RGBA alpha, transparent gaps and edge falloff. No baked checkerboard, shadow plane, background colour, labels, text, letters, numbers, watermark, border, cell lines or UI.\n",
+      "grid": [
+        4,
+        2
+      ],
+      "poses": [
+        {
+          "slot": 14,
+          "region_ordinal": 0,
+          "source_offset": 42500,
+          "source_sha256": "46385fff92385e1694003def3cb1e9bef30879d49c9eb29ed1895d5968410644",
+          "width": 23,
+          "height": 26,
+          "rect": [
+            137,
+            131,
+            372,
+            356
+          ]
+        },
+        {
+          "slot": 19,
+          "region_ordinal": 1,
+          "source_offset": 51586,
+          "source_sha256": "7fe66b2927524c733a02e75094020c25d2edd856552bccf35dcd4b0931f7c25b",
+          "width": 31,
+          "height": 24,
+          "rect": [
+            594,
+            155,
+            862,
+            340
+          ]
+        },
+        {
+          "slot": 49,
+          "region_ordinal": 2,
+          "source_offset": 129296,
+          "source_sha256": "a49864543f0a143f9b0fbc4b6331374d66078880c63ae7dcba8eb67172f6c3ec",
+          "width": 25,
+          "height": 25,
+          "rect": [
+            1058,
+            140,
+            1280,
+            363
+          ]
+        },
+        {
+          "slot": 60,
+          "region_ordinal": 6,
+          "source_offset": 149305,
+          "source_sha256": "63d277dc7415242fc2d60f82a3e5ac155e856e11f38f3d162aa57017f3e59633",
+          "width": 18,
+          "height": 31,
+          "rect": [
+            1090,
+            527,
+            1273,
+            766
+          ]
+        },
+        {
+          "slot": 61,
+          "region_ordinal": 7,
+          "source_offset": 149586,
+          "source_sha256": "fc368ed43bcc84cc8d672139b66766f65911b06a547bef3678fa65f73edbe4bf",
+          "width": 39,
+          "height": 24,
+          "rect": [
+            1465,
+            548,
+            1804,
+            743
+          ]
+        }
+      ],
+      "unused_regions": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "file": "clown-rings-v3.png",
+      "sha256": "8a02f09e391feadddec0e4ebae01dc16df97d7dac6b0b66f57bc29afcf64b012",
+      "size": [
+        2172,
+        724
+      ],
+      "character": 9,
+      "source_file": "SFMAN10.DAT",
+      "source_file_sha256": "31c0547e255f23f1af5d3475ef53c2f82817b3b5f1cdea01340da6c8b14699a4",
+      "request_sha256": "9dfbe593551bb39d9ec2365d331e9f34498fb0b24a4352aa4177a720977f73f2",
+      "prompt": "Use case: stylized-concept.\nCreate a transparent HD painted sprite sheet with exactly THREE columns and ONE row, one isolated effect per column. The input is original pixel-art source reference ONLY. Repaint ONLY the source shapes labelled source 57, source 58 and source 59 in the reference (top row fourth cell, bottom row first cell, bottom row second cell). Ignore the other five reference cells.\nEach of these three source sprites consists of exactly TWO small floating cyan-blue flame curls near the top and ONE very flat thin horizontal pale-blue elliptical outline ring below. Keep their distinct source shapes and relative positions. The two upper curls float in empty transparent air. They do NOT grow out of the ring. Leave a completely EMPTY transparent horizontal band between the bottoms of both upper curls and the top of the ring, at least 40 pixels high. No vertical beams, legs, pillars, jets, trails, connectors or particles in that gap. Each of the three objects in each cell is detached. Paint the delicate flat ring as a simple narrow luminous outline, without a solid interior platform. Keep the oval interior transparent.\nClean hand-painted arcade style, bright cyan edges and deep blue interior brush strokes, smooth high resolution. No background, no shadows, no glow haze outside silhouettes, no text, labels, grid or watermark. Generous transparent gutters and outer padding. Preserve the source silhouettes faithfully. Output actual RGBA transparency. Layout is THREE equal-width columns, not the input reference's layout.",
+      "grid": [
+        3,
+        1
+      ],
+      "poses": [
+        {
+          "slot": 57,
+          "region_ordinal": 2,
+          "source_offset": 143649,
+          "source_sha256": "287c96a5db44963bda6b81820752dbcb17ad87abd684ce3000244d12c579900a",
+          "width": 82,
+          "height": 40,
+          "rect": [
+            1534,
+            169,
+            2120,
+            574
+          ]
+        },
+        {
+          "slot": 58,
+          "region_ordinal": 0,
+          "source_offset": 145291,
+          "source_sha256": "9d3716e910c99eb70cae85dbbde42efbb1fe96bd439c55c23682652f8e41f532",
+          "width": 100,
+          "height": 48,
+          "rect": [
+            53,
+            145,
+            638,
+            575
+          ]
+        },
+        {
+          "slot": 59,
+          "region_ordinal": 1,
+          "source_offset": 147693,
+          "source_sha256": "c00a6cb5f29e7138f61066f4a10717430610a2042d19982ee88c345d0a1b8787",
+          "width": 70,
+          "height": 46,
+          "rect": [
+            793,
+            124,
+            1379,
+            575
+          ]
+        }
+      ],
+      "unused_regions": []
+    },
+    {
+      "file": "joe-effects.png",
+      "sha256": "89bdc86a13905a1dee81b9063010d71a4745cbe13bab6522e4a10616bd3beba0",
+      "size": [
+        2172,
+        724
+      ],
+      "character": 10,
+      "source_file": "SFMAN11.DAT",
+      "source_file_sha256": "2533818f4054f0dbbf1476d67f94461be95e903066ea517de33a6adf906afe56",
+      "request_sha256": "8e7af0fbd486bf800a1189e95d011982e4850356e500136a6c94d0cc73fffb6e",
+      "prompt": "Use case: stylized-concept.\nAsset type: transparent HD fighting-game effect sprite atlas for a faithful Super Fighter DOS remaster.\nInput image: original pixel-art SOURCE REFERENCE ONLY. Preserve its exact silhouettes and separated components.\nRepaint these 3 distinct original effect shapes as polished hand-painted arcade HD raster art. Keep side-on orientation, internal gaps, proportions, disconnected pieces and original color families.\nLayout: exactly 3 equal-width columns and 1 equal-height rows, reading left to right then top to bottom. Exactly one complete isolated effect per cell. Generous fully transparent gutters and at least 32 pixels of empty transparent padding at every outside edge. No clipping, overlaps, or content crossing a cell. Intended canvas at least 1536 pixels wide.\nSource correspondence: Three orange-white energy crescents at nearly equal heights. Their widths shrink from broad to medium to narrow. Smooth convex left edges, open jagged right edges with horizontal flame teeth. White-hot centers, cream transitions, vivid orange outer streaks. Do not turn these crescents into round fireballs.\nStyle: clean painted arcade energy, readable silhouette, bright directional highlights and smooth high-resolution detail. No pixel blocks or enlarged pixel art. No added stars, floating particles, smoke clouds or decorative motifs outside the original silhouette. Keep details inside the original envelope.\nBackground: actual transparent RGBA alpha, transparent gaps and edge falloff. No baked checkerboard, shadow plane, background colour, labels, text, letters, numbers, watermark, border, cell lines or UI.\n",
+      "grid": [
+        3,
+        1
+      ],
+      "poses": [
+        {
+          "slot": 41,
+          "region_ordinal": 0,
+          "source_offset": 143462,
+          "source_sha256": "48185d636e00d21ee797a50357c95d43e2312836b5dd800adae506d6d0219a46",
+          "width": 85,
+          "height": 78,
+          "rect": [
+            145,
+            71,
+            804,
+            641
+          ]
+        },
+        {
+          "slot": 42,
+          "region_ordinal": 1,
+          "source_offset": 146818,
+          "source_sha256": "4f429c204b995edb881862aca8267b05bf413fee13a9ad8b5cb131a63e2a6761",
+          "width": 65,
+          "height": 78,
+          "rect": [
+            921,
+            76,
+            1432,
+            638
+          ]
+        },
+        {
+          "slot": 43,
+          "region_ordinal": 2,
+          "source_offset": 149394,
+          "source_sha256": "87fe39ef5da2556c657950213dc39ac485454997e30c2dfd2d286a40c443cebf",
+          "width": 45,
+          "height": 76,
+          "rect": [
+            1698,
+            74,
+            2055,
+            629
+          ]
+        }
+      ],
+      "unused_regions": []
+    }
+  ],
+  "rights": "user authorized HD generation and repo upload; originals, palettes and CPU receipts local only",
+  "limits": "21 declared source keys, unregistered discarded cells never drawn; full animation and remaining palette transitions separate"
+}

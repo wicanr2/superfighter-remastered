@@ -149,6 +149,13 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [其餘特殊技素材收錄](tools/import_remaining_effect_assets.py) | 既有 1495 鍵及 PNG 保持，核對六 PNG 原 bytes、21 個鍵及 catalog；來源與原貌收據不公開 |
+| [其餘特殊技原生操作](tools/remaining_effects_smoke.py)、[獨立核對](tools/verify_remaining_effects_native.py) | 四人普通方向／拳腳觸發新光效族，驗完整 CPU／HUD／陰影／CRTC、原貌切換與舊包回退 |
+| [其餘特殊技真實測試](internal/hd/remaining_effects_test.go) | 四人二十一份原始來源、既有選擇不退步、未知來源／色盤與超量清單拒絕，鳳凰未驗色盤保持回退 |
+| [其餘特殊技素材準備](tools/prepare_remaining_special_effects.py) | 先計算二十一鍵與六 PNG 的來源／資源；READY 後沿既有格式加入，保持所有舊圖與姿態 |
+| [特殊技候選匯入](tools/import_special_effect_art.py) | 無損保存內建生成 PNG，檢查透明色與既有登錄分隔，失敗稿只留本機，不接正式素材 |
+| [特殊技光效參考準備](tools/prepare_special_effect_references.py) | 從已驗原檔及 CPU 證據產生二十一鍵私有參考、五份精確生成請求；不修改正式圖集 |
+| [其餘特殊技光效](docs/spec/044-remaining-special-effects.md) | 五人普通輸入稽核、四人二十一個第二色盤缺件與素材審查；鳳凰主圖像色盤拒絕另列，不由補圖猜補 |
 | [主色盤原生操作](tools/primary_extra_smoke.py)、[獨立核對](tools/verify_primary_extra_native.py) | 鬼丸正常蓄力後武器的 HD／原貌切換、舊程式整格回退及恢復操作；不代表其他額外圖像全驗 |
 | [主色盤成對核心](tools/primary_extra_core_receipt.go)、[真實來源測試](internal/hd/primary_extra_test.go) | 觀測開關不改原版狀態、兩側及同角色盤來源與 CPU 遮罩／色號篡改拒絕 |
 | [主色盤原呼叫](tools/ida_primary_extra_evidence.py) | 由唯讀正式資料庫複本匯出兩側額外圖像的原始函式、位址、bytes 與引用，不覆寫命名 |

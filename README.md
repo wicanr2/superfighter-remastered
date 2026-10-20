@@ -26,19 +26,19 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 原版音樂已確認十五段 MIDI，Compact PCM 共四十筆；音樂重播與語音修復的可行性及未知項見[音樂與語音 HD 評估](docs/audio-hd-assessment.md)。桌面遊戲的音訊串流與完整 HD 尚未完成。
 
-目前 `main` 的開發版為 `v.0.1.1-20261020`，新增嵐的勝利姿態與 `LAN WIN`，並接入[角色雙向翻轉與頂部裁切](docs/spec/038-character-geometry.md)的逐格來源核對，以及[鳳凰拳腳兩種光效](docs/spec/039-phoenix-effects.md)、[場邊投擲裁切](docs/spec/040-mirrored-edge-clipping.md)與[金太極十種特殊光效](docs/spec/042-kim-effects.md)，並支援[同角色對戰的替代配色](docs/spec/041-duplicate-palettes.md)；首版下載包尚未包含這些更新。其餘九景也已有[首輪 HD 候選稿](assets/hd/candidates/README.md)，與道場同樣等待多場景格式及正常遊戲接入驗證。十一景已補正常捲動來源比較；[石窟與舞廳修稿](assets/hd/candidates/background-revisions-source.json)另存候選，尚未定版。
+目前 `main` 的開發版為 `v.0.1.1-20261020`，新增嵐的勝利姿態與 `LAN WIN`，並接入[角色雙向翻轉與頂部裁切](docs/spec/038-character-geometry.md)的逐格來源核對，以及[鳳凰拳腳兩種光效](docs/spec/039-phoenix-effects.md)、[場邊投擲裁切](docs/spec/040-mirrored-edge-clipping.md)與[金太極十種特殊光效](docs/spec/042-kim-effects.md)、[四人二十一個特殊光效](docs/spec/044-remaining-special-effects.md)，並支援[同角色對戰的替代配色](docs/spec/041-duplicate-palettes.md)；首版下載包尚未包含這些更新。其餘九景也已有[首輪 HD 候選稿](assets/hd/candidates/README.md)，與道場同樣等待多場景格式及正常遊戲接入驗證。十一景已補正常捲動來源比較；[石窟與舞廳修稿](assets/hd/candidates/background-revisions-source.json)另存候選，尚未定版。
 
 目前已有原生雙打、兩人拳腳、斬四招、設定保存，以及可切換的屋頂 HD 背景、部分人物動作、已驗招式及鳳凰拳腳光效、柔邊地面陰影、生命條、計時、名字與勝場圖示。開場 `ROUND`／`FIGHT !`、斬首勝的鞠躬與 `JAAN WIN` 已接 HD；第二人法蘭克的抱胸、`FRANK WIN` 與右側首勝也已在 Linux 驗證。Linux 雙打基準曾正常打完兩回合、顯示結果並返回標題，後續擴充另驗各自範圍。完整角色 HD、實體手把、其他角色快捷、音訊與正式速度仍待驗收。最近收據及各平台限制見 [CONTEXT](CONTEXT.md)。
 
-斬與法蘭克已對應全部 144 個一般來源槽、13 個第二色盤特效鍵，以及 WIN 圖像的 144 個入口。鳳凰另補兩個拳腳光效鍵，金太極新增十個第二色盤光效鍵。WIN 入口對應七張不同勝利姿態，與一般動作分開辨識；登錄齊全不代表完整動畫已驗。介面基底的 Linux 案例通過 16 項檢查，Windows Wine 的斬、法蘭克案例各通過 16 項，包含特效、介面及同狀態切換。兩平台的法蘭克案例另驗到實際扣血。完整動畫與其他角色仍未完成，製作契約見[角色](docs/spec/008-hd-characters.md)、[特效](docs/spec/009-hd-effects.md)、[戰鬥介面](docs/spec/010-hd-battle-hud.md)及[勝利姿態](docs/spec/017-victory-pose-banks.md)。
+斬與法蘭克已對應全部 144 個一般來源槽、13 個第二色盤特效鍵，以及 WIN 圖像的 144 個入口。鳳凰另補兩個拳腳光效鍵，金太極新增十個第二色盤光效鍵；後續四人特殊技再補二十一鍵。WIN 入口對應七張不同勝利姿態，與一般動作分開辨識；登錄齊全不代表完整動畫已驗。介面基底的 Linux 案例通過 16 項檢查，Windows Wine 的斬、法蘭克案例各通過 16 項，包含特效、介面及同狀態切換。兩平台的法蘭克案例另驗到實際扣血。完整動畫與其他角色仍未完成，製作契約見[角色](docs/spec/008-hd-characters.md)、[特效](docs/spec/009-hd-effects.md)、[戰鬥介面](docs/spec/010-hd-battle-hud.md)及[勝利姿態](docs/spec/017-victory-pose-banks.md)。
 
-原有八名角色、小丑與印第安喬的一般來源已接入原生，實測範圍見[薩爾可夫](docs/spec/018-sarkov-hd.md)、[子彈](docs/spec/020-bullet-hd.md)、[鳳凰](docs/spec/021-phoenix-hd.md)、[鬼丸](docs/spec/022-onimaru-hd.md)、[嵐](docs/spec/023-lan-hd.md)、[金太極](docs/spec/024-kim-hd.md)、[小丑](docs/spec/026-clown-hd.md)與[印第安喬](docs/spec/027-joe-hd.md)。目前開發群組共 1495 個鍵，包含十人的一般來源、蜘蛛女低伏、既有特效與十人的 WIN 入口。[子彈首勝](docs/spec/028-bullet-victory.md)、[鳳凰首勝](docs/spec/030-phoenix-victory.md)與[鬼丸首勝](docs/spec/031-onimaru-victory.md)已驗 Linux／Wine 完整切片；[嵐首勝](docs/spec/037-lan-victory.md)已驗 Linux，薩爾可夫的 Wine 下一回合仍未驗完。同角色替代色盤已接入已登錄姿態，Linux 法蘭克的藍／綠雙色操作與第二人首勝已驗；色彩轉移為 HD 呈現近似。蜘蛛女其餘動作、完整動畫、其他角色快捷及其餘場景仍在製作。
+原有八名角色、小丑與印第安喬的一般來源已接入原生，實測範圍見[薩爾可夫](docs/spec/018-sarkov-hd.md)、[子彈](docs/spec/020-bullet-hd.md)、[鳳凰](docs/spec/021-phoenix-hd.md)、[鬼丸](docs/spec/022-onimaru-hd.md)、[嵐](docs/spec/023-lan-hd.md)、[金太極](docs/spec/024-kim-hd.md)、[小丑](docs/spec/026-clown-hd.md)與[印第安喬](docs/spec/027-joe-hd.md)。目前開發群組共 1516 個鍵，包含十人的一般來源、蜘蛛女低伏、既有特效與十人的 WIN 入口。[子彈首勝](docs/spec/028-bullet-victory.md)、[鳳凰首勝](docs/spec/030-phoenix-victory.md)與[鬼丸首勝](docs/spec/031-onimaru-victory.md)已驗 Linux／Wine 完整切片；[嵐首勝](docs/spec/037-lan-victory.md)已驗 Linux，薩爾可夫的 Wine 下一回合仍未驗完。同角色替代色盤已接入已登錄姿態，Linux 法蘭克的藍／綠雙色操作與第二人首勝已驗；色彩轉移為 HD 呈現近似。蜘蛛女其餘動作、完整動畫、其他角色快捷及其餘場景仍在製作。
 
 十一人選角已加入蜘蛛女、小丑、印第安喬，單打、雙打皆可選，並保留原版對戰規則。Linux／Wine 已驗正常選角與首戰操作；魔王完整單打過關與結局仍待驗，詳見[選角範圍](docs/spec/025-boss-selection.md)。
 
 ## HD 素材
 
-目前收錄 68 張角色／特效圖集、角色登錄清單與屋頂背景；道場及其餘九景候選、蜘蛛女外部稿另標示狀態。內建生成 PNG 保留原 bytes，外部稿的去背處理另作紀錄；逐檔來源與 SHA-256 見 [HD 素材目錄](assets/hd/README.md)。素材上傳不代表完整角色動畫或所有場景已完成。
+目前收錄 74 張角色／特效圖集、角色登錄清單與屋頂背景；道場及其餘九景候選、蜘蛛女外部稿另標示狀態。內建生成 PNG 保留原 bytes，外部稿的去背處理另作紀錄；逐檔來源與 SHA-256 見 [HD 素材目錄](assets/hd/README.md)。素材上傳不代表完整角色動畫或所有場景已完成。
 
 [蜘蛛女的十五張外部 HD 稿](assets/hd/candidates/spider/README.md)也已收錄。使用者確認的雙手觸地低伏已接入，另作無損鏡像及透明留白裁切；同一張圖對應三組低伏來源。其他稿仍有姿勢差異，未對應動作整格回退原貌。
 
@@ -49,6 +49,12 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 以上是生成素材預覽；正常遊戲的整合驗證與限制見 [目前狀態](CONTEXT.md)及各規格。
 
 ## 目前整合畫面
+
+![鳳凰踢擊的金黃 HD 光弧](docs/screenshots/phoenix-gold-arc-hd.png)
+
+![小丑旋轉時分離的青藍光影與橢圓環](docs/screenshots/clown-rings-hd.png)
+
+開發版新增鳳凰、嵐、小丑與印第安喬共 21 個特殊技光效鍵。上述畫面由普通鍵盤出招取得，原版圖層、色盤、原貌切換與恢復已核對；原版規則與快捷範圍保持。[接入與限制](docs/spec/044-remaining-special-effects.md)。
 
 ![鬼丸蓄力出招的 HD 武器與角色](docs/screenshots/onimaru-primary-weapon-hd.png)
 

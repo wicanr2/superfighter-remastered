@@ -805,3 +805,17 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 
 - 最終稽核 `primary-extra-build-v1/final-audit.json` 通過：128 原檔、1719 執行器來源、正式 i64、97 PNG／107 catalog／111 素材檔及首版八包／原曲影片不變。149 個 README 相對連結均已追蹤，無原版或 raw 暫存入 Git；擁有權／誤建目錄通過，本專案容器已清空。
 - 實作提交 `8f4209345f3235cd569a5adf2459683a2950268f` 已推送 origin/main，遠端完整提交相同。首版 tag 仍為 `807579d01c145db327050c2e870e2bf46e6bcb68`；本段為其後的文件收尾，不建立新 Release。
+
+## 2026-10-21：044 四人二十一份特殊技 HD 光效
+
+- 上一輪為已完成的鬼丸修正；本輪為具體進展。先走五人普通方向／拳腳，共 1,654 格，獨立原檔／CPU 審查發現鳳凰三鍵、嵐七鍵、小丑八鍵、印第安喬三鍵。子彈該序列 266 格無缺件；快捷維持既有已驗範圍。
+- 使用內建 imagegen 補六張透明原 PNG，保留精確請求、生成原 bytes、原始參考及修稿。小丑舊稿三格連接失真不註冊，另生成分離光影，按實際 58／59／57 的形狀順序登錄 2／0／1。嵐原稿 alpha 0..254 符合既有載入器，初匯入腳本誤要求 255，依原載入契約修正；沒有修改或正規化生成 PNG。
+- READY 審查保存於 remaining-special-audit-v1/art-v1。新清單 530,039 bytes、115,204,291 像素；僅將解析上限 512→520 KiB、圖集 101→110 Mi 像素，容納最小必要資源，不改格式或放鬆來源／色盤檢查。正式清單 1516 鍵／74 圖集，SHA 164eef46667563bed1d239a2af113f95f47e7a8831f98f82ffe97e3fc13adb20。
+- 四人同格新／舊素材比較 1,388 格，補齊 76 格，沒有原成功格退步；鳳凰十格其他色盤拒絕保持。21 真實來源／篡改／超量拒絕、既有同角／金太極／鬼丸回歸通過，真實組 37.787 秒；例行 Go 測試及 vet 通過。
+- Linux 新包六個光效族、四人代表舊包五個光效，共 49 張完整核對原檔、RAM 層、HUD／陰影／CRTC、同狀態切換／恢復及光效消失後操作。小丑舊包只以新局分離光影作完整代表案例，其他舊包長序列／光彈嘗試未通過，失敗保留，不重試到碰巧成功。新包兩類皆通過。嵐／喬的初版驗證曾把待機當光效清空，腳本修正後乾淨重跑；不列為產品缺陷。
+- 六 PNG 及來源／精確提示詞已收錄 assets/hd/characters。現有 103 PNG、114 catalog、130,915,661 payload bytes、118 素材檔，所有舊 PNG／姿態保持。README 加入兩張正常遊戲 HD 擷取，原貌、原曲、原始 palette 與 raw 收據不上傳。
+- remaining-effects-build-v1 四平台／45 份實際編譯輸入、檔頭及八檔晉升通過；Linux SHA 5834c7b894ab51116e8ac6a58e4069c637cc4a852124564e93eeeb8853c7429d。未發行版仍為 v.0.1.1-20261020；043 二進位保留，首版八包、影片與 tag 不變。
+- 重建素材用 tools/prepare_remaining_special_effects.py 的 --base workplace/hd-characters-kim-effects-v1，原稿／審查在 art-v1；CONFORMED 文件取代 READY 後，先將 art-v1/044-ready.md 唯讀覆蓋掛載到 docs/spec/044-remaining-special-effects.md 再重建新輸出，不偽造目前文件的 READY 身分。正式圖片不重生成，來源及輸出雜湊皆保留。
+- 後續仍有鳳凰其他色盤、蜘蛛女其餘姿勢／勝利、背景格式決定及標題／選角／結果等完整 HD，不能以這批光效完成宣稱全作完成。收尾與推送結果另追加。
+
+- 最終 remaining-effects-build-v1/final-audit.json 通過：128 原檔、1719 執行器來源、正式 i64、首版八包及本機原曲影片不變。1516 鍵／74 圖集、舊 1495 鍵、103 PNG／114 catalog／118 素材檔及六圖原 bytes 核對，155 個 README 相對連結均已追蹤。沒有原版、raw 或工作產物入 Git；擁有權／誤建目錄通過，所有本專案容器均已清空。

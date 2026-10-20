@@ -4,7 +4,7 @@
 
 | 路徑 | 內容 | 接入狀態 |
 |---|---|---|
-| [characters/manifest.json](characters/manifest.json) | 68 張角色與特效圖集、1495 個登錄鍵 | 現行開發素材；包含嵐 WIN 與鳳凰拳腳光效。完整動畫及各角色驗收範圍見 [CONTEXT](../../CONTEXT.md) |
+| [characters/manifest.json](characters/manifest.json) | 74 張角色與特效圖集、1516 個登錄鍵 | 現行開發素材；包含四人的二十一份特殊技光效。完整動畫及各角色驗收範圍見 [CONTEXT](../../CONTEXT.md) |
 | [backgrounds/rooftop.png](backgrounds/rooftop.png) | 屋頂背景，1923×818 | 已接原生；原版參考色號與色盤不隨 Git 提供 |
 | [道場候選整理](candidates/README.md) | 道場 PNG、來源雜湊、正常畫格證據與精確提示詞 | 素材已整理；[多場景格式](../../docs/spec/029-multi-scene-backgrounds.md)尚待確認，首輪先跳過接入 |
 | [其餘九景](candidates/README.md)、[來源與提示詞](candidates/backgrounds-source.json) | 廳堂、叢林、街道、宮殿、舞廳、港口、石窟、冰原、火車的首輪稿 | 原 scene 與兩個 camera 已由普通雙打補證；保留候選，HD 捲動及正式接入仍未驗 |
@@ -38,3 +38,5 @@ workplace/bin/superfighter-linux-amd64 \
 上傳授權只改變這批 HD 生成圖的保存位置，不代表取得原作素材的公開散布權。Release 與目前開發版的範圍見[主 README](../../README.md)；原作角色與場景權利仍依原權利人，不能將本專案程式的授權視為原作授權。
 
 [金太極光效圖](characters/kim-effects.png)包含十份第二色盤來源，原 PNG 保持；[來源與精確提示詞](characters/kim-effects-source.json)可回查。普通 Linux 三類光效、切換與舊包回退見 [042](../../docs/spec/042-kim-effects.md)，完整特殊技動畫仍另驗。
+
+[四人特殊技光效](../../docs/spec/044-remaining-special-effects.md)新增鳳凰三鍵、嵐七鍵、小丑八鍵與印第安喬三鍵，六張原 PNG 的來源、精確提示詞及槽位對應見[素材紀錄](characters/remaining-special-effects-source.json)。小丑舊稿中連接失真的三格不註冊，另用分離光影新稿；所有 PNG 保留原 bytes。原版參考、色盤與 CPU 收據只留本機，完整動畫及快捷另驗。

@@ -8,12 +8,12 @@
     "scope": "generated HD PNG and mapping metadata only; not original game data or release"
   },
   "characters": {
-    "atlases": 68,
-    "registered_keys": 1495,
+    "atlases": 74,
+    "registered_keys": 1516,
     "sources": 21,
     "complete_HD": false
   },
-  "pngs": 97,
+  "pngs": 103,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -797,10 +797,10 @@
     },
     {
       "file": "characters/manifest.json",
-      "sha256": "26e83f78aa42b6e02ef61884183da7a5a1e9402af42731aeb672f1f871e0dcdb",
-      "bytes": 521555,
+      "sha256": "164eef46667563bed1d239a2af113f95f47e7a8831f98f82ffe97e3fc13adb20",
+      "bytes": 530039,
       "status": "current-character-mapping",
-      "copied_from": "workplace/hd-characters-phoenix-effects-v1/manifest.json",
+      "copied_from": "workplace/hd-characters-remaining-effects-v1/manifest.json",
       "generated_source": "workplace/hd-characters-spider-low-guard-v1/manifest.json"
     },
     {
@@ -1310,6 +1310,92 @@
       "bytes": 5536,
       "status": "current-effects-provenance",
       "copied_from": "workplace/hd-characters-kim-effects-v1/kim-effects-source.json"
+    },
+    {
+      "file": "characters/remaining-special-effects-source.json",
+      "sha256": "523d545c19adcbbc17a748701bb0d063bae9627f380fd6a20dfce09c13511467",
+      "bytes": 21198,
+      "status": "effect-provenance",
+      "copied_from": "workplace/hd-characters-remaining-effects-v1/remaining-special-effects-source.json",
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/joe-effects.png",
+      "sha256": "89bdc86a13905a1dee81b9063010d71a4745cbe13bab6522e4a10616bd3beba0",
+      "bytes": 1005661,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-remaining-effects-v1/joe-effects.png",
+      "tool": "built-in imagegen",
+      "size": [
+        2172,
+        724
+      ],
+      "generated_source": "workplace/remaining-special-audit-v1/art-v1/joe-effects.png"
+    },
+    {
+      "file": "characters/lan-effects-a.png",
+      "sha256": "9537b6abc40cf389beb6e11b084d8993ddc877ea8606b7fbd3586f7732357938",
+      "bytes": 449205,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-remaining-effects-v1/lan-effects-a.png",
+      "tool": "built-in imagegen",
+      "size": [
+        2172,
+        724
+      ],
+      "generated_source": "workplace/remaining-special-audit-v1/art-v1/lan-effects-a.png"
+    },
+    {
+      "file": "characters/clown-rings-v3.png",
+      "sha256": "8a02f09e391feadddec0e4ebae01dc16df97d7dac6b0b66f57bc29afcf64b012",
+      "bytes": 734104,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-remaining-effects-v1/clown-rings-v3.png",
+      "tool": "built-in imagegen",
+      "size": [
+        2172,
+        724
+      ],
+      "generated_source": "workplace/remaining-special-audit-v1/art-v1/clown-rings-v3.png"
+    },
+    {
+      "file": "characters/phoenix-special-effects.png",
+      "sha256": "95507c3c4ccc6080d043786ee52fec2123d0fd01723113272817f15b8babe432",
+      "bytes": 400725,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-remaining-effects-v1/phoenix-special-effects.png",
+      "tool": "built-in imagegen",
+      "size": [
+        2172,
+        724
+      ],
+      "generated_source": "workplace/remaining-special-audit-v1/art-v1/phoenix-special-effects.png"
+    },
+    {
+      "file": "characters/lan-effects-b.png",
+      "sha256": "a0911254eca3ed6a86eeef6117d878acf792525d9b3be106dd7ff3edad9a2920",
+      "bytes": 1661447,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-remaining-effects-v1/lan-effects-b.png",
+      "tool": "built-in imagegen",
+      "size": [
+        1536,
+        1024
+      ],
+      "generated_source": "workplace/remaining-special-audit-v1/art-v1/lan-effects-b.png"
+    },
+    {
+      "file": "characters/clown-effects.png",
+      "sha256": "b47548ade6594ea99314268925b95039e79a252d5a7182afb283410cf16455c7",
+      "bytes": 865074,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-remaining-effects-v1/clown-effects.png",
+      "tool": "built-in imagegen",
+      "size": [
+        1860,
+        845
+      ],
+      "generated_source": "workplace/remaining-special-audit-v1/art-v1/clown-effects.png"
     }
   ],
   "original_game_data_included": false

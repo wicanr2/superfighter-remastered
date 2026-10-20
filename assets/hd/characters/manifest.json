@@ -526,6 +526,42 @@
       "sha256": "3358ccf75dc54972eadaed4c571a74649d8a49e830154b1e6f2c464be084f433",
       "width": 1774,
       "height": 887
+    },
+    {
+      "file": "phoenix-special-effects.png",
+      "sha256": "95507c3c4ccc6080d043786ee52fec2123d0fd01723113272817f15b8babe432",
+      "width": 2172,
+      "height": 724
+    },
+    {
+      "file": "lan-effects-a.png",
+      "sha256": "9537b6abc40cf389beb6e11b084d8993ddc877ea8606b7fbd3586f7732357938",
+      "width": 2172,
+      "height": 724
+    },
+    {
+      "file": "lan-effects-b.png",
+      "sha256": "a0911254eca3ed6a86eeef6117d878acf792525d9b3be106dd7ff3edad9a2920",
+      "width": 1536,
+      "height": 1024
+    },
+    {
+      "file": "clown-effects.png",
+      "sha256": "b47548ade6594ea99314268925b95039e79a252d5a7182afb283410cf16455c7",
+      "width": 1860,
+      "height": 845
+    },
+    {
+      "file": "clown-rings-v3.png",
+      "sha256": "8a02f09e391feadddec0e4ebae01dc16df97d7dac6b0b66f57bc29afcf64b012",
+      "width": 2172,
+      "height": 724
+    },
+    {
+      "file": "joe-effects.png",
+      "sha256": "89bdc86a13905a1dee81b9063010d71a4745cbe13bab6522e4a10616bd3beba0",
+      "width": 2172,
+      "height": 724
     }
   ],
   "poses": [
@@ -23698,6 +23734,342 @@
         1748,
         825
       ]
+    },
+    {
+      "character": 3,
+      "palette_bank": 1,
+      "slot": 15,
+      "width": 25,
+      "height": 25,
+      "source_offset": 36859,
+      "source_sha256": "7fffff556ce623eba0a8c6aa832b8efd50c8190a10a27de6137f4c543c2ff37b",
+      "atlas": "phoenix-special-effects.png",
+      "rect": [
+        191,
+        278,
+        464,
+        511
+      ]
+    },
+    {
+      "character": 3,
+      "palette_bank": 1,
+      "slot": 39,
+      "width": 34,
+      "height": 28,
+      "source_offset": 95691,
+      "source_sha256": "1fab564dcc1eccaf02d37ede68f7648cc1a4bd10f27f2313b0e6dbd6b94a81cc",
+      "atlas": "phoenix-special-effects.png",
+      "rect": [
+        718,
+        238,
+        1142,
+        537
+      ]
+    },
+    {
+      "character": 3,
+      "palette_bank": 1,
+      "slot": 56,
+      "width": 161,
+      "height": 68,
+      "source_offset": 142729,
+      "source_sha256": "4d292a28b4b4e9367500a71320aa00d148eea509c5f6c3a29e76bcf3cfd4861b",
+      "atlas": "phoenix-special-effects.png",
+      "rect": [
+        1273,
+        190,
+        2126,
+        549
+      ]
+    },
+    {
+      "character": 6,
+      "palette_bank": 1,
+      "slot": 9,
+      "width": 45,
+      "height": 20,
+      "source_offset": 28675,
+      "source_sha256": "ba66bf5ba11b01fae94bf408897250187a6d9ee5268caac2e84d55c41848773b",
+      "atlas": "lan-effects-a.png",
+      "rect": [
+        98,
+        202,
+        673,
+        486
+      ]
+    },
+    {
+      "character": 6,
+      "palette_bank": 1,
+      "slot": 11,
+      "width": 44,
+      "height": 20,
+      "source_offset": 31629,
+      "source_sha256": "ac30c84d72e1aec85a430ac4b28196da35045dea9c9278eeaadec26e8e497b83",
+      "atlas": "lan-effects-a.png",
+      "rect": [
+        855,
+        203,
+        1465,
+        488
+      ]
+    },
+    {
+      "character": 6,
+      "palette_bank": 1,
+      "slot": 12,
+      "width": 23,
+      "height": 27,
+      "source_offset": 32071,
+      "source_sha256": "3423e43c7f4b5e1c191716bf254a0bbca007848769b14cd847fdfa6d74326db2",
+      "atlas": "lan-effects-a.png",
+      "rect": [
+        1686,
+        166,
+        2033,
+        544
+      ]
+    },
+    {
+      "character": 6,
+      "palette_bank": 1,
+      "slot": 20,
+      "width": 18,
+      "height": 31,
+      "source_offset": 51512,
+      "source_sha256": "82325bb57ffd800a0db8196792b63838c80309dd29028d1bad53a932af010901",
+      "atlas": "lan-effects-b.png",
+      "rect": [
+        179,
+        85,
+        457,
+        467
+      ]
+    },
+    {
+      "character": 6,
+      "palette_bank": 1,
+      "slot": 26,
+      "width": 25,
+      "height": 25,
+      "source_offset": 66011,
+      "source_sha256": "3597c58ef8dbcc054de0f801ac1d0404d7d7bc10805b69763f7a0e287c9fb991",
+      "atlas": "lan-effects-b.png",
+      "rect": [
+        962,
+        103,
+        1331,
+        455
+      ]
+    },
+    {
+      "character": 6,
+      "palette_bank": 1,
+      "slot": 57,
+      "width": 33,
+      "height": 26,
+      "source_offset": 149876,
+      "source_sha256": "8800a411f713956f777fd14b34da55e7e438ded50979de933014f52066b97af2",
+      "atlas": "lan-effects-b.png",
+      "rect": [
+        137,
+        591,
+        525,
+        926
+      ]
+    },
+    {
+      "character": 6,
+      "palette_bank": 1,
+      "slot": 58,
+      "width": 81,
+      "height": 27,
+      "source_offset": 150320,
+      "source_sha256": "30bcd449a2192b66fc670392ea561088c7b1bb81da8d1d3fbb5523dc760f8a7d",
+      "atlas": "lan-effects-b.png",
+      "rect": [
+        744,
+        625,
+        1501,
+        908
+      ]
+    },
+    {
+      "character": 9,
+      "palette_bank": 1,
+      "slot": 14,
+      "width": 23,
+      "height": 26,
+      "source_offset": 42500,
+      "source_sha256": "46385fff92385e1694003def3cb1e9bef30879d49c9eb29ed1895d5968410644",
+      "atlas": "clown-effects.png",
+      "rect": [
+        137,
+        131,
+        372,
+        356
+      ]
+    },
+    {
+      "character": 9,
+      "palette_bank": 1,
+      "slot": 19,
+      "width": 31,
+      "height": 24,
+      "source_offset": 51586,
+      "source_sha256": "7fe66b2927524c733a02e75094020c25d2edd856552bccf35dcd4b0931f7c25b",
+      "atlas": "clown-effects.png",
+      "rect": [
+        594,
+        155,
+        862,
+        340
+      ]
+    },
+    {
+      "character": 9,
+      "palette_bank": 1,
+      "slot": 49,
+      "width": 25,
+      "height": 25,
+      "source_offset": 129296,
+      "source_sha256": "a49864543f0a143f9b0fbc4b6331374d66078880c63ae7dcba8eb67172f6c3ec",
+      "atlas": "clown-effects.png",
+      "rect": [
+        1058,
+        140,
+        1280,
+        363
+      ]
+    },
+    {
+      "character": 9,
+      "palette_bank": 1,
+      "slot": 60,
+      "width": 18,
+      "height": 31,
+      "source_offset": 149305,
+      "source_sha256": "63d277dc7415242fc2d60f82a3e5ac155e856e11f38f3d162aa57017f3e59633",
+      "atlas": "clown-effects.png",
+      "rect": [
+        1090,
+        527,
+        1273,
+        766
+      ]
+    },
+    {
+      "character": 9,
+      "palette_bank": 1,
+      "slot": 61,
+      "width": 39,
+      "height": 24,
+      "source_offset": 149586,
+      "source_sha256": "fc368ed43bcc84cc8d672139b66766f65911b06a547bef3678fa65f73edbe4bf",
+      "atlas": "clown-effects.png",
+      "rect": [
+        1465,
+        548,
+        1804,
+        743
+      ]
+    },
+    {
+      "character": 9,
+      "palette_bank": 1,
+      "slot": 57,
+      "width": 82,
+      "height": 40,
+      "source_offset": 143649,
+      "source_sha256": "287c96a5db44963bda6b81820752dbcb17ad87abd684ce3000244d12c579900a",
+      "atlas": "clown-rings-v3.png",
+      "rect": [
+        1534,
+        169,
+        2120,
+        574
+      ]
+    },
+    {
+      "character": 9,
+      "palette_bank": 1,
+      "slot": 58,
+      "width": 100,
+      "height": 48,
+      "source_offset": 145291,
+      "source_sha256": "9d3716e910c99eb70cae85dbbde42efbb1fe96bd439c55c23682652f8e41f532",
+      "atlas": "clown-rings-v3.png",
+      "rect": [
+        53,
+        145,
+        638,
+        575
+      ]
+    },
+    {
+      "character": 9,
+      "palette_bank": 1,
+      "slot": 59,
+      "width": 70,
+      "height": 46,
+      "source_offset": 147693,
+      "source_sha256": "c00a6cb5f29e7138f61066f4a10717430610a2042d19982ee88c345d0a1b8787",
+      "atlas": "clown-rings-v3.png",
+      "rect": [
+        793,
+        124,
+        1379,
+        575
+      ]
+    },
+    {
+      "character": 10,
+      "palette_bank": 1,
+      "slot": 41,
+      "width": 85,
+      "height": 78,
+      "source_offset": 143462,
+      "source_sha256": "48185d636e00d21ee797a50357c95d43e2312836b5dd800adae506d6d0219a46",
+      "atlas": "joe-effects.png",
+      "rect": [
+        145,
+        71,
+        804,
+        641
+      ]
+    },
+    {
+      "character": 10,
+      "palette_bank": 1,
+      "slot": 42,
+      "width": 65,
+      "height": 78,
+      "source_offset": 146818,
+      "source_sha256": "4f429c204b995edb881862aca8267b05bf413fee13a9ad8b5cb131a63e2a6761",
+      "atlas": "joe-effects.png",
+      "rect": [
+        921,
+        76,
+        1432,
+        638
+      ]
+    },
+    {
+      "character": 10,
+      "palette_bank": 1,
+      "slot": 43,
+      "width": 45,
+      "height": 76,
+      "source_offset": 149394,
+      "source_sha256": "87fe39ef5da2556c657950213dc39ac485454997e30c2dfd2d286a40c443cebf",
+      "atlas": "joe-effects.png",
+      "rect": [
+        1698,
+        74,
+        2055,
+        629
+      ]
     }
   ],
   "evidence": [
@@ -23719,6 +24091,7 @@
     "victory-pose-registration.json",
     "docs/spec/037-lan-victory.md",
     "docs/spec/039-phoenix-effects.md",
-    "docs/spec/042-kim-effects.md"
+    "docs/spec/042-kim-effects.md",
+    "docs/spec/044-remaining-special-effects.md"
   ]
 }
