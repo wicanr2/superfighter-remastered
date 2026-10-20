@@ -134,8 +134,8 @@ func TestJoeHUDUsesNormalCapturedName(t *testing.T) {
 		t.Fatal("captured original name or bounds changed", selected.Labels, selected.Layout.Names)
 	}
 	wrong := *frame.HUD
-	wrong.State.Characters[0] = 8
-	if got, reason := assets.Select(&wrong, read(".idx"), palette, frame.Layers); got != nil || reason != "此角色的高解析介面尚未完成" {
+	wrong.State.Characters[0] = 11
+	if got, reason := assets.Select(&wrong, read(".idx"), palette, frame.Layers); got != nil || reason != "介面欄位未對應，保留原貌" {
 		t.Fatal("unknown character was accepted", reason)
 	}
 }

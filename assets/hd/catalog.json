@@ -8,12 +8,12 @@
     "scope": "generated HD PNG and mapping metadata only; not original game data or release"
   },
   "characters": {
-    "atlases": 64,
-    "registered_keys": 1381,
-    "sources": 19,
+    "atlases": 65,
+    "registered_keys": 1411,
+    "sources": 20,
     "complete_HD": false
   },
-  "pngs": 82,
+  "pngs": 83,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -797,11 +797,11 @@
     },
     {
       "file": "characters/manifest.json",
-      "sha256": "fbb4d57d313d2d9e01383c4f95468826e41c225d062ecef1bc506df0e72a2df9",
-      "bytes": 481319,
+      "sha256": "078e8a896968688a23556d03f8335252b07a7add204f9b3b8db2341683f4fd0e",
+      "bytes": 491301,
       "status": "current-character-mapping",
-      "copied_from": "workplace/hd-characters-first-pass-v1/manifest.json",
-      "generated_source": "workplace/hd-characters-first-pass-v1/manifest.json"
+      "copied_from": "workplace/hd-characters-spider-low-guard-v1/manifest.json",
+      "generated_source": "workplace/hd-characters-spider-low-guard-v1/manifest.json"
     },
     {
       "file": "backgrounds/rooftop.png",
@@ -1094,6 +1094,28 @@
       "bytes": 17917,
       "status": "candidate-source-metadata",
       "tool": "tools/import_spider_candidates.py"
+    },
+    {
+      "file": "characters/spider-low-guard.png",
+      "sha256": "a73ead9feed91ad8c23cc3e5e78fcf72ed7a9f013fe69f89e7820a19fc2d2aeb",
+      "bytes": 502760,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-spider-low-guard-v1/spider-low-guard.png",
+      "source_index": "characters/spider-low-guard-source.json",
+      "tool": "tools/prepare_spider_low_guard.py",
+      "size": [
+        716,
+        563
+      ]
+    },
+    {
+      "file": "characters/spider-low-guard-source.json",
+      "sha256": "7f99364cbebd2334783ab8a187904b9160358f3bece7b4413fd6a105b21ba205",
+      "bytes": 1425,
+      "status": "approved-art-processing-metadata",
+      "copied_from": "workplace/hd-characters-spider-low-guard-v1/spider-low-guard-source.json",
+      "source_index": "characters/spider-low-guard-source.json",
+      "tool": "tools/prepare_spider_low_guard.py"
     }
   ],
   "original_game_data_included": false

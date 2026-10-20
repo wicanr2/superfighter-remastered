@@ -105,6 +105,11 @@
       "source_bank": "victory",
       "file": "KKWIN.FIG",
       "sha256": "bb24c0340af2964056136ce9faa9256b486c9afe8a9159065d942509ebea907a"
+    },
+    {
+      "character": 8,
+      "file": "SFMAN09.DAT",
+      "sha256": "76f1a2484fd551c574279138e16f2f70971c4a7259858406e90c0211a2f3f53e"
     }
   ],
   "atlases": [
@@ -491,6 +496,12 @@
       "sha256": "273e4815c2b9906b254ba5133bea01790cac864dc2cba3d241cdae15c51d59b2",
       "width": 2172,
       "height": 724
+    },
+    {
+      "file": "spider-low-guard.png",
+      "sha256": "a73ead9feed91ad8c23cc3e5e78fcf72ed7a9f013fe69f89e7820a19fc2d2aeb",
+      "width": 716,
+      "height": 563
     }
   ],
   "poses": [
@@ -21868,6 +21879,456 @@
         45,
         407,
         668
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 0,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 45,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 46,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 47,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 48,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 49,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 50,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 51,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 52,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 53,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 54,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 55,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 56,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 57,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 58,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 59,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 60,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 61,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 62,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 63,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 64,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 65,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 66,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 67,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 68,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 69,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 70,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 71,
+      "width": 70,
+      "height": 57,
+      "source_offset": 3144,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 1,
+      "width": 68,
+      "height": 64,
+      "source_offset": 5141,
+      "source_sha256": "72300569c9285d2237d4ffd4965c4cbeb56bd6a2aa5d86bb7792c2ba0c029797",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 41,
+      "width": 70,
+      "height": 55,
+      "source_offset": 100058,
+      "source_sha256": "1f46be4f14daa7ba91a876403951302fbbae14490976f98423ce1359bdd7c98e",
+      "atlas": "spider-low-guard.png",
+      "rect": [
+        0,
+        0,
+        716,
+        563
       ]
     }
   ],

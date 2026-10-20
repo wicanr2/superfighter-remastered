@@ -46,6 +46,19 @@
       "character_manifest_sha256": "fbb4d57d313d2d9e01383c4f95468826e41c225d062ecef1bc506df0e72a2df9",
       "authorization": "user requested HD upload and GitHub-visible README screenshots; raw sources remain local",
       "limits": "sampled first-player first victory and mode switching; not full HD or complete animation"
+    },
+    {
+      "kind": "normal native approved partial Spider low-guard HD, not original-mode image",
+      "file": "spider-low-guard-hd.png",
+      "sha256": "f52d58b0aa3035b2adf1a4d86ca590b22fa711850d42b3bb375a5d87441b60f8",
+      "source": "workplace/native-spider-low-guard-v1/hd-paused.png",
+      "platform": "Linux amd64 in Docker Xvfb; no native Windows/macOS or physical gamepad acceptance",
+      "receipt_sha256": "e382049418e834e296dd20427ffc9acfdcf0a514c89ce1d3f5c240687d3b094f",
+      "comparison_sha256": "c90984198de221d6a316ef89bde30715476bff529319639dfe2a77035fd439a7",
+      "binary_sha256": "793f16e9e25ecb799f37e4be99c234fe1c09964c99b297e0325601064b673c34",
+      "character_manifest_sha256": "078e8a896968688a23556d03f8335252b07a7add204f9b3b8db2341683f4fd0e",
+      "authorization": "user approved this approximate pose and previously requested HD assets and integrated screenshots in repo",
+      "limits": "one static approved pose reused for three normal sources; unmapped motions fall back to original, not complete animation"
     }
   ]
 }

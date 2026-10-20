@@ -148,6 +148,8 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [蜘蛛女低伏接入](docs/spec/034-spider-low-guard.md)、[準備工具](tools/prepare_spider_low_guard.py) | 已確認的相近低伏稿、三組一般來源與別名、朝向正規化、原姓名及未覆蓋動作回退 |
+| [蜘蛛女原生驗證](tools/spider_low_guard_smoke.py)、[獨立核對](tools/verify_spider_low_guard.py)、[來源測試](internal/hd/spider_low_guard_test.go) | 普通雙打低伏、移動原貌回退、釋放恢復、同狀態切換與原字圖／圖層重組 |
 | [首輪其餘勝利 HD](docs/spec/033-first-pass-victories.md) | 金太極、小丑、印第安喬的 WIN 擴充；嵐／蜘蛛女卡點先跳過，道場候選另整理，依證據閘門接入 |
 | [首輪勝利來源驗證](internal/hd/first_pass_victory_test.go) | 舊包保持、三人 216 個 WIN 鍵、原版真實姓名與損壞來源拒絕；使用 KDZZ_HD_FIXTURES 與 KDZZ_ORIGINAL_ROOT 提供本機資料 |
 | [蜘蛛女原圖交接工具](tools/export_spider_reference.py) | 在本機 workplace 輸出原版 PNG、提示詞與可驗 SHA-256 ZIP，不公開原版參考圖 |

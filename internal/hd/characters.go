@@ -156,7 +156,7 @@ func LoadCharacters(dir, originalRoot string) (*Characters, error) {
 			return nil, fmt.Errorf("角色圖集重複或尺寸錯誤")
 		}
 		totalPixels += atlas.Width * atlas.Height
-		if totalPixels > 96*1024*1024 {
+		if totalPixels > 100*1024*1024 {
 			return nil, fmt.Errorf("角色圖集超過記憶體限制")
 		}
 		data, e := checkedFile(dir, atlas.File, atlas.SHA256, 32<<20)

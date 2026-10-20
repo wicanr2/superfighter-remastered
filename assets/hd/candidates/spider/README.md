@@ -19,7 +19,7 @@
 | 檔案 | 目視內容 | 對應審查 |
 |---|---|---|
 | [normal-00](cels-v2/spider-normal-00.png) | 正面低位跪伏 | 低姿態候選，朝向及肢體角度待核對 |
-| [normal-01](cels-v2/spider-normal-01.png) | 雙手觸地低伏 | 低姿態候選，朝向及肢體角度待核對 |
+| [normal-01](cels-v2/spider-normal-01.png) | 雙手觸地低伏 | 使用者已確認相近姿勢，三組一般低伏來源已接入 |
 | [normal-21](cels-v2/spider-normal-21.png) | 俯臥，一腿抬起 | 倒地候選，腿部姿態與原圖待核對 |
 | [normal-24](cels-v2/spider-normal-24.png) | 彩色水平細條 | 原槽 24 為蜷身倒轉，不對應 |
 | [normal-29](cels-v2/spider-normal-29.png) | 空中蜷身 | 原槽 29 為橫向倒地，不對應 |
@@ -29,8 +29,8 @@
 | [normal-43](cels-v2/spider-normal-43.png) | 紫黃色尖形特效 | 原槽 43 為 94×1 細長來源，不對應；原用途未定 |
 | [normal-44](cels-v2/spider-normal-44.png) | 空中人物姿勢 | 原槽 44 為黃色輪廓效果，不對應 |
 
-以上是目視審查，不把相似姿勢當成原版動畫證據，也未根據檔名自動登錄。現行遊戲仍保留蜘蛛女原貌。一般來源與 WIN 的別名必須依原始 packed bytes 核對，不能把站立圖任意塞進低伏或倒地槽。
+使用者已確認 normal-01 的相近低伏。正式包另存[水平鏡像及透明留白裁切圖](../../characters/spider-low-guard.png)，保留這裡的候選原 bytes；同一張圖登錄一般 0／1／41 及相同 bytes 的別名，共三十鍵。這是已同意的靜態近似，沒有宣稱原版完整動畫。其他稿尚未登錄，未對應動作整格回退原貌，詳見[規格 034](../../../../docs/spec/034-spider-low-guard.md)。source.json 保留匯入時的來源與歷史審查，最新接入決定以該規格為準。
 
-![雙手觸地低伏候選，未接入遊戲](cels-v2/spider-normal-01.png)
+![已確認並用於限定低伏接入的原始外部稿](cels-v2/spider-normal-01.png)
 
 這是候選圖預覽，並非實機整合截圖。此處只公開外部生成圖的去背成品及來源索引，原版參考圖、原始資料與研究收據不隨目錄提供。去背及匯入工具分別為 [remove_sprite_checkerboard.py](../../../../tools/remove_sprite_checkerboard.py) 與 [import_spider_candidates.py](../../../../tools/import_spider_candidates.py)。
