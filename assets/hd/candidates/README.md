@@ -4,6 +4,7 @@
 
 | 素材 | 來源與提示詞 | 狀態 |
 |---|---|---|
+| [紅金 VS](selection-vs-v1.png)、[完整選角靜態比較](../../../docs/screenshots/selection-layout-candidates.png) | [來源與完整提示詞](selection-vs-source.json)，1589×990 透明生成原 PNG | 原八格與十一格並列候選；不是原生擷取，未修改滑鼠區域或正式程式 |
 | [十一人選角肖像](../../../docs/spec/047-hd-selection-portraits.md)、[並列預覽](../../../docs/screenshots/selection-portrait-candidates.png) | [來源與精確提示詞](selection-portraits-source.json)，十一張 1254×1254 生成原 PNG | 隔離 Linux 原型已驗雙打兩側大肖像、鏡像及切換；仍待定版，未接正式選角，不代替戰鬥動作圖 |
 | [標題人物](title-person-v1.png)、[紅金字標](title-logo-v1.png) | [來源與精確提示詞](title-source.json)，保留生成原 bytes | 已在[隔離原生原型](../../../docs/screenshots/title-native-prototype-hd.png)驗換色、游標與正常操作；未定版或接正式程式，見 [046](../../../docs/spec/046-hd-title-menu.md) |
 | [廳堂](hall-i1.png)、[叢林](jungle-i3.png)、[街道](street-i4.png) | I1／I3／I4.XGB；[來源與精確提示詞](backgrounds-source.json) | 首輪候選已保存，尚未接入 |

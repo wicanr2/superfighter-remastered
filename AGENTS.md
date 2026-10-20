@@ -149,6 +149,8 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [選角 VS 候選收錄](tools/import_selection_vs.py)、[來源與完整提示詞](assets/hd/candidates/selection-vs-source.json) | 紅金 VS 透明生成原 PNG，原檔參照留本機；不當正式選角素材格式 |
+| [完整選角靜態比較](tools/preview_selection_screen.py)、[八格／十一格比較圖](docs/screenshots/selection-layout-candidates.png) | 完整 SELMAN／BIGFIG／八格框線核對後，以新 HD 美術重畫兩種版面；不是遊戲擷取或已可點選介面 |
 | [隔離選角原生獨立核對](tools/verify_selection_native.py) | 原 BIGFIG／色盤、兩側候選及方向辨識、框外原貌、同狀態切換與退出；不宣稱 GPU 逐點採樣一致 |
 | [隔離選角原生操作](tools/selection_native_smoke.py) | 正常雙打兩側十一人、魔王切換、原貌恢復與進對戰清除；未載候選另驗，不當正式發布驗收 |
 | [隔離選角原型準備／建置](tools/prepare_selection_native_prototype.py)、[繪圖模板](tools/selection-native-prototype/desktop.go.in) | 正式來源副本中的兩側大肖像，逐張核對原色號／色盤才畫，未知原貌；不更動正式介面或格式 |

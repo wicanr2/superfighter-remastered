@@ -280,6 +280,36 @@
       "platform": "Pillow 11.3.0 in Docker; not runtime or platform acceptance",
       "authorization": "user requested HD upload and GitHub-visible pictures",
       "limits": "candidate art only, no original images or palette; not formal selection UI or integration"
+    },
+    {
+      "kind": "static pure HD layout comparison; not native capture",
+      "file": "selection-layout-candidates.png",
+      "sha256": "b6dedde62247da8c3a28a93e80568f3f056d71010a9c6f5e3c6f5fe38aa77dcd",
+      "source": "assets/hd/candidates/selection-vs-source.json",
+      "source_sha256": "85e6d5bc5fcfdacb0ccbbbbc91f84d539acb3868f5f650cb04bcd7da66b07a78",
+      "HD_inputs": {
+        "assets/hd/candidates/selection-portraits-source.json": "991062cb63228d03458208da002a205487544d99753756f1e1eb41a2216517a3",
+        "assets/hd/candidates/title-logo-v1.png": "3f224d17e40bdcdbf08a50be7e393a9d8cb708c779d659b9e4f4ba61de949ccc",
+        "assets/hd/candidates/selection-vs-v1.png": "d2c6d87328e41df73bb7cf7c03c82942390199be6efe965d3a87f9b8700c5c02",
+        "assets/hd/candidates/selection-jaan-v1.png": "0b508cbf83e5769769e908de77bfeb24a54d307e1d2dece4c19b771e4623bb1d",
+        "assets/hd/candidates/selection-sarkov-v1.png": "5ec97036c9e6e1239ec90cf01479782994941ad867d68b8a46bbfa31e6fdd918",
+        "assets/hd/candidates/selection-bullet-v1.png": "7f48fcb0a3b762588494e7d8a6a7dff6710d4c3bd350e733d4e0ee4d58167146",
+        "assets/hd/candidates/selection-phoenix-v1.png": "ec21503287006099c45774c8643dddc1888bd8dd24e786ff6389ca26ee3348bd",
+        "assets/hd/candidates/selection-frank-v1.png": "367929c844d8fb85ce4756d59af5c5927a5a732c94ebafb6d335729dbb67f920",
+        "assets/hd/candidates/selection-onimaru-v1.png": "ab002d06e6afade7ce103b6599e85268edac2712fd3a911796aa5a4d8f419326",
+        "assets/hd/candidates/selection-lan-v1.png": "4e47fc128073607b0681adc7451867b0fd0f91fcc3aa875e6a86e3fccd9a08c4",
+        "assets/hd/candidates/selection-kim-v1.png": "48918b8af81f9362bef3f1c9ba1c989412fedf9f3bc2a92daab1a781839b4784",
+        "assets/hd/candidates/selection-spider-v1.png": "9e2a4a67c07bc2f708a4f3cd00bcf3962ab0aa99951d8f17936b5ed3aed6b986",
+        "assets/hd/candidates/selection-clown-v1.png": "c3445d5bbb2bdf186ac61af7d02bc474dbc38025de048c8aa2f792db18301fdb",
+        "assets/hd/candidates/selection-joe-v1.png": "1d9cc16bf29915699c527e3c6d226ca5a00a9137ab11cb0ab709c8f8a9be0489",
+        "assets/hd/candidates/selection-vs-source.json": "85e6d5bc5fcfdacb0ccbbbbc91f84d539acb3868f5f650cb04bcd7da66b07a78"
+      },
+      "renderer": "tools/preview_selection_screen.py",
+      "renderer_sha256": "14595c0ab530989a3271988a6b89bb6b1a4cc927c03f2df8ab9a6a82fd10ac6c",
+      "receipt_sha256": "0c665d6f5823afc56f65bba8d2e7dd3cc74bc3e89d405a42dbbc7f17ad07205d",
+      "platform": "Pillow 11.3.0 in Docker; static preview only",
+      "authorization": "existing B art style and HD upload request; no repository visibility change",
+      "limits": "new art and vector geometry; no original pixels, no interactive buttons or formal UI approval"
     }
   ]
 }

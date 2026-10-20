@@ -679,3 +679,11 @@ HD 材質是假說：全 RGB 轉移因來源 7／18 同 RGB、但只有 7 轉色
 managed 紋理版的 selection-native-full-v2 在 p0-08 原貌／HD 恢復比較有 386 個像素不等，每色差最多 1；原色號、色盤、核心與設定保持，p1-10 則完全相同。差異記錄於 restore-difference.json。固定模組快取 `github.com/hajimehoshi/ebiten/v2@v2.9.9/image.go` 的 DrawImageOptions 與 NewImageFromImageOptions 註解明定：FilterLinear 縮小預設使用 mipmap，Unmanaged 不進自動紋理圖集。隔離原型只改肖像的 Unmanaged=true，沒有關閉 mipmap 或降低美術。
 
 已證實於 v3 雙打案例：兩組暫停切換後 HD 像素完全相同，兩側十一張候選及鏡像方向的 GPU 辨識通過，框外逐點保留原貌；正常／未載候選共 44 張、61 份原肖像與 38 份 GPU 候選／方向比較通過。把差異歸因於自動圖集配置是強推論，不宣稱驅動層精確原因或跨平台皆解決。Pillow 的雙線性縮小與 GPU mipmap 不逐點相同，獨立比較只判候選身分／方向，不偽造採樣 parity。停止追查 GPU 內部，回到版面、視覺與正式載入閘門。
+
+
+## 2026-10-21：047 選角整張背景與框線
+
+- 已證實：SELMAN.CPM，SHA-256 9b40caeee1eff32370a6826e1362087ae1da086237731f06de905d696b6c195a，320×200，包含背景、字標、VS、八人縮圖及大肖像框。SELECT.CPM 是設定畫面。本輪停止在資產與正常來源重組，不開新反組譯切片。
+- 已證實於取樣：selection-native-full-v3 的二十七份選角來源，由完整 SELMAN 加 BIGFIG 兩側來源重組。所有差異均在八格周界，色號僅 F0h／F1h；保留實際邊線後完整色號與 RGB 相同，背景前 160 色及使用中肖像各 32 色均相符。原程式對歷史框線的未觀察重畫時序仍未知。
+- 定位沿 025：SF.EXE MZ load-image 檔頭移除後偏移 B6E7h 的八組 little-endian 四 word，為 (28+33i,150,60+33i,182)，i=0..7，雙端包含。該表相對 DS:12D7h；不與 runtime IP 或 MZ linear 混稱。來源 SF.EXE SHA-256 24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300。
+- 工具為 Docker 中 Pillow 11.3.0、tools/preview_selection_screen.py。原背景、原 RGB 與來源收據只留本機。新 VS 及完整 HD 比較的來源、提示詞與限制見規格 047；比較不證明正式操作與格式已完成。

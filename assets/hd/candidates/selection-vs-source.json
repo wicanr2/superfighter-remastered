@@ -1,0 +1,34 @@
+{
+  "kind": "candidate HD VS lettering, not integrated",
+  "file": "selection-vs-v1.png",
+  "sha256": "d2c6d87328e41df73bb7cf7c03c82942390199be6efe965d3a87f9b8700c5c02",
+  "bytes": 1368625,
+  "size": [
+    1589,
+    990
+  ],
+  "alpha_16_bounds": [
+    47,
+    67,
+    1547,
+    930
+  ],
+  "source_file": "SELMAN.CPM",
+  "source_sha256": "9b40caeee1eff32370a6826e1362087ae1da086237731f06de905d696b6c195a",
+  "reference_logical_crop": [
+    110,
+    40,
+    203,
+    98
+  ],
+  "reference_scale": 8,
+  "reference_sha256": "371960ce1400f74e7ed54f16d7ccf944d993ab78ac2e796c752df1b70910ea92",
+  "tool": "built-in image_gen",
+  "model_version": "not exposed by tool",
+  "prompt": "Use the attached reference solely for the identity and silhouette of the VS lettering from the 1993 Taiwanese DOS fighting game Super Fighter / 快打至尊. Create ONE new high-resolution 2D hand-painted arcade VS emblem as a standalone transparent-background game UI asset. Exact text: VS (capital V and capital S, no other text). Closely follow the reference: upright wide classical serif capitals, V at left and slightly behind S at right, bright warm red main interior, narrow yellow-gold ornamental outline with ivory highlights, a restrained dark charcoal extrusion offset down-right. Keep the original broad V, curved S and compact rectangular silhouette; no lightning, flames, wings, shields, circles, people, extra icons or new slogans. Preserve a readable thick red center in both letters. Sharp polished hand-painted edges, detailed gold bevels, restrained painted surface texture consistent with a faithful 1990s arcade HD remaster, not a 3D render or neon sci-fi redesign. Both letters fully visible with 8% clear padding. Genuine transparent alpha background, no checkerboard pattern painted into pixels. This is a new painted approximation of the reference lettering, not a pixel upscale. Reference image is identity/silhouette only, not an edit target. Square or landscape output around 1500 pixels wide.",
+  "transparent_background": true,
+  "generated_source": "exec-87175587-a7e4-4d8d-8638-a0223881876b.png",
+  "importer_sha256": "19c58132bb1d4506eecfc669d2b6c44395d6122059e6e3a9507f4a4e72d5dc07",
+  "review": "已目視紅底金邊 VS，S 曲線與 V 的比例為重繪近似；未視覺定版，沒有改寫生成原 bytes。",
+  "rights": "new generated derivative art; original game data stays local; repository visibility unchanged"
+}

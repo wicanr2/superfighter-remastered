@@ -4,6 +4,7 @@
 
 | 路徑 | 內容 | 接入狀態 |
 |---|---|---|
+| [選角 VS](candidates/selection-vs-v1.png)、[來源與完整提示詞](candidates/selection-vs-source.json) | 1589×990、原透明 PNG；[八格／十一格比較](../../docs/screenshots/selection-layout-candidates.png) | 靜態構圖候選，未接遊戲，版面與操作區域未定 |
 | [十一人選角肖像](../../docs/spec/047-hd-selection-portraits.md)、[來源與精確提示詞](candidates/selection-portraits-source.json) | 十一張 1254×1254 原 PNG 與純 HD 接觸圖 | 隔離 Linux 原型已驗雙打兩側、鏡像、切換／回退與退出；仍為候選，未改正式 UI 或格式 |
 | [標題人物與字標](candidates/README.md)、[精確提示詞](candidates/title-source.json) | 黑底紫色人物與紅金「快打至尊」透明字標 | 隔離原生候選已驗換色與游標，未接正式標題，見 [046](../../docs/spec/046-hd-title-menu.md) |
 | [characters/manifest.json](characters/manifest.json) | 74 張角色與特效圖集、1516 個登錄鍵 | 現行開發素材；包含四人的二十一份特殊技光效。完整動畫及各角色驗收範圍見 [CONTEXT](../../CONTEXT.md) |

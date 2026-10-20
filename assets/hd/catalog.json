@@ -13,7 +13,7 @@
     "sources": 21,
     "complete_HD": false
   },
-  "pngs": 117,
+  "pngs": 118,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -1607,6 +1607,24 @@
       "sha256": "991062cb63228d03458208da002a205487544d99753756f1e1eb41a2216517a3",
       "bytes": 29323,
       "status": "candidate-selection-portrait-provenance"
+    },
+    {
+      "file": "candidates/selection-vs-v1.png",
+      "sha256": "d2c6d87328e41df73bb7cf7c03c82942390199be6efe965d3a87f9b8700c5c02",
+      "bytes": 1368625,
+      "status": "candidate-selection-vs-not-integrated",
+      "size": [
+        1589,
+        990
+      ],
+      "tool": "built-in imagegen",
+      "generated_source": "exec-87175587-a7e4-4d8d-8638-a0223881876b.png"
+    },
+    {
+      "file": "candidates/selection-vs-source.json",
+      "sha256": "85e6d5bc5fcfdacb0ccbbbbc91f84d539acb3868f5f650cb04bcd7da66b07a78",
+      "bytes": 2434,
+      "status": "candidate-selection-vs-provenance"
     }
   ],
   "original_game_data_included": false
