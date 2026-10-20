@@ -881,3 +881,4 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 街道八份正常捲動來源、十六個角色 packed 原檔／CPU 層、原 XGB／色盤／完整圖層／CRTC／尾列通過。scene 2／相機 0 與 159 的新比較已目視；前景仍為原版，屬於軟體構圖比較，不是原生 HD 接入。background_scroll_preview.py 新增明示街道修稿及單景篩選，不更動正式程式。
 - 新原 PNG 與精確提示詞收錄 assets/hd/candidates，catalog 增為 106 PNG／119 筆／123 檔、135,498,255 payload bytes，舊 117 筆、1516 鍵／74 圖集保持。README／素材索引／029／現況表已更新；另修素材索引把標題誤稱尚無原生候選的舊敘述。正式 bin、首版八包與影片保持，收尾稽核與推送另記。
 - street-revision-v1/final-audit.json 通過：八份新比較、十六個原角色層、相機 0／159、生成原 bytes、精確提示詞與舊 117 筆素材保持。175 個 README 相對連結與新檔索引通過；128 原檔、1719 執行器來源、正式 i64、46 份編譯輸入、四平台程式、首版八包及原曲影片不變。未公開原版、raw 或比較圖；UID／誤建目錄通過，本專案容器已清空。
+- 修稿與工具提交 `17e43385f7125fb4f95de7fae66c72075fbd809f` 已推送 origin/main，遠端完整提交核對相同；首版 tag 仍為 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段為文件收尾，029 仍 DRAFT，不新增 Release。
