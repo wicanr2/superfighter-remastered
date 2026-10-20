@@ -22,7 +22,7 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 ![鳳凰勝利 HD 原始圖集](assets/hd/characters/phoenix-win.png)
 
-以上是生成素材預覽，正常遊戲的整合驗證與限制見下方畫面及各規格。
+以上是生成素材預覽；正常遊戲的整合驗證與限制見 [目前狀態](CONTEXT.md)及各規格。
 
 ## 目前整合畫面
 
@@ -30,89 +30,9 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 Windows 原生程式在 Wine 中顯示的設定介面，擷取於原版核心執行前。可分別指派兩人的手把，逐角色設定 R1／R2／L1／L2。擷取時未連接實體手把。[截圖來源](docs/screenshots/source.json)。
 
-以下對戰圖片含原版及衍生美術，僅留本機工作區，GitHub 不收錄圖片檔：
+十一人選角、十名角色的一般 HD、部分勝利姿態與同狀態切換已按各自範圍驗證。角色圖集見上方 HD 素材；正常玩家路徑、Linux／Wine 差異及未完成項集中於 [目前狀態](CONTEXT.md)與[驗證矩陣](VERIFICATION-MATRIX.md)。
 
-![十一人選角與三名可選魔王](workplace/native-boss-single-10-v2/selection-spider.png)
-
-下方十一人按鈕可直接選三名魔王，方向鍵與手把使用相同選角路徑，再按「確認選角」。肖像仍是原圖；前端已排除原八人縮圖框線越界的多餘直線。[第二人選魔王](workplace/windows-boss-versus-8-v2/selection-player2.png)亦已核對。
-
-![鳳凰正常首勝的抱拳姿態與 PHO HUANG WIN](workplace/native-phoenix-victory-v1/victory-hd.png)
-
-鳳凰由普通移動與拳擊取得首勝，讀取獨立 `EEWIN.FIG`，保留原姓名 `PHO HUANG`。Linux／Wine 各七張驗勝利、[同狀態原貌](workplace/native-phoenix-victory-v1/victory-original.png)、[恢復 HD](workplace/native-phoenix-victory-v1/victory-restored.png)及下一回合清除；缺 WIN 的舊素材整格回退。完整動畫及第二人另驗。[範圍與來源](docs/spec/030-phoenix-victory.md)。
-
-![子彈正常首勝的 HD 姿態與 BULLET WIN](workplace/native-bullet-victory-v1/victory-hd.png)
-
-子彈由普通移動與拳擊取得首勝，讀取獨立 `CCWIN.FIG` 來源。Linux／Wine 各七張擷取驗勝利、[同狀態原貌](workplace/native-bullet-victory-v1/victory-original.png)、[恢復 HD](workplace/native-bullet-victory-v1/victory-restored.png)及下一回合清除；缺 WIN 的舊素材會整格回退。這是第一人首勝取樣，完整動畫及第二人另驗。[範圍與來源](docs/spec/028-bullet-victory.md)。
-
-![印第安喬 INDIAN JOE 對法蘭克的原生 HD](workplace/native-joe-v2/hd-paused.png)
-
-印第安喬 44 組不同來源對應 72 個一般入口，保留原姓名 `INDIAN JOE`。Linux／Wine 正常行走、蹲、跳、拳及切換通過；[跳躍](workplace/native-joe-v2/jump.png)、[同狀態原貌](workplace/native-joe-v2/original-paused.png)與[恢復 HD](workplace/native-joe-v2/hd-restored.png)已獨立核對。WIN、快捷與完整動畫另驗。
-
-![小丑 JOKER 對法蘭克的原生 HD](workplace/native-clown-v1/hd-paused.png)
-
-小丑 62 組不同來源對應 72 個一般入口，保留原姓名 `JOKER`。Linux／Wine 正常行走、蹲、跳、拳及切換通過；[跳躍](workplace/native-clown-v1/jump.png)、[同狀態原貌](workplace/native-clown-v1/original-paused.png)與[恢復 HD](workplace/native-clown-v1/hd-restored.png)已獨立核對。完整動畫、WIN、快捷與其他魔王 HD 另續。
-
-![金太極對法蘭克的原生 HD 人物與姓名](workplace/native-kim-v2/hd-paused.png)
-
-金太極保留原姓名 `KING TAI CHI`，57 組不同來源對應 72 個一般入口。Linux／Wine 由正常選角驗行走、蹲、跳、拳及切換；[跳躍](workplace/native-kim-v2/jump.png)、[同狀態原貌](workplace/native-kim-v2/original-paused.png)與[恢復 HD](workplace/native-kim-v2/hd-restored.png)已獨立核對。雙人手把與四格設定沿用，金太極快捷尚未啟用。[範圍與限制](docs/spec/024-kim-hd.md)。
-
-![嵐對法蘭克的原生 HD 人物與姓名](workplace/native-lan-v1/hd-paused.png)
-
-嵐以原字圖姓名 `LAN` 顯示，59 組不同來源對應 72 個一般入口。Linux／Wine 各由正常選角驗行走、蹲、跳、拳及切換；[跳躍](workplace/native-lan-v1/jump.png)、[同狀態原貌](workplace/native-lan-v1/original-paused.png)與[恢復 HD](workplace/native-lan-v1/hd-restored.png)已獨立核對。既有兩人手把及四格設定沿用，嵐快捷尚未啟用。[範圍與限制](docs/spec/023-lan-hd.md)。
-
-![鬼丸對法蘭克的原生 HD 人物與原姓名](workplace/native-onimaru-v1/hd-paused.png)
-
-鬼丸保留本包字圖姓名 `ONIMALU`，66 組不同來源對應 72 個一般入口。Linux／Wine 各由正常選角驗行走、蹲、跳、拳及切換；[跳躍](workplace/native-onimaru-v1/jump.png)、[同狀態原貌](workplace/native-onimaru-v1/original-paused.png)與[恢復 HD](workplace/native-onimaru-v1/hd-restored.png)已獨立核對。手把指派與四格設定沿用既有格式，鬼丸快捷尚未啟用。[範圍與限制](docs/spec/022-onimaru-hd.md)。
-
-![鳳凰對法蘭克的原生 HD 人物與原姓名](workplace/native-phoenix-v2/hd-paused.png)
-
-鳳凰以原字圖姓名 `PHO HUANG` 顯示，61 組不同來源對應 72 個一般入口。Linux／Wine 各由正常選角驗行走、蹲、跳、拳及切換；[跳躍](workplace/native-phoenix-v2/jump.png)、[同狀態原貌](workplace/native-phoenix-v2/original-paused.png)與[恢復 HD](workplace/native-phoenix-v2/hd-restored.png)已獨立核對。既有兩人手把與四格設定沿用，鳳凰快捷尚未啟用。[範圍與限制](docs/spec/021-phoenix-hd.md)。
-
-![子彈對法蘭克的原生 HD 人物與姓名](workplace/native-bullet-v1/hd-paused.png)
-
-子彈以原姓名 `BULLET` 顯示，58 張姿態對應 72 個一般入口。Linux／Wine 均由正常選角驗行走、蹲、跳、拳擊與切換；[同狀態原貌](workplace/native-bullet-v1/original-paused.png)及[恢復 HD](workplace/native-bullet-v1/hd-restored.png)已獨立核對。快捷與雙人手把入口沿用既有設定，子彈的快捷尚未啟用。[範圍與限制](docs/spec/020-bullet-hd.md)。
-
-![薩爾可夫正常首勝的 HD 姿態與 SARORKOV WIN](workplace/native-sarkov-victory-v1/victory-hd.png)
-
-Linux 以普通方向與拳鍵取得第一人勝利，人物讀取獨立 BBWIN 圖像。七張擷取包含下一回合清除；Wine 另核對到勝利及同狀態切換，尚未取得下一回合收據。[勝利驗證範圍](docs/spec/019-sarkov-victory.md)。
-
-![薩爾可夫對法蘭克的 HD 人物、原姓名與屋頂](workplace/native-sarkov-v2/hd-rooftop.png)
-
-Linux 由正常選角進入薩爾可夫對法蘭克，姓名忠於本包原字圖 `SARORKOV`。人物、屋頂、陰影與介面同格呈現 HD。[同狀態原貌](workplace/native-sarkov-v2/original-paused.png)與[恢復 HD](workplace/native-sarkov-v2/hd-restored.png)已獨立重組並核對切換；Wine 另驗相同流程。下方仍保留兩人的手把與四格快捷入口，薩爾可夫的快捷尚未啟用。
-
-![正常首勝的 HD 鞠躬、勝負文字與雙人快捷列](workplace/native-victory-v1/victory-hd.png)
-
-Linux 原生版由正常對戰取得斬首勝，鞠躬讀取原版獨立 WIN 圖像來源，中央顯示高解析 `JAAN WIN`。[同狀態原貌](workplace/native-victory-v1/victory-original.png)及[切回 HD](workplace/native-victory-v1/victory-restored.png)的核心與來源相同，恢復畫面逐點一致。七張擷取已由原檔重組；文字 GPU 寫入限制在原字圖矩形。這是首勝樣本，其他勝者與完整勝利動畫另驗，詳見[勝負文字規格](docs/spec/016-hd-victory-messages.md)。下方四格快捷與手把設定入口沿用既有操作。
-
-![第二人法蘭克首勝的抱胸、FRANK WIN 與右側勝場](workplace/native-frank-victory-v1/victory-hd.png)
-
-Linux 由第二人正常方向與拳鍵操作，在時間歸零後獲勝，保留原版兩人生命值與結束方式。抱胸讀取 FFWIN.FIG，中央顯示 `FRANK WIN`；[同狀態原貌](workplace/native-frank-victory-v1/victory-original.png)與[恢復 HD](workplace/native-frank-victory-v1/victory-restored.png)已逐點核對，下一回合右側顯示一勝。這個第二人案例的 Windows Wine 驗證達執行期限，尚未取得勝利收據，不稱兩平台均已通過。
-
-![目前整合的 HD 屋頂、人物、介面與開場](workplace/native-display-opening-v2/round-hd.png)
-
-目前原生版已修正顯示起點。原貌與 HD 全部圖層共用實際可見視窗，開場頂端資料列已移出，底部四列完整保留；正常跳躍與踢擊也跟隨原版顯示位移。Linux／Wine 各十張開場擷取、Linux 一般對戰十五張及舊素材十一張已獨立核對，缺件整張回退與切回 HD 逐點一致。這是限定顯示配置的硬體規格近似，實測範圍見[規格 015](docs/spec/015-native-scanout.md)與[目前稽核](workplace/native-display-audit.json)。
-
-下列圖片保存顯示修正前的版本與各自驗證範圍：
-
-[開場 ROUND 1](workplace/native-rounds-v1/round-hd.png)、[FIGHT !](workplace/native-rounds-v1/fight-hd.png)、[部分展開窗口](workplace/native-rounds-v1/round-partial-hd.png)及[同狀態原貌](workplace/native-rounds-v1/round-original.png)。Linux／Wine 各十張擷取驗來源、原生字圖裁切及切回逐點一致；只驗第一回合。頂端保留現有 oracle 線性畫面的原版資料，尚未套用 CRTC 顯示起點。詳見[開場規格](docs/spec/013-hd-round-messages.md)。
-
-頂端問題的[原版重組預覽](workplace/display-ports-v1/display-010.scanout.png)來自獨立規格重組。候選執行器的 67 格輸出核對後，已依[顯示規格](docs/spec/014-mode13-scanout.md)接入目前原生版。
-
-[目前屋頂、人物與柔邊陰影](workplace/native-shadows-v1/hd-rooftop.png)、[正常走近後的重疊陰影](workplace/native-shadow-overlap-v1/hd-paused.png)與[同狀態原貌](workplace/native-shadow-overlap-v1/original-paused.png)。陰影讀取原版位置與裁切，在人物之前合成；重疊取最大透明度。[陰影規格與驗證](docs/spec/012-hd-shadows.md)。
-
-[目前屋頂、人物、介面與 HD 勝場](workplace/native-win-markers-v1/win-hd.png)、[同狀態原貌](workplace/native-win-markers-v1/win-original.png)與[切回 HD](workplace/native-win-markers-v1/win-restored.png)。正常操作取得首勝後，以原版鎖存勝場顯示高解析拇指圖示；七張擷取及原版分層已獨立核對，切回畫面逐點一致。來源與範圍見[勝場規格](docs/spec/011-hd-win-markers.md)。
-
-[屋頂、角色與高解析介面](workplace/native-hud-frank-v2/hd-rooftop.png)、[法蘭克特效與實際扣血](workplace/native-hud-frank-v2/hd-hud-damage.png)、[同狀態原貌](workplace/native-hud-frank-v2/original-frank-effect-paused.png)與[HD](workplace/native-hud-frank-v2/hd-frank-effect-paused.png)。
-
-Linux 原生版由正常標題進入斬對法蘭克雙打。生命條讀取原版逐格扣減的顯示值，計時讀取原版數字；沒有新增扣血或計時規則。特效與介面按原版繪製順序合成，獨立核對見[Linux 收據](workplace/native-hud-frank-v2/comparison.json)。
-
-[空中踢擊](workplace/native-hud-frank-v2/hd-air-kick.png)、[雙人跳躍](workplace/native-hud-frank-v2/hd-jump.png)與[Windows 斬特效](workplace/windows-hud-v1/hd-effect-paused.png)。Windows 原生程式在 Wine 中另走正常流程，不能代替真機驗收。
-
-[HD 對局中的手把與第五招設定](workplace/native-hud-frank-v2/native-settings.png)
-
-兩人獨立的手把指派與角色快捷設定。圖中第一人選鳳凰第五招並將 R2 留空，第二人的配置保持獨立。擷取時沒有接實體手把，實體裝置驗收仍待進行。
-
-勝場圖片出自[首勝與切換收據](workplace/native-win-markers-v1/receipt.json)，其餘 Linux 特效與設定圖片出自[介面基底收據](workplace/native-hud-frank-v2/receipt.json)。完整雙打基準另保存[結果報紙](workplace/native-match-v2/result-newspaper.png)與[返回標題](workplace/native-match-v2/after-result-return.png)，這兩個畫面仍是原貌。原始 PNG、分層與介面底層資料保留於本機工作區。
+包含原版像素的對戰截圖、分層與原始收據保存在本機研究工作區。GitHub 首頁只引用已納入版控的圖片；HD 素材預覽與上方的設定介面截圖分開標示。
 
 ## 建置與執行
 
