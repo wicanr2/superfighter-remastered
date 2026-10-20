@@ -34,6 +34,8 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--original-root', type=Path, default=Path('/orig'))
     parser.add_argument('--revisions', action='store_true', help='只在私有比較稿試用兩份未定版修稿')
+    parser.add_argument('--street-revision', action='store_true', help='私有比較改用街道塗鴉修稿，不更動正式背景')
+    parser.add_argument('--scene', type=int, choices=range(11), help='只複核指定場景，省略時核對原十一景')
     args = parser.parse_args()
     assert args.evidence.is_dir() and not args.output.exists()
     assert args.output.parent.is_dir() and args.output.parent.stat().st_uid == 1000
@@ -61,6 +63,14 @@ def main():
             art[row['source_file']] = candidate
     assert len(art) == len(receipt['stages']) == 11
     assert len({x['scene'] for x in receipt['stages']}) == 11
+    street_source = None
+    if args.street_revision:
+        street_source = ROOT/'assets/hd/candidates/street-revision-source.json'
+        street = json.loads(street_source.read_text())
+        assert street['source_file'] == 'I4.XGB' and street['status'] == 'candidate revision; not selected or integrated'
+        candidate = ROOT/'assets/hd/candidates'/street['file']
+        assert sha(candidate) == street['sha256']
+        art['I4.XGB'] = candidate
     args.output.mkdir()
     results = []
     files = {}
@@ -69,6 +79,8 @@ def main():
     overview = Image.new('RGB', (1440, 4 * 236), '#131b27')
     overview_draw = ImageDraw.Draw(overview)
     for row in receipt['stages']:
+        if args.scene is not None and row['scene'] != args.scene:
+            continue
         player = row['player1']
         folder = args.evidence / f'versus-00-{player:02d}'
         assert row['player0'] == 0 and row['scene'] == player and not row['training_modified']
@@ -180,6 +192,8 @@ def main():
     report = {'kind': 'independent original scroll/CPU verification and disposable HD-background comparison',
               'source_receipt_sha256': sha(args.evidence / 'receipt.json'), 'verifier_sha256': sha(Path(__file__)),
               'revision_source_sha256': sha(revision_source) if revision_source else None,
+              'street_revision_source_sha256': sha(street_source) if street_source else None,
+              'scene_filter': args.scene,
               'dependencies': {name: sha(Path(__file__).with_name(name)) for name in
                                ('display_reference.py', 'verify_character_geometry.py', 'verify_stage_sources.py')},
               'stages': results, 'captures': sum(len(x['samples']) for x in results), 'sprites': total_sprites,

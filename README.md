@@ -40,6 +40,8 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 目前收錄 74 張角色／特效圖集、角色登錄清單與屋頂背景；道場及其餘九景候選、蜘蛛女外部稿另標示狀態。內建生成 PNG 保留原 bytes，外部稿的去背處理另作紀錄；逐檔來源與 SHA-256 見 [HD 素材目錄](assets/hd/README.md)。素材上傳不代表完整角色動畫或所有場景已完成。
 
+[街道修稿](assets/hd/candidates/street-i4-v2.png)改善牆面上排塗鴉，另存原 PNG 與[精確提示詞](assets/hd/candidates/street-revision-source.json)。八份同狀態捲動比較已複核；它仍是候選，未接入正式背景。
+
 [蜘蛛女的十五張外部 HD 稿](assets/hd/candidates/spider/README.md)也已收錄。使用者確認的雙手觸地低伏已接入，另作無損鏡像及透明留白裁切；同一張圖對應三組低伏來源。其他稿仍有姿勢差異，未對應動作整格回退原貌。
 
 ![已接入遊戲的屋頂 HD 生成背景](assets/hd/backgrounds/rooftop.png)

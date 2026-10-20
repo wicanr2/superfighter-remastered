@@ -1,0 +1,45 @@
+{
+  "kind": "non-destructive street graffiti candidate revision, not production",
+  "file": "street-i4-v2.png",
+  "sha256": "a44e25713aeced5017d05bbbaad2613fb46674695290d9b8f6ef37c8a425b6bd",
+  "bytes": 2258322,
+  "size": [
+    1922,
+    818
+  ],
+  "source_file": "I4.XGB",
+  "source_sha256": "fa8fcd79b70f030a3fff0cae6106fe0fc915fb02da0eaa6dfaf7250235d7fc7b",
+  "parent_file": "street-i4.png",
+  "parent_sha256": "945fbfa0b4e7632a36d85dadfb33459eefd17f53b2148aadd1022c83d3085beb",
+  "tool": "built-in image_gen",
+  "generated_source": "exec-ee6452dd-b68e-4fb5-a9e8-ec790f40d98f.png",
+  "prompt": "Use case: text-localization / exact in-image lettering correction. Edit the supplied panoramic arcade street painting. Correct ONLY the top line of yellow graffiti on the green wall immediately left of the red-brick house and above the paper notices and two rubbish bins. Replace the current incorrect word sequence with exactly these NINE Latin letters and one space: SUPER STAR. The first word has exactly FIVE letters S U P E R. The second word has exactly FOUR letters S T A R. Render the literal text \"SUPER STAR\" clearly and legibly in loose yellow hand-painted graffiti lettering, in the same position, same size, same baseline and same weathered yellow colour as the current top line. Do not write SLAPER, SLAPOR, SLIPPER, SUPAR or add accents or extra letters. The U must be a clear U, not LA. Treat this as a tiny masked text correction on the wall. Keep ALL other image content, including lower graffiti, paper notices, exact SILVER SLIPPER / GRILL shop-window text, doors, buildings, lamps, hydrant, bins, roofs, litter, foreground floor, framing, lighting and colours unchanged. Keep the complete wide panorama approximately 1920x816, 480:204 ratio, opaque edge-to-edge. No added borders, labels, HUD, fighters, or watermark.",
+  "transparent_background": false,
+  "authorization": "existing HD style B and generated-asset upload scope; repo visibility unchanged",
+  "requested_text": "SUPER STAR",
+  "interpretation_grade": "strong inference from original graffiti glyphs, not decoded game text",
+  "visual_review": "上排可辨讀 SUPER STAR，店名保持 SILVER SLIPPER / GRILL；下方塗鴉及完整構圖仍為候選，需依正常捲動畫面複核。",
+  "repaint_metrics": {
+    "same_dimensions": true,
+    "difference_bbox": [
+      0,
+      0,
+      1922,
+      818
+    ],
+    "mean_abs_RGB_difference": [
+      10.148962979170536,
+      10.320883655727403,
+      9.188050344867943
+    ],
+    "outside_top_graffiti_mean_abs_RGB_difference": [
+      9.858046325012912,
+      10.19876274968261,
+      9.090769217069628
+    ],
+    "outside_pixels_identical": false,
+    "limits": "appearance review only; generated repaint does not preserve all non-text pixels exactly"
+  },
+  "status": "candidate revision; not selected or integrated",
+  "limits": "not exact glyph parity, native integration or formal collection format approval; previous PNG preserved"
+}

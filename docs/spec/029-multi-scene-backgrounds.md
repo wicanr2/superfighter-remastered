@@ -66,3 +66,11 @@ background-scroll-v1 正常選第一人斬、第二人逐一 0..10。兩人同�
 獨立 Python 直接解碼原 XGB、逐點核對背景裁切與全色盤、六層 RAM 重組及 176 份角色 packed 原檔／CPU 覆蓋，並由 CRTC 與完整尾端核對顯示視窗。全部來源通過。background-scroll-preview-v1／v2 各保存 88 張原版／候選比較；以同格相機及顯示起點裁圖，HD 只換背景，人物／陰影／介面仍為原版。這是雙線性全景的軟體比較，不是正式 GPU、全 HD 或完整動畫驗收。
 
 已看十一景全景及各景右端、火車左端，另看石窟／舞廳修稿的原 PNG 及右端比較。首稿石窟欄杆／地板與舞廳舞台／地板交界偏高；兩份內建 imagegen 修稿依原圖改善，仍需構圖複核，另存 v2 原 PNG，沒有覆寫首稿。街道塗鴉字形不同仍待修。原版參考只留本機，修稿與精確提示詞收錄 assets/hd/candidates/background-revisions-source.json。029 仍 DRAFT，沒有因來源或候選比較通過就跳過格式確認或原生接入。
+
+### 街道上排塗鴉修稿
+
+街道另存 [street-i4-v2.png](../../assets/hd/candidates/street-i4-v2.png)，1922×818，生成原 SHA-256 `a44e25713aeced5017d05bbbaad2613fb46674695290d9b8f6ef37c8a425b6bd`。使用內建 image_gen，精確請求與父圖／原檔身分見 [street-revision-source.json](../../assets/hd/candidates/street-revision-source.json)。上排現在可辨讀 SUPER STAR；這是對原塗鴉字形的強推論，沒有從遊戲字串解出。第一張修稿仍未修正字形，留在 workplace/street-revision-v1/rejected-first.png，不加入正式候選清單。
+
+生成式編輯也重畫了文字區外的像素，整圖差異範圍為全幅；區外每色平均絕對差約 9.1–10.2。沒有宣稱原構圖或其他像素完全相同，也不覆寫原 street-i4.png。下方塗鴉及全景細節仍待定版。
+
+`tools/background_scroll_preview.py --scene 2 --street-revision` 只複核本次街道，輸出在 workplace/street-scroll-preview-v1。八份正常取樣、十六個原角色層、原 XGB／色盤／完整層／顯示尾列核對通過；相機兩端 0／159 的比較已目視。這是以同一原相機裁圖、保留原版前景的軟體比較，沒有新增原生背景路徑或正式載入格式。原十一景證據及其餘原稿保持，029 仍 DRAFT，正式接入等待先前格式選擇。

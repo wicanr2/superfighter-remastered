@@ -4,12 +4,13 @@
 
 | 路徑 | 內容 | 接入狀態 |
 |---|---|---|
-| [標題人物與字標](candidates/README.md)、[精確提示詞](candidates/title-source.json) | 黑底紫色人物與紅金「快打至尊」透明字標 | 靜態比較候選；未接正式標題與循環換色，見 [046](../../docs/spec/046-hd-title-menu.md) |
+| [標題人物與字標](candidates/README.md)、[精確提示詞](candidates/title-source.json) | 黑底紫色人物與紅金「快打至尊」透明字標 | 隔離原生候選已驗換色與游標，未接正式標題，見 [046](../../docs/spec/046-hd-title-menu.md) |
 | [characters/manifest.json](characters/manifest.json) | 74 張角色與特效圖集、1516 個登錄鍵 | 現行開發素材；包含四人的二十一份特殊技光效。完整動畫及各角色驗收範圍見 [CONTEXT](../../CONTEXT.md) |
 | [backgrounds/rooftop.png](backgrounds/rooftop.png) | 屋頂背景，1923×818 | 已接原生；原版參考色號與色盤不隨 Git 提供 |
 | [道場候選整理](candidates/README.md) | 道場 PNG、來源雜湊、正常畫格證據與精確提示詞 | 素材已整理；[多場景格式](../../docs/spec/029-multi-scene-backgrounds.md)尚待確認，首輪先跳過接入 |
 | [其餘九景](candidates/README.md)、[來源與提示詞](candidates/backgrounds-source.json) | 廳堂、叢林、街道、宮殿、舞廳、港口、石窟、冰原、火車的首輪稿 | 原 scene 與兩個 camera 已由普通雙打補證；保留候選，HD 捲動及正式接入仍未驗 |
 | [石窟修稿](candidates/grotto-i10-v2.png)、[舞廳修稿](candidates/auditorium-i8-v2.png) | [來源與精確提示詞](candidates/background-revisions-source.json)，保留首輪原 PNG | 正常捲動比較後改善底線位置，仍未定版或接入 |
+| [街道上排塗鴉修稿](candidates/street-i4-v2.png) | [來源與精確提示詞](candidates/street-revision-source.json)，1922×818 生成原 PNG | 上排 SUPER STAR 及八份同狀態捲動比較已複核；其餘塗鴉／構圖仍待定版，未接原生 |
 | [candidates/spider-coverage.png](candidates/spider-coverage.png) | 蜘蛛女全覆蓋紫色連身衣比較稿，1390×1132 | 舊造型比較保留，現行低伏改採使用者後續確認的外部稿 |
 | [蜘蛛女外部候選](candidates/spider/README.md) | 第一批五張圖集及第二批十張補稿，均已本地去背 | normal-01 已獲確認並接三組一般低伏來源；其餘未接 |
 | [蜘蛛女低伏來源](characters/spider-low-guard-source.json) | 已確認外部稿、無損鏡像、透明留白裁切與三十鍵來源 | [034 限定接入](../../docs/spec/034-spider-low-guard.md)，一張靜態近似稿，未對應動作原貌回退 |

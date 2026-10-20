@@ -13,7 +13,7 @@
     "sources": 21,
     "complete_HD": false
   },
-  "pngs": 105,
+  "pngs": 106,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -1428,6 +1428,25 @@
       "sha256": "aef0c560f16f92cc86adc6ecdea9f9682ab0ccdf68857792852130ce9326be55",
       "bytes": 5012,
       "status": "title-candidate-provenance"
+    },
+    {
+      "file": "candidates/street-i4-v2.png",
+      "sha256": "a44e25713aeced5017d05bbbaad2613fb46674695290d9b8f6ef37c8a425b6bd",
+      "bytes": 2258322,
+      "size": [
+        1922,
+        818
+      ],
+      "status": "candidate-revision-not-integrated",
+      "tool": "built-in imagegen",
+      "generated_source": "exec-ee6452dd-b68e-4fb5-a9e8-ec790f40d98f.png",
+      "source_file": "I4.XGB"
+    },
+    {
+      "file": "candidates/street-revision-source.json",
+      "sha256": "98cdb41aad76e5427f63eefb75c19151c296d6dfaaa794e2fc60fc117b372381",
+      "bytes": 2981,
+      "status": "candidate-revision-provenance"
     }
   ],
   "original_game_data_included": false

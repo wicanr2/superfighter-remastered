@@ -872,3 +872,12 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - CONTEXT／WORKLIST／046／README 已把可見游標改為限定通過，RESEARCH-LOG 保存根因及來源；沒有新增美術或公開原游標擷取。材質與正式載入仍待原問題回答，046 保持 DRAFT，不新建 Release。最終稽核、容器清理與推送另記。
 - title-native-cursor-v2/final-audit.json 通過：三份新審查共二十六張擷取、十二份新增來源及舊 165 份標題證據相符；公開截圖引用的歷史報告 hash 保持。128 原檔、1719 執行器來源、正式 i64、105 PNG／117 catalog／121 檔、46 份編譯輸入、四平台程式、首版八包及原曲影片保持。170 個 README 相對連結與工具索引通過，無原版或 raw 入 Git，擁有權／誤建目錄通過，本專案容器已清空。
 - 補驗提交 `e9a0f2f76f6aabc509ad7f47d3675e5900e0a15e` 已推送 origin/main，遠端完整提交核對相同；首版 tag 仍為 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段為文件收尾，046 視覺問題保持待回覆，不新增 Release 或重複提問。
+
+## 2026-10-21：街道候選上排塗鴉修稿
+
+- 上輪游標補驗已推送，屬於進展。本輪回到缺少的 HD 內容，核對外部蜘蛛女目錄仍為既有兩批十五張，未按檔名重新接入。029／046 原問題未回答，不擴張為格式或定版同意。
+- 依既定 B 畫風與素材上傳授權，以內建 imagegen 修街道上排塗鴉。第一張仍出現錯誤字形，保留 street-revision-v1/rejected-first.png；第二張可辨讀 SUPER STAR，另存 street-i4-v2.png，沒有覆寫舊圖。SUPER STAR 為原圖字形的強推論，未從原字串解出；下方塗鴉仍未核對，不能稱全圖文字完成。
+- 新 PNG 為 1922×818，SHA a44e25713aeced5017d05bbbaad2613fb46674695290d9b8f6ef37c8a425b6bd。生成工具也重畫區外像素，整圖差異非零，區外各色平均絕對差約 9.1–10.2；來源清單保存量測及精確請求，不宣稱只有文字像素改變。import_street_revision.py 保存候選原 bytes、兩次請求及舊 117 筆 catalog 作核對。
+- 街道八份正常捲動來源、十六個角色 packed 原檔／CPU 層、原 XGB／色盤／完整圖層／CRTC／尾列通過。scene 2／相機 0 與 159 的新比較已目視；前景仍為原版，屬於軟體構圖比較，不是原生 HD 接入。background_scroll_preview.py 新增明示街道修稿及單景篩選，不更動正式程式。
+- 新原 PNG 與精確提示詞收錄 assets/hd/candidates，catalog 增為 106 PNG／119 筆／123 檔、135,498,255 payload bytes，舊 117 筆、1516 鍵／74 圖集保持。README／素材索引／029／現況表已更新；另修素材索引把標題誤稱尚無原生候選的舊敘述。正式 bin、首版八包與影片保持，收尾稽核與推送另記。
+- street-revision-v1/final-audit.json 通過：八份新比較、十六個原角色層、相機 0／159、生成原 bytes、精確提示詞與舊 117 筆素材保持。175 個 README 相對連結與新檔索引通過；128 原檔、1719 執行器來源、正式 i64、46 份編譯輸入、四平台程式、首版八包及原曲影片不變。未公開原版、raw 或比較圖；UID／誤建目錄通過，本專案容器已清空。
