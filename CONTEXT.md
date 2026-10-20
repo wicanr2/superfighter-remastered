@@ -121,6 +121,7 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ### 目前鬼丸勝利整合
 
+- 接入提交 `3c899a8f70ef68f3624db8e5cc6c17637509ded8` 已推送 `origin/main` 並由 `ls-remote` 核對。README 的鬼丸 HD 實機截圖與全部圖片均有 Git 追蹤入口，不再嵌入只存在於 workplace 的圖片。
 - [規格 031](docs/spec/031-onimaru-victory.md)限定 CONFORMED。2172×724 四格原 PNG、精確內建 imagegen 請求與 DRAFT 審查在 `onimaru-victory-art-v1` 及 `onimaru-victory-evidence-review.json`。候選保留舊 1093 鍵，現行 1165 鍵／61 PNG／十六來源，亦已同步至 `assets/hd/characters`。
 - `onimaru-victory-core-v1` 的 12,272 成對邊界、29 個 WIN 取樣與五張原檔重組通過，原狀態與即時 RGB 相同。Linux／Wine 與缺件三案例各七張完整通過；各案例內恢復逐點一致，GPU 勝負字圖各 5,943 變動點、1,701 金色實心點，另目視。不稱跨平台同狀態或完整動畫。
 - 完整 internal／cmd 測試及 go vet 通過，記錄為 `onimaru-victory-checks-v3.log`；測試只加 GOMEMLIMIT=1GiB，容器 1.5GiB 的事件沒有 OOM。v1 測資錯誤及 v2 signal:killed 保留，後者未保留終止原因，不宣稱已證實 OOM。

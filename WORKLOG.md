@@ -497,3 +497,4 @@
 - 本輪沒有改共用 dosgolem、原版 EXE、遊戲規則／速度、設定格式或快捷。原版資料、原貌對照、分層、私有執行器與研究收據留本機；未建立 Release 或正式封包。029 仍為 DRAFT，蜘蛛女仍保留已選連身衣及原生成拒絕，不重問已確認選項。
 - 收尾 onimaru-victory-integration-audit.json 通過：259 份追蹤檔、128 原檔、1719 執行器來源、37 份編譯輸入、三個七張正常 GUI、12,272 成對邊界、64 張生成 PNG 及兩張截圖，共 66 個受版控 PNG。457 個本機 Markdown 引用、README 的 57 個 Git 相對連結與四張圖片通過，README 無 workplace 圖片連結。來源與圖片逐檔 SHA-256、Python 語法、root-owned 檔案及錯誤 .md 目錄檢查通過。
 - 本輪具名 kdzz-onimaru 容器均已結束並移除，沒有新增或替換映像；其他專案容器維持原狀。原生成 PNG、精確內建 imagegen 提示詞、DRAFT 審查及歷史失敗紀錄留在本機原位置，可從 031 與本輪工作紀錄回查。
+- 接入提交 3c899a8f70ef68f3624db8e5cc6c17637509ded8 已成功推送 origin/main，ls-remote 核對相同完整提交。本機工作樹乾淨，README 的 HD 實機截圖、角色新圖、清單與程式均已包含於此遠端提交；未推送原版資料或建立 Release。
