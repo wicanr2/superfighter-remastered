@@ -467,3 +467,5 @@
 - 實際收錄 assets/hd 共 66 檔，含 63 PNG、角色 manifest、逐檔 catalog 及 README。影像與角色清單共 79,479,947 bytes。60 張角色圖集均依 SHA-256 回查既有生成來源，三張背景／造型圖亦與原生成檔相同，沒有提交原版參考色號、色盤或原圖。
 - Pillow 11.3.0 解碼與 PNG 完整性、catalog 大小／尺寸／雜湊、全部複製來源、1093 個登錄鍵、66 檔精確收錄範圍及 523 個本機 Markdown 引用通過。以 assets/hd/characters 實際載入的既有 TestCharacterPackSourceSelectionAndAtomicRejection 通過，未跳過，16.28 秒，證明目前讀取端可用這份包並維持來源選擇及損壞拒絕。
 - README 改列已收錄 HD 圖與角色包，加入屋頂及鳳凰 WIN 原圖預覽，仍標示本機整合截圖、原版資料及屋頂參考層的邊界。AGENTS 與 CONTEXT 記錄本次新授權，歷史 WORKLOG、生成來源與舊 rights 欄位保留原日期事實，未改寫舊圖或宣稱完整 HD 完成。
+- 素材提交 4209aad83089c7f74c5ef853a4f1d865e6739f78 已成功推送 origin/main，ls-remote 核對相同完整提交，當時本機工作樹乾淨。提交前核對只有 66 個素材檔及四份既有文件，沒有原版或其他工作區路徑。全工作樹 find 的 root-owned 檔案與錯誤 .md 目錄檢查無結果。
+- 本輪所有素材、圖片與 Go 驗證容器均以 --rm 結束，沒有新增映像或持續工作；檢查時另有其他專案的 sc-cht-i010-reg-l3-18172 容器，未停止或修改。GitHub API 及匿名連線檢查仍受網路限制，未聲稱另驗可見性欄位，也未改變遠端可見性。沒有建立 Release、重建二進位或修改正式玩法。
