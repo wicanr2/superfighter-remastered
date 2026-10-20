@@ -2,13 +2,13 @@
 
 更新日期：2026-10-20。此檔為唯一現況，工作順序見 [WORKLIST.md](WORKLIST.md)，穩定規則與文件索引見 [AGENTS.md](AGENTS.md)。
 
-目前工作樹為 `/home/anr2/cht/快打至尊/superfighter-remastered`，使用 `main` 追蹤 `origin/main`。使用者已建立 [GitHub 儲存庫](https://github.com/wicanr2/superfighter-remastered)，遠端核對已包含搬移前最新提交 `69f91cd`。父目錄程式與文件只保留舊快照；後續編輯在本工作樹進行。
+目前工作樹為 `/home/anr2/cht/快打至尊/superfighter-remastered`，使用 `main` 追蹤 `origin/main`。使用者已建立 [GitHub 儲存庫](https://github.com/wicanr2/superfighter-remastered)，遠端已建立並上傳來源，後續提交與核對見 WORKLOG。父目錄程式與文件只保留舊快照；後續編輯在本工作樹進行。
 
-使用者後續明確要求「HD素材上傳」。[assets/hd/README.md](assets/hd/README.md)收錄 63 張生成 PNG 及現行角色清單，包含 60 張角色／特效圖集、屋頂、道場候選與蜘蛛女已選定造型；逐檔身分見 [catalog.json](assets/hd/catalog.json)。這次授權取代以下舊切片的 HD 生成圖只留本機限制，原版檔案、原版色號／色盤、原圖、私有執行器與研究收據仍不上傳。沒有改變儲存庫可見性、原版資料權利或 HD 完成標準。
+使用者後續明確要求「HD素材上傳」。[assets/hd/README.md](assets/hd/README.md)收錄 64 張生成 PNG 及現行角色清單，包含 61 張角色／特效圖集、屋頂、道場候選與蜘蛛女已選定造型；逐檔身分見 [catalog.json](assets/hd/catalog.json)。這次授權取代以下舊切片的 HD 生成圖只留本機限制，原版檔案、原版色號／色盤、原圖、私有執行器與研究收據仍不上傳。沒有改變儲存庫可見性、原版資料權利或 HD 完成標準。
 
-素材及清單共 79,479,947 bytes，整個素材目錄 66 檔。所有 PNG、來源雜湊、尺寸及角色清單均核對，523 個本機 Markdown 引用通過；現有角色來源選擇與損壞拒絕測試以 `assets/hd/characters` 實際載入通過，未跳過。沒有改遊戲程式或新增已完成的角色／場景。
+素材及清單共 80,516,869 bytes，整個素材目錄 67 檔。所有 PNG、來源雜湊、尺寸及角色清單均核對；鬼丸首勝 031 已通過限定接入，仍不代表完整角色／場景完成。README 的圖片與相對連結另比對 Git 追蹤清單，HD 整合截圖收錄於 [docs/screenshots/](docs/screenshots/)，原貌對照及原始收據保留本機。
 
-HD 素材提交 `4209aad83089c7f74c5ef853a4f1d865e6739f78` 已成功推送 `origin/main` 並由 `ls-remote` 核對。原版與候選的接入限制不因上傳改變，後續 HD 製作仍依工作清單。
+首批 HD 素材提交 `4209aad83089c7f74c5ef853a4f1d865e6739f78` 已成功推送 `origin/main` 並由 `ls-remote` 核對。原版與候選的接入限制不因上傳改變，後續 HD 製作仍依工作清單。
 
 ## 已確認方向
 
@@ -44,13 +44,14 @@ HD 素材提交 `4209aad83089c7f74c5ef853a4f1d865e6739f78` 已成功推送 `orig
 | 蜘蛛女 HD | 連身衣造型已選定，圖集生成受阻 | 定版圖與使用者選擇保存在 spider-art-v1/accepted-design.json；全覆蓋連身衣十二格稿亦被工具於輸出階段拒絕，沒有 PNG，未反覆重試或變更選擇。正常 8／4 的 124 格與 WIDOW／57×11 姓名已解，暫保原貌，45 組／72 槽仍待製作 |
 | 子彈勝利 HD | 已接原生，028 限定 CONFORMED | 1021 鍵／59 PNG，新增四組／72 WIN 入口，舊 949 鍵不變；6,018 成對邊界、11 個 WIN 取樣及五張來源通過。Linux／Wine 各七張勝利、切換與下一回合清除通過，缺件七張回退。完整 Go 測試、真實字圖及四平台 37 份編譯來源通過；第二人／完整動畫另驗 |
 | 鳳凰勝利 HD | 已接原生，030 限定 CONFORMED | 1093 鍵／60 PNG，新增三組／72 WIN 入口，舊 1021 鍵不變；5,952 成對邊界、八個 WIN 取樣及四張來源通過。Linux／Wine 各七張與缺件七張回退通過，PHO HUANG WIN、切換、下一回合清除及四平台 37 份來源均核對；第二人／完整動畫另驗 |
+| 鬼丸勝利 HD | 已接原生，031 限定 CONFORMED | 1165 鍵／61 PNG，新增四組／72 WIN 入口，舊 1093 鍵不變；12,272 成對邊界、29 個取樣與五張來源通過。Linux／Wine 各七張及缺件七張完整通過，ONIMALU WIN、切換、下一回合、完整測試／vet 與四平台 37 份來源均核對；第二人／完整動畫另驗 |
 | 道場 HD 背景 | 029 DRAFT，素材格式確認待回答 | dojo-art-v1 保存 1922×818 原 PNG 與精確請求；正常 0／0 的 124 格、scene 0、背景 RAM／兩人 bytes 及八份色盤通過。建議新版包自動切換屋頂／道場並相容舊包，確認前不接 production；來源身分見 dojo-source-review-v1.json |
 | 原生效能診斷 | v2／v3 已判讀，未修改正式程式 | v2 的 20 秒區間推進 875 萬步／14 格，Wine／OpenGL 原生圖形呼叫為主。v3 指定 DirectX 推進 1000 萬步／16 格，cgocall 包含視窗事件與游標呼叫；單次區間不證明解決速度。證據在 desktop-performance-v3/analysis.json |
 | 顯示起點修正 | 已接原生，015 限定 CONFORMED | Linux／Wine 各十張開場、Linux 對戰十五張與舊素材十一張全部核對；起點第 7／11／12 列及可見尾端逐格正確，原貌與 HD 共用映射 |
 | AI 研究 | 靜態載入與決策鏈已定位 | AIDATA 為 3×192 bytes，策略 byte 乘 16 進角色輸入序列；CHEAT 檔是 169-byte ASCII，未替換正常資料或宣稱實跑效果 |
 | 歷史資料 | Markdown 與快照已保存 | 青衫及 SP Moves、十張原圖、八名角色招式比較及青衫另載三頭目；差異並列，來源雜湊可回查 |
 | 原版版本與玩法 | 部分已觀察 | 包內 README 自述 v2.0，實跑帶第三方啟動殼；本包是目前基準，不能宣稱未修改原始發行版；控制方式仍在核對 |
-| 平台與發布 | Windows／macOS／Linux 已定 | 鳳凰首勝整合的四份二進位核對 37 份編譯輸入後原封移入 bin，記錄為 phoenix-victory-build-v1/promotion.json。舊子彈首勝四份保留於 bullet-victory-build-v1/bin，其餘歷史收據仍綁定各自舊版。未作 Windows／macOS 真機、簽章或正式封包；Wine 不代替真機 |
+| 平台與發布 | Windows／macOS／Linux 已定 | 鬼丸首勝四份二進位核對 37 份編譯輸入後原封移入 bin，記錄為 onimaru-victory-build-v1/promotion.json。前版四份保留於 phoenix-victory-build-v1/bin；歷史收據仍綁定各自版本。未作 Windows／macOS 真機、簽章或正式封包，Wine 不代替真機 |
 
 ## 固定輸入
 
@@ -102,11 +103,11 @@ sf
 
 ## 待確認決策與下一步
 
-十一人選角、小丑 026、印第安喬 027、子彈首勝 028 及鳳凰首勝 030 已通過限定範圍；十人一般來源共 720 槽、569 組不同 bytes。蜘蛛女已選定全覆蓋連身衣，但十二格稿仍被圖片工具拒絕，保留決定及錯誤，暫用原貌。道場候選背景與來源已備妥，029 的相容多場景包確認待回答；確認前不改格式。其餘勝利、完整動畫、替代色盤及標題／選角／結果仍待做。魔王單打過關與結局另驗。019 的 Wine 下一回合與第二人法蘭克的 Wine 勝利仍未通過，不盲目重跑長場。使用者目標仍是「完成快打至尊HD」，不能以選角或一般來源登錄齊全宣稱完成。
+十一人選角、小丑 026、印第安喬 027、子彈首勝 028、鳳凰首勝 030 及鬼丸首勝 031 已通過限定範圍；十人一般來源共 720 槽、569 組不同 bytes。蜘蛛女已選定全覆蓋連身衣，但十二格稿仍被圖片工具拒絕，保留決定及錯誤，暫用原貌。道場候選背景與來源已備妥，029 的相容多場景包確認待回答；確認前不改格式。其餘勝利、完整動畫、替代色盤及標題／選角／結果仍待做。魔王單打過關與結局另驗。019 的 Wine 下一回合與第二人法蘭克的 Wine 勝利仍未通過，不盲目重跑長場。使用者目標仍是「完成快打至尊HD」，不能以選角或一般來源登錄齊全宣稱完成。
 
 使用者指定的[說明書頁面](https://chiuinan.github.io/game/game/intro/ch/c51/sf.htm)及兩張圖片已存檔，版本自述為 1.1。原生入口目前採西側面鍵拳、南側面鍵腳與八方向；Start／Esc 暫停前端，沒有把 Esc 送原版觸發說明書記載的補血。鍵鼠正常路徑已驗，實體手把另驗；完整手把規格仍有未驗部分。
 
-HD 採 B「街機手繪」。現行群組為 `hd-characters-phoenix-victory-v1`，共 60 張透明圖集、1093 個姿態鍵：720 個一般來源槽、13 個第二色盤特效鍵、360 個 WIN 入口。一般來源共 569 組不同 bytes；WIN 對應斬／法蘭克／薩爾可夫／子彈／鳳凰十九張不同姿態。來源與提示詞留各自 art 目錄，登錄保留原 PNG bytes。來源槽齊全不等於完整動畫已驗；C0h 同時翻轉、頂部裁切、受擊替代色盤及剩餘介面待補。正式倍率、像素比例與預設模式尚未定版。
+HD 採 B「街機手繪」。現行群組為 `hd-characters-onimaru-victory-v1`，共 61 張透明圖集、1165 個姿態鍵：720 個一般來源槽、13 個第二色盤特效鍵、432 個 WIN 入口。一般來源共 569 組不同 bytes；WIN 對應斬／法蘭克／薩爾可夫／子彈／鳳凰／鬼丸二十三張不同姿態。來源與提示詞留各自 art 目錄，登錄保留原 PNG bytes。來源槽齊全不等於完整動畫已驗；C0h 同時翻轉、頂部裁切、受擊替代色盤及剩餘介面待補。正式倍率、像素比例與預設模式尚未定版。
 
 目前 dosgolem 獨立副本有 1719 份來源，前版 1715 份 bytes 不變，新增四份已驗顯示 API 與測試。舊 manifest 保存於 `dosgolem-patched-manifest-v2.json`，現行身分見 `dosgolem-patched-manifest.json`。四個二進位的實際編譯身分見 `bin/*.build.json`；目前勝負切片以 `victory-core-compat-v2`、`native-victory-v1` 及 `windows-victory-v1` 為準。顯示修正基底的四個二進位與 30 份編譯輸入另存 `native-display-opening-v2/build-baseline`，舊收據保留各自版本身分。
 
@@ -118,7 +119,14 @@ AI 可由外部策略表調整的靜態證據已足夠回答可行性；完整�
 
 ## 現行證據入口
 
-### 目前鳳凰勝利整合
+### 目前鬼丸勝利整合
+
+- [規格 031](docs/spec/031-onimaru-victory.md)限定 CONFORMED。2172×724 四格原 PNG、精確內建 imagegen 請求與 DRAFT 審查在 `onimaru-victory-art-v1` 及 `onimaru-victory-evidence-review.json`。候選保留舊 1093 鍵，現行 1165 鍵／61 PNG／十六來源，亦已同步至 `assets/hd/characters`。
+- `onimaru-victory-core-v1` 的 12,272 成對邊界、29 個 WIN 取樣與五張原檔重組通過，原狀態與即時 RGB 相同。Linux／Wine 與缺件三案例各七張完整通過；各案例內恢復逐點一致，GPU 勝負字圖各 5,943 變動點、1,701 金色實心點，另目視。不稱跨平台同狀態或完整動畫。
+- 完整 internal／cmd 測試及 go vet 通過，記錄為 `onimaru-victory-checks-v3.log`；測試只加 GOMEMLIMIT=1GiB，容器 1.5GiB 的事件沒有 OOM。v1 測資錯誤及 v2 signal:killed 保留，後者未保留終止原因，不宣稱已證實 OOM。
+- 四份二進位與 37 份編譯輸入原封移入 bin，收據為 `onimaru-victory-build-v1/promotion.json`；舊鳳凰版保留於 `phoenix-victory-build-v1/bin`。HD 圖與清單的保存變更見 `onimaru-victory-asset-promotion.json`，舊 63 PNG 不變。正常來源與候選檢查的本機工具位於 workplace 的 onimaru-victory 前綴檔案。
+
+### 鳳凰勝利整合基底
 
 - [規格 030](docs/spec/030-phoenix-victory.md)限定 CONFORMED。三格原 PNG、精確內建請求、原檔及初始候選來源綁定於 `phoenix-victory-evidence-review.json`。1093 鍵／60 PNG 保留舊 1021 鍵；一般、特效及前四人的 WIN 不改。
 - `phoenix-victory-core-v1` 的 5,952 個成對邊界、八個 WIN 取樣及四張原檔重組通過。Linux／Wine 與缺件三案例各七張通過，勝利切換及下一回合清除完整。各平台內字圖變動 6,881 點、金色實心 1,970 點，另目視，不稱跨平台同狀態。

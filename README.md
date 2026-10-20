@@ -10,13 +10,13 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 斬與法蘭克已對應全部 144 個一般來源槽、13 組第二色盤特效，以及 WIN 圖像的 144 個入口。WIN 入口對應七張不同勝利姿態，與一般動作分開辨識；登錄齊全不代表完整動畫已驗。介面基底的 Linux 案例通過 16 項檢查，Windows Wine 的斬、法蘭克案例各通過 16 項，包含特效、介面及同狀態切換。兩平台的法蘭克案例另驗到實際扣血。完整動畫與其他角色仍未完成，製作契約見[角色](docs/spec/008-hd-characters.md)、[特效](docs/spec/009-hd-effects.md)、[戰鬥介面](docs/spec/010-hd-battle-hud.md)及[勝利姿態](docs/spec/017-victory-pose-banks.md)。
 
-原有八名角色、小丑與印第安喬的一般來源已接入原生，實測範圍見[薩爾可夫](docs/spec/018-sarkov-hd.md)、[子彈](docs/spec/020-bullet-hd.md)、[鳳凰](docs/spec/021-phoenix-hd.md)、[鬼丸](docs/spec/022-onimaru-hd.md)、[嵐](docs/spec/023-lan-hd.md)、[金太極](docs/spec/024-kim-hd.md)、[小丑](docs/spec/026-clown-hd.md)與[印第安喬](docs/spec/027-joe-hd.md)。目前群組共 1093 個鍵，包含十人的一般來源、既有特效與五人的 WIN 入口。[子彈首勝](docs/spec/028-bullet-victory.md)與[鳳凰首勝](docs/spec/030-phoenix-victory.md)已驗 Linux／Wine 完整切片；薩爾可夫的 Wine 下一回合仍未驗完。蜘蛛女、完整動畫、替代色盤、其他角色快捷及其餘場景仍在製作。
+原有八名角色、小丑與印第安喬的一般來源已接入原生，實測範圍見[薩爾可夫](docs/spec/018-sarkov-hd.md)、[子彈](docs/spec/020-bullet-hd.md)、[鳳凰](docs/spec/021-phoenix-hd.md)、[鬼丸](docs/spec/022-onimaru-hd.md)、[嵐](docs/spec/023-lan-hd.md)、[金太極](docs/spec/024-kim-hd.md)、[小丑](docs/spec/026-clown-hd.md)與[印第安喬](docs/spec/027-joe-hd.md)。目前群組共 1165 個鍵，包含十人的一般來源、既有特效與六人的 WIN 入口。[子彈首勝](docs/spec/028-bullet-victory.md)、[鳳凰首勝](docs/spec/030-phoenix-victory.md)與[鬼丸首勝](docs/spec/031-onimaru-victory.md)已驗 Linux／Wine 完整切片；薩爾可夫的 Wine 下一回合仍未驗完。蜘蛛女、完整動畫、替代色盤、其他角色快捷及其餘場景仍在製作。
 
 十一人選角已加入蜘蛛女、小丑、印第安喬，單打、雙打皆可選，並保留原版對戰規則。Linux／Wine 已驗正常選角與首戰操作；魔王完整單打過關與結局仍待驗，詳見[選角範圍](docs/spec/025-boss-selection.md)。
 
 ## HD 素材
 
-目前收錄 60 張角色／特效圖集、角色登錄清單與屋頂背景；道場候選及蜘蛛女定版造型另標示狀態。全部生成 PNG 保留原 bytes，逐檔來源與 SHA-256 見 [HD 素材目錄](assets/hd/README.md)。素材上傳不代表完整角色動畫或所有場景已完成。
+目前收錄 61 張角色／特效圖集、角色登錄清單與屋頂背景；道場候選及蜘蛛女定版造型另標示狀態。全部生成 PNG 保留原 bytes，逐檔來源與 SHA-256 見 [HD 素材目錄](assets/hd/README.md)。素材上傳不代表完整角色動畫或所有場景已完成。
 
 ![已接入遊戲的屋頂 HD 生成背景](assets/hd/backgrounds/rooftop.png)
 
@@ -26,13 +26,17 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 ## 目前整合畫面
 
+![鬼丸正常首勝的原生 HD 整合畫面](docs/screenshots/onimaru-victory-hd.png)
+
+Linux 原生版由普通選角、移動與拳擊取得鬼丸首勝，顯示 `ONIMALU WIN`。這個案例的 Linux／Wine 切換與下一回合清除均已核對；這是 HD 整合截圖，尚不代表完整勝利動畫。[來源與範圍](docs/spec/031-onimaru-victory.md)。
+
 ![兩人獨立手把指派與四格快捷設定](docs/screenshots/gamepad-settings.png)
 
 Windows 原生程式在 Wine 中顯示的設定介面，擷取於原版核心執行前。可分別指派兩人的手把，逐角色設定 R1／R2／L1／L2。擷取時未連接實體手把。[截圖來源](docs/screenshots/source.json)。
 
 十一人選角、十名角色的一般 HD、部分勝利姿態與同狀態切換已按各自範圍驗證。角色圖集見上方 HD 素材；正常玩家路徑、Linux／Wine 差異及未完成項集中於 [目前狀態](CONTEXT.md)與[驗證矩陣](VERIFICATION-MATRIX.md)。
 
-包含原版像素的對戰截圖、分層與原始收據保存在本機研究工作區。GitHub 首頁只引用已納入版控的圖片；HD 素材預覽與上方的設定介面截圖分開標示。
+原貌對照、分層與原始收據保存在本機研究工作區。GitHub 首頁的 HD 整合截圖與素材預覽均引用已納入版控的圖片，來源雜湊見[截圖紀錄](docs/screenshots/source.json)。
 
 ## 建置與執行
 
@@ -65,7 +69,7 @@ bash tools/build_desktop.sh
 
 本機屋頂試作素材已備妥時，可加上 `-hd-assets workplace/hd-rooftop-study`，再按「原貌／HD 背景」切換。素材準備與驗證見[背景規格](docs/spec/006-rooftop-background.md)。沒有素材或場景未對應時顯示原貌。
 
-角色與特效試作再加上 `-hd-characters assets/hd/characters`，按「原貌／HD 角色」切換。此群組保留既有基底，包含十人的一般來源及五人的 WIN 入口，與本機 `workplace/hd-characters-phoenix-victory-v1` 的 PNG 及清單相同。背景、兩名角色、來源與圖層全部符合才顯示 HD，缺動作或未知色盤時整張回退。新版仍接受舊版角色素材。基底準備工具為 `tools/prepare_hd_characters.py`，勝利姿態登錄使用 `tools/prepare_victory_characters.py`，一般角色擴充使用 `tools/prepare_character_extension.py`。
+角色與特效試作再加上 `-hd-characters assets/hd/characters`，按「原貌／HD 角色」切換。此群組保留既有基底，包含十人的一般來源及六人的 WIN 入口，與本機 `workplace/hd-characters-onimaru-victory-v1` 的 PNG 及清單相同。背景、兩名角色、來源與圖層全部符合才顯示 HD，缺動作或未知色盤時整張回退。新版仍接受舊版角色素材。基底準備工具為 `tools/prepare_hd_characters.py`，勝利姿態登錄使用 `tools/prepare_victory_characters.py`，一般角色擴充使用 `tools/prepare_character_extension.py`。
 
 含特效的新版群組也啟用高解析生命、計時、名字、玩家標記、勝場與地面陰影，來源驗證失敗時整張回退。舊版 1 素材保留原貌介面、特效與陰影。
 

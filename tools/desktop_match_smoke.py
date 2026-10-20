@@ -16,8 +16,8 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--wine", action="store_true")
     parser.add_argument("--attacker", type=int, choices=(0, 1), default=0, help="以普通輸入取得首勝的玩家")
-    parser.add_argument("--player0", type=int, choices=(0, 1, 2, 3), default=0,
-                        help="正常選角的第一人，0 為斬、1 為薩爾可夫、2 為子彈、3 為鳳凰；第二人為法蘭克")
+    parser.add_argument("--player0", type=int, choices=range(8), default=0,
+                        help="正常選角的第一人，使用原八人索引 0..7；第二人為法蘭克")
     parser.add_argument("--hd-characters", type=Path, default=Path("/project/workplace/hd-characters-study-v7"))
     parser.add_argument("--first-round-only", action="store_true",
                         help="只驗正常首勝後的 HD 勝場及同狀態切換，不作完整比賽驗收")
@@ -176,9 +176,10 @@ def main():
             wait(lambda s: s["core"]["steps"] >= before + 1_000_000, progress=True)
         key("Return")
         wait(lambda s: s["core"]["steps"] >= 85_000_000, progress=args.player0 == 1)
-        for _ in range(4 - args.player0):
+        second_direction = "Right" if args.player0 <= 4 else "Left"
+        for _ in range(abs(4 - args.player0)):
             before = state()["core"]["steps"]
-            key("Right")
+            key(second_direction)
             wait(lambda s: s["core"]["steps"] >= before + 1_000_000)
         key("Return")
         wait(lambda s: s["core"]["battle"] and s["core"]["frames"] > 8, progress=args.player0 == 1)

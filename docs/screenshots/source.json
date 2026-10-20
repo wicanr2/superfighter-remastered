@@ -6,5 +6,20 @@
   "source_sha256": "8bae1e5e969799e082fca5ca315579ae09ce0bbbc4c6c1bb199fad972530e44f",
   "tool": "tools/windows_native_smoke.py",
   "platform": "Windows executable under Wine 9, not hardware gamepad acceptance",
-  "font": "Noto Sans CJK TC, SIL OFL 1.1; internal/desktop/assets/source.json"
+  "font": "Noto Sans CJK TC, SIL OFL 1.1; internal/desktop/assets/source.json",
+  "hd_captures": [
+    {
+      "kind": "normal native HD integration screenshot; derivative game presentation, not original-mode image",
+      "file": "onimaru-victory-hd.png",
+      "sha256": "824aea2202f87759c898ec545fb0d5e82cb6bd670137d6499aea6c79d99abbf7",
+      "source": "workplace/native-onimaru-victory-v1/victory-hd.png",
+      "platform": "Linux amd64 in Docker Xvfb; not native Windows/macOS hardware acceptance",
+      "receipt_sha256": "b4ad3cfb7196a5ac57d50ec8c3251a1e198be0bd388454e1ee241e7a08f0969c",
+      "comparison_sha256": "1aeb6d555e68f5f10ce358d1655700cc6d2c76fb885a1b20ebb4b29141cd2399",
+      "binary_sha256": "dc1a076a9cca30af94f57923ee23f40251a11d8a5ed401ebef89daaaf583485f",
+      "character_manifest_sha256": "2be08986ec4903929889205eabf64091ef20ae8330238e9203bb8c43ee6c726e",
+      "authorization": "user requested HD upload and GitHub-visible README pictures; original-mode captures and raw receipts remain local",
+      "limits": "first-player normal first victory; not complete animation, physical controllers or full HD acceptance"
+    }
+  ]
 }

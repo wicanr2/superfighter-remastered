@@ -469,3 +469,31 @@
 - README 改列已收錄 HD 圖與角色包，加入屋頂及鳳凰 WIN 原圖預覽，仍標示本機整合截圖、原版資料及屋頂參考層的邊界。AGENTS 與 CONTEXT 記錄本次新授權，歷史 WORKLOG、生成來源與舊 rights 欄位保留原日期事實，未改寫舊圖或宣稱完整 HD 完成。
 - 素材提交 4209aad83089c7f74c5ef853a4f1d865e6739f78 已成功推送 origin/main，ls-remote 核對相同完整提交，當時本機工作樹乾淨。提交前核對只有 66 個素材檔及四份既有文件，沒有原版或其他工作區路徑。全工作樹 find 的 root-owned 檔案與錯誤 .md 目錄檢查無結果。
 - 本輪所有素材、圖片與 Go 驗證容器均以 --rm 結束，沒有新增映像或持續工作；檢查時另有其他專案的 sc-cht-i010-reg-l3-18172 容器，未停止或修改。GitHub API 及匿名連線檢查仍受網路限制，未聲稱另驗可見性欄位，也未改變遠端可見性。沒有建立 Release、重建二進位或修改正式玩法。
+
+## 2026-10-20 接續鬼丸首勝 HD
+
+- 使用者要求繼續。沿現況表接續未做的鬼丸 WIN，029 多場景格式仍待回答，蜘蛛女生成拒絕不重試。命中 RE→spec 閘門，載入對應入口及 imagegen 技能，使用內建圖片工具沿既定 B 畫風生成。
+- 新增並索引 031 DRAFT。來源沿 remaining-victory-source-v1 的 GGWIN 四組／72 入口，先補正常首勝證據，不把靜態解碼當玩家路徑完成。新增的 onimaru-victory-source-v1、onimaru-victory-art-v1 及核心診斷都沿既有 workplace，分別保存本切片來源、精確請求與執行收據，不建立第二套研究根目錄。
+- victory_core_receipt 擴充原八人診斷選角，角色大於法蘭克時以普通 Left 選回第二人法蘭克，仍核對實際角色。這是蒐證工具，不修改正式輸入、核心狀態或遊戲規則；正式姓名接入須等 031 READY。
+
+## 2026-10-20 README 的 GitHub 圖片入口
+
+- 使用者指出 README 的本機圖片在 GitHub 無法顯示。原因為圖片及連結指向被排除的 workplace；先前只檢查本機檔案存在，不能證明遠端可讀。
+- README 改為只嵌入已版控的屋頂、鳳凰 WIN 圖集及手把設定介面，保留素材預覽與實機截圖的標示。移除只在本機存在的圖片／收據連結，驗證與來源回到 CONTEXT 及驗證矩陣，不上傳原版截圖來填補連結。
+- 本次修正不影響已確認的 HD 範圍，鬼丸 WIN 製作持續。首頁檢查改為逐項比對 Git 追蹤清單，不能只用工作區 exists 判斷。
+- 首頁修正 76817b0 已推送，53 個相對連結與三張圖片逐項比對 Git 清單通過。新增 tools/verify_readme_links.py 並於 AGENTS 索引，往後可重複檢查，不再只確認本機存在。
+- 隨鬼丸正常首勝驗證完成，另將這張 HD 整合截圖原封收錄 docs/screenshots/onimaru-victory-hd.png，SHA-256 824aea2202f87759c898ec545fb0d5e82cb6bd670137d6499aea6c79d99abbf7；source.json 保存二進位、候選角色包、七張 GUI 案例及獨立重組的雜湊。沿使用者先前要求整合截圖、此次 HD 上傳及 GitHub 圖片修正的授權處理。原貌對照、原版參考圖、分層與原始收據仍未提交。首頁分別標示 HD 素材預覽、HD 實機截圖與核心啟動前的設定畫面。
+
+## 2026-10-20 鬼丸首勝 HD 接入結果
+
+- GGWIN.FIG 為 12,362 bytes，四組／72 入口。正常 5／4 以普通方向與拳取得首勝，生命 124／0、計時 56，ONIMALU／NAME 槽 5、SI 0EC9h、caller IP 39DCh、矩形 (104,54,72,11)，WIN 為槽 17、SI 368Ch、caller 39F9h、矩形 (185,54,31,11)。Go 1.24.13 單核心診斷的五張來源與 29 個 WIN 取樣已由原檔重組，槽 0／2／3 動態、槽 1 靜態，下一回合清除通過。
+- 準備工具先誤判 WIN 的全部 96-byte header 都應等於一般色盤，後又誤讀色盤索引 0。實際 GGWIN 與正常第一色盤前 48 bytes 相同，差異只有未使用的第二色盤 78–95 bytes；正常快照明示 palette_base C0h，據此否定兩個錯誤假設，未放寬 renderer 或修改原版。Docker 內行工具連續遭 socket 權限拒絕，改將相同準備工具保存於 workplace 後在既有容器工具鏈執行，沒有退回主機執行分析。
+- 內建 imagegen 產出一張 2172×724 透明四格原 PNG，SHA-256 e5e7b4295c74f9857dc2fb9883cfbf1fb94c0d35bddeef385c16d6f51f463984；精確請求、原圖及透明矩形在 onimaru-victory-art-v1，PNG 未改。1165 鍵／61 PNG／十六來源保留舊 1093 鍵及舊圖，Go 嚴格讀取通過。
+- 031 先 DRAFT，再以 onimaru-victory-evidence-review.json 的正常來源、字圖、候選與精確請求審查升 READY，之後才加入 ONIMALU 勝負文字。成對核心完成 12,272 邊界，原狀態及即時 RGB 相同，29 個取樣及五張保存來源獨立重組通過。
+- Linux／Wine 正常首勝及 Linux 缺件三案例各七張完整通過。每個案例內原貌／HD／恢復的核心、來源及設定相同，恢復逐點一致；GPU 字圖各 5,943 變動點、1,701 金色實心點，另目視字形及人物。缺鬼丸 WIN 的舊包勝利整格原貌、下一回合恢復 HD。不稱跨平台同狀態或完整動畫。
+- 全套檢查 v1 揭露舊格式測資只剔除第二色盤，卻保留版本 3 的 WIN source／pose，該測資無法成為合法版本 1。修正為同時排除 WIN 記錄，未改 production 接受規則。v2 在 HD 套件出現 signal:killed，未保留 cgroup 原因，不宣稱已證實 OOM。既有圖集解碼為 RGBA 已需 383,713,236 bytes，對照 Go 1.24.13 本機 SetMemoryLimit 文件後，僅在測試設定 GOMEMLIMIT=1GiB，容器仍限 1.5GiB。v3 完整 internal／cmd 測試及 go vet 通過，HD 套件 213.791 秒，記憶體事件沒有 OOM；三份原 log 與 v3-memory.json 全保留。
+- 031 升限定 CONFORMED。四份 ELF／PE／兩種 Mach-O 各核對 37 份精確編譯輸入，原封移入 bin，收據為 onimaru-victory-build-v1/promotion.json；舊鳳凰版及原收據留在 phoenix-victory-build-v1/bin。建置核對 metadata 已按目前規格及修正後測試檔重生，沒有用重新編譯掩蓋來源身分。
+- assets/hd 已升為 64 PNG、67 檔，素材及角色清單共 80,516,869 bytes；舊 63 PNG 不變，新圖及 1165 鍵清單與已驗候選一致，紀錄為 onimaru-victory-asset-promotion.json。README 保留現行整合截圖，CONTEXT、工作清單、驗證矩陣及素材入口同步；其餘五份 WIN 的二十六組來源待續。
+- 本輪沒有改共用 dosgolem、原版 EXE、遊戲規則／速度、設定格式或快捷。原版資料、原貌對照、分層、私有執行器與研究收據留本機；未建立 Release 或正式封包。029 仍為 DRAFT，蜘蛛女仍保留已選連身衣及原生成拒絕，不重問已確認選項。
+- 收尾 onimaru-victory-integration-audit.json 通過：259 份追蹤檔、128 原檔、1719 執行器來源、37 份編譯輸入、三個七張正常 GUI、12,272 成對邊界、64 張生成 PNG 及兩張截圖，共 66 個受版控 PNG。457 個本機 Markdown 引用、README 的 57 個 Git 相對連結與四張圖片通過，README 無 workplace 圖片連結。來源與圖片逐檔 SHA-256、Python 語法、root-owned 檔案及錯誤 .md 目錄檢查通過。
+- 本輪具名 kdzz-onimaru 容器均已結束並移除，沒有新增或替換映像；其他專案容器維持原狀。原生成 PNG、精確內建 imagegen 提示詞、DRAFT 審查及歷史失敗紀錄留在本機原位置，可從 031 與本輪工作紀錄回查。

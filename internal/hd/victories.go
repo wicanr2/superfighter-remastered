@@ -96,6 +96,8 @@ func (a *Victories) Layout(s renderdata.VictoryState) ([]VictoryRun, bool) {
 		label = "PHO HUANG"
 	case 4:
 		label = "FRANK"
+	case 5:
+		label = "ONIMALU"
 	default:
 		return nil, false
 	}

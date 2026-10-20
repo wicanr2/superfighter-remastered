@@ -81,6 +81,12 @@
       "source_bank": "victory",
       "file": "EEWIN.FIG",
       "sha256": "65f8536cdd3ba96c63d116df5c701b401776e39643fb5fb10c790ac1fdeb2a8c"
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "file": "GGWIN.FIG",
+      "sha256": "2ec882c5a3827d249c8048ef33c0604c4b5be2b5626e37ed3db5ae1bd78ec233"
     }
   ],
   "atlases": [
@@ -441,6 +447,12 @@
     {
       "file": "phoenix-win.png",
       "sha256": "c4c2ba8fdefb79d0041639e958338777bf68264caa2e62d1371ff421d3119556",
+      "width": 2172,
+      "height": 724
+    },
+    {
+      "file": "onimaru-win.png",
+      "sha256": "e5e7b4295c74f9857dc2fb9883cfbf1fb94c0d35bddeef385c16d6f51f463984",
       "width": 2172,
       "height": 724
     }
@@ -17213,6 +17225,1158 @@
         645,
         689
       ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 0,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 1,
+      "width": 58,
+      "height": 67,
+      "source_offset": 2329,
+      "source_sha256": "b8acb20827eb57d787bfa3c3e23ea475abf6b0b3b5fef7c34fcaffde5c1ad9a7",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        607,
+        190,
+        989,
+        627
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 2,
+      "width": 76,
+      "height": 100,
+      "source_offset": 4274,
+      "source_sha256": "b3e8739fa4f884bd15f89d4115c41248533c55e95f4dcbedc07ed01e28c2fe1e",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        1042,
+        41,
+        1525,
+        658
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 3,
+      "width": 83,
+      "height": 102,
+      "source_offset": 8076,
+      "source_sha256": "0cfda33a3aca8c6667f4bb8fc986607834fa75d110a3ea8a5266591604f19755",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        1634,
+        32,
+        2151,
+        652
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 4,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 5,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 6,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 7,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 8,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 9,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 10,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 11,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 12,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 13,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 14,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 15,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 16,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 17,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 18,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 19,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 20,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 21,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 22,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 23,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 24,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 25,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 26,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 27,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 28,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 29,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 30,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 31,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 32,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 33,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 34,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 35,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 36,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 37,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 38,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 39,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 40,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 41,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 42,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 43,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 44,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 45,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 46,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 47,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 48,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 49,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 50,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 51,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 52,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 53,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 54,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 55,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 56,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 57,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 58,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 59,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 60,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 61,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 62,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 63,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 64,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 65,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 66,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 67,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 68,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 69,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 70,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
+    },
+    {
+      "character": 5,
+      "source_bank": "victory",
+      "slot": 71,
+      "width": 58,
+      "height": 67,
+      "source_offset": 384,
+      "source_sha256": "d39c2a8c0a55b672c18ab3fd6e272be32b099d665f5a65cc9f2589859485f82f",
+      "atlas": "onimaru-win.png",
+      "rect": [
+        87,
+        191,
+        466,
+        628
+      ]
     }
   ],
   "evidence": [
@@ -17220,6 +18384,8 @@
     "workplace/sprite-layers-v1/receipt.json",
     "registration.json",
     "docs/spec/009-hd-effects.md",
+    "docs/spec/017-victory-pose-banks.md",
+    "victory-pose-registration.json",
     "docs/spec/017-victory-pose-banks.md",
     "victory-pose-registration.json",
     "docs/spec/017-victory-pose-banks.md",

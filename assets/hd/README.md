@@ -4,13 +4,15 @@
 
 | 路徑 | 內容 | 接入狀態 |
 |---|---|---|
-| [characters/manifest.json](characters/manifest.json) | 60 張角色與特效圖集、1093 個登錄鍵 | 現行角色素材；完整動畫及各角色驗收範圍見 [CONTEXT](../../CONTEXT.md) |
+| [characters/manifest.json](characters/manifest.json) | 61 張角色與特效圖集、1165 個登錄鍵 | 現行角色素材；完整動畫及各角色驗收範圍見 [CONTEXT](../../CONTEXT.md) |
 | [backgrounds/rooftop.png](backgrounds/rooftop.png) | 屋頂背景，1923×818 | 已接原生；原版參考色號與色盤不隨 Git 提供 |
 | [candidates/dojo.png](candidates/dojo.png) | 道場背景，1922×818 | 候選；[多場景格式](../../docs/spec/029-multi-scene-backgrounds.md)尚待確認 |
 | [candidates/spider-coverage.png](candidates/spider-coverage.png) | 蜘蛛女全覆蓋紫色連身衣，1390×1132 | 使用者已選定造型；動作圖集尚未生成，遊戲仍用原貌 |
 | [catalog.json](catalog.json) | 每個收錄檔案的 SHA-256、大小、尺寸、原位置與分類 | 核對複製與後續變更；不包含原版圖像資料 |
 
 PNG 逐檔複製，未縮放、去背或重新編碼。角色清單沿用目前遊戲可讀的格式，記錄來源檔名、雜湊與座標；`evidence` 中的本機研究路徑不全部隨 Git 提供。`workplace/` 保留生成請求、原始審查與執行收據，不整包提交。
+
+[鬼丸勝利圖集](characters/onimaru-win.png)含四組原姿態的 HD 重繪，正常首勝及 Linux／Wine 切換範圍見[規格 031](../../docs/spec/031-onimaru-victory.md)。此圖已接入，與候選資料夾分開保存。
 
 取得合法原版資料並備妥既有屋頂素材包後，可在專案根目錄指定這份角色包：
 

@@ -29,15 +29,15 @@ func main() {
 	out := flag.String("out", "", "new output directory")
 	characterDir := flag.String("hd-characters", "/project/workplace/hd-characters-study-v8", "character asset directory")
 	attacker := flag.Int("attacker", 0, "normal attacking player: 0 or 1")
-	player0 := flag.Int("player0", 0, "normal first-player character: 0..3; second player is Frank")
+	player0 := flag.Int("player0", 0, "normal first-player character: 0..7; second player is Frank")
 	poseSamples := flag.Bool("pose-samples", false, "sample WIN-bank poses from knockout through next round")
 	diagnostic := flag.Bool("diagnostic", false, "single-core source diagnostics; no paired-state acceptance")
 	flag.Parse()
 	if *attacker < 0 || *attacker > 1 {
 		panic("attacker must be 0 or 1")
 	}
-	if *player0 < 0 || *player0 > 3 {
-		panic("player0 must be 0..3")
+	if *player0 < 0 || *player0 > 7 {
+		panic("player0 must be 0..7")
 	}
 	loser := 1 - *attacker
 	if *out == "" {
@@ -260,9 +260,13 @@ func main() {
 		must(c.MenuKey("Return"))
 	}
 	step(20_000_000)
-	for i := 0; i < 4-*player0; i++ {
+	secondDirection, secondSteps := "Right", 4-*player0
+	if secondSteps < 0 {
+		secondDirection, secondSteps = "Left", -secondSteps
+	}
+	for i := 0; i < secondSteps; i++ {
 		for _, c := range cores {
-			must(c.MenuKey("Right"))
+			must(c.MenuKey(secondDirection))
 		}
 		step(1_000_000)
 	}

@@ -8,12 +8,12 @@
     "scope": "generated HD PNG and mapping metadata only; not original game data or release"
   },
   "characters": {
-    "atlases": 60,
-    "registered_keys": 1093,
-    "sources": 15,
+    "atlases": 61,
+    "registered_keys": 1165,
+    "sources": 16,
     "complete_HD": false
   },
-  "pngs": 63,
+  "pngs": 64,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -797,11 +797,11 @@
     },
     {
       "file": "characters/manifest.json",
-      "sha256": "cfc6c512c2b0e4aae1628196267033a11f16774a11b82f523de14a082155e404",
-      "bytes": 379321,
+      "sha256": "2be08986ec4903929889205eabf64091ef20ae8330238e9203bb8c43ee6c726e",
+      "bytes": 405022,
       "status": "current-character-mapping",
-      "copied_from": "workplace/hd-characters-phoenix-victory-v1/manifest.json",
-      "generated_source": "workplace/hd-characters-phoenix-victory-v1/manifest.json"
+      "copied_from": "workplace/hd-characters-onimaru-victory-v1/manifest.json",
+      "generated_source": "workplace/hd-characters-onimaru-victory-v1/manifest.json"
     },
     {
       "file": "backgrounds/rooftop.png",
@@ -839,6 +839,19 @@
       "size": [
         1390,
         1132
+      ],
+      "tool": "built-in imagegen"
+    },
+    {
+      "file": "characters/onimaru-win.png",
+      "sha256": "e5e7b4295c74f9857dc2fb9883cfbf1fb94c0d35bddeef385c16d6f51f463984",
+      "bytes": 1011221,
+      "status": "current-character-atlas",
+      "copied_from": "workplace/hd-characters-onimaru-victory-v1/onimaru-win.png",
+      "generated_source": "workplace/onimaru-victory-art-v1/onimaru-win.png",
+      "size": [
+        2172,
+        724
       ],
       "tool": "built-in imagegen"
     }

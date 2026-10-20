@@ -2,6 +2,8 @@
 
 目前狀態見 [CONTEXT.md](CONTEXT.md)，證據說明見 [RESEARCH-LOG.md](RESEARCH-LOG.md)。收據與原版畫面只留本機 `workplace/`。
 
+鬼丸首勝依[規格 031](docs/spec/031-onimaru-victory.md)限定 CONFORMED。12,272 個成對邊界、29 個 WIN 取樣及五張來源重組通過，Linux／Wine 與缺件三案例各七張通過。兩平台各案例內恢復 HD 逐點一致；GPU 文字各 5,943 變動點、1,701 金色實心點。slot 1 靜態、第二人及完整動畫另驗。現行素材為 1165 鍵／61 PNG，四平台二進位與 37 份編譯來源已核對。
+
 勝負基底依[規格 016](docs/spec/016-hd-victory-messages.md)及[規格 017](docs/spec/017-victory-pose-banks.md)，驗 Linux／Windows Wine 各七張正常首勝擷取、Linux 舊素材七張回退，以及 1,479 個成對核心比較邊界。三組同狀態原貌／HD／恢復均逐點一致，兩平台共四張 GPU 字圖均限制在原矩形。基底二進位及來源另存，與目前薩爾可夫整合版分開；第二人 Wine、完整勝利動畫與特殊分支仍待驗。
 
 第二人法蘭克新增 Linux 七張擷取已通過，時間歸零後勝利、FRANK WIN、右側首勝及下一回合 [0,1] 均核對。Wine 第二人已達 1800 秒期限，未取得勝利收據。兩側來源取樣分別通過 5,293／5,534 個核心邊界、13／8 個 WIN 快照；不當作原生逐格連續動畫驗收。薩爾可夫一般姿態及姓名依[規格 018](docs/spec/018-sarkov-hd.md)接入，Linux／Wine 各七項、九張擷取及 Linux 缺件九張回退通過，完整角色 HD 未完成。
@@ -41,7 +43,7 @@
 | HD 角色／特效登錄 | 一般 144 槽、特效 13 鍵及 WIN 144 入口 | study-v8 十五張圖集、301 姿態鍵，四份原來源；WIN 入口對應七張不同姿態。舊 157 個姿態與十三張 PNG 不變；完整來源、色盤及矩形核對，不代表全部動畫已驗 |
 | 原生六層角色 HD | Linux／Wine 各十三張獨立重組通過 | `native-actors-v6/comparison.json`、`windows-actors-v6/comparison.json`；純背景逐點匹配來源，六層重組與原版相同；Linux 範例有 47,978 個原角色輸出像素改變，35,451 個最後原貌層像素保留；各平台內同狀態切換逐點相同 |
 | 原生角色缺件回退 | 開場版 Linux 十三項通過 | `native-round-legacy-v1` 舊版 1 保留原貌介面、特效及陰影，十一張具名擷取重組；缺件時整個 960×600 與原版一致，沒有加入開場 HD |
-| 目前來源與編譯 | 鳳凰首勝四份實際編譯收據已驗 | `workplace/bin/*.build.json` 綁定 37 份編譯輸入及輸出；ELF／PE／兩種 Mach-O 已核對，精確移入記錄為 phoenix-victory-build-v1/promotion.json。完整程式測試／vet、候選及真實勝負字圖通過；1093 鍵保留既有入口，不外推完整動畫或其他 WIN 生命週期 |
+| 目前來源與編譯 | 鬼丸首勝四份實際編譯收據已驗 | `workplace/bin/*.build.json` 綁定 37 份編譯輸入及輸出；ELF／PE／兩種 Mach-O 已核對，精確移入記錄為 onimaru-victory-build-v1/promotion.json。完整程式測試／vet、候選及真實勝負字圖通過；1165 鍵保留既有入口，不外推完整動畫或其他 WIN 生命週期 |
 | 原版 HUD 來源與覆蓋 | 1176 次與 33 fixture 通過 | `hud-draw-v3` 以正常移動／拳擊到首次擊倒與第二回合；來源、像素與同值寫入覆蓋吻合。BOARD／NAME／0-9 及色盤獨立重組 33 個樣本；勝場顯示在介面建立時鎖存 |
 | 原生生命／計時／名字 | 010 基底限定 CONFORMED | 三個十六項案例各十六張擷取；原介面之前的圖層加原 bitmap 可重組回原版。Linux 取樣 27,279 個原 HUD 輸出像素已替換；中央回合訊息仍保留原版 |
 | 原生 HD 勝場 | 011 限定 READY，Linux 首勝通過 | 33 個原檔 fixture、勝場鎖存與未獲勝區域檢查通過；正常第一人首勝後三張暫停原貌／HD 來源一致，切回逐點相同。兩側各兩格有靜態來源，右側及第二圖示未作正常 GUI 勝場驗收 |

@@ -142,9 +142,15 @@ func TestOriginalEffectSourcesAndPaletteIsolation(t *testing.T) {
 		t.Fatal(e)
 	}
 	normal.Version = 1
+	normal.Sources = nil
+	for _, source := range a.Manifest.Sources {
+		if source.SourceBank == "" {
+			normal.Sources = append(normal.Sources, source)
+		}
+	}
 	normal.Poses = nil
 	for _, pose := range a.Manifest.Poses {
-		if pose.PaletteBank == 0 {
+		if pose.PaletteBank == 0 && pose.SourceBank == "" {
 			normal.Poses = append(normal.Poses, pose)
 		}
 	}

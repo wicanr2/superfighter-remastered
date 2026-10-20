@@ -298,10 +298,15 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 `README.md` 只放穩定用途、使用方法與現況摘要。完整歷程只進 WORKLOG，唯一現況只進 CONTEXT，不建立重複的 HANDOFF 或 REMAKE-PLAN。
 
+修改 README 的圖片或連結後，使用既有 `tokugawa-desktop-platforms:go1.24.13-sdk15.5-noble-r1` Docker 映像，將本工作樹唯讀掛載為 `/project` 並以該目錄執行 `python3 tools/verify_readme_links.py`。此[檢查工具](tools/verify_readme_links.py)同時比對 Git 追蹤清單與實際檔案，支援首頁的行內 Markdown 相對連結；只在本機存在的 workplace 檔案不能通過。它不檢查外站內容或宣稱 GitHub 頁面已實際渲染。
+
 ## 授權、遠端與交付
+
+鬼丸勝利姿態的規格與來源入口見 [031：鬼丸勝利姿態與文字](docs/spec/031-onimaru-victory.md)。新勝利切片在 DRAFT 階段只生成候選與診斷正常來源，READY 後才接正式姓名或呈現分支。
 
 - 已授權本機接入、原版查證、手把開發、HD 規劃，以及建立 GitHub 儲存庫並上傳自有程式與文件。沿用私人儲存庫設定；未授權推送原版素材、公開衍生美術或發布套件。
 - 使用者於 2026-10-20 追加「HD素材上傳」，明確授權將已生成的 HD PNG 與對應清單提交至現有儲存庫。收錄入口為 [assets/hd/README.md](assets/hd/README.md)，逐檔身分見 [assets/hd/catalog.json](assets/hd/catalog.json)。此授權取代先前 HD 生成圖只留本機的限制；不包含原版資料、原版色號／色盤、原圖、私有執行器、記憶體收據、變更儲存庫可見性或建立 Release。
+- 使用者另指出 README 的工作區圖片無法在 GitHub 顯示。沿既有「README 放整合截圖」與 HD 上傳授權，已驗的 HD 整合截圖收錄 [docs/screenshots/](docs/screenshots/)，以 [source.json](docs/screenshots/source.json)記錄來源、雜湊與驗證範圍。素材預覽、HD 實機截圖與原貌對照需分清楚；原貌圖、原版參考圖、分層 bytes 與原始收據仍留本機。
 - 原版包、EXE／COM、資料、美術、音訊、記憶體快照及含原版內容的收據留在本機。私人儲存庫也不得直接提交。
 - 自有程式與文件依使用者共用規則採 RRSAL-1.0。建立 LICENSE 前讀 `/home/anr2/.codex/knowledge-base/local/rrsal-1.0.md`，使用 `/home/anr2/.codex/skills/reverse-engineer-retro-game-remake/assets/project-template/LICENSE` 全文，只替換占位符；原版與第三方素材另查權利。
 - 交付根目錄為 `dist-all/`。建立前讀 `/home/anr2/.codex/knowledge-base/local/retro-remake-dist-all-output.md`，由該檔決定子目錄與素材邊界。
