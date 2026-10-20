@@ -544,3 +544,4 @@
 - 公開素材升為 67 張生成 PNG、73 檔，catalog 七十筆 payload 共 84,002,886 bytes。舊 61 張角色 PNG 不變，新圖與清單吻合已驗候選。道場新增來源清單與精確提示詞，候選狀態保留。README 新增實際印第安喬首勝 HD 擷取，來源與比較收據、二進位及素材身分寫入 docs/screenshots/source.json。
 - 接入與中間二進位移入證據為 `workplace/hd-first-pass-v1/promotion.json`、`workplace/first-pass-hd-build-v1/promotion.json`。128 原檔與 1719 執行器來源均未變；本輪未改遊戲規則、練習模式、快捷或設定格式。首頁、現況表、工作清單、規格與驗證矩陣同步，完整 HD 仍未完成。
 - 收尾 `integration-audit-v1.json` 通過原檔、執行器、67 張生成 PNG、70 筆素材、28 張正常原生擷取、實際素材來源及 bin 原封移入。README 的 62 個相對連結、六張圖片均已納入 Git；Python 語法、git diff --check、工作樹 root-owned／誤建 .md 目錄檢查通過。本輪 kdzz-first-pass／kdzz-spider 容器均已結束並移除，未新增映像或清理其他專案資源。
+- 接入提交 `8f1f5bde4ed76cd6c163a4ce5efb931b03b5634a` 已推送 `origin/main`，`ls-remote` 核對相同完整提交，工作樹乾淨。三張新 WIN 圖、角色清單、印第安喬 HD 截圖、道場索引及補稿工具均已在遠端；蜘蛛女原始參考、去背外部稿、原圖 ZIP、私有執行器與中間二進位仍保留本機。
