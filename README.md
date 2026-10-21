@@ -60,7 +60,7 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 ![十一名敗者在正常原生結果中的 HD 原型取樣，未接正式版本](docs/screenshots/result-portraits-native.png)
 
-十一人的勝者與敗者肖像均已有正常雙打結果取樣，上圖裁自實際原生視窗。完整原結果來源、肖像方向、原貌切換／恢復與返回標題均已核對；[取樣範圍](docs/spec/048-hd-result-newspaper.md)明列。正式版本仍顯示原版結果，外觀近似、其他結果類型、第二人獲勝與平台驗收另續。
+十一人的勝者與敗者肖像均已有正常雙打結果取樣，上圖裁自實際原生視窗。完整原結果來源、肖像方向、原貌切換／恢復與返回標題均已核對；[取樣範圍](docs/spec/048-hd-result-newspaper.md)明列。三種結果及第二人獲勝另見下圖，正式版本仍顯示原版結果，視覺與平台驗收另續。
 
 ![正常雙打後的隔離原生結果 HD 候選，尚未接入正式版本](docs/screenshots/result-native-prototype-hd.png)
 
@@ -81,6 +81,10 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 ![第二人法蘭克獲勝的原生結果 HD 原型，玩家位置保持原樣](docs/screenshots/result-player2-native-prototype-hd.png)
 
 第二人獲勝時，原版保持左側第一人、右側第二人，改用左敗者／右勝者肖像。隔離原型已補這條路徑，完整素材、原貌切換、未載素材與返回均通過；正式程式仍未接入。
+
+![單打落敗後的再戰／放棄 HD 隔離原型，尚未正式整合](docs/screenshots/result-continue-native-prototype-hd.png)
+
+單打落敗後的「再戰／放棄」已加入 Linux 隔離 HD 原型，保留原版按鈕位置與選取顏色變化。正常 AI 擊倒、左右切換、原貌／HD 恢復、再戰回選角及放棄回標題均已核對；向量面板與字型仍為草稿，未放入下載包。
 
 [蜘蛛女的十五張外部 HD 稿](assets/hd/candidates/spider/README.md)也已收錄。使用者確認的雙手觸地低伏已接入，另作無損鏡像及透明留白裁切；同一張圖對應三組低伏來源。其他稿仍有姿勢差異，未對應動作整格回退原貌。
 

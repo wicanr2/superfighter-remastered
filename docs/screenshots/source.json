@@ -717,6 +717,24 @@
       "sha256": "9b0888415b3037da01879f5b2f88d59c4d1ae8b6499bd1c30627d391741ca7b6",
       "source": "workplace/result-variants-native-v1/sides-p2-11/result-hd.png",
       "authorization": "existing HD upload and GitHub-visible screenshot request; visibility unchanged"
+    },
+    {
+      "kind": "normal single-player loss original AI and isolated continue HD; not production integration",
+      "file": "result-continue-native-prototype-hd.png",
+      "sha256": "c3d05cce71146e315ca4d1243c9b1e15cf3ed3ed8b509a4888bad6761c3f70ed",
+      "source": "workplace/single-continue-core-v1/native-choice1-v4/continue-left-hd.png",
+      "receipt_sha256": "f8e32e1cc18ec066d28321dbb33cd42b158f03fa3675570e6876eb10785d7cb3",
+      "comparison_sha256": "eebf42b3b029e4bb5a899d82cb8d2462a69e8be83e73623d6ce70097e1a7bfed",
+      "binary_sha256": "11914dceefa6782b8f40547899a0edb34c137e268736fe50e2c70e3952687e8a",
+      "platform": "Linux amd64 Docker Xvfb; native hardware and other platforms not verified",
+      "characters": [
+        0,
+        7
+      ],
+      "winner_player": 1,
+      "selected_continue": 0,
+      "authorization": "user requested HD assets and GitHub-visible integrated screenshots; original mode and private references remain local",
+      "limits": "draft opaque paper, portraits, vector flags and new vector continue panel with project font; approximations retained, no original raster pixels in viewport, no full HD or single-player win claim"
     }
   ]
 }

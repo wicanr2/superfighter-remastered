@@ -149,6 +149,13 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [單打繼續原生獨立核對](tools/verify_single_continue_native.py) | 交叉核對每張原 SH／報紙 RGB 與色號、GPU 肖像及方向、切換恢復相同、原版目的畫面與覆繪清除；美術及其他平台不外推 |
+| [單打繼續原生操作](tools/single_continue_native_smoke.py) | 正常單打選斬後不送戰鬥輸入，由原 AI 兩次 KO；驗繼續框、原貌／HD 恢復及再戰／放棄，不注入狀態 |
+| [單打繼續隔離原型](tools/prepare_result_continue_native.py)、[呈現模板](tools/result-native-prototype/desktop_continue.go.in) | 從雙側原型另建副本，完整辨識 SH 與原選取框後畫新向量／字型；原輸入不改，未定版不進正式程式 |
+| [單打繼續獨立核對](tools/verify_single_continue_core.py) | 完整核對正常 AI 落敗、繼續介面兩個選取值、篡改拒絕及選角／標題原來源；不把無頭來源證據稱為原生 HD |
+| [落敗繼續來源識別](tools/recognize_result_continue.py) | 核對 SH、原選項框及色盤脈動來源，按玩家位置重組整張報紙與再戰／放棄；RGB、色號與原框同時相符才接受，僅供 048 DRAFT |
+| [單打繼續選項正常取樣](tools/single_continue_core_receipt.go) | 由原 AI 擊倒後，完整核對原 SH 介面才送左右與確認，分別觀測再戰／放棄；不改選取值或遊戲狀態 |
+| [單打落敗與後續畫面取樣](tools/single_result_core_receipt.go) | 正常單打選角後不送戰鬥輸入，由原 AI 結束兩回合，收集原報紙與後續介面；不指定勝者、不開訓練，原圖只在本機 |
 | [雙側來源及拒絕核對](tools/verify_result_side_sources.py) | 從正常原結果 RGB 交叉核對兩個勝方、三種字圖及角色位置，驗八區篡改、長度與不合法勝敗肖像組合；不作美術或實機完成證據 |
 | [雙側結果正常操作](tools/result_sides_native_smoke.py)、[獨立核對](tools/verify_result_sides_native.py) | 保持兩名玩家位置，按實際勝方選正常／敗者肖像；普通鍵鼠、完整來源、切換與返回另驗，不覆寫舊單側收據 |
 | [雙側結果來源](tools/recognize_result_sides.py)、[隔離版本準備](tools/prepare_result_sides_native_prototype.py)、[繪圖模板](tools/result-native-prototype/desktop_sides.go.in) | 固定玩家位置，分辨左敗／右勝或左勝／右敗；沿完整原 RGB 核對，僅在新副本試作，不改正式格式 |
