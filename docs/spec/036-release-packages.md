@@ -39,3 +39,18 @@ macOS 的 CFBundleVersion／CFBundleShortVersionString 依 [Apple 平台格式](
 使用既有 Docker 工具鏈與唯讀原版輸入。`tools/build_desktop.py` 的 linux／cross／verify 產生四平台編譯身分；`tools/package_release.py` 的 licenses／packages／audit 收集授權、建立乾淨八包與檢查。package_startup_smoke.py 驗解壓入口，package_smoke.py 驗操作並錄影，promo_release.py 的 prepare／render／check 合成與檢測本機影片。工具與 Docker 規則見專案 AGENTS.md，實際旗標與收據見 WORKLOG.md。
 
 公開發布使用 `tools/publish_release.py`，在已登入 GitHub CLI 的容器依序執行 draft／publish／verify，均明確指定 `--target` 完整提交。工具檢查本機操作、封包與影片收據，只上傳 patch 四包及 manifest，逐一比對遠端大小及 SHA 後發布。已有版本拒絕重新建草稿；已發行版本不可覆寫。音樂、完整版與原版收據不上傳。
+
+## 暫停後本機交付
+
+使用者要求暫停 HD 開發，僅收尾人工驗證、三平台本機完整版、原曲影片與工作區清理。本機交付版採 `v.0.1.1-20261021`，沒有新增 Release 或 tag；首版 `v.0.1.0-20261020` 保持不變。正式玩家程式只有 VERSION 更新，沿用 045 的 46 份編譯輸入與現行 74 張角色／特效圖集。046／047／048 原型保持 DRAFT，不打入本機包。完整版指含 125 原版資料檔，完整 HD 與遊戲音訊尚未完成。
+
+- `dist-all/v.0.1.1-20261021/SHA256SUMS.json` 綁定八個新 ZIP，`smoke/package-audit.json` 逐檔核對 SHA／CRC／清單、版本、授權及公開原版排除。四個 full-local 分別供 Windows amd64、Linux amd64、macOS Intel／Apple Silicon，只留本機。patch 同步保存引擎對應包，本輪未發布。
+- `smoke/linux-startup/receipt.json` 與 `smoke/windows-startup-v2/receipt.json` 各驗公開／完整兩包：版本、原版 125 檔、缺資料提示、安全匯入、拒絕覆寫、自動背景參考、設定面板及正常開始。Windows 在既有 `eob-remake-wine-verify:ubuntu-noble-20261008-r2` 驗證。首次環境缺 Wine 的 `windows-startup` 保留，不算產品失敗。macOS 僅核對 Mach-O、兩架構、plist 與內容。
+- `smoke/linux-play-record/receipt.json` 在解壓 Linux 完整包目錄啟動實際二進位，HD 預設資源、快捷／移動、真實失焦與中立、F9 滿血四項通過，保存十八秒實錄。沒有新增完整對戰或正式速度結論。
+- `promo/v.0.1.1-20261021-local-promo.mp4` 為 60 秒、1280×720、30fps、AAC 48kHz 雙聲道，沿用原版精確 MIDI 由 TiMidity++／FluidR3 軟體演奏。此為原曲重播，不是原機 OPL 錄音。完整解碼、非靜音、黑幀、字幕邊界及十八秒實錄的凍結檢測通過；接觸圖八格已抽看。完整人工播放與人耳試聽未驗，詳見 `promo/promo-checks.json` 與 `source.json`。
+
+解壓重現入口為 [tools/unpack_release.py](../../tools/unpack_release.py) 的 `--output 全新目錄`，會核對八包並保留執行權限。啟動測試以 `tools/package_startup_smoke.py --extracted-index 該目錄/extracted.json` 指定輸入，避免覆用舊版或已匯入的測試目錄。錄影與合成仍走原工具，使用新 VERSION 的 dist-all 路徑。全部在有資源上限、UID 1000、無網路的一次性 Docker 容器執行。
+
+人工驗證與未實作項目集中在 [WORKLIST](../../WORKLIST.md#人工驗證)。清理收據為本版本 `smoke/workspace-cleanup-plan.json`、`workspace-cleanup.json` 與 `retained-workspace-files.json`；實際腳本另存 `smoke/cleanup-workspace.py`。只移除舊 Wine 前綴及 Go 編譯快取，原始資料、研究證據、執行器、模組快取與所有素材保留。Wine 登錄及非系統設定先存 `full-local/wine-runtime-settings-backup.tar.gz`，逐檔核對後才刪除。Wine 系統 DLL 由原有工具映像重新建立新前綴，再視需要還原設定；Go 編譯快取由保留的模組重建。歷史測試輸出保留原樣，需要重驗時使用新的輸出目錄。
+
+最終稽核在本版本 `smoke/final-audit.py` 與 `final-audit.json`，四個編譯收據另存 `smoke/build-receipts/`。128 原檔、1719 執行器來源、162 素材紀錄與正式角色清單 SHA 均通過；四架構相較 045 只有 VERSION 編譯輸入改變。首版八包、原曲影片與正式 IDA 資料庫保持，588 個文件連結、UID 與誤建目錄檢查通過。這些結果不代替人工試玩或完整 HD 完成證據。

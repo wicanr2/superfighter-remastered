@@ -27,7 +27,7 @@ def prepare():
         bounds.append({'text':text,'box':[x,y,x+w,y+h]})
     im=base();line(im,'快打至尊',160,76,'#f2c75b');line(im,'Remastered',275,54)
     line(im,'原版核心・原生操作・街機手繪 HD',400,34)
-    line(im,VERSION+'　首版功能展示',500,27);line(im,'本機影片，不公開散布',620,22)
+    line(im,VERSION+'　目前整合功能展示',500,27);line(im,'本機影片，不公開散布',620,22)
     im.save(OUT/'00-title.png')
     def still(name,source,title,subtitle):
         im=base();s=Image.open(source).convert('RGB');s.thumbnail((1120,568))
@@ -41,7 +41,7 @@ def prepare():
     line(im,'公開引擎包，玩家自備合法原版資料',280,34)
     line(im,'本機完整版與影片另外保存',355,30)
     line(im,'音樂：原版 MIDI，TiMidity++ 軟體演奏',470,25)
-    line(im,'首版展示，完整 HD 與遊戲音訊仍在製作',535,25)
+    line(im,'開發暫停，完整 HD 與遊戲音訊尚未完成',535,25)
     line(im,'github.com/wicanr2/superfighter-remastered',630,22)
     im.save(OUT/'06-end.png')
     overlay=Image.new('RGBA',(1280,720),(0,0,0,0));draw=ImageDraw.Draw(overlay)

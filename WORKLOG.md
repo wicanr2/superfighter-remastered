@@ -1015,3 +1015,14 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - README 新增實際純 HD 原生截圖及來源，並修掉其他結果／第二人仍待驗的舊現況。048、CONTEXT、WORKLIST、RESEARCH 同步，素材保持 137 PNG／162 catalog／166 檔，正式 46 份輸入、四平台 bin、首版八包及本機原曲影片保持。完整 HD、單打勝利、其他角色／字圖、滑鼠及其他平台仍未完成；最終稽核、清理與推送另記。
 - single-continue-core-v1/final-audit.json 通過：Core 34 張、原生 24 張與兩個目的畫面、九份參照逐筆對原檔、86 份副本、既有三十份完整結果的十一人姓名公式、六組失敗／停止及追加勘誤均核對。277 個相對連結、新工具索引、128 原檔、1719 執行器來源、正式 i64、166 素材、46 份正式輸入、四平台程式、首版封包及本機影片保持。UID／root-owned／誤建目錄通過，本輪容器已清空；048 DRAFT，不新增 Release。
 - 單打繼續原型、驗證及截圖提交 `d802b72d6db597cdadd0db164ff019fc185d56a2` 已推送 origin/main，遠端完整提交核對相同；首版 tag 仍為 `807579d01c145db327050c2e870e2bf46e6bcb68`。本段只記錄交付，正式視覺／附加包仍待定案，048 保持 DRAFT。
+
+## 2026-10-21：暫停開發與本機交付
+
+- 使用者要求暫停工作，Goal 已維持 paused。本輪只整理人工驗證、目前正式版三平台本機完整包、原曲影片與可重建工作區清理；046／047／048 不升級，不發布新 Release 或 tag。
+- 暫停前新增 tools/single_match_core_receipt.go，正常輸入單打拳擊／已驗斬快捷取樣。六個完整案例皆為玩家兩次 KO 落敗，沒有取得單打勝利或過關證據；兩個弱難度設定往返早期案例為輸入時序失敗，後續 v6 以完整標題來源確認再輸入，沒有改正式規則。v7 的斬與印第安喬來源覆蓋取樣均以 bounded AI source sample limit 結束，只保留 failure.json 與已存來源，不稱完整覆蓋通過。全部保留 workplace/single-match-core-v1，工具只作診斷。
+- 本機交付版號採 v.0.1.1-20261021，原正式玩家程式沒有新增功能；VERSION 重建四架構，46 份實際編譯輸入逐一核對。125 原檔固定，作弊資料排除。人工清單集中 WORKLIST，區分未實作與待驗，不另建重複交接文件。
+- 八包新建並完成逐檔清單／SHA／CRC／授權／公開原版排除，四個本機包各 125 原檔。tools/unpack_release.py 安全解至全新 release-unpacked-20261021，保留執行權限、manifest 與 macOS plist 核對，已加入 AGENTS。啟動腳本增加 --extracted-index，避免固定讀舊版測試輸入。
+- Linux／Wine 各驗公開及本機兩包，版本、缺資料提示、匯入／拒絕覆寫、自動背景參考與啟動通過。第一次誤用沒有 Wine 的 sc-cht-dosboxx-bridge，保留 windows-startup；確認既有映像能力後以 eob-remake-wine-verify:ubuntu-noble-20261008-r2 在 windows-startup-v2 乾淨重跑通過，原封包沒有改動。Linux 由實際解壓完整包目錄啟動，HD、快捷／移動、失焦中立與滿血練習四項通過，錄十八秒。
+- 六十秒本機原曲影片 SHA 為 34dd7644d4a90d8db68b3d9b68ac533883f0266aa02b7ed5804681462766355d，1280×720／30fps／AAC 48kHz 雙聲道、音量峰值 -1 dB。完整解碼、無黑幀、十八秒實錄／來源未檢出二秒凍結、字幕邊界與八格接觸圖抽查通過。仍有明示靜態段落，不作遊戲速度結論；音樂是原 MIDI 的 TiMidity++／FluidR3 演奏，不是原機 OPL，人工整片與人耳另驗。source.json 的九份輸入雜湊逐筆核對。
+- 工作區先保存 102,170 個保留檔案的完整 SHA 清單，Wine 登錄／非系統檔備份至 full-local/wine-runtime-settings-backup.tar.gz，逐檔雜湊核對後，移除五十個 Wine 前綴及 native-go-build，共 41,584,991,870 bytes。備份 SHA 為 7f73525a361f0200611b1dd032ae4fb74b8dcaf31d14522e0f0192cc38f8f4a6。刪除後整個工作區逐檔重讀耗時，主動停止，保留既成計畫與備份；以唯讀恢復分支核對全部保留路徑／大小及備份內容，沒有重做刪除。原版、執行器與 HD 素材另做針對性 SHA 稽核，不宣稱十萬檔全量二次 SHA 通過。其餘模組／舊快取、研究收據、二進位基底與素材保持，重建說明見 036。
+- final-audit.json 通過 128 原檔、1719 執行器來源、162 素材紀錄／137 PNG 與正式角色清單 SHA；四平台 46 份實際編譯輸入相較 045 僅 VERSION 不同。首版八包／本機原曲影片及原 i64 保持，588 文件連結、UID／root-owned／誤建目錄通過。四個編譯收據與整體建置資料另存 smoke/build-receipts；目前包與影片只留本機。人工試玩及未實作清單保持，Goal paused，沒有新增 Release 或 tag。

@@ -149,6 +149,7 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [單打普通攻擊與結果取樣](tools/single_match_core_receipt.go) | 正常單打對原 AI 使用拳擊或已驗斬快捷，保存實際輸贏與自然結果／下一場；可另用原設定 UI 選弱並明列條件，不改正式預設或強制勝利，不算完整通關 |
 | [單打繼續原生獨立核對](tools/verify_single_continue_native.py) | 交叉核對每張原 SH／報紙 RGB 與色號、GPU 肖像及方向、切換恢復相同、原版目的畫面與覆繪清除；美術及其他平台不外推 |
 | [單打繼續原生操作](tools/single_continue_native_smoke.py) | 正常單打選斬後不送戰鬥輸入，由原 AI 兩次 KO；驗繼續框、原貌／HD 恢復及再戰／放棄，不注入狀態 |
 | [單打繼續隔離原型](tools/prepare_result_continue_native.py)、[呈現模板](tools/result-native-prototype/desktop_continue.go.in) | 從雙側原型另建副本，完整辨識 SH 與原選取框後畫新向量／字型；原輸入不改，未定版不進正式程式 |
@@ -262,6 +263,7 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 | [資料匯入](internal/gamefiles/import.go)、[原檔身分](internal/gamefiles/source-manifest.json)、[匯入測試](internal/gamefiles/import_test.go)、[VERSION](VERSION) | 公開包不含原版 bytes；合法來源驗證、全新目錄原子匯入及使用者端屋頂參考準備 |
 | [音樂與語音 HD 評估](docs/audio-hd-assessment.md)、[原音訊盤點](tools/inspect_original_audio.py) | 原版 MIDI 與 Compact PCM 證據、HD 可行性、未知格式及本機影片音訊來源界線 |
 | [三平台封包工具](tools/package_release.py) | 收集實際依賴授權、四平台公開包與本機完整包、固定版號、逐檔 SHA 及原版資料排除檢查 |
+| [封包解壓驗證](tools/unpack_release.py) | 將目前 VERSION 的八包解至全新 --output，檢查雜湊與權限，產生供啟動測試使用的 extracted.json |
 | [鍵盤正常路徑](tools/keyboard_smoke.py)、[封包啟動](tools/package_startup_smoke.py)、[封包操作與錄影](tools/package_smoke.py) | Linux／Wine 重綁及原版出招、公開包匯入／自動 HD 參考、實際封包正常雙打、失焦中立與私有錄影 |
 | [蜘蛛女低伏接入](docs/spec/034-spider-low-guard.md)、[準備工具](tools/prepare_spider_low_guard.py) | 已確認的相近低伏稿、三組一般來源與別名、朝向正規化、原姓名及未覆蓋動作回退 |
 | [蜘蛛女原生驗證](tools/spider_low_guard_smoke.py)、[獨立核對](tools/verify_spider_low_guard.py)、[來源測試](internal/hd/spider_low_guard_test.go) | 普通雙打低伏、移動原貌回退、釋放恢復、同狀態切換與原字圖／圖層重組 |

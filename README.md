@@ -20,13 +20,13 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 儲存庫目前為私人，Release 與圖片需由有權限的帳號登入查看。這裡的公開包指排除原版資料的發行內容。
 
-本機完整版另包含合法持有的原版資料，保存在 `dist-all/v.0.1.0-20261020/full-local/`；含原版 MIDI 配樂的推廣片只保存在同版本的 `promo/`，兩者均不上傳。四平台檔案、啟動驗證及已知限制見[發行契約](docs/spec/036-release-packages.md)。
+目前暫停 HD 開發，待辦見[人工驗證清單](WORKLIST.md#人工驗證)。本機交付版為 `v.0.1.1-20261021`，Windows、Linux、macOS Intel／Apple Silicon 完整包保存在 `dist-all/v.0.1.1-20261021/full-local/`，含原版 MIDI 配樂的影片在同版本 `promo/`。兩者均只留本機，未新增 Release。本機完整版指含原版資料與目前正式整合內容，不代表完整 HD；標題、選角及結果 HD 原型尚未併入。封包驗證與限制見[發行契約](docs/spec/036-release-packages.md)。
 
 鍵盤可在 F10 設定面板重綁八方向、拳、腳與四格快捷，F8 切換手把／鍵盤頁。第一人四快捷預設為主鍵盤 1／2／3／4，第二人為 7／8／9／0；兩人獨立保存，與手把四格共用角色招式。按住不連發，衝突不覆寫；只有已驗的斬四招能實際出招，其他角色仍明示拒絕。[鍵盤設定範圍](docs/spec/035-keyboard-bindings.md)。
 
 原版音樂已確認十五段 MIDI，Compact PCM 共四十筆；音樂重播與語音修復的可行性及未知項見[音樂與語音 HD 評估](docs/audio-hd-assessment.md)。桌面遊戲的音訊串流與完整 HD 尚未完成。
 
-目前 `main` 的開發版為 `v.0.1.1-20261020`，新增嵐的勝利姿態與 `LAN WIN`，並接入[角色雙向翻轉與頂部裁切](docs/spec/038-character-geometry.md)的逐格來源核對，以及[鳳凰拳腳兩種光效](docs/spec/039-phoenix-effects.md)、[場邊投擲裁切](docs/spec/040-mirrored-edge-clipping.md)與[金太極十種特殊光效](docs/spec/042-kim-effects.md)、[四人二十一個特殊光效](docs/spec/044-remaining-special-effects.md)，並支援[同角色對戰的替代配色](docs/spec/041-duplicate-palettes.md)；首版下載包尚未包含這些更新。其餘九景也已有[首輪 HD 候選稿](assets/hd/candidates/README.md)，與道場同樣等待多場景格式及正常遊戲接入驗證。十一景已補正常捲動來源比較；[石窟與舞廳修稿](assets/hd/candidates/background-revisions-source.json)另存候選，尚未定版。
+目前本機交付版為 `v.0.1.1-20261021`，新增嵐的勝利姿態與 `LAN WIN`，並接入[角色雙向翻轉與頂部裁切](docs/spec/038-character-geometry.md)的逐格來源核對，以及[鳳凰拳腳兩種光效](docs/spec/039-phoenix-effects.md)、[場邊投擲裁切](docs/spec/040-mirrored-edge-clipping.md)與[金太極十種特殊光效](docs/spec/042-kim-effects.md)、[四人二十一個特殊光效](docs/spec/044-remaining-special-effects.md)，並支援[同角色對戰的替代配色](docs/spec/041-duplicate-palettes.md)；首版下載包尚未包含這些更新。其餘九景也已有[首輪 HD 候選稿](assets/hd/candidates/README.md)，與道場同樣等待多場景格式及正常遊戲接入驗證。十一景已補正常捲動來源比較；[石窟與舞廳修稿](assets/hd/candidates/background-revisions-source.json)另存候選，尚未定版。
 
 目前已有原生雙打、兩人拳腳、斬四招、設定保存，以及可切換的屋頂 HD 背景、部分人物動作、已驗招式及鳳凰拳腳光效、柔邊地面陰影、生命條、計時、名字與勝場圖示。開場 `ROUND`／`FIGHT !`、斬首勝的鞠躬與 `JAAN WIN` 已接 HD；第二人法蘭克的抱胸、`FRANK WIN` 與右側首勝也已在 Linux 驗證。Linux 雙打基準曾正常打完兩回合、顯示結果並返回標題，後續擴充另驗各自範圍。完整角色 HD、實體手把、其他角色快捷、音訊與正式速度仍待驗收。最近收據及各平台限制見 [CONTEXT](CONTEXT.md)。
 
