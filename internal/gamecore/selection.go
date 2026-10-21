@@ -16,6 +16,57 @@ type Selection struct {
 	Confirm bool `json:"confirm"`
 }
 
+// SelectionPresentation 是原輸入輪詢邊界的完整顯示影本，不是即時 VRAM。
+type SelectionPresentation struct {
+	Serial    uint64
+	Steps     uint64
+	Selection Selection
+	Scanout   *renderdata.Scanout
+	Palette   [256][3]uint8
+}
+
+func (c *Core) SelectionPresentation() *SelectionPresentation {
+	if c.selectionState() == nil || c.selectionPresentation == nil {
+		return nil
+	}
+	out := *c.selectionPresentation
+	if out.Scanout != nil {
+		s := *out.Scanout
+		s.Indices = append([]byte(nil), s.Indices...)
+		out.Scanout = &s
+	}
+	return &out
+}
+
+func (c *Core) publishSelection() {
+	s := c.selectionState()
+	if s == nil || c.selectionCancel == nil || !bytes.Equal(c.o.Bytes(oracle.Far(0x01b9, 0x11d2), 7), []byte{0x33, 0xc0, 0x8e, 0xc0, 0x26, 0x8a, 0x26}) {
+		return
+	}
+	display, palette, err := c.LiveDisplay()
+	if err != nil {
+		display = nil
+	}
+	old := c.selectionPresentation
+	sameGeometry := old != nil && old.Scanout == nil && display == nil
+	if old != nil && old.Scanout != nil && display != nil {
+		a, b := old.Scanout, display
+		sameGeometry = a.Width == b.Width && a.Height == b.Height && a.StartByte == b.StartByte && a.PitchByte == b.PitchByte && a.CRTC == b.CRTC
+	}
+	if old != nil && old.Selection.Player == s.Player && old.Selection.Cursor == s.Cursor && old.Palette == palette && sameGeometry && c.selectionPublishedRevision == c.selectionRevision {
+		return
+	}
+	serial := uint64(1)
+	if old != nil {
+		serial = old.Serial + 1
+	}
+	if display != nil && display.Width == 320 && display.Height == 200 && display.StartByte == 0 && display.PitchByte == 320 && len(c.selectionPixels) == 64000 {
+		display.Indices = append([]byte(nil), c.selectionPixels...)
+	}
+	c.selectionPresentation = &SelectionPresentation{Serial: serial, Steps: c.o.Steps(), Selection: *s, Scanout: display, Palette: palette}
+	c.selectionPublishedRevision = c.selectionRevision
+}
+
 func (c *Core) selectionState() *Selection {
 	if !c.selecting {
 		return nil
@@ -47,6 +98,7 @@ func (c *Core) installSelection() {
 	})
 	c.o.OnCall(oracle.Far(0x01b9, 0x0df5), func(*oracle.Oracle) { c.selectionBorder = false })
 	c.o.OnCall(oracle.Far(0x01b9, 0x11d2), func(*oracle.Oracle) {
+		c.publishSelection()
 		s := c.selectionState()
 		if s == nil || c.selectionTarget < 0 || c.o.KeysPending() != 0 {
 			return
@@ -77,9 +129,15 @@ func (c *Core) startSelectionDisplay() {
 		return
 	}
 	c.selectionPixels = c.o.Indexed()
+	c.selectionPresentation = nil
+	c.selectionRevision = 0
+	c.selectionPublishedRevision = 0
 	var err error
 	c.selectionCancel, err = c.o.ObserveWrites(0xa0000, 0xaf9ff, func(event oracle.MemoryWrite) {
 		if !c.selectionBorder {
+			if c.selectionPixels[int(event.Address-0xa0000)] != event.Value {
+				c.selectionRevision++
+			}
 			c.selectionPixels[int(event.Address-0xa0000)] = event.Value
 		}
 	})
@@ -95,6 +153,7 @@ func (c *Core) stopSelectionDisplay() {
 	}
 	c.selectionPixels = nil
 	c.selectionBorder = false
+	c.selectionPresentation = nil
 }
 
 // SelectionDisplay 只改獨立顯示影本，RGB() 仍回傳原版實際輸出。

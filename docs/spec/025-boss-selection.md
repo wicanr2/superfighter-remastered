@@ -68,3 +68,20 @@ IDA 9.4 `sf-boss-selection-v1.i64`／`ida-boss-selection-v1.json` 直接查明 `
 - 正常標題進雙打，驗兩側頭像定位、舊按鈕位置不再動作、原左右及確認、第一人至第二人及雙打入戰；補驗原貌確認到第二人，再恢復 HD。實體手把仍由人工驗收，不以鍵鼠代替。
 
 限定 CONFORMED。workplace/flow-study-v1/selection-native-no-buttons/receipt.json 共二十七項正常介面檢查通過，第一人蜘蛛女在原貌以左右及 Return 確認到第二人，恢復 HD 後第二人選印第安喬並 Return，正常進 mode=1、fighters=[8,10]。兩側各十一頭像、大肖像、舊按鈕位置無效、暫停與原貌切換均通過；沒有修改核心或練習狀態。[正式雙打截圖](../screenshots/hd-selection-native-versus.png)與 source.json 記錄版本、來源及雜湊。四架構重建與 controls 測試／vet 通過，舊封包與影片保持前輪定版，本輪沒有重新打包或發布。
+
+## 選角完整畫面發布
+
+狀態：READY。使用者要求避免原貌閃現後才變 HD，尤其選角。本節只改只讀呈現的發布時機，原操作、計時、資料與設定格式保持。
+
+- 已證實：v.1.0.2 的 boss-8 receipt 有六十三筆選角觀測，其中九筆 selection_hd_active=false；包含同人切換及 P0→P1。現行 desktop 直接取逐指令更新的 SelectionDisplay 與即時色盤，完整來源比對在重畫中途失敗而回原貌。
+- 原始 SF.EXE SHA、工具及位址基準沿本規格。IDA 9.4 匯出 ida-boss-selection-v1.json 的 sub_110E0，IDA 線性 110F7h、11298h、112E3h 呼叫原肖像 sub_10E86；112ECh 跳 111EEh，之後返回 111D2h 的鍵盤輪詢。原已驗 runtime 01B9:11D2，固定 bytes 33 C0 8E C0 26 8A 26，可作完成輪詢邊界。原始名稱、位址與未知標記保留，本段由控制流與正常來源補上已證實語意。
+- 在原輪詢、排下一次按鍵前，只讀複製同一時刻的選角玩家／游標、濾框後完整色號、色盤及顯示幾何，形成不可變快照。VRAM 色號版本、玩家／游標、色盤或幾何有變才晉升；P0→P1 重入保留上一快照，新一輪完成後整張交換。原 RGB／SelectionDisplay 不改，退出選角清空。
+- HD 來源檢查仍逐點核對快照，不能用現行游標配上一張肖像。已完成但來源未知、幾何不符或素材缺件，仍完整回原貌；不以固定等待秒數或永久沿用舊圖掩蓋未知。
+- 首次從已驗 HD 標題進選角，在已知 leaving-title／selection 生命週期且首張快照未到時，維持上一張完整 HD 標題；不顯示繪製中間態。設定／退出不套用這個等待，明示切原貌立即生效。等待時工具列照常，舊標題的畫面內滑鼠不轉送成選角輸入。
+- 驗正常雙打兩側十一人、P0→P1、快速換人、原貌／HD 切換、暫停、入戰與來源拒絕。原版狀態及 RGB 成對不變；保存新舊同操作實錄、完整快照與原始事件。缺件／未知完整來源必須回原貌，不以閃爍消失冒稱全面 HD。
+
+限定 CONFORMED。selection_presentation_test 以原正常啟動及固定時鐘 0 成對執行，1,063 個邊界的完整 1 MiB 記憶體、暫存器及 RGB 一致；觀察到 525 次 live 與發布影本不同，發布肖像仍逐點符合原 BIGFIG，取得的影本不能改回核心。原單／雙打核心回歸通過。desktop 真實來源檢查通過兩個正常佈局，拒絕不符游標、色盤、像素、半張肖像、幾何及缺件；不是放寬來源檢查來消除閃爍。
+
+workplace/flow-study-v1/selection-atomic-local-v3 保存最終程式的二十七項正常 UI 檢查與連續錄影。兩側各十一頭像、暫停、原貌導航／恢復 HD、第一人至第二人、原確認及 mode=1／fighters=[8,10] 入戰通過，training.modified=false。418 個不同 Draw 中，210 個 HD 選角均為 HD；25 個入場等待 Draw 保留完整 HD 標題。測試中明示切原貌的畫格另計，錄影無音訊，不作推廣片或 60 fps 效能驗收。前一輪 selection-atomic-local-v2 的 249 個 HD 選角亦無原貌，最終版僅補等待狀態診斷與截圖留證。
+
+四架構已重建至 selection-atomic-bin 並晉升 workplace/bin；README 三張新圖與二進位、腳本、收據雜湊見 docs/screenshots/source.json。這輪未重打既有八包／影片。Ada 在切網路後 LAN 與 Tailscale SSH 逾時，這份修正未宣稱 NVIDIA GPU 已驗；既有 v.1.0.2 的 GPU 流暢度保持原範圍。

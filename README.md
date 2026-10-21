@@ -16,6 +16,8 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 目前本機修正版為 `v.1.0.2-20261021`，包含第二排魔王頭像、原版雙打選角流程與固定 60 fps 擷取節奏。三平台八包及含遊戲 HD 標題的新推廣片已重建。視覺 HD 與原音播放已集中接入；驗證範圍見 [CONTEXT](CONTEXT.md)及[集中接入規格](docs/spec/049-hd-batch-integration.md)。
 
+目前來源與本機開發程式另已修正選角閃爍：肖像、色盤及游標完成後整張更新，兩人交接保持上一張完整畫面。Linux 正常操作抽驗 210 個 HD 選角畫格，沒有原貌閃回；既有八包與推廣片尚未包含這項修正。
+
 | 項目 | 現況 |
 |---|---|
 | 場景 | 十一景使用同一套載入與來源核對；街道、石窟、舞廳採保存的修稿，原背景相機與捲動不變 |
@@ -34,21 +36,21 @@ HD 為獨立呈現層。規則、碰撞、AI 與原版流程由 dosgolem 執行�
 
 以下截圖來自正式來源的 Linux 原生程式，經正常選單進入，未改生命、勝負或亂數。圖片與[截圖來源紀錄](docs/screenshots/source.json)均在儲存庫內；原貌對照及原始收據只留本機。
 
-![新版實錄的 HD 標題與原位置選單](docs/screenshots/hd-title-v102.png)
+![目前開發程式的 HD 標題與原位置選單](docs/screenshots/hd-title-current.png)
 
 標題保留原版四個選項與操作位置。字標的色彩循環投影到新美術，設定頁仍顯示原貌。
 
-![新版雙打第二人選角，沒有額外姓名按鈕](docs/screenshots/hd-selection-v102.png)
+![修正閃爍後的雙打第二人選角](docs/screenshots/hd-selection-current.png)
 
-三名魔王置中排列在第二排，可直接點頭像選用。圖中為雙打第二人選角，兩側大肖像跟隨原選角狀態；下方只顯示操作提示。
+三名魔王置中排列在第二排，可直接點頭像選用。圖中為蜘蛛女已確認、第二人選印第安喬；肖像與色盤使用同一張完整快照，下方只顯示操作提示。
 
 ![道場同角色對戰與兩套 HD 配色](docs/screenshots/hd-integrated-dojo.png)
 
 道場由正常雙打進入，畫面顯示兩套角色配色、HD 介面與陰影。此圖只代表該場景的取樣。
 
-![蜘蛛女 B 版連身衣與已載入的原音開關](docs/screenshots/hd-integrated-spider.png)
+![目前開發程式中蜘蛛女與印第安喬的正常雙打](docs/screenshots/hd-battle-current.png)
 
-蜘蛛女一般與 WIN 圖格統一使用 B 版連身衣。圖格基底依原 DAT 朝左，遊戲依站位翻轉；右下角可切換原音。
+這張由上述兩人選角正常進入雙打。蜘蛛女一般與 WIN 圖格統一使用 B 版連身衣，遊戲依站位翻轉；右下角可切換原音。
 
 ![正常雙打獲勝後的 HD 結果報紙](docs/screenshots/hd-integrated-result.png)
 

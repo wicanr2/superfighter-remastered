@@ -65,6 +65,10 @@ type Game struct {
 	selectionHD           *selectionHDAssets
 	selectionHDView       *selectionHDState
 	selectionHDActive     bool
+	selectionWaiting      bool
+	selectionEntryImage   *ebiten.Image
+	selectionEntrySaved   bool
+	selectionEntryChoice  int
 	resultHD              *resultHDAssets
 	resultHDView          *resultHDState
 	resultHDActive        bool
@@ -519,6 +523,10 @@ func (g *Game) Update() error {
 				return nil
 			}
 		}
+		if g.selectionWaiting && pt.In(screenRect) {
+			g.observe()
+			return nil
+		}
 	}
 	if g.panel {
 		if inpututil.IsKeyJustPressed(ebiten.KeyF8) {
@@ -706,6 +714,7 @@ func (g *Game) observe() {
 		return
 	}
 	value := struct {
+		SelectionWaiting   bool                  `json:"selection_waiting"`
 		Performance        renderPerformance     `json:"performance"`
 		Audio              originalAudioState    `json:"audio"`
 		FrontendUpdates    uint64                `json:"frontend_updates"`
@@ -736,6 +745,8 @@ func (g *Game) observe() {
 		HDRoundsActive     bool                  `json:"hd_rounds_active"`
 	}{Audio: g.originalAudioState(), FrontendUpdates: g.updates, Version: g.opts.Version, MouseLeft: ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft), Editing: g.editing, Core: g.core.Status(), Panel: g.panel, KeyboardPanel: g.keyboardPanel, Binding: g.binding, QuickRequests: g.quickRequests, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, TitleHDActive: g.titleHDActive, SelectionHDActive: g.selectionHDActive, SelectionHD: g.selectionHDView, ResultHDActive: g.resultHDActive, ResultHD: g.resultHDView, HDCharactersActive: g.hdActive && g.hdCharacters != nil && !g.titleHDActive && !g.selectionHDActive && !g.resultHDActive, HDHUDActive: g.hdHUDActive, HDShadowsActive: g.hdShadowsActive, HDRoundsActive: g.hdRoundsActive}
 	value.Performance = g.renderPerformance()
+	value.SelectionWaiting = g.selectionWaiting
+	value.HDCharactersActive = value.HDCharactersActive && !g.selectionWaiting
 	b, e := json.MarshalIndent(value, "", "  ")
 	if e == nil {
 		e = os.WriteFile(g.opts.Observe+".tmp", b, 0600)
@@ -790,6 +801,14 @@ func (g *Game) Draw(dst *ebiten.Image) {
 		g.frameCanvas = ebiten.NewImage(Width, Height)
 	}
 	frame := g.core.Presentation()
+	status := g.core.Status()
+	if !g.hdEnabled {
+		g.selectionEntrySaved = false
+	}
+	g.selectionWaiting = g.hdEnabled && g.selectionHD != nil && g.selectionHD.loaded && g.selectionEntrySaved && status.Error == "" && (status.TitleHDStage == "leaving-title" && g.selectionEntryChoice < 2 || status.Selection != nil && g.core.SelectionPresentation() == nil)
+	if status.Battle || status.TitleHDStage == "settings" || status.TitleHDStage == "loading-settings" || status.Selection != nil && !g.selectionWaiting {
+		g.selectionEntrySaved = false
+	}
 	key := battleRenderKey{serial: frame.Serial, steps: frame.Steps, hd: g.hdEnabled, victory: frame.Victory}
 	eligible := g.hdEnabled && frame.Serial > 0 && len(frame.Pixels) == 64000
 	reuse := eligible && !g.capture && g.battleCached && g.battleKey == key
@@ -801,9 +820,18 @@ func (g *Game) Draw(dst *ebiten.Image) {
 	var display *renderdata.Scanout
 	displayError := ""
 	selectionFiltered := false
+	selectionCompleted := false
 	palette := frame.Palette
 	var mapped bool
-	if !reuse {
+	if g.selectionWaiting {
+		g.frameCanvas.Clear()
+		g.frameCanvas.DrawImage(g.selectionEntryImage, nil)
+		g.hdActive = true
+		g.titleHDActive, g.selectionHDActive, g.resultHDActive = false, false, false
+		g.selectionHDView, g.resultHDView = nil, nil
+		g.hdReason = "等待完整選角畫面"
+	}
+	if !reuse && !g.selectionWaiting {
 		g.frameCanvas.Fill(color.RGBA{11, 16, 27, 255})
 		if len(frame.Pixels) == 64000 {
 			w, h = 320, 200
@@ -820,6 +848,13 @@ func (g *Game) Draw(dst *ebiten.Image) {
 			if clean := g.core.SelectionDisplay(); clean != nil {
 				display = clean
 				selectionFiltered = true
+			}
+			if g.hdEnabled && g.selectionHD != nil && g.selectionHD.loaded {
+				if complete := g.core.SelectionPresentation(); complete != nil && complete.Scanout != nil {
+					display, palette = complete.Scanout, complete.Palette
+					selectionCompleted = true
+					err = nil
+				}
 			}
 			if err != nil {
 				displayError = err.Error()
@@ -903,11 +938,27 @@ func (g *Game) Draw(dst *ebiten.Image) {
 				g.titleHDActive = true
 				g.hdActive = true
 				g.hdReason = "HD 標題與主選單"
+				if g.selectionEntryImage == nil {
+					g.selectionEntryImage = ebiten.NewImage(Width, Height)
+				}
+				g.selectionEntryImage.Clear()
+				g.selectionEntryImage.DrawImage(g.frameCanvas, nil)
+				g.selectionEntrySaved, g.selectionEntryChoice = true, title.Selected
 			} else if view := g.selectionHDView; view != nil && g.drawSelectionHD(dst, view) {
+				g.selectionEntrySaved = false
 				g.selectionHDView = view
 				g.selectionHDActive = true
 				g.hdActive = true
 				g.hdReason = "HD 選角"
+				if g.capture {
+					display, palette = view.Display, view.Palette
+					w, h = display.Width, display.Height
+					rgb = make([]byte, w*h*3)
+					for i, index := range display.Indices {
+						c := palette[index]
+						copy(rgb[i*3:i*3+3], c[:])
+					}
+				}
 			} else if view := g.resultHDView; view != nil && g.drawResultHD(dst, view) {
 				g.resultHDView = view
 				g.resultHDActive = true
@@ -1013,6 +1064,12 @@ func (g *Game) Draw(dst *ebiten.Image) {
 			source := "live-original"
 			if selectionFiltered {
 				source = "selection-filtered-original"
+			}
+			if selectionCompleted {
+				source = "completed-selection-frame"
+			}
+			if g.selectionWaiting {
+				source = "retained-hd-title-for-selection"
 			}
 			if len(frame.Pixels) == 64000 {
 				source = "completed-battle-frame"

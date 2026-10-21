@@ -8,7 +8,9 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/vector"
+	"github.com/wicanr2/superfighter-remastered/internal/gamecore"
 	"github.com/wicanr2/superfighter-remastered/internal/hd"
+	"github.com/wicanr2/superfighter-remastered/internal/renderdata"
 )
 
 type selectionHDAssets struct {
@@ -19,12 +21,15 @@ type selectionHDAssets struct {
 	logo       *ebiten.Image
 }
 type selectionHDState struct {
-	Player         int           `json:"player"`
-	Cursor         int           `json:"cursor"`
-	Portraits      [2]int        `json:"portraits"`
-	OriginalSHA256 string        `json:"original_sha256"`
-	Selectors      [][3]int      `json:"-"`
-	Palette        [256][3]uint8 `json:"-"`
+	Serial         uint64              `json:"serial"`
+	Steps          uint64              `json:"steps"`
+	Display        *renderdata.Scanout `json:"-"`
+	Player         int                 `json:"player"`
+	Cursor         int                 `json:"cursor"`
+	Portraits      [2]int              `json:"portraits"`
+	OriginalSHA256 string              `json:"original_sha256"`
+	Selectors      [][3]int            `json:"-"`
+	Palette        [256][3]uint8       `json:"-"`
 }
 
 func loadSelectionHD(root string, art map[string]*ebiten.Image, logo image.Image) *selectionHDAssets {
@@ -55,20 +60,26 @@ func loadSelectionHD(root string, art map[string]*ebiten.Image, logo image.Image
 }
 
 func (g *Game) selectionHDState() *selectionHDState {
+	return g.matchSelectionHD(g.core.SelectionPresentation())
+}
+
+func (g *Game) matchSelectionHD(frame *gamecore.SelectionPresentation) *selectionHDState {
 	a := g.selectionHD
 	if a == nil {
 		return nil
 	}
-	selected := g.core.Status().Selection
+	if frame == nil {
+		return nil
+	}
+	selected := &frame.Selection
 	if selected == nil || selected.Player < 0 || selected.Player > 1 {
 		return nil
 	}
-	display := g.core.SelectionDisplay()
-	_, palette, e := g.core.LiveDisplay()
-	if display == nil || e != nil || !display.Valid() || display.Width != 320 || display.Height != 200 || display.StartByte != 0 || display.PitchByte != 320 {
+	display, palette := frame.Scanout, frame.Palette
+	if display == nil || !display.Valid() || display.Width != 320 || display.Height != 200 || display.StartByte != 0 || display.PitchByte != 320 {
 		return nil
 	}
-	s := &selectionHDState{Player: selected.Player, Cursor: selected.Cursor, Portraits: [2]int{-1, -1}, OriginalSHA256: resultDigest(display.Indices), Palette: palette}
+	s := &selectionHDState{Serial: frame.Serial, Steps: frame.Steps, Display: display, Player: selected.Player, Cursor: selected.Cursor, Portraits: [2]int{-1, -1}, OriginalSHA256: resultDigest(display.Indices), Palette: palette}
 	for i := 0; i < 160; i++ {
 		if palette[i] != a.palette[i] {
 			return nil

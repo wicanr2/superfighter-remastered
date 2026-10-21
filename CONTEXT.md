@@ -2,7 +2,11 @@
 
 更新日期：2026-10-21。本檔為唯一現況；待辦見 [WORKLIST](WORKLIST.md)，完整歷程見 [WORKLOG](WORKLOG.md)，規則與索引見 [AGENTS](AGENTS.md)。
 
-目前來源、`workplace/bin/` 及本機八包均為 `v.1.0.2-20261021`，已納入移除畫面外姓名／確認按鈕的介面。雙打沿原標題選單、第一人確認、第二人確認、進入 mode=1 對戰；HD 上排八人、第二排三魔王及十一頭像點選保持。二十七項正常介面收據在 selection-native-no-buttons；四架構相較該輪實際編譯輸入僅 VERSION 改變。正式建置位於 workplace/flow-study-v1/v102-bin，八包、四次 Linux／Wine 解壓啟動及新版影片均已完成。本輪沒有新增 Release，舊 tag、封包與影片保留。
+目前來源與 workplace/bin 已修正選角原貌閃回。025 完整畫面發布限定 CONFORMED：原 01B9:11D2 輪詢只讀發布色號、色盤、游標與幾何，換人及兩側交接不讀中間態。原版成對 1,063 點、525 次繪製中間態、完整來源拒絕與二十七項正常 UI 通過；最終 Linux 二進位 SHA 89aba7c3b77e0b4088a8e1002b378b8c179121d8b4906e86c7193a45fce15111。selection-atomic-local-v3 保存正常錄影，210 個 HD 選角 Draw 沒有原貌，另有 25 個入場保留 HD 標題的 Draw。這輪為軟體繪圖容器驗證；Ada 在切網路後 LAN／Tailscale SSH 均逾時，尚未驗本修正的 GPU 效能。
+
+四架構編譯與實際輸入見 workplace/flow-study-v1/selection-atomic-bin、selection-atomic-build.json，晉升及截圖來源見 selection-atomic-integration.json。README 的標題、選角、蜘蛛女雙打改用本輪正常 HD 截圖，原圖保留。**現行來源與開發程式比既有八包、推廣片更新**，本輪沒有打包或發布。以下 v.1.0.2 為既有交付定版證據，不包含這項閃爍修正。
+
+既有八包的版本為 `v.1.0.2-20261021`，已納入移除畫面外姓名／確認按鈕的介面。雙打沿原標題選單、第一人確認、第二人確認、進入 mode=1 對戰；HD 上排八人、第二排三魔王及十一頭像點選保持。該版二十七項正常介面收據在 selection-native-no-buttons；四架構相較該輪實際編譯輸入僅 VERSION 改變。交付建置位於 workplace/flow-study-v1/v102-bin，八包、四次 Linux／Wine 解壓啟動及新版影片均已完成。本輪沒有新增 Release，舊 tag、封包與影片保留。開發程式仍用該版本字串，以最上方實際編譯輸入與雜湊區別。
 
 新版影片 75 秒、4,500 格、1280×720／60 fps、AAC 48 kHz；66 秒原生 GPU 實錄含六秒遊戲內 HD 標題、三名魔王各六秒雙打兩人選角及十四秒戰鬥。原標題 music-01 實錄非靜音，成片峰值 -7.3dB，完整解碼、黑幀零、戰鬥凍結零及九段畫面／字幕抽查通過。影片 SHA a09876bd404d88b86cbe0fc16c58994c407e52a6b40c9a977fc09792f13d8e2c，僅留本版 promo。
 
@@ -30,7 +34,7 @@ v1 發布狀態以上方摘要及下表為準，歷史版本不覆寫。已發�
 | 蜘蛛女 B | 45 組一般、五組與一般同 bytes 的 WIN、144 入口 | 原 PNG 與提示詞保留。原 DAT 基底朝左，依實際來源及左玩家 0x44 flags 修正圖格朝向，保留遊戲翻轉邏輯；Linux 一般動作、首勝 WIN 專用圖格、兩次 KO／結果／返回及 Wine 普通操作通過；所有動畫不外推 |
 | 原音 | [050](docs/spec/050-original-audio-playback.md)：十五 MIDI／四十 PCM，共 55 OGG、54 個不同 cue 雜湊 | 十八原檔完整核對，全部轉換非靜音且無削波；188 次固定時鐘成對狀態檢查通過；Linux 167 秒虛擬裝置實錄通過，暫停／靜音 RMS 0、恢復／循環非靜音、削波 0。音樂 HD 重編、語音修復及人耳驗收未做 |
 | 操作與練習 | 鍵盤重綁、雙人裝置、四格配置、滿血鎖血／停時／AI 中立 | 沿 004／025／032／035 已驗限定範圍；快捷實際只開放斬四招，實體手把仍待人工 |
-| 回歸與建置 | 四架構現行 `workplace/bin` 與 `flow-study-v1/v102-bin` 實際編譯收據，前版二進位保留 | 現行來源相較二十七項正常 UI 的版本僅 VERSION 改變；本輪 controls 測試與 desktop／cmd vet 通過。原 133 項與前輪 26 項／有界完整來源測試保持原範圍 |
+| 回歸與建置 | 四架構現行 `workplace/bin` 與 `flow-study-v1/selection-atomic-bin` 實際編譯收據，交付的 v102-bin 保留 | 選角完整發布的成對核心、來源拒絕、二十七項正常 UI 及 vet 通過。原 133 項與前輪 26 項／有界完整來源測試保持原範圍 |
 | 本機交付 | `dist-all/v.1.0.2-20261021/`：四引擎包、四完整版 | 各完整版含 125 原檔及 55 OGG，引擎包排除原版／原音。清單、SHA、CRC 及 Linux／Wine 共四次乾淨解壓啟動通過；完整版只留本機 |
 | 本版影片 | `dist-all/v.1.0.2-20261021/promo/v.1.0.2-20261021-local-promo.mp4` | 75 秒、4,500 格／60fps；六秒 HD 遊戲標題、三場雙打兩人選角及實戰，共 66 秒實錄。完整解碼、峰值 -7.3dB、黑幀 0、戰鬥凍結 0、九段畫面／字幕抽查通過；三場實際繪圖 59.97–60.04 fps，只留本機 |
 | 正式發布 | [v.1.0.0-20261021](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.1.0.0-20261021)，tag 固定來源 `f7f6ac667fae36d08bb5106957c1d9e560c6a390` | 四引擎 ZIP 與 manifest 的遠端大小、SHA-256 均吻合。使用者授權一次性發布容器的 AppArmor 例外，其餘權限限制保留；沒有移動或抽出 token |

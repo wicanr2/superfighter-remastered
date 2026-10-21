@@ -50,31 +50,34 @@ type Status struct {
 
 // Core 由桌面 Update 所在執行緒獨占；沒有背景 goroutine 或網路。
 type Core struct {
-	audio            audioRecording
-	titleHD          *titleHDRecording
-	selecting        bool
-	selectionTarget  int
-	selectionConfirm bool
-	selectionPixels  []byte
-	selectionCancel  func()
-	selectionBorder  bool
-	o                *oracle.Oracle
-	paused           bool
-	manual           map[string]Source
-	jobs             [2]*shortcut
-	frames           uint64
-	counter          uint16
-	seen             bool
-	err              string
-	presentation     Presentation
-	recording        layerRecording
-	hud              hudRecording
-	shadows          shadowRecording
-	rounds           roundRecording
-	display          bool
-	victory          victoryRecording
-	training         trainingState
-	spriteSources    [11]spriteSourceTables
+	audio                      audioRecording
+	titleHD                    *titleHDRecording
+	selecting                  bool
+	selectionTarget            int
+	selectionConfirm           bool
+	selectionPixels            []byte
+	selectionCancel            func()
+	selectionBorder            bool
+	selectionRevision          uint64
+	selectionPublishedRevision uint64
+	selectionPresentation      *SelectionPresentation
+	o                          *oracle.Oracle
+	paused                     bool
+	manual                     map[string]Source
+	jobs                       [2]*shortcut
+	frames                     uint64
+	counter                    uint16
+	seen                       bool
+	err                        string
+	presentation               Presentation
+	recording                  layerRecording
+	hud                        hudRecording
+	shadows                    shadowRecording
+	rounds                     roundRecording
+	display                    bool
+	victory                    victoryRecording
+	training                   trainingState
+	spriteSources              [11]spriteSourceTables
 }
 
 var allowed = [2]map[uint8]bool{

@@ -1126,3 +1126,19 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 清理本輪已用完 Wine 前綴前逐檔保存雜湊，移除 720,401,993 bytes，清單在本版 smoke/workspace-cleanup.json；設定、日誌、畫面、原始錄影、輸入與歷版交付保留。ada 專案容器查詢為空；本機收尾再核對，不動其他專案。
 
 本輪來源與工具、版號、HD 截圖、文件可推既有私人儲存庫；原版、原音、影片、完整版及原始收據不進 Git。最終稽核在本版 smoke/final-audit.py／json，來源提交與遠端核對寫 smoke/source-closeout.json。歷版四十個 ZIP、四支影片及已發布 tag 保持，物理螢幕、雙手把、其他平台真機、完整過關與人耳限制不變。
+
+## 2026-10-21：選角完整畫面發布與 README 截圖更新
+
+使用者要求優化繪圖攔截，避免原貌閃現後才變 HD，優先選角；另通知 Ada 網路切換後可以重連，並要求更新 README 截圖。本輪命中復古遊戲路由，沿 spec-gated-workflow、tactical-parity 與既有逆向技能查證原控制流，025 先追加 READY，再實作只讀發布。原操作與美術方向已授權，沒有重新詢問產品決定。
+
+- 根因為 desktop 同時讀逐指令寫入的 VRAM、即時色盤與游標。原肖像重畫中途不符合完整來源，便整格回原貌。既有 v.1.0.2 boss-8 收據六十三筆選角觀測中有九筆 selection_hd_active=false，涵蓋首次進入、換人及第一人至第二人。原 IDA 9.4 匯出 sub_110E0 的 110F7h／11298h／112E3h 肖像呼叫與返回輪詢控制流，支援在既有 runtime 01B9:11D2 發布；固定 bytes 與原始位址見 025，沒有改寫原函式名或遊戲 bytes。
+- gamecore 在原輸入輪詢排下一次鍵前，發布同時刻的色號、色盤、幾何及玩家／游標不可變影本。只在內容版本、游標、色盤或幾何改變時晉升；兩側交接保留上張完整圖，退出清空。原 RGB 及 SelectionDisplay 保持，取得者拿到獨立影本，不能改回核心。desktop 的基底與 HD 驗證都用同一完成快照，不再混用 live 色盤。
+- 首次由已驗 HD 標題進選角時，已知 leaving-title／selection 階段保留最後完整標題，等首張完成圖到達才交換。等待時不轉送舊標題畫面內的滑鼠，工具列與鍵盤保持；設定、退出、原貌切換不套用保留。已完成但未知的來源、幾何或缺件仍回原貌，沒有放寬逐點來源核對或用固定秒數遮住問題。診斷分開等待 HD、角色 HD、實際 Draw 狀態。
+- 新核心測試固定原版時鐘 0，與停用只讀觀測的一側成對執行正常啟動、兩側十一人、循環及原確認。最終保存的 selection-atomic-core-tests.log 為 1,063 點完整 1 MiB RAM／暫存器／RGB 一致，525 次中間態仍保留完整肖像；原正常單／雙打回歸同次通過，總 43.248 秒。首次新測試把已進 battle、仍在正常載入的 frames=0 誤作選角失敗，已將該窄測試停止條件改為選角觀測退出，實際遊戲畫格由既有核心回歸與正常 UI 另驗，原失敗保留。
+- desktop 使用真實本機 SELMAN／BIGFIG，驗兩個完整佈局及游標、色盤、未知像素、半張肖像、幾何與缺件拒絕，通過。controls 測試與 gamecore／desktop／cmd vet 通過。沒有在 Git 存原檔或固定原版 bytes fixture。
+- native_perf.py 新增 selection-atomic，從標題開始連續錄影，收集實際 Draw 的選角／HD／等待旗標，排除明示原貌切換。正常兩側十一人、暫停拒絕、原貌導航／恢復 HD、兩側交接及雙打入戰，共二十七項通過。第一個本機腳本因啟動 recent=null 發生 TypeError，修正工具的空值處理後乾淨重跑。selection-atomic-local-v2 的 249 個 HD 選角無原貌；最終 v3 的 418 個不同 Draw 中，210 個 HD 選角無原貌、25 個入場等待均為完整 HD 標題。最終 mode=1、fighters=[8,10]、training.modified=false；錄影含測試主動切原貌且無音訊，只作驗證，不是新推廣片。
+- 最終 Linux SHA 89aba7c3b77e0b4088a8e1002b378b8c179121d8b4906e86c7193a45fce15111，腳本 SHA 7c1d8fd25d16bf1a5e8d549fb1066c1965fadbfd2c850fff4dabe1825d331e00。四架構在原固定 Go 1.24.13 image 重建，逐包編譯來源、SHA 與檔頭核對後晉升 workplace/bin；selection-atomic-bin 及 build.json 保存實際編譯輸入，v102-bin 保留。沒有修改核心計時、規則、原音或美術。
+- Ada 的兩個既有腳本位址 192.168.1.166／100.77.74.16 均 SSH 逾時；受限只讀容器用 bridge 與 host 網路交叉檢查仍逾時，沒有改主機或抽憑證。已詢問切網路後的新位址。本輪 UI 在本機 Docker 軟體繪圖完成，不引用舊 GPU 收據宣稱本修正已在 NVIDIA 通過，亦未完成新舊同操作雙片比較。待連線恢復後，用已準備的同版二進位與工具補驗。
+- README 換上本輪正常 F12 的標題、第二人選角及蜘蛛女對印第安喬三張 HD PNG。已目視核對第二排三魔王、兩側大肖像、無額外姓名按鈕、雙打及連身衣。原圖保留，新圖用 repo 相對路徑，source.json 記錄 binary／script／receipt／capture metadata SHA。資料與原貌、錄影、原音及原始收據保持本機。
+
+025 僅就上述正常選角與原版狀態不變限定 CONFORMED，GPU、實體螢幕、手把、其他平台真機及完整動畫／結局限制保持。CONTEXT、WORKLIST、驗證矩陣與索引同步。現行來源及開發程式比 v.1.0.2 八包與影片更新；本輪沒有重打包、新 Release、移動 tag 或改公開方式。最終 Git、擁有權、README 路徑與 Docker 清理結果寫 selection-atomic-closeout.json。

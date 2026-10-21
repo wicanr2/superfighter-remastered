@@ -14,9 +14,14 @@ type battleRenderKey struct {
 }
 
 type renderFrameTiming struct {
-	Draw       uint64  `json:"draw"`
-	IntervalMS float64 `json:"interval_ms"`
-	DrawMS     float64 `json:"draw_ms"`
+	Selection        bool    `json:"selection"`
+	HDEnabled        bool    `json:"hd_enabled"`
+	HDActive         bool    `json:"hd_active"`
+	SelectionHD      bool    `json:"selection_hd"`
+	SelectionWaiting bool    `json:"selection_waiting"`
+	Draw             uint64  `json:"draw"`
+	IntervalMS       float64 `json:"interval_ms"`
+	DrawMS           float64 `json:"draw_ms"`
 }
 
 type renderPerformance struct {
@@ -42,7 +47,7 @@ func (g *Game) renderPerformance() renderPerformance {
 func (g *Game) finishPerformanceDraw(started time.Time) {
 	p := &g.performanceState
 	p.DrawMS = float64(time.Since(started)) / float64(time.Millisecond)
-	frame := renderFrameTiming{Draw: p.Draws, IntervalMS: p.IntervalMS, DrawMS: p.DrawMS}
+	frame := renderFrameTiming{Draw: p.Draws, IntervalMS: p.IntervalMS, DrawMS: p.DrawMS, Selection: g.core.Status().Selection != nil, HDEnabled: g.hdEnabled, HDActive: g.hdActive, SelectionHD: g.selectionHDActive, SelectionWaiting: g.selectionWaiting}
 	if len(p.Recent) == 64 {
 		copy(p.Recent, p.Recent[1:])
 		p.Recent[63] = frame

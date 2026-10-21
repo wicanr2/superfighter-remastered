@@ -151,6 +151,10 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 擷取節奏與唯讀性能資料實作分別為 [固定呈現節奏](internal/desktop/frame_pacer.go)及[呈現量測](internal/desktop/performance.go)，契約見 005。CLI `-capture-fps 60` 用於無實體螢幕同步的錄影路徑，正常啟動保留 VSync；不能藉此調快原版。對戰快取位於 Game.Draw，以完成畫格及勝負快照識別，F12 強制重畫。
 
+選角發布契約見 [025](docs/spec/025-boss-selection.md#選角完整畫面發布)。[完整選角快照](internal/gamecore/selection.go)在原輸入輪詢只讀發布，HD 比對快照的肖像／色盤／游標；[成對原版檢查](internal/gamecore/selection_presentation_test.go)驗完整肖像、不可變影本、原記憶體／暫存器及 RGB。正常介面連續錄影使用 tools/native_perf.py 的 selection-only／selection-atomic，收據沿 CONTEXT 指定位置。
+
+[完整選角來源拒絕檢查](internal/desktop/selection_hd_test.go)使用本機原 SELMAN／BIGFIG，驗游標、色盤、像素、肖像、幾何與缺件拒絕。設定 KDZZ_ORIGINAL_ROOT 指向原版目錄，在 dosgolem-go-ebiten:1.24-r1 容器以 xvfb-run 執行該 Go 測試；原版資料不加入 Git。
+
 正式 v1 推廣片錄製入口為 [三魔王正常錄影](tools/record_promo_bosses.py)，合成與檢查使用 [v1 影片工具](tools/promo_v1.py)，範圍沿 [036](docs/spec/036-release-packages.md)。原始錄影與配樂僅留 dist-all 的本機 promo，不入 Git。交付總稽核為 [v1 稽核工具](tools/audit_release_v1.py)，原始來源、舊交付、影片與四架構分開核對。
 
 | 已建立檔案 | 唯一職責 |
