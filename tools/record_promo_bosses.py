@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import signal
+import shutil
 import subprocess
 import time
 import wave
@@ -22,6 +23,7 @@ def main():
     p.add_argument('--fps',type=int,choices=[30,60],default=30)
     p.add_argument('--renderer',choices=['software','nvidia'],default='software')
     p.add_argument('--portraits',action='store_true',default=True,help='select through in-game portraits; retained for existing recording commands')
+    p.add_argument('--intro',action='store_true',help='額外錄製遊戲內 HD 標題與原音')
     a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False)
     (a.output/Path(__file__).name).write_bytes(Path(__file__).read_bytes())
     for name in ('home','runtime','pulse'):(a.output/name).mkdir(mode=0o700)
@@ -45,7 +47,7 @@ def main():
         assert not s['core'].get('error') and not s['audio'].get('error')
         assert not s['core']['training']['modified']
         events.append(dict(performance=s.get('performance'),label=label,seconds=time.monotonic()-started,core=s['core'],audio=s['audio'],
-                           hd_active=s['hd_active'],selection_hd_active=s['selection_hd_active'],
+                           hd_active=s['hd_active'],title_hd_active=s['title_hd_active'],selection_hd_active=s['selection_hd_active'],
                            scene=s['presentation']['scene'],actors=s['presentation'].get('actors')))
         return s
     def wait(predicate,seconds=150):
@@ -145,6 +147,15 @@ def main():
         assert 'X=0\n'in geometry and 'Y=0\n'in geometry,geometry
         click(110,32);wait(lambda s:s['core'].get('title_hd'))
         if not state()['hd_enabled']:click(830,32)
+        wait(lambda s:s['title_hd_active'])
+        if a.intro:
+            c=begin_clip('intro')
+            while time.monotonic()-c['started']<8:
+                assert record_state()['title_hd_active'];time.sleep(.05)
+            end_clip(c)
+            if a.fps==60:
+                key('F12');wait(lambda s:(a.output/'selection.png').is_file(),15)
+                shutil.copy2(a.output/'selection.png',a.output/'title-hd.png')
         key('Right');wait(lambda s:s['core'].get('title_hd',{}).get('selected')==1);key('Return')
         wait(lambda s:s['selection_hd_active']and s['core'].get('selection',{}).get('player')==0)
         c=begin_clip('selection');time.sleep(.7)
@@ -152,12 +163,14 @@ def main():
         wait(lambda s:s['core'].get('selection',{}).get('cursor')==a.character and s['core']['selection'].get('target',-1)<0)
         record_state('boss-selected');time.sleep(1.4);key('Return')
         wait(lambda s:s['core'].get('selection',{}).get('player')==1);time.sleep(1)
+        click(80+(28+33*a.opponent+16)*3,64+(127+16)*3)
+        wait(lambda s:s['core'].get('selection',{}).get('cursor')==a.opponent and s['core']['selection'].get('target',-1)<0)
+        record_state('second-player-selected')
         if time.monotonic()-c['started']<8:time.sleep(8-(time.monotonic()-c['started']))
         end_clip(c)
         if a.fps==60:
-            key('F12');wait(lambda s:(a.output/'selection.png').is_file(),15)
-        click(80+(28+33*a.opponent+16)*3,64+(127+16)*3)
-        wait(lambda s:s['core'].get('selection',{}).get('cursor')==a.opponent and s['core']['selection'].get('target',-1)<0)
+            previous=(a.output/'selection.png').stat().st_mtime_ns if (a.output/'selection.png').exists()else 0
+            key('F12');wait(lambda s:(a.output/'selection.png').is_file()and(a.output/'selection.png').stat().st_mtime_ns>previous,15)
         key('Return')
         wait(lambda s:s['core']['battle']and s['core']['frames']>8 and s['hd_active'])
         assert state()['core']['fighters']==[a.character,a.opponent]
@@ -179,7 +192,7 @@ def main():
         receipt=dict(version=state()['version'],character=a.character,opponent=a.opponent,binary_sha256=sha(a.binary),
                      command=command,clips=clips,events=events,script_sha256=sha(Path(__file__)),
                      character_manifest_sha256=sha(a.binary.parent/'assets/hd/characters/manifest.json'),
-                     renderer=a.renderer,capture_fps=a.fps,portrait_selection=a.portraits,
+                     renderer=a.renderer,capture_fps=a.fps,portrait_selection=a.portraits,hd_intro=a.intro,
                      rights='local-only game recordings and original audio; never Git or public Release',
                      limits='normal Linux native app under Xvfb with ordinary keyboard/mouse; no physical controller, full game, original speed or hardware audio parity claim')
         (a.output/'receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')

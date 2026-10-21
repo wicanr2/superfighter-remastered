@@ -14,7 +14,7 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 ## 目前整合範圍
 
-目前本機修正版為 `v.1.0.1-20261021`，加入第二排魔王頭像與固定 60 fps 擷取節奏。視覺 HD 與原音播放已集中接入正式程式；既有正常路徑證據與限制保持。最新狀態見 [CONTEXT](CONTEXT.md)及[集中接入規格](docs/spec/049-hd-batch-integration.md)。
+目前本機修正版為 `v.1.0.2-20261021`，包含第二排魔王頭像、原版雙打選角流程與固定 60 fps 擷取節奏。三平台八包及含遊戲 HD 標題的新推廣片已重建。視覺 HD 與原音播放已集中接入；驗證範圍見 [CONTEXT](CONTEXT.md)及[集中接入規格](docs/spec/049-hd-batch-integration.md)。
 
 | 項目 | 現況 |
 |---|---|
@@ -34,11 +34,11 @@ HD 為獨立呈現層。規則、碰撞、AI 與原版流程由 dosgolem 執行�
 
 以下截圖來自正式來源的 Linux 原生程式，經正常選單進入，未改生命、勝負或亂數。圖片與[截圖來源紀錄](docs/screenshots/source.json)均在儲存庫內；原貌對照及原始收據只留本機。
 
-![正式接入的 HD 標題與原位置選單](docs/screenshots/hd-integrated-title.png)
+![新版實錄的 HD 標題與原位置選單](docs/screenshots/hd-title-v102.png)
 
 標題保留原版四個選項與操作位置。字標的色彩循環投影到新美術，設定頁仍顯示原貌。
 
-![原版雙打流程的第二人選角，沒有額外姓名按鈕](docs/screenshots/hd-selection-native-versus.png)
+![新版雙打第二人選角，沒有額外姓名按鈕](docs/screenshots/hd-selection-v102.png)
 
 三名魔王置中排列在第二排，可直接點頭像選用。圖中為雙打第二人選角，兩側大肖像跟隨原選角狀態；下方只顯示操作提示。
 
@@ -64,7 +64,7 @@ HD 為獨立呈現層。規則、碰撞、AI 與原版流程由 dosgolem 執行�
 
 ## 下載與資料準備
 
-已發布的 `v.1.0.0-20261021` Windows x86-64、Linux x86-64、macOS Intel 與 Apple Silicon 引擎包見 [v1 正式 Release](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.1.0.0-20261021)。儲存庫為私人，需有權限的帳號查看。本輪 `v.1.0.1-20261021` 為本機修正版，尚未新增 Release；已發布附件與 tag 保持。
+已發布的 `v.1.0.0-20261021` Windows x86-64、Linux x86-64、macOS Intel 與 Apple Silicon 引擎包見 [v1 正式 Release](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.1.0.0-20261021)。儲存庫為私人，需有權限的帳號查看。目前 `v.1.0.2-20261021` 為本機修正版，尚未新增 Release；已發布附件與 tag 保持。
 
 1. 解壓對應平台的引擎包。
 2. 以 `-import-data 原版目錄或jsdos檔 -data game-data` 匯入合法資料。工具逐檔核對，只建立新目錄，不覆寫既有資料。
@@ -73,11 +73,9 @@ HD 為獨立呈現層。規則、碰撞、AI 與原版流程由 dosgolem 執行�
 
 程式從封包旁的 `assets/hd/` 載入素材，並在使用者設定目錄由自己的原版資料建立背景參考。正式載入不依賴研究目錄、Python 或本機原型環境變數。
 
-本機修正版八包位於 `dist-all/v.1.0.1-20261021/`：四個引擎包與四個含原版／原音的完整版。該版 `promo/` 保存新版 60 fps 推廣片，75 秒中包含 66 秒原生 GPU 實錄，展示三名魔王的第二排頭像選角與實際對戰，含原版音樂及音效。完整版與影片只留本機，不隨 Git 或 Release 提供。交付內容與限制見[發行契約](docs/spec/036-release-packages.md)。
+本機修正版八包位於 `dist-all/v.1.0.2-20261021/`：四個引擎包與四個含原版／原音的完整版，已包含移除額外選角按鈕的介面。該版 `promo/` 保存重新錄製的 75 秒、60 fps 推廣片；66 秒原生 GPU 實錄包含遊戲 HD 標題、三魔王的雙打兩人選角與實際對戰，含原版音樂及音效。完整版與影片只留本機，不隨 Git 或 Release 提供。交付內容與限制見[發行契約](docs/spec/036-release-packages.md)。
 
-目前來源與 `workplace/bin/` 已再移除額外的姓名／確認按鈕；既有八包及影片保持前輪定版，這項介面修正尚未重新打包。
-
-流暢度目標為穩定 60 fps 輸出，保留原版動作節奏。ada 的 RTX 2000 Ada 在固定節奏下，二十秒邊玩邊錄影約 60.02 fps，1,202 個畫格間隔中沒有超過 33.3 ms 的停頓。這是 Linux／NVIDIA EGL 擷取路徑的抽樣，實體螢幕及其他平台仍須驗收；原版完成畫格與輸出 FPS 分開記錄，定義見[原生桌面規格](docs/spec/005-native-desktop.md#60-fps-流暢度目標)。
+流暢度目標為穩定 60 fps 輸出，保留原版動作節奏。最新版在 ada RTX 2000 Ada 二十秒邊玩邊錄影約 59.99 fps，1,201 個間隔的 p99 為 24.88 ms，有一次 34.08 ms。這是 Linux／NVIDIA EGL 擷取路徑的抽樣，實體螢幕及其他平台仍須驗收；原版完成畫格與輸出 FPS 分開記錄，定義見[原生桌面規格](docs/spec/005-native-desktop.md#60-fps-流暢度目標)。
 
 錄影或虛擬顯示環境可加 `-capture-fps 60`，以固定呈現節奏取代該擷取路徑的垂直同步等待。一般啟動保留螢幕垂直同步，遊戲計時與輸入規則維持。
 

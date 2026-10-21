@@ -1108,3 +1108,21 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 完成聲明限於已列正常選角與雙打入戰；實體手把、Windows／macOS 真機、完整過關與人耳限制保持。工作樹只提交程式、規格、HD 截圖及文件，原資料、原音與收據留本機。現況與驗證矩陣已同步。
 
 來源提交、遠端 main 核對及 Docker 清理結果記錄在本輪 selection-native-no-buttons/integration.json；README 三十四個相對連結與八張圖均已入 Git。四架構編譯輸入／SHA／檔頭、截圖雜湊、Python 語法、擁有權與誤建目錄檢查通過。
+
+## 2026-10-21：v.1.0.2 重打包與遊戲 HD 片頭實錄
+
+使用者明確要求重打包並重新錄製影片，加入遊戲片頭 HD。讀版號、dist-all、影片及復古重製技能／驗收入口後，036 先追加 READY：採新版本 v.1.0.2-20261021，保留全部歷版交付與已發布 tag，不新增 Release。HD 片頭採已接入的正常遊戲標題，沒有新造劇情動畫。完整版與含原音影片只留本機。
+
+- 四架構以原固定 Go 1.24.13 image 重建到 workplace/flow-study-v1/v102-bin。相較二十七項 GUI 驗證的 native-selection-bin，compiled_inputs 僅 VERSION 改變，沒有修改原核心、計時器、原音或美術。controls 測試與 desktop／cmd vet 通過。核對實際來源、SHA 與檔頭後晉升 workplace/bin，前版二進位保持。
+- tools/package_release.py 的封包說明加入原雙打第一人／第二人、Enter／數字鍵盤 Enter／手把確認、十一頭像與魔王第二排，以及 capture-fps=60；明列已移除額外姓名／確認按鈕。新 dist-all/v.1.0.2-20261021 從乾淨輸入建立八包，patch 不含原版／原音，full-local 各含 125 原檔與 55 OGG。逐包清單、CRC、SHA、版號與權利分類通過。
+- 新八包解至 v102-unpacked，Linux 與 Wine 使用原 image、4 GiB 限額，各對引擎及完整版正常啟動，共四次通過。驗缺資料、安全匯入／拒絕覆寫、設定、自動十一景參考與實際步進。macOS 保留建置／檔頭／封包範圍，Wine 不代替 Windows 真機。
+- 使用既有 login_ada 腳本與 SSH agent 連線，工作負載沿 kdzz-gpu-verify:20261021-r1、NVIDIA RTX 2000 Ada、VirtualGL EGL、UID 1000 的 --rm 容器；沒有抽出憑證或改主機設定。新 binary 與工具以新檔名放入原工作區，舊二進位與原始資料不覆寫。
+- record_promo_bosses.py 新增 intro，先錄八秒正常 HD 標題及 music-01 原音，再進原雙打。三名魔王各錄第一人定位／Return、第二人定位，兩側選定均出現在選角片段內；第二人最後 Return 才入戰。選角來源約八秒、戰鬥約十六秒，實際繪圖 60.0411／59.9685／60.0018 fps，保留全部事件、原始 MP4／WAV 及來源 SHA。沒有注入生命、位置、勝負或練習。
+- promo_v1.py 維持 75 秒：版本卡三秒、遊戲 HD 標題六秒、三魔王各六秒選角與十四秒戰鬥、結尾六秒，共六十六秒實錄。選角視窗放大並保留目前選角者提示；九段接觸圖改為 3×3，選角抽樣移至第 5.5 秒核對兩側都完成。差異為真實 HD 片頭、沒有外部姓名按鈕的雙人選角、重新擷取與加大選角畫面。全片直接使用本版正常原生實錄。
+- 成片 10,114,027 bytes，SHA a09876bd404d88b86cbe0fc16c58994c407e52a6b40c9a977fc09792f13d8e2c，1280×720、60/1 fps、4,500 格、AAC 48kHz 雙聲道、75 秒。原 HD 標題 WAV 峰值 -14.0dB，確認 music-01 已實際播放；成片峰值 -7.3dB。完整解碼、非靜音、黑幀零、三戰鬥凍結事件零、字幕邊界與九段接觸圖通過，另抽看完整 HD 標題及蜘蛛女／法蘭克第二人選角。人耳與完整人工播放未簽收。
+- 正式 d2b87c982254afb26bc10183b88a13bf811a9430bc274486f81c0b3c6c9ea181 二進位的首次補測在第二人畫面尚未畫完就點頭像，停在 P1 cursor=8 而逾時，沒有取得戰鬥效能。native_perf.py 補等待 selection_hd.player 與目前玩家相符、該側肖像已完成及後續兩次 Draw，再送滑鼠。這是測試腳本準備條件，遊戲不改。期間誤在量測結束前 collect，tar 回 file changed；未完成快照另存 ada-v102-60-incomplete-copy，之後取得完整失敗資料，沒有當作正式證據。
+- 修正等待後同 image／同二進位乾淨重跑，ada-v102-60-v2 二十秒為 59.98860097 fps／TPS，1,201 間隔平均 16.66644649 ms、p99 24.88047 ms、最大 34.084126 ms，超過 33.3 ms 一次，CPU 配額節流零，對手生命 124→94，原版完成畫格 23.57587 fps。保存一次尾部延遲，不重跑挑零。原 005 要求記錄尾部，前輪零次是樣本事實；稽核範本移除誤把前輪零次寫成新版硬門檻的斷言，仍核對實際 FPS、完整時間資料、版本、核心未改與正常扣血。
+- 新 HD 標題與第二人選角 PNG 收入 docs/screenshots/hd-title-v102.png／hd-selection-v102.png，source.json 記錄版本、二進位、來源與 SHA。README 更新本機 v.1.0.2、真實 HD 片頭與新選角截圖；舊版本說明與照片保留。CONTEXT／WORKLIST／005／036／驗證矩陣同步最新數值，不把前輪零停頓或原版更新約 24 fps 混成每秒六十個新動作。
+- 清理本輪已用完 Wine 前綴前逐檔保存雜湊，移除 720,401,993 bytes，清單在本版 smoke/workspace-cleanup.json；設定、日誌、畫面、原始錄影、輸入與歷版交付保留。ada 專案容器查詢為空；本機收尾再核對，不動其他專案。
+
+本輪來源與工具、版號、HD 截圖、文件可推既有私人儲存庫；原版、原音、影片、完整版及原始收據不進 Git。最終稽核在本版 smoke/final-audit.py／json，來源提交與遠端核對寫 smoke/source-closeout.json。歷版四十個 ZIP、四支影片及已發布 tag 保持，物理螢幕、雙手把、其他平台真機、完整過關與人耳限制不變。

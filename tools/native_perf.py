@@ -145,6 +145,11 @@ def main():
             (a.output/'receipt.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps(report,ensure_ascii=False),flush=True);return
         def choose(character):
             if a.mode=='hd':
+                # The original announces player 2 before its portrait has finished drawing.
+                # Wait for the matching rendered selection view before sending a mouse click.
+                ready=lambda s:s['selection_hd_active']and s.get('selection_hd')is not None and s['selection_hd']['player']==s['core']['selection']['player']and s['selection_hd']['portraits'][s['core']['selection']['player']]>=0
+                first=wait(ready)
+                wait(lambda s:ready(s)and s['performance']['draws']>=first['performance']['draws']+2)
                 x,y=(28+33*character,127)if character<8 else(110+33*(character-8),164)
                 click(80+(x+16)*3,64+(y+16)*3)
                 wait(lambda s:s['core']['selection']['cursor']==character and s['core']['selection']['target']<0)

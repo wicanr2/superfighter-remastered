@@ -265,6 +265,32 @@
       "version": "v.1.0.1-20261021 development after local package snapshot",
       "authorization": "user requested original versus player2 flow and removal of external name buttons; HD screenshots authorized for repository",
       "limits": "27 normal UI checks and versus entry; no physical gamepad or native Windows/macOS acceptance"
+    },
+    {
+      "kind": "normal in-game HD title; native NVIDIA capture with original audio",
+      "file": "hd-title-v102.png",
+      "sha256": "ed4821bc418614b8c7a72be2e985e19477e4a71391f820e1ec2a06f8a0604f68",
+      "source": "dist-all/v.1.0.2-20261021/promo/boss-8/title-hd.png",
+      "source_sha256": "ed4821bc418614b8c7a72be2e985e19477e4a71391f820e1ec2a06f8a0604f68",
+      "receipt_sha256": "1f33e1b7e7af7886312fd5ab8b60e307b438e911642ab99e3f566327c4eaa66f",
+      "binary_sha256": "d2b87c982254afb26bc10183b88a13bf811a9430bc274486f81c0b3c6c9ea181",
+      "version": "v.1.0.2-20261021",
+      "platform": "Linux native app, NVIDIA RTX 2000 Ada via VirtualGL EGL; Xvfb for 2D capture",
+      "authorization": "user requested HD title, new promotional footage and repository screenshots",
+      "limits": "normal title/versus screenshot; no physical controller or native Windows/macOS acceptance"
+    },
+    {
+      "kind": "normal original versus player2 selection after both characters chosen; external buttons removed",
+      "file": "hd-selection-v102.png",
+      "sha256": "92bf17704c071708ace6db0c546f92ab37f49357576de7adf9dde94e05576f95",
+      "source": "dist-all/v.1.0.2-20261021/promo/boss-8/selection.png",
+      "source_sha256": "92bf17704c071708ace6db0c546f92ab37f49357576de7adf9dde94e05576f95",
+      "receipt_sha256": "1f33e1b7e7af7886312fd5ab8b60e307b438e911642ab99e3f566327c4eaa66f",
+      "binary_sha256": "d2b87c982254afb26bc10183b88a13bf811a9430bc274486f81c0b3c6c9ea181",
+      "version": "v.1.0.2-20261021",
+      "platform": "Linux native app, NVIDIA RTX 2000 Ada via VirtualGL EGL; Xvfb for 2D capture",
+      "authorization": "user requested HD title, new promotional footage and repository screenshots",
+      "limits": "normal title/versus screenshot; no physical controller or native Windows/macOS acceptance"
     }
   ],
   "version": "v.0.1.0-20261020",

@@ -2,9 +2,13 @@
 
 更新日期：2026-10-21。本檔為唯一現況；待辦見 [WORKLIST](WORKLIST.md)，完整歷程見 [WORKLOG](WORKLOG.md)，規則與索引見 [AGENTS](AGENTS.md)。
 
-目前來源與 `workplace/bin/` 為 `v.1.0.1-20261021` 定版後的介面修正，已依使用者要求移除畫面外姓名／確認按鈕。雙打沿原標題選單、第一人選角並確認、第二人選角並確認、進入 mode=1 對戰；HD 上排八人、第二排三魔王及十一頭像點選保持。正常介面二十七項通過，包括兩側十一人、舊按鈕位置無效、原貌確認到第二人、暫停與切換。四架構現行來源在 `workplace/flow-study-v1/native-selection-bin`，證據在 `selection-native-no-buttons`。既有八包、影片與已發布 tag 均保持，這項修正尚未重打包或建立新版 Release。
+目前來源、`workplace/bin/` 及本機八包均為 `v.1.0.2-20261021`，已納入移除畫面外姓名／確認按鈕的介面。雙打沿原標題選單、第一人確認、第二人確認、進入 mode=1 對戰；HD 上排八人、第二排三魔王及十一頭像點選保持。二十七項正常介面收據在 selection-native-no-buttons；四架構相較該輪實際編譯輸入僅 VERSION 改變。正式建置位於 workplace/flow-study-v1/v102-bin，八包、四次 Linux／Wine 解壓啟動及新版影片均已完成。本輪沒有新增 Release，舊 tag、封包與影片保留。
 
-流暢度根因已在 ada 實際 NVIDIA RTX 2000 Ada 驗證。相同診斷程式在 EGL 擷取路徑開 VSync 約 52 fps，關閉後約 189 fps，前端仍為 60 TPS，證實同步等待限制輸出。正式版新增可選 `-capture-fps 60`，以單調時鐘固定擷取節奏，預設螢幕 VSync 保留；HD 相同對戰格重用合成結果。正式二進位邊錄影測得 60.017 fps／TPS，1,202 個畫格間隔平均 16.667 ms、p99 24.845 ms、最大 30.633 ms，超過 33.3 ms 為零，CPU 配額節流為零。原版完成畫格另計約 23.57 fps，不宣稱六十個新姿態。原版核心、PIT、規則與動作節奏未改。證據在 `workplace/flow-study-v1/ada-results/ada-formal-60/receipt.json`；其中 vsync 欄位是診斷環境請求，實際正式 CLI capture_fps=60 已關閉 VSync。VirtualGL 使用實際 GPU，Xvfb 僅作 2D 擷取；不代替實體螢幕延遲、實體手把或其他平台真機驗收。
+新版影片 75 秒、4,500 格、1280×720／60 fps、AAC 48 kHz；66 秒原生 GPU 實錄含六秒遊戲內 HD 標題、三名魔王各六秒雙打兩人選角及十四秒戰鬥。原標題 music-01 實錄非靜音，成片峰值 -7.3dB，完整解碼、黑幀零、戰鬥凍結零及九段畫面／字幕抽查通過。影片 SHA a09876bd404d88b86cbe0fc16c58994c407e52a6b40c9a977fc09792f13d8e2c，僅留本版 promo。
+
+最新版 ada 補測為 59.9886 fps／TPS，1,201 個間隔平均 16.6664 ms、p99 24.8805 ms、最大 34.0841 ms，超過 33.3 ms 一次，CPU 配額節流零；原版完成畫格另計 23.5759 fps。原始結果在 workplace/flow-study-v1/ada-results/ada-v102-60-v2；不以重跑挑零停頓的結果。首次腳本在第二人完成繪製前點擊而逾時，補上匹配玩家與已畫肖像的等待後，同二進位及工具鏈乾淨重跑，遊戲不改。一次過早複製的未完成快照另存 incomplete-copy，不作驗收。
+
+前輪流暢度根因已在 ada 實際 NVIDIA RTX 2000 Ada 驗證。相同診斷程式在 EGL 擷取路徑開 VSync 約 52 fps，關閉後約 189 fps，前端仍為 60 TPS，證實同步等待限制輸出。正式版新增可選 `-capture-fps 60`，預設螢幕 VSync 保留；HD 相同對戰格重用合成結果。當時二十秒錄影 60.017 fps、1,202 間隔無超過 33.3 ms，僅代表前輪樣本，不代替本輪尾部數值。原版核心、PIT、規則與動作節奏未改。前輪證據保存在 `workplace/flow-study-v1/ada-results/ada-formal-60/receipt.json`；vsync 欄位是診斷環境請求，正式 CLI capture_fps=60 已關閉 VSync。VirtualGL 使用實際 GPU，Xvfb 僅作 2D 擷取；不代替實體螢幕、手把或其他平台真機驗收。
 
 使用者要求一次完成 HD 接入、最後抽樣，另選擇同輪原版音訊播放，以及蜘蛛女 B 版全覆蓋紫色連身衣。集中 HD 已完成抽樣。正式版 [v.1.0.0-20261021](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.1.0.0-20261021) 已發布，四架構、八包與本機推廣片均已完成；Release 僅含四個引擎包與 manifest。v.0.2.0 的 154 張與原音驗證保持。儲存庫在 `/home/anr2/cht/快打至尊/superfighter-remastered`，`main` 追蹤 [origin/main](https://github.com/wicanr2/superfighter-remastered)，保持私人。父目錄只留舊快照。
 
@@ -26,9 +30,9 @@ v1 發布狀態以上方摘要及下表為準，歷史版本不覆寫。已發�
 | 蜘蛛女 B | 45 組一般、五組與一般同 bytes 的 WIN、144 入口 | 原 PNG 與提示詞保留。原 DAT 基底朝左，依實際來源及左玩家 0x44 flags 修正圖格朝向，保留遊戲翻轉邏輯；Linux 一般動作、首勝 WIN 專用圖格、兩次 KO／結果／返回及 Wine 普通操作通過；所有動畫不外推 |
 | 原音 | [050](docs/spec/050-original-audio-playback.md)：十五 MIDI／四十 PCM，共 55 OGG、54 個不同 cue 雜湊 | 十八原檔完整核對，全部轉換非靜音且無削波；188 次固定時鐘成對狀態檢查通過；Linux 167 秒虛擬裝置實錄通過，暫停／靜音 RMS 0、恢復／循環非靜音、削波 0。音樂 HD 重編、語音修復及人耳驗收未做 |
 | 操作與練習 | 鍵盤重綁、雙人裝置、四格配置、滿血鎖血／停時／AI 中立 | 沿 004／025／032／035 已驗限定範圍；快捷實際只開放斬四招，實體手把仍待人工 |
-| 回歸與建置 | 四架構現行 `workplace/bin` 與 `flow-study-v1/native-selection-bin` 實際編譯收據，前輪正式錄影片二進位留在 formal-bin | 移除按鈕後二十七項正常 UI、controls 測試及 desktop／cmd vet 通過。前輪純測試 26 通過、58 個外部案例跳過，完整來源測試在有界時限前 31 通過、2 跳過、無失敗；原 133 項證據保留 |
-| 本機交付 | `dist-all/v.1.0.1-20261021/`：四引擎包、四完整版 | 每個完整版含 125 原檔及 55 OGG，公開內容分類包排除原版／原音。清單、SHA、CRC 通過；Linux／Wine 的引擎及完整包共四次乾淨解壓啟動通過；完整版只留本機 |
-| 本版影片 | `dist-all/v.1.0.1-20261021/promo/v.1.0.1-20261021-local-promo.mp4` | 75 秒、1280×720／60fps、AAC 48kHz；66 秒原生 GPU 實錄，三魔王各八秒第二排頭像選角及十四秒戰鬥。完整解碼、峰值 -8.6dB、黑幀 0、戰鬥凍結 0、八段畫面／字幕抽查通過；三場實際繪圖 59.97–60.00 fps，只留本機 |
+| 回歸與建置 | 四架構現行 `workplace/bin` 與 `flow-study-v1/v102-bin` 實際編譯收據，前版二進位保留 | 現行來源相較二十七項正常 UI 的版本僅 VERSION 改變；本輪 controls 測試與 desktop／cmd vet 通過。原 133 項與前輪 26 項／有界完整來源測試保持原範圍 |
+| 本機交付 | `dist-all/v.1.0.2-20261021/`：四引擎包、四完整版 | 各完整版含 125 原檔及 55 OGG，引擎包排除原版／原音。清單、SHA、CRC 及 Linux／Wine 共四次乾淨解壓啟動通過；完整版只留本機 |
+| 本版影片 | `dist-all/v.1.0.2-20261021/promo/v.1.0.2-20261021-local-promo.mp4` | 75 秒、4,500 格／60fps；六秒 HD 遊戲標題、三場雙打兩人選角及實戰，共 66 秒實錄。完整解碼、峰值 -7.3dB、黑幀 0、戰鬥凍結 0、九段畫面／字幕抽查通過；三場實際繪圖 59.97–60.04 fps，只留本機 |
 | 正式發布 | [v.1.0.0-20261021](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.1.0.0-20261021)，tag 固定來源 `f7f6ac667fae36d08bb5106957c1d9e560c6a390` | 四引擎 ZIP 與 manifest 的遠端大小、SHA-256 均吻合。使用者授權一次性發布容器的 AppArmor 例外，其餘權限限制保留；沒有移動或抽出 token |
 
 清理重複 staged runtime、兩輪未發布舊 ZIP 與新建 Wine 前綴，釋放 8,175,307,949 bytes。原資料、研究收據、正式與拒絕朝向美術、第一階段／最終執行環境及歷版交付保留；清單見 cleanup-plan.json／cleanup.json。專案容器已收尾。

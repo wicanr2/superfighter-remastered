@@ -66,6 +66,8 @@
 
 收據的 vsync=on 是診斷環境請求；正式程式不讀該環境變數，命令列 capture_fps=60 才是實際模式，會關閉 VSync。原型快取／重新合成的 960×600 RGBA 完全相同，核心狀態不變，證據在同根的快取比較收據。沒有把原型 F7、CPU profiler、PIT 調整或 PGO 帶進正式版。二十秒取樣不能宣稱所有長流程、實體螢幕、原版動作六十新格或其他平台已通過。
 
+v.1.0.2 補測：同一 ada／NVIDIA EGL 路徑，二十秒正常雙打與錄影為 59.98860097 fps／TPS，原版完成畫格 23.57586982 fps。1,201 個間隔平均 16.66644649 ms、p99 24.88047 ms、最大 34.084126 ms，超過 33.3 ms 一次，CPU 配額節流零，對手生命 124→94。完整收據在 workplace/flow-study-v1/ada-results/ada-v102-60-v2；原版核心與呈現節奏未改。前輪零次是該輪的樣本結果，本輪保留一次尾部延遲，不重跑挑零或宣稱每格都在 16.67 ms 內。
+
 ## 工具與驗收
 
 - Linux 編譯沿用 `dosgolem-go-ebiten:1.24-r1`，X11／OpenGL 標頭來源為 `/home/anr2/cht/dosgolem/tools/docker/go-ebiten.Dockerfile`。跨平台與 GUI 沿用 `tokugawa-desktop-platforms:go1.24.13-sdk15.5-noble-r1`，已核對 Go 1.24.13、Ebitengine 2.9.9、Clang、Xvfb、xdotool、Wine 及 osxcross。套件複製到專案自有快取後固定版本，避免回寫 image 快取。
