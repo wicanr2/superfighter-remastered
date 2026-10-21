@@ -2,7 +2,7 @@
 
 更新日期：2026-10-21。本檔為唯一現況；待辦見 [WORKLIST](WORKLIST.md)，完整歷程見 [WORKLOG](WORKLOG.md)，規則與索引見 [AGENTS](AGENTS.md)。
 
-使用者要求一次完成 HD 接入、最後抽樣，另選擇同輪原版音訊播放，以及蜘蛛女 B 版全覆蓋紫色連身衣。集中 HD 已完成抽樣。使用者最新要求拍攝實際遊玩與魔王選角，正式版改採 `v.1.0.0-20261021`，四架構、八包與本機推廣片均已完成，正式 Release 上傳仍待處理。v.0.2.0 的 154 張與原音驗證保持。儲存庫在 `/home/anr2/cht/快打至尊/superfighter-remastered`，`main` 追蹤 [origin/main](https://github.com/wicanr2/superfighter-remastered)，保持私人。父目錄只留舊快照。
+使用者要求一次完成 HD 接入、最後抽樣，另選擇同輪原版音訊播放，以及蜘蛛女 B 版全覆蓋紫色連身衣。集中 HD 已完成抽樣。正式版 [v.1.0.0-20261021](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.1.0.0-20261021) 已發布，四架構、八包與本機推廣片均已完成；Release 僅含四個引擎包與 manifest。v.0.2.0 的 154 張與原音驗證保持。儲存庫在 `/home/anr2/cht/快打至尊/superfighter-remastered`，`main` 追蹤 [origin/main](https://github.com/wicanr2/superfighter-remastered)，保持私人。父目錄只留舊快照。
 
 v1 發布狀態以上方摘要及下表為準，歷史版本不覆寫。已發布 `v.0.1.0-20261020` 與本機 `v.0.1.1-20261021` 的封包、影片保持原樣。原版資料、OGG、WAV、記憶體、研究收據及私有執行器不上傳。HD PNG 與正常 HD 截圖依使用者授權加入 Git。
 
@@ -23,13 +23,15 @@ v1 發布狀態以上方摘要及下表為準，歷史版本不覆寫。已發�
 | 原音 | [050](docs/spec/050-original-audio-playback.md)：十五 MIDI／四十 PCM，共 55 OGG、54 個不同 cue 雜湊 | 十八原檔完整核對，全部轉換非靜音且無削波；188 次固定時鐘成對狀態檢查通過；Linux 167 秒虛擬裝置實錄通過，暫停／靜音 RMS 0、恢復／循環非靜音、削波 0。音樂 HD 重編、語音修復及人耳驗收未做 |
 | 操作與練習 | 鍵盤重綁、雙人裝置、四格配置、滿血鎖血／停時／AI 中立 | 沿 004／025／032／035 已驗限定範圍；快捷實際只開放斬四招，實體手把仍待人工 |
 | 回歸與建置 | 四架構 `workplace/bin` 與 `bin-ready` 實際編譯收據 | 133 項通過、舊版本素材一項跳過另以現行光效補驗；完整 Spider 包及 vet 通過 |
-| 本機交付 | `dist-all/v.1.0.0-20261021/`：四引擎包、四完整版 | 每個完整版含 125 原檔及 55 OGG，公開內容分類包排除原版／原音。清單、SHA、CRC 通過；Linux／Wine 的公開內容分類及完整包各兩次解壓啟動通過；未發布 |
+| 本機交付 | `dist-all/v.1.0.0-20261021/`：四引擎包、四完整版 | 每個完整版含 125 原檔及 55 OGG，公開內容分類包排除原版／原音。清單、SHA、CRC 通過；Linux／Wine 的公開內容分類及完整包各兩次解壓啟動通過；完整版只留本機 |
 | 本版影片 | `dist-all/v.1.0.0-20261021/promo/v.1.0.0-20261021-local-promo.mp4` | 75 秒、1280×720／30fps、AAC 48kHz；66 秒實際錄影，三魔王各八秒選角及十四秒戰鬥。解碼、音量、黑幀、凍結及八段畫面／字幕抽查通過；只留本機 |
-| 正式發布 | 版本 `v.1.0.0-20261021`，來源及本機產物已備妥 | 主機 keyring 登入正常；容器 AppArmor 拒絕 DBus Hello，需確認最終發布方式。沒有移動或抽出 token |
+| 正式發布 | [v.1.0.0-20261021](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.1.0.0-20261021)，tag 固定來源 `f7f6ac667fae36d08bb5106957c1d9e560c6a390` | 四引擎 ZIP 與 manifest 的遠端大小、SHA-256 均吻合。使用者授權一次性發布容器的 AppArmor 例外，其餘權限限制保留；沒有移動或抽出 token |
 
 清理重複 staged runtime、兩輪未發布舊 ZIP 與新建 Wine 前綴，釋放 8,175,307,949 bytes。原資料、研究收據、正式與拒絕朝向美術、第一階段／最終執行環境及歷版交付保留；清單見 cleanup-plan.json／cleanup.json。專案容器已收尾。
 
 v1 的交付證據為 `dist-all/v.1.0.0-20261021/smoke/final-audit.json` 與 `promo/promo-checks.json`。四架構相較 v.0.2.0 的編譯輸入只變 VERSION，已驗核心與 HD 不改。三場錄影末尾對手生命為 88／84／79，未開練習或強制勝負。影片 SHA `07cc05854744a233ec7e57ee4e7cf0977de21e217f784bb01d347a66ed74f66e`；原始錄影、原音、時間與輸入見各 boss-8／9／10 receipt。
+
+遠端發布及獨立複核收據為本版 `smoke/github-publish.json`／`github-verify.json`。本輪另清理測試用 Wine 前綴 720,401,993 bytes，逐檔清單見 `smoke/workspace-cleanup.json`；啟動測試資料、畫面與日誌保留。已發布 tag 與封包不隨後續文件提交改動。
 
 集中 HD 的既有證據根為 `workplace/hd-batch-integration-v1/`；來源入口、編譯、集中樣本與封包對應見 049／050／036；本輪共十六組、154 張，最終稽核為 final-audit.json。catalog 有 172 筆紀錄及 145 張 PNG，逐檔核對 SHA；畫面清單有 33 圖。原版與完整收據只留本機。
 

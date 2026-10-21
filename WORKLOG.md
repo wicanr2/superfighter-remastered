@@ -1058,3 +1058,11 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - audit_release_v1.py 通過：原版 128 檔、1719 執行器來源、原 i64、172 素材、舊 24 ZIP 與兩支影片保持；四架構、八包、四次啟動與三場原始錄影及最終影片核對。擁有權與誤建 md 目錄為零。主版號不改既有完整動畫／結局、其他角色快捷、真機／手把及人耳限制。
 
 本輪影片與含原版完整版只留 dist-all/v.1.0.0-20261021。推送只含來源、版號與文件。Release 最後僅能包含四引擎 ZIP 與 release-manifest.json；發布完成後補本項遠端收據，不覆寫任何舊 tag／Release。
+
+使用者同意一次性容器發布後，僅發布容器採 AppArmor 例外，保留 UID 1000、唯讀根檔案系統、移除全部 capabilities 與禁止提升權限。既有 gh、設定與 DBus socket 唯讀掛載，只有本版 smoke 收據可寫；沒有抽出或搬運 token。GitHub API 已確認帳號 wicanr2，v1 來源提交 f7f6ac667fae36d08bb5106957c1d9e560c6a390 已推送，遠端 main 相同，舊首版 tag 仍為 807579d01c145db327050c2e870e2bf46e6bcb68。
+
+另移除本輪 windows-startup 新建隔離 Wine 前綴，共 720,401,993 bytes。刪除前逐檔記錄雜湊，清單保存在本版 smoke/workspace-cleanup.json；設定測試資料、啟動日誌、畫面及交付物保持。修正 VERIFICATION-MATRIX 中誤留的行首加號，恢復表格及標題格式。
+
+[v.1.0.0-20261021](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.1.0.0-20261021) 於 2026-10-21T06:19:39Z 正式發布。先建立草稿，上傳四引擎 ZIP 與 manifest 並核對全部遠端大小及 SHA-256，才解除草稿；另一個一次性容器重新取得已發布狀態及五附件並複核通過。github-draft.json、github-publish.json、github-verify.json 留在本版 smoke，沒有上傳原版、原音、完整版、原始收據或影片。git ls-remote 確認新 tag 固定 f7f6ac667fae36d08bb5106957c1d9e560c6a390，首版 tag 不變。GitHub API 確認儲存庫仍為 private。README、現況表、工作清單、036 與驗證矩陣同步發行入口；後續僅為文件提交，不移動正式 tag 或重建既有附件。
+
+發布收尾以本版 smoke/publication-closeout.py 重現，結果 publication-closeout.json 通過：README 三十三個本機連結與八張圖全有 Git 收錄，遠端五附件與影片雜湊綁定，沒有 root-owned 檔案或誤建 md 目錄。四架構實際編譯來源、二進位與檔頭重新核對，更新整體建置收據的文件雜湊，未重新編譯或覆寫已發布封包。長內嵌命令兩次在連 Docker API 時受限，改用存檔腳本在原隔離工具鏈完成，沒有改為主機分析。發布與收尾容器均已移除，本專案沒有執行中或停止殘留容器。

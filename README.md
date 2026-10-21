@@ -14,7 +14,7 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 ## 目前整合範圍
 
-開發版為 `v.1.0.0-20261021`，視覺 HD 與原音播放已集中接入正式程式，完成正常路徑抽樣及本機八包驗證。最新狀態與證據見 [CONTEXT](CONTEXT.md)及[集中接入規格](docs/spec/049-hd-batch-integration.md)。
+正式版為 `v.1.0.0-20261021`，視覺 HD 與原音播放已集中接入正式程式，完成正常路徑抽樣及本機八包驗證。最新狀態與證據見 [CONTEXT](CONTEXT.md)及[集中接入規格](docs/spec/049-hd-batch-integration.md)。
 
 | 項目 | 現況 |
 |---|---|
@@ -64,7 +64,7 @@ HD 為獨立呈現層。規則、碰撞、AI 與原版流程由 dosgolem 執行�
 
 ## 下載與資料準備
 
-目前程式為 `v.1.0.0-20261021`。已發布的 Windows x86-64、Linux x86-64、macOS Intel 與 Apple Silicon 引擎包及清單見 [GitHub Releases](https://github.com/wicanr2/superfighter-remastered/releases)。儲存庫為私人，需有權限的帳號查看。
+目前程式為 `v.1.0.0-20261021`。Windows x86-64、Linux x86-64、macOS Intel 與 Apple Silicon 引擎包及 SHA-256 清單見 [v1 正式 Release](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.1.0.0-20261021)。儲存庫為私人，需有權限的帳號查看。
 
 1. 解壓對應平台的引擎包。
 2. 以 `-import-data 原版目錄或jsdos檔 -data game-data` 匯入合法資料。工具逐檔核對，只建立新目錄，不覆寫既有資料。
