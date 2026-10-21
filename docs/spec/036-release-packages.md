@@ -80,3 +80,13 @@ v1 四架構實際編譯來源相較 v.0.2.0 只改 VERSION。八包 SHA／CRC�
 錄影工具 [record_promo_bosses.py](../../tools/record_promo_bosses.py)從正常標題、雙打、姓名按鈕與確認進入，以鍵鼠正常攻擊；[promo_v1.py](../../tools/promo_v1.py)的 prepare／render／check 保存字卡、來源、時間表、編碼與檢查。assemble 可只重組已編碼片段，固定 CFR 30 與 75 秒，避免逐段 AAC 時戳造成平均幀率偏差。[audit_release_v1.py](../../tools/audit_release_v1.py)另核對原 128 檔、1719 執行器來源、i64、172 素材、舊 24 ZIP／兩支影片、四架構、錄影與 UID。沒有新原版行為研究。
 
 [v1 Release](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.1.0.0-20261021) 已於 2026-10-21T06:19:39Z 發布，tag 指向 f7f6ac667fae36d08bb5106957c1d9e560c6a390。四引擎 ZIP 與 release-manifest.json 的遠端檔名、大小及 SHA-256 均符合本機，沒有其他附件；收據為本版 smoke/github-publish.json／github-verify.json。使用者明確授權一次性容器的 AppArmor 例外，其餘 UID、唯讀、cap-drop 與禁止提升權限限制保留。儲存庫仍為私人，沒有搬運憑證或變更主機安全設定。後續文件提交不移動此 tag 或覆寫附件。
+
+## v.1.0.1 本機流暢度修正版
+
+限定 CONFORMED。依使用者確認的原版節奏／60 fps 輸出與第二排魔王頭像，建立全新 dist-all/v.1.0.1-20261021，不覆寫已發布 tag、附件、舊封包或影片。這是本機修正版，不自動擴張為新版公開發布。四架構逐一核對實際編譯來源、二進位與檔頭，來源只新增呈現優化、固定擷取節奏及頭像介面；原版核心與私有執行器不變。
+
+八包由乾淨輸入重建，patch 排除原版／原音，full-local 各含 125 原檔與 55 OGG。清單、CRC、SHA 及 Linux／Wine 各兩次乾淨解壓啟動通過；完整包、測試原始資料及影片只留本機。Wine 與 macOS 檔頭不等於該平台真機。
+
+三名魔王各由第二排頭像正常選角後攻擊，正式程式以 capture-fps=60 在 ada NVIDIA EGL 執行，三場實際繪圖 59.97–60.00 fps。新片維持 75 秒、66 秒實錄，改為 1280×720、CFR 60/1、AAC 48 kHz 雙聲道；完整解碼、非靜音、峰值 -8.6dB、黑幀 0、戰鬥大於二秒凍結 0、八段畫面及文字邊界通過。影片 SHA `2bfd13390f298a18bfa1dd369dc1505c6e7e8deaa2c619118b485d16a11e656d`。影片直接使用本輪 60 fps 實錄，未補幀、強制勝負或修改時鐘。原版完成畫格仍分開記錄，不宣稱六十個新動作。
+
+工具沿 [record_promo_bosses.py](../../tools/record_promo_bosses.py)的 fps／renderer／portraits 參數及 [promo_v1.py](../../tools/promo_v1.py)的新 60 fps 流程；重現舊片使用舊版來源。效能標準與實測邊界見 [005](005-native-desktop.md#60-fps-流暢度目標)，介面驗收見 [025](025-boss-selection.md#第二排魔王頭像)。本版 smoke／promo 保存編碼、來源、啟動、清理與總稽核收據。實體螢幕、其他平台真機、雙手把、完整動畫／過關及人耳未外推。

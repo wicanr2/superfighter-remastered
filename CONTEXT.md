@@ -2,6 +2,10 @@
 
 更新日期：2026-10-21。本檔為唯一現況；待辦見 [WORKLIST](WORKLIST.md)，完整歷程見 [WORKLOG](WORKLOG.md)，規則與索引見 [AGENTS](AGENTS.md)。
 
+目前程式為本機修正版 `v.1.0.1-20261021`。選角上排八人、第二排三名魔王置中，十一頭像可點，左右循環及確認沿用。兩側共二十四項正常介面檢查通過，包含十一人定位、確認入戰、暫停及原貌切換。已發布 v1 tag、附件及影片保持原樣，沒有發布新版 Release。
+
+流暢度根因已在 ada 實際 NVIDIA RTX 2000 Ada 驗證。相同診斷程式在 EGL 擷取路徑開 VSync 約 52 fps，關閉後約 189 fps，前端仍為 60 TPS，證實同步等待限制輸出。正式版新增可選 `-capture-fps 60`，以單調時鐘固定擷取節奏，預設螢幕 VSync 保留；HD 相同對戰格重用合成結果。正式二進位邊錄影測得 60.017 fps／TPS，1,202 個畫格間隔平均 16.667 ms、p99 24.845 ms、最大 30.633 ms，超過 33.3 ms 為零，CPU 配額節流為零。原版完成畫格另計約 23.57 fps，不宣稱六十個新姿態。原版核心、PIT、規則與動作節奏未改。證據在 `workplace/flow-study-v1/ada-results/ada-formal-60/receipt.json`；其中 vsync 欄位是診斷環境請求，實際正式 CLI capture_fps=60 已關閉 VSync。VirtualGL 使用實際 GPU，Xvfb 僅作 2D 擷取；不代替實體螢幕延遲、實體手把或其他平台真機驗收。
+
 使用者要求一次完成 HD 接入、最後抽樣，另選擇同輪原版音訊播放，以及蜘蛛女 B 版全覆蓋紫色連身衣。集中 HD 已完成抽樣。正式版 [v.1.0.0-20261021](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.1.0.0-20261021) 已發布，四架構、八包與本機推廣片均已完成；Release 僅含四個引擎包與 manifest。v.0.2.0 的 154 張與原音驗證保持。儲存庫在 `/home/anr2/cht/快打至尊/superfighter-remastered`，`main` 追蹤 [origin/main](https://github.com/wicanr2/superfighter-remastered)，保持私人。父目錄只留舊快照。
 
 v1 發布狀態以上方摘要及下表為準，歷史版本不覆寫。已發布 `v.0.1.0-20261020` 與本機 `v.0.1.1-20261021` 的封包、影片保持原樣。原版資料、OGG、WAV、記憶體、研究收據及私有執行器不上傳。HD PNG 與正常 HD 截圖依使用者授權加入 Git。
@@ -22,14 +26,16 @@ v1 發布狀態以上方摘要及下表為準，歷史版本不覆寫。已發�
 | 蜘蛛女 B | 45 組一般、五組與一般同 bytes 的 WIN、144 入口 | 原 PNG 與提示詞保留。原 DAT 基底朝左，依實際來源及左玩家 0x44 flags 修正圖格朝向，保留遊戲翻轉邏輯；Linux 一般動作、首勝 WIN 專用圖格、兩次 KO／結果／返回及 Wine 普通操作通過；所有動畫不外推 |
 | 原音 | [050](docs/spec/050-original-audio-playback.md)：十五 MIDI／四十 PCM，共 55 OGG、54 個不同 cue 雜湊 | 十八原檔完整核對，全部轉換非靜音且無削波；188 次固定時鐘成對狀態檢查通過；Linux 167 秒虛擬裝置實錄通過，暫停／靜音 RMS 0、恢復／循環非靜音、削波 0。音樂 HD 重編、語音修復及人耳驗收未做 |
 | 操作與練習 | 鍵盤重綁、雙人裝置、四格配置、滿血鎖血／停時／AI 中立 | 沿 004／025／032／035 已驗限定範圍；快捷實際只開放斬四招，實體手把仍待人工 |
-| 回歸與建置 | 四架構 `workplace/bin` 與 `bin-ready` 實際編譯收據 | 133 項通過、舊版本素材一項跳過另以現行光效補驗；完整 Spider 包及 vet 通過 |
-| 本機交付 | `dist-all/v.1.0.0-20261021/`：四引擎包、四完整版 | 每個完整版含 125 原檔及 55 OGG，公開內容分類包排除原版／原音。清單、SHA、CRC 通過；Linux／Wine 的公開內容分類及完整包各兩次解壓啟動通過；完整版只留本機 |
-| 本版影片 | `dist-all/v.1.0.0-20261021/promo/v.1.0.0-20261021-local-promo.mp4` | 75 秒、1280×720／30fps、AAC 48kHz；66 秒實際錄影，三魔王各八秒選角及十四秒戰鬥。解碼、音量、黑幀、凍結及八段畫面／字幕抽查通過；只留本機 |
+| 回歸與建置 | 四架構現行 `workplace/bin` 與 `flow-study-v1/formal-bin` 實際編譯收據 | 本輪純測試 26 通過、58 個外部來源案例明示跳過，vet 通過；完整來源測試在有界時限前 31 通過、2 跳過、沒有失敗。正常 UI／GPU 另驗，原 133 項證據保留 |
+| 本機交付 | `dist-all/v.1.0.1-20261021/`：四引擎包、四完整版 | 每個完整版含 125 原檔及 55 OGG，公開內容分類包排除原版／原音。清單、SHA、CRC 通過；Linux／Wine 的引擎及完整包共四次乾淨解壓啟動通過；完整版只留本機 |
+| 本版影片 | `dist-all/v.1.0.1-20261021/promo/v.1.0.1-20261021-local-promo.mp4` | 75 秒、1280×720／60fps、AAC 48kHz；66 秒原生 GPU 實錄，三魔王各八秒第二排頭像選角及十四秒戰鬥。完整解碼、峰值 -8.6dB、黑幀 0、戰鬥凍結 0、八段畫面／字幕抽查通過；三場實際繪圖 59.97–60.00 fps，只留本機 |
 | 正式發布 | [v.1.0.0-20261021](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.1.0.0-20261021)，tag 固定來源 `f7f6ac667fae36d08bb5106957c1d9e560c6a390` | 四引擎 ZIP 與 manifest 的遠端大小、SHA-256 均吻合。使用者授權一次性發布容器的 AppArmor 例外，其餘權限限制保留；沒有移動或抽出 token |
 
 清理重複 staged runtime、兩輪未發布舊 ZIP 與新建 Wine 前綴，釋放 8,175,307,949 bytes。原資料、研究收據、正式與拒絕朝向美術、第一階段／最終執行環境及歷版交付保留；清單見 cleanup-plan.json／cleanup.json。專案容器已收尾。
 
-v1 的交付證據為 `dist-all/v.1.0.0-20261021/smoke/final-audit.json` 與 `promo/promo-checks.json`。四架構相較 v.0.2.0 的編譯輸入只變 VERSION，已驗核心與 HD 不改。三場錄影末尾對手生命為 88／84／79，未開練習或強制勝負。影片 SHA `07cc05854744a233ec7e57ee4e7cf0977de21e217f784bb01d347a66ed74f66e`；原始錄影、原音、時間與輸入見各 boss-8／9／10 receipt。
+v.1.0.1 的封包、影片、來源與清理證據位於本版 smoke／promo 及 workplace/flow-study-v1。影片 SHA `2bfd13390f298a18bfa1dd369dc1505c6e7e8deaa2c619118b485d16a11e656d`；三場源片均來自正式二進位，原音、事件、實際繪圖與原版畫格分開留存。刪除本輪兩個已用完 Wine 前綴 1,440,803,986 bytes，逐檔清單在本版 smoke/workspace-cleanup.json；保留啟動測試資料、畫面、原始錄影及既有交付。
+
+已發布 v1 的歷史交付證據為 `dist-all/v.1.0.0-20261021/smoke/final-audit.json` 與 `promo/promo-checks.json`。四架構相較 v.0.2.0 的編譯輸入當時只變 VERSION。三場錄影末尾對手生命為 88／84／79，未開練習或強制勝負。舊影片 SHA `07cc05854744a233ec7e57ee4e7cf0977de21e217f784bb01d347a66ed74f66e` 保持；原始錄影、原音、時間與輸入見該版各 boss-8／9／10 receipt。
 
 遠端發布及獨立複核收據為本版 `smoke/github-publish.json`／`github-verify.json`。本輪另清理測試用 Wine 前綴 720,401,993 bytes，逐檔清單見 `smoke/workspace-cleanup.json`；啟動測試資料、畫面與日誌保留。已發布 tag 與封包不隨後續文件提交改動。
 

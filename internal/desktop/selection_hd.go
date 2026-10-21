@@ -173,7 +173,7 @@ func (g *Game) drawSelectionHD(dst *ebiten.Image, s *selectionHDState) bool {
 		op.GeoM.Translate(left+x*3, top+y*3)
 		dst.DrawImage(im, op)
 	}
-	draw(a.logo, 16, 70, 275, 67.5, false)
+	draw(a.logo, 16, 72, 275, 45, false)
 	for side, character := range s.Portraits {
 		x := 9
 		if side == 1 {
@@ -188,13 +188,26 @@ func (g *Game) drawSelectionHD(dst *ebiten.Image, s *selectionHDState) bool {
 		}
 	}
 	draw(a.art["selection-vs"].SubImage(image.Rect(47, 67, 1547, 930)).(*ebiten.Image), 110, 40, 93, 58, false)
-	for i := 0; i < 8; i++ {
-		box(28+33*i, 150, 33, 33, color.RGBA{21, 21, 21, 255})
-		draw(a.art[fmt.Sprintf("left-%d", i)], float64(29+33*i), 151, 31, 31, false)
+	for i := 0; i < 11; i++ {
+		r := selectionPortraitRect(i)
+		box(r.Min.X, r.Min.Y, r.Dx(), r.Dy(), color.RGBA{21, 21, 21, 255})
+		draw(a.art[fmt.Sprintf("left-%d", i)], float64(r.Min.X+1), float64(r.Min.Y+1), 31, 31, false)
 	}
 	for _, p := range s.Selectors {
 		c := s.Palette[p[2]]
-		box(p[0], p[1], 1, 1, color.RGBA{c[0], c[1], c[2], 255})
+		box(p[0], p[1]+selectionPortraitRect(0).Min.Y-150, 1, 1, color.RGBA{c[0], c[1], c[2], 255})
+	}
+	for side, character := range s.Portraits {
+		if character < 8 {
+			continue
+		}
+		r := selectionPortraitRect(character)
+		c := s.Palette[240+side]
+		ink := color.RGBA{c[0], c[1], c[2], 255}
+		box(r.Min.X, r.Min.Y, r.Dx(), 1, ink)
+		box(r.Min.X, r.Max.Y-1, r.Dx(), 1, ink)
+		box(r.Min.X, r.Min.Y, 1, r.Dy(), ink)
+		box(r.Max.X-1, r.Min.Y, 1, r.Dy(), ink)
 	}
 	return true
 }

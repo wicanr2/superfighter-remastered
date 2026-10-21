@@ -19,13 +19,17 @@ def main():
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--character',type=int,choices=(8,9,10),required=True)
     p.add_argument('--opponent',type=int,choices=range(8),required=True)
-    a=p.parse_args();a.output.mkdir(exist_ok=False)
+    p.add_argument('--fps',type=int,choices=[30,60],default=30)
+    p.add_argument('--renderer',choices=['software','nvidia'],default='software')
+    p.add_argument('--portraits',action='store_true',help='select through approved portrait rows')
+    a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False)
     (a.output/Path(__file__).name).write_bytes(Path(__file__).read_bytes())
     for name in ('home','runtime','pulse'):(a.output/name).mkdir(mode=0o700)
     socket=a.output/'pulse/native'
     env=dict(os.environ,DISPLAY=':89',HOME=str(a.output/'home'),XDG_RUNTIME_DIR=str(a.output/'runtime'),
              PULSE_RUNTIME_PATH=str(a.output/'pulse'),PULSE_SERVER='unix:'+str(socket),
              LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS='2',GOMAXPROCS='2')
+    if a.renderer=='nvidia':env.pop('LIBGL_ALWAYS_SOFTWARE',None)
     (a.output/'home/.asoundrc').write_text('pcm.!default { type pulse }\nctl.!default { type pulse }\n')
     observe=a.output/'observe.json';processes=[];logs=[];events=[];clips=[];game=None;started=time.monotonic()
     def spawn(cmd,name,stdout=None):
@@ -40,7 +44,7 @@ def main():
         if not s:return None
         assert not s['core'].get('error') and not s['audio'].get('error')
         assert not s['core']['training']['modified']
-        events.append(dict(label=label,seconds=time.monotonic()-started,core=s['core'],audio=s['audio'],
+        events.append(dict(performance=s.get('performance'),label=label,seconds=time.monotonic()-started,core=s['core'],audio=s['audio'],
                            hd_active=s['hd_active'],selection_hd_active=s['selection_hd_active'],
                            scene=s['presentation']['scene'],actors=s['presentation'].get('actors')))
         return s
@@ -71,7 +75,7 @@ def main():
                         '--channels=2','--latency-msec=10'],name+'-audio',raw)
         video=a.output/(name+'.mp4');progress=a.output/(name+'-progress.txt')
         rec=spawn(['ffmpeg','-hide_banner','-loglevel','error','-nostdin','-y','-f','x11grab',
-                   '-draw_mouse','1','-framerate','30','-video_size','1120x820','-i',':89.0',
+                   '-draw_mouse','1','-framerate',str(a.fps),'-video_size','1120x820','-i',':89.0',
                    '-an','-c:v','libx264','-preset','ultrafast','-crf','18','-threads','1',
                    '-pix_fmt','yuv420p','-progress',str(progress),'-stats_period','0.1',str(video)],name+'-video')
         end=time.monotonic()+15;us=0
@@ -103,8 +107,17 @@ def main():
         row=dict(name=c['name'],video=c['video'].name,video_sha256=sha(c['video']),audio=wav.name,audio_sha256=sha(wav),
                  duration=seconds,audio_offset_seconds=c['audio_offset_seconds'],
                  start_state=c['start_state'],end_state=c['end_state'],audio_alignment='raw sample clock minus initial video progress; capture approximation within 0.7s')
+        if c['start_state'].get('performance')and c['end_state'].get('performance'):
+            b,e=c['start_state'],c['end_state']
+            # End state is taken before stopping encoders; use its recorded wall time.
+            dt=next(x['seconds']for x in reversed(events)if x['label']==c['name']+'-end')-next(x['seconds']for x in reversed(events)if x['label']==c['name']+'-start')
+            row['performance']=dict(wall_seconds=dt,draws_per_second=(e['performance']['draws']-b['performance']['draws'])/dt,
+                                    updates_per_second=(e['frontend_updates']-b['frontend_updates'])/dt,
+                                    original_frames_per_second=max(0,e['core']['frames']-b['core']['frames'])/dt)
         clips.append(row);return row
-    command=[str(a.binary),'-data','/orig','-user-data',str(a.output/'user-data'),'-observe',str(observe),'-quit-after','880s']
+    wrapper=['/opt/VirtualGL/bin/vglrun','-d','egl0','-c','proxy']if a.renderer=='nvidia'else[]
+    command=wrapper+[str(a.binary),'-data','/orig','-user-data',str(a.output/'user-data'),'-observe',str(observe),'-quit-after','880s']
+    if a.fps==60:command+=['-capture-fps','60','-capture',str(a.output/'selection.png')]
     try:
         spawn(['Xvfb',':89','-screen','0','1280x1024x24','-nolisten','tcp'],'xvfb');time.sleep(.3)
         spawn(['pulseaudio','--daemonize=no','--exit-idle-time=-1','--use-pid-file=no','-n',
@@ -113,6 +126,10 @@ def main():
         end=time.monotonic()+15
         while not socket.exists()and time.monotonic()<end:time.sleep(.05)
         subprocess.run(['pactl','set-default-sink','kdzz'],env=env,check=True,timeout=5)
+        if a.renderer=='nvidia':
+            renderer=subprocess.check_output(wrapper+['glxinfo','-B'],env=env,text=True,timeout=15)
+            assert'NVIDIA'in renderer and'llvmpipe'not in renderer
+            (a.output/'renderer.txt').write_text(renderer)
         game=spawn(command,'native');wait(lambda s:s['core']['paused'])
         window=None;end=time.monotonic()+30
         while time.monotonic()<end:
@@ -131,13 +148,17 @@ def main():
         key('Right');wait(lambda s:s['core'].get('title_hd',{}).get('selected')==1);key('Return')
         wait(lambda s:s['selection_hd_active']and s['core'].get('selection',{}).get('player')==0)
         c=begin_clip('selection');time.sleep(.7)
-        click(24+a.character%6*180+86,700+a.character//6*40+18)
+        if a.portraits:click(80+(110+33*(a.character-8)+16)*3,64+(164+16)*3)
+        else:click(24+a.character%6*180+86,700+a.character//6*40+18)
         wait(lambda s:s['core'].get('selection',{}).get('cursor')==a.character and s['core']['selection'].get('target',-1)<0)
         record_state('boss-selected');time.sleep(1.4);click(1010,758)
         wait(lambda s:s['core'].get('selection',{}).get('player')==1);time.sleep(1)
         if time.monotonic()-c['started']<8:time.sleep(8-(time.monotonic()-c['started']))
         end_clip(c)
-        click(24+a.opponent%6*180+86,700+a.opponent//6*40+18)
+        if a.fps==60:
+            key('F12');wait(lambda s:(a.output/'selection.png').is_file(),15)
+        if a.portraits:click(80+(28+33*a.opponent+16)*3,64+(127+16)*3)
+        else:click(24+a.opponent%6*180+86,700+a.opponent//6*40+18)
         wait(lambda s:s['core'].get('selection',{}).get('cursor')==a.opponent and s['core']['selection'].get('target',-1)<0)
         click(1010,758)
         wait(lambda s:s['core']['battle']and s['core']['frames']>8 and s['hd_active'])
@@ -155,11 +176,12 @@ def main():
         while time.monotonic()-c['started']<16:record_state();time.sleep(.05)
         row=end_clip(c)
         assert row['end_state']['core']['frames']>before+15
-        assert row['end_state']['core']['health']!=[124,124], 'no attack damage observed'
+        assert any(e['core']['health']!=[124,124]for e in events if e['seconds']>=next(x['seconds']for x in events if x['label']=='gameplay-start')), 'no attack damage observed'
         assert all(x['audio']['rejected']==0 for x in events)
         receipt=dict(version=state()['version'],character=a.character,opponent=a.opponent,binary_sha256=sha(a.binary),
                      command=command,clips=clips,events=events,script_sha256=sha(Path(__file__)),
                      character_manifest_sha256=sha(a.binary.parent/'assets/hd/characters/manifest.json'),
+                     renderer=a.renderer,capture_fps=a.fps,portrait_selection=a.portraits,
                      rights='local-only game recordings and original audio; never Git or public Release',
                      limits='normal Linux native app under Xvfb with ordinary keyboard/mouse; no physical controller, full game, original speed or hardware audio parity claim')
         (a.output/'receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')

@@ -229,6 +229,29 @@
       "character_manifest_sha256": "164eef46667563bed1d239a2af113f95f47e7a8831f98f82ffe97e3fc13adb20",
       "authorization": "使用者要求 HD 上傳及 GitHub 可見的 README 整合截圖",
       "limits": "普通 3/4 雙打，來源 48／54、同狀態切換及恢復；RGB 近似，非全動畫"
+    },
+    {
+      "kind": "user-approved disposable native selection layout; production verification recorded separately",
+      "file": "selection-two-rows-approved.png",
+      "sha256": "92a23a91f43378d719747273c236e9445b64c8a05e2b006a0a093e9975410d6e",
+      "source": "workplace/flow-study-v1/native-baseline/selection.png",
+      "source_sha256": "92a23a91f43378d719747273c236e9445b64c8a05e2b006a0a093e9975410d6e",
+      "binary_sha256": "b666bca49e5c8e286092c76709dbeeefd68723da5280f4e2e61c27ebea7f9371",
+      "platform": "Linux native under Docker Xvfb, software rendering",
+      "decision": "8 original characters in first row; 3 bosses centred in second row; all portraits clickable, original cycling and confirmation retained",
+      "status": "approved layout, not production acceptance"
+    },
+    {
+      "kind": "production native HD selection screenshot; normal two-player path, second-row boss portraits",
+      "file": "hd-selection-two-rows.png",
+      "sha256": "d4374c081928a2411f2745a510949eebbf26f5b874969a8f8be2f2bb3f8e535b",
+      "source": "workplace/flow-study-v1/ada-results/promo-60/boss-8/selection.png",
+      "source_sha256": "d4374c081928a2411f2745a510949eebbf26f5b874969a8f8be2f2bb3f8e535b",
+      "receipt_sha256": "6f803ab0afcdc1821eb5b64875965fa209c6c0a597d8f6ce12759a153705f4a3",
+      "binary_sha256": "02390b1b0b6d7f00b49809f8c295462241567e36a146b0b5f29f07ed28a9b952",
+      "version": "v.1.0.1-20261021",
+      "platform": "Linux on ada NVIDIA RTX 2000 Ada via VirtualGL EGL; Xvfb 2D capture, not physical monitor acceptance",
+      "scope": "second-row bosses, selected through portrait input; original rules retained"
     }
   ],
   "version": "v.0.1.0-20261020",

@@ -7,6 +7,7 @@ import re
 import subprocess
 
 ROOT=Path('/project');VERSION=(ROOT/'VERSION').read_text().strip()
+FPS=60
 OUT=ROOT/'dist-all'/VERSION/'promo'
 BANK=ROOT/'workplace/hd-batch-integration-v1/original-audio-ogg-v2'
 NAMES={8:'蜘蛛女',9:'小丑',10:'印第安喬'}
@@ -19,7 +20,7 @@ def probe(path):return json.loads(run(['ffprobe','-v','error','-show_format','-s
 
 def prepare():
     from PIL import Image,ImageDraw,ImageFont
-    assert VERSION=='v.1.0.0-20261021'
+    assert re.fullmatch(r'v\.1\.\d+\.\d+-\d{8}',VERSION) and VERSION!='v.1.0.0-20261021'
     font=ROOT/'internal/desktop/assets/NotoSansCJKtc-Regular.otf';bounds=[]
     def text(im,words,y,size=30,fill='#e8edff'):
         d=ImageDraw.Draw(im);f=ImageFont.truetype(str(font),size);b=d.textbbox((0,0),words,font=f)
@@ -32,7 +33,7 @@ def prepare():
         d.rectangle((64,65,1216,80),fill='#f8d04e');d.rectangle((64,640,1216,646),fill='#42dcff')
         return im
     im=card();text(im,'快打至尊',155,82,'#f8d04e');text(im,'Remastered',270,54)
-    text(im,'正式版 v1.0.0',380,36,'#42dcff');text(im,'三名魔王，直接上場',465,35)
+    text(im,'HD 流暢度修正版',380,36,'#42dcff');text(im,'三名魔王，直接上場',465,35)
     text(im,VERSION,565,24);im.save(OUT/'title.png')
     im=card();text(im,'Windows・macOS・Linux',160,46,'#f8d04e')
     text(im,'雙人對戰・手把與鍵盤可設定',280,34);text(im,'原版核心 × 街機手繪 HD',365,36,'#42dcff')
@@ -43,9 +44,11 @@ def prepare():
     for character,label in NAMES.items():
         folder=OUT/f'boss-{character}';r=json.loads((folder/'receipt.json').read_text())
         assert r['version']==VERSION and r['character']==character
+        assert r['capture_fps']==FPS and r['renderer']=='nvidia'and r['portrait_selection']
         assert any(e['label']=='boss-selected'and e['core']['selection']['cursor']==character for e in r['events'])
         assert r['clips'][1]['end_state']['core']['fighters'][0]==character
-        assert r['clips'][1]['end_state']['core']['health']!=[124,124]
+        gameplay_start=next(e['seconds']for e in r['events']if e['label']=='gameplay-start')
+        assert any(e['core']['health']!=[124,124]for e in r['events']if e['seconds']>=gameplay_start)
         sources[str((folder/'receipt.json').relative_to(ROOT))]=sha(folder/'receipt.json')
         for clip in r['clips']:
             seconds=8 if clip['name']=='selection'else 14
@@ -53,7 +56,7 @@ def prepare():
             for kind in ('video','audio'):
                 f=folder/clip[kind];assert sha(f)==clip[kind+'_sha256'];sources[str(f.relative_to(ROOT))]=sha(f)
             title=f'直接選擇魔王：{label}'if clip['name']=='selection'else f'{label}，實際對戰'
-            subtitle='下方姓名按鈕選角，確認即可上場'if clip['name']=='selection'else'Linux 原生程式實錄・原版核心執行'
+            subtitle='第二排頭像選魔王，確認即可上場'if clip['name']=='selection'else'60 fps 原生擷取・保留原版動作節奏'
             overlay=Image.new('RGBA',(1280,720),(0,0,0,0));d=ImageDraw.Draw(overlay)
             d.rectangle((0,624,1280,720),fill=(7,20,39,255));d.line((65,624,1215,624),fill='#f8d04e',width=2)
             text(overlay,title,638,29,'#f8d04e');text(overlay,subtitle,674,21)
@@ -65,11 +68,11 @@ def prepare():
     for name in ('music-01.ogg','music-08.ogg'):
         row=next(r for r in audio_manifest['clips']if r['file']==name);assert sha(BANK/name)==row['sha256']
         sources[str((BANK/name).relative_to(ROOT))]=sha(BANK/name)
-    source=dict(version=VERSION,visibility='local-only; no movie, raw footage or audio in Git/GitHub Release',
+    source=dict(version=VERSION,fps=FPS,visibility='local-only; no movie, raw footage or audio in Git/GitHub Release',
                 segments=plan,sources=sources,font_sha256=sha(font),text_bounds=bounds,duration=sum(p['seconds']for p in plan),
                 music='actual original MIDI/PCM from the native app; card music uses the same verified OGG bank; TiMidity/FluidR3 software timbre, not original OPL hardware',
-                capture='normal keyboard/mouse via native Linux game in Xvfb; no teleport, state injection, forced wins, training or time acceleration',
-                differences_from_previous_promo=['66 seconds native recording instead of 18 seconds','all three bosses selected and played on camera','HUD gold/cyan motif and live montage instead of repeated integration stills'],
+                capture='normal keyboard/mouse in native Linux app; NVIDIA RTX 2000 Ada through VirtualGL EGL, Xvfb only for 2D capture; fixed 60-fps rendering, original core cadence retained; no state injection, forced wins, training or time acceleration',
+                differences_from_previous_promo=['60-fps native GPU capture with fixed rendering cadence','three bosses selected through second-row portraits','completed HD frame reuse; original rules and cadence retained'],
                 limits='physical gamepad, native Windows/macOS, full animations/endings and human listening remain unverified')
     (OUT/'source.json').write_text(json.dumps(source,ensure_ascii=False,indent=2)+'\n')
     print('prepared',source['duration'],'seconds; 66 seconds live selection/gameplay')
@@ -78,11 +81,11 @@ def prepare():
 def render():
     source=json.loads((OUT/'source.json').read_text());commands=[];files=[]
     common=['-c:v','libx264','-preset','veryfast','-crf','20','-threads','2','-pix_fmt','yuv420p',
-            '-r','30','-c:a','aac','-b:a','192k','-ar','48000','-ac','2']
+            '-r',str(FPS),'-c:a','aac','-b:a','192k','-ar','48000','-ac','2']
     for i,s in enumerate(source['segments']):
         dest=OUT/f'segment-{i:02d}.mp4';seconds=s['seconds']
         if s['kind']=='card':
-            cmd=['ffmpeg','-hide_banner','-loglevel','error','-y','-loop','1','-framerate','30','-i',str(OUT/(s['name']+'.png')),
+            cmd=['ffmpeg','-hide_banner','-loglevel','error','-y','-loop','1','-framerate',str(FPS),'-i',str(OUT/(s['name']+'.png')),
                  '-stream_loop','-1','-i',str(BANK/s['audio']),'-t',str(seconds),'-af',
                  f'volume=0.3,afade=t=in:d=0.15,afade=t=out:st={seconds-.6}:d=0.6',*common,str(dest)]
         else:
@@ -106,7 +109,7 @@ def assemble():
     files=[OUT/f'segment-{i:02d}.mp4'for i in range(len(source['segments']))]
     listing=OUT/'segments.txt';listing.write_text(''.join("file '"+str(f)+"'\n"for f in files))
     cmd=['ffmpeg','-hide_banner','-loglevel','error','-y','-f','concat','-safe','0','-i',str(listing),
-         '-vf','fps=30','-af','aresample=async=1:first_pts=0','-t',str(source['duration']),
+         '-vf','fps='+str(FPS),'-af','aresample=async=1:first_pts=0','-t',str(source['duration']),
          '-c:v','libx264','-preset','veryfast','-crf','20','-threads','2','-pix_fmt','yuv420p',
          '-c:a','aac','-b:a','192k','-ar','48000','-ac','2','-movflags','+faststart',str(OUT/(VERSION+'-local-promo.mp4'))]
     run(cmd);(OUT/'assembly-command.json').write_text(json.dumps(cmd,indent=2)+'\n');return cmd
@@ -115,7 +118,7 @@ def assemble():
 def check():
     source=json.loads((OUT/'source.json').read_text());movie=OUT/(VERSION+'-local-promo.mp4');info=probe(movie)
     video=next(s for s in info['streams']if s['codec_type']=='video');audio=next(s for s in info['streams']if s['codec_type']=='audio')
-    assert(video['width'],video['height'],video['avg_frame_rate'])==(1280,720,'30/1')
+    assert(video['width'],video['height'],video['avg_frame_rate'])==(1280,720,str(FPS)+'/1')
     assert abs(float(info['format']['duration'])-75)<.12 and audio['sample_rate']=='48000'and audio['channels']==2
     scan=run(['ffmpeg','-hide_banner','-i',str(movie),'-vf','blackdetect=d=0.3:pix_th=0.10',
               '-af','volumedetect,astats=metadata=0:reset=0','-f','null','-'],180)
@@ -147,7 +150,7 @@ def check():
     run(['ffmpeg','-hide_banner','-loglevel','error','-y',*inputs,'-filter_complex_threads','1',
          '-filter_complex',filters,'-map','[out]','-frames:v','1',str(OUT/'contact-sheet.png')])
     report=dict(version=VERSION,file=movie.name,visibility='local-only',sha256=sha(movie),bytes=movie.stat().st_size,
-                duration=info['format']['duration'],video=[1280,720,'30/1'],audio=['AAC',48000,2],full_decode=True,
+                duration=info['format']['duration'],video=[1280,720,str(FPS)+'/1'],audio=['AAC',48000,2],full_decode=True,
                 peak_db=peak,black_intervals=[],segments=checks,native_footage_seconds=66,
                 three_bosses_selected_and_played=[8,9,10],text_bounds_checked=True,visual_contact_sheet_review='pending',
                 source_sha256=sha(OUT/'source.json'),script_sha256=sha(Path(__file__)),

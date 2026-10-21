@@ -32,6 +32,7 @@ const Width, Height = 1120, 820
 var screenRect = image.Rect(80, 64, 1040, 664)
 
 type Options struct {
+	CaptureFPS                                                       int
 	AudioAssets                                                      string
 	MuteAudio                                                        bool
 	HDScreens                                                        string
@@ -52,6 +53,11 @@ type widget struct {
 	disabled bool
 }
 type Game struct {
+	frameDeadline         time.Time
+	performanceState      renderPerformance
+	battleKey             battleRenderKey
+	battleCached          bool
+	battleCacheHits       uint64
 	originalAudio         *originalAudioPlayer
 	screenArtLoaded       bool
 	titleHDPaint          *titleHDPaint
@@ -444,6 +450,10 @@ func (g *Game) widgets() []widget {
 var dirs = [2][3][3]uint8{{{0x10, 0x11, 0x12}, {0x1e, 0, 0x20}, {0x2c, 0x2d, 0x2e}}, {{0x47, 0x48, 0x49}, {0x4b, 0, 0x4d}, {0x4f, 0x50, 0x51}}}
 
 func (g *Game) Update() error {
+	if g.opts.Observe != "" {
+		started := time.Now()
+		defer func() { g.performanceState.UpdateMS = float64(time.Since(started)) / float64(time.Millisecond) }()
+	}
 	defer g.updateOriginalAudio()
 	g.updates++
 	if g.opts.QuitAfter > 0 && time.Since(g.started) > g.opts.QuitAfter {
@@ -493,6 +503,13 @@ func (g *Game) Update() error {
 	if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) {
 		x, y := ebiten.CursorPosition()
 		pt := image.Pt(x, y)
+		if character, ok := g.selectionPortraitAt(pt); ok {
+			if e := g.core.ChooseCharacter(character); e != nil {
+				g.notice = e.Error()
+			}
+			g.observe()
+			return nil
+		}
 		for _, w := range g.widgets() {
 			if pt.In(w.rect) {
 				if !w.disabled {
@@ -671,8 +688,15 @@ func (g *Game) Update() error {
 			g.quick(p, i)
 		}
 	}
+	var stepStarted time.Time
+	if g.opts.Observe != "" {
+		stepStarted = time.Now()
+	}
 	if e := g.core.Step(250000); e != nil {
 		g.notice = "執行停止：" + e.Error()
+	}
+	if g.opts.Observe != "" {
+		g.performanceState.StepMS = float64(time.Since(stepStarted)) / float64(time.Millisecond)
 	}
 	g.observe()
 	return nil
@@ -682,6 +706,7 @@ func (g *Game) observe() {
 		return
 	}
 	value := struct {
+		Performance        renderPerformance     `json:"performance"`
 		Audio              originalAudioState    `json:"audio"`
 		FrontendUpdates    uint64                `json:"frontend_updates"`
 		Version            string                `json:"version"`
@@ -710,6 +735,7 @@ func (g *Game) observe() {
 		HDShadowsActive    bool                  `json:"hd_shadows_active"`
 		HDRoundsActive     bool                  `json:"hd_rounds_active"`
 	}{Audio: g.originalAudioState(), FrontendUpdates: g.updates, Version: g.opts.Version, MouseLeft: ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft), Editing: g.editing, Core: g.core.Status(), Panel: g.panel, KeyboardPanel: g.keyboardPanel, Binding: g.binding, QuickRequests: g.quickRequests, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, TitleHDActive: g.titleHDActive, SelectionHDActive: g.selectionHDActive, SelectionHD: g.selectionHDView, ResultHDActive: g.resultHDActive, ResultHD: g.resultHDView, HDCharactersActive: g.hdActive && g.hdCharacters != nil && !g.titleHDActive && !g.selectionHDActive && !g.resultHDActive, HDHUDActive: g.hdHUDActive, HDShadowsActive: g.hdShadowsActive, HDRoundsActive: g.hdRoundsActive}
+	value.Performance = g.renderPerformance()
 	b, e := json.MarshalIndent(value, "", "  ")
 	if e == nil {
 		e = os.WriteFile(g.opts.Observe+".tmp", b, 0600)
@@ -747,128 +773,150 @@ func (g *Game) label(dst *ebiten.Image, box image.Rectangle, value string, ink c
 	text.Draw(dst, value, g.face, op)
 }
 func (g *Game) Draw(dst *ebiten.Image) {
+	if g.opts.CaptureFPS == 60 {
+		g.waitRenderFrame()
+	}
+	if g.opts.Observe != "" {
+		started := time.Now()
+		if !g.performanceState.last.IsZero() {
+			g.performanceState.IntervalMS = float64(started.Sub(g.performanceState.last)) / float64(time.Millisecond)
+		}
+		g.performanceState.last = started
+		g.performanceState.Draws++
+		defer g.finishPerformanceDraw(started)
+	}
 	window := dst
 	if g.frameCanvas == nil {
 		g.frameCanvas = ebiten.NewImage(Width, Height)
 	}
-	g.frameCanvas.Fill(color.RGBA{11, 16, 27, 255})
 	frame := g.core.Presentation()
+	key := battleRenderKey{serial: frame.Serial, steps: frame.Steps, hd: g.hdEnabled, victory: frame.Victory}
+	eligible := g.hdEnabled && frame.Serial > 0 && len(frame.Pixels) == 64000
+	reuse := eligible && !g.capture && g.battleCached && g.battleKey == key
+	if reuse {
+		g.battleCacheHits++
+	}
 	var w, h int
 	var rgb []byte
 	var display *renderdata.Scanout
 	displayError := ""
 	selectionFiltered := false
 	palette := frame.Palette
-	if len(frame.Pixels) == 64000 {
-		w, h = 320, 200
-		rgb = make([]byte, 64000*3)
-		for i, v := range frame.Pixels {
-			color := frame.Palette[v]
-			copy(rgb[i*3:i*3+3], color[:])
-		}
-		display, displayError = frame.Scanout, frame.ScanoutError
-	} else {
-		w, h, rgb = g.core.RGB()
-		var err error
-		display, palette, err = g.core.LiveDisplay()
-		if clean := g.core.SelectionDisplay(); clean != nil {
-			display = clean
-			selectionFiltered = true
-		}
-		if err != nil {
-			displayError = err.Error()
-		}
-	}
-	mapped := display.Valid()
-	g.activeRect, g.paintRect = screenRect, screenRect
-	if mapped {
-		w, h = display.Width, display.Height
-		rgb = make([]byte, w*h*3)
-		for i, v := range display.Indices {
-			c := palette[v]
-			copy(rgb[i*3:i*3+3], c[:])
-		}
-		g.activeRect = image.Rect(screenRect.Min.X, screenRect.Min.Y+(600-h*3)/2, screenRect.Max.X, screenRect.Min.Y+(600-h*3)/2+h*3)
-		g.paintRect = screenRect.Add(image.Pt(0, (600-h*3)/2-(display.StartByte/320)*3))
-	}
-	dst = g.frameCanvas.SubImage(g.activeRect).(*ebiten.Image)
-	if g.texture == nil || g.texture.Bounds().Dx() != w || g.texture.Bounds().Dy() != h {
-		g.texture = ebiten.NewImage(w, h)
-		g.rgba = make([]byte, w*h*4)
-	}
-	for i := 0; i < w*h; i++ {
-		copy(g.rgba[i*4:i*4+3], rgb[i*3:i*3+3])
-		g.rgba[i*4+3] = 255
-	}
-	g.texture.WritePixels(g.rgba)
-	g.hdActive = false
-	g.titleHDActive, g.selectionHDActive, g.resultHDActive = false, false, false
-	g.selectionHDView = nil
-	g.resultHDView = nil
-	g.hdHUDActive = false
-	g.hdShadowsActive = false
-	g.hdRoundsActive = false
-	g.hdVictoryActive = false
-	g.victoryCaptureBefore, g.victoryCaptureAfter = nil, nil
-	g.roundCaptureBefore, g.roundCaptureAfter = nil, nil
-	g.shadowCaptureBefore, g.shadowCaptureAfter = nil, nil
-	g.hdReason = "原貌"
-	charactersDrawn := false
-	backgroundOnly := false
-	if g.hdEnabled && g.hdAssets != nil && mapped && g.hdAssets.DisplayMatch(display, frame.Pixels, frame.VRAMTail, hd.Frame{Scene: frame.Scene, CameraX: frame.CameraX, BackgroundSHA256: frame.BackgroundSHA256, Palette: frame.Palette}) {
-		if g.opts.HDCharacters != "" {
-			charactersDrawn, g.hdReason = g.drawCharacterFrame(dst, frame)
-			g.hdActive = charactersDrawn
+	var mapped bool
+	if !reuse {
+		g.frameCanvas.Fill(color.RGBA{11, 16, 27, 255})
+		if len(frame.Pixels) == 64000 {
+			w, h = 320, 200
+			rgb = make([]byte, 64000*3)
+			for i, v := range frame.Pixels {
+				color := frame.Palette[v]
+				copy(rgb[i*3:i*3+3], color[:])
+			}
+			display, displayError = frame.Scanout, frame.ScanoutError
 		} else {
-			mask, ok, reason := g.hdAssets.Foreground(hd.Frame{Scene: frame.Scene, CameraX: frame.CameraX, BackgroundSHA256: frame.BackgroundSHA256, Pixels: frame.Pixels, Palette: frame.Palette})
-			g.hdReason = reason
-			if ok {
-				g.drawBackground(dst, frame)
-				if g.backgroundMaskTexture == nil {
-					g.backgroundMaskTexture = ebiten.NewImage(320, 200)
-				}
-				g.backgroundMaskTexture.WritePixels(mask)
-				backgroundOnly = true
-				g.hdActive = true
+			w, h, rgb = g.core.RGB()
+			var err error
+			display, palette, err = g.core.LiveDisplay()
+			if clean := g.core.SelectionDisplay(); clean != nil {
+				display = clean
+				selectionFiltered = true
+			}
+			if err != nil {
+				displayError = err.Error()
 			}
 		}
-	} else if g.hdEnabled {
-		g.hdReason = "顯示來源或尾列未對應，保留原貌"
-	}
-	if !mapped && displayError != "" {
-		g.hdReason = "顯示映射未支援，保留線性原貌：" + displayError
-	}
-	if backgroundOnly {
+		mapped = display.Valid()
+		g.activeRect, g.paintRect = screenRect, screenRect
+		if mapped {
+			w, h = display.Width, display.Height
+			rgb = make([]byte, w*h*3)
+			for i, v := range display.Indices {
+				c := palette[v]
+				copy(rgb[i*3:i*3+3], c[:])
+			}
+			g.activeRect = image.Rect(screenRect.Min.X, screenRect.Min.Y+(600-h*3)/2, screenRect.Max.X, screenRect.Min.Y+(600-h*3)/2+h*3)
+			g.paintRect = screenRect.Add(image.Pt(0, (600-h*3)/2-(display.StartByte/320)*3))
+		}
+		dst = g.frameCanvas.SubImage(g.activeRect).(*ebiten.Image)
+		if g.texture == nil || g.texture.Bounds().Dx() != w || g.texture.Bounds().Dy() != h {
+			g.texture = ebiten.NewImage(w, h)
+			g.rgba = make([]byte, w*h*4)
+		}
+		for i := 0; i < w*h; i++ {
+			copy(g.rgba[i*4:i*4+3], rgb[i*3:i*3+3])
+			g.rgba[i*4+3] = 255
+		}
+		g.texture.WritePixels(g.rgba)
+		g.hdActive = false
+		g.titleHDActive, g.selectionHDActive, g.resultHDActive = false, false, false
+		g.selectionHDView = nil
+		g.resultHDView = nil
+		g.hdHUDActive = false
+		g.hdShadowsActive = false
+		g.hdRoundsActive = false
+		g.hdVictoryActive = false
+		g.victoryCaptureBefore, g.victoryCaptureAfter = nil, nil
+		g.roundCaptureBefore, g.roundCaptureAfter = nil, nil
+		g.shadowCaptureBefore, g.shadowCaptureAfter = nil, nil
+		g.hdReason = "原貌"
+		charactersDrawn := false
+		backgroundOnly := false
+		if g.hdEnabled && g.hdAssets != nil && mapped && g.hdAssets.DisplayMatch(display, frame.Pixels, frame.VRAMTail, hd.Frame{Scene: frame.Scene, CameraX: frame.CameraX, BackgroundSHA256: frame.BackgroundSHA256, Palette: frame.Palette}) {
+			if g.opts.HDCharacters != "" {
+				charactersDrawn, g.hdReason = g.drawCharacterFrame(dst, frame)
+				g.hdActive = charactersDrawn
+			} else {
+				mask, ok, reason := g.hdAssets.Foreground(hd.Frame{Scene: frame.Scene, CameraX: frame.CameraX, BackgroundSHA256: frame.BackgroundSHA256, Pixels: frame.Pixels, Palette: frame.Palette})
+				g.hdReason = reason
+				if ok {
+					g.drawBackground(dst, frame)
+					if g.backgroundMaskTexture == nil {
+						g.backgroundMaskTexture = ebiten.NewImage(320, 200)
+					}
+					g.backgroundMaskTexture.WritePixels(mask)
+					backgroundOnly = true
+					g.hdActive = true
+				}
+			}
+		} else if g.hdEnabled {
+			g.hdReason = "顯示來源或尾列未對應，保留原貌"
+		}
+		if !mapped && displayError != "" {
+			g.hdReason = "顯示映射未支援，保留線性原貌：" + displayError
+		}
+		if backgroundOnly {
+			op := &ebiten.DrawImageOptions{}
+			op.GeoM.Scale(3, 3)
+			op.GeoM.Translate(float64(g.paintRect.Min.X), float64(g.paintRect.Min.Y))
+			dst.DrawImage(g.backgroundMaskTexture, op)
+		}
 		op := &ebiten.DrawImageOptions{}
-		op.GeoM.Scale(3, 3)
-		op.GeoM.Translate(float64(g.paintRect.Min.X), float64(g.paintRect.Min.Y))
-		dst.DrawImage(g.backgroundMaskTexture, op)
-	}
-	op := &ebiten.DrawImageOptions{}
-	op.GeoM.Scale(float64(g.activeRect.Dx())/float64(w), float64(g.activeRect.Dy())/float64(h))
-	op.GeoM.Translate(float64(g.activeRect.Min.X), float64(g.activeRect.Min.Y))
-	if !charactersDrawn && !backgroundOnly {
-		dst.DrawImage(g.texture, op)
-	}
-	g.selectionHDView = g.selectionHDState()
-	g.resultHDView = g.resultHDState()
-	if g.hdEnabled && mapped && len(frame.Pixels) == 0 {
-		if title := g.core.TitleHD(); title != nil && g.drawTitleHD(dst, title) {
-			g.titleHDActive = true
-			g.hdActive = true
-			g.hdReason = "HD 標題與主選單"
-		} else if view := g.selectionHDView; view != nil && g.drawSelectionHD(dst, view) {
-			g.selectionHDView = view
-			g.selectionHDActive = true
-			g.hdActive = true
-			g.hdReason = "HD 選角"
-		} else if view := g.resultHDView; view != nil && g.drawResultHD(dst, view) {
-			g.resultHDView = view
-			g.resultHDActive = true
-			g.hdActive = true
-			g.hdReason = "HD 結果與繼續介面"
+		op.GeoM.Scale(float64(g.activeRect.Dx())/float64(w), float64(g.activeRect.Dy())/float64(h))
+		op.GeoM.Translate(float64(g.activeRect.Min.X), float64(g.activeRect.Min.Y))
+		if !charactersDrawn && !backgroundOnly {
+			dst.DrawImage(g.texture, op)
+		}
+		g.selectionHDView = g.selectionHDState()
+		g.resultHDView = g.resultHDState()
+		if g.hdEnabled && mapped && len(frame.Pixels) == 0 {
+			if title := g.core.TitleHD(); title != nil && g.drawTitleHD(dst, title) {
+				g.titleHDActive = true
+				g.hdActive = true
+				g.hdReason = "HD 標題與主選單"
+			} else if view := g.selectionHDView; view != nil && g.drawSelectionHD(dst, view) {
+				g.selectionHDView = view
+				g.selectionHDActive = true
+				g.hdActive = true
+				g.hdReason = "HD 選角"
+			} else if view := g.resultHDView; view != nil && g.drawResultHD(dst, view) {
+				g.resultHDView = view
+				g.resultHDActive = true
+				g.hdActive = true
+				g.hdReason = "HD 結果與繼續介面"
+			}
 		}
 	}
+	g.battleCached, g.battleKey = eligible, key
 	dst = window
 	dst.DrawImage(g.frameCanvas, nil)
 	s := g.core.Status()

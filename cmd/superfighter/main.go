@@ -39,7 +39,11 @@ func main() {
 	muteAudio := flag.Bool("mute", false, "啟動時關閉原音，可在視窗切換")
 	quit := flag.Duration("quit-after", 0, "有界驗證時限，例如 90s；0 為不限制")
 	training := flag.Bool("training", false, "預先開啟練習模式：雙方滿血、時間停止、電腦中立；F9 可切換")
+	captureFPS := flag.Int("capture-fps", 0, "擷取用固定輸出：0 同步螢幕，60 固定每秒六十格；不改遊戲速度")
 	flag.Parse()
+	if *captureFPS != 0 && *captureFPS != 60 {
+		log.Fatal("capture-fps 只接受 0 或 60")
+	}
 	if *showVersion {
 		fmt.Println(version)
 		return
@@ -108,11 +112,15 @@ func main() {
 	if *quit < 0 || *quit > 24*time.Hour {
 		log.Fatal("驗證時限不合法")
 	}
-	g, e := desktop.New(desktop.Options{Version: version, Root: *root, DataDir: *config, Observe: *observe, Capture: *capture, HDAssets: *hdAssets, HDCharacters: *hdCharacters, HDScreens: *hdScreens, AudioAssets: *audioAssets, MuteAudio: *muteAudio, QuitAfter: *quit, Training: *training})
+	g, e := desktop.New(desktop.Options{CaptureFPS: *captureFPS, Version: version, Root: *root, DataDir: *config, Observe: *observe, Capture: *capture, HDAssets: *hdAssets, HDCharacters: *hdCharacters, HDScreens: *hdScreens, AudioAssets: *audioAssets, MuteAudio: *muteAudio, QuitAfter: *quit, Training: *training})
 	if e != nil {
 		log.Fatal(e)
 	}
 	defer g.Close()
+	ebiten.SetTPS(60)
+	if *captureFPS == 60 {
+		ebiten.SetVsyncEnabled(false)
+	}
 	ebiten.SetWindowTitle("快打至尊 Remastered " + version)
 	ebiten.SetWindowSize(desktop.Width, desktop.Height)
 	ebiten.SetWindowResizingMode(ebiten.WindowResizingModeEnabled)

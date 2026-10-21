@@ -1066,3 +1066,29 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 [v.1.0.0-20261021](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.1.0.0-20261021) 於 2026-10-21T06:19:39Z 正式發布。先建立草稿，上傳四引擎 ZIP 與 manifest 並核對全部遠端大小及 SHA-256，才解除草稿；另一個一次性容器重新取得已發布狀態及五附件並複核通過。github-draft.json、github-publish.json、github-verify.json 留在本版 smoke，沒有上傳原版、原音、完整版、原始收據或影片。git ls-remote 確認新 tag 固定 f7f6ac667fae36d08bb5106957c1d9e560c6a390，首版 tag 不變。GitHub API 確認儲存庫仍為 private。README、現況表、工作清單、036 與驗證矩陣同步發行入口；後續僅為文件提交，不移動正式 tag 或重建既有附件。
 
 發布收尾以本版 smoke/publication-closeout.py 重現，結果 publication-closeout.json 通過：README 三十三個本機連結與八張圖全有 Git 收錄，遠端五附件與影片雜湊綁定，沒有 root-owned 檔案或誤建 md 目錄。四架構實際編譯來源、二進位與檔頭重新核對，更新整體建置收據的文件雜湊，未重新編譯或覆寫已發布封包。長內嵌命令兩次在連 Docker API 時受限，改用存檔腳本在原隔離工具鏈完成，沒有改為主機分析。發布與收尾容器均已移除，本專案沒有執行中或停止殘留容器。
+
+## 2026-10-21：流暢度根因與第二排魔王頭像
+
+使用者回報 v1 推廣片不流暢，要求修改選角並將三魔王頭像放第二排。已展示隔離原生預覽並確認八人上排、三魔王第二排置中，十一頭像可點選，左右循環與確認沿用。定版 PNG SHA 為 92a23a91f43378d719747273c236e9445b64c8a05e2b006a0a093e9975410d6e，版控來源在 docs/screenshots/source.json，規格 025 追加 READY；正式玩家路徑驗證另記。使用者又確認保留原版動作節奏、目標穩定 60 fps 輸出，並授權透過既有 login_ada 腳本登入 ada、使用 user 的 sudo 作實機診斷。主機憑證不複製到專案，測試工作負載全部在 Docker。
+
+- 舊片三場 16.2 秒實錄只有約 182–186 個遊戲畫格、492–494 次前端更新，分別約 11 與 30 Hz；30 fps 編碼不能證明動作流暢。讀取錄影收據直接計算，沒有用播放器平均值代替原版事件。
+- 正常單打、完整 HD 觀測的無頭 CPU 剖析在 120 個畫格執行 76M 指令，約 4.3 秒。這只是該工具環境的吞吐，不是原版速度上限。原生剖析約七成 CPU 時間在 Oracle.Run，HD 繪圖成本須另量，不能由此宣稱 HD 很慢。
+- 以約 636k 指令／遊戲畫格提出預設 BIOS 週期假說。唯讀計時探針隨後讀到原程式已於步數 9097829／32／34 寫 43h=36h、40h=00h／10h，PIT 除數 4096、291.304 Hz、39755 指令／tick，IRQ0 未遮罩且 IF 開啟。120 格期間 tick 增加 1911，VGA 回掃增加 460。預設值假說不成立，沒有據此改 PIT、ISR 或遊戲速度；原硬體時序仍沿規格近似停止線。
+- 診斷編譯最初誤用 cross image 的預設 CGO 與不存在的 gcc，改回已驗 dosgolem-go-ebiten:1.24-r1 完成，分類為工具鏈。關閉 VSync 的隔離實驗未改善軟體繪圖，且錄影腳本的 65 秒時限在走路前結束；保留 native-nosync 失敗，不以此調正式模式。
+- ada 確認為 NVIDIA RTX 2000 Ada、driver 595.91.07、28 CPU 執行緒。保留其既有主機環境，從已存在的 isaac-sim:6.0.1 追加隔離 Xvfb、VirtualGL 3.1.4 EGL 與擷取工具，映像 kdzz-gpu-verify:20261021-r1；VirtualGL DEB SHA 02edc6b599571c385389af1a006f07a70c298e1d97c580a9bfd4b39d835c51e6 與官方資產 digest 符合。第一輪 SSH 外層 180 秒逾時中斷 apt 建置，修正擁有程序時限後同一 Dockerfile 乾淨重跑完成。原始資料唯讀，輸出 UID 1000，沒有修改 ada 的 GDM 或 GPU 主機設定。
+- 原生量測工具新增 tools/native_perf.py。遠端首次傳輸漏掉 runtime/assets 連結，原貌約 58 fps，但當時名為 ada-hd 的測試沒有證明 HD 啟用，因此該組不列 HD 結果。補齊連結，新增素材與 hd_enabled／hd_active 拒絕檢查後重跑；舊結果留存。舊擷取 image 缺 glxinfo，軟體模式明示無 renderer 身分查詢，NVIDIA 模式仍必須取得真實 renderer。正式比較結果另記。
+
+- 補齊素材後 ada 原貌約 58 fps、HD 約 54 fps、HD 加錄影約 51 fps，前端仍約 60 TPS。HD 快取降低合成成本，但單獨仍約 52–55 fps。同一診斷二進位關 VSync 後測得 188.70 fps、60.12 TPS，CPU 配額節流為零，直接支持 EGL 擷取路徑受同步等待限制。沒有將軟體繪圖或擷取環境結果推論為實體螢幕限制。
+- 呈現快取鍵包含已完成 Serial、Steps、HD 模式及 Victory 快照指標，勝負字圖可在同 Serial 晉升。核心暫停時，同一 NVIDIA／X11 路徑的快取及重合成 960×600 RGBA 共 2,304,000 bytes 完全相等，SHA 5cabf94aeb45f471c739120c0add2cf779ac179e364d9d8319207ffd0551957a，core.Status 不變。F12 強制重合成，標題／選角／結果不快取。PGO 僅做過本機實驗，未採用或交付。
+- 固定 60 fps 擷取原型先測得 60.00355 fps／TPS，1,202 間隔最大 31.666 ms。審查 005 的 READY 契約後正式新增 capture-fps=0／60，預設 VSync 沿用，擷取模式關 VSync，以單調時鐘安排繪圖。明確 60 TPS，不改 250,000 指令步進預算、PIT、碰撞、快捷、倒數、音訊速度或私有執行器。正式版不帶 F7、診斷環境開關或 profiler。observe 才收集只讀性能資料。
+- 正式 v.1.0.1 Linux 二進位 SHA 02390b1b0b6d7f00b49809f8c295462241567e36a146b0b5f29f07ed28a9b952，在 ada 邊玩邊錄二十秒測得 60.0173856 fps／TPS。1,202 間隔平均 16.6669868 ms、p95 19.082045 ms、p99 24.845035 ms、最大 30.633105 ms，超過 33.3 ms 零，CPU 配額節流零，對手生命 124→94。原版完成畫格另計 23.56756 fps；不宣稱六十個新姿態。收據 ada-formal-60 的 vsync=on 是舊診斷環境請求，正式程式不讀它，實際命令列 capture_fps=60 已關 VSync。
+- 第二排魔王頭像依已確認原型正式接入，十一頭像共享繪圖／命中矩形，點選沿既有 ChooseCharacter 原輸入路徑。普通標題進雙打，兩側各十一頭像、大肖像、暫停拒絕、原貌／HD 恢復及正常確認入戰共二十四項通過，收據 selection-formal-check-v2。第一版腳本誤認原貌滑鼠只定位；原行為其實會確認到下一玩家，且游標像素使完整來源拒絕。保留失敗，修正腳本按正常切換驗收，不放寬來源辨識。最終版另經三名魔王實錄，正式與原型截圖分別存 Git 並標來源。
+- 完整外部來源回歸在 300 秒有界時限前 31 項通過、2 跳過、零失敗，停在未修改的全素材色盤測試，未稱完整套件通過。清除外部 fixture 環境後 cmd／internal 純測試 26 通過、58 明示跳過，vet 通過；真實素材與正常操作另由 UI／GPU 驗證。既有 154 張／133 項歷史證據保留其原範圍。
+- 四架構用固定工具鏈重新編譯，實際編譯差異為 VERSION、main、desktop 呈現／選角及兩個新 helper；原核心與 1719 執行器來源不變。formal-bin 核對來源／檔頭後晉升 workplace/bin，前版 release-v1-build 保留。八包由乾淨輸入重建於新 dist-all/v.1.0.1-20261021，清單／CRC／SHA／授權／公開排除通過，完整版仍各 125 原檔＋55 OGG。
+- 封包啟動初輪誤用 2 GiB 限額，Linux 終止碼 137，Wine 等不到視窗；未留下足以單獨確認 OOM 的 cgroup 收據，按資源／驗證環境分類。保留失敗，將本輪已匯入的測試副本還原成乾淨輸入，在同一 image／腳本改用 4 GiB 重跑，Linux／Wine 各引擎及完整版共四次通過。驗版本、缺資料、安全匯入、拒絕覆寫、設定、十一景參考及實際執行；不冒稱 Windows／macOS 真機。
+- 三魔王由正式程式第二排頭像選角及正常拳腳重錄。選角各八秒、戰鬥各約十六秒，實際繪圖分別 59.9703／59.9967／59.9854 fps，原版畫格另計約 23 fps。音訊沿正常 Oto→ALSA pulse→私有 PulseAudio monitor→parec，未注入生命、位置、勝負或練習。NVIDIA VirtualGL EGL 為實際 GPU，Xvfb 僅作 2D 擷取。
+- 新片 75 秒、66 秒正常實錄，1280×720、60/1 fps、AAC 48kHz 雙聲道，8,225,003 bytes，SHA 2bfd13390f298a18bfa1dd369dc1505c6e7e8deaa2c619118b485d16a11e656d。全解碼、峰值 -8.6dB、黑幀零、三戰鬥凍結事件零、文字邊界與八段接觸圖通過，另抽看印第安喬選角全圖。人耳、完整人工播放、實體螢幕掃描與輸入延遲另驗。舊影片與原音保持本機，不以舊片補幀。
+- 本輪兩個已用完隔離 Wine 前綴刪除前逐檔記錄，共釋放 1,440,803,986 bytes，清單在新版 smoke/workspace-cleanup.json；啟動日誌、設定、畫面、原始錄影、原資料與歷版交付保留。ada 的 kdzz 容器查詢為空，工作負載皆 --rm；本機收尾另核對。工具鏈 image 保留重現用途，未全域清理其他專案。
+- 本機 final-audit.py／json 核對四架構與現行副本、八包、四次啟動、GPU 時間窗、二十四項介面、三場原始視聽素材、最終影片、128 原檔、1719 執行器來源、i64、172 素材及舊 32 ZIP／三影片不變。初次稽核對無標籤事件呼叫 startswith 失敗，改依 gameplay-start 時間範圍檢查實際扣血後乾淨重跑通過；屬稽核腳本，沒有修改影片或產品。root-owned 及誤建 md 目錄零。
+
+本輪 005／025／036 的 CONFORMED 僅涵蓋已列 GPU 擷取、介面及本機交付。README、CONTEXT、WORKLIST、矩陣與截圖來源同步；Git 只提交自有來源、HD 截圖與文件。沒有建立新版 Release、移動已發布 tag 或更改儲存庫可見性。實體手把、其他平台真機、完整動畫／結局及人耳限制保持。
