@@ -74,6 +74,14 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 這張截圖來自正常薩爾可夫對法蘭克比賽。七面旗幟已在六組正常比賽抽驗，另驗未載素材、原貌切換、恢復與返回標題。小丑以原版時間到判勝，其餘五組為擊倒；[取樣與限制](docs/spec/048-hd-result-newspaper.md)可回查。這仍是 Linux 隔離原型，視覺及正式載入尚未定版。
 
+![壓倒勝、逆轉勝與險勝的正常原生 HD 標題取樣，尚未正式整合](docs/screenshots/result-outcomes-native.png)
+
+三種結果均已有正常雙打取樣，保留「險勝」中間空位。標題用現代字型重排，取樣不代表已重寫原版分類規則。
+
+![第二人法蘭克獲勝的原生結果 HD 原型，玩家位置保持原樣](docs/screenshots/result-player2-native-prototype-hd.png)
+
+第二人獲勝時，原版保持左側第一人、右側第二人，改用左敗者／右勝者肖像。隔離原型已補這條路徑，完整素材、原貌切換、未載素材與返回均通過；正式程式仍未接入。
+
 [蜘蛛女的十五張外部 HD 稿](assets/hd/candidates/spider/README.md)也已收錄。使用者確認的雙手觸地低伏已接入，另作無損鏡像及透明留白裁切；同一張圖對應三組低伏來源。其他稿仍有姿勢差異，未對應動作整格回退原貌。
 
 ![已接入遊戲的屋頂 HD 生成背景](assets/hd/backgrounds/rooftop.png)

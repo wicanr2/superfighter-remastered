@@ -623,6 +623,100 @@
           "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80"
         }
       ]
+    },
+    {
+      "kind": "three observed normal native result heading crops; isolated prototype, not static source art or formal integration",
+      "provenance": "workplace/result-variants-native-v1/result-outcomes-native.json",
+      "provenance_sha256": "7a80f8d496c27e410bf4cd9c6c21a15a74fffd293c9ef14c5536a12ba255fa0a",
+      "records": [
+        {
+          "index": 0,
+          "label": "壓倒勝",
+          "capture": "workplace/result-variants-native-v1/sides-p1-00/result-hd.png",
+          "capture_sha256": "57ba8e79a4dc8bd1a9492b0b54129be59b408159c76ef60a502b211bf371e950",
+          "comparison": "workplace/result-variants-native-v1/sides-p1-00/comparison.json",
+          "comparison_sha256": "27747f817efd107351e88fbdd1de6bf9c75f9a62ef0a1ee5e1a60f0e16535d2f",
+          "receipt_sha256": "a1f69a92bdb8b841499c52977391ebd80d624121a88b343e3daf977f223c0a05",
+          "binary_sha256": "8b2d68d08fcb2597ab2d66dbefda51e2e1ff1b2f6c97900afbccedbcf8c29ad1",
+          "crop": [
+            464,
+            109,
+            659,
+            616
+          ],
+          "destination": [
+            12,
+            70
+          ]
+        },
+        {
+          "index": 1,
+          "label": "逆轉勝",
+          "capture": "workplace/result-variants-native-v1/case-plan-100/result-hd.png",
+          "capture_sha256": "47f8e45bf0610ae1f1bb9a18cab6f8a3dfec62ecb44731fb3d1b90f827a15761",
+          "comparison": "workplace/result-variants-native-v1/case-plan-100/comparison.json",
+          "comparison_sha256": "b2f9381be0fdff8aba9d1c175e5e459595e4cd624de6e08eede17c9d58f0a4d5",
+          "receipt_sha256": "492ed86bf88001fe3b8523e9558dc44730262dd15d65a075fda54f490e950a76",
+          "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80",
+          "crop": [
+            464,
+            109,
+            659,
+            616
+          ],
+          "destination": [
+            232,
+            70
+          ]
+        },
+        {
+          "index": 2,
+          "label": "險勝",
+          "capture": "workplace/result-variants-native-v1/case-plan-010/result-hd.png",
+          "capture_sha256": "5754c7db7009125cd625c056aba9f5062184c14048b699b1596cb864893fe832",
+          "comparison": "workplace/result-variants-native-v1/case-plan-010/comparison.json",
+          "comparison_sha256": "4cd1c9d7585a1c2d89077afa6c6a0594ffdf2ee2b2e54c2b62931806f23f55e9",
+          "receipt_sha256": "69ddeec289a0b8209a5870a8bb4eefb6273780c1c765b4fb5a1d37e71779d5a9",
+          "binary_sha256": "bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409d13588c80",
+          "crop": [
+            464,
+            109,
+            659,
+            616
+          ],
+          "destination": [
+            452,
+            70
+          ]
+        }
+      ],
+      "builder_sha256": "ef498943c4663568563d00921da68abd0614a4e0cbb7f77a5222628a0d035210",
+      "platform": "Linux amd64 in Docker Xvfb",
+      "visible_art": "new HD paper and project font, exact native crops",
+      "limits": "records 1/2 from v2, record 0 from v3; observed source indices, no general classifier formula or production claim",
+      "file": "result-outcomes-native.png",
+      "sha256": "577f870f359ffe8ed8a5a1434a5c4d6adc52ad6b9ea269e9c5fc95092fd78f19",
+      "source": "workplace/result-variants-native-v1/result-outcomes-native.png",
+      "authorization": "existing HD upload and GitHub-visible screenshot request; visibility unchanged"
+    },
+    {
+      "kind": "normal second-player victory capture in side-aware isolated HD result prototype; not formal integration",
+      "binary_sha256": "8b2d68d08fcb2597ab2d66dbefda51e2e1ff1b2f6c97900afbccedbcf8c29ad1",
+      "recipe_sha256": "414b9c0feee22c8f592a7e300782d41be189e0f28270e3b0db870ac96d699d05",
+      "receipt_sha256": "9dc2e8cb18400fb527af1876c38af90fc43a768721cac9922a6e5a0b09a22de6",
+      "comparison_sha256": "67f9dbdec75d1fe098f3e4197205d098e3ce125b42539c22382758cac7e9069f",
+      "winner_player": 1,
+      "characters": [
+        0,
+        4
+      ],
+      "platform": "Linux amd64 in Docker Xvfb; not Windows/macOS hardware acceptance",
+      "visible_art": "opaque generated HD newspaper, left defeated Jaan/right normal Frank, new vector flags and project font",
+      "limits": "P2 WC0 result only; original view remains local, DRAFT art and loader, not complete HD or formal release",
+      "file": "result-player2-native-prototype-hd.png",
+      "sha256": "9b0888415b3037da01879f5b2f88d59c4d1ae8b6499bd1c30627d391741ca7b6",
+      "source": "workplace/result-variants-native-v1/sides-p2-11/result-hd.png",
+      "authorization": "existing HD upload and GitHub-visible screenshot request; visibility unchanged"
     }
   ]
 }

@@ -149,6 +149,12 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [雙側來源及拒絕核對](tools/verify_result_side_sources.py) | 從正常原結果 RGB 交叉核對兩個勝方、三種字圖及角色位置，驗八區篡改、長度與不合法勝敗肖像組合；不作美術或實機完成證據 |
+| [雙側結果正常操作](tools/result_sides_native_smoke.py)、[獨立核對](tools/verify_result_sides_native.py) | 保持兩名玩家位置，按實際勝方選正常／敗者肖像；普通鍵鼠、完整來源、切換與返回另驗，不覆寫舊單側收據 |
+| [雙側結果來源](tools/recognize_result_sides.py)、[隔離版本準備](tools/prepare_result_sides_native_prototype.py)、[繪圖模板](tools/result-native-prototype/desktop_sides.go.in) | 固定玩家位置，分辨左敗／右勝或左勝／右敗；沿完整原 RGB 核對，僅在新副本試作，不改正式格式 |
+| [原結果入口證據](tools/ida_result_evidence.py) | 從唯讀原 DB 副本匯出 SHIN／WC 原引用、指定原函式及 bytes；只查結果與按鍵返回，不改正式 DB 或名稱 |
+| [三種結果原生標題總覽](tools/preview_result_native_outcomes.py) | 只裁已核對的正常 HD 結果中央字區，保留三筆來源及擷取雜湊；不把原點陣或分類假說放入公開圖 |
+| [結果勝方與回合勝序操作](tools/result_variants_native_smoke.py)、[獨立核對](tools/verify_result_variants_native.py) | 正常雙打逐回合選擇攻擊方，核對兩側勝場、來源、結果字圖與返回；分類以原 RGB 識別，不猜判勝公式 |
 | [正常結果敗者肖像總覽](tools/preview_result_native_portraits.py) | 只裁取已通過原來源與 GPU 身分核對的正常結果 HD 肖像，保存十一人擷取與核對雜湊；不把靜態候選當作原生驗收 |
 | [結果雙方肖像正常操作](tools/result_portrait_native_smoke.py)、[獨立核對](tools/verify_result_portrait_native.py) | 指定兩側正常選角，以實際 KO 或時間到完成比賽，核對完整結果、勝者／敗者肖像及方向；不改正式來源或沿用舊收據冒充 |
 | [小丑時間到正常操作](tools/result_flag_timeout_smoke.py)、[獨立核對](tools/verify_result_flag_timeout.py) | 以實際零秒、原勝場及生命差確認時間到，核對完整結果與七面旗幟；保留原兩次 KO 腳本及失敗收據，不改判勝規則 |

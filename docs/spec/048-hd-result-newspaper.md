@@ -154,7 +154,54 @@ Linux 二進位 SHA-256 `bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409
 
 [十一人正常原生總覽](../screenshots/result-portraits-native.png)由核對通過的實際視窗裁出，沒有重新縮放或混入原貌。圖與每張擷取／比較收據的雜湊已保存；它證明肖像載入及方向，傷勢與五官的重畫近似仍依前節逐人紀錄，沒有升格為原版外觀 exact。
 
-本輪沿用原七份來源 SHA，未新增美術或改正式格式／API。所有新結果仍為 WC 第 0 筆、第一人獲勝，未固定亂數；單打、第二人獲勝、另外兩種結果、其他平台及正式接入仍待完成。彙整在 `workplace/result-portraits-native-v1/final-audit.json`，048 保持 DRAFT。
+這輪十一人取樣沿用原七份來源 SHA，未新增美術或改正式格式／API；當時均為 WC 第 0 筆、第一人獲勝。後續[三種結果與雙側取樣](#三種結果與回合勝序的正常取樣)已補其他字圖及第二人結果，單打、其他平台與正式接入仍待完成。原彙整 `workplace/result-portraits-native-v1/final-audit.json` 保持，048 DRAFT。
+
+## 三種結果與回合勝序的正常取樣
+
+[勝序操作工具](../../tools/result_variants_native_smoke.py)在正常雙打中逐回合選擇攻擊方。`round-plan` 的 0／1 是玩家位置，角色固定第一人斬、第二人法蘭克；只送普通方向／拳擊，不指定原結果字圖。各回合由實際零血或零秒及原勝場判結束，[獨立核對](../../tools/verify_result_variants_native.py)另重組完整原 RGB 與原標題。
+
+| 普通輸入勝序 | 最終勝方 | 原 WC 筆數／字圖 | 擷取 | 證據 |
+|---|---|---|---|---|
+| 1、0、0 | 第一人，2／1 | 1 逆轉勝 | 13 | case-plan-100，prototype-v2 |
+| 0、1、0 | 第一人，2／1 | 2 險勝 | 13 | case-plan-010，prototype-v2 |
+| 0、0 | 第一人，2／0 | 0 壓倒勝 | 10 | sides-p1-00，prototype-v3 |
+| 1、1 | 第二人，0／2 | 0 壓倒勝 | 10 | sides-p2-11，prototype-v3 |
+| 1、1，未載素材 | 第二人，0／2 | 0 壓倒勝原貌 | 10 | sides-p2-fallback，prototype-v3 |
+
+五組接受的取樣共 56 張，15 份完整原結果重組、8 份 GPU 肖像／方向與 8 份旗幟身分通過；原貌與未載素材逐點相同，恢復視區相同，返回原標題完整重組。[三種正常原生標題總覽](../screenshots/result-outcomes-native.png)按實際擷取裁出，來源 1／2 來自 v2、來源 0 來自 v3，逐筆二進位身分保存在截圖紀錄。
+
+上述只證明三條勝序在固定輸入得到所列字圖，不據此宣布完整分類公式、所有時間到／平手條件或亂數序列一致。「險勝」兩字沿原位置保留中間空位，現代字型仍是美術近似。最早第二人未捕獲案例不計入這 56 張，勘誤見下節。
+
+## 雙側勝敗角色勘誤與新隔離版本
+
+先前 prototype-v1／v2 的 `Left=BIGFIG`、`Right=鏡像 LOSEFIG` 只涵蓋第一人獲勝，不能泛化為「勝者永遠移到左側」。第二人連勝的首輪取樣因此未取得結果，最後在示範對戰被主動停止；`case-p2-11/stopped.json`、原腳本及實際 stdout 片段保留。曾提出 Enter 延續的猜測，未經證實，不當作根因結論。
+
+IDA 9.4、固定 SF.EXE 及原 `sf-hd-draw-v2.i64` 的一次性副本，補得以下控制流。位址為 IDA MZ linear，程式碼的 runtime `01B9:IP` 為 linear 減 10000h；`DS:xxxx` 是原運算元，不能直接當成固定靜態 DS 線性位址。
+
+| 原位置 | 原 bytes／運算元 | 已證實的靜態關係 |
+|---|---|---|
+| 1074Bh／1074Eh | `call sub_15D16`／`call sub_160AA` | 雙打戰鬥返回後直接呼叫結果處理，外層未排除第二人獲勝 |
+| 16058h..16068h | `mov ax,0`；`mov bx,ds:131Eh`；`cmp bx,ds:1320h`；`ja`；否則 `mov ax,1` | 依雙方勝場選資產組，不改兩名角色索引 |
+| 160E7h | `050400`，`add ax,4` | 第一人的肖像依前項選第 4／5 組 |
+| 16146h | `83f601`，`xor si,1` | 第二人的肖像改用另一組，仍畫在右側 |
+| 160F6h／16152h | `imul ax,ds:12ACh,21Fh`／`imul ax,ds:12AEh,21Fh` | 兩名角色索引維持原玩家順序 |
+| 1631Dh..16350h | 原鍵盤／滑鼠檢查及 `dec dx`／回圈，DX 起值 168h | 結果有輸入與有界等待出口；等待次數不當作實機秒數 |
+
+來源在 `workplace/result-variants-native-v1/ida-result-v5.json`／`ida-result-v6.json`。最早的檔名字串近鄰及固定 DS 查詢只作導覽，沒有當成檔案消費或欄位定位的證據；後續沿已知選角原函式的 caller 找到上述結果入口。檔案及計時 helper 不再深挖。
+
+第二人獲勝時應是左側原 LOSEFIG、不鏡像；右側原 BIGFIG、鏡像。新[雙側來源識別器](../../tools/recognize_result_sides.py)保留兩側各 22 組來源並要求一勝一敗，整張 RGB 重組相同才輸出 `winner_player`，角色及旗幟／姓名仍按玩家位置。這是 DRAFT 研究資料，不是正式 Core API。
+
+[新準備工具](../../tools/prepare_result_sides_native_prototype.py)及[模板](../../tools/result-native-prototype/desktop_sides.go.in)在 `workplace/result-native-prototype-v3` 建立新副本。30 項美術不變，原參照擴為 1,880,378 bytes，只留本機；85 份副本僅 `result_prototype.go` 改變。Linux SHA `8b2d68d08fcb2597ab2d66dbefda51e2e1ff1b2f6c97900afbccedbcf8c29ad1`，recipe SHA `414b9c0feee22c8f592a7e300782d41be189e0f28270e3b0db870ac96d699d05`，Go 1.24.13。正式 46 份輸入、bin、素材及發布包保持。
+
+[雙側普通操作](../../tools/result_sides_native_smoke.py)保留原攻擊輸入與等待行為，只改結果角色契約；[獨立核對](../../tools/verify_result_sides_native.py)分別選兩側的正常／敗者候選，再核對來源與方向。[來源拒絕核對](../../tools/verify_result_side_sources.py)另外驗篡改、長度及兩張皆勝者／皆敗者的非法組合。正常第二人結果的驗收以後續新收據為準，不把靜態控制流或建置成功當作已完成。
+
+新三組正常取樣已通過，見上表最後三列。第二人完整及未載素材均兩次原版時間到判勝，左斬為敗者、右法蘭克為勝者，字圖第 0 筆；沒有為通過驗證而更換攻擊鍵或改戰鬥流程。[公開第二人結果](../screenshots/result-player2-native-prototype-hd.png)為實際原生擷取，新參照及原貌圖仍只留本機。
+
+同一份第二人原 RGB 交由舊識別器會拒絕，新雙側識別器能完整重組並確認 `winner_player=1`。第一輪無法捕獲不能據以聲稱原版不顯示第二人結果；原控制流與新正常收據已補證這條路徑。`case-p2-11/correction.json` 追加更正，舊 stopped.json／stdout 保持；Enter 是否影響停留時間不在此輪結論。
+
+新識別器交叉核對五組的 15 份原結果，兩個勝方及三種字圖皆覆蓋。八區單 byte 篡改共 120 例、長度錯誤 30 例、兩張皆正常或皆敗者的組合 15 例全部拒絕。這些是解析拒絕測試，不當原版遊玩收據。程式碼及原像素角色關係已足夠，不再追檔案或計時 helper。
+
+本輪完整彙整在 `workplace/result-variants-native-v1/final-audit.json`。單打及繼續介面、第二人另外兩種字圖、其他平台與正式接入仍另驗；視覺／附加包選擇維持待答，048 DRAFT。
 
 ## 候選與後續閘門
 
@@ -162,6 +209,6 @@ Linux 二進位 SHA-256 `bf8ad3f726179fcfbea0270de20eaf1042620d3769956f733067409
 2. 勝者與十一人敗者已有候選，需逐人定版表情、傷勢與裁切；不能將一般肖像當成受傷版本，亦不能將候選齊全當成正式接入。
 3. 靜態比較須標明非遊戲擷取。原畫面對照只留本機，新 HD 美術沿既有上傳授權放進 repo。
 4. 視覺與正式載入方式確認後才審 READY。目前已補一組正常結果與完整來源識別原型，原生實作須沿同一全圖核對再驗生命週期；未知／缺件整張原貌，切換不影響原版狀態。
-5. 正常單打／雙打、兩側勝負、三種結果、返回與切換另驗。既有單一結果不能外推全部角色、魔王結局或完整 HD。
+5. 已抽測雙打兩側勝方、三種字圖與十一人肖像；單打／繼續介面、側別與字圖交叉、平台仍另驗，不外推魔王結局或完整 HD。
 
 029 背景格式與 046／047 視覺問題維持原有待決狀態；本候選不代答，不擴張已發布首版。
