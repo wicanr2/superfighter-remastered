@@ -1092,3 +1092,5 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 本機 final-audit.py／json 核對四架構與現行副本、八包、四次啟動、GPU 時間窗、二十四項介面、三場原始視聽素材、最終影片、128 原檔、1719 執行器來源、i64、172 素材及舊 32 ZIP／三影片不變。初次稽核對無標籤事件呼叫 startswith 失敗，改依 gameplay-start 時間範圍檢查實際扣血後乾淨重跑通過；屬稽核腳本，沒有修改影片或產品。root-owned 及誤建 md 目錄零。
 
 本輪 005／025／036 的 CONFORMED 僅涵蓋已列 GPU 擷取、介面及本機交付。README、CONTEXT、WORKLIST、矩陣與截圖來源同步；Git 只提交自有來源、HD 截圖與文件。沒有建立新版 Release、移動已發布 tag 或更改儲存庫可見性。實體手把、其他平台真機、完整動畫／結局及人耳限制保持。
+
+修正版來源提交 `59955581bb2b247b120eb3943b7e746fa26ad44c` 已推送，git ls-remote 確認 origin/main 相同，兩個已發布 tag 仍指向原提交。README 三十四個相對連結及八張圖片均已入 Git；Python 語法、四架構來源／檔頭與總稽核再驗通過。ada 的 kdzz 容器與本機此工作樹相關容器均無執行中或停止殘留，未清理其他專案。後續僅追加本段結案紀錄。
