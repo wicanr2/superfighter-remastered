@@ -147,6 +147,8 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 ## 文件索引
 
+正式 v1 推廣片錄製入口為 [三魔王正常錄影](tools/record_promo_bosses.py)，合成與檢查使用 [v1 影片工具](tools/promo_v1.py)，範圍沿 [036](docs/spec/036-release-packages.md)。原始錄影與配樂僅留 dist-all 的本機 promo，不入 Git。交付總稽核為 [v1 稽核工具](tools/audit_release_v1.py)，原始來源、舊交付、影片與四架構分開核對。
+
 | 已建立檔案 | 唯一職責 |
 |---|---|
 | [集中 HD 接入 049](docs/spec/049-hd-batch-integration.md) | 使用者恢復開發並要求一次正式接入、最後集中抽樣；統合多景與標題／選角／結果既有證據，保留原版操作及回退 |

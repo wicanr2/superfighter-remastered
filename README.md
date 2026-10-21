@@ -14,7 +14,7 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 ## 目前整合範圍
 
-開發版為 `v.0.2.0-20261021`，視覺 HD 與原音播放已集中接入正式程式，完成正常路徑抽樣及本機八包驗證。最新狀態與證據見 [CONTEXT](CONTEXT.md)及[集中接入規格](docs/spec/049-hd-batch-integration.md)。
+開發版為 `v.1.0.0-20261021`，視覺 HD 與原音播放已集中接入正式程式，完成正常路徑抽樣及本機八包驗證。最新狀態與證據見 [CONTEXT](CONTEXT.md)及[集中接入規格](docs/spec/049-hd-batch-integration.md)。
 
 | 項目 | 現況 |
 |---|---|
@@ -64,7 +64,7 @@ HD 為獨立呈現層。規則、碰撞、AI 與原版流程由 dosgolem 執行�
 
 ## 下載與資料準備
 
-首版 [v.0.1.0-20261020](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.0.1.0-20261020)提供 Windows x86-64、Linux x86-64、macOS Intel 與 Apple Silicon 四個引擎包。首版未包含目前的集中 HD 更新。儲存庫為私人，Release 與圖片需以有權限的帳號查看。
+目前程式為 `v.1.0.0-20261021`。已發布的 Windows x86-64、Linux x86-64、macOS Intel 與 Apple Silicon 引擎包及清單見 [GitHub Releases](https://github.com/wicanr2/superfighter-remastered/releases)。儲存庫為私人，需有權限的帳號查看。
 
 1. 解壓對應平台的引擎包。
 2. 以 `-import-data 原版目錄或jsdos檔 -data game-data` 匯入合法資料。工具逐檔核對，只建立新目錄，不覆寫既有資料。
@@ -73,7 +73,7 @@ HD 為獨立呈現層。規則、碰撞、AI 與原版流程由 dosgolem 執行�
 
 程式從封包旁的 `assets/hd/` 載入素材，並在使用者設定目錄由自己的原版資料建立背景參考。正式載入不依賴研究目錄、Python 或本機原型環境變數。
 
-目前本機八包位於 `dist-all/v.0.2.0-20261021/`：四個引擎包與四個含原版／原音的完整版。完整版只留本機，本輪未建立新 Release。原曲推廣片仍是 `dist-all/v.0.1.1-20261021/promo/` 的前版影片，沒有本次全部集中 HD，也不公開。交付內容、雜湊與平台限制見[發行契約](docs/spec/036-release-packages.md)。
+目前本機八包位於 `dist-all/v.1.0.0-20261021/`：四個引擎包與四個含原版／原音的完整版。新版推廣片位於該版 `promo/`，75 秒中包含 66 秒原生程式錄影，展示蜘蛛女、小丑、印第安喬的正常選角與實際對戰，含原版音樂及音效。完整版與影片只留本機，不隨 Git 或 Release 提供。交付內容、雜湊與平台限制見[發行契約](docs/spec/036-release-packages.md)。
 
 原音可用 `-import-audio OGG目錄` 匯入完整 55 段來源驗證包，或以 `-audio-assets` 指定。右下角「原音」控制靜音，未匯入時明示；準備工具與固定 Docker 音源見[音樂與語音評估](docs/audio-hd-assessment.md#本機準備與使用)。本機完整版會自動載入原音。
 

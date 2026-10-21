@@ -1,0 +1,178 @@
+"""正常選角與雙打實錄；只送鍵鼠，不修改生命、勝負、座標或亂數。"""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import signal
+import subprocess
+import time
+import wave
+
+
+def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def main():
+    p=argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--binary',type=Path,required=True)
+    p.add_argument('--output',type=Path,required=True)
+    p.add_argument('--character',type=int,choices=(8,9,10),required=True)
+    p.add_argument('--opponent',type=int,choices=range(8),required=True)
+    a=p.parse_args();a.output.mkdir(exist_ok=False)
+    (a.output/Path(__file__).name).write_bytes(Path(__file__).read_bytes())
+    for name in ('home','runtime','pulse'):(a.output/name).mkdir(mode=0o700)
+    socket=a.output/'pulse/native'
+    env=dict(os.environ,DISPLAY=':89',HOME=str(a.output/'home'),XDG_RUNTIME_DIR=str(a.output/'runtime'),
+             PULSE_RUNTIME_PATH=str(a.output/'pulse'),PULSE_SERVER='unix:'+str(socket),
+             LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS='2',GOMAXPROCS='2')
+    (a.output/'home/.asoundrc').write_text('pcm.!default { type pulse }\nctl.!default { type pulse }\n')
+    observe=a.output/'observe.json';processes=[];logs=[];events=[];clips=[];game=None;started=time.monotonic()
+    def spawn(cmd,name,stdout=None):
+        log=(a.output/(name+'.log')).open('wb');logs.append(log)
+        proc=subprocess.Popen(cmd,env=env,stdout=stdout if stdout is not None else log,stderr=log)
+        processes.append(proc);return proc
+    def state():
+        try:return json.loads(observe.read_text())
+        except(FileNotFoundError,json.JSONDecodeError):return None
+    def record_state(label=None):
+        s=state()
+        if not s:return None
+        assert not s['core'].get('error') and not s['audio'].get('error')
+        assert not s['core']['training']['modified']
+        events.append(dict(label=label,seconds=time.monotonic()-started,core=s['core'],audio=s['audio'],
+                           hd_active=s['hd_active'],selection_hd_active=s['selection_hd_active'],
+                           scene=s['presentation']['scene'],actors=s['presentation'].get('actors')))
+        return s
+    def wait(predicate,seconds=150):
+        end=min(started+870,time.monotonic()+seconds)
+        while time.monotonic()<end:
+            if game is not None and game.poll()is not None:raise RuntimeError(('game exit',game.returncode))
+            s=record_state()
+            if s and predicate(s):return s
+            time.sleep(.04)
+        raise TimeoutError(state())
+    def xdo(*words):return subprocess.check_output(['xdotool',*map(str,words)],env=env,text=True,timeout=5).strip()
+    def click(x,y):
+        xdo('mousemove','--window',window,x,y);xdo('mousedown',1)
+        s=wait(lambda s:s['mouse_left'],10);xdo('mouseup',1)
+        wait(lambda n:not n['mouse_left']and n['frontend_updates']>s['frontend_updates'],10)
+    def key(name):
+        start=state()['frontend_updates'];xdo('keydown',name)
+        down=wait(lambda s:s['frontend_updates']>=start+2,10);xdo('keyup',name)
+        wait(lambda s:s['frontend_updates']>=down['frontend_updates']+2,10)
+    def hold(name,seconds):
+        xdo('keydown',name);end=time.monotonic()+seconds
+        while time.monotonic()<end:record_state();time.sleep(.05)
+        xdo('keyup',name)
+    def begin_clip(name):
+        pcm=a.output/(name+'.pcm');raw=pcm.open('wb');logs.append(raw)
+        recorder=spawn(['parec','--device=kdzz.monitor','--raw','--format=s16le','--rate=48000',
+                        '--channels=2','--latency-msec=10'],name+'-audio',raw)
+        video=a.output/(name+'.mp4');progress=a.output/(name+'-progress.txt')
+        rec=spawn(['ffmpeg','-hide_banner','-loglevel','error','-nostdin','-y','-f','x11grab',
+                   '-draw_mouse','1','-framerate','30','-video_size','1120x820','-i',':89.0',
+                   '-an','-c:v','libx264','-preset','ultrafast','-crf','18','-threads','1',
+                   '-pix_fmt','yuv420p','-progress',str(progress),'-stats_period','0.1',str(video)],name+'-video')
+        end=time.monotonic()+15;us=0
+        while time.monotonic()<end:
+            if progress.exists():
+                rows=progress.read_text().splitlines()
+                values=[int(r.split('=',1)[1])for r in rows if r.startswith('out_time_us=')and r.split('=',1)[1].isdigit()]
+                if values and values[-1]>0:us=values[-1];break
+            if rec.poll()is not None:raise RuntimeError('video recorder exited')
+            time.sleep(.03)
+        assert us>0 and pcm.stat().st_size>0
+        # Capture clocks are sampled together, independent of FFmpeg Pulse timestamp rebasing.
+        offset=pcm.stat().st_size/192000-us/1_000_000
+        mark=record_state(name+'-start');print(name,'recording',flush=True)
+        return dict(name=name,video=video,pcm=pcm,raw=raw,rec=rec,recorder=recorder,
+                    audio_offset_seconds=offset,started=time.monotonic(),start_state=mark)
+    def end_clip(c):
+        c['end_state']=record_state(c['name']+'-end')
+        for proc in (c['rec'],c['recorder']):
+            proc.send_signal(signal.SIGINT);proc.wait(timeout=20)
+        c['raw'].close();pcm=c['pcm'];wav=pcm.with_suffix('.wav')
+        with wave.open(str(wav),'wb')as w:
+            w.setparams((2,2,48000,0,'NONE','not compressed'));w.writeframes(pcm.read_bytes())
+        pcm.unlink()
+        info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_format','-show_streams','-of','json',str(c['video'])],text=True,timeout=15))
+        seconds=float(info['format']['duration']);assert seconds>5
+        with wave.open(str(wav))as w:audio_seconds=w.getnframes()/w.getframerate()
+        assert abs(audio_seconds-c['audio_offset_seconds']-seconds)<.7
+        row=dict(name=c['name'],video=c['video'].name,video_sha256=sha(c['video']),audio=wav.name,audio_sha256=sha(wav),
+                 duration=seconds,audio_offset_seconds=c['audio_offset_seconds'],
+                 start_state=c['start_state'],end_state=c['end_state'],audio_alignment='raw sample clock minus initial video progress; capture approximation within 0.7s')
+        clips.append(row);return row
+    command=[str(a.binary),'-data','/orig','-user-data',str(a.output/'user-data'),'-observe',str(observe),'-quit-after','880s']
+    try:
+        spawn(['Xvfb',':89','-screen','0','1280x1024x24','-nolisten','tcp'],'xvfb');time.sleep(.3)
+        spawn(['pulseaudio','--daemonize=no','--exit-idle-time=-1','--use-pid-file=no','-n',
+               '--load=module-native-protocol-unix socket='+str(socket)+' auth-anonymous=1',
+               '--load=module-null-sink sink_name=kdzz rate=48000 channels=2','--log-level=warning'],'pulse')
+        end=time.monotonic()+15
+        while not socket.exists()and time.monotonic()<end:time.sleep(.05)
+        subprocess.run(['pactl','set-default-sink','kdzz'],env=env,check=True,timeout=5)
+        game=spawn(command,'native');wait(lambda s:s['core']['paused'])
+        window=None;end=time.monotonic()+30
+        while time.monotonic()<end:
+            try:
+                result=xdo('search','--onlyvisible','--name','Remastered').splitlines()
+                if result:window=result[-1];break
+            except subprocess.CalledProcessError:pass
+            time.sleep(.05)
+        assert window is not None;xdo('windowfocus','--sync',window)
+        xdo('windowmove',window,0,0)
+        # Xvfb has no window manager; measure the real client location before X11 capture.
+        geometry=xdo('getwindowgeometry','--shell',window)
+        assert 'X=0\n'in geometry and 'Y=0\n'in geometry,geometry
+        click(110,32);wait(lambda s:s['core'].get('title_hd'))
+        if not state()['hd_enabled']:click(830,32)
+        key('Right');wait(lambda s:s['core'].get('title_hd',{}).get('selected')==1);key('Return')
+        wait(lambda s:s['selection_hd_active']and s['core'].get('selection',{}).get('player')==0)
+        c=begin_clip('selection');time.sleep(.7)
+        click(24+a.character%6*180+86,700+a.character//6*40+18)
+        wait(lambda s:s['core'].get('selection',{}).get('cursor')==a.character and s['core']['selection'].get('target',-1)<0)
+        record_state('boss-selected');time.sleep(1.4);click(1010,758)
+        wait(lambda s:s['core'].get('selection',{}).get('player')==1);time.sleep(1)
+        if time.monotonic()-c['started']<8:time.sleep(8-(time.monotonic()-c['started']))
+        end_clip(c)
+        click(24+a.opponent%6*180+86,700+a.opponent//6*40+18)
+        wait(lambda s:s['core'].get('selection',{}).get('cursor')==a.opponent and s['core']['selection'].get('target',-1)<0)
+        click(1010,758)
+        wait(lambda s:s['core']['battle']and s['core']['frames']>8 and s['hd_active'])
+        assert state()['core']['fighters']==[a.character,a.opponent]
+        initial=state()['core']
+        xdo('keydown','d')
+        # Character origins differ by sprite width; collision can stop at a gap of 58.
+        # Use the already verified normal-match walk budget, then release and attack.
+        wait(lambda s:s['core']['frames']>=initial['frames']+90 or s['core']['steps']>=initial['steps']+150_000_000,90)
+        xdo('keyup','d')
+        c=begin_clip('gameplay');before=state()['core']['frames']
+        for name,seconds in [('Tab',1.5),('Shift_L',1.5),('Return',1.2),('w',1),('x',1),
+                             ('Tab',1.5),('Shift_L',1.5),('Return',1.2),('a',.8),('d',.8),('Tab',1.5),('Shift_L',1.5)]:
+            hold(name,seconds)
+        while time.monotonic()-c['started']<16:record_state();time.sleep(.05)
+        row=end_clip(c)
+        assert row['end_state']['core']['frames']>before+15
+        assert row['end_state']['core']['health']!=[124,124], 'no attack damage observed'
+        assert all(x['audio']['rejected']==0 for x in events)
+        receipt=dict(version=state()['version'],character=a.character,opponent=a.opponent,binary_sha256=sha(a.binary),
+                     command=command,clips=clips,events=events,script_sha256=sha(Path(__file__)),
+                     character_manifest_sha256=sha(a.binary.parent/'assets/hd/characters/manifest.json'),
+                     rights='local-only game recordings and original audio; never Git or public Release',
+                     limits='normal Linux native app under Xvfb with ordinary keyboard/mouse; no physical controller, full game, original speed or hardware audio parity claim')
+        (a.output/'receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
+        print('recorded boss',a.character,flush=True)
+    except Exception as exc:
+        (a.output/'failure.json').write_text(json.dumps(dict(error=repr(exc),clips=clips,events=events,state=state()),ensure_ascii=False,indent=2)+'\n');raise
+    finally:
+        for proc in reversed(processes):
+            if proc.poll()is None:
+                proc.terminate()
+                try:proc.wait(timeout=5)
+                except subprocess.TimeoutExpired:proc.kill();proc.wait(timeout=5)
+        for log in logs:log.close()
+
+
+if __name__=='__main__':main()

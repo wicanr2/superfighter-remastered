@@ -25,6 +25,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('stage',choices=['draft','publish','verify'])
     parser.add_argument('--target',required=True)
+    parser.add_argument('--notes-file',type=Path,help='已審閱的該版發行說明；v1 必填，不能沿用首版完成聲明')
     a=parser.parse_args();assert re.fullmatch('[0-9a-f]{40}',a.target)
     version=(ROOT/'VERSION').read_text().strip();assert re.fullmatch(r'v\.\d+\.\d+\.\d+-\d{8}',version)
     out=ROOT/'dist-all'/version;smoke=out/'smoke';patch=out/'patch'
@@ -36,7 +37,15 @@ def main():
         check=json.loads((smoke/(platform+'-startup')/'receipt.json').read_text());assert len(check['checks'])==2 and all(x['startup'] for x in check['checks'])
     for platform in ('native','wine'):
         check=json.loads((ROOT/f'workplace/keyboard-{platform}-v1/receipt.json').read_text());assert len(check['checks'])==6
-    assert len(json.loads((smoke/'linux-play-record/receipt.json').read_text())['checks'])==4
+    if version.startswith('v.1.'):
+        for character in (8,9,10):
+            receipt=json.loads((out/f'promo/boss-{character}/receipt.json').read_text())
+            assert receipt['version']==version and receipt['character']==character and len(receipt['clips'])==2
+            assert not receipt['clips'][1]['end_state']['core']['training']['modified']
+            assert receipt['clips'][1]['end_state']['core']['fighters'][0]==character
+        assert a.notes_file and a.notes_file.is_file(), 'v1 requires reviewed current release notes'
+    else:
+        assert len(json.loads((smoke/'linux-play-record/receipt.json').read_text())['checks'])==4
     promo=json.loads((out/'promo/promo-checks.json').read_text())
     assert promo['full_decode'] and promo['visual_contact_sheet_review']=='passed' and -40<promo['peak_db']<0
     assets={}
@@ -49,8 +58,9 @@ def main():
     if a.stage=='draft':
         existing=gh('release','list','--repo',REPO,'--limit','100','--json','tagName,isDraft',json_output=True)
         assert not any(x['tagName']==version for x in existing),'版號已存在，拒絕覆寫'
-        notes=smoke/'public-release-notes.md'
-        notes.write_text(f'''快打至尊 Remastered {version} 首版，保留原版核心，接入原生桌面操作與部分街機手繪 HD。
+        notes=a.notes_file or smoke/'public-release-notes.md'
+        if not a.notes_file:
+            notes.write_text(f'''快打至尊 Remastered {version} 首版，保留原版核心，接入原生桌面操作與部分街機手繪 HD。
 
 - Windows x86-64、Linux x86-64、macOS Intel／Apple Silicon，各一份引擎 ZIP。
 - 公開包不含原版遊戲。玩家自備合法資料，以 `-import-data 原版目錄或jsdos檔 -data game-data` 匯入。既有目錄不覆寫。
