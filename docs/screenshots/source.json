@@ -252,6 +252,19 @@
       "version": "v.1.0.1-20261021",
       "platform": "Linux on ada NVIDIA RTX 2000 Ada via VirtualGL EGL; Xvfb 2D capture, not physical monitor acceptance",
       "scope": "second-row bosses, selected through portrait input; original rules retained"
+    },
+    {
+      "kind": "normal native HD versus selection; original player0 confirmation to player1; external name/confirm buttons removed",
+      "file": "hd-selection-native-versus.png",
+      "sha256": "9fa824efdcb74a17b96d783147a128a6b12ec8ca76fa5f787dab7036f52365ad",
+      "source": "workplace/flow-study-v1/selection-native-no-buttons/selection-player1.png",
+      "source_sha256": "9fa824efdcb74a17b96d783147a128a6b12ec8ca76fa5f787dab7036f52365ad",
+      "platform": "Linux amd64 Docker Xvfb software rendering; actual normal native player path, not hardware refresh validation",
+      "receipt_sha256": "fa7634e144171ce2642b5f648697ef659d39be81a66c18c0147cf907439709e8",
+      "binary_sha256": "0bc9888ece68372307b0294e344592a421536485c2cb288ab8582a6e93eb1a29",
+      "version": "v.1.0.1-20261021 development after local package snapshot",
+      "authorization": "user requested original versus player2 flow and removal of external name buttons; HD screenshots authorized for repository",
+      "limits": "27 normal UI checks and versus entry; no physical gamepad or native Windows/macOS acceptance"
     }
   ],
   "version": "v.0.1.0-20261020",

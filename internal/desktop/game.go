@@ -416,7 +416,7 @@ func (g *Game) widgets() []widget {
 		return append(out, g.fields()...)
 	}
 	if s.Selection != nil {
-		return append(out, g.selectionWidgets(s.Selection, s.Paused)...)
+		return out
 	}
 	for p := 0; p < 2; p++ {
 		for slot := 0; slot < 4; slot++ {

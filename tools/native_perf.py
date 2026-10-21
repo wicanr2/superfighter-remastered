@@ -122,17 +122,40 @@ def main():
                 else:
                     old=(a.output/'battle.png').stat().st_mtime_ns;key('F12')
                     wait(lambda s:(a.output/'battle.png').stat().st_mtime_ns>old);shutil.copy2(a.output/'battle.png',a.output/'selection-player1.png')
-                click(1010,758)
-                if side==0:wait(lambda s:s['core'].get('selection',{}).get('player')==1)
+                # The former external name/confirm buttons must no longer accept input.
+                before=read()['frontend_updates']
+                click(110,718);click(1010,758)
+                wait(lambda s:s['frontend_updates']>=before+4)
+                selected=read()['core']['selection']
+                assert selected['player']==side and selected['cursor']==(8 if side==0 else 10) and selected['target']<0
+                checks.append(dict(player=side,removed_button_positions_ignored=True))
+                if side==0:
+                    click(830,32);wait(lambda s:not s['hd_enabled']and not s['selection_hd_active'])
+                    key('Left');wait(lambda s:s['core']['selection']['cursor']==7 and s['core']['selection']['target']<0)
+                    key('Right');wait(lambda s:s['core']['selection']['cursor']==8 and s['core']['selection']['target']<0)
+                    key('Return');wait(lambda s:s['core'].get('selection',{}).get('player')==1)
+                    assert not read()['hd_enabled']
+                    checks.append(dict(original_mode_player0_confirmed_to_player1=True))
+                    click(830,32);wait(lambda s:s['selection_hd_active'])
+                else:key('Return')
             s=wait(lambda s:s['core']['battle']and s['core']['frames']>8 and s['hd_active'])
             assert s['core']['fighters']==[8,10]
             report=dict(status='passed',checks=checks,battle=s['core'],binary_sha256=hashlib.sha256(a.binary.read_bytes()).hexdigest(),
                         script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),rights='local source evidence; only approved HD screenshots may be copied to Git')
             (a.output/'receipt.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps(report,ensure_ascii=False),flush=True);return
-        click(470,758);wait(lambda s:s['core'].get('selection',{}).get('cursor')==8 and s['core']['selection'].get('target',-1)<0)
-        click(1010,758);wait(lambda s:s['core'].get('selection',{}).get('player')==1)
-        click(830,718);wait(lambda s:s['core'].get('selection',{}).get('cursor')==4 and s['core']['selection'].get('target',-1)<0)
-        click(1010,758);wait(lambda s:s['core']['battle']and s['core']['frames']>8 and s['hd_active']==(a.mode=='hd'))
+        def choose(character):
+            if a.mode=='hd':
+                x,y=(28+33*character,127)if character<8 else(110+33*(character-8),164)
+                click(80+(x+16)*3,64+(y+16)*3)
+                wait(lambda s:s['core']['selection']['cursor']==character and s['core']['selection']['target']<0)
+            else:
+                for _ in range(11):
+                    if read()['core']['selection']['cursor']==character:break
+                    before=read()['core']['selection']['cursor'];key('Right')
+                    wait(lambda s:s['core']['selection']['cursor']!=before and s['core']['selection']['target']<0)
+                assert read()['core']['selection']['cursor']==character
+        choose(8);key('Return');wait(lambda s:s['core'].get('selection',{}).get('player')==1)
+        choose(4);key('Return');wait(lambda s:s['core']['battle']and s['core']['frames']>8 and s['hd_active']==(a.mode=='hd'))
         assert read()['core']['fighters']==[8,4]
         key('F12');wait(lambda s:(a.output/'battle.png').is_file());time.sleep(1)
         cache_equivalence=None

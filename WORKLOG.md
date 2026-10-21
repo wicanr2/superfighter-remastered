@@ -1094,3 +1094,17 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 本輪 005／025／036 的 CONFORMED 僅涵蓋已列 GPU 擷取、介面及本機交付。README、CONTEXT、WORKLIST、矩陣與截圖來源同步；Git 只提交自有來源、HD 截圖與文件。沒有建立新版 Release、移動已發布 tag 或更改儲存庫可見性。實體手把、其他平台真機、完整動畫／結局及人耳限制保持。
 
 修正版來源提交 `59955581bb2b247b120eb3943b7e746fa26ad44c` 已推送，git ls-remote 確認 origin/main 相同，兩個已發布 tag 仍指向原提交。README 三十四個相對連結及八張圖片均已入 Git；Python 語法、四架構來源／檔頭與總稽核再驗通過。ada 的 kdzz 容器與本機此工作樹相關容器均無執行中或停止殘留，未清理其他專案。後續僅追加本段結案紀錄。
+
+## 2026-10-21：沿用原版雙打與移除額外選角按鈕
+
+使用者詢問遊戲內雙打，並明確表示沿用原版流程選第二人，不需下方額外按鈕。本輪命中 spec-gated 路由，讀取 025、目前介面與既有普通雙打收據；依 grilling 已確認方向直接做局部修改，不重問是否移除。原版已支援第一人 Return 後第二人選角，沒有另造第二人流程。
+
+- 025 先追加 READY 契約，再移除 selectionWidgets 的十一姓名／確認按鈕與命中入口。選角只保留工具列、原音與目前選角者提示；八人上排、三魔王第二排及頭像點選保持。Enter／數字鍵盤 Enter／手把確認仍呼叫原 MenuKey，原貌提示只顯示左右選人。對戰快捷、設定、視窗大小及核心不改。
+- native_perf.py 改用畫面內頭像與 Return，不再依賴已移除按鈕。正常標題→雙打，兩側各十一頭像定位及原大肖像，暫停拒絕、原貌切換／恢復，兩側舊姓名與確認位置點擊無效，共二十七項通過。第一人蜘蛛女在原貌用 Left→Right→Return 交給第二人，恢復 HD 後第二人選印第安喬並 Return，進 mode=1、fighters=[8,10]、第九格，練習 modified=false。收據為 workplace/flow-study-v1/selection-native-no-buttons/receipt.json。
+- Linux 二進位 SHA 0bc9888ece68372307b0294e344592a421536485c2cb288ab8582a6e93eb1a29；正常第二人選角截圖已目視，額外按鈕完全移除，兩側大肖像及三魔王第二排清楚。截圖 SHA 9fa824efdcb74a17b96d783147a128a6b12ec8ca76fa5f787dab7036f52365ad，保存為 docs/screenshots/hd-selection-native-versus.png，來源寫 source.json，README 改用新圖；原先定版與前輪正式圖保持。
+- 原錄影工具同步改用頭像與原 Return；保留 portraits 參數相容既有命令。Python 語法、controls 測試及 desktop／cmd vet 通過。本輪不重新錄影片，前輪影片與 60 fps GPU 收據保持原範圍，不宣稱這輪二進位另做 GPU 效能驗收。
+- 四架構以既有固定 image／Go 1.24.13 重建至 workplace/flow-study-v1/native-selection-bin，再晉升 workplace/bin；前輪正式錄影的 formal-bin 保留。更新版號內的來源開發副本以編譯輸入與二進位 SHA 辨別，既有 dist-all/v.1.0.1 八包與影片不覆寫，沒有新 tag 或 Release。README／CONTEXT 明列這項介面修正尚未重新打包。
+
+完成聲明限於已列正常選角與雙打入戰；實體手把、Windows／macOS 真機、完整過關與人耳限制保持。工作樹只提交程式、規格、HD 截圖及文件，原資料、原音與收據留本機。現況與驗證矩陣已同步。
+
+來源提交、遠端 main 核對及 Docker 清理結果記錄在本輪 selection-native-no-buttons/integration.json；README 三十四個相對連結與八張圖均已入 Git。四架構編譯輸入／SHA／檔頭、截圖雜湊、Python 語法、擁有權與誤建目錄檢查通過。
