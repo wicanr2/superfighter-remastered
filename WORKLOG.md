@@ -1161,3 +1161,14 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - 清理本輪 Wine 前綴與失敗重建的重複 ZIP，逐檔存 SHA／大小／連結，刪除 914,205,786 bytes。原資料、全部試錄、日誌、設定、來源及歷版四十八個 ZIP／五支影片保留。CONTEXT、WORKLIST、README、036、驗證矩陣與工具索引同步本版現況，不將前版 Ada 約 60 fps 套用新程式。
 
 本輪完成聲明限於新版八包、四次啟動與本機影片的上述技術／抽樣檢查。穩定 60 fps 保持未完成，下一個最小驗證是在相同本機環境對照舊版與選角修正版，再定位成本。其他平台真機、雙手把、完整動畫／結局及人耳限制保持。最終原資料、執行器、素材、編譯輸入、舊交付、影片、擁有權與 Python 語法稽核見本版 smoke/final-audit.json；Git／遠端與容器收尾記錄於 smoke/source-closeout.json。
+
+## 2026-10-21：依使用者指示結案與工作區清理
+
+使用者明確要求結案並清理 workspace。本輪讀取收尾及文件職責契約，停止開發／效能驗證；60 fps 未達標、人工與真機限制保持，不因結案改稱通過。README、CONTEXT 與 WORKLIST 標示階段結案，沒有重打包、重錄影片或新 Release。
+
+- 盤點既有解壓副本、快取、測試前綴與符號連結。僅清理本專案。父目錄舊來源快照、使用者新增的說明文字與 spider-woman-hd 原稿保持，沒有修改其他專案或進入 Ada。
+- 對七版、五十六個解壓包逐檔比對其保留 ZIP；只刪除 bytes 完全相同的副本。原 manifest、索引、有差異與額外檔案共 1,806 個留在原位置。沒有清空整個 workplace 或以目錄名稱猜測原稿可刪。
+- 移除兩個 Go 編譯快取與三個歷史 Wine 測試前綴；離線模組及現行完整執行環境保持。逐檔 SHA、大小、權限、連結、對應原 ZIP 與還原方式在 workplace/flow-study-v1/closure-cleanup-plan.json；結果在 closure-cleanup.json，執行來源為 closure_cleanup.py。
+- 共刪除 33,228 個檔案，內容 15,295,408,488 bytes、記錄配置空間 15,403,376,640 bytes。刪除前後核對 8,813 個保留檔案 SHA，全部一致，包括七版五十六 ZIP、六支正式影片、原版、獨立執行器、IDA 資料庫、HD 素材、現行程式與離線模組。研究與錄影收據未刪除。
+- 清理後的歷史解壓路徑不再是可執行完整包。需要重跑時，依清理計畫的 archive 在全新測試目錄還原；現行版可用 tools/unpack_release.py 的 output 參數，編譯快取由 tools/build_desktop.sh 重生。CONTEXT 已加入重建入口，正式玩家入口仍為 dist-all/v.1.0.3-20261021。
+- 檔案 UID／GID、root-owned 與異常 .md 目錄檢查通過。專案 Docker 容器查詢為空；保留現行 r2 與診斷試錄重現所需 r1 工具 image，不作全域 prune。Git 只提交結案文件；來源提交、遠端與最後核對追加到 closure-cleanup.json。

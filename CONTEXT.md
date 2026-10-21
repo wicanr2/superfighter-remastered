@@ -2,6 +2,12 @@
 
 更新日期：2026-10-21。本檔為唯一現況；待辦見 [WORKLIST](WORKLIST.md)，完整歷程見 [WORKLOG](WORKLOG.md)，規則與索引見 [AGENTS](AGENTS.md)。
 
+專案階段已依使用者指示結案。現行交付為 v.1.0.3-20261021；穩定 60 fps 未達標、真機／手把與人工驗收限制保持，沒有進行中的開發或驗證工作。
+
+結案清理的逐檔計畫、結果與重建來源位於 workplace/flow-study-v1/closure-cleanup-plan.json／closure-cleanup.json，執行工具為 closure_cleanup.py。解壓副本只刪除與保留 ZIP 完全一致的檔案，差異檔、額外資料、原 manifest 及索引留在原位置。重跑解壓測試前，依計畫所列 archive 在全新目錄還原；現行版本可用 tools/unpack_release.py 的 output 參數。編譯快取可由 tools/build_desktop.sh 重建，離線 Go 模組與目前完整執行環境保持。
+
+本次刪除 33,228 個重複檔案與快取，檔案內容共 15,295,408,488 bytes；刪除前後核對 8,813 個保留檔案 SHA，均一致。七版共五十六個 ZIP、六支正式影片、原版、HD 原稿、IDA 資料庫、目前程式與研究收據保留。另有 1,806 個解壓差異檔／額外檔案／manifest 留在原位置。擁有權及異常目錄檢查通過。
+
 目前來源、workplace/bin 與本機八包為 **v.1.0.3-20261021**，已納入 025 選角完整發布修正。四架構相較 selection-atomic-bin 的確切編譯輸入僅 VERSION 改變；Linux SHA ac19af15877e0182a365dff32dbcc8e7d68eed50a11a9e80bde76ccfc000895b。八包逐檔／SHA／CRC／權利分類及 Linux／Wine 各引擎、完整版共四次乾淨解壓啟動通過。交付為 dist-all/v.1.0.3-20261021，編譯與來源見 workplace/flow-study-v1/v103-bin／v103-build.json，本版 smoke 保存建置與啟動收據。沒有新 Release，舊 tag 與歷版交付保持。
 
 新版推廣片為 75 秒、4,500 格、1280×720／60 fps 檔案、AAC 48 kHz 雙聲道，六十六秒本機 Intel MTL GPU 實錄包含六秒 HD 標題、三魔王各六秒兩人選角與十四秒對戰。蜘蛛女選角依時間順序剪成兩段，其餘選角連續；沒有加速或動作插值。成片 7,990,025 bytes，SHA 44459b0f6e9fe51912b7586c20b0ac781059d90cda74154b4dabdaf4f43cd505；完整解碼、非靜音、峰值 -8.1dB、黑幀零、三場戰鬥大於二秒凍結零、字幕及九段畫面抽查通過。完整版、原音與影片只留本機，README 三張圖片已換成本版 GPU 來源，來源與 SHA 見 docs/screenshots/source.json。
