@@ -91,7 +91,7 @@ func TestReal67DisplaySnapshotsAndVisibleTail(t *testing.T) {
 }
 
 func fixture() (*Assets, Frame) {
-	a := &Assets{Reference: bytes.Repeat([]byte{7}, 480*204)}
+	a := &Assets{Manifest:Manifest{Scene:4,ReferenceSHA256:ReferenceSHA256},Reference: bytes.Repeat([]byte{7}, 480*204)}
 	for i := range a.Palette {
 		a.Palette[i] = [3]uint8{uint8(i), uint8(i), uint8(i)}
 	}

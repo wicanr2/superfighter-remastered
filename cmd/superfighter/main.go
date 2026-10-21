@@ -6,6 +6,7 @@ import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/wicanr2/superfighter-remastered/internal/desktop"
 	"github.com/wicanr2/superfighter-remastered/internal/gamefiles"
+	"github.com/wicanr2/superfighter-remastered/internal/originalaudio"
 	"log"
 	"os"
 	"path/filepath"
@@ -32,6 +33,10 @@ func main() {
 	capture := flag.String("capture", "", "F12 擷取路徑")
 	hdAssets := flag.String("hd-assets", "", "本機 HD 背景素材目錄；不提供時使用原貌")
 	hdCharacters := flag.String("hd-characters", "", "本機 HD 角色素材目錄；搭配 hd-assets 使用")
+	hdScreens := flag.String("hd-screens", "", "HD 標題、選角與結果素材目錄；預設使用封包 assets/hd")
+	audioAssets := flag.String("audio-assets", "", "已核對的原音 OGG 目錄；預設使用使用者原音或本機封包")
+	importAudio := flag.String("import-audio", "", "匯入由合法原版轉換的 OGG 目錄；不覆寫既有原音")
+	muteAudio := flag.Bool("mute", false, "啟動時關閉原音，可在視窗切換")
 	quit := flag.Duration("quit-after", 0, "有界驗證時限，例如 90s；0 為不限制")
 	training := flag.Bool("training", false, "預先開啟練習模式：雙方滿血、時間停止、電腦中立；F9 可切換")
 	flag.Parse()
@@ -64,6 +69,22 @@ func main() {
 	if _, err := os.Stat(filepath.Join(*root, "SF.EXE")); err != nil {
 		log.Fatal("缺少合法原版資料。請執行：superfighter -import-data 原版目錄或jsdos檔 -data game-data；詳見封包 README。")
 	}
+	if *importAudio != "" {
+		output := filepath.Join(*config, "original-audio-v1")
+		if err := originalaudio.Import(*importAudio, *root, output); err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println("原音已核對並匯入：", output)
+		return
+	}
+	if *audioAssets == "" {
+		for _, candidate := range []string{filepath.Join(*config, "original-audio-v1"), filepath.Join(packageRoot(), "assets", "audio", "original")} {
+			if _, err := os.Stat(filepath.Join(candidate, "manifest.json")); err == nil {
+				*audioAssets = candidate
+				break
+			}
+		}
+	}
 	if *hdCharacters == "" {
 		candidate := filepath.Join(packageRoot(), "assets", "hd", "characters")
 		if _, err := os.Stat(filepath.Join(candidate, "manifest.json")); err == nil {
@@ -71,17 +92,23 @@ func main() {
 		}
 	}
 	if *hdAssets == "" && *hdCharacters != "" {
-		candidate := filepath.Join(*config, "hd-rooftop")
-		if err := gamefiles.EnsureBackground(*root, filepath.Join(packageRoot(), "assets", "hd", "backgrounds", "rooftop.png"), candidate); err == nil {
+		candidate := filepath.Join(*config, "hd-backgrounds-v2")
+		if err := gamefiles.EnsureBackgroundCollection(*root, filepath.Join(packageRoot(), "assets", "hd"), candidate); err == nil {
 			*hdAssets = candidate
 		} else {
 			log.Print("HD 背景未準備，保留原貌：", err)
 		}
 	}
+	if *hdScreens == "" {
+		candidate := filepath.Join(packageRoot(), "assets", "hd")
+		if _, err := os.Stat(filepath.Join(candidate, "screens.json")); err == nil {
+			*hdScreens = candidate
+		}
+	}
 	if *quit < 0 || *quit > 24*time.Hour {
 		log.Fatal("驗證時限不合法")
 	}
-	g, e := desktop.New(desktop.Options{Version: version, Root: *root, DataDir: *config, Observe: *observe, Capture: *capture, HDAssets: *hdAssets, HDCharacters: *hdCharacters, QuitAfter: *quit, Training: *training})
+	g, e := desktop.New(desktop.Options{Version: version, Root: *root, DataDir: *config, Observe: *observe, Capture: *capture, HDAssets: *hdAssets, HDCharacters: *hdCharacters, HDScreens: *hdScreens, AudioAssets: *audioAssets, MuteAudio: *muteAudio, QuitAfter: *quit, Training: *training})
 	if e != nil {
 		log.Fatal(e)
 	}

@@ -71,9 +71,14 @@ def main():
             game=subprocess.Popen(cmd(binary,['-user-data',current/'user-data','-observe',observe,'-capture',capture,'-quit-after','150s']),cwd=package,env=env,stdout=log,stderr=log)
             loaded=wait(lambda s:s['core']['paused'])
             assert loaded['version']==version and len(loaded['settings']['keyboard'])==2
-            bg=current/'user-data/hd-rooftop'
-            assert hashlib.sha256((bg/'reference.idx').read_bytes()).hexdigest()=='eb1207239c06a0e06cd9ecbb697b4cf7e1421c4dd3e6e2a6794774246eafeb15'
-            assert hashlib.sha256((bg/'palette.rgb').read_bytes()).hexdigest()=='57aa9f63fe5372026b80f6bab849e52f627ecb0ac5c05c0cad574d13af42ec3c'
+            assert loaded['audio']['loaded']==(kind=='full-local')
+            bg=current/'user-data/hd-backgrounds-v2'
+            collection=json.loads((bg/'manifest.json').read_text())
+            assert collection['version']==2 and collection['kind']=='background-collection' and len(collection['backgrounds'])==11
+            for source in json.loads((root/'internal/hd/background-sources.json').read_text()):
+                child=bg/f"scene-{source['scene']:02d}"
+                assert hashlib.sha256((child/'reference.idx').read_bytes()).hexdigest()==source['reference_sha256']
+                assert hashlib.sha256((child/'palette.rgb').read_bytes()).hexdigest()==source['palette_sha256']
             deadline=time.monotonic()+30
             window=None
             while time.monotonic()<deadline:

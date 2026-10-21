@@ -1,0 +1,880 @@
+{
+  "kind": "049 approved covered Spider normal and victory registration",
+  "reference": "assets/hd/candidates/spider-coverage.png",
+  "reference_sha256": "4cbd89d69901d875587d2fdd471cf487917e357d52c5773b0564ecc2a75b8b74",
+  "normal_sources": 45,
+  "normal_slots": 72,
+  "victory_sources": 5,
+  "victory_slots": 72,
+  "baseline_sha256": "164eef46667563bed1d239a2af113f95f47e7a8831f98f82ffe97e3fc13adb20",
+  "art": [
+    {
+      "file": "candidates/spider-covered-v3-00.png",
+      "sha256": "8d1c839ba4081b380be54aa9e3c93494135df1d28d382b87bdff0965740258de",
+      "prompt": "Use case: stylized-concept. Asset type: transparent 2D fighting-game animation sprite atlas, sheet A. Create EXACTLY TWELVE complete separate sprites in a precise FOUR columns by THREE rows uniform grid, row-major order, generous fully transparent gutters and margins. Landscape canvas, preferably at least 1536 pixels wide. Input reference image is ONLY for character identity, costume and hand-painted arcade rendering, not the pose. Character is the same adult blonde female martial artist, purple eye mask, fully opaque purple FULL-BODY athletic suit continuously covering neck, shoulders, chest, torso, hips, arms and ALL legs, purple gloves and boots. Preserve this full coverage in EVERY cel. Realistic athletic anatomy and calm focused face, crisp ink contours, layered painterly shading, consistent proportions. Full figure including all hair, fingers and boots in every cell; neutral side-view fighting-game camera; NO ground, background, checkerboard, shadows, text, numbers, dividing lines or glow. Sprites generally face LEFT. The twelve distinct movement poses in order: (1) low three-point ready crouch, left knee bent under torso and rear leg extended back, both hands close to floor; (2) ready crouch with slightly raised shoulders and both palms planted, one knee forward; (3) lower forward crawl, long rear leg extended, both hands reaching down in front; (4) compact squat with torso leaning forward and two hands planted, feet closer together; (5) crawl step with forward hand further left and rear leg pushed back; (6) forward crouching guard with one hand raised near face and one hand low; (7) very wide forward lunge with both arms extended horizontally LEFT in a straight strike, rear leg trailing RIGHT; (8) low ducking recovery with forearm shielding face, other hand near ground; (9) acrobatic side kick supported on one hand, one leg high diagonally upper LEFT, other knee folded, complete body; (10) low coiled spinning kick with one knee raised across torso and one arm lowered; (11) kneeling recovery with torso inclined forward, bent legs close beneath, arms low; (12) kneeling guard with both forearms shielding face. Treat all as sports/martial-arts movement illustrations, nonsexual neutral framing. Make the twelve poses distinctly different. Genuine RGBA transparency, solid figure interiors.",
+      "tool": "built-in image_gen",
+      "parent_file": null,
+      "parent_prompt": null,
+      "packed_file": "spider-covered-poses-00.png",
+      "packed_sha256": "75a2d4449119a2c8a41300e920e78fe2fe5e698e14e4252510ead17c93ae5e65",
+      "extraction": [
+        {
+          "ordinal": 0,
+          "source_box": [
+            27,
+            52,
+            420,
+            298
+          ],
+          "source_size": [
+            393,
+            246
+          ],
+          "packed_size": [
+            393,
+            246
+          ]
+        },
+        {
+          "ordinal": 1,
+          "source_box": [
+            443,
+            37,
+            684,
+            305
+          ],
+          "source_size": [
+            241,
+            268
+          ],
+          "packed_size": [
+            241,
+            268
+          ]
+        },
+        {
+          "ordinal": 2,
+          "source_box": [
+            719,
+            100,
+            1240,
+            303
+          ],
+          "source_size": [
+            521,
+            203
+          ],
+          "packed_size": [
+            480,
+            187
+          ]
+        },
+        {
+          "ordinal": 3,
+          "source_box": [
+            1264,
+            59,
+            1500,
+            297
+          ],
+          "source_size": [
+            236,
+            238
+          ],
+          "packed_size": [
+            236,
+            238
+          ]
+        },
+        {
+          "ordinal": 4,
+          "source_box": [
+            4,
+            384,
+            460,
+            605
+          ],
+          "source_size": [
+            456,
+            221
+          ],
+          "packed_size": [
+            456,
+            221
+          ]
+        },
+        {
+          "ordinal": 5,
+          "source_box": [
+            483,
+            330,
+            744,
+            609
+          ],
+          "source_size": [
+            261,
+            279
+          ],
+          "packed_size": [
+            261,
+            279
+          ]
+        },
+        {
+          "ordinal": 6,
+          "source_box": [
+            733,
+            339,
+            1291,
+            615
+          ],
+          "source_size": [
+            558,
+            276
+          ],
+          "packed_size": [
+            480,
+            237
+          ]
+        },
+        {
+          "ordinal": 7,
+          "source_box": [
+            1260,
+            384,
+            1514,
+            606
+          ],
+          "source_size": [
+            254,
+            222
+          ],
+          "packed_size": [
+            254,
+            222
+          ]
+        },
+        {
+          "ordinal": 8,
+          "source_box": [
+            18,
+            636,
+            469,
+            965
+          ],
+          "source_size": [
+            451,
+            329
+          ],
+          "packed_size": [
+            451,
+            329
+          ]
+        },
+        {
+          "ordinal": 9,
+          "source_box": [
+            515,
+            622,
+            768,
+            972
+          ],
+          "source_size": [
+            253,
+            350
+          ],
+          "packed_size": [
+            253,
+            350
+          ]
+        },
+        {
+          "ordinal": 10,
+          "source_box": [
+            884,
+            706,
+            1209,
+            964
+          ],
+          "source_size": [
+            325,
+            258
+          ],
+          "packed_size": [
+            325,
+            258
+          ]
+        },
+        {
+          "ordinal": 11,
+          "source_box": [
+            1247,
+            665,
+            1497,
+            957
+          ],
+          "source_size": [
+            250,
+            292
+          ],
+          "packed_size": [
+            250,
+            292
+          ]
+        }
+      ],
+      "pre_normalization_packed_sha256": "75a2d4449119a2c8a41300e920e78fe2fe5e698e14e4252510ead17c93ae5e65",
+      "rejected_right_facing_sha256": "2c89edd784ed087ad70900146f4a3c4565079ca06115a7c6a229dbeab1e7916e"
+    },
+    {
+      "file": "candidates/spider-covered-v3-01.png",
+      "sha256": "974fb7a7e55cee8c245248a979610c41999998db83cbdfdc02ed382f47babc1f",
+      "prompt": "Use case: stylized-concept. Asset type: 2D arcade martial-arts sprite atlas B. Reference supplies ONLY identity and rendering: adult blonde masked female fighter, purple eye mask and completely opaque purple FULL-BODY athletic suit covering neck, torso, shoulders, arms, hips and ALL legs, with purple gloves and boots. Keep full coverage and same identity in EVERY sprite. Paint exactly TWELVE distinct FULL FIGURE sprites in FOUR COLUMNS and THREE ROWS. Every sprite strictly contained inside its own uniform cell, clear transparent margin of at least 6% all around each cel; neutral side view, generally facing LEFT. Crisp hand-painted arcade outlines and controlled layered shading. Genuine RGBA transparent background; no ground, shadows, glow, checkerboard, words, labels or grid. Sports movement, nonsexual neutral framing. Row 1: (1) low crouch leaning forward with open hands extended low; (2) half-crouch reacting to a hit, arms reaching forward, head leaning back; (3) upright backward recoil with arched torso and arms forward; (4) doubled-over hit reaction, torso folded forward with one hand held near face. Row 2: (5) bent-forward hit reaction with one arm near ribs and one hand low toward floor; (6) kneeling recovery with one palm on floor and one knee grounded; (7) long low sliding crouch, rear leg extended horizontally RIGHT, both arms guarding head LEFT; (8) compact kneeling guard with both forearms at face, one knee on floor and rear leg stretched back. Row 3: (9) low falling crouch, body leaning strongly LEFT with both arms reaching forward; (10) lying fully prone on stomach, head and hair LEFT and legs RIGHT, arms extended forward, neutral defeated game pose; (11) airborne forward somersault arc with torso folded, head LEFT and feet RIGHT, arms extending down; (12) airborne compact tucked-knee curl with both arms guarding face, head LEFT. Match reference full body suit without adding exposure. Clearly different movement silhouette in every cell. Landscape, at least 1536 pixels wide.",
+      "tool": "built-in image_gen",
+      "parent_file": null,
+      "parent_prompt": null,
+      "packed_file": "spider-covered-poses-01.png",
+      "packed_sha256": "66a5cc7e104303b1509ec1219e5d19b8a8a67dc1271d839cc503b7e32556dbc1",
+      "extraction": [
+        {
+          "ordinal": 0,
+          "source_box": [
+            34,
+            135,
+            379,
+            369
+          ],
+          "source_size": [
+            345,
+            234
+          ],
+          "packed_size": [
+            345,
+            234
+          ]
+        },
+        {
+          "ordinal": 1,
+          "source_box": [
+            451,
+            49,
+            785,
+            372
+          ],
+          "source_size": [
+            334,
+            323
+          ],
+          "packed_size": [
+            334,
+            323
+          ]
+        },
+        {
+          "ordinal": 2,
+          "source_box": [
+            802,
+            12,
+            1102,
+            385
+          ],
+          "source_size": [
+            300,
+            373
+          ],
+          "packed_size": [
+            300,
+            373
+          ]
+        },
+        {
+          "ordinal": 3,
+          "source_box": [
+            1209,
+            100,
+            1483,
+            371
+          ],
+          "source_size": [
+            274,
+            271
+          ],
+          "packed_size": [
+            274,
+            271
+          ]
+        },
+        {
+          "ordinal": 4,
+          "source_box": [
+            47,
+            406,
+            379,
+            703
+          ],
+          "source_size": [
+            332,
+            297
+          ],
+          "packed_size": [
+            332,
+            297
+          ]
+        },
+        {
+          "ordinal": 5,
+          "source_box": [
+            417,
+            431,
+            757,
+            695
+          ],
+          "source_size": [
+            340,
+            264
+          ],
+          "packed_size": [
+            340,
+            264
+          ]
+        },
+        {
+          "ordinal": 6,
+          "source_box": [
+            766,
+            442,
+            1216,
+            679
+          ],
+          "source_size": [
+            450,
+            237
+          ],
+          "packed_size": [
+            450,
+            237
+          ]
+        },
+        {
+          "ordinal": 7,
+          "source_box": [
+            1242,
+            411,
+            1497,
+            685
+          ],
+          "source_size": [
+            255,
+            274
+          ],
+          "packed_size": [
+            255,
+            274
+          ]
+        },
+        {
+          "ordinal": 8,
+          "source_box": [
+            12,
+            752,
+            419,
+            936
+          ],
+          "source_size": [
+            407,
+            184
+          ],
+          "packed_size": [
+            407,
+            184
+          ]
+        },
+        {
+          "ordinal": 9,
+          "source_box": [
+            406,
+            848,
+            941,
+            964
+          ],
+          "source_size": [
+            535,
+            116
+          ],
+          "packed_size": [
+            480,
+            104
+          ]
+        },
+        {
+          "ordinal": 10,
+          "source_box": [
+            864,
+            701,
+            1200,
+            960
+          ],
+          "source_size": [
+            336,
+            259
+          ],
+          "packed_size": [
+            336,
+            259
+          ]
+        },
+        {
+          "ordinal": 11,
+          "source_box": [
+            1267,
+            714,
+            1495,
+            964
+          ],
+          "source_size": [
+            228,
+            250
+          ],
+          "packed_size": [
+            228,
+            250
+          ]
+        }
+      ],
+      "pre_normalization_packed_sha256": "66a5cc7e104303b1509ec1219e5d19b8a8a67dc1271d839cc503b7e32556dbc1",
+      "rejected_right_facing_sha256": "f918e7a03b95754e1cd3ea0cf1914285a700ad51cb8defddaf62dc2760f2d91a"
+    },
+    {
+      "file": "candidates/spider-covered-v3-02.png",
+      "sha256": "cea6d97299cc0634750a04b900af929ab4a92abb7048f17a9cd2b33b24924231",
+      "prompt": "Use case: stylized-concept. Asset type: 2D hand-painted arcade fighting-game sprite atlas C. Adult blonde masked martial artist exactly matching reference identity and illustration style. Costume in EVERY cel is the same opaque purple FULL-BODY athletic suit, continuously covering neck, shoulders, torso, arms, hips and all legs, with purple gloves and boots. Purple eye mask. Neutral sports illustration, nonsexual side-view camera. Paint EXACTLY TWELVE separate complete sprites in FOUR columns by THREE rows, precise equal cells. Keep every figure strictly inside its own cell with generous transparent gutters, including outstretched limbs and hair. Landscape at least 1536px wide. Genuine RGBA transparent background. No background, floor, shadows, glow, text, grid, labels or checkerboard. Distinct poses in left-to-right row-major order: row 1: (1) tightly tucked airborne forward roll, body rotated diagonally with head at lower RIGHT and boots upper LEFT, both knees folded; (2) airborne strike with long front leg extended diagonally down LEFT, rear knee tucked RIGHT and fist guarding chin; (3) airborne forward-hunched fall, head LEFT, arms hanging down LEFT, long legs trailing down RIGHT; (4) airborne backward recoil, head upper RIGHT and boots lower LEFT, torso diagonal, arms clutching chest. Row 2: (5) falling backward with head RIGHT and both boots raised LEFT, torso low and arms near chest; (6) lying supine horizontally, head RIGHT, boots LEFT, one knee raised and one leg straight, neutral defeated game pose; (7) bent-forward recovery, head LEFT with one hand at temple and the other extended down, one knee bent; (8) crouching recovery similar but deeper, head LEFT, one hand at face and one touching near floor. Row 3: (9) half-standing guarded crouch facing LEFT, shoulders forward, both hands low; (10) airborne body arched backward, head RIGHT and feet lower LEFT, one arm extending up RIGHT; (11) inverted somersault with head lower RIGHT and boots upper LEFT, arms extending apart; (12) low crouch with one palm to ground and the other forearm shielding face, head LEFT and rear leg extended RIGHT. Clearly different faithful movement silhouettes, full costume coverage and consistent figure proportions. Do not crop or merge sprites.",
+      "tool": "built-in image_gen",
+      "parent_file": null,
+      "parent_prompt": null,
+      "packed_file": "spider-covered-poses-02.png",
+      "packed_sha256": "a7b0d43f31ab453c9f3698c315b06225f9cf866d3d612d6465b226c6d303fd4a",
+      "extraction": [
+        {
+          "ordinal": 0,
+          "source_box": [
+            23,
+            37,
+            348,
+            353
+          ],
+          "source_size": [
+            325,
+            316
+          ],
+          "packed_size": [
+            325,
+            316
+          ]
+        },
+        {
+          "ordinal": 1,
+          "source_box": [
+            347,
+            21,
+            768,
+            365
+          ],
+          "source_size": [
+            421,
+            344
+          ],
+          "packed_size": [
+            421,
+            344
+          ]
+        },
+        {
+          "ordinal": 2,
+          "source_box": [
+            817,
+            36,
+            1143,
+            361
+          ],
+          "source_size": [
+            326,
+            325
+          ],
+          "packed_size": [
+            326,
+            325
+          ]
+        },
+        {
+          "ordinal": 3,
+          "source_box": [
+            1155,
+            33,
+            1511,
+            374
+          ],
+          "source_size": [
+            356,
+            341
+          ],
+          "packed_size": [
+            356,
+            341
+          ]
+        },
+        {
+          "ordinal": 4,
+          "source_box": [
+            16,
+            374,
+            378,
+            650
+          ],
+          "source_size": [
+            362,
+            276
+          ],
+          "packed_size": [
+            362,
+            276
+          ]
+        },
+        {
+          "ordinal": 5,
+          "source_box": [
+            394,
+            494,
+            888,
+            646
+          ],
+          "source_size": [
+            494,
+            152
+          ],
+          "packed_size": [
+            480,
+            148
+          ]
+        },
+        {
+          "ordinal": 6,
+          "source_box": [
+            876,
+            379,
+            1149,
+            688
+          ],
+          "source_size": [
+            273,
+            309
+          ],
+          "packed_size": [
+            273,
+            309
+          ]
+        },
+        {
+          "ordinal": 7,
+          "source_box": [
+            1244,
+            408,
+            1517,
+            681
+          ],
+          "source_size": [
+            273,
+            273
+          ],
+          "packed_size": [
+            273,
+            273
+          ]
+        },
+        {
+          "ordinal": 8,
+          "source_box": [
+            33,
+            684,
+            406,
+            1006
+          ],
+          "source_size": [
+            373,
+            322
+          ],
+          "packed_size": [
+            373,
+            322
+          ]
+        },
+        {
+          "ordinal": 9,
+          "source_box": [
+            431,
+            654,
+            770,
+            985
+          ],
+          "source_size": [
+            339,
+            331
+          ],
+          "packed_size": [
+            339,
+            331
+          ]
+        },
+        {
+          "ordinal": 10,
+          "source_box": [
+            787,
+            682,
+            1110,
+            1002
+          ],
+          "source_size": [
+            323,
+            320
+          ],
+          "packed_size": [
+            323,
+            320
+          ]
+        },
+        {
+          "ordinal": 11,
+          "source_box": [
+            1119,
+            774,
+            1518,
+            1002
+          ],
+          "source_size": [
+            399,
+            228
+          ],
+          "packed_size": [
+            399,
+            228
+          ]
+        }
+      ],
+      "pre_normalization_packed_sha256": "a7b0d43f31ab453c9f3698c315b06225f9cf866d3d612d6465b226c6d303fd4a",
+      "rejected_right_facing_sha256": "47db7efd7e6552ab299e17755f0bb04b9813a5cd97972e96eb482d858105abfa"
+    },
+    {
+      "file": "candidates/spider-covered-v3-03.png",
+      "sha256": "9de8a63b1d9fcff26d914f3fb0143b76999f7f0996aef33518c1802ca8d15460",
+      "prompt": "Edit target: this nine-cell sprite atlas. Keep the same adult character, opaque purple full-body costume, nine subjects and their exact row-major order, painterly style and poses. Correct ONLY framing and separation: arrange the nine subjects in a precise 3 by 3 grid, with each COMPLETE subject centered strictly inside its own cell, and at least 12% of each cell width and height left completely empty on every side. The first punch's whole fist and the bottom-left kick's whole boot must be visible with clear padding to the LEFT canvas edge. Reduce each subject uniformly as needed to fit rather than clipping it. No subject or electric effect may cross a cell boundary. The eighth cell is the horizontal violet streak only; the ninth is the fully clothed fighter with electric outline. Preserve original full costume coverage and face. Square canvas, high resolution. All background and all gutters must be truly fully transparent alpha zero. Do not paint a checkerboard, coloured backdrop, floor, shadow, labels, text or grid.",
+      "tool": "built-in image_gen",
+      "parent_file": "exec-01bdf693-1229-4efd-aa97-65e0a9cefa94.png",
+      "parent_prompt": "Use case: stylized-concept. Asset type: high-resolution 2D arcade sprite atlas D, square canvas preferably 1536 by 1536, EXACTLY THREE columns by THREE rows. Adult blonde masked female martial artist matching the reference identity and painterly arcade style. ALL character sprites wear a fully opaque purple FULL-BODY athletic suit covering neck, shoulders, torso, arms, hips and entire legs, purple gloves and boots, purple eye mask. Complete figures, consistent athletic proportions, neutral nonsexual game-art camera. Genuine RGBA transparent background, generous empty gutters and complete figure containment inside each cell; no background, floor, cast shadows, text, labels, grid or checkerboard. NINE distinct cells in left-to-right row-major order: row 1 (1) low kneeling straight punch toward LEFT, one arm horizontal LEFT and opposite palm near floor, rear leg trailing RIGHT; (2) airborne hunched fall, head LEFT and long legs extended down RIGHT with arms hanging; (3) upright confident victory pose in left-facing profile, feet together, one hand touching hair behind head, opposite arm relaxed down. Row 2 (4) upright confident victory pose in left-facing three-quarter profile, one hand at hip and opposite hand lifted behind head, one knee slightly bent; (5) airborne forward fold with head LEFT, torso bent down, both arms and legs hanging downward in a narrow inverted arch; (6) low ready crouch with one forward knee bent, rear leg extended RIGHT, both hands planted near floor facing LEFT. Row 3 (7) airborne side kick toward LEFT, front leg extended straight horizontal LEFT, opposite knee folded, arms guarding face; (8) ONLY a thin straight violet energy streak, horizontal across the cell, tapering at the left tip, no person; (9) the same completely covered fighter in airborne electrical-hit recoil, body diagonal head upper RIGHT and boots lower LEFT, opaque purple costume fully intact, a narrow golden electric outline and a few small sparks around the exterior only. The energy streak and electrical outline are fighting-game effects. Keep every sprite separate. Crisp contours and detailed hand-painted shading matching the reference, not pixel art or 3D.",
+      "packed_file": "spider-covered-poses-03.png",
+      "packed_sha256": "7a371731fe76a3817acfc4e5aad156182458c342b21101d20254aba73c6119c6",
+      "extraction": [
+        {
+          "ordinal": 0,
+          "source_box": [
+            30,
+            116,
+            493,
+            397
+          ],
+          "source_size": [
+            463,
+            281
+          ],
+          "packed_size": [
+            463,
+            281
+          ]
+        },
+        {
+          "ordinal": 1,
+          "source_box": [
+            488,
+            48,
+            827,
+            391
+          ],
+          "source_size": [
+            339,
+            343
+          ],
+          "packed_size": [
+            339,
+            343
+          ]
+        },
+        {
+          "ordinal": 2,
+          "source_box": [
+            997,
+            35,
+            1182,
+            434
+          ],
+          "source_size": [
+            185,
+            399
+          ],
+          "packed_size": [
+            185,
+            399
+          ]
+        },
+        {
+          "ordinal": 3,
+          "source_box": [
+            118,
+            452,
+            345,
+            853
+          ],
+          "source_size": [
+            227,
+            401
+          ],
+          "packed_size": [
+            227,
+            401
+          ]
+        },
+        {
+          "ordinal": 4,
+          "source_box": [
+            484,
+            482,
+            766,
+            773
+          ],
+          "source_size": [
+            282,
+            291
+          ],
+          "packed_size": [
+            282,
+            291
+          ]
+        },
+        {
+          "ordinal": 5,
+          "source_box": [
+            844,
+            562,
+            1225,
+            825
+          ],
+          "source_size": [
+            381,
+            263
+          ],
+          "packed_size": [
+            381,
+            263
+          ]
+        },
+        {
+          "ordinal": 6,
+          "source_box": [
+            25,
+            913,
+            467,
+            1160
+          ],
+          "source_size": [
+            442,
+            247
+          ],
+          "packed_size": [
+            442,
+            247
+          ]
+        },
+        {
+          "ordinal": 7,
+          "source_box": [
+            508,
+            1022,
+            823,
+            1071
+          ],
+          "source_size": [
+            315,
+            49
+          ],
+          "packed_size": [
+            315,
+            49
+          ]
+        },
+        {
+          "ordinal": 8,
+          "source_box": [
+            847,
+            855,
+            1241,
+            1225
+          ],
+          "source_size": [
+            394,
+            370
+          ],
+          "packed_size": [
+            394,
+            370
+          ]
+        }
+      ],
+      "pre_normalization_packed_sha256": "7a371731fe76a3817acfc4e5aad156182458c342b21101d20254aba73c6119c6",
+      "rejected_right_facing_sha256": "6b7c7b7b21c1e75f24c55c6968ef8b892c626fa10cd64eba5e22ec77146bbd25"
+    }
+  ],
+  "victory_mapping": [
+    {
+      "victory_ordinal": 0,
+      "normal_art_ordinal": 0,
+      "byte_identical_normal": true
+    },
+    {
+      "victory_ordinal": 1,
+      "normal_art_ordinal": 1,
+      "byte_identical_normal": true
+    },
+    {
+      "victory_ordinal": 2,
+      "normal_art_ordinal": 41,
+      "byte_identical_normal": true
+    },
+    {
+      "victory_ordinal": 3,
+      "normal_art_ordinal": 38,
+      "byte_identical_normal": true
+    },
+    {
+      "victory_ordinal": 4,
+      "normal_art_ordinal": 39,
+      "byte_identical_normal": true
+    }
+  ],
+  "processing": "alpha>=128 connected components, discard isolated components below 1000px, one-pixel antialias fringe; alpha>=240 made opaque; crop and fit within 480px, then 512px grid with transparent margin; base art faces left like original DAT; source flag 0x40 reflects it for the left player; grid and rectangles unchanged",
+  "source_grade": "45 unique normal and five byte-identical WIN sources verified by original offset and packed hash; painted poses and colour transfer are artistic approximations",
+  "limits": "45 source groups and 144 aliases registered; Linux normal actions, first WIN bank and complete match sampled, Wine ordinary actions sampled; not full animation or single-player ending",
+  "status": "active; normal actions, first WIN bank, complete double match/result/return sampled",
+  "candidate_manifest_sha256": "62ac55ec3718a44d1f8abc608024f5d10037068cc0193bba202526aad74af379",
+  "decision": "2026-10-21 user chose B: all poses use full purple bodysuit",
+  "manifest_sha256": "9e3091c05e2f1fe0f798639134870e8ae58ae12a506ddb3a1a5099003737a473",
+  "old_guard_retained": false,
+  "facing_normalized": true,
+  "source_facing": "left, matching unflipped original DAT",
+  "facing_evidence": {
+    "grade": "confirmed source geometry; artistic facing visually reviewed",
+    "source": "SFMAN09.DAT",
+    "source_sha256": "76f1a2484fd551c574279138e16f2f70971c4a7259858406e90c0211a2f3f53e",
+    "slot": 1,
+    "normal_sample": "workplace/hd-batch-integration-v1/spider-victory-v2/normal-battle.png.frame.json",
+    "player0_flags": 68,
+    "player1_flags": 5,
+    "correction": "earlier right-facing claim rejected by decoded original cel and ordinary battle capture"
+  }
+}

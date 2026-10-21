@@ -3,13 +3,10 @@ package hd
 
 import (
 	"bytes"
-	"crypto/sha256"
 	"encoding/json"
 	"fmt"
 	"image"
 	"image/png"
-	"os"
-	"path/filepath"
 
 	"github.com/wicanr2/superfighter-remastered/internal/renderdata"
 )
@@ -37,10 +34,11 @@ type Manifest struct {
 	Evidence        []string `json:"evidence"`
 }
 type Assets struct {
-	Manifest  Manifest
-	Image     image.Image
-	Reference []byte
-	Palette   [128][3]uint8
+	backgrounds map[int]*Assets
+	Manifest    Manifest
+	Image       image.Image
+	Reference   []byte
+	Palette     [128][3]uint8
 }
 type Frame struct {
 	Scene, CameraX   int
@@ -51,7 +49,8 @@ type Frame struct {
 
 // DisplayMatch 只允許已驗整列映射；可見尾端必須仍是同格原背景。
 func (a *Assets) DisplayMatch(s *renderdata.Scanout, raw, tail []byte, f Frame) bool {
-	if !s.Matches(raw, tail) || s.PitchByte != 320 || s.StartByte%320 != 0 || s.StartByte/320+s.Height > 204 || f.CameraX < 0 || f.CameraX > 159 || f.Scene != 4 || f.BackgroundSHA256 != ReferenceSHA256 || len(a.Reference) != 480*204 {
+	a = a.ForScene(f.Scene)
+	if a == nil || !s.Matches(raw, tail) || s.PitchByte != 320 || s.StartByte%320 != 0 || s.StartByte/320+s.Height > 204 || f.CameraX < 0 || f.CameraX > 159 || f.BackgroundSHA256 != a.Manifest.ReferenceSHA256 || len(a.Reference) != 480*204 {
 		return false
 	}
 	for i, p := range a.Palette {
@@ -70,47 +69,28 @@ func (a *Assets) DisplayMatch(s *renderdata.Scanout, raw, tail []byte, f Frame) 
 }
 
 func Load(dir string) (*Assets, error) {
-	b, e := os.ReadFile(filepath.Join(dir, "manifest.json"))
+	b, e := ReadArt(dir, "manifest.json", "", 16384)
 	if e != nil {
 		return nil, e
 	}
 	if len(b) > 16384 {
 		return nil, fmt.Errorf("HD 素材清單過大")
 	}
+	var shape struct {
+		Version int `json:"version"`
+	}
+	if json.Unmarshal(b, &shape) == nil && shape.Version == 2 {
+		return loadBackgroundCollection(dir, b)
+	}
 	var m Manifest
-	decoder := json.NewDecoder(bytes.NewReader(b))
-	decoder.DisallowUnknownFields()
-	if e = decoder.Decode(&m); e != nil {
+	if e = strictJSON(b, &m); e != nil {
 		return nil, e
 	}
-	if m.Version != 1 || m.Kind != "rooftop-background-study" || m.Scene != 4 || m.Source != "I2.XGB" || m.SourceSHA256 != SourceSHA256 || m.Width != 480 || m.Height != 204 || m.ReferenceSHA256 != ReferenceSHA256 {
+	d, known := backgroundDefinition(m.Scene)
+	if m.Version != 1 || (m.Kind != "rooftop-background-study" && m.Kind != "scene-background") || !known || m.Source != d.Source || m.SourceSHA256 != d.SourceSHA256 || m.Width != 480 || m.Height != 204 || m.ReferenceSHA256 != d.ReferenceSHA256 || m.PaletteSHA256 != d.PaletteSHA256 {
 		return nil, fmt.Errorf("HD 素材版本或來源不符")
 	}
-	read := func(name, want string, max int) ([]byte, error) {
-		if name == "" || name == "." || filepath.IsAbs(name) || filepath.Base(name) != name {
-			return nil, fmt.Errorf("素材檔名錯誤")
-		}
-		f, e := os.Open(filepath.Join(dir, name))
-		if e != nil {
-			return nil, e
-		}
-		defer f.Close()
-		info, e := f.Stat()
-		if e != nil {
-			return nil, e
-		}
-		if !info.Mode().IsRegular() || info.Size() > int64(max) {
-			return nil, fmt.Errorf("素材大小或型態錯誤")
-		}
-		b, e := os.ReadFile(filepath.Join(dir, name))
-		if e != nil {
-			return nil, e
-		}
-		if fmt.Sprintf("%x", sha256.Sum256(b)) != want {
-			return nil, fmt.Errorf("素材雜湊不符：%s", name)
-		}
-		return b, nil
-	}
+	read := func(name, want string, limit int) ([]byte, error) { return ReadArt(dir, name, want, int64(limit)) }
 	ref, e := read(m.ReferenceFile, m.ReferenceSHA256, 480*204)
 	if e != nil {
 		return nil, e
@@ -150,10 +130,14 @@ func Load(dir string) (*Assets, error) {
 // Foreground 保留原版完整前景。成功才可在其下方畫整張 HD 背景。
 // 返回的透明區只來自已驗原始背景，角色姿態不參與猜測或補圖。
 func (a *Assets) Foreground(f Frame) ([]byte, bool, string) {
+	a = a.ForScene(f.Scene)
+	if a == nil {
+		return nil, false, "此場景保留原貌"
+	}
 	if len(f.Pixels) != 64000 {
 		return nil, false, "等待完整對戰畫面"
 	}
-	if f.Scene != 4 || f.BackgroundSHA256 != ReferenceSHA256 {
+	if f.BackgroundSHA256 != a.Manifest.ReferenceSHA256 {
 		return nil, false, "此場景保留原貌"
 	}
 	if f.CameraX < 0 || f.CameraX > 159 {

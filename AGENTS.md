@@ -149,6 +149,22 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 | 已建立檔案 | 唯一職責 |
 |---|---|
+| [集中 HD 接入 049](docs/spec/049-hd-batch-integration.md) | 使用者恢復開發並要求一次正式接入、最後集中抽樣；統合多景與標題／選角／結果既有證據，保留原版操作及回退 |
+| [原版音訊 050](docs/spec/050-original-audio-playback.md)、[原播放請求探針](tools/audio_playback_probe.go)、[IDA 原音訊證據](tools/ida_audio_evidence.py) | 原曲、Compact PCM、只讀 cue 與停止入口，資料／原音只留本機；不深挖 DAC／PIT 週期 |
+| [原音來源清單](internal/originalaudio/sources.json)、[本機 OGG 轉換](tools/prepare_original_audio.py) | 十五 MIDI／四十筆四位元 PCM 的雜湊、標準事件時長與唯讀轉換；OGG、原 MIDI／WAV 只留本機 |
+| [原音載入與匯入](internal/originalaudio/bank.go)、[只讀音訊觀測](internal/gamecore/audio.go)、[桌面播放](internal/desktop/audio.go) | 依原請求播放 OGG、停音／循環／原音開關、暫停／失焦，完整來源核對與公開／本機隔離 |
+| [原音波形獨立核對](tools/verify_hd_audio_capture.py) | 以錄音樣本時計算非靜音、暫停、靜音、循環與削波；不用錄影時間戳猜對齊 |
+| [原音與蜘蛛女最後抽樣](tools/hd_audio_native_smoke.py)、[原音核心不變測試](internal/gamecore/audio_test.go)、[原音完整匯入測試](internal/originalaudio/bank_test.go) | 正常路徑、ALSA→PulseAudio 監聽實錄、靜音／暫停、原音來源／未知／缺件拒絕；真機與人耳另驗 |
+| [蜘蛛女 B 版晉升](tools/promote_spider_covered.py) | 使用者已選全部連身衣，原稿／45 組一般／5 組同 bytes WIN 核對，144 入口保持同服裝 |
+| [蜘蛛女原朝向正規化](tools/normalize_spider_facing.py) | 以解碼原 DAT 朝左及正常玩家 flags 核對基底，校正前次錯誤鏡像；保留生成原 PNG、矩形及時序 |
+| [集中標題](tools/hd_batch_title_smoke.py)、[場景／Wine](tools/hd_batch_battle_smoke.py)、[雙側結果](tools/hd_batch_result_smoke.py)、[單打接關](tools/hd_batch_continue_smoke.py) | 正式二進位正常入口與一般鍵鼠操作；觀測開關、原貌切換、勝負及返回，無狀態注入 |
+| [集中擷取核對](tools/verify_hd_batch_capture.py) | 獨立原背景／角色／HUD／陰影／顯示重組、完整結果及繼續來源、GPU 肖像方向與同狀態恢復；不宣稱全動畫 |
+| [集中收尾稽核](tools/audit_hd_batch.py) | 十六組正常抽樣、原音波形與封包啟動、實際編譯來源、素材、原始 128 檔／執行器／i64／舊封包與影片、擁有權核對；只輸出本機總表 |
+| [畫面圖組讀取](internal/hd/resources.go)、[正式索引](assets/hd/screens.json)、[多景載入](internal/hd/backgrounds.go)、[來源身分](internal/hd/background-sources.json)、[本機準備](internal/gamefiles/backgrounds.go) | 原版 CPM 有界解碼、33 項畫面美術嚴格讀取、十一景集合及玩家原檔本機準備；相容舊屋頂包 |
+| [標題觀測](internal/gamecore/title.go)、[標題呈現](internal/desktop/title.go)、[材質換色](internal/desktop/title_colours.go)、[完整選角](internal/desktop/selection_hd.go) | 完整原來源核對後呈現 HD，八格與既有魔王按鈕保持；換色為 HD 美術近似 |
+| [結果來源重建](internal/desktop/screen_sources.go)、[報紙](internal/desktop/results.go)、[繼續面板](internal/desktop/continue.go) | 從玩家原檔建立參照，正式呈現雙側肖像、七旗、三種結果與再戰／放棄，輸入仍交原版 |
+| [整合素材索引工具](tools/prepare_integrated_hd.py)、[蜘蛛女批次登錄](tools/import_spider_batch.py)、[目錄核對](tools/refresh_hd_catalog.py)、[新素材來源](assets/hd/characters/spider-complete-source.json) | 保存原 PNG、精確提示詞、透明分格及來源對照；B 版已由使用者確認，完整同服裝登錄；原圖與處理雜湊分開保存 |
+| [編碼／路徑拒絕](internal/hd/resources_test.go)、[十一景真實集合](internal/hd/batch_integration_test.go)、[獨立原結果重組](internal/desktop/screen_sources_test.go) | 049 資源及來源驗證；正常玩家路徑另由集中抽樣保存 |
 | [單打普通攻擊與結果取樣](tools/single_match_core_receipt.go) | 正常單打對原 AI 使用拳擊或已驗斬快捷，保存實際輸贏與自然結果／下一場；可另用原設定 UI 選弱並明列條件，不改正式預設或強制勝利，不算完整通關 |
 | [單打繼續原生獨立核對](tools/verify_single_continue_native.py) | 交叉核對每張原 SH／報紙 RGB 與色號、GPU 肖像及方向、切換恢復相同、原版目的畫面與覆繪清除；美術及其他平台不外推 |
 | [單打繼續原生操作](tools/single_continue_native_smoke.py) | 正常單打選斬後不送戰鬥輸入，由原 AI 兩次 KO；驗繼續框、原貌／HD 恢復及再戰／放棄，不注入狀態 |

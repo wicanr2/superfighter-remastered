@@ -10,6 +10,9 @@
 /go.work
 /go.work.sum
 
+# 原音 OGG 僅供本機匯入；不隨 Git 散布。
+/assets/audio/original/
+
 # 本機設定、憑證與工具快取。
 .env
 .env.*

@@ -116,6 +116,12 @@
       "source_bank": "victory",
       "file": "HHWIN.FIG",
       "sha256": "ac2cac7c82882a7cbf4abc17fb28b4d722dc798cf6e94234117c929f7c371589"
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "file": "JJWIN.FIG",
+      "sha256": "7995ef671f44c58647f66a3b1a7ba1abdbdb939774bb9f54ac93d724a8fbc4ec"
     }
   ],
   "atlases": [
@@ -562,6 +568,30 @@
       "sha256": "89bdc86a13905a1dee81b9063010d71a4745cbe13bab6522e4a10616bd3beba0",
       "width": 2172,
       "height": 724
+    },
+    {
+      "file": "spider-covered-poses-00.png",
+      "sha256": "75a2d4449119a2c8a41300e920e78fe2fe5e698e14e4252510ead17c93ae5e65",
+      "width": 2048,
+      "height": 1536
+    },
+    {
+      "file": "spider-covered-poses-01.png",
+      "sha256": "66a5cc7e104303b1509ec1219e5d19b8a8a67dc1271d839cc503b7e32556dbc1",
+      "width": 2048,
+      "height": 1536
+    },
+    {
+      "file": "spider-covered-poses-02.png",
+      "sha256": "a7b0d43f31ab453c9f3698c315b06225f9cf866d3d612d6465b226c6d303fd4a",
+      "width": 2048,
+      "height": 1536
+    },
+    {
+      "file": "spider-covered-poses-03.png",
+      "sha256": "7a371731fe76a3817acfc4e5aad156182458c342b21101d20254aba73c6119c6",
+      "width": 1536,
+      "height": 1536
     }
   ],
   "poses": [
@@ -21948,12 +21978,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -21963,12 +21993,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -21978,12 +22008,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -21993,12 +22023,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22008,12 +22038,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22023,12 +22053,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22038,12 +22068,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22053,12 +22083,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22068,12 +22098,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22083,12 +22113,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22098,12 +22128,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22113,12 +22143,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22128,12 +22158,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22143,12 +22173,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22158,12 +22188,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22173,12 +22203,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22188,12 +22218,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22203,12 +22233,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22218,12 +22248,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22233,12 +22263,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22248,12 +22278,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22263,12 +22293,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22278,12 +22308,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22293,12 +22323,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22308,12 +22338,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22323,12 +22353,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22338,12 +22368,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22353,12 +22383,12 @@
       "height": 57,
       "source_offset": 3144,
       "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        8,
+        8,
+        417,
+        270
       ]
     },
     {
@@ -22368,12 +22398,12 @@
       "height": 64,
       "source_offset": 5141,
       "source_sha256": "72300569c9285d2237d4ffd4965c4cbeb56bd6a2aa5d86bb7792c2ba0c029797",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-00.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        520,
+        8,
+        777,
+        292
       ]
     },
     {
@@ -22383,12 +22413,12 @@
       "height": 55,
       "source_offset": 100058,
       "source_sha256": "1f46be4f14daa7ba91a876403951302fbbae14490976f98423ce1359bdd7c98e",
-      "atlas": "spider-low-guard.png",
+      "atlas": "spider-covered-poses-03.png",
       "rect": [
-        0,
-        0,
-        716,
-        563
+        1032,
+        520,
+        1429,
+        799
       ]
     },
     {
@@ -24070,6 +24100,1788 @@
         2055,
         629
       ]
+    },
+    {
+      "character": 8,
+      "slot": 2,
+      "width": 83,
+      "height": 58,
+      "source_offset": 7319,
+      "source_sha256": "4a2b533b48cb98dd5c19e9fb8c17ffb8c48ef15c30a9facddbf0e41bfc90bcd4",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        1032,
+        8,
+        1528,
+        211
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 3,
+      "width": 54,
+      "height": 62,
+      "source_offset": 9757,
+      "source_sha256": "675194974a66bf9f1ee9a64d0b805d8e8e300fdb721a3154772caeee75085100",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        1544,
+        8,
+        1796,
+        262
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 4,
+      "width": 77,
+      "height": 57,
+      "source_offset": 11433,
+      "source_sha256": "83fd0609fd19c4e33a8b3a0626930ddb0efa57ed2bf1d5623a0a9649e7eaa2b7",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        520,
+        480,
+        757
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 5,
+      "width": 66,
+      "height": 71,
+      "source_offset": 13658,
+      "source_sha256": "afbf15ac49d09e7fe215e37595b7b87ead50c21c675a00c510617b6e68386ab5",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        520,
+        520,
+        797,
+        815
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 6,
+      "width": 130,
+      "height": 65,
+      "source_offset": 16003,
+      "source_sha256": "0911fe3799c70291b307935fed5a201c3d4f77d7b5adc7afa1e5c1fd75bf38a0",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        1032,
+        520,
+        1528,
+        773
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 7,
+      "width": 54,
+      "height": 60,
+      "source_offset": 20230,
+      "source_sha256": "0f23af3787fb5dc4e99ace7a4029b5ce50bb9da43bf09eec3202a11ce63c31a0",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        1544,
+        520,
+        1814,
+        758
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 8,
+      "width": 80,
+      "height": 95,
+      "source_offset": 21852,
+      "source_sha256": "936a07c89f2910674f8d01871c675631b26901abdd3682294462dddc800e5091",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        1032,
+        475,
+        1377
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 9,
+      "width": 70,
+      "height": 67,
+      "source_offset": 25654,
+      "source_sha256": "16a10c091ead905cad8687e53dc70ec6eb5b9301cb121f9999b75b9210cfffae",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        520,
+        1032,
+        789,
+        1398
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 10,
+      "width": 44,
+      "height": 68,
+      "source_offset": 28001,
+      "source_sha256": "ae2195fb6c684b228eca0cc57789871b22e1f54816c3d65ca3a13129cecfbc98",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        1032,
+        1032,
+        1373,
+        1306
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 11,
+      "width": 64,
+      "height": 68,
+      "source_offset": 29499,
+      "source_sha256": "b1375b0d41f0dc26e980e41bba788977a6c3e291a2b4a4015095fd3cf5b9a7fd",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        1544,
+        1032,
+        1810,
+        1340
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 12,
+      "width": 78,
+      "height": 73,
+      "source_offset": 31677,
+      "source_sha256": "714c9caddcb1d7f03befcdd0f135f830578cd2accf0da0f48c5cc0ad9f2af5bf",
+      "atlas": "spider-covered-poses-01.png",
+      "rect": [
+        8,
+        8,
+        369,
+        258
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 13,
+      "width": 66,
+      "height": 78,
+      "source_offset": 34526,
+      "source_sha256": "56fee430391ee76f7688386952a8e73da73c9b8e54780aa08540e7798da1f692",
+      "atlas": "spider-covered-poses-01.png",
+      "rect": [
+        520,
+        8,
+        870,
+        347
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 14,
+      "width": 65,
+      "height": 82,
+      "source_offset": 37102,
+      "source_sha256": "2cad75f82f64ac00843cd92fdca7fd60289da54dc5a6ddac57c04348be5f1c84",
+      "atlas": "spider-covered-poses-01.png",
+      "rect": [
+        1032,
+        8,
+        1348,
+        397
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 15,
+      "width": 51,
+      "height": 59,
+      "source_offset": 39810,
+      "source_sha256": "0f6bc3bf037adb5d8b3fc8f48727d8a53866f9b7df74b25ac87e6e4901be91ad",
+      "atlas": "spider-covered-poses-01.png",
+      "rect": [
+        1544,
+        8,
+        1834,
+        295
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 16,
+      "width": 65,
+      "height": 55,
+      "source_offset": 41346,
+      "source_sha256": "9f4088dabec62cc3a14db89e3c7687cc9e6621c47d836d552680adddff9c78da",
+      "atlas": "spider-covered-poses-01.png",
+      "rect": [
+        8,
+        520,
+        356,
+        833
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 17,
+      "width": 70,
+      "height": 52,
+      "source_offset": 43163,
+      "source_sha256": "fa832a0cd2a544ca85669dcf8e255e44ce096271d1e1db457d1c22cceb45c71a",
+      "atlas": "spider-covered-poses-01.png",
+      "rect": [
+        520,
+        520,
+        876,
+        800
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 18,
+      "width": 102,
+      "height": 60,
+      "source_offset": 44985,
+      "source_sha256": "401570e6ff4b5c6cbcafd0638f99cd265fc045681e72db220490172f14150299",
+      "atlas": "spider-covered-poses-01.png",
+      "rect": [
+        1032,
+        520,
+        1498,
+        773
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 19,
+      "width": 74,
+      "height": 53,
+      "source_offset": 48047,
+      "source_sha256": "ff31669937034d5a785da174bc35e1a93aed074e334dd0cfc9224119d808b930",
+      "atlas": "spider-covered-poses-01.png",
+      "rect": [
+        1544,
+        520,
+        1815,
+        810
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 20,
+      "width": 70,
+      "height": 46,
+      "source_offset": 50010,
+      "source_sha256": "7d658b286c27e0e23edff6104a8820870cf5aba2656e188a0d1fcc92a6065a32",
+      "atlas": "spider-covered-poses-01.png",
+      "rect": [
+        8,
+        1032,
+        431,
+        1232
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 21,
+      "width": 83,
+      "height": 22,
+      "source_offset": 51622,
+      "source_sha256": "b5e173094f9a655fbc1981e21d8698e8affd04ae1dd809f86918a228636e4b0f",
+      "atlas": "spider-covered-poses-01.png",
+      "rect": [
+        520,
+        1032,
+        1016,
+        1152
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 22,
+      "width": 73,
+      "height": 72,
+      "source_offset": 52548,
+      "source_sha256": "f4ebb209133bffbe87586a67ccd800282b58478503dec5d7de0b90d0328125e2",
+      "atlas": "spider-covered-poses-01.png",
+      "rect": [
+        1032,
+        1032,
+        1384,
+        1307
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 23,
+      "width": 50,
+      "height": 61,
+      "source_offset": 55214,
+      "source_sha256": "38f7ee341313c77c679c58176f4ce437a8eb2f23983cd222244df098c15a2f5b",
+      "atlas": "spider-covered-poses-01.png",
+      "rect": [
+        1544,
+        1032,
+        1788,
+        1298
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 24,
+      "width": 61,
+      "height": 50,
+      "source_offset": 56741,
+      "source_sha256": "e6e66bfec67727debd107243735bd90e522e9e3dd09454167d30542798cd5b7c",
+      "atlas": "spider-covered-poses-02.png",
+      "rect": [
+        8,
+        8,
+        349,
+        340
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 25,
+      "width": 86,
+      "height": 83,
+      "source_offset": 58293,
+      "source_sha256": "418de98cd30c4c1a95bff7858373af9b34d257aea12186f1e4659448bed9cb45",
+      "atlas": "spider-covered-poses-02.png",
+      "rect": [
+        520,
+        8,
+        957,
+        368
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 26,
+      "width": 63,
+      "height": 83,
+      "source_offset": 61864,
+      "source_sha256": "c9df46d9e89bd386aaf6b6f05f16309284bc16b3ca6dfbefe010a5f8bcf76d73",
+      "atlas": "spider-covered-poses-02.png",
+      "rect": [
+        1032,
+        8,
+        1374,
+        349
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 27,
+      "width": 92,
+      "height": 79,
+      "source_offset": 64522,
+      "source_sha256": "2a8e80028c54fd7bded4cdba82ca41894b2b9561590b02c05077ed0f5a248086",
+      "atlas": "spider-covered-poses-02.png",
+      "rect": [
+        1544,
+        8,
+        1916,
+        365
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 28,
+      "width": 95,
+      "height": 48,
+      "source_offset": 68158,
+      "source_sha256": "e454afed67a86e82833e5b048bb3109d6d803494c20a61632a60cbc8ed63d3e4",
+      "atlas": "spider-covered-poses-02.png",
+      "rect": [
+        8,
+        520,
+        386,
+        812
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 29,
+      "width": 112,
+      "height": 28,
+      "source_offset": 70464,
+      "source_sha256": "f535748f853bf8e9b12921add692fe42239ab87950b5bd72de427f8bc8d6440d",
+      "atlas": "spider-covered-poses-02.png",
+      "rect": [
+        520,
+        520,
+        1016,
+        684
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 30,
+      "width": 61,
+      "height": 55,
+      "source_offset": 72034,
+      "source_sha256": "44afd1f022ee3744ae41b5b308a81c9ec5dde1e76df2b6954e859d743e72a5c4",
+      "atlas": "spider-covered-poses-02.png",
+      "rect": [
+        1032,
+        520,
+        1321,
+        845
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 31,
+      "width": 58,
+      "height": 56,
+      "source_offset": 73741,
+      "source_sha256": "bb3d992281c50c2907753e204c18b1cffae8e0d9b9fedf931c33f02b29119362",
+      "atlas": "spider-covered-poses-02.png",
+      "rect": [
+        1544,
+        520,
+        1833,
+        809
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 32,
+      "width": 52,
+      "height": 80,
+      "source_offset": 75367,
+      "source_sha256": "b6b9cbadceea8271cae94e004ec8a2072c4ad31ccefed7fd2b9d57a242cfe655",
+      "atlas": "spider-covered-poses-02.png",
+      "rect": [
+        8,
+        1032,
+        397,
+        1370
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 33,
+      "width": 83,
+      "height": 100,
+      "source_offset": 77449,
+      "source_sha256": "ec72447547a1625cb95f77c3d7af7cb8b71825f9888aecb3e85f5a070b286fa9",
+      "atlas": "spider-covered-poses-02.png",
+      "rect": [
+        520,
+        1032,
+        875,
+        1379
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 34,
+      "width": 102,
+      "height": 91,
+      "source_offset": 81651,
+      "source_sha256": "62ce2ff3ac76ca94f6f3deb35246f66f85bf4220be4599755fcb62c1b0a3fd4b",
+      "atlas": "spider-covered-poses-02.png",
+      "rect": [
+        1032,
+        1032,
+        1371,
+        1368
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 35,
+      "width": 65,
+      "height": 63,
+      "source_offset": 86294,
+      "source_sha256": "13b066f64641eff2af3e6c25ec03a06aa9e696135ac5d9884041128d279cee98",
+      "atlas": "spider-covered-poses-02.png",
+      "rect": [
+        1544,
+        1032,
+        1959,
+        1276
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 36,
+      "width": 102,
+      "height": 52,
+      "source_offset": 88375,
+      "source_sha256": "56ae58b3af711c9c78295369e98759e1a239d59886f57d2326d13dd4f53aaf74",
+      "atlas": "spider-covered-poses-03.png",
+      "rect": [
+        8,
+        8,
+        487,
+        305
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 37,
+      "width": 52,
+      "height": 93,
+      "source_offset": 91029,
+      "source_sha256": "796df88d676c20c314933fec943e0812025984bcbfe3c6da8a0b1b3dc8acd884",
+      "atlas": "spider-covered-poses-03.png",
+      "rect": [
+        520,
+        8,
+        875,
+        367
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 38,
+      "width": 32,
+      "height": 113,
+      "source_offset": 93449,
+      "source_sha256": "3ad9b46e329bd485800f98010e975d3d3c2f4d526b2e04060902039fd4048647",
+      "atlas": "spider-covered-poses-03.png",
+      "rect": [
+        1032,
+        8,
+        1233,
+        423
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 39,
+      "width": 43,
+      "height": 121,
+      "source_offset": 95259,
+      "source_sha256": "492da7a47274a8b3e34a96cd445f88ef7b224464ed07bbee8a5933d69d25f392",
+      "atlas": "spider-covered-poses-03.png",
+      "rect": [
+        8,
+        520,
+        251,
+        937
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 40,
+      "width": 54,
+      "height": 79,
+      "source_offset": 97923,
+      "source_sha256": "faaa6a38bf7a4fadafc53e9fcd8de1177ecfc7eefa71f367f44c8c47d2bb2184",
+      "atlas": "spider-covered-poses-03.png",
+      "rect": [
+        520,
+        520,
+        818,
+        827
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 42,
+      "width": 89,
+      "height": 57,
+      "source_offset": 101985,
+      "source_sha256": "04165e59be40441a6d1516ccf16d2cbc0cac2db741d0636a85e8be57c13e4e41",
+      "atlas": "spider-covered-poses-03.png",
+      "rect": [
+        8,
+        1032,
+        466,
+        1295
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 43,
+      "width": 94,
+      "height": 1,
+      "source_offset": 104552,
+      "source_sha256": "b5afecc0694dbb835a65fae178f14e343f3f3aed8b98f4f94a785d303465846a",
+      "atlas": "spider-covered-poses-03.png",
+      "rect": [
+        520,
+        1032,
+        851,
+        1097
+      ]
+    },
+    {
+      "character": 8,
+      "slot": 44,
+      "width": 101,
+      "height": 86,
+      "source_offset": 104601,
+      "source_sha256": "80c9ce8a5b67160d3815876248d5c1c4100bd2f2ec7020ad1ba63a5fbe8b7cdf",
+      "atlas": "spider-covered-poses-03.png",
+      "rect": [
+        1032,
+        1032,
+        1442,
+        1418
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 0,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 5,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 6,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 7,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 8,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 9,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 10,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 11,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 12,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 13,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 14,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 15,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 16,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 17,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 18,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 19,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 20,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 21,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 22,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 23,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 24,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 25,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 26,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 27,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 28,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 29,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 30,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 31,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 32,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 33,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 34,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 35,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 36,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 37,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 38,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 39,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 40,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 41,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 42,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 43,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 44,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 45,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 46,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 47,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 48,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 49,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 50,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 51,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 52,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 53,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 54,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 55,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 56,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 57,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 58,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 59,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 60,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 61,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 62,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 63,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 64,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 65,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 66,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 67,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 68,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 69,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 70,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 71,
+      "width": 70,
+      "height": 57,
+      "source_offset": 384,
+      "source_sha256": "295a1d781c8cb680244a3385af5935cd14979f68dc23e83e36da96c842c34d3a",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        8,
+        8,
+        417,
+        270
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 1,
+      "width": 68,
+      "height": 64,
+      "source_offset": 2381,
+      "source_sha256": "72300569c9285d2237d4ffd4965c4cbeb56bd6a2aa5d86bb7792c2ba0c029797",
+      "atlas": "spider-covered-poses-00.png",
+      "rect": [
+        520,
+        8,
+        777,
+        292
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 2,
+      "width": 70,
+      "height": 55,
+      "source_offset": 4559,
+      "source_sha256": "1f46be4f14daa7ba91a876403951302fbbae14490976f98423ce1359bdd7c98e",
+      "atlas": "spider-covered-poses-03.png",
+      "rect": [
+        1032,
+        520,
+        1429,
+        799
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 3,
+      "width": 32,
+      "height": 113,
+      "source_offset": 6486,
+      "source_sha256": "3ad9b46e329bd485800f98010e975d3d3c2f4d526b2e04060902039fd4048647",
+      "atlas": "spider-covered-poses-03.png",
+      "rect": [
+        1032,
+        8,
+        1233,
+        423
+      ]
+    },
+    {
+      "source_bank": "victory",
+      "character": 8,
+      "slot": 4,
+      "width": 43,
+      "height": 121,
+      "source_offset": 8296,
+      "source_sha256": "492da7a47274a8b3e34a96cd445f88ef7b224464ed07bbee8a5933d69d25f392",
+      "atlas": "spider-covered-poses-03.png",
+      "rect": [
+        8,
+        520,
+        251,
+        937
+      ]
     }
   ],
   "evidence": [
@@ -24092,6 +25904,7 @@
     "docs/spec/037-lan-victory.md",
     "docs/spec/039-phoenix-effects.md",
     "docs/spec/042-kim-effects.md",
-    "docs/spec/044-remaining-special-effects.md"
+    "docs/spec/044-remaining-special-effects.md",
+    "docs/spec/049-hd-batch-integration.md"
   ]
 }

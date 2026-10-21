@@ -28,25 +28,30 @@ type shortcut struct {
 	keys             []uint8
 }
 type Status struct {
-	Selection *Selection     `json:"selection,omitempty"`
-	Paused    bool           `json:"paused"`
-	Battle    bool           `json:"battle"`
-	Steps     uint64         `json:"steps"`
-	Frames    uint64         `json:"frames"`
-	Mode      int            `json:"mode"`
-	Fighters  [2]int         `json:"fighters"`
-	Paths     [2]int         `json:"paths"`
-	KeyValues [2]int         `json:"key_values"`
-	Quick     [2]bool        `json:"quick"`
-	Training  TrainingStatus `json:"training"`
-	Health    [2]uint16      `json:"health"`
-	Pending   [2]uint16      `json:"pending_damage"`
-	Timer     uint16         `json:"timer"`
-	Error     string         `json:"error,omitempty"`
+	TitleHD      *TitleHDState  `json:"title_hd,omitempty"`
+	TitleHDStage string         `json:"title_stage"`
+	TitleHDInput TitleHDInput   `json:"title_input"`
+	Selection    *Selection     `json:"selection,omitempty"`
+	Paused       bool           `json:"paused"`
+	Battle       bool           `json:"battle"`
+	Steps        uint64         `json:"steps"`
+	Frames       uint64         `json:"frames"`
+	Mode         int            `json:"mode"`
+	Fighters     [2]int         `json:"fighters"`
+	Paths        [2]int         `json:"paths"`
+	KeyValues    [2]int         `json:"key_values"`
+	Quick        [2]bool        `json:"quick"`
+	Training     TrainingStatus `json:"training"`
+	Health       [2]uint16      `json:"health"`
+	Pending      [2]uint16      `json:"pending_damage"`
+	Timer        uint16         `json:"timer"`
+	Error        string         `json:"error,omitempty"`
 }
 
 // Core 由桌面 Update 所在執行緒獨占；沒有背景 goroutine 或網路。
 type Core struct {
+	audio            audioRecording
+	titleHD          *titleHDRecording
 	selecting        bool
 	selectionTarget  int
 	selectionConfirm bool
@@ -98,6 +103,8 @@ func New(root, scratch string) (*Core, error) {
 	o.Enqueue("SF.COM", "")
 	c := &Core{o: o, paused: true, manual: map[string]Source{}}
 	c.installSelection()
+	c.installTitleHD(root)
+	c.installAudio()
 	c.spriteSources = loadSpriteSourceTables(root)
 	o.OnCall(oracle.Far(0x01b9, 0x5d9f), c.frame)
 	o.OnCall(oracle.Far(0x01b9, 0x3e9d), c.capturePresentation)
@@ -133,6 +140,14 @@ func (c *Core) Status() Status {
 			s.Pending[p] = c.o.Word(oracle.Far(ds, uint16(0x16a0+p*2)))
 		}
 		s.Timer = c.o.Word(oracle.Far(ds, 0x2f26))
+	}
+	s.TitleHD = c.TitleHD()
+	if c.titleHD != nil {
+		s.TitleHDStage = c.titleHD.stage
+		s.TitleHDInput = c.titleHD.input
+	}
+	if s.Battle {
+		s.TitleHDStage = "battle"
 	}
 	return s
 }

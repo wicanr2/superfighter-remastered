@@ -32,6 +32,9 @@ const Width, Height = 1120, 820
 var screenRect = image.Rect(80, 64, 1040, 664)
 
 type Options struct {
+	AudioAssets                                                      string
+	MuteAudio                                                        bool
+	HDScreens                                                        string
 	Training                                                         bool
 	Root, DataDir, Observe, Capture, HDAssets, HDCharacters, Version string
 	QuitAfter                                                        time.Duration
@@ -49,6 +52,17 @@ type widget struct {
 	disabled bool
 }
 type Game struct {
+	originalAudio         *originalAudioPlayer
+	screenArtLoaded       bool
+	titleHDPaint          *titleHDPaint
+	titleHDActive         bool
+	selectionHD           *selectionHDAssets
+	selectionHDView       *selectionHDState
+	selectionHDActive     bool
+	resultHD              *resultHDAssets
+	resultHDView          *resultHDState
+	resultHDActive        bool
+	backgroundTextures    map[*hd.Assets]*ebiten.Image
 	hdVictories           *hd.Victories
 	hdVictoryActive       bool
 	victoryCaptureBefore  []byte
@@ -184,9 +198,32 @@ func New(opts Options) (*Game, error) {
 	if opts.Training {
 		g.toggleTraining()
 	}
+	g.selectionHD = loadSelectionHD(opts.Root, nil, nil)
+	g.resultHD = loadResultHD(opts.Root, nil)
+	if opts.HDScreens != "" {
+		images, err := hd.LoadScreens(opts.HDScreens)
+		if err != nil {
+			g.notice = "HD 畫面素材無法完整載入，保留原貌：" + err.Error()
+		} else {
+			g.screenArtLoaded = true
+			textures := map[string]*ebiten.Image{}
+			for key, im := range images {
+				textures[key] = ebiten.NewImageFromImageWithOptions(im, &ebiten.NewImageFromImageOptions{Unmanaged: true})
+			}
+			g.titleHDPaint = loadTitleHD(opts.Root, textures, images["title-logo"])
+			g.selectionHD = loadSelectionHD(opts.Root, textures, images["title-logo"])
+			g.resultHD = loadResultHD(opts.Root, textures)
+		}
+	}
+	g.initOriginalAudio()
 	return g, nil
 }
-func (g *Game) Close() { g.core.Close() }
+func (g *Game) Close() {
+	if g.originalAudio != nil {
+		g.originalAudio.close()
+	}
+	g.core.Close()
+}
 func (g *Game) pause(value bool) {
 	g.core.Pause(value)
 	g.armed = [2]bool{}
@@ -332,10 +369,10 @@ func (g *Game) widgets() []widget {
 		{image.Rect(208, 12, 330, 52), "暫停", func(int) { g.pause(true) }, -1, false},
 		{image.Rect(342, 12, 564, 52), "控制與快捷設定", func(int) { g.openSettings() }, -1, false},
 		{image.Rect(576, 12, 710, 52), "全螢幕", func(int) { ebiten.SetFullscreen(!ebiten.IsFullscreen()) }, -1, false},
-		{image.Rect(722, 12, 940, 52), "原貌／HD 背景", func(int) { g.hdEnabled = !g.hdEnabled; g.notice = "呈現已切換，角色與操作沿用原版。" }, -1, g.hdAssets == nil},
+		{image.Rect(722, 12, 940, 52), "原貌／HD 背景", func(int) { g.hdEnabled = !g.hdEnabled; g.notice = "呈現已切換，角色與操作沿用原版。" }, -1, g.hdAssets == nil && !g.screenArtLoaded},
 	}
 	if g.opts.HDCharacters != "" {
-		out[4].label = "原貌／HD 角色"
+		out[4].label = "原貌／HD 畫面"
 		out[4].action = func(int) { g.hdEnabled = !g.hdEnabled; g.notice = "已切換原貌／HD。" }
 	}
 	trainingLabel := "練習：關"
@@ -346,6 +383,18 @@ func (g *Game) widgets() []widget {
 		}
 	}
 	out = append(out, widget{image.Rect(952, 12, 1096, 52), trainingLabel, func(int) { g.toggleTraining() }, -1, false})
+	audioLabel := "原音未匯入"
+	if g.originalAudio != nil {
+		audioLabel = "原音：關"
+		if g.originalAudio.enabled {
+			audioLabel = "原音：開"
+		}
+	}
+	out = append(out, widget{image.Rect(952, 778, 1096, 814), audioLabel, func(int) {
+		if g.originalAudio != nil {
+			g.originalAudio.enabled = !g.originalAudio.enabled
+		}
+	}, -1, g.originalAudio == nil})
 	if g.panel {
 		out = append(out,
 			widget{image.Rect(58, 140, 270, 178), "手把／角色四格", func(int) { g.keyboardPanel = false; g.binding = false; g.focus = 0 }, -1, false},
@@ -395,6 +444,7 @@ func (g *Game) widgets() []widget {
 var dirs = [2][3][3]uint8{{{0x10, 0x11, 0x12}, {0x1e, 0, 0x20}, {0x2c, 0x2d, 0x2e}}, {{0x47, 0x48, 0x49}, {0x4b, 0, 0x4d}, {0x4f, 0x50, 0x51}}}
 
 func (g *Game) Update() error {
+	defer g.updateOriginalAudio()
 	g.updates++
 	if g.opts.QuitAfter > 0 && time.Since(g.started) > g.opts.QuitAfter {
 		return ebiten.Termination
@@ -632,6 +682,7 @@ func (g *Game) observe() {
 		return
 	}
 	value := struct {
+		Audio              originalAudioState    `json:"audio"`
 		FrontendUpdates    uint64                `json:"frontend_updates"`
 		Version            string                `json:"version"`
 		MouseLeft          bool                  `json:"mouse_left"`
@@ -649,11 +700,16 @@ func (g *Game) observe() {
 		HDEnabled          bool                  `json:"hd_enabled"`
 		HDActive           bool                  `json:"hd_active"`
 		HDReason           string                `json:"hd_reason"`
+		TitleHDActive      bool                  `json:"title_hd_active"`
+		SelectionHDActive  bool                  `json:"selection_hd_active"`
+		SelectionHD        *selectionHDState     `json:"selection_hd,omitempty"`
+		ResultHDActive     bool                  `json:"result_hd_active"`
+		ResultHD           *resultHDState        `json:"result_hd,omitempty"`
 		HDCharactersActive bool                  `json:"hd_characters_active"`
 		HDHUDActive        bool                  `json:"hd_hud_active"`
 		HDShadowsActive    bool                  `json:"hd_shadows_active"`
 		HDRoundsActive     bool                  `json:"hd_rounds_active"`
-	}{FrontendUpdates: g.updates, Version: g.opts.Version, MouseLeft: ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft), Editing: g.editing, Core: g.core.Status(), Panel: g.panel, KeyboardPanel: g.keyboardPanel, Binding: g.binding, QuickRequests: g.quickRequests, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, HDCharactersActive: g.hdActive && g.hdCharacters != nil, HDHUDActive: g.hdHUDActive, HDShadowsActive: g.hdShadowsActive, HDRoundsActive: g.hdRoundsActive}
+	}{Audio: g.originalAudioState(), FrontendUpdates: g.updates, Version: g.opts.Version, MouseLeft: ebiten.IsMouseButtonPressed(ebiten.MouseButtonLeft), Editing: g.editing, Core: g.core.Status(), Panel: g.panel, KeyboardPanel: g.keyboardPanel, Binding: g.binding, QuickRequests: g.quickRequests, Settings: g.settings, Assigned: g.assigned, SettingsPath: g.settingsPath, Notice: g.notice, Presentation: g.core.Presentation(), HDEnabled: g.hdEnabled, HDActive: g.hdActive, HDReason: g.hdReason, TitleHDActive: g.titleHDActive, SelectionHDActive: g.selectionHDActive, SelectionHD: g.selectionHDView, ResultHDActive: g.resultHDActive, ResultHD: g.resultHDView, HDCharactersActive: g.hdActive && g.hdCharacters != nil && !g.titleHDActive && !g.selectionHDActive && !g.resultHDActive, HDHUDActive: g.hdHUDActive, HDShadowsActive: g.hdShadowsActive, HDRoundsActive: g.hdRoundsActive}
 	b, e := json.MarshalIndent(value, "", "  ")
 	if e == nil {
 		e = os.WriteFile(g.opts.Observe+".tmp", b, 0600)
@@ -746,6 +802,9 @@ func (g *Game) Draw(dst *ebiten.Image) {
 	}
 	g.texture.WritePixels(g.rgba)
 	g.hdActive = false
+	g.titleHDActive, g.selectionHDActive, g.resultHDActive = false, false, false
+	g.selectionHDView = nil
+	g.resultHDView = nil
 	g.hdHUDActive = false
 	g.hdShadowsActive = false
 	g.hdRoundsActive = false
@@ -790,6 +849,25 @@ func (g *Game) Draw(dst *ebiten.Image) {
 	op.GeoM.Translate(float64(g.activeRect.Min.X), float64(g.activeRect.Min.Y))
 	if !charactersDrawn && !backgroundOnly {
 		dst.DrawImage(g.texture, op)
+	}
+	g.selectionHDView = g.selectionHDState()
+	g.resultHDView = g.resultHDState()
+	if g.hdEnabled && mapped && len(frame.Pixels) == 0 {
+		if title := g.core.TitleHD(); title != nil && g.drawTitleHD(dst, title) {
+			g.titleHDActive = true
+			g.hdActive = true
+			g.hdReason = "HD 標題與主選單"
+		} else if view := g.selectionHDView; view != nil && g.drawSelectionHD(dst, view) {
+			g.selectionHDView = view
+			g.selectionHDActive = true
+			g.hdActive = true
+			g.hdReason = "HD 選角"
+		} else if view := g.resultHDView; view != nil && g.drawResultHD(dst, view) {
+			g.resultHDView = view
+			g.resultHDActive = true
+			g.hdActive = true
+			g.hdReason = "HD 結果與繼續介面"
+		}
 	}
 	dst = window
 	dst.DrawImage(g.frameCanvas, nil)
@@ -862,7 +940,7 @@ func (g *Game) Draw(dst *ebiten.Image) {
 		}
 		g.label(dst, image.Rect(w.rect.Min.X+10, w.rect.Min.Y+paddingY, w.rect.Max.X-10, w.rect.Max.Y-paddingY), w.label, ink)
 	}
-	g.label(dst, image.Rect(24, 778, 1096, 814), state+"　"+g.notice, color.RGBA{255, 220, 110, 255})
+	g.label(dst, image.Rect(24, 778, 940, 814), state+"　"+g.notice, color.RGBA{255, 220, 110, 255})
 	if g.capture {
 		g.capture = false
 		path := g.opts.Capture
@@ -891,7 +969,7 @@ func (g *Game) Draw(dst *ebiten.Image) {
 			if len(frame.Pixels) == 64000 {
 				source = "completed-battle-frame"
 			}
-			metadata := map[string]any{"core": g.core.Status(), "original_source": source, "selected_width": w, "selected_height": h, "live_width": liveW, "live_height": liveH, "presentation_serial": frame.Serial, "presentation_steps": frame.Steps, "hd_enabled": g.hdEnabled, "hd_active": g.hdActive, "hd_shadows_active": g.hdShadowsActive, "display_applied": mapped, "display_error": displayError, "active_rect": g.activeRect, "paint_rect": g.paintRect, "scanout": display}
+			metadata := map[string]any{"audio": g.originalAudioState(), "core": g.core.Status(), "original_source": source, "selected_width": w, "selected_height": h, "live_width": liveW, "live_height": liveH, "presentation_serial": frame.Serial, "presentation_steps": frame.Steps, "title_hd_active": g.titleHDActive, "selection_hd_active": g.selectionHDActive, "selection_hd": g.selectionHDView, "result_hd_active": g.resultHDActive, "result_hd": g.resultHDView, "hd_enabled": g.hdEnabled, "hd_active": g.hdActive, "hd_shadows_active": g.hdShadowsActive, "display_applied": mapped, "display_error": displayError, "active_rect": g.activeRect, "paint_rect": g.paintRect, "scanout": display}
 			var data []byte
 			data, e = json.MarshalIndent(metadata, "", "  ")
 			if e == nil {
@@ -908,6 +986,13 @@ func (g *Game) Draw(dst *ebiten.Image) {
 			}
 			if e == nil && len(frame.VRAMTail) > 0 {
 				e = os.WriteFile(path+".vram-tail", frame.VRAMTail, 0600)
+			}
+		}
+		if e == nil && g.opts.Observe != "" {
+			var data []byte
+			data, e = json.Marshal(palette)
+			if e == nil {
+				e = os.WriteFile(path+".screen-palette.json", data, 0600)
 			}
 		}
 		if e == nil && g.opts.Observe != "" && len(frame.Pixels) == 64000 {

@@ -1,10 +1,8 @@
 # 快打至尊 Remastered
 
-Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，接入雙人手把、逐角色四格快速出招與街機手繪 HD，並保存遊戲歷史。
+Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，加入雙人手把、可重綁鍵盤、四格快速出招、練習模式與街機手繪 HD。
 
-程式、文件與 [HD 生成素材](assets/hd/README.md)存放於 [GitHub 儲存庫](https://github.com/wicanr2/superfighter-remastered)。原版資料與遊戲二進位不隨儲存庫提供。
-
-玩家入口使用 Ebitengine 原生視窗，直接處理鍵鼠與標準手把。原版核心負責規則、碰撞、AI 及流程。既有網頁只保留研究用途。
+程式與 [HD 素材](assets/hd/README.md)存於 [GitHub 儲存庫](https://github.com/wicanr2/superfighter-remastered)。玩家須自備合法原版資料。原版 EXE、DAT、美術、音樂與語音不隨 Git 或引擎發行包提供。
 
 ## 遊戲與故事背景
 
@@ -14,198 +12,70 @@ Windows、macOS、Linux 原生桌面重製。以 dosgolem 執行原版核心，�
 
 本重製保留原版核心，增加原生操作、練習模式與可切換 HD。蜘蛛女、小丑、印第安喬已能在單打、雙打直接選用；完整魔王過關與結局仍待驗證。
 
-## 首版下載與資料準備
+## 目前整合範圍
 
-首版為 [v.0.1.0-20261020](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.0.1.0-20261020)。Release 提供 Windows、Linux、macOS Intel 與 Apple Silicon 四個程式包、HD 生成素材及資料匯入功能，原版遊戲由玩家自行提供。執行程式時加上 `-import-data 原版目錄或jsdos檔 -data game-data`，會核對固定版本並建立新的資料目錄；既有目錄不覆寫。匯入後會從自己的原版資料準備屋頂 HD 參考。
+開發版為 `v.0.2.0-20261021`，視覺 HD 與原音播放已集中接入正式程式，完成正常路徑抽樣及本機八包驗證。最新狀態與證據見 [CONTEXT](CONTEXT.md)及[集中接入規格](docs/spec/049-hd-batch-integration.md)。
 
-儲存庫目前為私人，Release 與圖片需由有權限的帳號登入查看。這裡的公開包指排除原版資料的發行內容。
-
-目前暫停 HD 開發，待辦見[人工驗證清單](WORKLIST.md#人工驗證)。本機交付版為 `v.0.1.1-20261021`，Windows、Linux、macOS Intel／Apple Silicon 完整包保存在 `dist-all/v.0.1.1-20261021/full-local/`，含原版 MIDI 配樂的影片在同版本 `promo/`。兩者均只留本機，未新增 Release。本機完整版指含原版資料與目前正式整合內容，不代表完整 HD；標題、選角及結果 HD 原型尚未併入。封包驗證與限制見[發行契約](docs/spec/036-release-packages.md)。
-
-鍵盤可在 F10 設定面板重綁八方向、拳、腳與四格快捷，F8 切換手把／鍵盤頁。第一人四快捷預設為主鍵盤 1／2／3／4，第二人為 7／8／9／0；兩人獨立保存，與手把四格共用角色招式。按住不連發，衝突不覆寫；只有已驗的斬四招能實際出招，其他角色仍明示拒絕。[鍵盤設定範圍](docs/spec/035-keyboard-bindings.md)。
-
-原版音樂已確認十五段 MIDI，Compact PCM 共四十筆；音樂重播與語音修復的可行性及未知項見[音樂與語音 HD 評估](docs/audio-hd-assessment.md)。桌面遊戲的音訊串流與完整 HD 尚未完成。
-
-目前本機交付版為 `v.0.1.1-20261021`，新增嵐的勝利姿態與 `LAN WIN`，並接入[角色雙向翻轉與頂部裁切](docs/spec/038-character-geometry.md)的逐格來源核對，以及[鳳凰拳腳兩種光效](docs/spec/039-phoenix-effects.md)、[場邊投擲裁切](docs/spec/040-mirrored-edge-clipping.md)與[金太極十種特殊光效](docs/spec/042-kim-effects.md)、[四人二十一個特殊光效](docs/spec/044-remaining-special-effects.md)，並支援[同角色對戰的替代配色](docs/spec/041-duplicate-palettes.md)；首版下載包尚未包含這些更新。其餘九景也已有[首輪 HD 候選稿](assets/hd/candidates/README.md)，與道場同樣等待多場景格式及正常遊戲接入驗證。十一景已補正常捲動來源比較；[石窟與舞廳修稿](assets/hd/candidates/background-revisions-source.json)另存候選，尚未定版。
-
-目前已有原生雙打、兩人拳腳、斬四招、設定保存，以及可切換的屋頂 HD 背景、部分人物動作、已驗招式及鳳凰拳腳光效、柔邊地面陰影、生命條、計時、名字與勝場圖示。開場 `ROUND`／`FIGHT !`、斬首勝的鞠躬與 `JAAN WIN` 已接 HD；第二人法蘭克的抱胸、`FRANK WIN` 與右側首勝也已在 Linux 驗證。Linux 雙打基準曾正常打完兩回合、顯示結果並返回標題，後續擴充另驗各自範圍。完整角色 HD、實體手把、其他角色快捷、音訊與正式速度仍待驗收。最近收據及各平台限制見 [CONTEXT](CONTEXT.md)。
-
-斬與法蘭克已對應全部 144 個一般來源槽、13 個第二色盤特效鍵，以及 WIN 圖像的 144 個入口。鳳凰另補兩個拳腳光效鍵，金太極新增十個第二色盤光效鍵；後續四人特殊技再補二十一鍵。WIN 入口對應七張不同勝利姿態，與一般動作分開辨識；登錄齊全不代表完整動畫已驗。介面基底的 Linux 案例通過 16 項檢查，Windows Wine 的斬、法蘭克案例各通過 16 項，包含特效、介面及同狀態切換。兩平台的法蘭克案例另驗到實際扣血。完整動畫與其他角色仍未完成，製作契約見[角色](docs/spec/008-hd-characters.md)、[特效](docs/spec/009-hd-effects.md)、[戰鬥介面](docs/spec/010-hd-battle-hud.md)及[勝利姿態](docs/spec/017-victory-pose-banks.md)。
-
-原有八名角色、小丑與印第安喬的一般來源已接入原生，實測範圍見[薩爾可夫](docs/spec/018-sarkov-hd.md)、[子彈](docs/spec/020-bullet-hd.md)、[鳳凰](docs/spec/021-phoenix-hd.md)、[鬼丸](docs/spec/022-onimaru-hd.md)、[嵐](docs/spec/023-lan-hd.md)、[金太極](docs/spec/024-kim-hd.md)、[小丑](docs/spec/026-clown-hd.md)與[印第安喬](docs/spec/027-joe-hd.md)。目前開發群組共 1516 個鍵，包含十人的一般來源、蜘蛛女低伏、既有特效與十人的 WIN 入口。[子彈首勝](docs/spec/028-bullet-victory.md)、[鳳凰首勝](docs/spec/030-phoenix-victory.md)與[鬼丸首勝](docs/spec/031-onimaru-victory.md)已驗 Linux／Wine 完整切片；[嵐首勝](docs/spec/037-lan-victory.md)已驗 Linux，薩爾可夫的 Wine 下一回合仍未驗完。同角色替代色盤已接入已登錄姿態，Linux 法蘭克的藍／綠雙色操作與第二人首勝已驗；色彩轉移為 HD 呈現近似。蜘蛛女其餘動作、完整動畫、其他角色快捷及其餘場景仍在製作。
-
-十一人選角已加入蜘蛛女、小丑、印第安喬，單打、雙打皆可選，並保留原版對戰規則。Linux／Wine 已驗正常選角與首戰操作；魔王完整單打過關與結局仍待驗，詳見[選角範圍](docs/spec/025-boss-selection.md)。
-
-## HD 素材
-
-目前收錄 74 張角色／特效圖集、角色登錄清單與屋頂背景；道場及其餘九景候選、蜘蛛女外部稿另標示狀態。內建生成 PNG 保留原 bytes，外部稿的去背處理另作紀錄；逐檔來源與 SHA-256 見 [HD 素材目錄](assets/hd/README.md)。素材上傳不代表完整角色動畫或所有場景已完成。
-
-[街道修稿](assets/hd/candidates/street-i4-v2.png)改善牆面上排塗鴉，另存原 PNG 與[精確提示詞](assets/hd/candidates/street-revision-source.json)。八份同狀態捲動比較已複核；它仍是候選，未接入正式背景。
-
-![十一人選角肖像 HD 候選，尚未接入正式程式](docs/screenshots/selection-portrait-candidates.png)
-
-十一人選角肖像已各自重繪為 1254×1254，保留生成原 PNG 與[精確提示詞](assets/hd/candidates/selection-portraits-source.json)。隔離 Linux 原型已驗雙打兩側大肖像、右側鏡像、原貌切換及未載候選的回退；背景、VS 與縮圖仍為原貌。上圖是美術候選預覽，視覺、版面與載入契約未定，正式選角畫面保持原貌。[來源與限制](docs/spec/047-hd-selection-portraits.md)。
-
-![選角八格與十一格靜態 HD 比較，非遊戲截圖](docs/screenshots/selection-layout-candidates.png)
-
-選角另補[透明紅金 VS](assets/hd/candidates/selection-vs-v1.png)，以上用既有 HD 肖像、灰階字標與重畫框線比較完整構圖。八格方案保留原縮圖位置，十一格方案讓三名魔王同列可見；兩者均為靜態候選。十一格仍需配套調整點選區域與焦點，正式遊戲尚未採用。
-
-![斬勝法蘭克的結果報紙 HD 靜態候選，非遊戲擷取](docs/screenshots/result-newspaper-candidate.png)
-
-結果報紙已有新底圖與法蘭克受傷肖像，搭配既有斬肖像製作上述候選。細字印刷、現代標題字型及傷勢為近似，原版結果仍保留。[來源、完整提示詞與限制](docs/spec/048-hd-result-newspaper.md)均已記錄。
-
-![十一人敗者肖像 HD 候選，未接正式結果畫面](docs/screenshots/result-portrait-candidates.png)
-
-十一人敗者肖像已有首輪候選。鳳凰與蜘蛛女保留落淚神情，其餘按各自原受傷圖重繪，表情與傷勢仍有差異；[逐人紀錄與完整提示詞](assets/hd/candidates/result-portraits-source.json)可回查。這批是美術候選，完整結果流程與正式接入尚未完成。
-
-![十一名敗者在正常原生結果中的 HD 原型取樣，未接正式版本](docs/screenshots/result-portraits-native.png)
-
-十一人的勝者與敗者肖像均已有正常雙打結果取樣，上圖裁自實際原生視窗。完整原結果來源、肖像方向、原貌切換／恢復與返回標題均已核對；[取樣範圍](docs/spec/048-hd-result-newspaper.md)明列。三種結果及第二人獲勝另見下圖，正式版本仍顯示原版結果，視覺與平台驗收另續。
-
-![正常雙打後的隔離原生結果 HD 候選，尚未接入正式版本](docs/screenshots/result-native-prototype-hd.png)
-
-隔離 Linux 原型已由正常雙打完成斬對法蘭克的兩次擊倒，顯示上圖；原貌切換、恢復後像素一致及 Return 返回清除均通過，未載候選也能保持整張原貌。正式程式與下載包仍用原版結果畫面，其他角色、模式、結果與平台另驗。
-
-![七面結果旗幟的 HD 向量候選，未接正式程式](docs/screenshots/result-flag-candidates.png)
-
-七面結果旗幟另有獨立 SVG 與 1300×660 PNG，保留來源配色、點位與卦線配置，徽記細節為重畫近似。[來源及幾何紀錄](assets/hd/candidates/result-flags-source.json)可回查。新版隔離原型已載入這七面候選，正式結果畫面仍為原貌。
-
-![薩爾可夫正常雙打獲勝後的新旗幟原生原型，尚未接入正式版本](docs/screenshots/result-flags-native-prototype-hd.png)
-
-這張截圖來自正常薩爾可夫對法蘭克比賽。七面旗幟已在六組正常比賽抽驗，另驗未載素材、原貌切換、恢復與返回標題。小丑以原版時間到判勝，其餘五組為擊倒；[取樣與限制](docs/spec/048-hd-result-newspaper.md)可回查。這仍是 Linux 隔離原型，視覺及正式載入尚未定版。
-
-![壓倒勝、逆轉勝與險勝的正常原生 HD 標題取樣，尚未正式整合](docs/screenshots/result-outcomes-native.png)
-
-三種結果均已有正常雙打取樣，保留「險勝」中間空位。標題用現代字型重排，取樣不代表已重寫原版分類規則。
-
-![第二人法蘭克獲勝的原生結果 HD 原型，玩家位置保持原樣](docs/screenshots/result-player2-native-prototype-hd.png)
-
-第二人獲勝時，原版保持左側第一人、右側第二人，改用左敗者／右勝者肖像。隔離原型已補這條路徑，完整素材、原貌切換、未載素材與返回均通過；正式程式仍未接入。
-
-![單打落敗後的再戰／放棄 HD 隔離原型，尚未正式整合](docs/screenshots/result-continue-native-prototype-hd.png)
-
-單打落敗後的「再戰／放棄」已加入 Linux 隔離 HD 原型，保留原版按鈕位置與選取顏色變化。正常 AI 擊倒、左右切換、原貌／HD 恢復、再戰回選角及放棄回標題均已核對；向量面板與字型仍為草稿，未放入下載包。
-
-[蜘蛛女的十五張外部 HD 稿](assets/hd/candidates/spider/README.md)也已收錄。使用者確認的雙手觸地低伏已接入，另作無損鏡像及透明留白裁切；同一張圖對應三組低伏來源。其他稿仍有姿勢差異，未對應動作整格回退原貌。
-
-![已接入遊戲的屋頂 HD 生成背景](assets/hd/backgrounds/rooftop.png)
-
-![鳳凰勝利 HD 原始圖集](assets/hd/characters/phoenix-win.png)
-
-以上是生成素材預覽；正常遊戲的整合驗證與限制見 [目前狀態](CONTEXT.md)及各規格。
-
-![隔離原生視窗中的標題 HD 候選，尚未接入正式程式](docs/screenshots/title-native-prototype-hd.png)
-
-標題人物與紅金字標已重繪並收錄候選。上圖擷取自隔離的 Linux 原生原型，已驗八個換色相位、原貌切換、設定往返及進入雙打。可見游標、右下邊界、滑鼠進入選角與缺候選回退也已核對。材質分區與正式載入方式尚未定版，正式程式及下載包仍維持原標題；另有[十六步材質換色比較](docs/screenshots/title-palette-candidate.png)。[來源及接入閘門](docs/spec/046-hd-title-menu.md)。
-
-## 目前整合畫面
-
-![鳳凰蓄力出招時的青藍主角色 HD](docs/screenshots/phoenix-secondary-main-hd.png)
-
-![法蘭克受招時的青藍主角色 HD](docs/screenshots/frank-secondary-main-hd.png)
-
-Linux 開發版已接入主角色的第二色盤。正常鳳凰出招與法蘭克受招沿用同姿態 HD，依原版色盤轉為青藍色；原貌切換、恢復與舊程式回退已核對。配色為保留原稿的 RGB 近似，完整動畫另驗。[來源與範圍](docs/spec/045-secondary-palette-main-sprites.md)。
-
-![鳳凰踢擊的金黃 HD 光弧](docs/screenshots/phoenix-gold-arc-hd.png)
-
-![小丑旋轉時分離的青藍光影與橢圓環](docs/screenshots/clown-rings-hd.png)
-
-開發版新增鳳凰、嵐、小丑與印第安喬共 21 個特殊技光效鍵。上述畫面由普通鍵盤出招取得，原版圖層、色盤、原貌切換與恢復已核對；原版規則與快捷範圍保持。[接入與限制](docs/spec/044-remaining-special-effects.md)。
-
-![鬼丸蓄力出招的 HD 武器與角色](docs/screenshots/onimaru-primary-weapon-hd.png)
-
-Linux 開發版以普通後蓄／前拳觸發鬼丸的額外武器。已核對原版主色盤、來源與圖層，原貌切換、恢復及繼續操作通過。沿用既有美術，未擴大快捷出招範圍。[接入範圍](docs/spec/043-primary-palette-extra-sprites.md)。
-
-![金太極正常方向／拳腳觸發的青藍 HD 刀光](docs/screenshots/kim-effects-hd.png)
-
-Linux 開發版以普通鍵盤輸入驗金黃光彈、青藍刀光與拳影三類效果。十個第二色盤來源已補圖；原貌切換、恢復與舊包整格回退已核對，全部動畫與快捷出招仍另驗。[來源與範圍](docs/spec/042-kim-effects.md)。
-
-![法蘭克同角色雙打的藍綠 HD 配色](docs/screenshots/duplicate-frank-hd.png)
-
-Linux 開發版正常同角雙打，第一人藍色、第二人綠色，依原版替代色盤呈現。行走、放開、原貌切換與第二人首勝已核對；HD 配色為保留原稿細節的色彩轉移近似，完整動畫另驗。[來源與範圍](docs/spec/041-duplicate-palettes.md)。
-
-![場邊投擲的雙向翻轉與裁切 HD](docs/screenshots/edge-clip-hd.png)
-
-Linux 開發版以普通移動與拳擊觸發場邊投擲，法蘭克按原版來源翻轉並裁切。新舊程式對照、同狀態原貌切換、恢復與繼續操作均已核對；其他裁切與完整動畫另驗。[來源與範圍](docs/spec/040-mirrored-edge-clipping.md)。
-
-![鳳凰正常出拳的 HD 光效](docs/screenshots/phoenix-effect-hd.png)
-
-Linux 開發版從普通選角、移動與拳腳取得兩種藍色光效，依原版尺寸、朝向及層次呈現。完整素材與舊包回退、原貌切換及恢復已核對；其他招式與全部動畫仍待補。[接入範圍](docs/spec/039-phoenix-effects.md)。
-
-![正常擊倒過場的角色雙向翻轉 HD](docs/screenshots/character-flip-hd.png)
-
-Linux 開發版由普通選角、移動與拳擊進入擊倒過場。這張法蘭克使用原版雙向翻轉，核對來源像素與覆蓋後維持 HD；同狀態切換、恢復與下一回合已驗。頂部裁切另有正常案例，完整動畫仍待補。[接入範圍](docs/spec/038-character-geometry.md)。
-
-![嵐正常首勝與 LAN WIN 的開發版 HD 整合](docs/screenshots/lan-victory-hd.png)
-
-Linux 正常雙打由移動及拳擊取得首勝。人物、姓名、勝場與屋頂同格 HD，原貌／HD 切回及下一回合清除已核對；這是開發版切片，完整動畫仍另驗。[範圍與證據](docs/spec/037-lan-victory.md)。
-
-![首版封包中斬與法蘭克的 HD 對戰](docs/screenshots/battle-hd.png)
-
-從 Linux 完整版解壓後，正常選角進入雙打。屋頂、人物與介面由封包內素材呈現，原版資料只用來執行核心及核對來源。
-
-![蜘蛛女低伏與 WIDOW 姓名的原生 HD 整合](docs/screenshots/spider-low-guard-hd.png)
-
-Linux 普通雙打的蜘蛛女對法蘭克。這是已確認的相近低伏姿勢，同一張稿用於三組待機來源；移動時保留原貌，放開後恢復 HD。切換與缺件回退均已核對，完整動畫仍待補。[接入範圍](docs/spec/034-spider-low-guard.md)。
-
-![印第安喬正常首勝的 HD 整合畫面](docs/screenshots/joe-victory-hd.png)
-
-金太極、小丑與印第安喬的勝利圖、姓名、原貌／HD 切換及下一回合清除已驗 Linux。小丑案例為時間到後判勝；缺少勝利素材時整格回退原貌。[接入範圍](docs/spec/033-first-pass-victories.md)。
-
-![雙方滿血、固定計時與練習模式工具列的原生 HD 畫面](docs/screenshots/training-hd.png)
-
-Linux 原生雙打的練習模式。雙方生命固定滿血、計時停在 99，右上工具列顯示「練習：開」；此圖為暫停擷取。模式會改變規則，不能當作未修改原版對拍。[功能與驗證](docs/spec/032-training-mode.md)。
-
-![鬼丸正常首勝的原生 HD 整合畫面](docs/screenshots/onimaru-victory-hd.png)
-
-Linux 原生版由普通選角、移動與拳擊取得鬼丸首勝，顯示 `ONIMALU WIN`。這個案例的 Linux／Wine 切換與下一回合清除均已核對；這是 HD 整合截圖，尚不代表完整勝利動畫。[來源與範圍](docs/spec/031-onimaru-victory.md)。
-
-![兩人獨立手把指派與四格快捷設定](docs/screenshots/gamepad-settings.png)
-
-Windows 原生程式在 Wine 中顯示的設定介面，擷取於原版核心執行前。可分別指派兩人的手把，逐角色設定 R1／R2／L1／L2。擷取時未連接實體手把。[截圖來源](docs/screenshots/source.json)。
-
-![兩人獨立鍵盤重綁與四格快捷](docs/screenshots/keyboard-settings.png)
-
-F10 開啟「控制與快捷設定」，按 F8 切換到鍵盤頁。圖中示範第一人的方向、拳腳與快捷重綁；Linux／Wine 已驗保存後重啟、兩人獨立輸入及斬快捷按住只出招一次。
-
-十一人選角、十名角色的一般 HD、部分勝利姿態與同狀態切換已按各自範圍驗證。角色圖集見上方 HD 素材；正常玩家路徑、Linux／Wine 差異及未完成項集中於 [目前狀態](CONTEXT.md)與[驗證矩陣](VERIFICATION-MATRIX.md)。
-
-原貌對照、分層與原始收據保存在本機研究工作區。GitHub 首頁的 HD 整合截圖與素材預覽均引用已納入版控的圖片，來源雜湊見[截圖紀錄](docs/screenshots/source.json)。
-
-## 建置與執行
-
-開發建置在 Docker 內執行，工作區需要已準備的 dosgolem 獨立來源及工具鏈，詳見[工作契約](AGENTS.md)和[桌面規格](docs/spec/005-native-desktop.md)。
-
-儲存庫不附原版資料、研究收據、dosgolem 私有來源或本機快取。HD 生成圖與角色清單收錄於 `assets/hd/`，屋頂原版參考色號與色盤仍需本機準備。`go.work.example` 記錄相對目錄配置，準備來源後複製為 `go.work`；原版匯入與來源快照工具為 `tools/prepare.py`，執行器補丁為 `tools/apply_runtime_patch.py`。現行收據中的 `workplace/` 連結僅供本機核對。
-
-目前執行器副本也需要普通記憶體觀測及顯示 API。準備與安裝順序見[規格 007](docs/spec/007-memory-write-observation.md)、[規格 014](docs/spec/014-mode13-scanout.md)及[規格 015](docs/spec/015-native-scanout.md)；安裝工具只修改本專案的獨立副本。
-
-```sh
-bash tools/build_desktop.sh
-```
-
-開發二進位在 `workplace/bin/`：
-
-| 平台 | 檔案 |
+| 項目 | 現況 |
 |---|---|
-| Linux x86-64 | `superfighter-linux-amd64` |
-| Windows x86-64 | `superfighter-windows-amd64.exe` |
-| macOS Intel | `superfighter-macos-amd64` |
-| macOS Apple Silicon | `superfighter-macos-arm64` |
+| 場景 | 十一景使用同一套載入與來源核對；街道、石窟、舞廳採保存的修稿，原背景相機與捲動不變 |
+| 標題 | HD 人物、字標、四個選單按鈕與八相位色彩；設定頁保持原版 |
+| 選角 | 兩側 HD 肖像、VS、背景、邊框與八格縮圖；原八格位置及下方十一人姓名按鈕保持 |
+| 結果與接關 | 報紙、十一人勝敗肖像、七面旗幟、三類結果標題，以及單打再戰／放棄介面 |
+| 對戰 | 十一人的一般與勝利來源、已驗光效、陰影、血條、計時、姓名、勝場與回合／勝負文字 |
+| 原音 | 原 MIDI 軟體演奏與原四位元 PCM，沿原程式請求切歌、停音及播放語音；本機原音匯入與開關，見 [050](docs/spec/050-original-audio-playback.md) |
+| 操作 | 兩人獨立裝置與鍵盤設定、四格招式配置；實際快捷出招目前只開放已驗的斬四招 |
 
-玩家在自己的電腦執行對應程式，以 `-data` 指定合法原版資料目錄。未指定時尋找 `game-data/`。例如 Windows：
+蜘蛛女已依使用者選擇統一為全覆蓋紫色連身衣，144 個一般／WIN 入口使用同套服裝。原版十五段 MIDI 與四十段語音／音效已接入 OGG 播放。未知動作、來源或色盤沿用整格原貌回退。完整動畫與魔王單打過關、結局仍待驗收。實體手把與 Windows／macOS 真機見[人工清單](WORKLIST.md#人工驗證)。
 
-```powershell
-.\superfighter-windows-amd64.exe -data .\game-data
-```
+HD 為獨立呈現層。規則、碰撞、AI 與原版流程由 dosgolem 執行；手繪造型、現代字型與材質換色是美術近似，不宣稱逐像素忠實。
 
-這些是開發中間產物。玩家 ZIP 封包另由 `tools/package_release.py` 建立；Linux 與 Windows Wine 已驗解壓啟動，macOS 已核對兩種架構及封包內容，尚未簽章或作真機驗收。原版 EXE、COM、DAT、美術及音訊不加入 Git 或公開發行包。
+## 整合畫面
 
-本機屋頂試作素材已備妥時，可加上 `-hd-assets workplace/hd-rooftop-study`，再按「原貌／HD 背景」切換。素材準備與驗證見[背景規格](docs/spec/006-rooftop-background.md)。沒有素材或場景未對應時顯示原貌。
+以下截圖來自正式來源的 Linux 原生程式，經正常選單進入，未改生命、勝負或亂數。圖片與[截圖來源紀錄](docs/screenshots/source.json)均在儲存庫內；原貌對照及原始收據只留本機。
 
-角色與特效試作再加上 `-hd-characters assets/hd/characters`，按「原貌／HD 角色」切換。此群組保留既有基底，包含十人的一般來源、蜘蛛女低伏及十人的 WIN 入口，與本機 `workplace/hd-characters-kim-effects-v1` 的 PNG 及清單相同。背景、兩名角色、來源與圖層全部符合才顯示 HD，缺動作或未知色盤時整張回退。新版仍接受舊版角色素材。基底準備工具為 `tools/prepare_hd_characters.py`，勝利姿態登錄使用 `tools/prepare_victory_characters.py`，一般角色擴充使用 `tools/prepare_character_extension.py`，蜘蛛女限定切片使用 `tools/prepare_spider_low_guard.py`，嵐的來源重用與勝利登錄使用 `tools/prepare_lan_victory.py`。
+![正式接入的 HD 標題與原位置選單](docs/screenshots/hd-integrated-title.png)
 
-含特效的新版群組也啟用高解析生命、計時、名字、玩家標記、勝場與地面陰影，來源驗證失敗時整張回退。舊版 1 素材保留原貌介面、特效與陰影。
+標題保留原版四個選項與操作位置。字標的色彩循環投影到新美術，設定頁仍顯示原貌。
+
+![完整 HD 選角，保留八格縮圖及十一人姓名按鈕](docs/screenshots/hd-integrated-selection.png)
+
+三名魔王可由下方姓名按鈕選用，單打、雙打皆開放；兩側大肖像與右側鏡像跟隨原選角狀態。
+
+![道場同角色對戰與兩套 HD 配色](docs/screenshots/hd-integrated-dojo.png)
+
+道場由正常雙打進入，畫面顯示兩套角色配色、HD 介面與陰影。此圖只代表該場景的取樣。
+
+![蜘蛛女 B 版連身衣與已載入的原音開關](docs/screenshots/hd-integrated-spider.png)
+
+蜘蛛女一般與 WIN 圖格統一使用 B 版連身衣。圖格基底依原 DAT 朝左，遊戲依站位翻轉；右下角可切換原音。
+
+![正常雙打獲勝後的 HD 結果報紙](docs/screenshots/hd-integrated-result.png)
+
+結果保留左右玩家位置，以各自勝敗肖像顯示勝者；字型、旗幟與報紙為重畫近似。
+
+![單打落敗後的 HD 再戰與放棄介面](docs/screenshots/hd-integrated-continue.png)
+
+這張來自原版 AI 正常取得兩勝後的接關畫面。再戰回選角、放棄回標題，原選取位置與輸入保持。
+
+![原生手把設定介面](docs/screenshots/gamepad-settings.png)
+
+![可重綁兩人按鍵與快捷的鍵盤設定介面](docs/screenshots/keyboard-settings.png)
+
+## 下載與資料準備
+
+首版 [v.0.1.0-20261020](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.0.1.0-20261020)提供 Windows x86-64、Linux x86-64、macOS Intel 與 Apple Silicon 四個引擎包。首版未包含目前的集中 HD 更新。儲存庫為私人，Release 與圖片需以有權限的帳號查看。
+
+1. 解壓對應平台的引擎包。
+2. 以 `-import-data 原版目錄或jsdos檔 -data game-data` 匯入合法資料。工具逐檔核對，只建立新目錄，不覆寫既有資料。
+3. Windows 執行 `Start.cmd`；Linux 執行 `Start.sh`；macOS 開啟 `Superfighter Remastered.app`。
+4. 按「開始／繼續」，再按「原貌／HD 畫面」切換。
+
+程式從封包旁的 `assets/hd/` 載入素材，並在使用者設定目錄由自己的原版資料建立背景參考。正式載入不依賴研究目錄、Python 或本機原型環境變數。
+
+目前本機八包位於 `dist-all/v.0.2.0-20261021/`：四個引擎包與四個含原版／原音的完整版。完整版只留本機，本輪未建立新 Release。原曲推廣片仍是 `dist-all/v.0.1.1-20261021/promo/` 的前版影片，沒有本次全部集中 HD，也不公開。交付內容、雜湊與平台限制見[發行契約](docs/spec/036-release-packages.md)。
+
+原音可用 `-import-audio OGG目錄` 匯入完整 55 段來源驗證包，或以 `-audio-assets` 指定。右下角「原音」控制靜音，未匯入時明示；準備工具與固定 Docker 音源見[音樂與語音評估](docs/audio-hd-assessment.md#本機準備與使用)。本機完整版會自動載入原音。
 
 ## 操作
 
@@ -233,12 +103,38 @@ bash tools/build_desktop.sh
 
 設定與可寫 DOS 資料存於作業系統的 `SuperfighterRemastered` 使用者設定目錄，可用 `-user-data` 改位置。原始資料維持唯讀。
 
+## 建置與執行
+
+共用主機的建置、測試與遊戲執行均在 Docker 內。需另行準備本專案 dosgolem 副本與固定工具鏈，入口見 [AGENTS](AGENTS.md)及[桌面規格](docs/spec/005-native-desktop.md)。儲存庫不附私有執行器來源、原版或快取；`go.work.example` 記錄相對配置。
+
+```sh
+bash tools/build_desktop.sh
+```
+
+此腳本在容器內建立四個中間二進位，輸出至 `workplace/bin/`：
+
+| 平台 | 檔案 |
+|---|---|
+| Linux x86-64 | `superfighter-linux-amd64` |
+| Windows x86-64 | `superfighter-windows-amd64.exe` |
+| macOS Intel | `superfighter-macos-amd64` |
+| macOS Apple Silicon | `superfighter-macos-arm64` |
+
+玩家在自己的電腦執行對應程式，以 `-data` 指定合法資料。例如 Windows：
+
+```powershell
+.\superfighter-windows-amd64.exe -data .\game-data
+```
+
+自訂素材可用 `-hd-assets` 指定已驗背景包、`-hd-characters` 指定角色包、`-hd-screens` 指定含 `screens.json` 的畫面素材目錄。舊版屋頂包仍可讀取。缺件或來源不符時回退原貌。
+
+玩家 ZIP 由 `tools/package_release.py` 建立。Linux／Wine 的執行收據與 macOS 的編譯、檔頭檢查分開記錄；Wine 不代表 Windows 真機，macOS 尚未簽章或作真機驗收。
+
 ## 文件
 
-- [工作契約與索引](AGENTS.md)、[目前狀態](CONTEXT.md)、[工作清單](WORKLIST.md)。
-- [驗證範圍](VERIFICATION-MATRIX.md)、[研究證據](RESEARCH-LOG.md)、[工作歷程](WORKLOG.md)。
-- [原生桌面規格](docs/spec/005-native-desktop.md)、[輸入證據](docs/spec/004-live-input-slice.md)、[手把草案](docs/spec/002-gamepad-design.md)。
-- [HD 規格](docs/spec/003-hd-design.md)、[屋頂背景](docs/spec/006-rooftop-background.md)、[角色](docs/spec/008-hd-characters.md)、[特效](docs/spec/009-hd-effects.md)、[戰鬥介面](docs/spec/010-hd-battle-hud.md)、[勝場](docs/spec/011-hd-win-markers.md)、[陰影](docs/spec/012-hd-shadows.md)、[顯示映射](docs/spec/015-native-scanout.md)、[勝負文字](docs/spec/016-hd-victory-messages.md)與[勝利姿態](docs/spec/017-victory-pose-banks.md)。完整動畫、其他勝負分支及其餘角色／場景／畫面仍在製作。
-- [青衫與 SP Moves 歷史保存](docs/game-history.md)。
+- [工作契約與索引](AGENTS.md)、[目前狀態](CONTEXT.md)、[工作清單](WORKLIST.md)、[工作歷程](WORKLOG.md)。
+- [驗證矩陣](VERIFICATION-MATRIX.md)、[研究證據](RESEARCH-LOG.md)、[集中 HD 規格](docs/spec/049-hd-batch-integration.md)。
+- [素材來源、提示詞與狀態](assets/hd/README.md)、[青衫與 SP Moves 歷史保存](docs/game-history.md)。
+- [鍵盤與快捷範圍](docs/spec/035-keyboard-bindings.md)、[魔王選角](docs/spec/025-boss-selection.md)、[音樂與語音評估](docs/audio-hd-assessment.md)。
 
 自有程式與文件採 [RRSAL-1.0](LICENSE)，為 source-available 專案。此授權不涵蓋原版遊戲、外站原文與圖片或衍生美術；玩家須自備合法原版。專案與原版權利人沒有隸屬關係。內嵌中文字型另依 [SIL Open Font License](internal/desktop/assets/OFL.txt) 使用。

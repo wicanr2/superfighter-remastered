@@ -12,7 +12,7 @@ import subprocess
 def compiled_inputs(project):
     paths = [project / name for name in ["go.mod", "go.sum", "go.work",
              "workplace/dosgolem-patched-manifest.json", "internal/desktop/assets/source.json",
-             "internal/desktop/assets/NotoSansCJKtc-Regular.otf", "VERSION", "internal/gamefiles/source-manifest.json"]]
+             "internal/desktop/assets/NotoSansCJKtc-Regular.otf", "VERSION", "internal/gamefiles/source-manifest.json", "internal/hd/background-sources.json", "internal/originalaudio/sources.json"]]
     paths += [path for directory in ("cmd", "internal") for path in sorted((project / directory).rglob("*.go"))
               if not path.name.endswith("_test.go")]
     return {str(path.relative_to(project)): hashlib.sha256(path.read_bytes()).hexdigest() for path in paths}

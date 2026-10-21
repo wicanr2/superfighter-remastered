@@ -1,0 +1,519 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "file": "SF000.MUS",
+      "sha256": "78af89020939bc7f2013f3869332aae1a67a2600c14ec7820146599e31cdaeda"
+    },
+    {
+      "file": "FIV-1.PPM",
+      "sha256": "029504f8e5c799cd4af29aa016ae8bd079bbab0aa4bbdf9d995595c7871d3611"
+    },
+    {
+      "file": "FIV-10.PPM",
+      "sha256": "c933f4716f0783ad2ca6a79a4583ea3d744332b654fcce999291b5de11ac05e3"
+    },
+    {
+      "file": "FIV-11.PPM",
+      "sha256": "ff5c5aaef676c5c0b7147eb9a5bd6894b70035c20f680955eecf24c5e08d2b09"
+    },
+    {
+      "file": "FIV-12.PPM",
+      "sha256": "745bd20bc1c0a5b496573b3220364436f0201c66a41432866a1192e87f6eb29e"
+    },
+    {
+      "file": "FIV-13.PPM",
+      "sha256": "6ed5bddbb6c9308c2b5ffe9574ee74a8c8920a3de0d3cb20d743ea9da275b23e"
+    },
+    {
+      "file": "FIV-14.PPM",
+      "sha256": "7d7d1bc560822f0c0088657985a2371b9cca25d510c2ae8ff3bb237368c3470f"
+    },
+    {
+      "file": "FIV-15.PPM",
+      "sha256": "dfc061ae28ecc6abd47d4617d62a6228d351b28c0a0f2dc97249b5fe5b6ed98e"
+    },
+    {
+      "file": "FIV-16.PPM",
+      "sha256": "b7129eccc81bba0e756727a0a881a575dcbbe56409efc996d59299610c10fbb8"
+    },
+    {
+      "file": "FIV-17.PPM",
+      "sha256": "c3d6bf5daf387f6a0628d8f87ab19ad87dc01dfa6287af1108a3fccb74ea457b"
+    },
+    {
+      "file": "FIV-18.PPM",
+      "sha256": "85daeae437b9505f2177518ef45615095dd6d448e1de6fc05bdf15b67ea78144"
+    },
+    {
+      "file": "FIV-19.PPM",
+      "sha256": "2f42c28c9ba8568d504b5157a57de507c4dc650e7af58db13e7466d320b72b88"
+    },
+    {
+      "file": "FIV-2.PPM",
+      "sha256": "7c151bd816b1ee17d91bc5deaa82a0bfa90ebe28fe0428d37ac8bc53a015b00a"
+    },
+    {
+      "file": "FIV-20.PPM",
+      "sha256": "303b8198f44f17dc9d6423954a64a29cdc77efd156505cb6aa47481786035a26"
+    },
+    {
+      "file": "FIV-3.PPM",
+      "sha256": "a8484c717e30883629d1c1843bbfa13b5d6149124011847924d51910bf8e874d"
+    },
+    {
+      "file": "FIV-4.PPM",
+      "sha256": "297a7680ad944f854056a4a6e9fec0329cda6ed72cb3e355f0a9961544b8c0d2"
+    },
+    {
+      "file": "FIV-5.PPM",
+      "sha256": "0b95e744b810d5ff99407b5842085b01970d808b64917d00046febfc67232753"
+    },
+    {
+      "file": "FIV-6.PPM",
+      "sha256": "af881bd070968c36e2f3949f33c926410cd32d7d407252ceeff429cad5273112"
+    }
+  ],
+  "clips": [
+    {
+      "id": "music-00",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 0,
+      "bytes": 18779,
+      "sha256": "ae79050010d48206d1e84b8e7a8a30ec665e30201c016d8b01fb77f14a0cfe9a"
+    },
+    {
+      "id": "music-01",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 18779,
+      "bytes": 8139,
+      "sha256": "5b5b891a14aaf83cc27f1361e8e724110d315a2a9c1c6e41d8f08bd7aef00d0d"
+    },
+    {
+      "id": "music-02",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 26918,
+      "bytes": 7976,
+      "sha256": "ac673369a459bd3b70a30a256e0069aa95303562c8a114643049f4882b65f024"
+    },
+    {
+      "id": "music-03",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 34894,
+      "bytes": 9149,
+      "sha256": "c022d58b86eb394a3ffd7b4c676e61a46042ef9540f63bb4c4f7be357da5a435"
+    },
+    {
+      "id": "music-04",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 44043,
+      "bytes": 14982,
+      "sha256": "c3629fe4fa6d10a3e5ab1ec7af96ce3d0a846851bd94bb077dc9ff2ce196b241"
+    },
+    {
+      "id": "music-05",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 59025,
+      "bytes": 4014,
+      "sha256": "44723f896732a93d67694004f3adbb870f63b0fc15e5592f49fa8f23c70b46e3"
+    },
+    {
+      "id": "music-06",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 63039,
+      "bytes": 14383,
+      "sha256": "116e5603b5af51186c8e8b68a4aa16ebf74d0e0c43c13f9817547ab8bf21f2ce"
+    },
+    {
+      "id": "music-07",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 77422,
+      "bytes": 11430,
+      "sha256": "8f0e33aded6670e234102a4d84fb9537b8a39c7c2372bf4dec103d57e0040284"
+    },
+    {
+      "id": "music-08",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 88852,
+      "bytes": 14444,
+      "sha256": "178b192ec5dcb63f4a080f62c87a6fdbb1d42a3a1c9a43c3870d0ccdb536e3bf"
+    },
+    {
+      "id": "music-09",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 103296,
+      "bytes": 10933,
+      "sha256": "df6b0bbe81e1a01307bac520a02f63c532653a85ff8a27a55b2f01e0362cab38"
+    },
+    {
+      "id": "music-10",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 114229,
+      "bytes": 11953,
+      "sha256": "956baadeeee3565a730ab39a07589fc4310e9d9e447b57d959ab3ab86570d99f"
+    },
+    {
+      "id": "music-11",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 126182,
+      "bytes": 15345,
+      "sha256": "69c7c6f082b1a1e663c94f9243cf051a968b5d115612b82439feaff5550e1056"
+    },
+    {
+      "id": "music-12",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 141527,
+      "bytes": 12649,
+      "sha256": "45caac8e4918c8b510d23a9ae35933105ed77539400bc8cff4a7438d44998ea8"
+    },
+    {
+      "id": "music-13",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 154176,
+      "bytes": 5689,
+      "sha256": "620a62eb77d7c1b9eed82363ebfe2f817b3242caf773cca14e6982bd65eb1351"
+    },
+    {
+      "id": "music-14",
+      "kind": "music",
+      "file": "SF000.MUS",
+      "offset": 159865,
+      "bytes": 12648,
+      "sha256": "a07cab4391c3717a497ef5ae7ae245256bb3fc3ee91460e7c02420a06a8b4cfe"
+    },
+    {
+      "id": "fiv-1-00",
+      "kind": "voice",
+      "file": "FIV-1.PPM",
+      "offset": 18,
+      "bytes": 539,
+      "sha256": "082c6b83cf2e740538f4e2dd754db25d868d160dc431e7f1f55eb7d4eba8b61e"
+    },
+    {
+      "id": "fiv-1-01",
+      "kind": "voice",
+      "file": "FIV-1.PPM",
+      "offset": 557,
+      "bytes": 1025,
+      "sha256": "fa8e5d95264ec896e58847c06ca65ca06c309d02a79c945bbd659aac0406e1a1"
+    },
+    {
+      "id": "fiv-1-02",
+      "kind": "voice",
+      "file": "FIV-1.PPM",
+      "offset": 1582,
+      "bytes": 793,
+      "sha256": "701513eacd5056d1501bf0bea71be23560babc417ddacac60f23e7762592d060"
+    },
+    {
+      "id": "fiv-1-03",
+      "kind": "voice",
+      "file": "FIV-1.PPM",
+      "offset": 2375,
+      "bytes": 1834,
+      "sha256": "25cd70f8020e2b288cfc7fa920a273ee4d0c79b4a451c41e81ba152e4f2091fd"
+    },
+    {
+      "id": "fiv-1-04",
+      "kind": "voice",
+      "file": "FIV-1.PPM",
+      "offset": 4209,
+      "bytes": 1359,
+      "sha256": "262d5388734ac4c591fe152136245f34938805946b4666065d32330980c544f5"
+    },
+    {
+      "id": "fiv-1-05",
+      "kind": "voice",
+      "file": "FIV-1.PPM",
+      "offset": 5568,
+      "bytes": 1297,
+      "sha256": "f0d9cccde4d40baec494cb5d32e48176abfa0d9b0bb274fd6f43c424534cac41"
+    },
+    {
+      "id": "fiv-1-06",
+      "kind": "voice",
+      "file": "FIV-1.PPM",
+      "offset": 6865,
+      "bytes": 1027,
+      "sha256": "a6463511e778ba645dc9ae5d70b2aca53ad954eed5bdd62cfa59364064b166d1"
+    },
+    {
+      "id": "fiv-1-07",
+      "kind": "voice",
+      "file": "FIV-1.PPM",
+      "offset": 7892,
+      "bytes": 3371,
+      "sha256": "e269b8fab29f998ca7f41750806dae3143ea33b85b77b34af83d040c8be2aa93"
+    },
+    {
+      "id": "fiv-1-08",
+      "kind": "voice",
+      "file": "FIV-1.PPM",
+      "offset": 11263,
+      "bytes": 4027,
+      "sha256": "1423db8a84b408fe7d196dae4353aeb02ffc5060589984e24b12c31b8371ad73"
+    },
+    {
+      "id": "fiv-10-00",
+      "kind": "voice",
+      "file": "FIV-10.PPM",
+      "offset": 2,
+      "bytes": 2478,
+      "sha256": "490cbcd1fc5efdba218106ea808b25f6abb70ff862d2f2ec0f0577a547f20d76"
+    },
+    {
+      "id": "fiv-11-00",
+      "kind": "voice",
+      "file": "FIV-11.PPM",
+      "offset": 2,
+      "bytes": 1359,
+      "sha256": "31ff90eda33c867192eb03d6dcb69832d1891ba102f533f63e58ccd2008f1109"
+    },
+    {
+      "id": "fiv-12-00",
+      "kind": "voice",
+      "file": "FIV-12.PPM",
+      "offset": 2,
+      "bytes": 745,
+      "sha256": "19c228860b272b2cb4c4802976ecde4e7e264e4da55f0c8d8a7ddc531bd73a62"
+    },
+    {
+      "id": "fiv-13-00",
+      "kind": "voice",
+      "file": "FIV-13.PPM",
+      "offset": 2,
+      "bytes": 2567,
+      "sha256": "b085cdbc6b633f308826721229e962fce61c516726da4eb2ad3ef5aaca895fe7"
+    },
+    {
+      "id": "fiv-14-00",
+      "kind": "voice",
+      "file": "FIV-14.PPM",
+      "offset": 2,
+      "bytes": 5073,
+      "sha256": "de8ceb66176a10e73469f30b5cef947f362db7af60c9c25140923da4a324fda3"
+    },
+    {
+      "id": "fiv-15-00",
+      "kind": "voice",
+      "file": "FIV-15.PPM",
+      "offset": 2,
+      "bytes": 1671,
+      "sha256": "84fa45c685b7bbbd7f1b17c28c541e2d060c5513fba58b316c7bdda8419aec91"
+    },
+    {
+      "id": "fiv-16-00",
+      "kind": "voice",
+      "file": "FIV-16.PPM",
+      "offset": 2,
+      "bytes": 2129,
+      "sha256": "f1892124990d65834b025ff8048e03603e4c7a7af00c3195229ac89d42f1fde6"
+    },
+    {
+      "id": "fiv-17-00",
+      "kind": "voice",
+      "file": "FIV-17.PPM",
+      "offset": 2,
+      "bytes": 1784,
+      "sha256": "4582dc04bb69025bfd65dd765d2f43dcf052355e934c66a71f4f84049334b847"
+    },
+    {
+      "id": "fiv-18-00",
+      "kind": "voice",
+      "file": "FIV-18.PPM",
+      "offset": 2,
+      "bytes": 878,
+      "sha256": "d2c94f248e87b2c6086ad7303fc0c604cc42742764f3c9354b4969a08aea030a"
+    },
+    {
+      "id": "fiv-19-00",
+      "kind": "voice",
+      "file": "FIV-19.PPM",
+      "offset": 2,
+      "bytes": 2959,
+      "sha256": "694b15927877438e0b95d4ebee3e99021c33fbacf45949285a495af625e1825f"
+    },
+    {
+      "id": "fiv-2-00",
+      "kind": "voice",
+      "file": "FIV-2.PPM",
+      "offset": 22,
+      "bytes": 1592,
+      "sha256": "bd6ffa8fd07852772a7c588dd5495fd8dfe10b85c6c801e3babb9cd7a6704a39"
+    },
+    {
+      "id": "fiv-2-01",
+      "kind": "voice",
+      "file": "FIV-2.PPM",
+      "offset": 1614,
+      "bytes": 1454,
+      "sha256": "587b4eae8a61072e5d8e70d00aff54c0c98547397936a14f2259daaecdd192df"
+    },
+    {
+      "id": "fiv-2-02",
+      "kind": "voice",
+      "file": "FIV-2.PPM",
+      "offset": 3068,
+      "bytes": 1615,
+      "sha256": "3075fcd05e3a84cb69b75396e5b191e46a6087eb1be8c03f6d97e5a30c017909"
+    },
+    {
+      "id": "fiv-2-03",
+      "kind": "voice",
+      "file": "FIV-2.PPM",
+      "offset": 4683,
+      "bytes": 1627,
+      "sha256": "9a5fa3adc15c71bac7cd3e9bc842b69db162b2bf9ba072db8ed459346427076e"
+    },
+    {
+      "id": "fiv-2-04",
+      "kind": "voice",
+      "file": "FIV-2.PPM",
+      "offset": 6310,
+      "bytes": 1801,
+      "sha256": "8baa7bfd0cb4bfe998fc1f35e97e93f18be26dbc8d6dcc89c199c935c1cad2e2"
+    },
+    {
+      "id": "fiv-2-05",
+      "kind": "voice",
+      "file": "FIV-2.PPM",
+      "offset": 8111,
+      "bytes": 2016,
+      "sha256": "70590daedb7a6628fefd19841a52e4b51a5e2f9b271066d608d7d948ac1c5462"
+    },
+    {
+      "id": "fiv-2-06",
+      "kind": "voice",
+      "file": "FIV-2.PPM",
+      "offset": 10127,
+      "bytes": 1953,
+      "sha256": "7dfc6ad1501892240a79c4290371944f9c2bfca7f6f0c5815c46cc003a491cf1"
+    },
+    {
+      "id": "fiv-2-07",
+      "kind": "voice",
+      "file": "FIV-2.PPM",
+      "offset": 12080,
+      "bytes": 2554,
+      "sha256": "6c296a141ddbd9153f5880161f2d4eea45ca6ccbdc43498cb6610050c7f1c0a5"
+    },
+    {
+      "id": "fiv-2-08",
+      "kind": "voice",
+      "file": "FIV-2.PPM",
+      "offset": 14634,
+      "bytes": 1841,
+      "sha256": "ae6621e68d73a9259a41cc8ecb9d65ac43e3db88e16eef4ec542a27800b7885e"
+    },
+    {
+      "id": "fiv-2-09",
+      "kind": "voice",
+      "file": "FIV-2.PPM",
+      "offset": 16475,
+      "bytes": 2668,
+      "sha256": "f9b5f1484a312135d4a3bb5724974804301308cea57f49ebe4b843ca53936651"
+    },
+    {
+      "id": "fiv-2-10",
+      "kind": "voice",
+      "file": "FIV-2.PPM",
+      "offset": 19143,
+      "bytes": 1521,
+      "sha256": "b547e6f6267544b169ab676769591cd3bc0bb6f96defcebd3744dcf1da84a1bf"
+    },
+    {
+      "id": "fiv-20-00",
+      "kind": "voice",
+      "file": "FIV-20.PPM",
+      "offset": 2,
+      "bytes": 2402,
+      "sha256": "634624c7ceb0a8aa7118384e8d54ba3bf9311206dc629da2db8ccdeadf2b608c"
+    },
+    {
+      "id": "fiv-3-00",
+      "kind": "voice",
+      "file": "FIV-3.PPM",
+      "offset": 6,
+      "bytes": 5781,
+      "sha256": "9c5d25ed6864f9b27ce60c2e8d3a56940f8279e508d01708272ed40d37e1f5e1"
+    },
+    {
+      "id": "fiv-3-01",
+      "kind": "voice",
+      "file": "FIV-3.PPM",
+      "offset": 5787,
+      "bytes": 1359,
+      "sha256": "31ff90eda33c867192eb03d6dcb69832d1891ba102f533f63e58ccd2008f1109"
+    },
+    {
+      "id": "fiv-3-02",
+      "kind": "voice",
+      "file": "FIV-3.PPM",
+      "offset": 7146,
+      "bytes": 1937,
+      "sha256": "d4ccf9e5b39f7753a3e80c7efd8215bec646f6ce82563b8d31fc80dd9458f3e7"
+    },
+    {
+      "id": "fiv-4-00",
+      "kind": "voice",
+      "file": "FIV-4.PPM",
+      "offset": 4,
+      "bytes": 467,
+      "sha256": "b2bc7f06a5f6dde8cfb883706225d8708d3c287aefa5faa4c817fff6068d8beb"
+    },
+    {
+      "id": "fiv-4-01",
+      "kind": "voice",
+      "file": "FIV-4.PPM",
+      "offset": 471,
+      "bytes": 4896,
+      "sha256": "3ef96a5841ccd6188feeb4d65888f57853fa976c9f6fcaa98572e8d8838b63d5"
+    },
+    {
+      "id": "fiv-5-00",
+      "kind": "voice",
+      "file": "FIV-5.PPM",
+      "offset": 6,
+      "bytes": 4123,
+      "sha256": "ea32b05081d0e5fa845d83144639b67563f30ac6c643ca13018e113d57b6f26a"
+    },
+    {
+      "id": "fiv-5-01",
+      "kind": "voice",
+      "file": "FIV-5.PPM",
+      "offset": 4129,
+      "bytes": 1515,
+      "sha256": "784b49dcaa3c78f05fe006c624264643af3333f8208f5b8c523949f1436e45c8"
+    },
+    {
+      "id": "fiv-5-02",
+      "kind": "voice",
+      "file": "FIV-5.PPM",
+      "offset": 5644,
+      "bytes": 830,
+      "sha256": "cb802770df842e53e70e63bdf4f4f9102eb4f353f7c131d8429b8e88424e9d81"
+    },
+    {
+      "id": "fiv-6-00",
+      "kind": "voice",
+      "file": "FIV-6.PPM",
+      "offset": 2,
+      "bytes": 258,
+      "sha256": "e16d54f2fbf02ccbfb42af5f86cdaecd90456c07e88416385c4b3fbd2290f349"
+    }
+  ]
+}

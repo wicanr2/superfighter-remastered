@@ -1,0 +1,123 @@
+[
+  {
+    "scene": 0,
+    "source": "I5.XGB",
+    "source_sha256": "44d8adf7662c46396092581175fd0b85ca7179b9f99fe9c66b680f0ff50a9b61",
+    "reference_sha256": "71c366851b72c14b1871906a42f8746fead325a26e4ee25a166b5232fb02c3ae",
+    "palette_sha256": "193f821d6f3722b8731404624325e6b42eeb9fbd3858376bf9b8956bb72c564d",
+    "image_file": "candidates/dojo.png",
+    "image_sha256": "68a8e64e6e4dc47e61fa52f43e78471a855f6a86e2e8913ba92f13439a3db11b",
+    "image_width": 1922,
+    "image_height": 818
+  },
+  {
+    "scene": 1,
+    "source": "I12.XGB",
+    "source_sha256": "ba316de10c5400859c773c55c3d92e06c1a71fa29312c26619f0f9428bd8ef45",
+    "reference_sha256": "ff4b580305e7dea84a8c098fc6649eeebf81060f2252c0317e940b97330dc395",
+    "palette_sha256": "b229254c4f6a1a92789c0b09d679bd191099ed64d37cba78fb0ac57f5269f07a",
+    "image_file": "candidates/icefield-i12.png",
+    "image_sha256": "380118d022af44422ef0846288ca62ef67f60a9ed47af95e95b3a2a77c1ddb28",
+    "image_width": 1923,
+    "image_height": 817
+  },
+  {
+    "scene": 2,
+    "source": "I4.XGB",
+    "source_sha256": "fa8fcd79b70f030a3fff0cae6106fe0fc915fb02da0eaa6dfaf7250235d7fc7b",
+    "reference_sha256": "ba73fbeb64a438fffbaf22f699de4b6d816078f417314547b3423b31b957df09",
+    "palette_sha256": "8d68a55a2af1dc4764bff9382fb3da2e7b594de7f09aa30bc3f92a55061cbbd2",
+    "image_file": "candidates/street-i4-v2.png",
+    "image_sha256": "a44e25713aeced5017d05bbbaad2613fb46674695290d9b8f6ef37c8a425b6bd",
+    "image_width": 1922,
+    "image_height": 818
+  },
+  {
+    "scene": 3,
+    "source": "I7.XGB",
+    "source_sha256": "2c39a97a2d0c14b9984f5a3c8ffa24e2b7f6f04049f76343502c753007ad5836",
+    "reference_sha256": "e451cc27a97bf102dddc73ee888050f03437c1bbb89d6fac59d3733ea023ee7b",
+    "palette_sha256": "b64a1acb60ca38b70dab27faf6a9f0a3bcc323c7bf041fdcb454290aad4a076c",
+    "image_file": "candidates/palace-i7.png",
+    "image_sha256": "89293e14b004f4c27b47fca83ea04dfcf21e775ecfe7ead785e2777e39945440",
+    "image_width": 1922,
+    "image_height": 818
+  },
+  {
+    "scene": 4,
+    "source": "I2.XGB",
+    "source_sha256": "81e45c775c79f1dc13f587a63d4bbeb854b9cf9ae8198621c03f6a313ee92e16",
+    "reference_sha256": "eb1207239c06a0e06cd9ecbb697b4cf7e1421c4dd3e6e2a6794774246eafeb15",
+    "palette_sha256": "57aa9f63fe5372026b80f6bab849e52f627ecb0ac5c05c0cad574d13af42ec3c",
+    "image_file": "backgrounds/rooftop.png",
+    "image_sha256": "b43472c099a5b11f9732c19a9bc20078f14a0a1a17e020806b5c4e5dcc06d905",
+    "image_width": 1923,
+    "image_height": 818
+  },
+  {
+    "scene": 5,
+    "source": "I3.XGB",
+    "source_sha256": "58819f1db7fac5297698298159796a95a239458e8208b256e6285f5446608567",
+    "reference_sha256": "66537ea0aa30e791ee47a85947538fe692f827023eff86e7f700fdec76f1e8c0",
+    "palette_sha256": "488a8dd3b23af81239562bfd5a2602839342a8df10549680e54a2d9bfd4949ca",
+    "image_file": "candidates/jungle-i3.png",
+    "image_sha256": "ce369d95777e9c8628b45cd5d276edd2e8f4145c2d7b69a2b472ed31c987dc67",
+    "image_width": 1922,
+    "image_height": 818
+  },
+  {
+    "scene": 6,
+    "source": "I10.XGB",
+    "source_sha256": "b79e145bfa34fa05420e72752d2012eb2c4e5260149092c8f1c3a05100be5228",
+    "reference_sha256": "86582454b66b9a55719aaa0b13ea13c641ba437fea5ea9d7429c52caacaac0e1",
+    "palette_sha256": "b059a11076c33deef4d5a8a8de85e3aa9f92df26531059df1e5021b921520565",
+    "image_file": "candidates/grotto-i10-v2.png",
+    "image_sha256": "7a6278474d17ee5e0b842675b094f929a6964206fcb723deb8a2a67e4a780b17",
+    "image_width": 1922,
+    "image_height": 818
+  },
+  {
+    "scene": 7,
+    "source": "I9.XGB",
+    "source_sha256": "b27d6582c71827cd8575fbf144c083a84a36a9063db0c5ed1f3a62b71e879d37",
+    "reference_sha256": "ac851cbe90b4ebfcc4fe93068151179ff3659745334514f978dfe2340190206d",
+    "palette_sha256": "198f7e1c6d0f0055a4145a20a199edd1cc1d84e373bb2ec879cf405a04994833",
+    "image_file": "candidates/harbor-i9.png",
+    "image_sha256": "050e181f8d1b9a6f2baa74e048ac778918cbc670c7069d00dc91a69ca79faaa4",
+    "image_width": 1922,
+    "image_height": 818
+  },
+  {
+    "scene": 8,
+    "source": "I8.XGB",
+    "source_sha256": "3d3f521e3cc56f9c90ae5b287b31fe7fdeb0fae9f62dd66a8fd7b0a344905f4b",
+    "reference_sha256": "16613e612db53f24bf0c10ffdcc01b46eec847b51b61a196dd7a237ae6e80e24",
+    "palette_sha256": "8b72c1db78a3cc5447671a18b5cf801bd4822d62dea2c36bb42c38603edd0f1a",
+    "image_file": "candidates/auditorium-i8-v2.png",
+    "image_sha256": "7970244c1bb218ec824fedc7d4e1ead5b9eb460f9b58f89bb640165bd282856d",
+    "image_width": 1920,
+    "image_height": 819
+  },
+  {
+    "scene": 9,
+    "source": "I1.XGB",
+    "source_sha256": "28971dd27aaed3596b1c1a94df88d41b6b39093554f2cd12319a65dbbf3ee29b",
+    "reference_sha256": "3de1c2cfe037eb458b38206b5bf58b3c5fcdf4ef192a02aec65d87f80c22a40d",
+    "palette_sha256": "4c994a5a8dda38400de8bf8efa57fe24da903b71badf0e2f958e5cf524be8166",
+    "image_file": "candidates/hall-i1.png",
+    "image_sha256": "7f733da6ee5d4dc634fc3a2d610ff9c6627eb9bac76871b1eb9e75489b0ee931",
+    "image_width": 1923,
+    "image_height": 817
+  },
+  {
+    "scene": 10,
+    "source": "I13.XGB",
+    "source_sha256": "a6638b131ce5cfe0a12f34d779f18de4f997959ffe5d50ecec3711fef7a0efea",
+    "reference_sha256": "a224898906207b13852d37bbdd9a9c5379b08f81d1264ff5ff610c6f19fc15f4",
+    "palette_sha256": "8a32be98c9e0adbd9cf40bd5b7adc1aa548358e444429789a80565870bc8a916",
+    "image_file": "candidates/train-i13.png",
+    "image_sha256": "67442ba23f2848a1b51d1dcbefa346dc3126d1b377947b625597a4af3101fe62",
+    "image_width": 1923,
+    "image_height": 818
+  }
+]

@@ -1,0 +1,165 @@
+// 049: continuation panel; original DOS handles selection and confirmation.
+package desktop
+
+import (
+	"bytes"
+	"image"
+	"image/color"
+
+	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/vector"
+)
+
+type resultContinueReferences struct {
+	Panel    resultRaster
+	Indices  []byte
+	Outlines [2][4]int
+	Colours  [][3]byte
+	Erase    [3]byte
+}
+type resultContinueState struct {
+	Selected       int     `json:"selected"`
+	Highlight      [3]byte `json:"highlight_rgb"`
+	InactiveErased bool    `json:"inactive_erased"`
+	IndicesSHA     string  `json:"original_indices_sha256"`
+}
+
+func resultBorderPoints(box [4]int) [][2]int {
+	points := make([][2]int, 0, 128)
+	for x := box[0]; x <= box[2]; x++ {
+		points = append(points, [2]int{x, box[1]}, [2]int{x, box[3]})
+	}
+	for y := box[1] + 1; y < box[3]; y++ {
+		points = append(points, [2]int{box[0], y}, [2]int{box[2], y})
+	}
+	return points
+}
+func (a *resultHDAssets) identifyContinueResult(rgb, indices []byte, palette [256][3]byte) *resultHDState {
+	if len(rgb) != 192000 || len(indices) != 64000 {
+		return nil
+	}
+	r := a.refs.Continue
+	colour := palette[241]
+	valid := false
+	for _, candidate := range r.Colours {
+		if candidate == colour {
+			valid = true
+		}
+	}
+	if !valid || palette[240] != r.Erase {
+		return nil
+	}
+	selected := -1
+	for side, box := range r.Outlines {
+		same := true
+		for _, p := range resultBorderPoints(box) {
+			if indices[p[1]*320+p[0]] != 241 {
+				same = false
+				break
+			}
+		}
+		if same {
+			if selected >= 0 {
+				return nil
+			}
+			selected = side
+		}
+	}
+	if selected < 0 {
+		return nil
+	}
+	inactive := resultBorderPoints(r.Outlines[1-selected])
+	erased, original := true, true
+	for _, p := range inactive {
+		value := indices[p[1]*320+p[0]]
+		if value != 240 {
+			erased = false
+		}
+		if value != r.Indices[(p[1]-134)*129+p[0]-96] {
+			original = false
+		}
+	}
+	if !erased && !original {
+		return nil
+	}
+	borders := map[int]bool{}
+	for _, box := range r.Outlines {
+		for _, p := range resultBorderPoints(box) {
+			borders[p[1]*320+p[0]] = true
+		}
+	}
+	for y := 0; y < 57; y++ {
+		for x := 0; x < 129; x++ {
+			at := (y+134)*320 + x + 96
+			if !borders[at] && indices[at] != r.Indices[y*129+x] {
+				return nil
+			}
+		}
+	}
+	left, right := resultMatch(rgb, a.refs.Left, 18, 34, 89, 89), resultMatch(rgb, a.refs.Right, 214, 34, 89, 89)
+	if left < 11 || right < 11 {
+		return nil
+	}
+	flags := [2]int{resultMatch(rgb, a.refs.Flags, 30, 154, 65, 33), resultMatch(rgb, a.refs.Flags, 226, 154, 65, 33)}
+	if flags[0] < 0 || flags[1] < 0 {
+		return nil
+	}
+	characters := [2]int{left % 11, right % 11}
+	positions := [2]int{63 - a.refs.Names[characters[0]].Width/2, 259 - a.refs.Names[characters[1]].Width/2}
+	found := -1
+	for outcome, picture := range a.refs.Outcomes {
+		expected := append([]byte(nil), a.refs.Paper...)
+		resultStamp(expected, a.refs.Left[left], 18, 34)
+		resultStamp(expected, a.refs.Right[right], 214, 34)
+		resultStamp(expected, picture, 128, 15)
+		resultStamp(expected, a.refs.Flags[flags[0]], 30, 154)
+		resultStamp(expected, a.refs.Flags[flags[1]], 226, 154)
+		for side, ch := range characters {
+			resultStamp(expected, a.refs.Names[ch], positions[side], 134)
+		}
+		resultStamp(expected, r.Panel, 96, 134)
+		for _, p := range resultBorderPoints(r.Outlines[selected]) {
+			copy(expected[(p[1]*320+p[0])*3:], colour[:])
+		}
+		if erased {
+			for _, p := range inactive {
+				copy(expected[(p[1]*320+p[0])*3:], r.Erase[:])
+			}
+		}
+		if bytes.Equal(expected, rgb) {
+			if found >= 0 {
+				return nil
+			}
+			found = outcome
+		}
+	}
+	if found < 0 {
+		return nil
+	}
+	return &resultHDState{Characters: characters, Winner: 1, Outcome: found, Flags: flags, NamePositions: positions,
+		OriginalSHA: resultDigest(rgb), Continue: &resultContinueState{Selected: selected, Highlight: colour, InactiveErased: erased, IndicesSHA: resultDigest(indices)}}
+}
+
+func (g *Game) drawContinueHD(dst *ebiten.Image, s *resultContinueState) {
+	if s == nil {
+		return
+	}
+	x, y := float32(g.activeRect.Min.X+96*3), float32(g.activeRect.Min.Y+134*3)
+	// New opaque vector panel and modern font. Source pixels are used only for identification.
+	vector.DrawFilledRect(dst, x, y, 129*3, 57*3, color.RGBA{71, 39, 12, 255}, false)
+	vector.DrawFilledRect(dst, x+3, y+3, 129*3-6, 57*3-6, color.RGBA{177, 111, 25, 255}, false)
+	vector.StrokeRect(dst, x+7, y+7, 129*3-14, 57*3-14, 2, color.RGBA{245, 218, 130, 255}, true)
+	for side, label := range [2]string{"再戰", "放棄"} {
+		b := g.resultHD.refs.Continue.Outlines[side]
+		left, top := float32(g.activeRect.Min.X+b[0]*3), float32(g.activeRect.Min.Y+b[1]*3)
+		w, h := float32((b[2]-b[0])*3), float32((b[3]-b[1])*3)
+		vector.DrawFilledRect(dst, left, top, w, h, color.RGBA{224, 174, 65, 255}, false)
+		c := color.RGBA{97, 58, 12, 255}
+		if side == s.Selected {
+			c = color.RGBA{s.Highlight[0], s.Highlight[1], s.Highlight[2], 255}
+		}
+		vector.StrokeRect(dst, left, top, w, h, 3, c, true)
+		box := image.Rect(int(left)+4, int(top)+4, int(left+w)-4, int(top+h)-4)
+		g.resultText(dst, label, box, 45, true)
+	}
+}

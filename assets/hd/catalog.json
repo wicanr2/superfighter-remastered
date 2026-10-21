@@ -8,12 +8,12 @@
     "scope": "generated HD PNG and mapping metadata only; not original game data or release"
   },
   "characters": {
-    "atlases": 74,
-    "registered_keys": 1516,
-    "sources": 21,
+    "atlases": 78,
+    "registered_keys": 1630,
+    "sources": 22,
     "complete_HD": false
   },
-  "pngs": 137,
+  "pngs": 145,
   "files": [
     {
       "file": "characters/jaan-poses-00.png",
@@ -797,9 +797,9 @@
     },
     {
       "file": "characters/manifest.json",
-      "sha256": "164eef46667563bed1d239a2af113f95f47e7a8831f98f82ffe97e3fc13adb20",
-      "bytes": 530039,
-      "status": "current-character-mapping",
+      "sha256": "9e3091c05e2f1fe0f798639134870e8ae58ae12a506ddb3a1a5099003737a473",
+      "bytes": 571198,
+      "status": "049 runtime mapping metadata",
       "copied_from": "workplace/hd-characters-remaining-effects-v1/manifest.json",
       "generated_source": "workplace/hd-characters-spider-low-guard-v1/manifest.json"
     },
@@ -807,7 +807,7 @@
       "file": "backgrounds/rooftop.png",
       "sha256": "b43472c099a5b11f9732c19a9bc20078f14a0a1a17e020806b5c4e5dcc06d905",
       "bytes": 2340710,
-      "status": "integrated-background",
+      "status": "049 integrated scene image; artistic approximation",
       "copied_from": "workplace/hd-layers/rooftop-layer.png",
       "generated_source": "workplace/hd-layers/rooftop-layer.png",
       "size": [
@@ -820,7 +820,7 @@
       "file": "candidates/dojo.png",
       "sha256": "68a8e64e6e4dc47e61fa52f43e78471a855f6a86e2e8913ba92f13439a3db11b",
       "bytes": 2628825,
-      "status": "candidate-background",
+      "status": "049 integrated scene image; artistic approximation",
       "copied_from": "workplace/dojo-art-v1/dojo.png",
       "generated_source": "workplace/dojo-art-v1/dojo.png",
       "size": [
@@ -1144,7 +1144,7 @@
       "file": "candidates/hall-i1.png",
       "sha256": "7f733da6ee5d4dc634fc3a2d610ff9c6627eb9bac76871b1eb9e75489b0ee931",
       "bytes": 2479324,
-      "status": "generated-background-candidate",
+      "status": "049 integrated scene image; artistic approximation",
       "size": [
         1923,
         817
@@ -1155,7 +1155,7 @@
       "file": "candidates/jungle-i3.png",
       "sha256": "ce369d95777e9c8628b45cd5d276edd2e8f4145c2d7b69a2b472ed31c987dc67",
       "bytes": 2973824,
-      "status": "generated-background-candidate",
+      "status": "049 integrated scene image; artistic approximation",
       "size": [
         1922,
         818
@@ -1177,7 +1177,7 @@
       "file": "candidates/palace-i7.png",
       "sha256": "89293e14b004f4c27b47fca83ea04dfcf21e775ecfe7ead785e2777e39945440",
       "bytes": 2802174,
-      "status": "generated-background-candidate",
+      "status": "049 integrated scene image; artistic approximation",
       "size": [
         1922,
         818
@@ -1199,7 +1199,7 @@
       "file": "candidates/harbor-i9.png",
       "sha256": "050e181f8d1b9a6f2baa74e048ac778918cbc670c7069d00dc91a69ca79faaa4",
       "bytes": 2922848,
-      "status": "generated-background-candidate",
+      "status": "049 integrated scene image; artistic approximation",
       "size": [
         1922,
         818
@@ -1221,7 +1221,7 @@
       "file": "candidates/icefield-i12.png",
       "sha256": "380118d022af44422ef0846288ca62ef67f60a9ed47af95e95b3a2a77c1ddb28",
       "bytes": 1985709,
-      "status": "generated-background-candidate",
+      "status": "049 integrated scene image; artistic approximation",
       "size": [
         1923,
         817
@@ -1232,7 +1232,7 @@
       "file": "candidates/train-i13.png",
       "sha256": "67442ba23f2848a1b51d1dcbefa346dc3126d1b377947b625597a4af3101fe62",
       "bytes": 2091680,
-      "status": "generated-background-candidate",
+      "status": "049 integrated scene image; artistic approximation",
       "size": [
         1923,
         818
@@ -1267,7 +1267,7 @@
         1922,
         818
       ],
-      "status": "candidate-revision-not-integrated",
+      "status": "049 integrated scene image; artistic approximation",
       "tool": "built-in imagegen",
       "generated_source": "exec-a8581cf2-2987-41df-891b-95b8a1110451.png",
       "source_file": "I10.XGB"
@@ -1280,7 +1280,7 @@
         1920,
         819
       ],
-      "status": "candidate-revision-not-integrated",
+      "status": "049 integrated scene image; artistic approximation",
       "tool": "built-in imagegen",
       "generated_source": "exec-eae82eed-a02f-4b28-a4d8-acc481b09b39.png",
       "source_file": "I8.XGB"
@@ -1405,7 +1405,7 @@
         1586,
         992
       ],
-      "status": "title-candidate-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "generated_source": "exec-51307258-7b67-4743-bac2-cee1f0b865a6.png",
       "source_file": "TITLE.CPM"
@@ -1418,7 +1418,7 @@
         1983,
         793
       ],
-      "status": "title-candidate-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "generated_source": "exec-cd4304fc-496c-47f7-bcc1-9226e4f1ef7d.png",
       "source_file": "SFNAME.CPM"
@@ -1437,7 +1437,7 @@
         1922,
         818
       ],
-      "status": "candidate-revision-not-integrated",
+      "status": "049 integrated scene image; artistic approximation",
       "tool": "built-in imagegen",
       "generated_source": "exec-ee6452dd-b68e-4fb5-a9e8-ec790f40d98f.png",
       "source_file": "I4.XGB"
@@ -1456,7 +1456,7 @@
         1254,
         1254
       ],
-      "status": "candidate-selection-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "source_file": "BIGFIG.XBB",
       "character": "jaan",
@@ -1470,7 +1470,7 @@
         1254,
         1254
       ],
-      "status": "candidate-selection-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "source_file": "BIGFIG.XBB",
       "character": "sarkov",
@@ -1484,7 +1484,7 @@
         1254,
         1254
       ],
-      "status": "candidate-selection-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "source_file": "BIGFIG.XBB",
       "character": "bullet",
@@ -1498,7 +1498,7 @@
         1254,
         1254
       ],
-      "status": "candidate-selection-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "source_file": "BIGFIG.XBB",
       "character": "phoenix",
@@ -1512,7 +1512,7 @@
         1254,
         1254
       ],
-      "status": "candidate-selection-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "source_file": "BIGFIG.XBB",
       "character": "frank",
@@ -1526,7 +1526,7 @@
         1254,
         1254
       ],
-      "status": "candidate-selection-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "source_file": "BIGFIG.XBB",
       "character": "onimaru",
@@ -1540,7 +1540,7 @@
         1254,
         1254
       ],
-      "status": "candidate-selection-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "source_file": "BIGFIG.XBB",
       "character": "lan",
@@ -1554,7 +1554,7 @@
         1254,
         1254
       ],
-      "status": "candidate-selection-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "source_file": "BIGFIG.XBB",
       "character": "kim",
@@ -1568,7 +1568,7 @@
         1254,
         1254
       ],
-      "status": "candidate-selection-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "source_file": "BIGFIG.XBB",
       "character": "spider",
@@ -1582,7 +1582,7 @@
         1254,
         1254
       ],
-      "status": "candidate-selection-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "source_file": "BIGFIG.XBB",
       "character": "clown",
@@ -1596,7 +1596,7 @@
         1254,
         1254
       ],
-      "status": "candidate-selection-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "source_file": "BIGFIG.XBB",
       "character": "joe",
@@ -1612,7 +1612,7 @@
       "file": "candidates/selection-vs-v1.png",
       "sha256": "d2c6d87328e41df73bb7cf7c03c82942390199be6efe965d3a87f9b8700c5c02",
       "bytes": 1368625,
-      "status": "candidate-selection-vs-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "size": [
         1589,
         990
@@ -1634,7 +1634,7 @@
       ],
       "sha256": "74406265d48c446deac7fef2c7f2c300f8fafaa0a08a53805781b4b45a4f00d6",
       "bytes": 2463986,
-      "status": "candidate-result-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "generated_source": "exec-e03eef52-e8ea-412d-b05f-f74de2379e64.png"
     },
@@ -1646,7 +1646,7 @@
       ],
       "sha256": "a56c4244a390f0c2155f963e2fca923444abd102fb0bd7217eb8a6890fc1aa37",
       "bytes": 2615633,
-      "status": "candidate-result-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "tool": "built-in imagegen",
       "generated_source": "exec-25f27176-f5e1-4f54-8404-334d99538348.png"
     },
@@ -1666,7 +1666,7 @@
       ],
       "character": "jaan",
       "tool": "built-in imagegen",
-      "status": "candidate-result-loser-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "generated_source": "exec-76b3099e-0792-4d9d-957b-1de44b066d47.png"
     },
     {
@@ -1679,7 +1679,7 @@
       ],
       "character": "sarkov",
       "tool": "built-in imagegen",
-      "status": "candidate-result-loser-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "generated_source": "exec-43433f25-673c-404a-833f-ad8cdc5fe04b.png"
     },
     {
@@ -1692,7 +1692,7 @@
       ],
       "character": "bullet",
       "tool": "built-in imagegen",
-      "status": "candidate-result-loser-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "generated_source": "exec-db924a6b-bd24-46f2-bda9-9f4b9cefd46c.png"
     },
     {
@@ -1705,7 +1705,7 @@
       ],
       "character": "phoenix",
       "tool": "built-in imagegen",
-      "status": "candidate-result-loser-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "generated_source": "exec-60e6c4ba-8e38-4c02-8f88-f8db8f515a96.png"
     },
     {
@@ -1718,7 +1718,7 @@
       ],
       "character": "onimaru",
       "tool": "built-in imagegen",
-      "status": "candidate-result-loser-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "generated_source": "exec-b3ba60c1-d67b-4cca-81e8-0ca3367705ef.png"
     },
     {
@@ -1731,7 +1731,7 @@
       ],
       "character": "lan",
       "tool": "built-in imagegen",
-      "status": "candidate-result-loser-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "generated_source": "exec-51477e38-a902-4cf6-969b-909b249430ca.png"
     },
     {
@@ -1744,7 +1744,7 @@
       ],
       "character": "kim",
       "tool": "built-in imagegen",
-      "status": "candidate-result-loser-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "generated_source": "exec-c9758cb1-bb6f-44a2-9489-02c20913fbcc.png"
     },
     {
@@ -1757,7 +1757,7 @@
       ],
       "character": "spider",
       "tool": "built-in imagegen",
-      "status": "candidate-result-loser-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "generated_source": "exec-680558cc-165a-4b98-a85d-005dd7e01067.png"
     },
     {
@@ -1770,7 +1770,7 @@
       ],
       "character": "clown",
       "tool": "built-in imagegen",
-      "status": "candidate-result-loser-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "generated_source": "exec-7104d304-0761-4a40-8254-27906b31cf9a.png"
     },
     {
@@ -1783,7 +1783,7 @@
       ],
       "character": "joe",
       "tool": "built-in imagegen",
-      "status": "candidate-result-loser-portrait-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "generated_source": "exec-c8d6ceff-15b9-4111-8fd4-2a3405261c0c.png"
     },
     {
@@ -1796,7 +1796,7 @@
       "file": "candidates/result-flag-00-v1.png",
       "sha256": "d576a1d1e2a9c182c06a096e66e56792e752cee2af293f3adc2456e7b2672e98",
       "bytes": 17803,
-      "status": "candidate-result-flag-vector-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "source_record": 0,
       "tool": "project vector geometry + Pillow 11.3.0",
       "size": [
@@ -1816,7 +1816,7 @@
       "file": "candidates/result-flag-01-v1.png",
       "sha256": "9f19a1b40180ba3b7aa3091df6a51bb36d00109ec9671be353e39d06f6ece0b5",
       "bytes": 22501,
-      "status": "candidate-result-flag-vector-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "source_record": 1,
       "tool": "project vector geometry + Pillow 11.3.0",
       "size": [
@@ -1836,7 +1836,7 @@
       "file": "candidates/result-flag-02-v1.png",
       "sha256": "933f12f7a59b43fc1074ecf740f82bdb6b6b610ef9710839d3c83d3702110b4b",
       "bytes": 30723,
-      "status": "candidate-result-flag-vector-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "source_record": 2,
       "tool": "project vector geometry + Pillow 11.3.0",
       "size": [
@@ -1856,7 +1856,7 @@
       "file": "candidates/result-flag-03-v1.png",
       "sha256": "2e3e98d9e397f4a7470bd2e05d3baa1236640c48653eb1a0e8025ea4145d52e0",
       "bytes": 16022,
-      "status": "candidate-result-flag-vector-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "source_record": 3,
       "tool": "project vector geometry + Pillow 11.3.0",
       "size": [
@@ -1876,7 +1876,7 @@
       "file": "candidates/result-flag-04-v1.png",
       "sha256": "5a21c007282158f0e5742df9ce5c3c9fa476cc21b8bd25eb5f1dad5beb6780e9",
       "bytes": 3945,
-      "status": "candidate-result-flag-vector-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "source_record": 4,
       "tool": "project vector geometry + Pillow 11.3.0",
       "size": [
@@ -1896,7 +1896,7 @@
       "file": "candidates/result-flag-05-v1.png",
       "sha256": "4f2f5a0aa293e6998149dba72009927405b0bff791a6d7e0b8499259f95e1208",
       "bytes": 8099,
-      "status": "candidate-result-flag-vector-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "source_record": 5,
       "tool": "project vector geometry + Pillow 11.3.0",
       "size": [
@@ -1916,7 +1916,7 @@
       "file": "candidates/result-flag-06-v1.png",
       "sha256": "53eb25fb1e9ab2a471b9d92581f08b6eb36092d874a12df9347294f6b2ddfb25",
       "bytes": 34598,
-      "status": "candidate-result-flag-vector-not-integrated",
+      "status": "049 integrated screen image; artistic approximation",
       "source_record": 6,
       "tool": "project vector geometry + Pillow 11.3.0",
       "size": [
@@ -1937,7 +1937,108 @@
       "sha256": "e7d3d8ae686698be3d438bff972f2c34e7a34c8e7258edaa10ebb6854a891d23",
       "bytes": 139507,
       "status": "candidate-result-flag-vector-provenance"
+    },
+    {
+      "file": "screens.json",
+      "sha256": "33b00aa26eed51be3774bdfbebf70645f08738cde483811f605d37418e5ec3c3",
+      "bytes": 7126,
+      "status": "049 runtime mapping metadata"
+    },
+    {
+      "file": "characters/spider-complete-source.json",
+      "sha256": "6438c13b11fa67d3a88bd67adf445766269af6cc628650bc2428ed9338a30ac6",
+      "bytes": 28502,
+      "status": "049 runtime mapping metadata"
+    },
+    {
+      "file": "characters/spider-covered-poses-00.png",
+      "sha256": "75a2d4449119a2c8a41300e920e78fe2fe5e698e14e4252510ead17c93ae5e65",
+      "bytes": 1744591,
+      "size": [
+        2048,
+        1536
+      ],
+      "status": "049 current-character-atlas",
+      "source_record": "characters/spider-complete-source.json"
+    },
+    {
+      "file": "characters/spider-covered-poses-01.png",
+      "sha256": "66a5cc7e104303b1509ec1219e5d19b8a8a67dc1271d839cc503b7e32556dbc1",
+      "bytes": 1793179,
+      "size": [
+        2048,
+        1536
+      ],
+      "status": "049 current-character-atlas",
+      "source_record": "characters/spider-complete-source.json"
+    },
+    {
+      "file": "characters/spider-covered-poses-02.png",
+      "sha256": "a7b0d43f31ab453c9f3698c315b06225f9cf866d3d612d6465b226c6d303fd4a",
+      "bytes": 2003608,
+      "size": [
+        2048,
+        1536
+      ],
+      "status": "049 current-character-atlas",
+      "source_record": "characters/spider-complete-source.json"
+    },
+    {
+      "file": "characters/spider-covered-poses-03.png",
+      "sha256": "7a371731fe76a3817acfc4e5aad156182458c342b21101d20254aba73c6119c6",
+      "bytes": 1150925,
+      "size": [
+        1536,
+        1536
+      ],
+      "status": "049 current-character-atlas",
+      "source_record": "characters/spider-complete-source.json"
+    },
+    {
+      "file": "candidates/spider-covered-v3-00.png",
+      "sha256": "8d1c839ba4081b380be54aa9e3c93494135df1d28d382b87bdff0965740258de",
+      "bytes": 2327390,
+      "size": [
+        1536,
+        1024
+      ],
+      "status": "049 original generated input",
+      "source_record": "characters/spider-complete-source.json"
+    },
+    {
+      "file": "candidates/spider-covered-v3-01.png",
+      "sha256": "974fb7a7e55cee8c245248a979610c41999998db83cbdfdc02ed382f47babc1f",
+      "bytes": 2292722,
+      "size": [
+        1536,
+        1024
+      ],
+      "status": "049 original generated input",
+      "source_record": "characters/spider-complete-source.json"
+    },
+    {
+      "file": "candidates/spider-covered-v3-02.png",
+      "sha256": "cea6d97299cc0634750a04b900af929ab4a92abb7048f17a9cd2b33b24924231",
+      "bytes": 2356410,
+      "size": [
+        1536,
+        1024
+      ],
+      "status": "049 original generated input",
+      "source_record": "characters/spider-complete-source.json"
+    },
+    {
+      "file": "candidates/spider-covered-v3-03.png",
+      "sha256": "9de8a63b1d9fcff26d914f3fb0143b76999f7f0996aef33518c1802ca8d15460",
+      "bytes": 1295347,
+      "size": [
+        1254,
+        1254
+      ],
+      "status": "049 original generated input",
+      "source_record": "characters/spider-complete-source.json"
     }
   ],
-  "original_game_data_included": false
+  "original_game_data_included": false,
+  "integration": "049 production wiring; verification scope in docs/spec/049-hd-batch-integration.md; Spider B approved; original-audio integration in 050; not full-game parity"
 }

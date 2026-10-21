@@ -763,3 +763,18 @@ managed 紋理版的 selection-native-full-v2 在 p0-08 原貌／HD 恢復比較
 - 隔離 v5 複製 86 份來源，30 項既有美術保持；私有參照 1,920,326 bytes、九份原輸入。Linux SHA 11914dceefa6782b8f40547899a0edb34c137e268736fe50e2c70e3952687e8a。Go 與 Python 都核對完整 RGB、SH 色號、兩框及原 pulse 色，再輸出選取值／擦除狀態；原型只換新向量面板與字型，輸入仍交原版，正式來源不變。
 - Linux 三組正常斬落敗，原 AI 對手實際為金太極 7；無頭對手不同，不宣稱跨執行 RNG parity。再戰、放棄及未載美術共 24 張、18 份完整繼續來源、20 份 GPU 肖像／方向通過；核心與呈現的暫停切換不變、HD 恢復視區相同、未載時全視區原貌、回選角／標題原資料及清除均核對。放棄組由同一執行中的普通工具列點擊啟用 HD，另存 hd-setup.json。
 - 原型 v4 誤用離戰後 Core 不再透出的 Mode==0，v5 以完整 SH 來源取代。測試腳本曾混用 HUD round／round_index、預設法蘭克、漏啟 HD；一組未進正常單打，最後為 mode4 示範對戰，短點擊原因僅是假說，後改回既有按住步數。六組失敗／停止與原腳本保持，v2 更正另追加 correction.json，沒有改原版或把失敗算成功。新公開截圖只含 HD，048 維持 DRAFT；正式視覺／格式、單打勝利、全部角色／字圖及其他平台另驗。
+
+## 2026-10-21：050 原音最小充分證據與蜘蛛女朝向勘誤
+
+原音輸入 SF.EXE SHA `24b23d41c5fe6015d211b601e44b4e030677363f7232adcf9999c9ddd80d8300`、SF000.MUS SHA `78af89020939bc7f2013f3869332aae1a67a2600c14ec7820146599e31cdaeda`，其餘十七 PPM 逐檔身分見 internal/originalaudio/sources.json。唯讀 i64 SHA `5a122f625e659633f1e29ea1cb024fb4b1c31405031bf90d92dfe115ac00e2ca` 不變。工具為既有 IDA 9.4／292 函式、Go 1.24.13、TiMidity++ 2.14.0／FluidR3_GM 與 FFmpeg 5.1.9。位址基準以下明列，完整 bytes、xref 與來源收據只留 workplace/hd-batch-integration-v1/audio-research-v1/ida-v2..v6.json。
+
+- 已證實：IDA MZ linear sub_18318 先呼叫 sub_18381 停音；主程式 runtime 01B9:8320 在內部停音後可讀 far argument，避免新曲被舊停止事件覆蓋。停止觀測為 runtime 01B9:8381。十五段 MIDI 完整 RAM 雜湊用作 cue，沒有從畫面猜固定場景表。
+- 已證實：IDA MZ linear sub_18945 的 18949h..1895Ch 對 FF 2F 00 恢復保存軌起點，支持音樂循環。重播時長依 SMF tempo、division 與 end tick，5ms 收尾為軟體美化近似。
+- 已證實：主程式 runtime 01B9:981E 以 AX 高位選 bank、低六位索引，BX 控制、CX 次數；直接入口 01B9:9873 使用 ES:DI。實際 driver CS 取暫存器，不與主段混用。
+- 已證實：IDA MZ linear 198F2h..1990Dh／198DDh..198ECh 交替取高／低半位元組左移四位，沒有差分累加。因此前版四位元 PCM 假說確認為 unsigned 線性 PCM，並非 DPCM。表頭 32 bytes、+1Bh word 長度及原包裝要求 8000 Hz 已核對。registry 共 55 段、54 不同 payload SHA，其中一組別名保持。
+- 硬體規格近似：原 PCM 請求率轉為名義時長，48 kHz OGG 不補回失去細節。PIT divisor、seed byte、尾端閘門不展開逐週期 driver／ISR 研究，也不宣稱波形或實機 wall-clock parity。原設定的 AdLib 路徑沒有 OPL 輸出，輔助探針不改正式音效卡設定。
+- 已證實於 remake 測試：原音開／關在固定 00:00 測試時鐘的 188 個成對點保持完整記憶體與暫存器，讀到 3 音樂／5 語音、未知拒絕 0。這只證明被動觀測沒有改原核心，不代替聲音真機驗收。
+
+蜘蛛女朝向勘誤：先前準備紀錄把原 DAT 基底寫成朝右，導致新增圖格被多翻轉一次。解碼 SFMAN09.DAT slot 1 與正常雙打 normal-battle.png.frame.json 顯示原圖朝左，左玩家 flags 0x44 包含水平翻轉。已以無損逐格鏡像撤回該次處理，清單回到 SHA `9e3091c05e2f1fe0f798639134870e8ae58ae12a506ddb3a1a5099003737a473`。原生成 PNG、原座標、原 flags 與遊戲規則不變。拒絕朝向的四圖與清單另保留 rejected-facing-art，最終 audio-final-v4 普通對戰人工看圖確認左玩家面向對手。素材朝向為可見美術核對，不把生成提示詞當成來源證據。
+
+Linux 原音實錄最初使用 FFmpeg Pulse 輸入，WAV 起始時間被重設，與操作單調時鐘差約兩秒。這是驗證對時問題；保留原錄音，不以偏移擬合通過。最終改用 parec 原始 48 kHz 樣本計數，在每個事件記錄已錄 frames；音量／暫停／循環以同一樣本時鐘核對。audio-final-v4 的 167.18 秒實錄峰值 17581、削波 0，暫停與靜音 RMS 0，恢復、切歌、攻擊與循環正常。這是虛擬裝置證據，沒有宣稱人工試聽或真機喇叭完成。

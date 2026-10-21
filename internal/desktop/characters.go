@@ -10,8 +10,17 @@ import (
 )
 
 func (g *Game) drawBackground(dst *ebiten.Image, frame gamecore.Presentation) {
+	background := g.hdAssets.ForScene(frame.Scene)
+	if background == nil {
+		return
+	}
+	if g.backgroundTextures == nil {
+		g.backgroundTextures = map[*hd.Assets]*ebiten.Image{}
+	}
+	g.hdTexture = g.backgroundTextures[background]
 	if g.hdTexture == nil {
-		g.hdTexture = ebiten.NewImageFromImage(g.hdAssets.Image)
+		g.hdTexture = ebiten.NewImageFromImage(background.Image)
+		g.backgroundTextures[background] = g.hdTexture
 	}
 	op := &ebiten.DrawImageOptions{}
 	op.Filter = ebiten.FilterLinear
@@ -22,6 +31,10 @@ func (g *Game) drawBackground(dst *ebiten.Image, frame gamecore.Presentation) {
 }
 
 func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation) (bool, string) {
+	background := g.hdAssets.ForScene(frame.Scene)
+	if background == nil {
+		return false, "此場景保留原貌"
+	}
 	if g.hdCharacters == nil {
 		return false, "角色 HD 素材未載入，保留原貌"
 	}
@@ -43,7 +56,7 @@ func (g *Game) drawCharacterFrame(dst *ebiten.Image, frame gamecore.Presentation
 		if i < frame.RetainedBackgroundRows*320 {
 			continue
 		}
-		if v != g.hdAssets.Reference[i/320*480+i%320+frame.CameraX] {
+		if v != background.Reference[i/320*480+i%320+frame.CameraX] {
 			return false, "背景圖層來源未對應，保留原貌"
 		}
 	}

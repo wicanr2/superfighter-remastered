@@ -54,3 +54,15 @@ macOS 的 CFBundleVersion／CFBundleShortVersionString 依 [Apple 平台格式](
 人工驗證與未實作項目集中在 [WORKLIST](../../WORKLIST.md#人工驗證)。清理收據為本版本 `smoke/workspace-cleanup-plan.json`、`workspace-cleanup.json` 與 `retained-workspace-files.json`；實際腳本另存 `smoke/cleanup-workspace.py`。只移除舊 Wine 前綴及 Go 編譯快取，原始資料、研究證據、執行器、模組快取與所有素材保留。Wine 登錄及非系統設定先存 `full-local/wine-runtime-settings-backup.tar.gz`，逐檔核對後才刪除。Wine 系統 DLL 由原有工具映像重新建立新前綴，再視需要還原設定；Go 編譯快取由保留的模組重建。歷史測試輸出保留原樣，需要重驗時使用新的輸出目錄。
 
 最終稽核在本版本 `smoke/final-audit.py` 與 `final-audit.json`，四個編譯收據另存 `smoke/build-receipts/`。128 原檔、1719 執行器來源、162 素材紀錄與正式角色清單 SHA 均通過；四架構相較 045 只有 VERSION 編譯輸入改變。首版八包、原曲影片與正式 IDA 資料庫保持，588 個文件連結、UID 與誤建目錄檢查通過。這些結果不代替人工試玩或完整 HD 完成證據。
+
+## 集中 HD 與原音本機交付
+
+`v.0.2.0-20261021` 為 049／050 的新本機交付。沒有建立新 Release 或 tag；前版八包與原曲影片保持原 SHA。`dist-all/v.0.2.0-20261021/` 的 patch／full-local 各四包，覆蓋 Linux amd64、Windows amd64、macOS Intel／Apple Silicon。
+
+- 四架構以 Go 1.24.13 固定工具鏈由相同正式來源編譯，每個二進位附實際 compiled_inputs、版本、SHA 與檔頭收據；現行副本在 workplace/bin，原編譯位址 bin-ready 保留。HD 包含十一景、33 畫面圖與完整 1630 鍵／78 圖集。
+- 每個 full-local 包含 125 原版檔及 55 原音 OGG，僅留本機；patch 不含原版、OGG、WAV 或 MIDI。每包清單、CRC、SHA、授權、版本、路徑與原版排除均通過，收據在本版 SHA256SUMS.json 及 smoke/package-audit.json。
+- 八包解至新的 workplace/hd-batch-integration-v1/release-unpacked-final；Linux 與 Wine 各驗 patch／full-local 啟動、版本、缺資料、安全匯入與拒絕覆寫、設定頁、自動十一景原參考及音訊 bank 載入。收據在 smoke/linux-startup／windows-startup。這些啟動在第一首原音前結束，不稱 Wine 音訊裝置已驗。
+- Linux 原音實際裝置路徑為 Oto→ALSA pulse→私有 PulseAudio sink；原始錄音以 parec 的 48 kHz 樣本數對時。55 段轉換與 167 秒實錄、暫停／靜音／恢復及循環的證據只留 workplace/hd-batch-integration-v1/audio-final-v4。沒有新配樂、語音修復或人耳完成聲明。
+- 本輪沒有製作 v.0.2.0 推廣片。v.0.1.1 的六十秒原曲影片保持，不能作為新版全部 HD 的影片證據。人工與真機限制見 WORKLIST。
+
+這些新版 ZIP 未公開。下次發行仍先確認最終聲明、真機限制與新版錄影，再使用新的不可覆寫版號。

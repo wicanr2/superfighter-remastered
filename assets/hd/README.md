@@ -1,49 +1,28 @@
 # HD 素材
 
-本目錄保存 HD 生成圖、外部模型候選與角色對應清單。使用者於 2026-10-20 明確要求將 HD 素材上傳至現有 GitHub 儲存庫，因此這批生成圖改為版控。原版 EXE、DAT、FIG、背景色號、色盤、原圖與記憶體收據仍留本機。
+本目錄保存生成原 PNG、角色圖集、精確提示詞與來源對照。使用者已授權將 HD 素材保存到儲存庫。原版 EXE、DAT、FIG、原圖、色號、色盤與記憶體收據仍只留本機。
 
-| 路徑 | 內容 | 接入狀態 |
-|---|---|---|
-| [七面結果旗幟](../../docs/screenshots/result-flag-candidates.png)、[來源與幾何紀錄](candidates/result-flags-source.json) | 七組 SVG／1300×660 PNG，以平滑幾何重畫原旗幟配色及圖記配置 | 新向量候選，未定版或接正式程式；前輪原生兩面旗幟及原 PNG 保持 |
-| [十一人敗者肖像](../../docs/screenshots/result-portrait-candidates.png)、[逐人來源與完整提示詞](candidates/result-portraits-source.json) | 十張新原 PNG 加既有法蘭克，皆為 1254×1254；原 LOSEFIG 十一張 RGB 核對 | [正常原生取樣](../../docs/screenshots/result-portraits-native.png)已補齊十一人；外觀仍為近似，未接正式結果流程，不代替蜘蛛女戰鬥動畫 |
-| [結果報紙底圖](candidates/result-newspaper-v1.png)、[法蘭克受傷肖像](candidates/result-loser-frank-v1.png) | [來源與完整提示詞](candidates/result-source.json)，首輪兩張生成原 PNG、[靜態比較](../../docs/screenshots/result-newspaper-candidate.png)與[隔離原生候選](../../docs/screenshots/result-native-prototype-hd.png) | Linux 原型已抽測十一人肖像、七面旗幟、三種字圖與兩側勝方，切換／回退及返回通過；未接正式程式，單打／平台另驗，見 [048](../../docs/spec/048-hd-result-newspaper.md) |
-| [選角 VS](candidates/selection-vs-v1.png)、[來源與完整提示詞](candidates/selection-vs-source.json) | 1589×990、原透明 PNG；[八格／十一格比較](../../docs/screenshots/selection-layout-candidates.png) | 靜態構圖候選，未接遊戲，版面與操作區域未定 |
-| [十一人選角肖像](../../docs/spec/047-hd-selection-portraits.md)、[來源與精確提示詞](candidates/selection-portraits-source.json) | 十一張 1254×1254 原 PNG 與純 HD 接觸圖 | 隔離 Linux 原型已驗雙打兩側、鏡像、切換／回退與退出；仍為候選，未改正式 UI 或格式 |
-| [標題人物與字標](candidates/README.md)、[精確提示詞](candidates/title-source.json) | 黑底紫色人物與紅金「快打至尊」透明字標 | 隔離原生候選已驗換色與游標，未接正式標題，見 [046](../../docs/spec/046-hd-title-menu.md) |
-| [characters/manifest.json](characters/manifest.json) | 74 張角色與特效圖集、1516 個登錄鍵 | 現行開發素材；包含四人的二十一份特殊技光效。完整動畫及各角色驗收範圍見 [CONTEXT](../../CONTEXT.md) |
-| [backgrounds/rooftop.png](backgrounds/rooftop.png) | 屋頂背景，1923×818 | 已接原生；原版參考色號與色盤不隨 Git 提供 |
-| [道場候選整理](candidates/README.md) | 道場 PNG、來源雜湊、正常畫格證據與精確提示詞 | 素材已整理；[多場景格式](../../docs/spec/029-multi-scene-backgrounds.md)尚待確認，首輪先跳過接入 |
-| [其餘九景](candidates/README.md)、[來源與提示詞](candidates/backgrounds-source.json) | 廳堂、叢林、街道、宮殿、舞廳、港口、石窟、冰原、火車的首輪稿 | 原 scene 與兩個 camera 已由普通雙打補證；保留候選，HD 捲動及正式接入仍未驗 |
-| [石窟修稿](candidates/grotto-i10-v2.png)、[舞廳修稿](candidates/auditorium-i8-v2.png) | [來源與精確提示詞](candidates/background-revisions-source.json)，保留首輪原 PNG | 正常捲動比較後改善底線位置，仍未定版或接入 |
-| [街道上排塗鴉修稿](candidates/street-i4-v2.png) | [來源與精確提示詞](candidates/street-revision-source.json)，1922×818 生成原 PNG | 上排 SUPER STAR 及八份同狀態捲動比較已複核；其餘塗鴉／構圖仍待定版，未接原生 |
-| [candidates/spider-coverage.png](candidates/spider-coverage.png) | 蜘蛛女全覆蓋紫色連身衣比較稿，1390×1132 | 舊造型比較保留，現行低伏改採使用者後續確認的外部稿 |
-| [蜘蛛女外部候選](candidates/spider/README.md) | 第一批五張圖集及第二批十張補稿，均已本地去背 | normal-01 已獲確認並接三組一般低伏來源；其餘未接 |
-| [蜘蛛女低伏來源](characters/spider-low-guard-source.json) | 已確認外部稿、無損鏡像、透明留白裁切與三十鍵來源 | [034 限定接入](../../docs/spec/034-spider-low-guard.md)，一張靜態近似稿，未對應動作原貌回退 |
-| [catalog.json](catalog.json) | 每個收錄檔案的 SHA-256、大小、尺寸、原位置與分類 | 核對複製與後續變更；不包含原版圖像資料 |
+正式接入依 [049](../../docs/spec/049-hd-batch-integration.md)。目前共 145 張 PNG、78 張啟用角色／特效圖集、1630 個角色鍵與 33 份介面圖像。四張蜘蛛女新圖集已採使用者選定的 B 版連身衣；素材數量不等於全部動畫已驗。
 
-內建生成 PNG 保留原 bytes。蜘蛛女外部稿先依使用者授權做本地去背，只改背景 alpha，匯入時再逐檔複製去背成品。原始輸入及處理結果的雜湊分開記錄。角色清單沿用目前遊戲可讀的格式，記錄來源檔名、雜湊與座標；`evidence` 中的本機研究路徑不全部隨 Git 提供。`workplace/` 保留生成請求、原始審查與執行收據，不整包提交。
+| 素材 | 正式用途與來源 |
+|---|---|
+| [角色清單](characters/manifest.json) | 十一人的一般／WIN 與既有特效；完整範圍見 [CONTEXT](../../CONTEXT.md) |
+| [畫面清單](screens.json) | 標題人物／字標、VS、十一人正常／敗者肖像、報紙與七旗。缺少任一必要圖即整組拒絕 |
+| [十一景身分](../../internal/hd/background-sources.json) | 屋頂、道場及其餘九景；記錄原來源 SHA、原色號／色盤 SHA 與 HD 圖 SHA，不保存原像素 |
+| [屋頂](backgrounds/rooftop.png)、[道場與九景來源](candidates/README.md) | 已接同一背景集合；執行時由玩家原檔建立本機參考，不隨發行包帶入原版色號 |
+| [街道](candidates/street-i4-v2.png)、[精確提示詞](candidates/street-revision-source.json) | 正式採用修稿；塗鴉與構圖仍是手繪近似 |
+| [石窟](candidates/grotto-i10-v2.png)、[舞廳](candidates/auditorium-i8-v2.png)、[提示詞](candidates/background-revisions-source.json) | 正式採用底線修稿，舊生成圖仍保留 |
+| [標題來源](candidates/title-source.json) | HD 人物、紅金字標與原按鈕位置。八相位材質投影是美術效果，設定頁保持原貌 |
+| [選角肖像](candidates/selection-portraits-source.json)、[VS](candidates/selection-vs-source.json) | 十一人兩側大肖像、右側鏡像、VS、八格縮圖及重畫邊框；三魔王仍用既有姓名按鈕 |
+| [結果底圖](candidates/result-source.json)、[敗者肖像](candidates/result-portraits-source.json)、[旗幟](candidates/result-flags-source.json) | 已接結果報紙與單打再戰／放棄，保留玩家位置與原狀態；細字、傷勢、徽記與字型為近似 |
+| [蜘蛛女低伏來源](characters/spider-low-guard-source.json) | 使用者已確認的外部稿，無損鏡像及裁切；舊低伏服裝已由使用者選定的 B 版取代，保留作製作紀錄 |
+| [蜘蛛女完整 B 版](characters/spider-complete-source.json) | 四張新連身衣原稿、透明拆格圖集、45 組一般／5 組 WIN 來源對照。使用者已選 B 並晉升，144 入口採同服裝，基底朝左與原 DAT 相符，由原 flags 決定鏡像 |
+| [蜘蛛女外部稿](candidates/spider/README.md) | 十五張外部模型圖及去背紀錄；檔名不代表已驗姿態對照 |
+| [金太極光效](characters/kim-effects-source.json)、[四人特殊技](characters/remaining-special-effects-source.json) | 保留生成原圖及精確提示詞；正常動作、色盤與回退範圍見規格 [042](../../docs/spec/042-kim-effects.md)／[044](../../docs/spec/044-remaining-special-effects.md) |
+| [catalog.json](catalog.json) | 172 筆收錄檔案的 SHA-256、大小、尺寸及狀態；不含原版圖像資料 |
 
-[鬼丸勝利圖集](characters/onimaru-win.png)含四組原姿態的 HD 重繪，正常首勝及 Linux／Wine 切換範圍見[規格 031](../../docs/spec/031-onimaru-victory.md)。此圖已接入，與候選資料夾分開保存。
+生成原 PNG 保留原 bytes。蜘蛛女候選另以本機透明拆格處理，記錄 alpha 門檻、裁切與圖集矩形；原稿與處理結果的雜湊分開保存。原檔名、位移與圖像雜湊只作來源定位，不公開原圖。
 
-[金太極](characters/kim-win.png)、[小丑](characters/clown-win.png)及[印第安喬](characters/joe-win.png)新增十五組勝利姿態，正常首勝、Linux 切換與缺件回退範圍見[規格 033](../../docs/spec/033-first-pass-victories.md)。蜘蛛女已接使用者確認的低伏稿，其餘動作仍待補；道場保留候選狀態。
+引擎封包只收錄正式角色清單實際引用的圖集，以及十一景與畫面清單引用的 HD 圖。未選的候選保存在儲存庫作製作紀錄。程式由封包旁 `assets/hd/` 自動發現；自訂目錄可用 `-hd-assets`、`-hd-characters`、`-hd-screens`。建置與資料匯入見[主 README](../../README.md)。
 
-[嵐勝利圖](characters/lan-win.png)新增四組姿態，另兩組與既有一般來源相同，重用已驗圖集；正常 Linux 首勝及切換見 [037](../../docs/spec/037-lan-victory.md)。目前開發版尚未發行，首版 Release 的素材保持原狀。
-
-[鳳凰拳腳光效圖](characters/phoenix-effects.png)保留透明生成原 PNG，兩個第二色盤鍵與正常 Linux 接入見 [039](../../docs/spec/039-phoenix-effects.md)。精確內建 imagegen 提示詞、原檔身分及透明區域登錄保存於[來源清單](characters/phoenix-effects-source.json)。
-
-取得合法原版資料並備妥既有屋頂素材包後，可在專案根目錄指定這份角色包：
-
-```bash
-workplace/bin/superfighter-linux-amd64 \
-  -data workplace/orig \
-  -hd-assets workplace/hd-rooftop-study \
-  -hd-characters assets/hd/characters
-```
-
-此命令使用另行建置的 Linux 二進位，Windows 與 macOS 使用對應程式。儲存庫未包含二進位、原版資料或屋頂參考色號；只下載儲存庫尚不能直接啟動完整遊戲。建置入口見[主 README](../../README.md)。
-
-上傳授權只改變這批 HD 生成圖的保存位置，不代表取得原作素材的公開散布權。Release 與目前開發版的範圍見[主 README](../../README.md)；原作角色與場景權利仍依原權利人，不能將本專案程式的授權視為原作授權。
-
-[金太極光效圖](characters/kim-effects.png)包含十份第二色盤來源，原 PNG 保持；[來源與精確提示詞](characters/kim-effects-source.json)可回查。普通 Linux 三類光效、切換與舊包回退見 [042](../../docs/spec/042-kim-effects.md)，完整特殊技動畫仍另驗。
-
-[四人特殊技光效](../../docs/spec/044-remaining-special-effects.md)新增鳳凰三鍵、嵐七鍵、小丑八鍵與印第安喬三鍵，六張原 PNG 的來源、精確提示詞及槽位對應見[素材紀錄](characters/remaining-special-effects-source.json)。小丑舊稿中連接失真的三格不註冊，另用分離光影新稿；所有 PNG 保留原 bytes。原版參考、色盤與 CPU 收據只留本機，完整動畫及快捷另驗。
+上傳授權不代表取得原作的公開散布權。本專案程式授權不涵蓋原作角色、場景或第三方來源。原版資料與原曲影片只留本機，Release 排除原版遊戲。

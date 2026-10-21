@@ -1,0 +1,237 @@
+{
+  "version": 1,
+  "kind": "hd-screen-art",
+  "images": [
+    {
+      "key": "title-person",
+      "file": "candidates/title-person-v1.png",
+      "sha256": "fc38cc33915afc7bbbf4caf39ed7c69409069d7b9d8436904709667a7a9bf3ea",
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "key": "title-logo",
+      "file": "candidates/title-logo-v1.png",
+      "sha256": "3f224d17e40bdcdbf08a50be7e393a9d8cb708c779d659b9e4f4ba61de949ccc",
+      "width": 1983,
+      "height": 793
+    },
+    {
+      "key": "selection-vs",
+      "file": "candidates/selection-vs-v1.png",
+      "sha256": "d2c6d87328e41df73bb7cf7c03c82942390199be6efe965d3a87f9b8700c5c02",
+      "width": 1589,
+      "height": 990
+    },
+    {
+      "key": "left-0",
+      "file": "candidates/selection-jaan-v1.png",
+      "sha256": "0b508cbf83e5769769e908de77bfeb24a54d307e1d2dece4c19b771e4623bb1d",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "left-1",
+      "file": "candidates/selection-sarkov-v1.png",
+      "sha256": "5ec97036c9e6e1239ec90cf01479782994941ad867d68b8a46bbfa31e6fdd918",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "left-2",
+      "file": "candidates/selection-bullet-v1.png",
+      "sha256": "7f48fcb0a3b762588494e7d8a6a7dff6710d4c3bd350e733d4e0ee4d58167146",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "left-3",
+      "file": "candidates/selection-phoenix-v1.png",
+      "sha256": "ec21503287006099c45774c8643dddc1888bd8dd24e786ff6389ca26ee3348bd",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "left-4",
+      "file": "candidates/selection-frank-v1.png",
+      "sha256": "367929c844d8fb85ce4756d59af5c5927a5a732c94ebafb6d335729dbb67f920",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "left-5",
+      "file": "candidates/selection-onimaru-v1.png",
+      "sha256": "ab002d06e6afade7ce103b6599e85268edac2712fd3a911796aa5a4d8f419326",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "left-6",
+      "file": "candidates/selection-lan-v1.png",
+      "sha256": "4e47fc128073607b0681adc7451867b0fd0f91fcc3aa875e6a86e3fccd9a08c4",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "left-7",
+      "file": "candidates/selection-kim-v1.png",
+      "sha256": "48918b8af81f9362bef3f1c9ba1c989412fedf9f3bc2a92daab1a781839b4784",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "left-8",
+      "file": "candidates/selection-spider-v1.png",
+      "sha256": "9e2a4a67c07bc2f708a4f3cd00bcf3962ab0aa99951d8f17936b5ed3aed6b986",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "left-9",
+      "file": "candidates/selection-clown-v1.png",
+      "sha256": "c3445d5bbb2bdf186ac61af7d02bc474dbc38025de048c8aa2f792db18301fdb",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "left-10",
+      "file": "candidates/selection-joe-v1.png",
+      "sha256": "1d9cc16bf29915699c527e3c6d226ca5a00a9137ab11cb0ab709c8f8a9be0489",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "right-0",
+      "file": "candidates/result-loser-jaan-v1.png",
+      "sha256": "de3b2adada1153fef83d4dcd35ae265875c251c4f895760bb6de0493aef4af06",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "right-1",
+      "file": "candidates/result-loser-sarkov-v1.png",
+      "sha256": "05c038c5fcdae93e5bacaea6d0658968e75cbb1f3369ace75092f363c7592383",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "right-2",
+      "file": "candidates/result-loser-bullet-v1.png",
+      "sha256": "5fd0fd4aba9b5412798dadea3dffe12aadb08af987ed2fb47b04d9e8583c6a17",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "right-3",
+      "file": "candidates/result-loser-phoenix-v1.png",
+      "sha256": "85b68bfb4bf9bd5d85c3595792c56b84eb17ea9f8fc60e268b28b3b5c888c8a7",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "right-4",
+      "file": "candidates/result-loser-frank-v1.png",
+      "sha256": "a56c4244a390f0c2155f963e2fca923444abd102fb0bd7217eb8a6890fc1aa37",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "right-5",
+      "file": "candidates/result-loser-onimaru-v1.png",
+      "sha256": "cf2f7585e60504d98fc42b64bd07d94724205040caed00a743f173dc5a72e560",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "right-6",
+      "file": "candidates/result-loser-lan-v1.png",
+      "sha256": "a776867831f7160f89f44cd41c0a7b10979ff0df2c4391906fa9c9d6247fc38d",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "right-7",
+      "file": "candidates/result-loser-kim-v1.png",
+      "sha256": "3fb2232528a211b5edf6b6e06075c296a0a4e5efa79a6cf7a2fca07623a879a4",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "right-8",
+      "file": "candidates/result-loser-spider-v1.png",
+      "sha256": "f6dbceacd585907c07bed462ac803379afbc204412c987028b51dacdef7d5591",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "right-9",
+      "file": "candidates/result-loser-clown-v1.png",
+      "sha256": "bba096e54241447e2e20d0d3fd2c005439ceee884638ae815d115a9cea2cac3f",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "right-10",
+      "file": "candidates/result-loser-joe-v1.png",
+      "sha256": "823dbdac0995f7d9f5c98aa2c5498761e8c452d5f4862c38276e719c3ce4b8ac",
+      "width": 1254,
+      "height": 1254
+    },
+    {
+      "key": "paper",
+      "file": "candidates/result-newspaper-v1.png",
+      "sha256": "74406265d48c446deac7fef2c7f2c300f8fafaa0a08a53805781b4b45a4f00d6",
+      "width": 1586,
+      "height": 992
+    },
+    {
+      "key": "flag-0",
+      "file": "candidates/result-flag-00-v1.png",
+      "sha256": "d576a1d1e2a9c182c06a096e66e56792e752cee2af293f3adc2456e7b2672e98",
+      "width": 1300,
+      "height": 660
+    },
+    {
+      "key": "flag-1",
+      "file": "candidates/result-flag-01-v1.png",
+      "sha256": "9f19a1b40180ba3b7aa3091df6a51bb36d00109ec9671be353e39d06f6ece0b5",
+      "width": 1300,
+      "height": 660
+    },
+    {
+      "key": "flag-2",
+      "file": "candidates/result-flag-02-v1.png",
+      "sha256": "933f12f7a59b43fc1074ecf740f82bdb6b6b610ef9710839d3c83d3702110b4b",
+      "width": 1300,
+      "height": 660
+    },
+    {
+      "key": "flag-3",
+      "file": "candidates/result-flag-03-v1.png",
+      "sha256": "2e3e98d9e397f4a7470bd2e05d3baa1236640c48653eb1a0e8025ea4145d52e0",
+      "width": 1300,
+      "height": 660
+    },
+    {
+      "key": "flag-4",
+      "file": "candidates/result-flag-04-v1.png",
+      "sha256": "5a21c007282158f0e5742df9ce5c3c9fa476cc21b8bd25eb5f1dad5beb6780e9",
+      "width": 1300,
+      "height": 660
+    },
+    {
+      "key": "flag-5",
+      "file": "candidates/result-flag-05-v1.png",
+      "sha256": "4f2f5a0aa293e6998149dba72009927405b0bff791a6d7e0b8499259f95e1208",
+      "width": 1300,
+      "height": 660
+    },
+    {
+      "key": "flag-6",
+      "file": "candidates/result-flag-06-v1.png",
+      "sha256": "53eb25fb1e9ab2a471b9d92581f08b6eb36092d874a12df9347294f6b2ddfb25",
+      "width": 1300,
+      "height": 660
+    }
+  ]
+}

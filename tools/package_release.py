@@ -66,13 +66,18 @@ P2：數字鍵盤 789／4 6／123，Enter 拳、右 Shift 腳；四快捷為主�
 鍵盤可自訂，兩人分開保存；四格招式與手把 R1／R2／L1／L2 共用。
 Esc 暫停前端，不送原版補血；F9 切換雙方鎖滿血、停時與 AI 中立的練習模式。
 魔王：單打與雙打都可選蜘蛛女、小丑、印第安喬；正常選角後確認。
-HD：按工具列的原貌／HD 角色切換。未知動作、場景或缺件整格保留原貌。
+HD：按工具列的原貌／HD 畫面切換。十一景、標題、完整選角、結果報紙與單打接關已接入。
+未知動作、來源或缺件整格保留原貌；原版設定頁維持原貌。
 設定保存在作業系統使用者設定目錄 SuperfighterRemastered，原版來源不回寫。
 
 目前限制：實際快速出招只開已驗的斬四招；其他角色四格可以設定，實際出招明示拒絕。
-蜘蛛女只有低伏靜態近似稿；完整動畫與其餘場景尚未完成，遊戲音樂／語音串流尚未接入。
-標題、選角與結果畫面的 HD 原型未納入。本機完整版指包含原版資料，不代表完整 HD。
-目前暫停 HD 開發，實體手把、真機速度、魔王單打過關及結局留待人工驗證。
+蜘蛛女全部使用已確認的 B 版紫色連身衣，72 個一般及 72 個 WIN 入口服裝一致。
+本機包包含十五曲原 MIDI 軟體演奏及四十段原語音／音效 OGG；視窗右下可切換原音。
+公開引擎包不含原音。先用 tools/prepare_original_audio.py 的 Docker 流程轉換自己的合法資料，
+再執行 -import-audio 轉換目錄 -data game-data；不覆寫既有原音目錄。
+原 MIDI 音色採 TiMidity++／FluidR3，PCM 採原要求率近似，不稱新 HD 音樂、語音修復或原機逐波形一致。
+完整角色動畫仍待驗。本機完整版指包含原版資料，不代表完整 HD。
+實體手把、真機速度、魔王單打過關及結局留待人工驗證。
 Linux 與 Windows Wine 有原生驗證；Wine 不等於 Windows 真機。macOS 未作真機驗收或簽章。
 Linux 需要 X11／OpenGL 桌面及相容的系統函式庫。
 
@@ -100,6 +105,7 @@ def main():
     p.add_argument('--build-dir',type=Path,default=ROOT/'workplace/bin')
     p.add_argument('--license-dir',type=Path,default=ROOT/'workplace/release-licenses-v1')
     p.add_argument('--original-root',type=Path,default=Path('/orig'))
+    p.add_argument('--audio-root',type=Path)
     a=p.parse_args()
     if a.stage=='licenses':licenses(a.license_dir);return
     version=(ROOT/'VERSION').read_text().strip()
@@ -110,6 +116,11 @@ def main():
     if a.stage=='packages':
         assert not output.exists() and a.license_dir.is_dir()
         assert ROOT.stat().st_uid==1000
+        assert a.audio_root and a.audio_root.is_dir(), 'full-local requires the validated original audio bank'
+        audio_manifest=json.loads((a.audio_root/'manifest.json').read_text())
+        assert audio_manifest['kind']=='original-audio-ogg' and len(audio_manifest['clips'])==55
+        assert audio_manifest['registry_sha256']==sha(ROOT/'internal/originalaudio/sources.json')
+        for clip in audio_manifest['clips']:assert sha(a.audio_root/clip['file'])==clip['sha256']
         for kind in ('patch','full-local','promo','smoke'):(output/kind).mkdir(parents=True)
         records=[]
         for platform,binary_name in TARGETS:
@@ -142,21 +153,39 @@ def main():
                         else:
                             (base/'Start.sh').write_text('#!/bin/sh\ncd "$(dirname "$0")" || exit 1\nexec ./'+binary_name+' "$@"\n');(base/'Start.sh').chmod(0o755)
                     shutil.copyfile(binary,exe);exe.chmod(0o755)
-                    shutil.copytree(ROOT/'assets/hd/characters',payload/'assets/hd/characters')
+                    character_source=ROOT/'assets/hd/characters'
+                    character_dest=payload/'assets/hd/characters';character_dest.mkdir(parents=True)
+                    character_manifest=json.loads((character_source/'manifest.json').read_text())
+                    shutil.copyfile(character_source/'manifest.json',character_dest/'manifest.json')
+                    for row in character_manifest['atlases']:
+                        source=character_source/row['file'];assert sha(source)==row['sha256']
+                        shutil.copyfile(source,character_dest/row['file'])
                     background=payload/'assets/hd/backgrounds';background.mkdir(parents=True)
                     shutil.copyfile(ROOT/'assets/hd/backgrounds/rooftop.png',background/'rooftop.png')
+                    art=ROOT/'assets/hd'
+                    screens=json.loads((art/'screens.json').read_text())
+                    backgrounds=json.loads((ROOT/'internal/hd/background-sources.json').read_text())
+                    required={row['file']:row['sha256'] for row in screens['images']}
+                    required.update({row['image_file']:row['image_sha256'] for row in backgrounds})
+                    for relative,digest in required.items():
+                        assert not Path(relative).is_absolute() and '..' not in Path(relative).parts
+                        source=art/relative;assert sha(source)==digest
+                        target=payload/'assets/hd'/relative;target.parent.mkdir(parents=True,exist_ok=True)
+                        shutil.copyfile(source,target)
+                    shutil.copyfile(art/'screens.json',payload/'assets/hd/screens.json')
                     if local:
                         dest=payload/'game-data';dest.mkdir()
                         for record in originals:
                             source=a.original_root/record['name']
                             assert sha(source)==record['sha256'] and source.stat().st_size==record['bytes']
                             shutil.copyfile(source,dest/record['name'])
+                        shutil.copytree(a.audio_root,payload/'assets/audio/original')
                     shutil.copyfile(ROOT/'LICENSE',base/'LICENSE')
                     shutil.copytree(a.license_dir,base/'licenses')
                     (base/'README-zh-TW.txt').write_text(readme(version,local,platform),encoding='utf-8-sig')
                     (base/'VERSION').write_text(version+'\n')
                     inventory={str(f.relative_to(base)):{'sha256':sha(f),'bytes':f.stat().st_size} for f in sorted(base.rglob('*')) if f.is_file()}
-                    manifest={'version':version,'platform':platform,'kind':kind,'original_game_included':local,
+                    manifest={'version':version,'platform':platform,'kind':kind,'original_game_included':local,'original_audio_included':local,
                               'binary':str(exe.relative_to(base)),'compiled_receipt_sha256':sha(binary.with_name(binary.name+'.build.json')),
                               'files':inventory,'rights':'local only with original game' if local else 'engine and generated HD; user supplies original data'}
                     (base/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
@@ -166,7 +195,7 @@ def main():
         all_records={'version':version,'files':records}
         (output/'SHA256SUMS.json').write_text(json.dumps(all_records,indent=2)+'\n')
         public={'version':version,'original_game_included':False,'files':[x for x in records if x['kind']=='patch'],
-                'video_published':False,'limits':'initial partial HD; Jaan specials only; Wine and macOS hardware limitations in README'}
+                'video_published':False,'limits':'integrated visual HD and approved Spider B; original audio import only, no original audio in public engine; sampled animations only; Jaan specials only; Wine and macOS hardware limitations in README'}
         (output/'patch/release-manifest.json').write_text(json.dumps(public,indent=2)+'\n')
         print(json.dumps({'version':version,'packages':len(records),'output':str(output)}))
     result=[]
@@ -185,11 +214,13 @@ def main():
                 if record['kind']=='patch':
                     assert hashlib.sha256(data).hexdigest() not in protected,(record['file'],name)
                     assert 'game-data' not in Path(name).parts
-                    assert Path(name).suffix.upper() not in {'.DAT','.FIG','.XBB','.XGB','.MUS','.PPM','.PAH','.COM','.IDX','.RGB'}
+                    assert Path(name).suffix.upper() not in {'.DAT','.FIG','.XBB','.XGB','.MUS','.PPM','.PAH','.COM','.IDX','.RGB','.OGG','.WAV','.MID','.MIDI'}
             assert z.read(prefix+'VERSION').decode().strip()==version
             assert z.read(prefix+'README-zh-TW.txt').startswith(b'\xef\xbb\xbf')
             assert 'LICENSE' in m['files'] and any(n.startswith('licenses/') for n in m['files'])
-            if record['kind']=='full-local':assert sum('/game-data/' in n for n in names)==len(originals)
+            if record['kind']=='full-local':
+                assert sum('/game-data/' in n for n in names)==len(originals)
+                assert sum(n.endswith('.ogg') for n in names)==55 and m['original_audio_included']
             result.append({'file':record['file'],'files':len(names),'verified':True})
     audit={'version':version,'packages':result,'public_original_data_excluded':True,'local_original_files_per_package':len(originals)}
     (output/'smoke/package-audit.json').write_text(json.dumps(audit,indent=2)+'\n')

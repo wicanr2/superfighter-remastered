@@ -18,9 +18,9 @@ import (
 
 type CharacterSource struct {
 	SourceBank string `json:"source_bank,omitempty"`
-	Character int    `json:"character"`
-	File      string `json:"file"`
-	SHA256    string `json:"sha256"`
+	Character  int    `json:"character"`
+	File       string `json:"file"`
+	SHA256     string `json:"sha256"`
 }
 type CharacterAtlas struct {
 	File   string `json:"file"`
@@ -29,7 +29,7 @@ type CharacterAtlas struct {
 	Height int    `json:"height"`
 }
 type CharacterPose struct {
-	SourceBank string `json:"source_bank,omitempty"`
+	SourceBank   string `json:"source_bank,omitempty"`
 	PaletteBank  int    `json:"palette_bank,omitempty"`
 	Character    int    `json:"character"`
 	Slot         int    `json:"slot"`
@@ -55,22 +55,37 @@ type PoseArt struct {
 	packed []byte // 使用者原檔的唯讀切片；不寫入 JSON 或發行素材。
 }
 type Characters struct {
-	Manifest CharacterManifest
-	poses    map[[3]int]*PoseArt
-	palettes map[[2]int][16][3]uint8
-	alternatePalettes map[int][16][3]uint8
-	alternatePoses map[[3]int]*PoseArt
+	Manifest           CharacterManifest
+	poses              map[[3]int]*PoseArt
+	palettes           map[[2]int][16][3]uint8
+	alternatePalettes  map[int][16][3]uint8
+	alternatePoses     map[[3]int]*PoseArt
 	secondaryMainPoses map[[3]int]*PoseArt
 }
 
-func graphicBank(name string) (int,bool) {
-	switch name {case "","normal":return 0,true;case "victory":return 1,true;default:return 0,false}
+func graphicBank(name string) (int, bool) {
+	switch name {
+	case "", "normal":
+		return 0, true
+	case "victory":
+		return 1, true
+	default:
+		return 0, false
+	}
 }
 
-func characterArtKey(character,slot,palette int,sourceBank string) ([3]int,bool) {
-	bank,ok:=graphicBank(sourceBank);if !ok{return [3]int{},false}
-	if bank==1 {if palette!=0{return [3]int{},false};return [3]int{character,slot,2},true}
-	return [3]int{character,slot,palette},true
+func characterArtKey(character, slot, palette int, sourceBank string) ([3]int, bool) {
+	bank, ok := graphicBank(sourceBank)
+	if !ok {
+		return [3]int{}, false
+	}
+	if bank == 1 {
+		if palette != 0 {
+			return [3]int{}, false
+		}
+		return [3]int{character, slot, 2}, true
+	}
+	return [3]int{character, slot, palette}, true
 }
 
 func checkedFile(dir, name, want string, limit int64) ([]byte, error) {
@@ -105,7 +120,8 @@ func checkedFile(dir, name, want string, limit int64) ([]byte, error) {
 
 // LoadCharacters 一次驗整組來源與素材，失敗時不傳回部分角色。
 func LoadCharacters(dir, originalRoot string) (*Characters, error) {
-	b, e := checkedFile(dir, "manifest.json", "", 520<<10)
+	// 049 的 1630 個來源鍵為 571198 bytes；仍受數量與 1 MiB 上限約束。
+	b, e := checkedFile(dir, "manifest.json", "", 1<<20)
 	if e != nil {
 		return nil, e
 	}
@@ -124,10 +140,13 @@ func LoadCharacters(dir, originalRoot string) (*Characters, error) {
 	a := &Characters{Manifest: m, poses: map[[3]int]*PoseArt{}, palettes: map[[2]int][16][3]uint8{}}
 	sources := map[[2]int][]byte{}
 	for _, source := range m.Sources {
-		bank,valid:=graphicBank(source.SourceBank);key:=[2]int{source.Character,bank}
-		file,minSize:=fmt.Sprintf("SFMAN%02d.DAT",source.Character+1),0xc48
-		if bank==1{file,minSize=renderdata.VictoryFigureFile(source.Character),0x180}
-		if source.Character < 0 || source.Character > 10 || !valid || m.Version<3 && source.SourceBank!="" || source.File != file || sources[key] != nil || len(source.SHA256) != 64 {
+		bank, valid := graphicBank(source.SourceBank)
+		key := [2]int{source.Character, bank}
+		file, minSize := fmt.Sprintf("SFMAN%02d.DAT", source.Character+1), 0xc48
+		if bank == 1 {
+			file, minSize = renderdata.VictoryFigureFile(source.Character), 0x180
+		}
+		if source.Character < 0 || source.Character > 10 || !valid || m.Version < 3 && source.SourceBank != "" || source.File != file || sources[key] != nil || len(source.SHA256) != 64 {
 			return nil, fmt.Errorf("角色來源重複或未對應")
 		}
 		data, e := checkedFile(originalRoot, source.File, source.SHA256, 4<<20)
@@ -138,8 +157,10 @@ func LoadCharacters(dir, originalRoot string) (*Characters, error) {
 			return nil, fmt.Errorf("角色來源過短")
 		}
 		sources[key] = data
-		if bank==1{continue}
-		for bank := 0; bank < min(m.Version,2); bank++ {
+		if bank == 1 {
+			continue
+		}
+		for bank := 0; bank < min(m.Version, 2); bank++ {
 			var palette [16][3]uint8
 			for i := range palette {
 				for k := 0; k < 3; k++ {
@@ -163,8 +184,8 @@ func LoadCharacters(dir, originalRoot string) (*Characters, error) {
 			return nil, fmt.Errorf("角色圖集重複或尺寸錯誤")
 		}
 		totalPixels += atlas.Width * atlas.Height
-		// 044 的光效群組共 115,204,291 像素；110 Mi 保留明確總量限制。
-		if totalPixels > 110*1024*1024 {
+		// 049 加入蜘蛛女四張 512 格圖集，總量仍受 128 Mi 像素限制。
+		if totalPixels > 128*1024*1024 {
 			return nil, fmt.Errorf("角色圖集超過記憶體限制")
 		}
 		data, e := checkedFile(dir, atlas.File, atlas.SHA256, 32<<20)
@@ -185,14 +206,17 @@ func LoadCharacters(dir, originalRoot string) (*Characters, error) {
 		images[atlas.File] = img
 	}
 	for _, pose := range m.Poses {
-		bank,validBank:=graphicBank(pose.SourceBank)
-		key,validKey := characterArtKey(pose.Character,pose.Slot,pose.PaletteBank,pose.SourceBank)
-		data := sources[[2]int{pose.Character,bank}]
+		bank, validBank := graphicBank(pose.SourceBank)
+		key, validKey := characterArtKey(pose.Character, pose.Slot, pose.PaletteBank, pose.SourceBank)
+		data := sources[[2]int{pose.Character, bank}]
 		img := images[pose.Atlas]
-		if !validBank || !validKey || m.Version<3 && pose.SourceBank!="" || pose.Slot < 0 || pose.Slot >= 72 || pose.PaletteBank < 0 || pose.PaletteBank >= min(m.Version,2) || data == nil || img == nil || a.poses[key] != nil || sources[[2]int{pose.Character,0}]==nil {
+		if !validBank || !validKey || m.Version < 3 && pose.SourceBank != "" || pose.Slot < 0 || pose.Slot >= 72 || pose.PaletteBank < 0 || pose.PaletteBank >= min(m.Version, 2) || data == nil || img == nil || a.poses[key] != nil || sources[[2]int{pose.Character, 0}] == nil {
 			return nil, fmt.Errorf("角色姿態重複或來源缺少")
 		}
-		table,payload:=0xb28,0xc48;if bank==1{table,payload=0x60,0x180}
+		table, payload := 0xb28, 0xc48
+		if bank == 1 {
+			table, payload = 0x60, 0x180
+		}
 		pointer := table + pose.Slot*4
 		offset := payload + int(binary.LittleEndian.Uint16(data[pointer:]))*16 + int(binary.LittleEndian.Uint16(data[pointer+2:]))
 		if offset < payload || offset+2 > len(data) {
@@ -262,8 +286,10 @@ func (a *Characters) Select(layers []renderdata.Layer, palette [256][3]uint8) ([
 		} else {
 			players[s.Player] = true
 		}
-		key,knownSource:=characterArtKey(s.Character,s.Slot,bank,s.SourceBank)
-		if !knownSource{return nil,"角色圖像群組未對應，保留原貌"}
+		key, knownSource := characterArtKey(s.Character, s.Slot, bank, s.SourceBank)
+		if !knownSource {
+			return nil, "角色圖像群組未對應，保留原貌"
+		}
 		art := a.poses[key]
 		if !s.Effect && bank == 1 {
 			art = a.secondaryMainPoses[key]
