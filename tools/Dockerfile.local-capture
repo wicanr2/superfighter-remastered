@@ -1,0 +1,18 @@
+FROM eob-remake-wine-verify:ubuntu-noble-20261008-r2
+USER root
+ENV DEBIAN_FRONTEND=noninteractive
+RUN timeout 120s apt-get update && timeout 180s apt-get install -y --no-install-recommends \
+    ffmpeg pulseaudio pulseaudio-utils libasound2-plugins libegl1 libopengl0 mesa-utils python3-pil \
+    && rm -rf /var/lib/apt/lists/*
+COPY workplace/flow-study-v1/virtualgl_3.1.4_amd64.deb /tmp/virtualgl.deb
+RUN timeout 120s apt-get update && timeout 60s apt-get install -y --no-install-recommends libglu1-mesa \
+    && rm -rf /var/lib/apt/lists/*
+RUN timeout 120s apt-get update && timeout 60s apt-get install -y --no-install-recommends intel-media-va-driver-non-free \
+    && rm -rf /var/lib/apt/lists/*
+RUN echo "02edc6b599571c385389af1a006f07a70c298e1d97c580a9bfd4b39d835c51e6  /tmp/virtualgl.deb" | sha256sum -c - \
+    && dpkg -i /tmp/virtualgl.deb && rm /tmp/virtualgl.deb \
+    && dpkg-query -W > /capture-package-versions.txt
+ENV PATH=/opt/VirtualGL/bin:$PATH
+ENTRYPOINT []
+USER 1000:1000
+WORKDIR /project

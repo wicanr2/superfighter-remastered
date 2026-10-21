@@ -1142,3 +1142,22 @@ python3 tools/build_desktop.py verify --output-dir /project/workplace/edge-clip-
 - README 換上本輪正常 F12 的標題、第二人選角及蜘蛛女對印第安喬三張 HD PNG。已目視核對第二排三魔王、兩側大肖像、無額外姓名按鈕、雙打及連身衣。原圖保留，新圖用 repo 相對路徑，source.json 記錄 binary／script／receipt／capture metadata SHA。資料與原貌、錄影、原音及原始收據保持本機。
 
 025 僅就上述正常選角與原版狀態不變限定 CONFORMED，GPU、實體螢幕、手把、其他平台真機及完整動畫／結局限制保持。CONTEXT、WORKLIST、驗證矩陣與索引同步。現行來源及開發程式比 v.1.0.2 八包與影片更新；本輪沒有重打包、新 Release、移動 tag 或改公開方式。最終 Git、擁有權、README 路徑與 Docker 清理結果寫 selection-atomic-closeout.json。
+
+## 2026-10-21：v.1.0.3 本機重打包與實錄
+
+使用者要求「重新打包 & 錄製推廣影片 in local machine」。本輪讀取版本、dist-all、推廣片與原音來源契約，沿已確認三平台、原音、HD 片頭、魔王選角與實戰範圍，036 先追加 READY。採新版本 v.1.0.3-20261021，包含前輪選角完整發布修正；沒有使用 Ada、建立新 Release 或覆寫舊 tag、封包與影片。
+
+- 四架構沿固定 Go 1.24.13 工具鏈重建至 workplace/flow-study-v1/v103-bin，實際編譯輸入相較已驗選角修正版僅 VERSION 改變。Linux SHA ac19af15877e0182a365dff32dbcc8e7d68eed50a11a9e80bde76ccfc000895b；核對四架構來源、SHA 與檔頭後晉升 workplace/bin，編譯收據另存本版 smoke/build-receipts。未改原核心、私有執行器、計時、規則、設定或美術。
+- 第一個打包命令漏傳 original-root，工具讀預設 /orig/FIV-1.PPM 而失敗；屬命令掛載錯誤。原資料保持，部分產物另存 v103-packaging-incomplete；以正確唯讀 /project/workplace/orig 在乾淨 staging root 重建八包，再晉升唯一 dist-all/v.1.0.3-20261021。四引擎包與四完整版逐檔、CRC、SHA、架構、版號及權利分類通過，各完整包含 125 原檔與 55 OGG，引擎包排除原版／原音。
+- 八包乾淨解至 v103-unpacked。首次 Linux 啟動工作在解包索引生成前啟動而失敗，未啟動遊戲；保留空的 premature 輸出，待索引完成後用相同腳本及 4 GiB 限額重跑。Linux／Wine 各對引擎、完整版共四次通過，含版本、缺資料、安全匯入及拒絕覆寫、設定、十一景參照與原版步進。Wine 不代替 Windows 真機，macOS 仍為建置／封包範圍。
+- 最初只在隔離執行環境查 /dev/dri，誤判本機無 GPU；改由 Docker daemon 的唯讀 /dev metadata 查證，主機實際有 renderD128、群組 992。僅授予這個 render node 與群組後，Intel MTL、Mesa 25.2.8／OpenGL 4.6、VirtualGL 3.1.4 EGL 探針通過。沒有啟動主機工作負載、讀主機桌面、修改主機設定或擷取登入憑證。
+- 沿用既有 Wine 驗證 image 的 Mesa 工具基底，新增 tools/Dockerfile.local-capture。第一次建置缺 libglu1-mesa，補齊原 Dockerfile 後同名 r1 完成；新增 Intel VAAPI 的 r2 明確取代 r1 的正式擷取用途，舊 r1 保留供已保存試錄重現。VirtualGL deb 來自官方 3.1.4 固定版，SHA 02edc6b599571c385389af1a006f07a70c298e1d97c580a9bfd4b39d835c51e6；來源及原 bytes 保持。r2 image ID sha256:2bdbe127a3c4651c152270ce6091b0d1c91d1f4ebfe4c43866d64453bd79e414，套件版本保存於 smoke/capture-package-versions.txt。
+- 軟體繪圖、Intel EGL、cpuset 0–3 效能核心親和性及硬體編碼逐一試錄，結果保留。當時 14 邏輯 CPU 主機 load 約 13–41、CPU pressure 可達約 55%，但未作同一條件的 v.1.0.2／新程式對照，不能只據此把效能差異歸因主機。沒有更改其他專案資源、加速原版或挑選剛好通過的零延遲樣本。
+- record_promo_bosses.py 增加 egl 身分、VAAPI 編碼與實際 Draw 的選角／等待觀測，保留明示 libx264 選項；正常原標題→雙打→第一人魔王→Return→第二人→Return→攻擊。修正早期慢速環境最後定位即結束錄影的取樣不足，等待已發布完整肖像，第二人完成後至少保留 2.5 秒，原短停留試錄另存。腳本開始時固定來源 bytes 與 SHA，避免執行期間工具改動使收據誤記來源。
+- 最終三場皆使用本版正式二進位、UID 1000、4 GiB／4 CPU、cpuset 0–3、network none、renderD128 及 VAAPI。實際 Draw 為 24.4534／26.2077／22.5978 fps，Update 為 43.2925／47.5482／42.5737 TPS，原版完成畫格為 16.2191／18.2206／16.2929 fps。三場均正常扣血，未開練習或注入狀態。選角另外觀測 121／252／265 個 HD Draw，原貌零；仍不代替全部選角狀態或穩定 60 fps。
+- promo_v1.py 依實際 renderer 標示來源，不再固定宣稱 NVIDIA。影片仍為 75 秒、66 秒原生實錄；蜘蛛女選角將第一人及第二人畫面按原時間順序剪成二秒與四秒，小丑與印第安喬保留連續六秒，沒有加速、插值或以靜態稿代替實機。錄音沿原 MIDI／PCM 播放鏈及原始樣本時計算，聲畫對時保持既有擷取近似，字卡使用同一已驗 OGG 音源。
+- 成片 7,990,025 bytes，SHA 44459b0f6e9fe51912b7586c20b0ac781059d90cda74154b4dabdaf4f43cd505；75 秒、4,500 格、1280×720／60 fps 檔案、AAC 48 kHz 雙聲道。完整解碼、非靜音、峰值 -8.1dB、黑幀零、三戰鬥大於二秒凍結零、字幕界線、九段接觸圖及三張全尺寸第二人選角抽查通過。60 fps 檔案不表示遊戲已達 60 fps，promo-checks 及總稽核明記 stable_60_fps_verified=false；人耳與完整人工觀看未簽收。
+- README 三張 current PNG 改用本版正常 F12 標題、第二人蜘蛛女／法蘭克選角及實戰影片第 3 秒畫面；已目視核對，新來源、二進位、收據與原影像／影片雜湊寫入 source.json。圖像沿 repo 相對路徑，原貌、原音、實錄及完整版不上傳。
+- 清理本輪 Wine 前綴與失敗重建的重複 ZIP，逐檔存 SHA／大小／連結，刪除 914,205,786 bytes。原資料、全部試錄、日誌、設定、來源及歷版四十八個 ZIP／五支影片保留。CONTEXT、WORKLIST、README、036、驗證矩陣與工具索引同步本版現況，不將前版 Ada 約 60 fps 套用新程式。
+
+本輪完成聲明限於新版八包、四次啟動與本機影片的上述技術／抽樣檢查。穩定 60 fps 保持未完成，下一個最小驗證是在相同本機環境對照舊版與選角修正版，再定位成本。其他平台真機、雙手把、完整動畫／結局及人耳限制保持。最終原資料、執行器、素材、編譯輸入、舊交付、影片、擁有權與 Python 語法稽核見本版 smoke/final-audit.json；Git／遠端與容器收尾記錄於 smoke/source-closeout.json。

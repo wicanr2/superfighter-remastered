@@ -2,15 +2,23 @@
 
 更新日期：2026-10-21。本檔為唯一現況；待辦見 [WORKLIST](WORKLIST.md)，完整歷程見 [WORKLOG](WORKLOG.md)，規則與索引見 [AGENTS](AGENTS.md)。
 
-目前來源與 workplace/bin 已修正選角原貌閃回。025 完整畫面發布限定 CONFORMED：原 01B9:11D2 輪詢只讀發布色號、色盤、游標與幾何，換人及兩側交接不讀中間態。原版成對 1,063 點、525 次繪製中間態、完整來源拒絕與二十七項正常 UI 通過；最終 Linux 二進位 SHA 89aba7c3b77e0b4088a8e1002b378b8c179121d8b4906e86c7193a45fce15111。selection-atomic-local-v3 保存正常錄影，210 個 HD 選角 Draw 沒有原貌，另有 25 個入場保留 HD 標題的 Draw。這輪為軟體繪圖容器驗證；Ada 在切網路後 LAN／Tailscale SSH 均逾時，尚未驗本修正的 GPU 效能。
+目前來源、workplace/bin 與本機八包為 **v.1.0.3-20261021**，已納入 025 選角完整發布修正。四架構相較 selection-atomic-bin 的確切編譯輸入僅 VERSION 改變；Linux SHA ac19af15877e0182a365dff32dbcc8e7d68eed50a11a9e80bde76ccfc000895b。八包逐檔／SHA／CRC／權利分類及 Linux／Wine 各引擎、完整版共四次乾淨解壓啟動通過。交付為 dist-all/v.1.0.3-20261021，編譯與來源見 workplace/flow-study-v1/v103-bin／v103-build.json，本版 smoke 保存建置與啟動收據。沒有新 Release，舊 tag 與歷版交付保持。
 
-四架構編譯與實際輸入見 workplace/flow-study-v1/selection-atomic-bin、selection-atomic-build.json，晉升及截圖來源見 selection-atomic-integration.json。README 的標題、選角、蜘蛛女雙打改用本輪正常 HD 截圖，原圖保留。**現行來源與開發程式比既有八包、推廣片更新**，本輪沒有打包或發布。以下 v.1.0.2 為既有交付定版證據，不包含這項閃爍修正。
+新版推廣片為 75 秒、4,500 格、1280×720／60 fps 檔案、AAC 48 kHz 雙聲道，六十六秒本機 Intel MTL GPU 實錄包含六秒 HD 標題、三魔王各六秒兩人選角與十四秒對戰。蜘蛛女選角依時間順序剪成兩段，其餘選角連續；沒有加速或動作插值。成片 7,990,025 bytes，SHA 44459b0f6e9fe51912b7586c20b0ac781059d90cda74154b4dabdaf4f43cd505；完整解碼、非靜音、峰值 -8.1dB、黑幀零、三場戰鬥大於二秒凍結零、字幕及九段畫面抽查通過。完整版、原音與影片只留本機，README 三張圖片已換成本版 GPU 來源，來源與 SHA 見 docs/screenshots/source.json。
+
+**本機穩定 60 fps 尚未達標。** 三場實際 Draw 分別為 24.4534／26.2077／22.5978 fps；Update 為 43.2925／47.5482／42.5737 TPS，原版完成畫格另為 16.2191／18.2206／16.2929 fps。影片檔案的 60 fps 不代替遊戲實際速度。已保存軟體繪圖、Intel EGL、效能核心親和性及 VAAPI 試錄，未挑零延遲樣本；尚未建立相同本機環境的舊／新程式效能對照，不能將差異全歸因硬體或宣稱效能回歸已排除。
+
+本機使用 UID 1000、4 GiB／4 CPU、cpuset 0–3、network none 與 renderD128 群組 992，GPU 身分為 Mesa Intel Graphics MTL、Mesa 25.2.8、VirtualGL 3.1.4，硬體錄影編碼為 h264_vaapi。工具鏈 superfighter-local-capture:noble-egl-20261021-r2 的 image ID 為 sha256:2bdbe127a3c4651c152270ce6091b0d1c91d1f4ebfe4c43866d64453bd79e414；Dockerfile、套件版本與探針見本版 smoke 及 workplace/flow-study-v1/v103-gpu-probe／v103-vaapi-probe.log。r1 保留供先前試錄重現。Ada 本輪沒有重連或執行工作。
+
+選角修正原始驗證為 selection-atomic-local-v3 的二十七項正常 UI、210 個 HD 選角 Draw 原貌零，另有 25 個入場 HD 標題等待 Draw。原版成對 1,063 點 RAM／暫存器／RGB 一致，525 次中間態隔離及來源拒絕通過；原修正 Linux SHA 89aba7c3b77e0b4088a8e1002b378b8c179121d8b4906e86c7193a45fce15111。新版三場 GPU 錄影另外觀測 121／252／265 個 HD 選角 Draw，原貌零。這些完成範圍不外推穩定 60 fps、實體手把、其他平台真機或完整動畫。
+
+本輪清理新建 Wine 前綴及失敗重建的重複 ZIP，共 914,205,786 bytes；逐檔清單在本版 smoke/workspace-cleanup.json。原資料、試錄、輸入、日誌、設定、歷版四十八個 ZIP 與五支影片保持。最終總稽核及來源交接見本版 smoke/final-audit.json／source-closeout.json。以下為 v.1.0.2 與更早交付證據，保持各自當時範圍。
 
 既有八包的版本為 `v.1.0.2-20261021`，已納入移除畫面外姓名／確認按鈕的介面。雙打沿原標題選單、第一人確認、第二人確認、進入 mode=1 對戰；HD 上排八人、第二排三魔王及十一頭像點選保持。該版二十七項正常介面收據在 selection-native-no-buttons；四架構相較該輪實際編譯輸入僅 VERSION 改變。交付建置位於 workplace/flow-study-v1/v102-bin，八包、四次 Linux／Wine 解壓啟動及新版影片均已完成。本輪沒有新增 Release，舊 tag、封包與影片保留。開發程式仍用該版本字串，以最上方實際編譯輸入與雜湊區別。
 
-新版影片 75 秒、4,500 格、1280×720／60 fps、AAC 48 kHz；66 秒原生 GPU 實錄含六秒遊戲內 HD 標題、三名魔王各六秒雙打兩人選角及十四秒戰鬥。原標題 music-01 實錄非靜音，成片峰值 -7.3dB，完整解碼、黑幀零、戰鬥凍結零及九段畫面／字幕抽查通過。影片 SHA a09876bd404d88b86cbe0fc16c58994c407e52a6b40c9a977fc09792f13d8e2c，僅留本版 promo。
+v.1.0.2 的影片 75 秒、4,500 格、1280×720／60 fps、AAC 48 kHz；66 秒原生 GPU 實錄含六秒遊戲內 HD 標題、三名魔王各六秒雙打兩人選角及十四秒戰鬥。原標題 music-01 實錄非靜音，成片峰值 -7.3dB，完整解碼、黑幀零、戰鬥凍結零及九段畫面／字幕抽查通過。影片 SHA a09876bd404d88b86cbe0fc16c58994c407e52a6b40c9a977fc09792f13d8e2c，僅留本版 promo。
 
-最新版 ada 補測為 59.9886 fps／TPS，1,201 個間隔平均 16.6664 ms、p99 24.8805 ms、最大 34.0841 ms，超過 33.3 ms 一次，CPU 配額節流零；原版完成畫格另計 23.5759 fps。原始結果在 workplace/flow-study-v1/ada-results/ada-v102-60-v2；不以重跑挑零停頓的結果。首次腳本在第二人完成繪製前點擊而逾時，補上匹配玩家與已畫肖像的等待後，同二進位及工具鏈乾淨重跑，遊戲不改。一次過早複製的未完成快照另存 incomplete-copy，不作驗收。
+v.1.0.2 的 Ada 補測為 59.9886 fps／TPS，1,201 個間隔平均 16.6664 ms、p99 24.8805 ms、最大 34.0841 ms，超過 33.3 ms 一次，CPU 配額節流零；原版完成畫格另計 23.5759 fps。原始結果在 workplace/flow-study-v1/ada-results/ada-v102-60-v2；不以重跑挑零停頓的結果。首次腳本在第二人完成繪製前點擊而逾時，補上匹配玩家與已畫肖像的等待後，同二進位及工具鏈乾淨重跑，遊戲不改。一次過早複製的未完成快照另存 incomplete-copy，不作驗收。
 
 前輪流暢度根因已在 ada 實際 NVIDIA RTX 2000 Ada 驗證。相同診斷程式在 EGL 擷取路徑開 VSync 約 52 fps，關閉後約 189 fps，前端仍為 60 TPS，證實同步等待限制輸出。正式版新增可選 `-capture-fps 60`，預設螢幕 VSync 保留；HD 相同對戰格重用合成結果。當時二十秒錄影 60.017 fps、1,202 間隔無超過 33.3 ms，僅代表前輪樣本，不代替本輪尾部數值。原版核心、PIT、規則與動作節奏未改。前輪證據保存在 `workplace/flow-study-v1/ada-results/ada-formal-60/receipt.json`；vsync 欄位是診斷環境請求，正式 CLI capture_fps=60 已關閉 VSync。VirtualGL 使用實際 GPU，Xvfb 僅作 2D 擷取；不代替實體螢幕、手把或其他平台真機驗收。
 
@@ -34,9 +42,9 @@ v1 發布狀態以上方摘要及下表為準，歷史版本不覆寫。已發�
 | 蜘蛛女 B | 45 組一般、五組與一般同 bytes 的 WIN、144 入口 | 原 PNG 與提示詞保留。原 DAT 基底朝左，依實際來源及左玩家 0x44 flags 修正圖格朝向，保留遊戲翻轉邏輯；Linux 一般動作、首勝 WIN 專用圖格、兩次 KO／結果／返回及 Wine 普通操作通過；所有動畫不外推 |
 | 原音 | [050](docs/spec/050-original-audio-playback.md)：十五 MIDI／四十 PCM，共 55 OGG、54 個不同 cue 雜湊 | 十八原檔完整核對，全部轉換非靜音且無削波；188 次固定時鐘成對狀態檢查通過；Linux 167 秒虛擬裝置實錄通過，暫停／靜音 RMS 0、恢復／循環非靜音、削波 0。音樂 HD 重編、語音修復及人耳驗收未做 |
 | 操作與練習 | 鍵盤重綁、雙人裝置、四格配置、滿血鎖血／停時／AI 中立 | 沿 004／025／032／035 已驗限定範圍；快捷實際只開放斬四招，實體手把仍待人工 |
-| 回歸與建置 | 四架構現行 `workplace/bin` 與 `flow-study-v1/selection-atomic-bin` 實際編譯收據，交付的 v102-bin 保留 | 選角完整發布的成對核心、來源拒絕、二十七項正常 UI 及 vet 通過。原 133 項與前輪 26 項／有界完整來源測試保持原範圍 |
-| 本機交付 | `dist-all/v.1.0.2-20261021/`：四引擎包、四完整版 | 各完整版含 125 原檔及 55 OGG，引擎包排除原版／原音。清單、SHA、CRC 及 Linux／Wine 共四次乾淨解壓啟動通過；完整版只留本機 |
-| 本版影片 | `dist-all/v.1.0.2-20261021/promo/v.1.0.2-20261021-local-promo.mp4` | 75 秒、4,500 格／60fps；六秒 HD 遊戲標題、三場雙打兩人選角及實戰，共 66 秒實錄。完整解碼、峰值 -7.3dB、黑幀 0、戰鬥凍結 0、九段畫面／字幕抽查通過；三場實際繪圖 59.97–60.04 fps，只留本機 |
+| 回歸與建置 | 四架構現行 workplace/bin 與 flow-study-v1/v103-bin，舊版建置保留 | 與已驗選角修正的確切編譯輸入僅 VERSION 改變；四架構來源、SHA 與檔頭核對。原二十七項 UI／成對核心及來源拒絕保持原範圍 |
+| 本機交付 | dist-all/v.1.0.3-20261021：四引擎包、四完整版 | 各完整版含 125 原檔及 55 OGG；引擎包排除原版／原音。逐檔／SHA／CRC 與 Linux／Wine 四次乾淨解壓啟動通過 |
+| 本版影片 | dist-all/v.1.0.3-20261021/promo/v.1.0.3-20261021-local-promo.mp4 | 75 秒，66 秒本機 Intel GPU 實錄，含 HD 標題、兩側選角與三魔王實戰及原音；解碼、音量、黑幀、戰鬥凍結與九段抽圖通過；實際 Draw 約 22.60–26.21 fps，未達穩定 60 |
 | 正式發布 | [v.1.0.0-20261021](https://github.com/wicanr2/superfighter-remastered/releases/tag/v.1.0.0-20261021)，tag 固定來源 `f7f6ac667fae36d08bb5106957c1d9e560c6a390` | 四引擎 ZIP 與 manifest 的遠端大小、SHA-256 均吻合。使用者授權一次性發布容器的 AppArmor 例外，其餘權限限制保留；沒有移動或抽出 token |
 
 清理重複 staged runtime、兩輪未發布舊 ZIP 與新建 Wine 前綴，釋放 8,175,307,949 bytes。原資料、研究收據、正式與拒絕朝向美術、第一階段／最終執行環境及歷版交付保留；清單見 cleanup-plan.json／cleanup.json。專案容器已收尾。

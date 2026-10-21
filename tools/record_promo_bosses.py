@@ -21,19 +21,22 @@ def main():
     p.add_argument('--character',type=int,choices=(8,9,10),required=True)
     p.add_argument('--opponent',type=int,choices=range(8),required=True)
     p.add_argument('--fps',type=int,choices=[30,60],default=30)
-    p.add_argument('--renderer',choices=['software','nvidia'],default='software')
+    p.add_argument('--renderer',choices=['software','nvidia','egl'],default='software')
     p.add_argument('--portraits',action='store_true',default=True,help='select through in-game portraits; retained for existing recording commands')
     p.add_argument('--intro',action='store_true',help='額外錄製遊戲內 HD 標題與原音')
+    p.add_argument('--software-threads',type=int,choices=range(1,9),default=2,help='本機軟體繪圖執行緒數，不改遊戲計時')
+    p.add_argument('--encoder',choices=['libx264','h264_vaapi'],default='libx264',help='錄影編碼器；VAAPI 需要明示 renderD128 裝置')
     a=p.parse_args();a.output.mkdir(parents=True,exist_ok=False)
-    (a.output/Path(__file__).name).write_bytes(Path(__file__).read_bytes())
+    script_bytes=Path(__file__).read_bytes();script_sha=hashlib.sha256(script_bytes).hexdigest()
+    (a.output/Path(__file__).name).write_bytes(script_bytes)
     for name in ('home','runtime','pulse'):(a.output/name).mkdir(mode=0o700)
     socket=a.output/'pulse/native'
     env=dict(os.environ,DISPLAY=':89',HOME=str(a.output/'home'),XDG_RUNTIME_DIR=str(a.output/'runtime'),
              PULSE_RUNTIME_PATH=str(a.output/'pulse'),PULSE_SERVER='unix:'+str(socket),
-             LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS='2',GOMAXPROCS='2')
-    if a.renderer=='nvidia':env.pop('LIBGL_ALWAYS_SOFTWARE',None)
+             LIBGL_ALWAYS_SOFTWARE='1',LP_NUM_THREADS=str(a.software_threads),GOMAXPROCS='2')
+    if a.renderer in ('nvidia','egl'):env.pop('LIBGL_ALWAYS_SOFTWARE',None)
     (a.output/'home/.asoundrc').write_text('pcm.!default { type pulse }\nctl.!default { type pulse }\n')
-    observe=a.output/'observe.json';processes=[];logs=[];events=[];clips=[];game=None;started=time.monotonic()
+    observe=a.output/'observe.json';processes=[];logs=[];events=[];clips=[];draws={};game=None;started=time.monotonic()
     def spawn(cmd,name,stdout=None):
         log=(a.output/(name+'.log')).open('wb');logs.append(log)
         proc=subprocess.Popen(cmd,env=env,stdout=stdout if stdout is not None else log,stderr=log)
@@ -46,8 +49,10 @@ def main():
         if not s:return None
         assert not s['core'].get('error') and not s['audio'].get('error')
         assert not s['core']['training']['modified']
+        for f in s.get('performance',{}).get('recent')or[]:draws[f['draw']]=f
         events.append(dict(performance=s.get('performance'),label=label,seconds=time.monotonic()-started,core=s['core'],audio=s['audio'],
                            hd_active=s['hd_active'],title_hd_active=s['title_hd_active'],selection_hd_active=s['selection_hd_active'],
+                           selection_hd=s.get('selection_hd'),selection_waiting=s.get('selection_waiting',False),
                            scene=s['presentation']['scene'],actors=s['presentation'].get('actors')))
         return s
     def wait(predicate,seconds=150):
@@ -76,10 +81,11 @@ def main():
         recorder=spawn(['parec','--device=kdzz.monitor','--raw','--format=s16le','--rate=48000',
                         '--channels=2','--latency-msec=10'],name+'-audio',raw)
         video=a.output/(name+'.mp4');progress=a.output/(name+'-progress.txt')
-        rec=spawn(['ffmpeg','-hide_banner','-loglevel','error','-nostdin','-y','-f','x11grab',
+        device=['-vaapi_device','/dev/dri/renderD128']if a.encoder=='h264_vaapi'else[]
+        encode=['-vf','format=nv12,hwupload','-c:v','h264_vaapi','-qp','20','-bf','0']if device else['-c:v','libx264','-preset','ultrafast','-crf','18','-pix_fmt','yuv420p']
+        rec=spawn(['ffmpeg','-hide_banner','-loglevel','error','-nostdin','-y',*device,'-f','x11grab',
                    '-draw_mouse','1','-framerate',str(a.fps),'-video_size','1120x820','-i',':89.0',
-                   '-an','-c:v','libx264','-preset','ultrafast','-crf','18','-threads','1',
-                   '-pix_fmt','yuv420p','-progress',str(progress),'-stats_period','0.1',str(video)],name+'-video')
+                   '-an',*encode,'-threads','1','-progress',str(progress),'-stats_period','0.1',str(video)],name+'-video')
         end=time.monotonic()+15;us=0
         while time.monotonic()<end:
             if progress.exists():
@@ -117,7 +123,7 @@ def main():
                                     updates_per_second=(e['frontend_updates']-b['frontend_updates'])/dt,
                                     original_frames_per_second=max(0,e['core']['frames']-b['core']['frames'])/dt)
         clips.append(row);return row
-    wrapper=['/opt/VirtualGL/bin/vglrun','-d','egl0','-c','proxy']if a.renderer=='nvidia'else[]
+    wrapper=['/opt/VirtualGL/bin/vglrun','-d','egl0','-c','proxy']if a.renderer in ('nvidia','egl')else[]
     command=wrapper+[str(a.binary),'-data','/orig','-user-data',str(a.output/'user-data'),'-observe',str(observe),'-quit-after','880s']
     if a.fps==60:command+=['-capture-fps','60','-capture',str(a.output/'selection.png')]
     try:
@@ -128,9 +134,15 @@ def main():
         end=time.monotonic()+15
         while not socket.exists()and time.monotonic()<end:time.sleep(.05)
         subprocess.run(['pactl','set-default-sink','kdzz'],env=env,check=True,timeout=5)
-        if a.renderer=='nvidia':
+        if a.renderer in ('nvidia','egl'):
             renderer=subprocess.check_output(wrapper+['glxinfo','-B'],env=env,text=True,timeout=15)
-            assert'NVIDIA'in renderer and'llvmpipe'not in renderer
+            assert'llvmpipe'not in renderer and'softpipe'not in renderer
+            if a.renderer=='nvidia':assert'NVIDIA'in renderer
+            (a.output/'renderer.txt').write_text(renderer)
+        else:
+            renderer='LIBGL_ALWAYS_SOFTWARE=1; software threads='+str(a.software_threads)
+            if shutil.which('glxinfo'):
+                renderer+='\n'+subprocess.check_output(['glxinfo','-B'],env=env,text=True,timeout=15)
             (a.output/'renderer.txt').write_text(renderer)
         game=spawn(command,'native');wait(lambda s:s['core']['paused'])
         window=None;end=time.monotonic()+30
@@ -160,14 +172,21 @@ def main():
         wait(lambda s:s['selection_hd_active']and s['core'].get('selection',{}).get('player')==0)
         c=begin_clip('selection');time.sleep(.7)
         click(80+(110+33*(a.character-8)+16)*3,64+(164+16)*3)
-        wait(lambda s:s['core'].get('selection',{}).get('cursor')==a.character and s['core']['selection'].get('target',-1)<0)
+        wait(lambda s:s['core'].get('selection',{}).get('cursor')==a.character and s['core']['selection'].get('target',-1)<0 and s.get('selection_hd',{}).get('portraits',[-1,-1])[0]==a.character)
         record_state('boss-selected');time.sleep(1.4);key('Return')
-        wait(lambda s:s['core'].get('selection',{}).get('player')==1);time.sleep(1)
+        wait(lambda s:s['selection_hd_active']and s['core'].get('selection',{}).get('player')==1 and s.get('selection_hd',{}).get('player')==1)
+        time.sleep(.3)
         click(80+(28+33*a.opponent+16)*3,64+(127+16)*3)
-        wait(lambda s:s['core'].get('selection',{}).get('cursor')==a.opponent and s['core']['selection'].get('target',-1)<0)
+        wait(lambda s:s['core'].get('selection',{}).get('cursor')==a.opponent and s['core']['selection'].get('target',-1)<0 and s.get('selection_hd',{}).get('portraits',[-1,-1])[1]==a.opponent)
         record_state('second-player-selected')
-        if time.monotonic()-c['started']<8:time.sleep(8-(time.monotonic()-c['started']))
+        stop_at=max(c['started']+8,time.monotonic()+2.5)
+        while time.monotonic()<stop_at:record_state();time.sleep(.05)
         end_clip(c)
+        origin=next(e['seconds']for e in events if e['label']=='selection-start')
+        boss_at=next(e['seconds']for e in events if e['label']=='boss-selected')-origin
+        second_at=next(e['seconds']for e in events if e['label']=='second-player-selected')-origin
+        clips[-1]['edit_windows']=[dict(start=max(0,boss_at-.2),seconds=2),dict(start=max(0,second_at-2),seconds=4)]
+        assert all(w['start']+w['seconds']<=clips[-1]['duration']for w in clips[-1]['edit_windows'])
         if a.fps==60:
             previous=(a.output/'selection.png').stat().st_mtime_ns if (a.output/'selection.png').exists()else 0
             key('F12');wait(lambda s:(a.output/'selection.png').is_file()and(a.output/'selection.png').stat().st_mtime_ns>previous,15)
@@ -189,10 +208,15 @@ def main():
         assert row['end_state']['core']['frames']>before+15
         assert any(e['core']['health']!=[124,124]for e in events if e['seconds']>=next(x['seconds']for x in events if x['label']=='gameplay-start')), 'no attack damage observed'
         assert all(x['audio']['rejected']==0 for x in events)
+        selected=[d for d in draws.values()if d.get('selection')and d.get('hd_enabled')]
+        raw=[d for d in selected if not d['hd_active']]
+        assert selected and not raw,raw
+        (a.output/'draws.json').write_text(json.dumps(list(draws.values()),indent=2)+'\n')
         receipt=dict(version=state()['version'],character=a.character,opponent=a.opponent,binary_sha256=sha(a.binary),
-                     command=command,clips=clips,events=events,script_sha256=sha(Path(__file__)),
+                     command=command,clips=clips,events=events,script_sha256=script_sha,encoder=a.encoder,
                      character_manifest_sha256=sha(a.binary.parent/'assets/hd/characters/manifest.json'),
-                     renderer=a.renderer,capture_fps=a.fps,portrait_selection=a.portraits,hd_intro=a.intro,
+                     renderer=a.renderer,renderer_identity=renderer,software_threads=a.software_threads,capture_fps=a.fps,portrait_selection=a.portraits,hd_intro=a.intro,
+                     selection_presentation=dict(draws=len(selected),original_frames=len(raw)),
                      rights='local-only game recordings and original audio; never Git or public Release',
                      limits='normal Linux native app under Xvfb with ordinary keyboard/mouse; no physical controller, full game, original speed or hardware audio parity claim')
         (a.output/'receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')

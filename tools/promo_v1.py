@@ -58,7 +58,8 @@ def prepare():
     for character,label in NAMES.items():
         folder=OUT/f'boss-{character}';r=json.loads((folder/'receipt.json').read_text())
         assert r['version']==VERSION and r['character']==character
-        assert r['capture_fps']==FPS and r['renderer']=='nvidia'and r['portrait_selection']
+        assert r['capture_fps']==FPS and r['renderer']in ('nvidia','egl','software')and r['portrait_selection']
+        assert r['renderer']==opening['renderer']
         assert any(e['label']=='boss-selected'and e['core']['selection']['cursor']==character for e in r['events'])
         clips={c['name']:c for c in r['clips']}
         assert clips['gameplay']['end_state']['core']['fighters'][0]==character
@@ -66,14 +67,29 @@ def prepare():
         assert clips['selection']['end_state']['core']['selection']['cursor']==r['opponent']
         selected=next(e for e in r['events']if e['label']=='second-player-selected')
         start=next(e for e in r['events']if e['label']=='selection-start')
-        assert selected['seconds']-start['seconds']<6, 'second player must appear in the retained six-second clip'
+        windows=clips['selection'].get('edit_windows')
+        if windows:
+            assert len(windows)==2 and sum(w['seconds']for w in windows)==6
+            assert all(w['start']>=0 and w['start']+w['seconds']<=clips['selection']['duration']for w in windows)
+        else:assert selected['seconds']-start['seconds']<6, 'second player must appear in the retained six-second clip'
         gameplay_start=next(e['seconds']for e in r['events']if e['label']=='gameplay-start')
         assert any(e['core']['health']!=[124,124]for e in r['events']if e['seconds']>=gameplay_start)
         sources[str((folder/'receipt.json').relative_to(ROOT))]=sha(folder/'receipt.json')
         for clip in (clips['selection'],clips['gameplay']):
+            clip=dict(clip)
+            if clip['name']=='selection'and clip.get('edit_windows'):
+                second_at=selected['seconds']-start['seconds']
+                boss_at=next(e['seconds']for e in r['events']if e['label']=='boss-selected')-start['seconds']
+                if second_at<=5.5:
+                    clip.pop('edit_windows')
+                elif shift:=max(0,second_at-5):
+                    if shift<=boss_at+1 and shift+6<=clip['duration']:
+                        clip['edit_windows']=[dict(start=shift,seconds=2),dict(start=shift+2,seconds=4)]
+                if windows:=clip.get('edit_windows'):
+                    assert windows[0]['start']+windows[0]['seconds']<=windows[1]['start'], 'selection edits must retain time order'
             seconds=6 if clip['name']=='selection'else 14
             title=f'直接選擇魔王：{label}'if clip['name']=='selection'else f'{label}，實際對戰'
-            subtitle='雙打依序選第一人、第二人，再確認上場'if clip['name']=='selection'else'60 fps 原生擷取・保留原版動作節奏'
+            subtitle='雙打依序選第一人、第二人，再確認上場'if clip['name']=='selection'else'本機原生實錄・保留原版動作節奏'
             native(folder,clip,f'{character}-{clip["name"]}','native selection'if clip['name']=='selection'else'native gameplay',seconds,title,subtitle,character)
     plan.append(dict(name='end',kind='card',seconds=6,audio='music-08.ogg'))
     audio_manifest=json.loads((BANK/'manifest.json').read_text())
@@ -83,8 +99,10 @@ def prepare():
     source=dict(version=VERSION,fps=FPS,visibility='local-only; no movie, raw footage or audio in Git/GitHub Release',
                 segments=plan,sources=sources,font_sha256=sha(font),text_bounds=bounds,duration=sum(p['seconds']for p in plan),
                 music='actual original MIDI/PCM from the native app; card music uses the same verified OGG bank; TiMidity/FluidR3 software timbre, not original OPL hardware',
-                capture='normal keyboard/mouse in native Linux app; NVIDIA RTX 2000 Ada through VirtualGL EGL, Xvfb only for 2D capture; fixed 60-fps rendering, original core cadence retained; no state injection, forced wins, training or time acceleration',
-                differences_from_previous_promo=['actual in-game HD title footage and original title audio','native versus sequence shows both players selecting without external name/confirm buttons','fresh v.1.0.2 recordings with enlarged selection view and nine-segment layout'],
+                capture='normal keyboard/mouse in native Linux app; '+('GPU through VirtualGL EGL, identity in boss receipts, Xvfb only for 2D capture'if opening['renderer']in ('nvidia','egl')else'local Docker software rendering with Xvfb capture')+'; 60-fps file output, actual Draw/Update rates in boss receipts; original core cadence retained; no state injection, forced wins, training or time acceleration',
+                renderer=opening['renderer'],
+                selection_editing='continuous six-second view when both players fit; otherwise two ordered native cuts, no time acceleration',
+                differences_from_previous_promo=['fresh '+VERSION+' footage includes completed-selection presentation fix','recorded on the local machine with renderer and actual frame rates preserved','six-second selection uses two documented native cuts to show both players; no speed changes'],
                 limits='physical gamepad, native Windows/macOS, full animations/endings and human listening remain unverified')
     (OUT/'source.json').write_text(json.dumps(source,ensure_ascii=False,indent=2)+'\n')
     print('prepared',source['duration'],'seconds; 66 seconds live selection/gameplay')
@@ -112,6 +130,19 @@ def render():
                  '-loop','1','-i',str(OUT/(s['name']+'-overlay.png')),'-filter_complex_threads','1','-filter_complex',
                  f'[0:v]{video}[v];[v][2:v]overlay=0:0[vout];[1:a]{audio}[aout]',
                  '-map','[vout]','-map','[aout]','-t',str(seconds),*common,str(dest)]
+            if windows:=clip.get('edit_windows'):
+                assert s['kind']=='native selection'and len(windows)==2
+                parts=['[0:v]split=2[vi0][vi1]']
+                base=f'atrim=start={max(0,offset)},asetpts=PTS-STARTPTS'
+                if offset<0:base+=f',adelay={int(-offset*1000)}:all=1'
+                parts+=['[1:a]'+base+'[abase]','[abase]asplit=2[ai0][ai1]']
+                for j,w in enumerate(windows):
+                    parts += [f'[vi{j}]trim=start={w["start"]}:duration={w["seconds"]},setpts=PTS-STARTPTS[v{j}]',
+                              f'[ai{j}]atrim=start={w["start"]}:duration={w["seconds"]},asetpts=PTS-STARTPTS[a{j}]']
+                parts += ['[v0][v1]concat=n=2:v=1:a=0[editv]','[a0][a1]concat=n=2:v=0:a=1[edita]',
+                          f'[editv]{video}[v]','[v][2:v]overlay=0:0[vout]',
+                          f'[edita]apad=whole_dur={seconds},atrim=duration={seconds},volume=0.85,afade=t=in:d=0.02,afade=t=out:st={seconds-.02}:d=0.02[aout]']
+                cmd[cmd.index('-filter_complex')+1]=';'.join(parts)
         run(cmd);commands.append(cmd);files.append(dest)
     commands.append(assemble())
     (OUT/'render-commands.json').write_text(json.dumps(commands,indent=2)+'\n')

@@ -157,6 +157,8 @@ HD 採 B「街機手繪」方向，目前仍在規劃與試作階段。以下是
 
 正式 v1 推廣片錄製入口為 [三魔王正常錄影](tools/record_promo_bosses.py)，合成與檢查使用 [v1 影片工具](tools/promo_v1.py)，範圍沿 [036](docs/spec/036-release-packages.md)。原始錄影與配樂僅留 dist-all 的本機 promo，不入 Git。交付總稽核為 [v1 稽核工具](tools/audit_release_v1.py)，原始來源、舊交付、影片與四架構分開核對。
 
+本機 EGL 擷取工具鏈見 [Dockerfile.local-capture](tools/Dockerfile.local-capture)，是既有 eob-remake-wine-verify 的錄影擴充，新增 PulseAudio、FFmpeg、Mesa EGL、VirtualGL 3.1.4 及 Intel VAAPI。建置前將 [VirtualGL 官方固定版本](https://github.com/VirtualGL/virtualgl/releases/download/3.1.4/virtualgl_3.1.4_amd64.deb)保存於 workplace/flow-study-v1/virtualgl_3.1.4_amd64.deb，Dockerfile 核對固定 SHA；以專案根目錄為 context 建置 superfighter-local-capture:noble-egl-20261021-r2。r2 增加硬體編碼，取代僅軟體編碼的 r1；r1 只供已留存試錄重現。執行時 UID 1000，只授予 renderD128 及該裝置的群組，以 --renderer egl --encoder h264_vaapi 錄影；實際 GPU 型號、image ID、套件版本與已驗範圍記入 CONTEXT 指定收據。本機 Intel MTL 已通過 EGL 與 VAAPI 探針，不把 Xvfb 本身當成硬體加速。
+
 | 已建立檔案 | 唯一職責 |
 |---|---|
 | [集中 HD 接入 049](docs/spec/049-hd-batch-integration.md) | 使用者恢復開發並要求一次正式接入、最後集中抽樣；統合多景與標題／選角／結果既有證據，保留原版操作及回退 |

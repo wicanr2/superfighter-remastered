@@ -16,7 +16,7 @@ def main():
     p.add_argument('--binary',type=Path,required=True)
     p.add_argument('--output',type=Path,required=True)
     p.add_argument('--mode',choices=['original','hd'],required=True)
-    p.add_argument('--renderer',choices=['nvidia','software'],required=True)
+    p.add_argument('--renderer',choices=['nvidia','egl','software'],required=True)
     p.add_argument('--record',action='store_true')
     p.add_argument('--cache-check',action='store_true',help='diagnostic build only: paused fresh/cached GPU pixel comparison')
     p.add_argument('--vsync',choices=['on','off','paced'],default='on',help='diagnostic build only')
@@ -87,13 +87,14 @@ def main():
         deadline=time.monotonic()+15
         while not (a.output/'pulse/native').exists() and time.monotonic()<deadline:time.sleep(.05)
         subprocess.run(['pactl','set-default-sink','kdzz'],env=env,check=True,timeout=5)
-        wrapper=['/opt/VirtualGL/bin/vglrun','-d','egl0','-c','proxy'] if a.renderer=='nvidia' else []
+        wrapper=['/opt/VirtualGL/bin/vglrun','-d','egl0','-c','proxy'] if a.renderer in ('nvidia','egl') else []
         if a.renderer=='software' and shutil.which('glxinfo')is None:
             renderer='LIBGL_ALWAYS_SOFTWARE=1; GL identity query unavailable in this legacy capture image'
         else:
             renderer=subprocess.check_output(wrapper+['glxinfo','-B'],env=env,text=True,timeout=15)
         (a.output/'renderer.txt').write_text(renderer)
         if a.renderer=='nvidia':assert 'NVIDIA' in renderer and 'llvmpipe' not in renderer
+        if a.renderer=='egl':assert 'llvmpipe'not in renderer and'softpipe'not in renderer
         command=wrapper+[str(a.binary),'-data','/orig','-user-data',str(a.output/'user-data'),
                          '-observe',str(observe),'-capture',str(a.output/'battle.png'),'-quit-after','240s']
         if a.capture_fps:command+=['-capture-fps',str(a.capture_fps)]
